@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link rel="stylesheet" href="style.css" />
+    <title>验证码：#1 | SlinkX</title>
+  </head>
+  <body>
+    <div id="captcha-container">
+      <img src="logo.jpeg" alt="" />
+      <div class="captcha">
+        <canvas id="captcha" width="200" height="40"></canvas>
+        <button id="reload-captcha">重新发送</button>
+      </div>
+      <div class="user">
+        <input type="text" id="captcha" placeholder="输入验证码" />
+        <button id="check-captcha">验证</button>
+      </div>
+      <p id="captcha-status">Status: IDLE</p>
+    </div>
+    <script src="index.js "></script>
+  </body>
+</html>
