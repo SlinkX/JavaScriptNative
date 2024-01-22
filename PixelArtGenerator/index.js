@@ -1,122 +1,96 @@
-let container = document.querySelector(".container");
-let gridButton = document.getElementById("submit-grid");
-let clearGridButton = document.getElementById("clear-grid");
-let gridWidth = document.getElementById("width-range");
-let gridHeight = document.getElementById("height-range");
-let colorButton = document.getElementById("color-input");
-let eraseBtn = document.getElementById("erase-btn");
-let paintBtn = document.getElementById("paint-btn");
-let widthValue = document.getElementById("width-value");
-let heightValue = document.getElementById("height-value");
+let optionsButtons = document.querySelectorAll(".option-button");
+let advancedOptionButton = document.querySelectorAll(".adv-option-button");
+let fontName = document.getElementById("fontName");
+let fontSizeRef = document.getElementById("fontSize");
+let writingArea = document.getElementById("text-input");
+let linkButton = document.getElementById("createLink");
+let alignButtons = document.querySelectorAll(".align");
+let spacingButtons = document.querySelectorAll(".spacing");
+let formatButtons = document.querySelectorAll(".format");
+let scriptButtons = document.querySelectorAll(".script");
 
-let events = {
-    mouse: {
-        down: "mousedown",
-        move: "mousemove",
-        up: "mouseup"
-    },
-    touch: {
-        down: "touchstart",
-        mobe: "touchmove",
-        up: "touchend",
-    },
-};
+let fontList = [
+    "Arial",
+    "Verdana",
+    "Times New Roman",
+    "Garamond",
+    "Georgia",
+    "Courier New",
+    "Cursive",
+];
 
-let deviceType = "";
+const intializer = () => {
+    highlighter(alignButtons, true);
+    highlighter(spacingButtons, true);
+    highlighter(formatButtons, false);
+    highlighter(scriptButtons, true);
 
-let draw = false;
-let erase = false;
-
-const isTouchDevice = () => {
-    try {
-        document.createEvent("TouchEvent");
-        deviceType = "touch";
-        return true;
-    } catch (e) {
-        deviceType = "mouse";
-        return false;
-    }
-};
-
-isTouchDevice();
-
-gridButton.addEventListener("click", () => {
-    container.innerHTML = "";
-    let count = 0;
-    for (let i = 0; i < gridHeight.value; i++) {
-        count += 2;
-        let div = document.createElement("div");
-        div.classList.add("gridRow");
-
-        for (let j = 0; j < gridWidth.value; j++) {
-            count += 2;
-            let col = document.createElement("div");
-            col.classList.add("gridCol");
-            col.setAttribute("id", `gridCol${count}`);
-            col.addEventListener(events[deviceType].down, () => {
-                draw = true;
-                if (erase) {
-                    col.style.backgroundColor = "transparent";
-                } else {
-                    col.style.backgroundColor = colorButton.value;
-                }
-            });
-
-            col.addEventListener(events[deviceType].move, (e) => {
-                let elementId = document.elementFromPoint(
-                    !isTouchDevice() ? e.clientX : e.touches[0].clientX,
-                    !isTouchDevice() ? e.clientY : e.touches[0].clientY,
-                ).id;
-                checker(elementId);
-            });
-
-            col.addEventListener(events[deviceType].up, () => {
-                draw = false;
-            });
-
-            div.appendChild(col);
-
-        }
-
-        container.appendChild(div);
-
-    }
-});
-
-function checker(elementId) {
-    let gridColumns = document.querySelectorAll(".gridCol");
-    gridColumns.forEach((element) => {
-        if (elementId == element.id) {
-            if (draw && !erase) {
-                element.style.backgroundColor = colorButton.value;
-            } else if (draw && erase) {
-                element.style.backgroundColor = "transparent";
-            }
-        }
+    fontList.map((value) => {
+        let option = document.createElement("option");
+        option.value = value;
+        option.innerHTML = value;
+        fontName.appendChild(option);
     });
-}
 
-clearGridButton.addEventListener("click", () => {
-    container.innerHTML = "";
-});
+    for (let i = 1; i <= 7; i++) {
+        let option = document.createElement("option");
+        option.value = i;
+        option.innerHTML = i;
+        fontSizeRef.appendChild(option);
+    }
 
-eraseBtn.addEventListener("click", () => {
-    erase = true;
-});
-
-paintBtn.addEventListener("click", () => {
-    erase = false;
-});
-
-gridWidth.addEventListener("input", () => {
-    widthValue.innerHTML = gridWidth.value < 9 ? `0${gridWidth.value}` : gridWidth.value;
-});
-
-gridHeight.addEventListener("input", () => {
-    heightValue.innerHTML = gridHeight.value < 9 ? `0${gridHeight.value}` : gridHeight.value;
-});
-
-window.onload = () => {
-    gridHeight.value = 0;
-    gridWidth.value = 0;
+    fontSizeRef.value = 3;
 };
+
+const modifyText = (command, defaultUi, value) => {
+    document.execCommand(command, defaultUi, value);
+};
+
+optionsButtons.forEach((button) => {
+    button.addEventListener("click", () => {
+        modifyText(button.id, false, null);
+    });
+});
+
+advancedOptionButton.forEach((button) => {
+    button.addEventListener("change", () => {
+        modifyText(button.id, false, button.value);
+    });
+});
+
+linkButton.addEventListener("click", () => {
+    let userLink = prompt("Enter a URL?");
+    if (/http/i.test(userLink)) {
+        modifyText(linkButton.id, false, userLink);
+    } else {
+        userLink = "http://" + userLink;
+        modifyText(linkButton.id, false, userLink);
+    }
+});
+
+const highlighter = (className, needsRemoval) => {
+    className.forEach((button) => {
+        button.addEventListener("click", () => {
+            if (needsRemoval) {
+                let alreadyActive = false;
+                if (button.classList.contains("active")) {
+                    alreadyActive = true;
+                }
+                highlighterRemover(className);
+                if (!alreadyActive) {
+                    button.classList.add("active");
+                }
+            } else {
+                button.classList.toggle("active");
+            }
+        });
+    });
+};
+
+const highlighterRemover = (className) => {
+    className.forEach((button) => {
+        button.classList.remove("active");
+    });
+};
+
+window.onload = intializer();
