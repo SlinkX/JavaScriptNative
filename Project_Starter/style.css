@@ -1,0 +1,61 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+
+* {
+  box-sizing: border-box;
+}
+body{
+    font-family: 'Roboto',sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    overflow: hidden;
+    margin: 0;
+    background:linear-gradient(to bottom,rgb(252, 138, 138),rgb(109, 97, 246));
+
+}
+h1{   
+    text-align: center;
+    color:azure;
+}
+h1:hover{
+    color:aqua;
+}
+.start{
+    width: 180px;
+    height:180px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid #fff;
+    border-radius: 50%;
+    animation: rotatingAnimation 3s linear  infinite; 
+    transition: all .4s ease;
+}
+.start:hover{
+    border: 2px solid orange;
+   
+}
+@keyframes rotatingAnimation {
+    0% {
+        transform: rotate(0deg) ;
+        background-color: #3498db;
+    }
+    25% {
+        transform: rotate(90deg);
+        background-color: #e74c3c;
+    }
+    50% {
+        transform: rotate(180deg) ;
+        background-color: #2ecc71;
+    }
+    75% {
+        transform: rotate(270deg) ;
+        background-color: #f39c12;
+    }
+    100% {
+        transform: rotate(360deg) ;
+        background-color: #3498db;
+    }
+}
