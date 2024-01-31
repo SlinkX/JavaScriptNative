@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <title>Capture Screenshot | SlinkX</title>
+  </head>
+  <body>
+    <div class="login-container">
+      <form action="" class="login-form">
+        <h2>Login</h2>
+        <div class="input-group">
+          <label for="username">username</label>
+          <input
+            type="text"
+            id="username"
+            placeholder="enter username"
+            required
+            autocomplete="off"
+          />
+        </div>
+        <div class="input-group">
+          <label for="password">Password</label>
+          <input
+            type="password"
+            id="password"
+            placeholder="enter password"
+            required
+          />
+        </div>
+        <button type="submit">Login</button>
+      </form>
+    </div>
+
+    <button id="screenshotBtn">Take Screenshot</button>
+    <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
+    <script src="index.js"></script>
+  </body>
+</html>
