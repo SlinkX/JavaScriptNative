@@ -1,0 +1,941 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>美团首页</title>
+    <link rel="shortcut icon" href="#" />
+    <link rel="stylesheet" href="./index.css" />
+  </head>
+  <body>
+    <div id="header">
+      <div class="top-nav">
+        <ul class="left-list">
+          <li style="color: #999">太仓</li>
+          <li class="active">切换城市</li>
+          <li>
+            [<span class="active">昆明 </span><span class="active">崇明区 </span
+            ><span class="active">常熟</span>]
+          </li>
+          <li style="color: #fe8c00">立即登录</li>
+          <li class="active">注册</li>
+        </ul>
+        <ul class="right-list">
+          <li class="active small">
+            我的美团
+            <ul class="childlist">
+              <li>我的订单</li>
+              <li>我的收藏</li>
+              <li>抵用券</li>
+              <li>账户设置</li>
+            </ul>
+          </li>
+          <li class="active">手机APP</li>
+          <li class="active center">
+            商家中心
+            <ul class="specialchildlist">
+              <li>商户餐饮中心</li>
+              <li>登录商家中心</li>
+              <li>美团智能收银</li>
+              <li>我想合作</li>
+              <li>手机免费开店</li>
+              <li>到店综合业务招募</li>
+              <li>餐饮合作商招募</li>
+              <li>商家申请开票</li>
+              <li>免费合作美团排队</li>
+            </ul>
+          </li>
+          <li class="active small">
+            美团规则
+            <ul class="childlist">
+              <li>规则中心</li>
+              <li>规则目录</li>
+              <li>规则评议院</li>
+            </ul>
+          </li>
+          <li class="active nav newpage">
+            网站导航
+            <div class="load" id="load"></div>
+            <div class="pilot">
+              <ul class="trip">
+                <p>酒店旅游</p>
+                <li>国际机票</li>
+                <li>火车票</li>
+                <li>民宿</li>
+                <li>经济型酒店</li>
+                <li>主题酒店</li>
+                <li>商务酒店</li>
+                <li>公寓</li>
+                <li>豪华酒店</li>
+                <li>客栈</li>
+                <li>青年旅社</li>
+                <li>度假酒店</li>
+                <li>别墅</li>
+                <li>农家院</li>
+              </ul>
+              <ul class="snack">
+                <p>吃美食</p>
+                <li>烤鱼</li>
+                <li>特色小吃</li>
+                <li>烧烤</li>
+                <li>自助餐</li>
+                <li>火锅</li>
+                <li>代金券</li>
+              </ul>
+              <ul class="film">
+                <p>看电影</p>
+                <li>热映电影</li>
+                <li>热门影院</li>
+                <li>热映电影口碑榜</li>
+                <li>最受期待电影</li>
+                <li>国内票房榜</li>
+                <li>北美票房榜</li>
+                <li>电影排行榜</li>
+              </ul>
+              <ul class="application">
+                <p>手机应用</p>
+                <li><img src="/img/app1.png" alt="" /></li>
+                <li><img src="/img/app2.png" alt="" /></li>
+                <li><img src="/img/app3.png" alt="" /></li>
+                <li><img src="/img/app4.png" alt="" /></li>
+                <li><img src="/img/app5.png" alt="" /></li>
+              </ul>
+            </div>
+          </li>
+        </ul>
+      </div>
+      <div class="top-main">
+        <div class="logo">
+          <a href=""><img src="/img/logo.png" alt="" /></a>
+        </div>
+        <div class="search">
+          <input type="text" placeholder="搜索商家或地点" />
+          <button type="submit"><img src="/img/search.png" alt="" /></button>
+        </div>
+      </div>
+      <div class="top-menu">
+        <div class="all">全部分类</div>
+        <div class="menu">
+          <ul>
+            <li><a href="" class="act-2">美团外卖</a></li>
+            <li><a href="" class="act-3">猫眼电影</a></li>
+            <li><a href="" class="act-3">美团酒店</a></li>
+            <li><a href="" class="act-2">民宿/公寓</a></li>
+            <li><a href="" class="act-4">商家入驻</a></li>
+            <li><a href="" class="act-3">美团公益</a></li>
+            <div style="clear: both"></div>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div id="content">
+      <div class="alllist">
+        <ul>
+          <li>
+            <i class="iconfont" style="color: #fe8c00">&#xe605;</i>美食<span
+              class="iconfont next"
+              >&#xe609;</span
+            >
+          </li>
+          <li>
+            <i class="iconfont" style="color: #fbc700">&#xfac1;</i>外卖<span
+              class="iconfont next"
+              >&#xe609;</span
+            >
+          </li>
+          <li>
+            <i class="iconfont" style="color: rgb(201, 144, 79)">&#xe6bc;</i
+            >酒店<span class="iconfont next">&#xe609;</span>
+          </li>
+          <li>
+            <i class="iconfont" style="color: #fbc700">&#xe687;</i>民宿<span
+              class="iconfont next"
+              >&#xe609;</span
+            >
+          </li>
+          <li>
+            <i class="iconfont" style="color: rgb(218, 62, 62)">&#xe67e;</i
+            >猫眼电影<span class="iconfont next">&#xe609;</span>
+          </li>
+          <li>
+            <i class="iconfont" style="color: rgb(108, 190, 223)">&#xe638;</i
+            >机票/火车票<span class="iconfont next">&#xe609;</span>
+          </li>
+          <li>
+            <i class="iconfont" style="color: rgb(96, 221, 169)">&#xfaca;</i
+            >休闲娱乐/KTV<span class="iconfont next">&#xe609;</span>
+          </li>
+          <li>
+            <i class="iconfont" style="color: rgb(96, 221, 169)">&#xe783;</i
+            >生活服务<span class="iconfont next">&#xe609;</span>
+          </li>
+          <li>
+            <i class="iconfont" style="color: rgb(238, 108, 173)">&#xe600;</i
+            >丽人/美发/医学美容<span class="iconfont next">&#xe609;</span>
+          </li>
+          <li>
+            <i class="iconfont" style="color: rgb(238, 108, 173)">&#xe6e3;</i
+            >结婚/婚纱摄影/婚宴<span class="iconfont next">&#xe609;</span>
+          </li>
+          <li>
+            <i class="iconfont" style="color: rgb(238, 108, 173)">&#xe619;</i
+            >亲子/儿童乐园/幼教<span class="iconfont next">&#xe609;</span>
+          </li>
+          <li>
+            <i class="iconfont" style="color: rgb(108, 190, 223)">&#xe65c;</i
+            >运动健身/健身中心<span class="iconfont next">&#xe609;</span>
+          </li>
+          <li>
+            <i class="iconfont" style="color: rgb(96, 221, 169)">&#xe6b1;</i
+            >家装/建材/家居<span class="iconfont next">&#xe609;</span>
+          </li>
+          <li>
+            <i class="iconfont" style="color: rgb(96, 221, 169)">&#xe693;</i
+            >学习培训/音乐培训<span class="iconfont next">&#xe609;</span>
+          </li>
+          <li>
+            <i class="iconfont" style="color: rgb(108, 190, 223)">&#xe61f;</i
+            >医疗健康/宠物/爱车<span class="iconfont next">&#xe609;</span>
+          </li>
+          <li>
+            <i class="iconfont" style="color: rgb(96, 221, 169)">&#xe629;</i
+            >酒吧/密室逃脱<span class="iconfont next">&#xe609;</span>
+          </li>
+        </ul>
+      </div>
+      <div class="wrap">
+        <div class="banner">
+          <div class="contentone">
+            <div class="bigbanner" onmouseover="stop()" onmouseleave="start()">
+              <ul class="photolist">
+                <li class="ban show"><img src="/img/banner1.png" alt="" /></li>
+                <li class="ban"><img src="/img/banner2.png" alt="" /></li>
+                <li class="ban"><img src="/img/banner3.png" alt="" /></li>
+                <li class="ban"><img src="/img/banner4.png" alt="" /></li>
+                <li class="ban"><img src="/img/banner5.png" alt="" /></li>
+              </ul>
+              <button class="back" id="back" onclick="goBack()">
+                <i class="iconfont">&#xe8ef;</i>
+              </button>
+              <button class="next" id="next" onclick="goNext()">
+                <i class="iconfont next">&#xe8f0;</i>
+              </button>
+              <ul class="pointlist">
+                <li
+                  class="point show"
+                  onclick="getPoint(this)"
+                  data-index="0"
+                ></li>
+                <li class="point" onclick="getPoint(this)" data-index="1"></li>
+                <li class="point" onclick="getPoint(this)" data-index="2"></li>
+                <li class="point" onclick="getPoint(this)" data-index="3"></li>
+                <li class="point" onclick="getPoint(this)" data-index="4"></li>
+              </ul>
+            </div>
+            <div class="life"><img src="/img/wrap1.png" alt="" /></div>
+          </div>
+          <div class="contenttwo">
+            <div class="hotel"><img src="/img/wrap2.png" alt="" /></div>
+            <div class="music"><img src="/img/wrap3.png" alt="" /></div>
+            <div class="boss"><img src="/img/wrap4.png" alt="" /></div>
+          </div>
+        </div>
+        <div class="login">
+          <div class="register">
+            <div class="headimg"><img src="/img/person.png" alt="" /></div>
+            <p>Hi! 您好</p>
+            <button>注册</button>
+            <button>立即登录</button>
+          </div>
+          <div class="app">
+            <div class="code"><img src="/img/app.png" alt="" /></div>
+            <p class="p1">美团APP手机版</p>
+            <p class="p2"><span>1元起</span> 吃喝玩乐</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div id="movie">
+      <div class="movie-nav">
+        <ul>
+          <li class="brand">猫眼电影</li>
+          <li class="hotshowing" onmouseover="hotShow()">正在热映</li>
+          <li class="willshowing" onmouseover="willShow()">即将上映</li>
+          <li class="all">全部<span class="iconfont">&#xe609;</span></li>
+        </ul>
+      </div>
+      <div class="movie-list">
+        <button class="btn back" onclick="goPre()">
+          <i class="iconfont">&#xe8ef;</i>
+        </button>
+        <button class="btn next" onclick="goAft()">
+          <i class="iconfont next">&#xe8f0;</i>
+        </button>
+        <div class="hotmovie">
+          <ul class="hot">
+            <li>
+              <img src="/img/hotmovie1.png" alt="" />
+              <div class="movie-info">
+                <div class="moive-main">
+                  <b class="movie-score"><span>903638</span>人想看</b>
+                  <p class="movie-name">穿过寒冬拥抱你</p>
+                </div>
+                <button class="buy">预售</button>
+              </div>
+            </li>
+            <li>
+              <img src="/img/hotmovie2.png" alt="" />
+              <div class="movie-info">
+                <div class="moive-main">
+                  <b class="movie-score">观众评<span>8.7</span></b>
+                  <p class="movie-name">反贪风暴5:最终章</p>
+                </div>
+                <button class="buy">预售</button>
+              </div>
+            </li>
+            <li>
+              <img src="/img/hotmovie3.png" alt="" />
+              <div class="movie-info">
+                <div class="moive-main">
+                  <b class="movie-score">观众评<span>5.9</span></b>
+                  <p class="movie-name">误杀2</p>
+                </div>
+                <button class="buy">预售</button>
+              </div>
+            </li>
+            <li>
+              <img src="/img/hotmovie4.png" alt="" />
+              <div class="movie-info">
+                <div class="moive-main">
+                  <b class="movie-score"><span>903638</span>人想看</b>
+                  <p class="movie-name">长津湖之水门桥</p>
+                </div>
+                <button class="buy">预售</button>
+              </div>
+            </li>
+            <li>
+              <img src="/img/hotmovie5.png" alt="" />
+              <div class="movie-info">
+                <div class="moive-main">
+                  <b class="movie-score">观众评<span>9.2</span></b>
+                  <p class="movie-name">汪汪队立大功大电影</p>
+                </div>
+                <button class="buy">预售</button>
+              </div>
+            </li>
+          </ul>
+          <ul class="hot hide">
+            <li>
+              <img src="/img/hotmovie6.png" alt="" />
+              <div class="movie-info">
+                <div class="moive-main">
+                  <b class="movie-score">观众评<span>8.4</span></b>
+                  <p class="movie-name">李茂扮太子</p>
+                </div>
+                <button class="buy">预售</button>
+              </div>
+            </li>
+            <li>
+              <img src="/img/hotmovie7.png" alt="" />
+              <div class="movie-info">
+                <div class="moive-main">
+                  <b class="movie-score">观众评<span>8.7</span></b>
+                  <p class="movie-name">以年为单位的恋爱</p>
+                </div>
+                <button class="buy">预售</button>
+              </div>
+            </li>
+            <li>
+              <img src="/img/hotmovie8.png" alt="" />
+              <div class="movie-info">
+                <div class="moive-main">
+                  <b class="movie-score">观众评<span>7.8</span></b>
+                  <p class="movie-name">这个杀手不太冷静</p>
+                </div>
+                <button class="buy">预售</button>
+              </div>
+            </li>
+            <li>
+              <img src="/img/hotmovie9.png" alt="" />
+              <div class="movie-info">
+                <div class="moive-main">
+                  <b class="movie-score"><span>903638</span>人想看</b>
+                  <p class="movie-name">喜羊羊与灰太狼</p>
+                </div>
+                <button class="buy">预售</button>
+              </div>
+            </li>
+            <li>
+              <img src="/img/hotmovie10.png" alt="" />
+              <div class="movie-info">
+                <div class="moive-main">
+                  <b class="movie-score">观众评<span>9.2</span></b>
+                  <p class="movie-name">狙击手</p>
+                </div>
+                <button class="buy">预售</button>
+              </div>
+            </li>
+          </ul>
+        </div>
+        <div class="upcoming-movie">
+          <ul class="hot">
+            <li>
+              <img src="/img/upcoming1.png" alt="" />
+              <div class="movie-info">
+                <div class="moive-main">
+                  <b class="movie-score"><span>903638</span>人想看</b>
+                  <p class="movie-name">穿过寒冬拥抱你</p>
+                </div>
+                <button class="buy">预售</button>
+              </div>
+            </li>
+            <li>
+              <img src="/img/upcoming2.png" alt="" />
+              <div class="movie-info">
+                <div class="moive-main">
+                  <b class="movie-score">观众评<span>8.7</span></b>
+                  <p class="movie-name">反贪风暴5:最终章</p>
+                </div>
+                <button class="buy">预售</button>
+              </div>
+            </li>
+            <li>
+              <img src="/img/upcoming3.png" alt="" />
+              <div class="movie-info">
+                <div class="moive-main">
+                  <b class="movie-score">观众评<span>5.9</span></b>
+                  <p class="movie-name">误杀2</p>
+                </div>
+                <button class="buy">预售</button>
+              </div>
+            </li>
+            <li>
+              <img src="/img/upcoming4.png" alt="" />
+              <div class="movie-info">
+                <div class="moive-main">
+                  <b class="movie-score"><span>903638</span>人想看</b>
+                  <p class="movie-name">长津湖之水门桥</p>
+                </div>
+                <button class="buy">预售</button>
+              </div>
+            </li>
+            <li>
+              <img src="/img/upcoming5.png" alt="" />
+              <div class="movie-info">
+                <div class="moive-main">
+                  <b class="movie-score">观众评<span>9.2</span></b>
+                  <p class="movie-name">汪汪队立大功大电影</p>
+                </div>
+                <button class="buy">预售</button>
+              </div>
+            </li>
+          </ul>
+          <ul class="hot hide">
+            <li>
+              <img src="/img/upcoming6.png" alt="" />
+              <div class="movie-info">
+                <div class="moive-main">
+                  <b class="movie-score">观众评<span>8.4</span></b>
+                  <p class="movie-name">李茂扮太子</p>
+                </div>
+                <button class="buy">预售</button>
+              </div>
+            </li>
+            <li>
+              <img src="/img/upcoming7.png" alt="" />
+              <div class="movie-info">
+                <div class="moive-main">
+                  <b class="movie-score">观众评<span>8.7</span></b>
+                  <p class="movie-name">以年为单位的恋爱</p>
+                </div>
+                <button class="buy">预售</button>
+              </div>
+            </li>
+            <li>
+              <img src="/img/upcoming8.png" alt="" />
+              <div class="movie-info">
+                <div class="moive-main">
+                  <b class="movie-score">观众评<span>7.8</span></b>
+                  <p class="movie-name">这个杀手不太冷静</p>
+                </div>
+                <button class="buy">预售</button>
+              </div>
+            </li>
+            <li>
+              <img src="/img/upcoming9.png" alt="" />
+              <div class="movie-info">
+                <div class="moive-main">
+                  <b class="movie-score"><span>903638</span>人想看</b>
+                  <p class="movie-name">喜羊羊与灰太狼</p>
+                </div>
+                <button class="buy">预售</button>
+              </div>
+            </li>
+            <li>
+              <img src="/img/upcoming10.png" alt="" />
+              <div class="movie-info">
+                <div class="moive-main">
+                  <b class="movie-score">观众评<span>9.2</span></b>
+                  <p class="movie-name">狙击手</p>
+                </div>
+                <button class="buy">预售</button>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div id="homestay">
+      <div class="homestay-nav">
+        <ul>
+          <li class="brand">推荐民宿</li>
+          <li>上海</li>
+          <li>南京</li>
+          <li>杭州</li>
+          <li>合肥</li>
+          <li>宁波</li>
+          <li>无锡</li>
+          <li>扬州</li>
+          <li>嘉兴</li>
+          <li>常州</li>
+          <li>徐州</li>
+          <li class="all">全部<span class="iconfont">&#xe609;</span></li>
+        </ul>
+      </div>
+      <div class="homestay-list">
+        <ul class="shanghai">
+          <li>
+            <img src="/img/home1.png" alt="" class="home-style" />
+            <img src="/img/headimg1.png" alt="" class="home-owner" />
+            <div class="home-details">
+              <p class="title">
+                特惠大床房（浦东机场免费24小时随时接定时送，地铁站随时接定时送）
+              </p>
+              <p class="address">整套1居室·可住2人|浦东机场</p>
+              <p class="price"><span>￥</span>196</p>
+            </div>
+          </li>
+          <li>
+            <img src="/img/home2.png" alt="" class="home-style" />
+            <img src="/img/headimg2.png" alt="" class="home-owner" />
+            <div class="home-details">
+              <p class="title">上海浦东机场24小时免费接送大床房/24小时热水</p>
+              <p class="address">整套1居室·可住2人|浦东机场</p>
+              <p class="price"><span>￥</span>168</p>
+            </div>
+          </li>
+          <li>
+            <img src="/img/home3.png" alt="" class="home-style" />
+            <img src="/img/headimg3.png" alt="" class="home-owner" />
+            <div class="home-details">
+              <p class="title">青樱05 巨屏投影 松江大学城地铁站 公寓式民宿</p>
+              <p class="address">整套1居室·可住2人|佘山/松江大学城</p>
+              <p class="price"><span>￥</span>200</p>
+            </div>
+          </li>
+          <li>
+            <img src="/img/home4.png" alt="" class="home-style" />
+            <img src="/img/headimg4.png" alt="" class="home-owner" />
+            <div class="home-details">
+              <p class="title">
+                近虹桥高铁站，机场，国家会展中心，有直达车三站路去地铁站
+              </p>
+              <p class="address">整套1居室·可住2人|虹桥机场/国家会展中心</p>
+              <p class="price"><span>￥</span>168</p>
+            </div>
+          </li>
+          <li>
+            <img src="/img/home5.png" alt="" class="home-style" />
+            <img src="/img/headimg5.png" alt="" class="home-owner" />
+            <div class="home-details">
+              <p class="title">安云公寓，近虹桥机场火车站</p>
+              <p class="address">整套1居室·可住2人|虹桥机场/国家会展中心</p>
+              <p class="price"><span>￥</span>208</p>
+            </div>
+          </li>
+          <li>
+            <img src="/img/home6.png" alt="" class="home-style" />
+            <img src="/img/headimg6.png" alt="" class="home-owner" />
+            <div class="home-details">
+              <p class="title">
+                嘉定新城地铁两人间LOFT/ins风可做饭楼下万达/直达迪士尼F1徐家汇
+              </p>
+              <p class="address">整套1居室·可住2人|嘉定新城</p>
+              <p class="price"><span>￥</span>226</p>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div id="youlike">
+      <div class="like-nav">
+        <ul>
+          <li class="brand">猜你喜欢</li>
+          <li>为你甄选最合适的</li>
+        </ul>
+      </div>
+      <div class="like-list">
+        <ul class="food">
+          <li>
+            <img src="/img/food1.png" alt="" />
+            <div class="food-details">
+              <p class="title">忆香园云南过桥米线黄焖鸡米饭（万达店）</p>
+              <p class="iconfont">
+                &#xe767;&#xe767;&#xe767;&#xe767;&#xe766;<span>1839人评价</span>
+              </p>
+              <p class="address">太仓万达</p>
+              <p class="price">￥<span>11.6</span>起</p>
+            </div>
+          </li>
+          <li>
+            <img src="/img/food2.png" alt="" />
+            <div class="food-details">
+              <p class="title">鎏渊洗浴</p>
+              <p class="iconfont">
+                &#xe767;&#xe767;&#xe767;&#xe767;&#xe766;<span>5263人评价</span>
+              </p>
+              <p class="address">太仓万达</p>
+              <p class="price">￥<span>39.0</span>起</p>
+            </div>
+          </li>
+          <li>
+            <img src="/img/food3.png" alt="" />
+            <div class="food-details">
+              <p class="title">龙江龙蒸汽海鲜自助（人民路店）</p>
+              <p class="iconfont">
+                &#xe767;&#xe767;&#xe767;&#xe767;&#xe766;<span>2353人评价</span>
+              </p>
+              <p class="address">人民路</p>
+              <p class="price">￥<span>59.9</span>起</p>
+            </div>
+          </li>
+          <li>
+            <img src="/img/food4.png" alt="" />
+            <div class="food-details">
+              <p class="title">龙门花甲（南洋广场店）</p>
+              <p class="iconfont">
+                &#xe767;&#xe767;&#xe767;&#xe767;&#xe766;<span>695人评价</span>
+              </p>
+              <p class="address">人民路</p>
+              <p class="price">￥<span>13.8</span>起</p>
+            </div>
+          </li>
+          <li>
+            <img src="/img/food5.png" alt="" />
+            <div class="food-details">
+              <p class="title">桥头排骨（南洋店）</p>
+              <p class="iconfont">
+                &#xe767;&#xe767;&#xe767;&#xe767;&#xe766;<span>5939人评价</span>
+              </p>
+              <p class="address">南洋广场</p>
+              <p class="price">￥<span>8.8</span>起</p>
+            </div>
+          </li>
+          <li>
+            <img src="/img/food6.png" alt="" />
+            <div class="food-details">
+              <p class="title">北疆饭店（南洋广场店）</p>
+              <p class="iconfont">
+                &#xe767;&#xe767;&#xe767;&#xe767;&#xe766;<span>10165人评价</span>
+              </p>
+              <p class="address">人民路</p>
+              <p class="price">￥<span>6.8</span>起</p>
+            </div>
+          </li>
+          <li>
+            <img src="/img/food7.png" alt="" />
+            <div class="food-details">
+              <p class="title">本溯.我家酸菜鱼（浏河镇店）</p>
+              <p class="iconfont">
+                &#xe767;&#xe767;&#xe767;&#xe767;&#xe766;<span>598人评价</span>
+              </p>
+              <p class="address">浏河镇</p>
+              <p class="price">￥<span>43.0</span>起</p>
+            </div>
+          </li>
+          <li>
+            <img src="/img/food8.png" alt="" />
+            <div class="food-details">
+              <p class="title">川號子（武陵街店）</p>
+              <p class="iconfont">
+                &#xe767;&#xe767;&#xe767;&#xe767;&#xe766;<span>1206人评价</span>
+              </p>
+              <p class="address">人民路</p>
+              <p class="price">￥<span>89.9</span>起</p>
+            </div>
+          </li>
+          <li>
+            <img src="/img/food9.png" alt="" />
+            <div class="food-details">
+              <p class="title">猫窝咖啡（万达店）</p>
+              <p class="iconfont">
+                &#xe767;&#xe767;&#xe767;&#xe767;&#xe766;<span>485人评价</span>
+              </p>
+              <p class="address">太仓万达</p>
+              <p class="price">￥<span>12.9</span>起</p>
+            </div>
+          </li>
+          <li>
+            <img src="/img/food10.png" alt="" />
+            <div class="food-details">
+              <p class="title">1+7花甲</p>
+              <p class="iconfont">
+                &#xe767;&#xe767;&#xe767;&#xe767;&#xe766;<span>1323人评价</span>
+              </p>
+              <p class="address">人民路</p>
+              <p class="price">￥<span>16.5</span>起</p>
+            </div>
+          </li>
+          <li>
+            <img src="/img/food11.png" alt="" />
+            <div class="food-details">
+              <p class="title">淡然1993烘焙工作室</p>
+              <p class="iconfont">
+                &#xe767;&#xe767;&#xe767;&#xe767;&#xe766;<span>177人评价</span>
+              </p>
+              <p class="address">人民路</p>
+              <p class="price">￥<span>3</span>起</p>
+            </div>
+          </li>
+          <li>
+            <img src="/img/food12.png" alt="" />
+            <div class="food-details">
+              <p class="title">法莎贝克（滨河路店）</p>
+              <p class="iconfont">
+                &#xe767;&#xe767;&#xe767;&#xe767;&#xe766;<span>571人评价</span>
+              </p>
+              <p class="address">太仓万达</p>
+              <p class="price">￥<span>15.8</span>起</p>
+            </div>
+          </li>
+          <li>
+            <img src="/img/food13.png" alt="" />
+            <div class="food-details">
+              <p class="title">金色世纪洗浴汗蒸会馆</p>
+              <p class="iconfont">
+                &#xe767;&#xe767;&#xe767;&#xe767;&#xe766;<span>4139人评价</span>
+              </p>
+              <p class="address">太平南路沿线</p>
+              <p class="price">￥<span>39.0</span>起</p>
+            </div>
+          </li>
+          <li>
+            <img src="/img/food14.png" alt="" />
+            <div class="food-details">
+              <p class="title">传统石锅拌饭（太仓万达店）</p>
+              <p class="iconfont">
+                &#xe767;&#xe767;&#xe767;&#xe767;&#xe766;<span>597人评价</span>
+              </p>
+              <p class="address">太仓万达</p>
+              <p class="price">￥<span>19.8</span>起</p>
+            </div>
+          </li>
+          <li>
+            <img src="/img/food15.png" alt="" />
+            <div class="food-details">
+              <p class="title">章鱼小丸子（南洋广场店）</p>
+              <p class="iconfont">
+                &#xe767;&#xe767;&#xe767;&#xe767;&#xe766;<span>3711人评价</span>
+              </p>
+              <p class="address">人民路</p>
+              <p class="price">￥<span>8.8</span>起</p>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div id="appnav">
+      <h3>美团导航</h3>
+      <div class="city">
+        <p>热门城市</p>
+        <ul>
+          <li>长春</li>
+          <li>大连</li>
+          <li>深圳</li>
+          <li>佛山</li>
+          <li>厦门</li>
+          <li>济南</li>
+          <li>苏州</li>
+          <li>南京</li>
+          <li>上海</li>
+          <li>哈尔滨</li>
+          <li>无锡</li>
+          <li>常州</li>
+          <li>沈阳</li>
+          <li>温州</li>
+          <li>太原</li>
+          <li>南宁</li>
+          <li>宁波</li>
+          <li>杭州</li>
+          <li>昆明</li>
+          <li>成都</li>
+        </ul>
+      </div>
+      <div class="kind">
+        <p>热门分类</p>
+        <ul>
+          <li>酒店</li>
+          <li>美食</li>
+          <li>休闲娱乐</li>
+          <li>运动健身</li>
+          <li>生活服务</li>
+          <li>上门服务</li>
+          <li>购物</li>
+          <li>时尚购</li>
+          <li>本地购物</li>
+          <li>结婚</li>
+          <li>摄影写真</li>
+          <li>宴会</li>
+          <li>丽人</li>
+          <li>母婴亲子</li>
+          <li>学习培训</li>
+          <li>家装</li>
+          <li>汽车服务</li>
+          <li>医疗</li>
+          <li>宠物</li>
+        </ul>
+      </div>
+      <div class="around">
+        <p>周边热门</p>
+        <ul>
+          <li>崇明区酒店</li>
+          <li>崇明区美食</li>
+          <li>崇明区休闲娱乐</li>
+          <li>昆山运动健身</li>
+          <li>常熟生活服务</li>
+          <li>崇明区上门服务</li>
+          <li>崇明区购物</li>
+          <li>昆山时尚购</li>
+          <li>常熟本地购物</li>
+          <li>崇明区结婚</li>
+          <li>常熟摄影写真</li>
+          <li>昆山宴会</li>
+          <li>崇明区丽人</li>
+          <li>常熟母婴亲子</li>
+          <li>常熟学习培训</li>
+          <li>崇明区家装</li>
+          <li>崇明区汽车服务</li>
+          <li>常熟医疗</li>
+          <li>常熟宠物</li>
+        </ul>
+      </div>
+    </div>
+    <div id="foot">
+      <div class="line-one">
+        <dl>
+          <dt>用户帮助</dt>
+          <dd>申请退款</dd>
+          <dd>常见问题</dd>
+          <dd>用户协议</dd>
+          <dd>隐私政策</dd>
+          <dd>反诈骗公告</dd>
+          <dd>消费者权益保障</dd>
+        </dl>
+        <dl>
+          <dt>美团服务</dt>
+          <dd>美团外卖</dd>
+          <dd>美团酒店</dd>
+          <dd>猫眼电影</dd>
+          <dd>美团配送</dd>
+          <dd>美团云</dd>
+          <dd>大众点评</dd>
+          <dd>美团民宿</dd>
+          <dd>无人配送</dd>
+          <dd>企业用餐、企业用车、企业差旅</dd>
+        </dl>
+      </div>
+      <div class="line-two">
+        <dl>
+          <dt>商家合作</dt>
+          <dd>美食商家入驻(非外卖)</dd>
+          <dd>美团外卖开店申请</dd>
+          <dd>美团餐饮系统</dd>
+          <dd>美团配送合作申请</dd>
+          <dd>美团餐饮培训</dd>
+          <dd>酒店商家入驻</dd>
+          <dd>境内度假商家入驻</dd>
+          <dd>综合商家入驻</dd>
+          <dd>美团民宿房东商家入驻</dd>
+          <dd>商家开票申请</dd>
+          <dd>美团智能收银机</dd>
+          <dd>美团开放平台</dd>
+          <dd>美团收单</dd>
+          <dd>免费使用美团排队</dd>
+          <dd>快驴进货商家合作</dd>
+          <dd>美团闪购商家入驻</dd>
+          <dd>合作/招聘</dd>
+        </dl>
+      </div>
+      <div class="line-three">
+        <dl>
+          <dt>合作商招募</dt>
+          <dd>美团外卖合作商招募</dd>
+          <dd>到店餐饮合作商招募</dd>
+          <dd>美团联盟</dd>
+          <dd>美团收银招募线上分销商</dd>
+          <dd>美团收银合作商招募</dd>
+          <dd>美团收单合作商招募</dd>
+          <dd>美团充电宝合作商招募</dd>
+          <dd>美团优选渠道合作商招募</dd>
+          <dd>美团买菜合作商招募</dd>
+        </dl>
+        <dl>
+          <dt>美团规则</dt>
+          <dd>规则中心</dd>
+          <dd>规则目录</dd>
+          <dd>规则评议院</dd>
+        </dl>
+      </div>
+      <div class="line-four">
+        <dl>
+          <dt>关注美团</dt>
+          <dd>美团新浪微博</dd>
+        </dl>
+        <dl>
+          <dt>公司信息</dt>
+          <dd>关于我们</dd>
+          <dd>投资者关系</dd>
+          <dd>加入我们</dd>
+          <dd>商户诚信公约及管理办法</dd>
+          <dd>保险经纪资质</dd>
+        </dl>
+        <dl>
+          <dt>廉正举报</dt>
+          <dd>廉正举报平台</dd>
+        </dl>
+        <dl>
+          <dt>知识产权</dt>
+          <dd>知识产权维权平台</dd>
+        </dl>
+      </div>
+      <div class="line-five">
+        <dl>
+          <dt>消费者服务热线</dt>
+          <dd>外卖消费者：10109777</dd>
+          <dd>猫眼消费者：10105335</dd>
+          <dd>其他消费者：10107888</dd>
+        </dl>
+        <dl>
+          <dt>商家服务热线</dt>
+          <dd>外卖&餐饮商家：10105557</dd>
+          <dd>休闲娱乐、丽人、ktv、教育、结婚、亲子、家装等商家：10100107</dd>
+        </dl>
+        <dl>
+          <dt>投诉举报专区</dt>
+          <dd>违法和不良信息举报电话：4006018900</dd>
+          <dd>举报邮箱：tousujubao@meituan.com</dd>
+          <dd>网上有害信息举报</dd>
+          <dd>注：以上渠道均可投诉举报涉未成年人的违法和不良信息</dd>
+        </dl>
+        <dl>
+          <dt><a href="">商家自助入驻美团入口</a></dt>
+        </dl>
+        <dl>
+          <dt><a href="">供应商注册入口</a></dt>
+        </dl>
+      </div>
+    </div>
+    <script src="/js/index.js"></script>
+  </body>
+</html>

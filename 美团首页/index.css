@@ -1,0 +1,651 @@
+
+@font-face {
+    font-family: 'iconfont';  /* Project id 3155459 */
+    src: url('//at.alicdn.com/t/font_3155459_5dupbcjohd2.woff2?t=1643024857839') format('woff2'),
+         url('//at.alicdn.com/t/font_3155459_5dupbcjohd2.woff?t=1643024857839') format('woff'),
+         url('//at.alicdn.com/t/font_3155459_5dupbcjohd2.ttf?t=1643024857839') format('truetype');
+  }
+.iconfont{
+  font-family:"iconfont" !important;
+  font-style:normal;
+  -webkit-font-smoothing: antialiased;
+  -webkit-text-stroke-width: 0.2px;
+  -moz-osx-font-smoothing: grayscale;
+}
+/* 初始化 */
+*{
+    padding: 0;
+    margin: 0;
+}
+a{
+    text-decoration: none;
+    cursor: pointer;
+    color: black;
+}
+li{
+    list-style: none;
+}
+/* body */
+body{
+    width: 100%;
+    min-width: 1000px;
+    height: 3500px;
+    background-color:  rgb(241, 242, 243);
+}
+#header{
+    width: 100%;
+    height: 195px;
+    background-color: white;
+}
+.top-nav{
+    width: 94%;
+    height: 30px;
+    padding: 0 3%;
+    background-color:  rgb(241, 242, 243);
+    font-size: 12px;
+}
+.left-list{
+    width: 50%;
+    height: 100%;
+    float: left;
+}
+.left-list li{
+    width: auto;
+    height: 100%;
+    line-height: 30px;
+    display: inline-block;
+    padding: 0 1%;
+    margin-right: 10px;
+}
+.right-list{
+    width: 45%;
+    height: 100%;
+    float: right;
+    text-align: right;
+}
+.right-list li{
+    width: 70px;
+    height: 30px;
+    line-height: 30px;
+    text-align: center;
+    display: inline-block;
+    margin-left: 10px;
+    position: relative;
+}
+.active{
+    color: #999;
+}
+.left-list .active:hover{
+    color: #FE8C00;
+    cursor: pointer;
+}
+.right-list li.active:hover{
+    color: #FE8C00;
+    background-color: white;
+    cursor: pointer;
+    box-shadow: 0 3px 5px 0 rgba(0,0,0,0.1);
+    border-radius: 5px 5px 0 0;
+}
+.childlist{
+    width: auto;
+    min-width: 70px;
+    box-sizing: border-box;
+    color: #999;
+    border:1px solid #E5E5E5;
+    display: none;
+    z-index: 1000;
+    position: absolute;
+    right: 0;
+    background-color: white;
+}
+.right-list .childlist li{
+    display: block;
+    width: auto;
+    margin-left: 0;
+}
+.right-list .small:hover .childlist{
+    display: block;
+    border-radius: 0 0 5px 5px;
+}
+.right-list .childlist li:hover{
+    color: #FE8C00;
+}
+.specialchildlist{
+    width: auto;
+    min-width: 120px;
+    box-sizing: border-box;
+    color: #999;
+    border:1px solid #E5E5E5;
+    display: none;
+    z-index: 1000;
+    position: absolute;
+    right: 0;
+    background-color: white;
+}
+.right-list .specialchildlist li{
+    display: block;
+    width: auto;
+    margin-left: 0;
+}
+.right-list .center:hover .specialchildlist{
+    display: block;
+    border-radius: 5px 0 5px 5px;
+}
+.right-list .specialchildlist li:hover{
+    color: #FE8C00;
+}
+.load{
+    width: 1190px;
+    height: 300px;
+    position: absolute;
+    box-sizing: border-box;
+    border:1px solid #E5E5E5;
+    right: 0;
+    margin-right: 0;
+    z-index: 1000;
+    line-height: 17px;
+    display: none;
+    background-color: white;
+}
+.nav:hover .load{
+    display: block;
+}
+.pilot{
+    width: 1190px;
+    height: 300px;
+    position: absolute;
+    box-sizing: border-box;
+    border:1px solid #E5E5E5;
+    right: 0;
+    margin-right: 0;
+    z-index: 1000;
+    line-height: 17px;
+    display: none;
+    background-color: white;
+}
+.right-list .nav:hover .pilot{
+    display: block;
+}
+.pilot p{
+    font-size: 16px;
+    color: black;
+    line-height: 50px;
+}
+.pilot li{
+    color: #999;
+}
+.pilot li:hover{
+    color: #FE8C00;
+}
+.pilot .trip{
+    width: 22%;
+    height: 270px;
+    box-sizing: border-box;
+    display: inline-block;
+    vertical-align: top;
+}
+.pilot .trip li{
+    min-width: 40px;
+    display: inline-block;
+}
+.pilot .snack{
+    width: 20%;
+    height: 270px;
+    box-sizing: border-box;
+    display: inline-block;
+    vertical-align: top;
+}
+.pilot .snack li{
+    min-width: 40px;
+    display: inline-block;
+}
+.pilot .film{
+    width: 13%;
+    height: 270px;
+    box-sizing: border-box;
+    display: inline-block;
+    vertical-align: top;
+}
+.pilot .film li{
+    min-width: 100px;
+    display: inline-block;
+}
+.pilot .application{
+    width: 43%;
+    height: 270px;
+    box-sizing: border-box;
+    display: inline-block;
+    vertical-align: top;
+}
+.pilot .application img{
+    width: 90%;
+    height: auto;
+}
+.top-main{
+    clear: both;
+    width: 94%;
+    height: 80px;
+    padding-left: 3%;
+    padding-right: 3%;
+    padding-top: 40px;
+}
+.logo{
+    width: 30%;
+    height: 100%;
+    float: left;
+}
+.logo img{
+    width: 33%;
+    height: auto;
+}
+.search{
+    width: 50%;
+    height: 100%;
+    float: left;
+}
+.search input{
+    width: 70%;
+    height: 35px;
+    float: left;
+    border: 1px solid #E5E5E5;
+    border-radius: 3px 0 0 3px;
+}
+.search button{
+    width: 10%;
+    height: 37px;
+    float: left;
+    border: #FE8C00;
+    background-color: #FE8C00;
+    border-radius: 0 3px 3px 0;
+}
+.search button img{
+    width: 40%;
+    height: auto;
+}
+ 
+.top-menu{
+    clear: both;
+    width: 94%;
+    height: 45px;
+    padding: 0 3%;
+    font-weight: bold;
+}
+.top-menu .all{
+    width: 20%;
+    height: 100%;
+    box-sizing: border-box;
+    padding-left: 2%;
+    border: 1px solid #e5e5e5;
+    border-bottom: none;
+    float: left;
+    line-height: 45px;
+}
+.top-menu .menu{
+    width: 70%;
+    height: 100%;
+    line-height: 45px;
+    float: left;
+}
+.top-menu .menu li{
+    display: inline-block;
+    margin-left: 6%;
+}
+.act-2:hover{
+    color: #fbc700;
+}
+.act-3:hover{
+    color: #ed1e24;
+}
+.act-4:hover{
+    color: #FE8C00;
+}
+#content{
+    clear: both;
+    width: 94%;
+    height: 445px;
+    padding: 0 3%;
+    background-color:  rgb(241, 242, 243);
+}
+#content .alllist{
+    width: 20%;
+    height: 100%;
+    box-sizing: border-box;
+    padding: 1% 0 0 0;
+    background-color: white;
+    float: left;
+    line-height: 26px;
+    font-size: 13px;
+    border: 1px solid #e5e5e5;
+    border-top: none;
+}
+#content .alllist li{
+    width: 100%;
+    box-sizing: border-box;
+    padding: 0 2% 0 2%;
+}
+#content .alllist li:hover{
+    background-color: wheat;
+    font-weight: bold;
+}
+.next{
+    float: right;
+}
+ 
+#content .wrap{
+    width: 79%;
+    height: 100%;
+    box-sizing: border-box;
+    padding: 1% 0 0 1%;
+    background-color: #f8f8f8;
+    background-color:  rgb(241, 242, 243);
+    float: left;
+}
+#content .wrap .banner{
+    width: 79%;
+    height: 100%;
+    background-color:  rgb(241, 242, 243);
+    float: left;
+}
+#content .wrap .banner .contentone{
+    width: 100%;
+    height: 60%;
+    box-sizing: border-box;
+    padding-bottom: 10px;
+}
+#content .wrap .banner .contentone .bigbanner{
+    width: 76%;
+    height: 100%;
+    float: left;
+    position: relative;
+}
+#content .wrap .banner .contentone .bigbanner .photolist{
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+#content .wrap .banner .contentone .bigbanner button{
+    position: absolute;
+    width: 45px;
+    height: 45px;
+    font-size: 40px;
+    background-color: transparent;
+    display: none;
+    border: none;
+    z-index: 100;
+}
+#content .wrap .banner .contentone .bigbanner .back{
+    top: 45%;
+    left: 10px;
+}
+#content .wrap .banner .contentone .bigbanner .next{
+    top: 45%;
+    right: 10px;
+}
+#content .wrap .banner .contentone .bigbanner .photolist li{
+    width: 100%;
+    height: 100%;
+    position: absolute;
+}
+#content .wrap .banner .contentone .bigbanner .photolist li img{
+    width: 100%;
+    height: 100%;
+}
+.ban.show{
+    z-index: 100;
+}
+#content .wrap .banner .contentone .bigbanner .pointlist{
+    width: 30%;
+    height: 20px;
+    position: absolute;
+    bottom: 10%;
+    left: 35%;
+    text-align: center;
+    z-index: 100;
+}
+.point{
+    width: 8%;
+    height: 3px;
+    margin-right: 7px;
+    display: inline-block;
+    background-color: white;
+    opacity: 0.2;
+}
+.point.show{
+    opacity: 1;
+}
+#content .wrap .banner .contentone .life{
+    width: 24%;
+    height: 100%;
+    box-sizing: border-box;
+    padding-left: 10px;
+    float: left;
+}
+#content .wrap .banner .contentone .life img{
+    width: 100%;
+    height: 100%;
+}
+#content .wrap .banner .contenttwo{
+    width: 100%;
+    height: 40%;
+}
+#content .wrap .banner .contenttwo .hotel{
+    width: 38%;
+    height: 100%;
+    box-sizing: border-box;
+    padding-right: 5px;
+    float: left;
+}
+#content .wrap .banner .contenttwo .hotel img{
+    width: 100%;
+    height: 100%;
+}
+#content .wrap .banner .contenttwo .music{
+    width: 38%;
+    height: 100%;
+    box-sizing: border-box;
+    padding-left: 5px;
+    float: left;
+}
+#content .wrap .banner .contenttwo .music img{
+    width: 100%;
+    height: 100%;
+}
+#content .wrap .banner .contenttwo .boss{
+    width: 24%;
+    height: 100%;
+    box-sizing: border-box;
+    padding-left: 10px;
+    float: left;
+}
+#content .wrap .banner .contenttwo .boss img{
+    width: 100%;
+    height: 100%;
+}
+#content .wrap .login{
+    width: 20%;
+    height: 100%;
+    margin-left: 8px;
+    float: left;
+}
+#content .wrap .login .register{
+    width: 100%;
+    height: 57%;
+    border: 1px solid #e5e5e5;
+    margin-bottom: 12px;
+    background-color: white;
+}
+#content .wrap .login .register .headimg{
+    width: 100%;
+    height: 40%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+#content .wrap .login .register p{
+    text-align: center;
+}
+#content .wrap .login .register button{
+    width: 60%;
+    height: 15%;
+    display: block;
+    margin-left: 20%;
+    border: 1px solid #e5e5e5;
+    background-color: white;
+    border-radius: 20px;
+    text-align: center;
+    margin-bottom: 10px;
+    color: #333;
+}
+#content .wrap .login .register button:hover{
+    background-color: #f6f6f6;
+    transition: background-color 0.5s;
+    cursor: pointer;
+}
+#content .wrap .login .register .headimg img{
+    width: 30%;
+    height: auto;
+    border-radius: 50%;
+    border: 4px solid #E5E5E5;
+}
+#content .wrap .login .app{
+    width: 100%;
+    height: 38.8%;
+    padding-top: 1%;
+    border: 1px solid #e5e5e5;
+    background-color: white;
+}
+#content .wrap .login .app .code{
+    width: 100%;
+    height: 65%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+#content .wrap .login .app p{
+    text-align: center;
+}
+#content .wrap .login .app .p2{
+    font-size: 10px;
+}
+#content .wrap .login .app .p2 span{
+    color: #EC5330;
+}
+#content .wrap .login .app .code img{
+    width: 50%;
+    height: auto;
+}
+/* movie */
+#movie{
+    clear:both;
+    width: 94%;
+    height: 330px;
+    padding: 30px 3%;
+    background-color: rgb(241, 242, 243);
+}
+#movie .movie-nav{
+    width: 100%;
+    height: 45px;
+    box-sizing: border-box;
+    padding: 0 20px;
+    line-height: 45px;
+    border-radius: 7px 7px 0 0 ;
+    background-color: rgb(235,72,85);
+}
+#movie .movie-nav li{
+    display: inline-block;
+    color: white;
+    margin-right: 20px;
+    cursor: pointer;
+}
+#movie .movie-nav .brand{
+    font-size: 20px;
+}
+#movie .movie-nav .hotshowing,#movie .movie-nav .willshowing{
+    font-size: 15px;
+}
+#movie .movie-nav .all{
+    font-size: 15px;
+    float: right;
+    margin: 0;
+}
+#movie .movie-list{
+    width: 100%;
+    height: 100%;
+}
+#movie .movie-list button{
+    position: absolute;
+    width: 48px;
+    height: 48px;
+    font-size: 45px;
+    background-color: transparent;
+    border:none;
+    z-index: 1000;
+}
+#movie .movie-list .next{
+    right: 0;
+    top: 40%;
+}
+#movie .movie-list ul{
+    width: 100%;height: 100%;
+}
+#movie .movie-list li{
+    width: 18%;
+    height: 290px;
+    float: left;
+    margin: 5px  1%;
+    border-radius: 5px 5px;
+    cursor: pointer;
+    position: relative;
+}
+#movie .movie-list li .movie-info{
+    width: 100%;
+    height: 30%;
+    box-sizing: border-box;
+    padding: 27px 10px 7px 10px;
+    position: absolute;
+    bottom: 0;
+    border-radius: 0 0 5px 5px;
+    background: -webkit-linear-gradient(bottom, rgba(0,0,0,1)0%,rgba(0,0,0,0.5)66%, rgba(0,0,0,0)99%);
+}
+#movie .movie-list li .movie-info .movie-main{
+    width: 50%;
+    height: 100%;
+    float: left;
+}
+#movie .movie-list li .movie-info .movie-score{
+    font-size: 12px;
+    color: white;
+}
+#movie .movie-list li .movie-info .movie-score span{
+    color: #fd9827;
+    font-size: 16px;
+    font-weight: normal;
+}
+#movie .movie-list li .movie-info .movie-name{
+    font-size: 16px;
+    margin-top: 3px;
+    font-weight: 400;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+#movie .movie-list li .movie-info .buy{
+    width: 30%;
+    height: 30px;
+    font-size: 15px;
+    color: white;
+    background-color: #ff4949;
+    border-radius: 30px;
+    margin-top: 18px;
+    margin-left: 24px;
+    float: right;
+}
+.hot.hide{
+    display: none;
+}
+#movie .movie-list .upcoming-movie{
+    width: 100%;
+    height: 100%;
+    display: none;
+}
+
