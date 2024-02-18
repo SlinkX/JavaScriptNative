@@ -1,0 +1,116 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    box-sizing: border-box;
+    height: auto;
+    width: 1200px;
+
+}
+
+a {
+    text-decoration: none;
+}
+
+.box {
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+
+header {
+    width: 100%;
+}
+
+.box .head {
+    height: 70px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.8);
+    z-index: 999999;
+}
+
+.box .head .logo {
+    width: 100%;
+    height: 60px;
+}
+
+.box .head .logo img {
+    width: 100px;
+    height: 60px;
+    background: transparent;
+    position: absolute;
+    margin-left: 10px;
+}
+
+.box .head .logo a span {
+    font-size: 24px;
+    color: #FFF;
+    display: block;
+    margin-left: 120px;
+    margin-top: 14px;
+}
+
+.box .head .icon {
+    width: inherit;
+    height: inherit;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.box .head .icon input {
+    width: 400px;
+    height: 40px;
+    border: 1px solid #615e5e;
+    border-radius: 30px;
+    background-color: rgba(0, 0, 0, 0);
+}
+
+.box .head .icon input::placeholder {
+    color: #fff;
+    padding: 100px;
+}
+
+.box .head .icon a img {
+    width: 33px;
+    height: 33px;
+    margin: auto 14px;
+}
+
+.box .head .icon a img:nth-child(1) {}
+
+.box .sidebar {
+    width: 270px;
+    height: 100%;
+    background-color: pink;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.box .sidebar ul {
+    height: 100%;
+}
+
+.box .sidebar ul li {
+    list-style: none;
+    margin: 20px 20px;
+    font-size: 16px;
+}
+
+.box .content {
+    display: flex;
+    height: 100%;
+    width: 100%;
+    background-color: transparent;
+    position: absolute;
+    margin-left: 270px;
+    top: 0px;
+    z-index: 10;
+}
