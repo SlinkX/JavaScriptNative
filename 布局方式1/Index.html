@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>头部区域布局</title>
+    <style>
+      * {
+        box-sizing: border-box;
+      }
+      body {
+        margin: 0;
+        padding: 0;
+      }
+      .header {
+        background-color: #f1f2f2;
+        padding: 20px;
+        text-align: center;
+      }
+      /* 导航条 */
+      .topnav {
+        overflow: hidden;
+        background-color: #333;
+      }
+      /* 导航条连接 */
+      .topnav a {
+        float: left;
+        display: block;
+        color: #f2f2f2;
+        text-align: center;
+        padding: 14px 16px;
+        text-decoration: none;
+      }
+      .topnav a:hover {
+        background-color: #ddd;
+        color: black;
+      }
+      /* 创建3个相等的列 */
+      .column {
+        float: left;
+        width: 33.33%;
+      }
+      /* 列后清除浮动 */
+      .row::after {
+        content: "";
+        display: table;
+        clear: both;
+      }
+      /* 响应式布局 */
+      @media screen and(max-width: 600px) {
+        .column {
+          width: 100%;
+        }
+      }
+      /* 创建第三个不同的列 */
+      .columndif {
+        float: left;
+        padding: 10px;
+      }
+      /* 左右两边的宽度 */
+      .columndif.side {
+        width: 25%;
+      }
+      /* 中间区域 */
+      .columndif.middle {
+        width: 50%;
+      }
+      /* 列后清除浮动 */
+      .row::after {
+        content: "";
+        display: table;
+        clear: both;
+      }
+      /* 响应式布局 */
+      @media screen and(max-width: 600px) {
+        .columndif.side,
+        .columndif.middle {
+          width: 100%;
+        }
+      }
+      /* 底部区域 */
+      .footer {
+        background-color: #f1f1f1;
+        padding: 10px;
+        text-align: center;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="header">
+      <h1>头部区域布局</h1>
+    </div>
+    <div class="topnav">
+      <a href="">link</a>
+      <a href="">link</a>
+      <a href="">link</a>
+      <a href="">link</a>
+    </div>
+    <!-- list -->
+    <div class="row">
+      <div class="column">
+        <h2>first column</h2>
+        <p>菜鸟教程-不仅是技术 更是梦想</p>
+      </div>
+      <div class="column">
+        <h2>second column</h2>
+        <p>菜鸟教程-不仅是技术 更是梦想</p>
+      </div>
+      <div class="column">
+        <h2>three column</h2>
+        <p>菜鸟教程-不仅是技术 更是梦想</p>
+      </div>
+    </div>
+    <!-- 不同的侧边栏 -->
+    <div class="row">
+      <div class="columndif side">
+        <h2>left sidebar</h2>
+        <p>菜鸟教程-不仅是技术</p>
+      </div>
+      <div class="columndif middle">
+        <h2>main content</h2>
+        <p>菜鸟教程-不仅是技术</p>
+      </div>
+      <div class="columndif side">
+        <h2>right sidebar</h2>
+        <p>菜鸟教程-不仅是技术</p>
+      </div>
+    </div>
+    <!-- 底部区域 -->
+    <div class="footer">
+      <p>底部区域</p>
+    </div>
+  </body>
+</html>
