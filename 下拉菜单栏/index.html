@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>下拉菜单栏</title>
+    <style>
+      body {
+        margin: 0;
+      }
+      .dropbtn {
+        background-color: #4caf50;
+        color: white;
+        padding: 16px;
+        font-size: 16px;
+        border: none;
+        cursor: pointer;
+        border: none;
+        border-radius: 6px;
+        margin-left: 10px;
+      }
+      .dropdown {
+        position: relative;
+        display: inline-block;
+      }
+      .dropdown-content {
+        display: none;
+        position: absolute;
+        right: 0;
+        background-color: #f9f9f9;
+        min-width: 160px;
+        box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+      }
+      .dropdown-content a {
+        color: black;
+        padding: 12px 16px;
+        text-decoration: none;
+        display: block;
+      }
+      .dropdown-content a:hover {
+        background-color: #f1f1f1;
+      }
+      .dropdown:hover .dropdown-content {
+        display: block;
+      }
+      .dropdown:hover .dropbtn {
+        background-color: #3e8e41;
+      }
+      .dropimg {
+        margin: 210px 10px;
+      }
+      .dropdownimg {
+        position: relative;
+        display: inline-block;
+      }
+      .dropdownimg-content {
+        display: none;
+        position: absolute;
+        background-color: #f9f9f9;
+        min-width: 160px;
+        box-shadow: 0 8px 16px 0px rgba(0, 0, 0, 0.2);
+      }
+      .dropdownimg:hover .dropdownimg-content {
+        display: block;
+      }
+      .desc {
+        padding: 15px;
+        text-align: center;
+      }
+      ul{
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+        overflow: hidden;
+        background-color: #333;
+        height: 50px;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+      }
+      li{
+        float: left;
+      }
+      li a, .downbtn{
+        display: inline-black;
+        color: white;
+        text-align: center;
+        padding: 14px 16px;
+        text-decoration: none;
+        text-transform: capitalize;
+      }
+      li a:hover, .down:hover,downbtn{
+        background-color: #111;
+      }
+      .down{
+        display: inline-block;
+      }
+      .down-content{
+        display: none;
+        position:absolute;
+        background-color: #f9f9f9;
+        min-width: 160px;
+        box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+      }
+      .down-content a{
+        color: black;
+        padding: 12px 16px;
+        text-decoration: none;
+        display: block;
+      }
+      .down-content a:hover{
+        background-color:#f1f1f1;
+      }
+      .down:hover .down-content{
+        display: block;
+      }
+    </style>
+  </head>
+  <body>
+    <h2>下拉内容的对齐方式</h2>
+    <p>left and right 属性指定了下拉内容是从左到右还是从右到左</p>
+    <div class="dropdown" style="float: left">
+      <button class="dropbtn">left</button>
+      <div class="dropdown-content" style="left: 0">
+        <a href="">教程1</a>
+        <a href="">教程2</a>
+        <a href="">教程3</a>
+      </div>
+    </div>
+
+    <div class="dropdown" style="float: left">
+      <button class="dropbtn">right</button>
+      <div class="dropdown-content" style="left: 0">
+        <a href="">教程1</a>
+        <a href="">教程2</a>
+        <a href="">教程3</a>
+      </div>
+    </div>
+
+    <!-- 下拉图片 -->
+    <div class="dropimg">
+      <h2>下拉图片</h2>
+      <p>移动鼠标到图片上显示下拉内容</p>
+      <div class="dropdownimg">
+        <img
+          src="http://www.runoob.com/wp-content/uploads/2015/09/banner.jpg"
+          alt="Trolltunga Norway"
+          width="100"
+          height="50"
+        />
+        <div class="dropdownimg-content">
+          <img
+            src="http://www.runoob.com/wp-content/uploads/2015/09/banner.jpg"
+            alt="Trolltunga Norway"
+            width="400"
+            height="200"
+          />
+          <div class="desc">学的不仅是技术，更是梦想！</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 下拉导航菜单栏 -->
+    <div class="downnav">
+      <ul>
+        <li><a href="" class="active">home</a></li>
+        <li><a href="">news</a></li>
+        <div class="down">
+          <a href="" class="downbtn">下拉菜单</a>
+          <div class="down-content">
+            <a href="">lin1</a>
+            <a href="">lin2</a>
+            <a href="">lin3</a>
+          </div>
+        </div>
+      </ul>
+      <h3>导航栏上的下拉菜单栏</h3>
+     <p>鼠标移动到“下拉菜单栏” 连接先显示下拉菜单栏。</p>
+    </div>
+  </body>
+</html>
