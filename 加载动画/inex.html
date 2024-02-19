@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .loader {
+        margin: 10px;
+
+        border: 16px solid #f3f3f3;
+        border-radius: 50%;
+        border-top: 16px solid #3498db;
+        width: 120px;
+        height: 120px;
+        -webkit-animation: spin 2s linear infinite;
+        animation: spin 2s linear infinite;
+      }
+      @-webkit-keyframes spin {
+        0% {
+          -webkit-transform: rotate(0deg);
+        }
+        100% {
+          -webkit-transform: rotate(360deg);
+        }
+      }
+      @keframes spin {
+        0% {
+          transform: rotate(0deg);
+        }
+        100% {
+          transform: rotate(360deg);
+        }
+      }
+      .loader1 {
+        margin-top: 10px;
+      }
+      .loader2 {
+        margin: 10px;
+
+        border: 16px solid #f3f3f3;
+        border-radius: 50%;
+        border-top: 16px solid blue;
+        border-bottom: 16px solid blue;
+        width: 120px;
+        height: 120px;
+        -webkit-animation: spin 2s linear infinite;
+        animation: spin 2s linear infinite;
+      }
+      .loader4 {
+        margin: 10px;
+
+        border: 16px solid #f3f3f3;
+        border-radius: 50%;
+        border-top: 16px solid blue;
+        border-bottom: 16px solid blue;
+        border-right: 16px solid yellowgreen;
+        width: 120px;
+        height: 120px;
+        -webkit-animation: spin 2s linear infinite;
+        animation: spin 2s linear infinite;
+      }
+      .loader5 {
+        margin: 10px;
+        border: 16px solid #f3f3f3;
+        border-radius: 50%;
+        border-top: 16px solid blue;
+        border-bottom: 16px solid blue;
+        border-right: 16px solid yellowgreen;
+        border-left: 16px solid red;
+        width: 120px;
+        height: 120px;
+        -webkit-animation: spin 2s linear infinite;
+        animation: spin 2s linear infinite;
+      }
+      .container {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        display: flex;
+        flex-wrap: wrap;
+        flex-direction: row;
+      }
+      .one {
+        width: 100%;
+        /* display: flex;
+        flex-direction: column; */
+      }
+      input[type="text"] {
+        width: 130px;
+        box-sizing: border-box;
+        border: 2px solid #ccc;
+        border-radius: 6px;
+        font-size: 16px;
+        background-color: #fff;
+        background-image: url("searchicon.png");
+        background-position: 10px 10px;
+        background-repeat: no-repeat;
+        padding: 12px 20px 12px 40px;
+        -webkit-transition: width 0.4s ease-in-out;
+        transition: width 0.4s ease-in-out;
+      }
+      input[type="text"]:focus {
+        width: 100%;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="one">
+        <h2>加载样式</h2>
+        <p>
+          <strong>注意：</strong> -webkit- 和 -ms- 前缀用于那些不支持 animation
+          和 transform 属性的浏览器。
+        </p>
+      </div>
+
+      <div class="loader"></div>
+      <!-- 加载动画效果2 -->
+      <div class="loader1">
+        <h2>加载样式</h2>
+        <p><strong>注意：</strong></p>
+      </div>
+      <div class="loader2"></div>
+
+      <!-- 加载动画3 -->
+      <div class="loader3">
+        <h2>加载样式</h2>
+        <p><strong>注意：</strong></p>
+      </div>
+      <div class="loader4"></div>
+      <!-- 加载动画4 -->
+      <div>
+        <h2>加载样式</h2>
+        <p><strong>注意：</strong></p>
+      </div>
+      <div class="loader5"></div>
+
+      <!-- 动态搜索框 -->
+      <div class="search">
+        <p>动态搜索框</p>
+        <form action="">
+          <input type="text" name="search" placeholder="search....." />
+        </form>
+      </div>
+    </div>
+  </body>
+</html>
