@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      div.background {
+        width: 500px;
+        height: 250px;
+        background: url(https://www.runoob.com/images/klematis.jpg) repeat;
+        border: 2px solid black;
+      }
+      div.transbox {
+        width: 400px;
+        height: 180px;
+        margin: 30px 40px;
+        background-color: #ffffff;
+        opacity: 0.6;
+        filter: alpha(opacity=60);
+        border-radius: 10px;
+      }
+      div.transbox p {
+        margin: 30px 40px;
+        font-weight: bold;
+        color: #000000;
+      }
+      div.transbox:hover {
+        background: #ececec;
+        opacity: 0.97;
+        border-radius: 20px;
+      }
+      p {
+        text-align: start;
+        padding: 20px;
+        text-transform: capitalize;
+        letter-spacing: 2px;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- 透明效果 -->
+    <div class="background">
+      <div class="transbox">
+        <p>
+          this is some text and some fruits.this is some text and some fruit
+          this is some text and some fruit this is some text and some fruits
+        </p>
+      </div>
+    </div>
+  </body>
+</html>
