@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      #mySidenav a {
+        position: absolute;
+        left: -80px;
+        transition: 0.3s;
+        padding: 15px;
+        width: 100px;
+        text-decoration: none;
+        font-size: 20px;
+        color: white;
+        border-radius: 0 5px 5px 0;
+        text-transform: capitalize;
+      }
+      #mySidenav a:hover {
+        left: 0;
+      }
+      #about {
+        top: 20px;
+        background-color: black;
+      }
+      #blog {
+        top: 80px;
+        background-color: skyblue;
+      }
+      #projects {
+        top: 140px;
+        background-color: grey;
+      }
+      #contact {
+        top: 200px;
+        background-color: orange;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="mySidenav" class="sidenav">
+      <a href="" id="about">about</a>
+      <a href="" id="blog">blog</a>
+      <a href="" id="projects">projects</a>
+      <a href="" id="contact">contact</a>
+    </div>
+
+    <div style="margin-left: 150px">
+      <h2>便签效果</h2>
+      <p>鼠标移动这里指定便签显示隐藏内容</p>
+    </div>
+  </body>
+</html>
