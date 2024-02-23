@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="https://cdn.staticfile.org/jquery/2.2.4/jquery.min.js"></script>
+
+    <style>
+      body {
+        height:1000px;
+        padding-top: 100px;
+      }
+      code {
+        padding: 5px;
+        background: #efefef;
+        color: black;
+        font-weight: 900;
+      }
+      #target {
+        color: #c00;
+        font: 15px arial;
+        padding: 10px;
+        margin: 10px;
+        border: 1px solid #c00;
+        width: 100%;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="target">
+      滚动鼠标查看效果，当前 <code>div</code> 在滚动 100 像素后会固定
+    </div>
+    <p></p>
+    <script>
+      jQuery(function ($) {
+        $(window).scroll(
+          (function fix_element() {
+            $("#target").css(
+              $(window).scrollTop() > 200
+                ? { position: "fixed", top: "10px" }
+                : { position: "relative", top: "auto" }
+            );
+            return fix_element;
+          })()
+        );
+      });
+    </script>
+  </body>
+</html>
