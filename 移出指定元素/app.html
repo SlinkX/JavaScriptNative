@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <p>以下代码我们使用 JS 的 splice() 方法来移除数组的指定元素：</p>
+
+    <script>
+      const array = [2, 5, 9];
+      document.write(array);
+
+      const index = array.indexOf(5);
+      if (index > -1) {
+        array.splice(index, 1);
+      }
+      document.write("<br>");
+      document.write(array);
+    </script>
+  </body>
+</html>
