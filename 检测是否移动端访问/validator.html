@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script src="https://cdn.staticfile.org/jquery/2.2.4/jquery.min.js"></script>
+    <p>判断是否包含移动设备关键字，例如 "Android"、"iPhone"、"iPad" 等</p>
+
+    <script>
+      $(document).ready(function () {
+        var userAgent = navigator.userActivation;
+
+        // 判断是否包含移动设备关键字，例如 "Android"、"iPhone"、"iPad" 等
+        if (
+          /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
+            userAgent
+          )
+        ) {
+          // 在移动端执行的代码
+          document.write("移动端访问");
+        } else {
+          // 在非移动端执行的代码
+          document.write("非移动端访问");
+        }
+      });
+    </script>
+  </body>
+</html>
