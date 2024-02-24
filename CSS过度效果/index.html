@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .left {
+        width: 50%;
+        height: 50px;
+        background: #c00;
+        position: absolute;
+        top: 0;
+        left: 0;
+        transition: 0.6s;
+        -moz-transition: 0.6s; /* Firefox 4 */
+        -webkit-transition: 0.6s; /* Safari and Chrome */
+        -o-transition: 0.6s; /* Opera */
+      }
+      .right {
+        width: 50%;
+        height: 50px;
+        background: #03c;
+        position: absolute;
+        top: 0;
+        right: 0;
+        transition: 0.6s;
+        -moz-transition: 0.6s; /* Firefox 4 */
+        -webkit-transition: 0.6s; /* Safari and Chrome */
+        -o-transition: 0.6s; /* Opera */
+      }
+      .left:hover,
+      .right:hover {
+        width: 100%;
+        z-index: 99;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="left"></div>
+    <div class="right"></div>
+  </body>
+</html>
