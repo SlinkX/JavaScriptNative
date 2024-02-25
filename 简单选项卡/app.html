@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+        .active{
+            background: #9cc;
+            height: 50px;
+            width: 50px;
+            border-radius: 40%;
+            margin: 10px;
+            font-size: large;
+            font-weight: bolder;
+        }
+        input{
+            height: 50px;
+            width: 50px;
+            border-radius: 40%;
+            margin: 10px;
+            font-size: large;
+            font-weight: bolder;
+        }
+        div{
+            width: 300px;
+            height: 200px;
+            border: 1px solid #6666;
+            display: none;
+            margin: 15px;
+            border-radius: 10px;
+            padding: 20px;
+            font-size: 30px;
+        }
+    </style>
+  </head>
+ <body>
+    <input type="button" class="active" value="1"/>
+    <input type="button" value="2"/>
+    <input type="button" value="3"/> 
+    <input type="button" value="4"/>
+      <div class="div2" style="display:block;">11</div>
+      <div class="div2">22</div>
+      <div class="div2">33</div>
+      <div class="div2">44</div>
+<script>
+    window.onload=function(){
+    var divs=document.getElementsByTagName("div");
+    var btns=document.getElementsByTagName("input");
+    for(var i=0;i<btns.length;i++)
+    {
+        btns[i].index=i;
+        btns[i].onclick=function(){
+          //清空所有按钮的显示
+            for(var i=0;i<btns.length;i++)
+            {
+                divs[i].style.display="none";
+            }
+            divs[this.index].style.display="block";
+        }
+    }
+}
+</script>
+  </body>
+</html>
