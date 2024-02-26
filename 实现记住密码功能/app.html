@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.staticfile.org/jquery/2.2.4/jquery.min.js"></script>
+    <style>
+      form {
+        width: 300px;
+        padding: 10px 0px 20px 30px;
+        height: auto;
+        border-radius: 6px;
+        border-left: 8px solid #19a049;
+        background: #eee;
+        margin: 100px auto;
+      }
+      #user,
+      #pass {
+        padding: 8px;
+        outline: none;
+        background: transparent;
+        border: 1px solid #999;
+        border-radius: 10px;
+        margin-top: 5px;
+      }
+      #sub {
+        padding: 6px;
+        outline: none;
+        border: none;
+        background: black;
+        color: #fff;
+        width: 150px;
+        border-radius: 6px;
+        cursor: pointer;
+      }
+    </style>
+    <title>Document</title>
+  </head>
+  <body>
+    <form action="" method="" o onsubmit="return loginBtn_click();">
+      <h3>login in</h3>
+      <input type="text" name="user" placeholder="user" id="user" />
+      <input type="password" name="pass" placeholder="password" id="pass" />
+      <input type="checkbox" id="remember" checked /><br /><br />
+      <input type="submit" id="sub" />
+    </form>
+    <script>
+      $(document).ready(function () {
+        var strName = localStorage.getItem("keyName");
+      });
+    </script>
+  </body>
+</html>
