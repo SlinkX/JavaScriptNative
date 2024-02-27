@@ -1,0 +1,27 @@
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>悬挂缩进</title>
+    <style type="text/css">
+      p {
+        width: 200px;
+        padding-left: 2em;
+      }
+      p:first-letter {
+        margin-left: -2em;
+      }
+    </style>
+  </head>
+  <body>
+    <h4>悬挂缩进 -- 每个段落首行不缩进，其余各行都缩进一定距离的技术</h4>
+    <p>
+      The length of the first line depends on a number of factors, such as the
+      width of the page and the font size.
+    </p>
+    <p>
+      The :first-line pseudo-element can be attached to block-level elements. It
+      can be attached to inline elements if you set the corresponding display
+      property to block.
+    </p>
+  </body>
+</html>
