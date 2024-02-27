@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.staticfile.org/vue/2.2.2/vue.min.js"></script>
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="app">
+      省份：
+      <select v-model="province">
+        <option selected="selected">请选择</option>
+        <option v-bind:value="p" v-for="p in provinces">{{p}}</option>
+      </select>
+      城市：
+      <select v-model="city">
+        <option selected="selected">请选择</option>
+        <option v-bind:value="c" v-for="c in cityList">{{c}}</option>
+      </select>
+    </div>
+    <script>
+      var vm = new Vue({
+        el: "#app",
+        data: {
+          city: "请选择",
+          province: "请选择",
+          provinces: ["广东", "湖南", "湖北", "北京"],
+          cityList: [],
+          area: [
+            {
+              name: "广东",
+              id: 1,
+              child: ["广州", "深圳", "东莞"],
+            },
+            {
+              name: "湖南",
+              id: 2,
+              child: ["长沙", "株洲", "湘潭"],
+            },
+            {
+              name: "湖北",
+              id: 3,
+              child: ["武汉"],
+            },
+            {
+              name: "北京",
+              id: 4,
+              child: ["北京"],
+            },
+          ],
+        },
+        watch: {
+          province: function (nval, oval) {
+            var self = this;
+            var cityList = [];
+            if (nval == "请选择") {
+              this.citylist = [];
+            }
+            if (nval != oval) {
+              for (var i = 0; i < self.area.length; i++) {
+                if (self.area[i].name == nval) {
+                  cityList = self.area[i].child;
+                }
+              }
+              this.city = "请选择";
+              this.cityList = cityList;
+            }
+          },
+        },
+      });
+    </script>
+  </body>
+</html>
