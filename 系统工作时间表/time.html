@@ -1,0 +1,317 @@
+<script src="https://cdn.staticfile.org/jquery/2.2.4/jquery.min.js"></script>
+<link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+<script src="https://cdn.staticfile.org/jquery/2.2.4/jquery.min.js"></script>
+<script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<!DOCTYPE html>
+<html lang="zh-CN">
+	<head>
+		<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta name="Keywords" content="" />
+		<meta name="Description" content="" />
+		<link rel="stylesheet" href="<%=basePath%>bootstrap/css/bootstrap.css" />
+		<script src="<%=basePath%>bootstrap/js/jquery.js"></script>
+		<script src="<%=basePath%>bootstrap/js/bootstrap.js"></script>
+		<script src="<%=basePath%>gzsj/js/gzsj.js"></script>
+
+		
+		<style type="text/css">
+			.div_center{
+			    text-align:center;
+			}
+			
+			a{
+			    text-decoration: underline;
+			    font-size: medium;
+			}
+			
+			select{
+			    width:57px;
+			    font-size: 14;
+			    font-weight: bolder;
+			}
+			
+			th{
+				height:20px;
+			    text-align:center;
+			    padding:1px !important;
+			    width:125px;
+			}
+			.td_base{
+				width:155px !important;
+				max-width:155px;
+				height:63px;
+				padding: 2px 5px 0px 5px !important;
+				text-align:center;
+				position:relative;
+			}
+			
+			.date_bg_work{
+				position:absolute;
+				left:24px;
+				font-size:50px;
+				width:50px;
+				height:50px;
+				z-index:-1;
+				color:#B4EEB4;
+			}
+			
+			.date_bg_rest{
+				position:absolute;
+				left:24px;
+				font-size:50px;
+				width:50px;
+				height:50px;
+				z-index:-1;
+				color:#FFC1C1;
+			}
+			
+			
+			.text_first{
+			    height:20px;
+			    margin-bottom:2px;
+			}
+			
+			.text_info{
+			    height:20px;
+			    min-width:145px;
+			    max-width:145px;
+			    margin-bottom:2px;
+			}
+			
+			.ipnut_edit{
+			    height:20px;
+			    width:40px;
+			    background:none;
+			}
+		</style>
+	</head>
+	<body id="chaxun">
+		<div class="container">
+
+			<div class="div_center">
+				<div id="show_title" style="font-weight: bolder; font-size: 18px; margin-bottom: 5px; margin-top: 5px;"></div>
+				<table id="table_sysmain"
+					style="width: 1200px; margin-left: calc(50% - 600px);"
+					class="table table-bordered">
+					<thead>
+						<tr class="title-bar" style="height: 20px">
+							<th style="width: 50px;"></th>
+							<th style="width: 100px;">
+								一
+							</th>
+							<th style="width: 100px;">
+								二
+							</th>
+							<th style="width: 100px;">
+								三
+							</th>
+							<th style="width: 100px;">
+								四
+							</th>
+							<th style="width: 100px;">
+								五
+							</th>
+							<th style="width: 100px;">
+								六
+							</th>
+							<th style="width: 100px;">
+								日
+							</th>
+						</tr>
+					</thead>
+					<tbody id="table_tbody">
+					</tbody>
+				</table>
+				
+              <table id="table_syscfg"
+					style="width: 500px; margin-left: calc(50% - 250px);"
+					class="table table-bordered">
+					<thead>
+						<tr class="title-bar" style="height: 20px;">
+							<th style="width: 60px;">
+								编号
+							</th>
+							<th style="width: 100px;">
+								时间段
+							</th>
+							<th style="width: 100px;">
+								上班时间
+							</th>
+							<th style="width: 100px;">
+								下班时间
+							</th>
+							<th style="width: 110px;">
+								计时单位	
+							</th>
+							<th style="width: 50px;">
+								更改
+							</th>
+						</tr>
+					</thead>
+					<tbody id="table_tbody">
+                      <tbody id="table_tbody"><tr><td style="width: 50px; text-align :center !important;"><input style="width: 100%; height:30px;" class="form-control table-input model-input" readonly="true" type="text" id="WORKSTYLE" value="0"></td><td style="width: 100px; text-align :center !important;"><input style="width: 100%; height:30px;" class="form-control table-input model-input" readonly="true" type="text" id="NAME" value="上午"></td><td style="width: 100px; text-align :center !important"><input style="width: 100%; height:30px;" class="form-control table-input model-input" maxlength="4" type="number" id="TIME1_0" value="0800"></td><td style="width: 100px; text-align :center !important"><input style="width: 100%; height:30px;" class="form-control table-input model-input" maxlength="4" type="number" id="TIME2_0" value="1130"></td><td style="width: 100px; text-align :center !important"><select style="width: 100%; height:30px;" class="form-control table-input" id="DAYSTYLE_0" value="3"><option name="不计" value="0">不计</option><option name="1/4天" value="1">1/4天</option><option name="半天" value="2">半天</option><option name="3/4天" value="3">3/4天</option><option name="全天" value="4">全天</option></select></td><td style="width: 50px; text-align :center !important"><button type="button" class="btn btn-default baocun" style=" height:30px;" onclick="updWorkstyle(0)"><span class="glyphicon glyphicon-saved"></span></button></td></tr><tr></tr><tr><td style="width: 50px; text-align :center !important;"><input style="width: 100%; height:30px;" class="form-control table-input model-input" readonly="true" type="text" id="WORKSTYLE" value="1"></td><td style="width: 100px; text-align :center !important;"><input style="width: 100%; height:30px;" class="form-control table-input model-input" readonly="true" type="text" id="NAME" value="下午"></td><td style="width: 100px; text-align :center !important"><input style="width: 100%; height:30px;" class="form-control table-input model-input" maxlength="4" type="number" id="TIME1_1" value="1330"></td><td style="width: 100px; text-align :center !important"><input style="width: 100%; height:30px;" class="form-control table-input model-input" maxlength="4" type="number" id="TIME2_1" value="1730"></td><td style="width: 100px; text-align :center !important"><select style="width: 100%; height:30px;" class="form-control table-input" id="DAYSTYLE_1" value="1"><option name="不计" value="0">不计</option><option name="1/4天" value="1">1/4天</option><option name="半天" value="2">半天</option><option name="3/4天" value="3">3/4天</option><option name="全天" value="4">全天</option></select></td><td style="width: 50px; text-align :center !important"><button type="button" class="btn btn-default baocun" style=" height:30px;" onclick="updWorkstyle(1)"><span class="glyphicon glyphicon-saved"></span></button></td></tr><tr></tr><tr><td style="width: 50px; text-align :center !important;"><input style="width: 100%; height:30px;" class="form-control table-input model-input" readonly="true" type="text" id="WORKSTYLE" value="2"></td><td style="width: 100px; text-align :center !important;"><input style="width: 100%; height:30px;" class="form-control table-input model-input" readonly="true" type="text" id="NAME" value="加班"></td><td style="width: 100px; text-align :center !important"><input style="width: 100%; height:30px;" class="form-control table-input model-input" maxlength="4" type="number" id="TIME1_2" value="1930"></td><td style="width: 100px; text-align :center !important"><input style="width: 100%; height:30px;" class="form-control table-input model-input" maxlength="4" type="number" id="TIME2_2" value="2130"></td><td style="width: 100px; text-align :center !important"><select style="width: 100%; height:30px;" class="form-control table-input" id="DAYSTYLE_2" value="4"><option name="不计" value="0">不计</option><option name="1/4天" value="1">1/4天</option><option name="半天" value="2">半天</option><option name="3/4天" value="3">3/4天</option><option name="全天" value="4">全天</option></select></td><td style="width: 50px; text-align :center !important"><button type="button" class="btn btn-default baocun" style=" height:30px;" onclick="updWorkstyle(2)"><span class="glyphicon glyphicon-saved"></span></button></td></tr><tr></tr></tbody>
+					</tbody>
+				</table>
+				<div id="show_oper_main" style="font-weight: bolder;">
+					<div id="show_tongji" style="font-weight: bolder;">
+					</div>
+					<a onclick='initCurDateOtherParas(new Date(curYear,engRealMonth-1))'>上一月</a>&nbsp;&nbsp;&nbsp;&nbsp;
+					<a onclick='initCurDateOtherParas(new Date(curYear,engRealMonth + 1))'>下一月</a>&nbsp;&nbsp;&nbsp;&nbsp;
+					<a onclick='initCur()'>初始化本月数据</a>&nbsp;&nbsp;&nbsp;&nbsp;
+					<a onclick='saveCur()'>保存</a>&nbsp;&nbsp;&nbsp;&nbsp;
+					<a onclick='initOneDayType()'>时间段定义</a>&nbsp;&nbsp;&nbsp;&nbsp;
+					<a></a>
+				</div>
+				
+				<div id="show_oper_cfg" style="font-weight: bolder;">
+					<a onclick='gotoMain()'>返回时间主界面</a>&nbsp;&nbsp;&nbsp;&nbsp;
+					<a></a>
+				</div>
+			</div>
+		</div>
+	</body>
+    <script>
+        var curDate;
+var curYear;
+var curMonth;
+var engRealMonth;
+var curDays;
+var fistDayOfMonth;
+var selVals;
+
+function gotoMain() {
+	$("#table_sysmain").show();
+	$("#show_oper_main").show();
+	$("#show_title").html("系统工作时间表-" + curYear + "年" + curMonth + "月");
+	$("#table_syscfg").hide();
+	$("#show_oper_cfg").hide();
+
+}
+
+function initOneDayType() {
+	$("#table_sysmain").hide();
+	$("#show_oper_main").hide();
+	$("#show_title").html("系统工作时间表-时间段维护");
+	$("#table_syscfg").show();
+	$("#show_oper_cfg").show();
+}
+
+function initCur(){
+  initCurDateOtherParas(curDate,true);
+}
+  function initCurDateOtherParas(curDateIn,initFlag){
+    if(curDateIn){
+      curDate = curDateIn;
+}else{
+  curDate = new Date();
+}
+selVals = new Array;
+curYear = curDate.getFullYear();
+curMonth = curDate.getMonth()+1;
+engRealMonth = curDate.getMonth();
+curDays = getMonthDays(curDate.getMonth());
+fistDayOfMonth = new Date(curYear,curDate.getMonth(),1).getDay(); 
+    $("#show_title").html("系统工作时间表-"+curYear+"年"+curMonth+"月");
+    getMonthData(initFlag);
+} 
+
+   //获得某月的天数,传入当前月-1
+  function getMonthDays(myMonth){      
+var monthStartDate = new Date(curYear, myMonth, 1);      
+var monthEndDate = new Date(curYear, myMonth + 1, 1);      
+var   days   =   (monthEndDate   -   monthStartDate)/(1000   *   60   *   60   *   24);      
+return   days;      
+} 
+function changeDataType(item){
+    var text = $(item).text();
+    if(text == "A"){
+       $(item).text("B");
+    }else if(text == "B"){
+      $(item).text("C");
+    }else if(text == "C"){
+      $(item).text("D");
+    }else if(text == "D"){
+      $(item).text("N");
+    }else if(text == "N"){
+      $(item).text("A");
+    }
+}
+
+  function getDataByDayAndDatType(daySelVal,time1,time2){  
+    var selectItem = "<select id='sel_"+selVals.length+"'  value='' ><option value='1'>1/4天</option><option value='2'>半天</option><option value='3'>3/4天</option><option value='4'>全天</option><option value='0'>不计</option></select>"; 
+selVals.push(daySelVal);
+    var td_text_edit = "<div class='text_info'><input class='ipnut_edit' value='"+time1+"' maxlength='4'>-<input class='ipnut_edit' maxlength='4'  value='"+time2+"'>"+selectItem+"</div>"; 
+return   td_text_edit;      
+}
+
+var td_text_first = "<td class='td_base'><div class='text_first'>上午</div><div class='text_first'>下午</div><div class='text_first'>加班</div></td>";
+  
+//alert(fistDayOfMonth); 
+var tr_data ="<tr>"+td_text_first;
+
+  function getMonthData(initFlag){  
+//先获取当月信息是否有数据库配置
+  var data = false;
+    if(data){
+     	//数据库初始化
+     }else{
+       noDatasInit(initFlag);
+     }
+} 
+
+function noDatasInit(initFlag) {
+  $("#table_tbody").empty();
+  if(fistDayOfMonth==0){
+    fistDayOfMonth =7;
+  }
+	for (var i = 1; i <= 42; i++) {
+      var td_data ="<td class='td_base'>";
+      var nullFlag = 0;
+      if(i>= fistDayOfMonth && i < (curDays+fistDayOfMonth)){
+		nullFlag = 1;
+        if(i%7 == 0 || i%7 == 6){
+          td_data = td_data+ "<div class='date_bg_rest'>"+(i-fistDayOfMonth+1)+"</div>";
+        }else{
+          td_data = td_data+ "<div class='date_bg_work'>"+(i-fistDayOfMonth+1)+"</div>";
+        }
+         	if(initFlag){
+              td_data = td_data + getDataByDayAndDatType(2,"0800","1200");
+              td_data = td_data + getDataByDayAndDatType(2,"1400","1800");
+              td_data = td_data + getDataByDayAndDatType(0,"","");
+            }else{
+              td_data = td_data + getDataByDayAndDatType(0,"","");
+              td_data = td_data + getDataByDayAndDatType(0,"","");
+              td_data = td_data + getDataByDayAndDatType(0,"","");
+            }
+
+              
+      }
+      td_data = td_data +"</td>";
+            tr_data = tr_data +td_data;
+            td_data ="<td class='td_base'>";
+      
+if(i%7 == 0){
+      $("#table_tbody").append(tr_data+"</tr>");
+      tr_data ="<tr>"+td_text_first; 
+  		if(i>= 35 && nullFlag == 0){
+		for(var k=0;k<= selVals.length;k++){
+			$("#sel_"+k).val(selVals[k]);
+		}
+          $("#show_tongji").html("当前累计："+0+"个小时，"+0+"个工作日");
+          break;
+        }
+    }
+}
+}
+$(function () {
+  $("#table_syscfg").hide();
+	$("#show_oper_cfg").hide();
+  initCurDateOtherParas();
+  
+  
+
+});
+    </script>
+</html>
