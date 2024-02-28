@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.staticfile.org/jquery/2.2.4/jquery.min.js"></script>
+
+    <title>Document</title>
+    <style>
+      * {
+        border: none;
+        text-align: center;
+        background-color: #333333;
+        color: #ffffff;
+        font-family: Open Sans, Arial;
+        font-size: 20px;
+      }
+      .item {
+        display: inline-block;
+        margin-top: 20px;
+      }
+      .clock {
+        width: 300px;
+        height: 300px;
+        border: 2px solid #99cc00;
+        border-radius: 50%;
+        cursor: pointer;
+        position: relative;
+        overflow: hidden;
+        margin: 20px auto;
+      }
+      .mask {
+        width: 300px;
+        height: 0%;
+        position: absolute;
+        background: green;
+        bottom: 0;
+      }
+      .content p,
+      .content input {
+        position: relative;
+        bottom: 260px;
+        background: transparent;
+      }
+      .content input {
+        margin: 30px;
+        font-size: 1.2em;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="item">
+      <p>BREAK LENGTH</p>
+      <button value="-1">-</button>
+      <input type="text" value="5" id="break" readonly />
+      <button value="+1">+</button>
+    </div>
+    <div class="item">
+      <p>SESSION LENGTH</p>
+      <button value="-1">-</button>
+      <input type="text" value="25" id="session" readonly />
+      <button value="+1">+</button>
+    </div>
+    <div class="clock">
+      <div class="mask"></div>
+    </div>
+    <div class="content">
+      <p>SESSION</p>
+      <input type="text" value="25:00" readonly />
+    </div>
+    <script>
+      //detct
+      var time = null;
+      $("button").click(function () {
+        var input = $(this).siblings("input");
+        var value = parseInt(input.val()) + parseInt($(this).val());
+        input.val(value);
+        clearInterval(time);
+      });
+      $(".clock").click(function () {
+        if ($(".content").children("p").text() == "BREAK")
+          var clock = parseInt($("#break").val());
+        else var clock = parseInt($("#session").val());
+        start(clock);
+      });
+      function start(clock) {
+        $(".mask").height("0%");
+        clearInterval(time);
+        var mintue = clock;
+        var second = 0;
+        time = setInterval(function () {
+          if (second || mintue) {
+            if (second == 0) {
+              second = 60;
+              mintue--;
+            }
+            second--;
+            if (mintue == 0) {
+              $(".mask").height("+=1.6%");
+            }
+            var value = mintue + ":" + tik(second);
+            $(".content").children("input").val(value);
+          } else {
+            clearInterval(time);
+            $(".mask").height("0%");
+            if (clock == $("#session").val()) {
+              $(".content").children("p").text("BREAK");
+              start(parseInt($("#break").val()));
+            } else {
+              $(".content").children("p").text("SESSION");
+              start(parseInt($("#session").val()));
+            }
+          }
+        }, 1000);
+      }
+      function tik(i) {
+        if (i < 10) i = "0" + i;
+        return i;
+      }
+    </script>
+  </body>
+</html>
