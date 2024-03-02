@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      div {
+        position: abslute;
+        text-align: center;
+        margin: 0 auto;
+        background-color: lightgrey;
+        width: 300px;
+        border: 25px solid green;
+        padding: 25px;
+      }
+      input {
+        position: abslute;
+        border-radius: 15px;
+      }
+      input.show {
+        border-radius: 25px;
+        background: #8ac007;
+      }
+      button {
+        border-radius: 15px;
+        background: #8ac007;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="d1">
+      <form name="myForm" action="show.php" method="get">
+        姓名：<input
+          class="name"
+          type="text"
+          id="name"
+          placeholder="不能为空"
+        /><i id="i_name"></i>
+        <p></p>
+        年龄：<input
+          class="age"
+          type="text"
+          id="age"
+          placeholder="0~120以内的数字"
+        /><i id="i_age"></i>
+        <p></p>
+        性别：<input
+          type="radio"
+          onclick="changeMail()"
+          id="sex_mail"
+          value="男"
+          checked="true"
+        />男<input
+          type="radio"
+          onclick="changeFemail()"
+          id="sex_femail"
+          value="女"
+        />女
+        <p></p>
+        邮箱：<input
+          class="eamil"
+          type="text"
+          id="email"
+          placeholder="请填写正确的邮箱格式"
+        /><i id="i_email"></i>
+        <p></p>
+        <input class="show" type="button" onclick="show()" value="显示" />
+      </form>
+    </div>
+    <div id="d2" style="display: none">1234</div>
+    <script>
+      var checkname = false;
+      var checkage = false;
+      var checkemail = false;
+      function checkName() {
+        var x = document.getElementById("name").value;
+        if (x == null || x == "") {
+          return false;
+        } else {
+          checkname = true;
+        }
+      }
+      function checkAge() {
+        var x = document.getElementById("age").value;
+        if (isNaN(x) || x < 0 || x > 120 || x.length == "") {
+          return false;
+        } else {
+          checkage = true;
+        }
+      }
+      function checkEmail() {
+        var x = document.getElementById("email").value;
+        var atpos = x.indexOf("@");
+        var dotpos = x.lastIndexOf(".");
+        if (atpos < 1 || dotpos < atpos + 2 || dotpos + 2 >= x.length) {
+          return false;
+        } else {
+          checkemail = true;
+        }
+      }
+      function changeMail() {
+        document.getElementById("sex_mail").checked = true;
+        document.getElementById("sex_femail").checked = false;
+      }
+      function changeFemail() {
+        document.getElementById("sex_mail").checked = false;
+        document.getElementById("sex_femail").checked = true;
+      }
+      function show() {
+        checkName();
+        checkAge();
+        checkEmail();
+        var name = document.getElementById("name").value;
+        var age = document.getElementById("age").value;
+        var sex;
+        if (document.getElementById("sex_mail").checked == true) {
+          sex = "男";
+        } else {
+          sex = "女";
+        }
+        var email = document.getElementById("email").value;
+        if (checkname == true) {
+          document.getElementById("i_name").innerHTML = "√";
+        } else {
+          document.getElementById("i_name").innerHTML = "×";
+        }
+        if (checkage == true) {
+          document.getElementById("i_age").innerHTML = "√";
+        } else {
+          document.getElementById("i_age").innerHTML = "×";
+        }
+        if (checkemail == true) {
+          document.getElementById("i_email").innerHTML = "√";
+        } else {
+          document.getElementById("i_email").innerHTML = "×";
+        }
+        if (name.length == "" || checkname == false) {
+          document.getElementById("name").focus();
+        } else if (age.length == "" || checkage == false) {
+          document.getElementById("age").value = "";
+          document.getElementById("age").focus();
+        } else if (email.length == "" || checkemail == false) {
+          document.getElementById("email").value = "";
+          document.getElementById("email").focus();
+        } else {
+          document.getElementById("d2").style.display = "";
+          document.getElementById("d1").style.display = "none";
+          document.getElementById("d2").innerHTML =
+            "姓名：" +
+            name +
+            "<br>年龄：" +
+            age +
+            "<br>性别：" +
+            sex +
+            "<br>邮箱：" +
+            email;
+        }
+      }
+      document.getElementById("show").onclick = show;
+    </script>
+  </body>
+</html>
