@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      ul {
+        margin: 0;
+        width: 250px;
+        padding: 10px;
+      }
+      li {
+        overflow: hidden;
+        transition: all 0.3s linear;
+        padding: 5px;
+        border-bottom: dotted 1px #999999;
+        opacity: 0;
+      }
+      textarea {
+        resize: none;
+        height: 80px;
+      }
+    </style>
+  </head>
+  <body>
+    <textarea id="text_box"></textarea>
+    <button id="btn">留言</button>
+    <hr />
+    <ul id="msg_list"></ul>
+    <script>
+      window.onload = function () {
+        var list = document.getElementById("msg_list");
+        var btn = document.getElementById("btn");
+        var text_box = document.getElementById("text_box");
+
+        btn.onclick = function () {
+          var content = text_box.value;
+          var li = document.createElement("li");
+          li.innerHTML = content;
+
+          if (list.children[0]) {
+            list.insertBefore(li, list.children[0]);
+          } else {
+            list.appendChild(li);
+          }
+
+          var liHeight = li.offsetHeight - 11;
+          li.style.height = "0";
+
+          setTimeout(function () {
+            li.style.height = liHeight + "px";
+            li.style.opacity = "1.0";
+          }, 10);
+        };
+      };
+    </script>
+  </body>
+</html>
