@@ -1,0 +1,96 @@
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Highcharts 教程 | 菜鸟教程(runoob.com)</title>
+    <script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+  </head>
+  <body>
+    <div
+      id="container"
+      style="width: 550px; height: 400px; margin: 0 auto"
+    ></div>
+    <script language="JavaScript">
+      $(document).ready(function () {
+        var title = {
+          text: "房间统计图",
+        };
+        var subtitle = {
+          text: " ",
+        };
+        var xAxis = {
+          categories: [
+            "2016-03-7",
+            "2016-03-14",
+            "2016-03-21",
+            "2016-03-28",
+            "2016-04-5",
+            "2016-04-13",
+            "2016-04-20",
+            "2016-04-27",
+            "2016-05-04",
+            "2016-05-11",
+            "2016-05-18",
+            "2016-05-25",
+            "2016-06-02",
+            "2016-06-09",
+            "2016-06-16",
+            "2016-06-16",
+            "2016-06-23",
+            "2016-06-30",
+            "2016-07-07",
+            "2016-07-14",
+            "2016-07-21",
+            "2016-07-28",
+            "2016-07-28",
+          ],
+        };
+        var yAxis = {
+          title: {
+            text: "人数",
+          },
+          plotLines: [
+            {
+              value: 0,
+              width: 1,
+              color: "#808080",
+            },
+          ],
+        };
+
+        var tooltip = {
+          valueSuffix: "人",
+        };
+
+        var legend = {
+          layout: "vertical",
+          align: "right",
+          verticalAlign: "middle",
+          borderWidth: 0,
+        };
+
+        var series = [
+          {
+            name: "人数",
+            data: [
+              50.57, 69, 44, 121, 210, 215, 170, 265, 233, 383, 339, 496, 502,
+              498, 606, 840, 640, 906, 862, 1069, 948, 1073, 1055, 1111,
+            ],
+          },
+        ];
+
+        var json = {};
+
+        json.title = title;
+        json.subtitle = subtitle;
+        json.xAxis = xAxis;
+        json.yAxis = yAxis;
+        json.tooltip = tooltip;
+        json.legend = legend;
+        json.series = series;
+
+        $("#container").highcharts(json);
+      });
+    </script>
+  </body>
+</html>
