@@ -1,0 +1,1369 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://fonts.googleapis.com/css?family=DM+Sans:400,500,700&display=swap"
+      rel="stylesheet"
+    />
+
+    <title>Document</title>
+    <style lang="scss">
+      * {
+        box-sizing: border-box;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      html,
+      body {
+        width: 100%;
+        height: 100vh;
+        margin: 0;
+      }
+
+      body {
+        font-family: "DM Sans", sans-serif;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        overflow: hidden;
+        overflow-x: hidden;
+        //background-image: url("https://images.unsplash.com/photo-1497541271502-639c540968b6?ixlib=rb-1.2.1&auto=format&fit=crop&w=2250&q=80");
+        background-image: linear-gradient(to top, #a3bded 0%, #6991c7 100%);
+        background-position: center;
+        background-size: cover;
+        padding: 20px;
+      }
+
+      :root {
+        --dark-font: #0f0f10;
+        --light-font: #79798c;
+      }
+
+      a {
+        text-decoration: none;
+        cursor: pointer;
+      }
+
+      .app-container {
+        position: relative;
+        border-radius: 10px;
+        width: 100%;
+        height: 100%;
+        max-width: 1200px;
+        max-height: 900px;
+        background: linear-gradient(
+          180deg,
+          rgba(224, 233, 253, 1) 0%,
+          rgba(233, 236, 241, 1) 90%
+        );
+        box-shadow: 0 0 0 10px rgba(255, 255, 255, 0.4);
+        display: flex;
+        overflow: hidden;
+      }
+
+      .left-area {
+        padding: 32px;
+        flex-basis: 1 0 132px;
+        background-color: rgba(255, 255, 255, 0.9);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        //transition: all cubic-bezier(0.25, 0.1, 0.28, 1.54) .5s;
+        transition: all 300ms cubic-bezier(0.19, 1, 0.56, 1);
+        position: relative;
+        overflow: auto;
+
+        &.show {
+          transform: translateX(0);
+          opacity: 1;
+        }
+      }
+
+      .app-name {
+        font-weight: 700;
+        font-size: 16px;
+        line-height: 24px;
+        color: var(--dark-font);
+        margin-bottom: 32px;
+      }
+
+      .item-link {
+        color: var(--light-font);
+        margin-bottom: 32px;
+        transition: 0.2s;
+
+        &.active {
+          color: var(--dark-font);
+        }
+      }
+
+      .btn-logout {
+        border: none;
+        background-color: transparent;
+        color: var(--light-font);
+        margin-top: auto;
+        cursor: pointer;
+        transition: 0.2s;
+
+        &:hover {
+          color: var(--dark-font);
+        }
+      }
+
+      .main-area {
+        flex: 1;
+        height: 100%;
+        overflow-y: auto;
+        background: linear-gradient(
+          97deg,
+          rgba(242, 247, 253, 1) 0%,
+          rgba(240, 244, 253, 1) 90%
+        );
+        border-radius: 0 10px 10px 0;
+        padding-bottom: 24px;
+        position: relative;
+      }
+
+      .main-area-header {
+        padding: 24px 40px;
+        background: linear-gradient(
+          97deg,
+          rgba(242, 247, 253, 1) 0%,
+          rgba(240, 244, 253, 1) 90%
+        );
+      }
+
+      .search-wrapper {
+        border-radius: 4px;
+        background-color: #fff;
+        padding-right: 12px;
+        height: 40px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        color: var(--light-font);
+        box-shadow: 0 2px 6px 0 rgba(136, 148, 171, 0.2),
+          0 24px 20px -24px rgba(71, 82, 107, 0.1);
+        overflow: hidden;
+      }
+
+      .search-input {
+        border: none;
+        flex: 1;
+        outline: none;
+        height: 100%;
+        padding: 0 12px;
+        font-size: 12px;
+      }
+
+      .right-area {
+        flex-basis: 300px;
+        flex-grow: 0;
+        background: linear-gradient(
+          180deg,
+          rgba(224, 233, 253, 1) 0%,
+          rgba(233, 236, 241, 1) 90%
+        );
+        transition: all 300ms cubic-bezier(0.19, 1, 0.56, 1);
+
+        &.show {
+          transform: translateX(0);
+          width: 100%;
+          opacity: 1;
+        }
+      }
+
+      .content-section {
+        display: block;
+        margin-top: 32px;
+        overflow-x: hidden;
+        padding: 0 40px;
+      }
+
+      .section-header {
+        font-size: 24px;
+        line-height: 32px;
+        margin-bottom: 16px;
+
+        &-wrapper {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+        }
+
+        &-link {
+          display: block;
+          font-size: 12px;
+          line-height: 16px;
+          color: #8683d6;
+        }
+      }
+
+      .access-links {
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        margin: 0 -8px;
+      }
+
+      .access-icon {
+        width: 100%;
+        height: 100%;
+        border-radius: 12px;
+        padding: 20px;
+        color: #fff;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        svg {
+          width: 36px;
+          height: 36px;
+        }
+      }
+
+      .access-link-wrapper {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        padding: 8px;
+
+        &:nth-child(1) {
+          .access-icon {
+            background-color: #6166fe;
+          }
+        }
+
+        &:nth-child(2) {
+          .access-icon {
+            background-color: #6166fe;
+          }
+        }
+
+        &:nth-child(3) {
+          .access-icon {
+            background-color: #3275f7;
+          }
+        }
+
+        &:nth-child(4) {
+          .access-icon {
+            background-color: #3275f7;
+          }
+        }
+
+        &:nth-child(5) {
+          .access-icon {
+            background-color: #22244a;
+          }
+        }
+
+        &:nth-child(6) {
+          .access-icon {
+            background-color: #22244a;
+          }
+        }
+      }
+
+      .access-text {
+        color: var(--light-font);
+        font-size: 12px;
+        line-height: 24px;
+      }
+
+      .content-section-line,
+      .content-part-line {
+        display: flex;
+        justify-content: space-between;
+      }
+
+      .content-part-line {
+        height: 100%;
+      }
+
+      .content-section-line {
+        margin: 0 -8px;
+      }
+
+      .section-part {
+        flex-basis: 49%;
+      }
+
+      .image-wrapper {
+        border-radius: 12px;
+        overflow: hidden;
+        width: 100%;
+        height: auto;
+        position: relative;
+        flex-basis: 48%;
+        display: flex;
+
+        img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          transition: 0.2s ease-in;
+        }
+
+        &:hover img {
+          transform: scale(1.125);
+        }
+      }
+
+      .image-overlay {
+        position: absolute;
+        z-index: 1;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(
+          0deg,
+          rgba(0, 16, 34, 0.8) 0%,
+          rgba(240, 244, 253, 0.2) 90%
+        );
+        padding: 12px;
+
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+        justify-content: flex-end;
+      }
+
+      .video-info-text {
+        width: calc(100% - 40px);
+
+        p {
+          margin: 0;
+        }
+      }
+
+      .video-name,
+      .video-subtext {
+        color: #fff;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+
+        &.medium {
+          font-size: 14px;
+          line-height: 24px;
+        }
+
+        &.tiny {
+          font-size: 12px;
+          line-height: 16px;
+        }
+      }
+
+      .video-info {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+      }
+
+      .video-subtext {
+        opacity: 0.8;
+      }
+
+      .files-table {
+        background-color: #fff;
+        box-shadow: 0 2px 6px 0 rgba(136, 148, 171, 0.2),
+          0 24px 20px -24px rgba(71, 82, 107, 0.1);
+        border-radius: 12px;
+        padding: 12px;
+        display: table;
+        table-layout: auto;
+        width: 100%;
+
+        &-header {
+          display: table-header-group;
+        }
+
+        &-row {
+          display: table-row-group;
+        }
+      }
+
+      .table-cell {
+        display: table-cell;
+        font-size: 12px;
+        line-height: 16px;
+        color: #000;
+        padding: 8px;
+      }
+
+      .column-header {
+        font-size: 12px;
+        line-height: 16px;
+        color: #888da9;
+      }
+
+      .name-cell {
+        width: 40%;
+        word-break: break-all;
+
+        &.pdf:before {
+          content: "PDF";
+          background-color: #e2e9f8;
+          color: #5a8ff7;
+        }
+
+        &.jpg:before {
+          content: "JPG";
+          background-color: #e4e2f1;
+          color: #302d7d;
+        }
+
+        &:before {
+          border-radius: 4px;
+          font-size: 8px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          padding: 4px;
+          display: inline-block;
+          vertical-align: middle;
+          margin-right: 4px;
+        }
+      }
+
+      .size-cell {
+        width: 20%;
+      }
+
+      .more-action {
+        border: none;
+        background-color: transparent;
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' fill='none' stroke='%23888da9' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' class='feather feather-more-horizontal' viewBox='0 0 24 24'%3E%3Cdefs/%3E%3Ccircle cx='12' cy='12' r='1'/%3E%3Ccircle cx='19' cy='12' r='1'/%3E%3Ccircle cx='5' cy='12' r='1'/%3E%3C/svg%3E");
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: contain;
+        width: 24px;
+        height: 16px;
+        outline: none;
+        cursor: pointer;
+      }
+
+      .fixed.main-area-header {
+        position: sticky;
+        z-index: 2;
+        top: 0;
+        width: 100%;
+        padding: 12px 40px;
+        transition: 0.2s;
+        animation: sticky 0.5s forwards;
+      }
+
+      @keyframes sticky {
+        0% {
+          transform: translatey(-88px);
+        }
+
+        100% {
+          transform: translatey(0px);
+        }
+      }
+
+      .video-time {
+        position: absolute;
+        z-index: 1;
+        border-radius: 10px;
+        padding: 4px 12px;
+        background-color: rgba(139, 156, 163, 0.5);
+        font-size: 10px;
+        right: 12px;
+        top: 12px;
+        color: #fff;
+      }
+
+      .btn-play {
+        border-radius: 50%;
+        background-color: #fff;
+        border: none;
+        box-shadow: 0 2px 6px 0 rgba(136, 148, 171, 0.2),
+          0 24px 20px -24px rgba(71, 82, 107, 0.1);
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='%2322244a' stroke='%2322244a' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' class='feather feather-play'%3E%3Cpolygon points='5 3 19 12 5 21 5 3'/%3E%3C/svg%3E");
+        background-position: center;
+        background-repeat: no-repeat;
+        width: 40px;
+        height: 40px;
+        flex-shrink: 0;
+      }
+
+      .right-area {
+        padding: 24px;
+        overflow: auto;
+      }
+
+      .right-area-header {
+        &-wrapper {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+
+          .more-action {
+            width: 24px;
+            height: 24px;
+          }
+        }
+      }
+
+      .download-item-line {
+        padding: 12px 0;
+      }
+
+      .line-header {
+        font-size: 12px;
+        line-height: 16px;
+        color: #888da9;
+      }
+
+      .download-area {
+        background-color: #eceffb;
+        border-radius: 12px;
+        padding: 8px;
+        display: flex;
+        align-items: center;
+        margin-top: 12px;
+        cursor: pointer;
+      }
+
+      .download-item-texts {
+        padding: 0 12px;
+
+        p {
+          line-height: 16px;
+          margin: 0;
+          white-space: nowrap;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          width: 150px;
+        }
+      }
+
+      .download-text-header {
+        font-size: 12px;
+      }
+
+      .download-text-info {
+        color: #888da9;
+        font-size: 10px;
+
+        span {
+          margin-left: 8px;
+        }
+      }
+
+      .download-item-icon {
+        width: 32px;
+      }
+
+      .download-icon {
+        width: 24px;
+        fill: #4bc3a7;
+      }
+
+      .progress-bar {
+        height: 4px;
+        width: 100%;
+        overflow: hidden;
+        border-radius: 2px;
+        background-color: #dadff3;
+        margin: 6px 0;
+      }
+
+      .progress {
+        height: 100%;
+        width: 40%;
+        background-color: #4bc0dd;
+        display: block;
+      }
+
+      .received-item-line {
+        height: 150px;
+        width: 100%;
+        padding-top: 12px;
+        display: flex;
+        padding-left: 4px;
+      }
+
+      .progress-line {
+        height: 100%;
+        width: 2px;
+        background-color: #22244a;
+        display: flex;
+        justify-content: space-between;
+        flex-direction: column;
+        position: relative;
+
+        &:before,
+        &:after {
+          content: "";
+          position: absolute;
+          width: 10px;
+          height: 10px;
+          border-radius: 50%;
+          background-color: #22244a;
+          transform: translateX(-50%);
+          left: 50%;
+        }
+
+        &:after {
+          bottom: 0;
+        }
+      }
+
+      .time {
+        margin-left: 12px;
+        font-size: 10px;
+        color: #888da9;
+      }
+
+      .received-items-content {
+        padding: 24px 10px;
+      }
+
+      .received-files {
+        display: flex;
+        height: 70%;
+
+        .image-wrapper {
+          margin-left: 6px;
+          display: flex;
+        }
+      }
+
+      .received-files-info {
+        font-size: 12px;
+        line-height: 16px;
+        margin-left: 12px;
+        margin-top: 12px;
+
+        span {
+          color: #7a8dc5;
+        }
+      }
+
+      .btn-show-left-area,
+      .btn-show-right-area {
+        position: absolute;
+        top: 24px;
+        width: 32px;
+        height: 40px;
+        border-radius: 4px;
+        background-color: #fff;
+        border: none;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        outline: none;
+        cursor: pointer;
+
+        display: none;
+      }
+
+      .btn-show-left-area {
+        left: 0;
+        border-radius: 0 4px 4px 0;
+      }
+
+      .btn-show-right-area {
+        right: 0;
+        border-radius: 4px 0 0 4px;
+      }
+
+      .btn-close-left,
+      .btn-close-right {
+        border: none;
+        background-color: transparent;
+        position: absolute;
+        top: 4px;
+        right: 4px;
+        color: var(--light-font);
+        outline: none;
+        cursor: pointer;
+
+        display: none;
+      }
+
+      .show {
+        .btn-close-left,
+        .btn-close-right {
+          display: block;
+        }
+      }
+
+      @media screen and (min-width: 850px) and (max-width: 1042px) {
+        .access-icon {
+          padding: 16px;
+        }
+
+        .access-icon svg {
+          width: 20px;
+          height: 20px;
+        }
+      }
+
+      @media screen and (max-width: 900px) {
+        .right-area {
+          transform: translateX(100%);
+          position: absolute;
+          opacity: 0;
+          z-index: 2;
+          height: 100%;
+          box-shadow: 0 0 0 10px rgba(255, 255, 255, 0.4);
+        }
+
+        .btn-show-right-area {
+          display: flex;
+        }
+
+        .access-icon svg {
+          width: 36px;
+          height: 36px;
+        }
+      }
+
+      @media screen and (max-width: 768px) {
+        .left-area {
+          transform: translateX(-100%);
+          opacity: 0;
+          position: absolute;
+          z-index: 2;
+          height: 100%;
+          background-color: #fff;
+          background-image: none;
+          box-shadow: 0 0 0 10px rgba(255, 255, 255, 0.4);
+        }
+
+        .btn-show-left-area {
+          display: flex;
+        }
+
+        .content-section-line,
+        .content-part-line {
+          flex-direction: column;
+        }
+        .image-wrapper {
+          margin: 10px 0;
+        }
+
+        .video-name.tiny,
+        .video-subtext.tiny {
+          font-size: 16px;
+          line-height: 24px;
+        }
+
+        .access-link-wrapper {
+          width: 33.3%;
+        }
+      }
+
+      @media screen and (max-width: 520px) {
+        body {
+          padding: 0;
+        }
+
+        .app-container {
+          border-radius: 0;
+        }
+
+        .content-section {
+          padding: 0 20px;
+        }
+
+        .content-section-line {
+          margin: 0;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="app-container">
+      <div class="left-area">
+        <button class="btn-close-left">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            fill="none"
+            stroke="currentColor"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            class="feather feather-x-circle"
+            viewBox="0 0 24 24"
+          >
+            <defs />
+            <circle cx="12" cy="12" r="10" />
+            <path d="M15 9l-6 6M9 9l6 6" />
+          </svg>
+        </button>
+        <div class="app-name">MyDocs</div>
+        <a href="#" class="item-link active" id="pageLink">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            fill="none"
+            stroke="currentColor"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            class="feather feather-grid"
+            viewBox="0 0 24 24"
+          >
+            <defs />
+            <path d="M3 3h7v7H3zM14 3h7v7h-7zM14 14h7v7h-7zM3 14h7v7H3z" />
+          </svg>
+        </a>
+        <a href="#" class="item-link" id="pageLink">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            fill="none"
+            stroke="currentColor"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            class="feather feather-folder"
+            viewBox="0 0 24 24"
+          >
+            <defs />
+            <path
+              d="M22 19a2 2 0 01-2 2H4a2 2 0 01-2-2V5a2 2 0 012-2h5l2 3h9a2 2 0 012 2z"
+            />
+          </svg>
+        </a>
+        <a href="#" class="item-link" id="pageLink">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            fill="none"
+            stroke="currentColor"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            class="feather feather-hard-drive"
+            viewBox="0 0 24 24"
+          >
+            <defs />
+            <path
+              d="M22 12H2M5.45 5.11L2 12v6a2 2 0 002 2h16a2 2 0 002-2v-6l-3.45-6.89A2 2 0 0016.76 4H7.24a2 2 0 00-1.79 1.11zM6 16h.01M10 16h.01"
+            />
+          </svg>
+        </a>
+        <a href="#" class="item-link" id="pageLink">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            fill="none"
+            stroke="currentColor"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            class="feather feather-settings"
+            viewBox="0 0 24 24"
+          >
+            <defs />
+            <circle cx="12" cy="12" r="3" />
+            <path
+              d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 010 2.83 2 2 0 01-2.83 0l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 01-2 2 2 2 0 01-2-2v-.09A1.65 1.65 0 009 19.4a1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 01-2.83 0 2 2 0 010-2.83l.06-.06a1.65 1.65 0 00.33-1.82 1.65 1.65 0 00-1.51-1H3a2 2 0 01-2-2 2 2 0 012-2h.09A1.65 1.65 0 004.6 9a1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 010-2.83 2 2 0 012.83 0l.06.06a1.65 1.65 0 001.82.33H9a1.65 1.65 0 001-1.51V3a2 2 0 012-2 2 2 0 012 2v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 012.83 0 2 2 0 010 2.83l-.06.06a1.65 1.65 0 00-.33 1.82V9a1.65 1.65 0 001.51 1H21a2 2 0 012 2 2 2 0 01-2 2h-.09a1.65 1.65 0 00-1.51 1z"
+            />
+          </svg>
+        </a>
+        <button class="btn-logout">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            fill="none"
+            stroke="currentColor"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            class="feather feather-log-out"
+            viewBox="0 0 24 24"
+          >
+            <defs />
+            <path
+              d="M9 21H5a2 2 0 01-2-2V5a2 2 0 012-2h4M16 17l5-5-5-5M21 12H9"
+            />
+          </svg>
+        </button>
+      </div>
+      <div class="main-area">
+        <button class="btn-show-right-area">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            class="feather feather-chevron-left"
+          >
+            <polyline points="15 18 9 12 15 6" />
+          </svg>
+        </button>
+        <button class="btn-show-left-area">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <line x1="3" y1="12" x2="21" y2="12" />
+            <line x1="3" y1="6" x2="21" y2="6" />
+            <line x1="3" y1="18" x2="21" y2="18" />
+          </svg>
+        </button>
+        <div class="main-area-header">
+          <div class="search-wrapper" id="searchLine">
+            <input
+              class="search-input"
+              type="text"
+              placeholder="e.g. files.doc"
+            />
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="20"
+              height="20"
+              fill="none"
+              stroke="currentColor"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              class="feather feather-search"
+              viewBox="0 0 24 24"
+            >
+              <defs />
+              <circle cx="11" cy="11" r="8" />
+              <path d="M21 21l-4.35-4.35" />
+            </svg>
+          </div>
+        </div>
+        <section class="content-section">
+          <h1 class="section-header">Quick Access</h1>
+          <div class="access-links">
+            <div class="access-link-wrapper">
+              <div class="access-icon">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="56"
+                  height="56"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  class="feather feather-image"
+                >
+                  <rect x="3" y="3" width="18" height="18" rx="2" ry="2" />
+                  <circle cx="8.5" cy="8.5" r="1.5" />
+                  <polyline points="21 15 16 10 5 21" />
+                </svg>
+              </div>
+              <span class="access-text">Images</span>
+            </div>
+            <div class="access-link-wrapper">
+              <div class="access-icon">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="56"
+                  height="56"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  class="feather feather-music"
+                >
+                  <path d="M9 18V5l12-2v13" />
+                  <circle cx="6" cy="18" r="3" />
+                  <circle cx="18" cy="16" r="3" />
+                </svg>
+              </div>
+              <span class="access-text">Music</span>
+            </div>
+            <div class="access-link-wrapper">
+              <div class="access-icon">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="56"
+                  height="56"
+                  viewBox="0 0 24 24"
+                  fill="currentColor"
+                  stroke="currentColor"
+                  stroke-width="1"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  class="feather feather-play"
+                >
+                  <polygon points="5 3 19 12 5 21 5 3" />
+                </svg>
+              </div>
+              <span class="access-text">Video</span>
+            </div>
+            <div class="access-link-wrapper">
+              <div class="access-icon">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="56"
+                  height="56"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  class="feather feather-align-left"
+                >
+                  <line x1="17" y1="10" x2="3" y2="10" />
+                  <line x1="21" y1="6" x2="3" y2="6" />
+                  <line x1="21" y1="14" x2="3" y2="14" />
+                  <line x1="17" y1="18" x2="3" y2="18" />
+                </svg>
+              </div>
+              <span class="access-text">Docs</span>
+            </div>
+            <div class="access-link-wrapper">
+              <div class="access-icon">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="56"
+                  height="56"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  class="feather feather-layers"
+                >
+                  <polygon points="12 2 2 7 12 12 22 7 12 2" />
+                  <polyline points="2 17 12 22 22 17" />
+                  <polyline points="2 12 12 17 22 12" />
+                </svg>
+              </div>
+              <span class="access-text">Apps</span>
+            </div>
+            <div class="access-link-wrapper">
+              <div class="access-icon">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="56"
+                  height="56"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  class="feather feather-arrow-down-circle"
+                >
+                  <circle cx="12" cy="12" r="10" />
+                  <polyline points="8 12 12 16 16 12" />
+                  <line x1="12" y1="8" x2="12" y2="16" />
+                </svg>
+              </div>
+              <span class="access-text">Download</span>
+            </div>
+          </div>
+        </section>
+        <section class="content-section">
+          <div class="section-header-wrapper">
+            <h1 class="section-header">Preview</h1>
+            <a class="section-header-link"> View in folders </a>
+          </div>
+          <div class="content-section-line">
+            <div class="section-part left">
+              <a class="image-wrapper">
+                <div class="image-overlay">
+                  <div class="video-info">
+                    <div class="video-info-text">
+                      <p class="video-name medium">Happiness & Tears</p>
+                      <p class="video-subtext medium">45.5 MB</p>
+                    </div>
+                    <button class="btn-play"></button>
+                  </div>
+                </div>
+                <img
+                  src="https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2251&q=80"
+                />
+                <span class="video-time">10:32</span>
+              </a>
+            </div>
+            <div class="section-part right">
+              <div class="content-part-line">
+                <a class="image-wrapper">
+                  <div class="image-overlay">
+                    <div class="video-info">
+                      <div class="video-info-text">
+                        <p class="video-name tiny">High Hopes</p>
+                        <p class="video-subtext tiny">50 MB</p>
+                      </div>
+                    </div>
+                  </div>
+                  <img
+                    src="https://images.unsplash.com/photo-1515552726023-7125c8d07fb3?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2167&q=80"
+                  />
+                  <span class="video-time">02:35</span>
+                </a>
+                <a class="image-wrapper">
+                  <div class="image-overlay">
+                    <div class="video-info">
+                      <div class="video-info-text">
+                        <p class="video-name tiny">Imaginery you</p>
+                        <p class="video-subtext tiny">210.2 MB</p>
+                      </div>
+                    </div>
+                  </div>
+                  <img
+                    src="https://images.unsplash.com/photo-1542359649-31e03cd4d909?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2167&q=80"
+                  />
+                  <span class="video-time">04:15</span>
+                </a>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section class="content-section">
+          <div class="section-header-wrapper">
+            <h1 class="section-header">Recent Files</h1>
+            <a class="section-header-link"> View all files </a>
+          </div>
+          <div class="files-table">
+            <div class="files-table-header">
+              <div class="column-header table-cell">Name</div>
+              <div class="column-header table-cell size-cell">Size</div>
+              <div class="column-header table-cell">Last Modified</div>
+              <div class="column-header table-cell">Action</div>
+            </div>
+            <div class="files-table-row">
+              <div class="table-cell name-cell pdf">Brandenburg.pdf</div>
+              <div class="table-cell">42 MB</div>
+              <div class="table-cell">Aug 26, 2020</div>
+              <div class="table-cell action-cell">
+                <button class="more-action"></button>
+              </div>
+            </div>
+            <div class="files-table-row">
+              <div class="table-cell name-cell jpg">TheLionsRoar.jpg</div>
+              <div class="table-cell size-cell">500 KB</div>
+              <div class="table-cell">Aug 26, 2020</div>
+              <div class="table-cell action-cell">
+                <button class="more-action"></button>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+      <div class="right-area">
+        <button class="btn-close-right">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            fill="none"
+            stroke="currentColor"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            class="feather feather-x-circle"
+            viewBox="0 0 24 24"
+          >
+            <defs />
+            <circle cx="12" cy="12" r="10" />
+            <path d="M15 9l-6 6M9 9l6 6" />
+          </svg>
+        </button>
+        <div class="right-area-header-wrapper">
+          <p class="right-area-header">Downloads</p>
+          <button class="more-action"></button>
+        </div>
+        <div class="download-item-line">
+          <div class="line-header">Today</div>
+          <div class="download-area">
+            <div class="download-item-icon">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 512 512"
+                class=""
+              >
+                <defs></defs>
+                <circle cx="256" cy="256" r="256" fill="#4b50dd"></circle>
+                <path
+                  fill="#f5f5f5"
+                  d="M192 64h176c4.4 0 8 3.6 8 8v328c0 4.4-3.6 8-8 8H120c-4.4 0-8-3.6-8-8V148l80-84z"
+                ></path>
+                <path
+                  fill="#e6e6e6"
+                  d="M184 148c4.4 0 8-3.6 8-8V64l-80 84h72z"
+                ></path>
+                <circle cx="352" cy="384" r="52" fill="#2179a6"></circle>
+                <g fill="#f5f5f5" class="g">
+                  <path
+                    d="M352 416c-2.208 0-4-1.788-4-4v-56c0-2.212 1.792-4 4-4s4 1.788 4 4v56c0 2.212-1.792 4-4 4z"
+                  ></path>
+                  <path
+                    d="M352 416a3.989 3.989 0 01-2.828-1.172l-20-20c-1.564-1.564-1.564-4.092 0-5.656s4.092-1.564 5.656 0L352 406.344l17.172-17.172c1.564-1.564 4.092-1.564 5.656 0s1.564 4.092 0 5.656l-20 20A3.989 3.989 0 01352 416z"
+                  ></path>
+                </g>
+              </svg>
+            </div>
+            <div class="download-item-texts">
+              <p class="download-text-header">Glitter.mp4</p>
+              <p class="download-text-info">
+                34.45 MB<span>Waiting for download</span>
+              </p>
+            </div>
+            <div class="download-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 612 612">
+                <defs />
+                <path
+                  d="M403.939 295.749l-78.814 78.833V172.125c0-10.557-8.568-19.125-19.125-19.125s-19.125 8.568-19.125 19.125v202.457l-78.814-78.814c-7.478-7.478-19.584-7.478-27.043 0-7.478 7.478-7.478 19.584 0 27.042L289.208 431c4.59 4.59 10.863 6.005 16.812 4.953 5.929 1.052 12.221-.382 16.811-4.953l108.19-108.19c7.478-7.478 7.478-19.583 0-27.042-7.498-7.478-19.604-7.478-27.082-.019zM306 0C137.012 0 0 136.992 0 306s137.012 306 306 306 306-137.012 306-306S475.008 0 306 0zm0 573.75C158.125 573.75 38.25 453.875 38.25 306S158.125 38.25 306 38.25 573.75 158.125 573.75 306 453.875 573.75 306 573.75z"
+                />
+              </svg>
+            </div>
+          </div>
+        </div>
+        <div class="download-item-line">
+          <div class="line-header">Yesterday</div>
+          <div class="download-area">
+            <div class="download-item-icon">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 512 512"
+                class=""
+              >
+                <defs></defs>
+                <circle cx="256" cy="256" r="256" fill="#4bc0dd"></circle>
+                <path
+                  fill="#f5f5f5"
+                  d="M192 64h176c4.4 0 8 3.6 8 8v328c0 4.4-3.6 8-8 8H120c-4.4 0-8-3.6-8-8V148l80-84z"
+                ></path>
+                <path
+                  fill="#e6e6e6"
+                  d="M184 148c4.4 0 8-3.6 8-8V64l-80 84h72z"
+                ></path>
+                <circle cx="352" cy="384" r="52" fill="#2179a6"></circle>
+                <g fill="#f5f5f5" class="g">
+                  <path
+                    d="M352 416c-2.208 0-4-1.788-4-4v-56c0-2.212 1.792-4 4-4s4 1.788 4 4v56c0 2.212-1.792 4-4 4z"
+                  ></path>
+                  <path
+                    d="M352 416a3.989 3.989 0 01-2.828-1.172l-20-20c-1.564-1.564-1.564-4.092 0-5.656s4.092-1.564 5.656 0L352 406.344l17.172-17.172c1.564-1.564 4.092-1.564 5.656 0s1.564 4.092 0 5.656l-20 20A3.989 3.989 0 01352 416z"
+                  ></path>
+                </g>
+              </svg>
+            </div>
+            <div class="download-item-texts">
+              <p class="download-text-header">Glitter.mp4</p>
+              <div class="progress-bar">
+                <span class="progress"></span>
+              </div>
+            </div>
+            <div class="download-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="1 1 512 512">
+                <defs />
+                <path
+                  d="M256 512C114.613 512 0 397.383 0 256S114.613 0 256 0s256 114.613 256 256c-.168 141.316-114.684 255.832-256 256zm0-480C132.29 32 32 132.29 32 256s100.29 224 224 224 224-100.29 224-224c-.133-123.656-100.344-223.867-224-224zm0 0"
+                />
+                <path
+                  d="M208 368c-8.836 0-16-7.164-16-16V160c0-8.836 7.164-16 16-16s16 7.164 16 16v192c0 8.836-7.164 16-16 16zm0 0M304 368c-8.836 0-16-7.164-16-16V160c0-8.836 7.164-16 16-16s16 7.164 16 16v192c0 8.836-7.164 16-16 16zm0 0"
+                />
+              </svg>
+            </div>
+          </div>
+        </div>
+        <div class="right-area-header-wrapper">
+          <p class="right-area-header">File Received</p>
+        </div>
+        <div class="received-item-line">
+          <div class="progress-line">
+            <span class="time start">15:30</span>
+            <span class="time end">18:30</span>
+          </div>
+          <div class="received-items-content">
+            <div class="received-files">
+              <div class="image-wrapper">
+                <img
+                  src="https://images.unsplash.com/photo-1523987355523-c7b5b0dd90a7?ixlib=rb-1.2.1&auto=format&fit=crop&w=2250&q=80"
+                />
+              </div>
+              <div class="image-wrapper">
+                <img
+                  src="https://images.unsplash.com/photo-1498855926480-d98e83099315?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2250&q=80"
+                />
+              </div>
+              <div class="image-wrapper">
+                <img
+                  src="https://images.unsplash.com/photo-1492648272180-61e45a8d98a7?ixlib=rb-1.2.1&auto=format&fit=crop&w=2250&q=80"
+                />
+              </div>
+            </div>
+            <div class="received-files-info">
+              Received <span class="info-purple">3 images</span> total
+              <span class="info-purple">50.3 MB</span>
+            </div>
+          </div>
+        </div>
+        $(document).ready(function () {
+            $("a#pageLink").click(function () {
+              $("a#pageLink").removeClass("active");
+              $(this).addClass("active");
+            });
+            
+            $(".btn-show-left-area").click(function () {
+              $(".left-area").removeClass("show");
+              $(".left-area").addClass("show");
+            });
+            
+            $(".btn-show-right-area").click(function () {
+              $(".right-area").removeClass("show");
+              $(".right-area").addClass("show");
+            });
+            
+            $(".btn-close-right").click(function () {
+              $(".right-area").removeClass("show");
+            });
+            
+            $(".btn-close-left").click(function () {
+              $(".left-area").removeClass("show");
+            });
+          });
+          
+          $('.main-area').scroll( function() {
+              if ($('.main-area').scrollTop() >= 88) {
+                 $('div.main-area-header').addClass('fixed');
+              }
+              else {
+                 $('div.main-area-header').removeClass('fixed');
+              }
+          });    </div>
+
+    <script>
+
+    </script>
+  </body>
+</html>
