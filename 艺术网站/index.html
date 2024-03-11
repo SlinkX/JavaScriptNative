@@ -1,0 +1,2926 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style lang="scss">
+      // Colors
+
+      $green: rgb(30, 215, 96);
+      $light-black: rgb(40, 40, 40);
+      $black: rgb(24, 24, 24);
+      $grey: rgb(170, 170, 170);
+      $sand: rgb(200, 200, 200);
+      $white: rgb(255, 255, 255);
+      $blue: #4688d7;
+
+      // Spacing
+
+      $padding-xs: 5px;
+      $padding-sm: 10px;
+      $padding: 15px;
+      $padding-lg: 30px;
+      $padding-xl: 60px;
+
+      $margin-xs: 5px;
+      $margin-sm: 10px;
+      $margin: 15px;
+      $margin-lg: 30px;
+      $margin-xl: 60px;
+
+      // Borders
+
+      $border-radius: 15px;
+
+      // Font-sizes
+
+      $x-small: 11px;
+      $small: 14px;
+      $medium: 16px;
+      $large: 20px;
+      $x-large: 24px;
+      $xx-large: 36px;
+      $xxx-large: 52px;
+
+      // ===== Styles ==== //
+
+      body {
+        background: $black;
+        font-family: "Roboto", sans-serif;
+
+        a {
+          color: $grey;
+
+          &:hover {
+            color: $sand;
+          }
+        }
+      }
+
+      .header {
+        & {
+          background: $light-black;
+          padding: $padding-sm;
+          color: $grey;
+          border-bottom: 1px solid $black;
+
+          display: flex;
+          flex-flow: row wrap;
+          align-items: center;
+        }
+
+        .window__actions {
+        }
+
+        .page-flows {
+          .flow {
+            font-size: $large;
+            color: $grey;
+            margin: 0 $margin-sm;
+
+            &:hover {
+              color: $white;
+            }
+
+            .disabled {
+              color: darken($grey, 30%);
+            }
+          }
+        }
+
+        .search {
+          margin-left: 1%;
+
+          input {
+            border-radius: $border-radius;
+            border: none;
+            background: $white;
+            color: $black;
+            padding-left: $padding-lg;
+            outline: none;
+            background-image: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/7022/ios-search.svg);
+            background-repeat: no-repeat;
+            background-size: 10%;
+            background-position: 5px;
+          }
+        }
+
+        .user {
+          & {
+            width: 300px;
+            margin-left: auto;
+
+            display: flex;
+            flex-flow: row wrap;
+            justify-content: space-between;
+            align-items: center;
+          }
+
+          i {
+            font-size: $large;
+
+            &:hover {
+              color: $white;
+              cursor: pointer;
+            }
+          }
+
+          &__notifications {
+          }
+
+          &__inbox {
+          }
+
+          &__info {
+            img {
+              max-width: 30px;
+              max-height: 30px;
+              border-radius: 50%;
+              display: inline-block;
+            }
+          }
+
+          &__actions {
+            button {
+              background: none;
+              border: none;
+            }
+
+            .dropdown-menu {
+              background: $light-black;
+              margin-top: 25px;
+              border-radius: 2px;
+              padding: 0;
+              border: none;
+
+              &:before {
+                font-family: "Ionicons";
+                content: "\f365";
+                position: absolute;
+                top: -30px;
+                right: 7px;
+                color: $light-black;
+                font-size: $xx-large;
+              }
+
+              a {
+                color: $grey;
+                transition: all 0.2s ease;
+
+                &:hover {
+                  background: none;
+                  transition: all 0.2s ease;
+                }
+              }
+
+              li {
+                padding: $padding-sm;
+                margin: 0;
+                transition: all 0.2s ease;
+
+                &:hover {
+                  background: $grey;
+                  transition: all 0.2s ease;
+
+                  a {
+                    color: $sand;
+                    transition: all 0.2s ease;
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+
+      .content {
+        & {
+          display: flex;
+          flex-flow: row wrap;
+        }
+
+        &__left {
+          width: 15%;
+        }
+
+        &__middle {
+          width: 70%;
+        }
+
+        &__right {
+          width: 15%;
+        }
+
+        @media (max-width: 1400px) {
+          &__left {
+            width: 20%;
+          }
+
+          &__middle {
+            width: 80%;
+          }
+
+          &__right {
+            display: none;
+          }
+        }
+
+        @media (max-width: 768px) {
+          &__left {
+            width: 100%;
+          }
+
+          &__middle {
+            width: 100%;
+          }
+        }
+      }
+
+      .navigation {
+        & {
+          padding: $padding;
+          background: $light-black;
+          color: $grey;
+          overflow-y: scroll;
+        }
+
+        &__list {
+          & {
+            display: flex;
+            flex-flow: column wrap;
+            margin-bottom: $margin;
+          }
+
+          &__header {
+            @extend .h2;
+
+            &:after {
+              font-family: "Ionicons";
+              content: "\f123";
+            }
+          }
+
+          .active {
+            &:after {
+              font-family: "Ionicons";
+              content: "\f126";
+            }
+          }
+
+          &__item {
+            & {
+              color: $grey;
+              padding: $padding-xs 0;
+
+              display: flex;
+              flex-flow: row nowrap;
+              align-items: center;
+            }
+
+            &:hover {
+              color: $white;
+              text-decoration: none;
+              border-right: 3px solid $green;
+            }
+
+            i {
+              width: 25px;
+              display: block;
+            }
+          }
+        }
+      }
+
+      @media (max-width: 768px) {
+        .navigation {
+          display: flex;
+          flex-flow: row wrap;
+          justify-content: space-around;
+
+          &__list {
+            margin-bottom: 0;
+            width: calc(100% / 3);
+            text-align: center;
+
+            &__item {
+              width: 100%;
+              text-align: center;
+
+              i {
+                display: none;
+              }
+
+              span {
+                margin: 0 auto;
+              }
+
+              &:hover {
+                border: none;
+              }
+            }
+          }
+        }
+      }
+
+      .playlist {
+        & {
+          padding: $padding;
+          background: $light-black;
+          border-top: 1px solid $black;
+          border-bottom: 1px solid $black;
+        }
+
+        &:hover {
+          background: lighten($light-black, 10%);
+
+          a {
+            color: $white;
+          }
+        }
+
+        a {
+          color: $grey;
+
+          display: flex;
+          flex-flow: row nowrap;
+          align-items: center;
+
+          &:hover {
+            text-decoration: none;
+          }
+
+          i {
+            font-size: $x-large;
+            color: $white;
+            margin-right: $margin;
+          }
+        }
+      }
+
+      @media (max-width: 768px) {
+        .playlist {
+          display: none;
+        }
+      }
+
+      .playing {
+        & {
+          background: $light-black;
+          border-bottom: 1px solid $black;
+
+          display: flex;
+          flex-flow: row nowrap;
+          align-items: center;
+        }
+
+        &__art {
+          img {
+            width: 50px;
+            height: 50px;
+          }
+        }
+
+        &__song {
+          color: $grey;
+          padding-left: $padding;
+
+          display: flex;
+          flex-flow: column wrap;
+
+          a {
+            color: $grey;
+
+            &:hover {
+              color: $white;
+              cursor: pointer;
+            }
+          }
+        }
+
+        &__add {
+          margin-left: auto;
+          padding-right: $padding;
+          color: $grey;
+        }
+      }
+
+      @media (max-width: 768px) {
+        .playing {
+          border-top: 1px solid $black;
+        }
+      }
+
+      .current-track {
+        & {
+          //position: fixed;
+          //bottom: 0;
+          //width: 100%;
+
+          background: $light-black;
+          padding: $padding-xs $padding;
+
+          display: flex;
+          flex-flow: row wrap;
+          align-items: center;
+        }
+
+        &__actions {
+          & {
+            width: 5%;
+
+            display: flex;
+            flex-flow: row nowrap;
+            justify-content: space-between;
+            align-items: center;
+          }
+
+          a {
+            font-size: $x-large;
+            color: $sand;
+
+            &:hover {
+              color: $white;
+              cursor: pointer;
+            }
+          }
+
+          .play {
+            font-size: $xx-large;
+          }
+        }
+
+        &__progress {
+          & {
+            width: 70%;
+            padding: 0 $padding-lg;
+            color: $grey;
+            font-size: $x-small;
+
+            display: flex;
+            flex-flow: row;
+            justify-content: space-between;
+            align-items: center;
+          }
+
+          &__bar {
+            width: 100%;
+            padding: 0 $padding;
+
+            .noUi-target {
+              border: none;
+              height: 4px;
+            }
+
+            .noUi-base {
+              background: $green;
+            }
+
+            .noUi-origin {
+              background: darken($grey, 30%);
+            }
+
+            .noUi-handle {
+              background: $sand;
+              width: 15px;
+              height: 15px;
+              border-radius: 50%;
+              box-shadow: none;
+              border: none;
+              left: 0;
+              display: none;
+
+              &:before,
+              &:after {
+                background: none;
+              }
+            }
+          }
+
+          &:hover {
+            .noUi-handle {
+              display: block;
+            }
+          }
+        }
+
+        &__options {
+          & {
+            width: 25%;
+
+            display: flex;
+            flex-flow: row wrap;
+            align-items: center;
+          }
+
+          .lyrics {
+            font-size: $x-small;
+            text-transform: uppercase;
+            width: 15%;
+            padding: 0 $padding 0 0;
+          }
+
+          .controls {
+            & {
+              width: 85%;
+
+              display: flex;
+              flex-flow: row wrap;
+              justify-content: space-between;
+            }
+
+            .devices {
+              &:hover {
+                text-decoration: none;
+              }
+
+              i {
+                margin-right: $margin-xs;
+              }
+
+              span {
+                font-size: $x-small;
+                text-transform: uppercase;
+              }
+            }
+
+            .volume {
+              width: 25%;
+
+              display: flex;
+              flex-flow: row wrap;
+              align-items: center;
+
+              i {
+                width: 20px;
+                color: $grey;
+              }
+
+              #song-volume {
+                width: calc(80% - 20px);
+                border: none;
+                height: 4px;
+
+                .noUi-base {
+                  background: $sand;
+                }
+
+                .noUi-origin {
+                  background: darken($grey, 30%);
+                }
+
+                .noUi-handle {
+                  background: $sand;
+                  width: 15px;
+                  height: 15px;
+                  border-radius: 50%;
+                  box-shadow: none;
+                  border: none;
+                  left: 0;
+                  display: none;
+
+                  &:before,
+                  &:after {
+                    background: none;
+                  }
+                }
+
+                &:hover {
+                  .noUi-handle {
+                    display: block;
+                  }
+                }
+              }
+            }
+          }
+        }
+
+        @media (max-width: 1400px) {
+          &__actions {
+            width: 10%;
+          }
+
+          &__progress {
+            width: 50%;
+          }
+
+          &__options {
+            width: 40%;
+          }
+        }
+
+        @media (max-width: 980px) {
+          &__actions {
+            width: 10%;
+          }
+
+          &__progress {
+            width: 40%;
+          }
+
+          &__options {
+            width: 50%;
+          }
+        }
+
+        @media (max-width: 768px) {
+          &__actions {
+            width: 25%;
+          }
+
+          &__progress {
+            width: 75%;
+          }
+
+          &__options {
+            width: 100%;
+          }
+        }
+
+        @media (max-width: 480px) {
+          &__actions {
+            width: 100%;
+            justify-content: space-around;
+            padding: $padding-xs 0;
+          }
+
+          &__progress {
+            width: 100%;
+            padding: $padding-xs 0;
+          }
+
+          &__options {
+            width: 100%;
+            padding: $padding-xs 0;
+          }
+        }
+      }
+
+      @media (max-width: 768px) {
+        .current-track {
+          &__action {
+            padding-top: $padding;
+          }
+        }
+      }
+
+      .artist {
+        height: 617px;
+        overflow-y: scroll;
+
+        &__header {
+          & {
+            height: 320px;
+            border-bottom: 1px solid $light-black;
+            position: relative;
+            background-image: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/7022/spotify_img_bground.png);
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            overflow: hidden;
+            z-index: 1;
+
+            display: flex;
+            flex-flow: row wrap;
+            justify-content: space-between;
+            align-items: flex-end;
+          }
+
+          &:before {
+            content: " ";
+            display: block;
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            opacity: 0.15;
+            background-image: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/7022/g-eazy.png);
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-position: top;
+          }
+
+          .artist__info {
+            & {
+              padding: $padding;
+              z-index: 1;
+              width: 80%;
+              margin-top: $margin-xl * 1.3;
+
+              display: flex;
+              flex-flow: row wrap;
+              align-items: flex-end;
+            }
+
+            .profile__img {
+              margin-right: $margin;
+
+              img {
+                width: 150px;
+                height: 150px;
+                border-radius: 50%;
+              }
+            }
+
+            &__type {
+              color: $grey;
+              text-transform: uppercase;
+              font-size: 11px;
+              letter-spacing: 1px;
+            }
+
+            &__name {
+              color: $white;
+              font-size: $xx-large;
+              font-weight: 100;
+              padding: 0 0 $padding-sm 0;
+            }
+
+            &__actions {
+              display: flex;
+              flex-flow: row wrap;
+
+              button {
+                margin-right: $margin-sm;
+                height: 27px;
+
+                display: flex;
+                flex-flow: row wrap;
+                align-items: center;
+                padding: 0 $padding;
+                font-weight: 500;
+
+                i {
+                  font-size: $large;
+                  margin-right: $margin-xs;
+                }
+              }
+
+              .more {
+                width: 27px;
+                height: 27px;
+                border-radius: 50%;
+                padding: 0;
+                text-align: center;
+
+                i {
+                  margin: 0;
+                  padding-left: 6px;
+                }
+              }
+            }
+          }
+
+          .artist__listeners {
+            width: 20%;
+            z-index: 1;
+            padding: $padding;
+            text-align: right;
+            color: $grey;
+            font-weight: 100;
+            font-size: 16px;
+            letter-spacing: 1px;
+
+            &__label {
+              font-weight: 300;
+              text-transform: uppercase;
+              font-size: 12px;
+              letter-spacing: 1px;
+            }
+          }
+
+          .artist__navigation {
+            & {
+              width: 100%;
+              z-index: 1;
+              background: rgba(24, 24, 24, 0.6);
+
+              display: flex;
+              flex-flow: row wrap;
+              justify-content: space-between;
+              align-items: center;
+            }
+
+            ul {
+              border: none;
+
+              li {
+                padding: 0 $padding;
+
+                a {
+                  padding: $padding 0;
+                  color: $grey;
+                  border: none;
+                  text-transform: uppercase;
+                  letter-spacing: 1px;
+                  transition: all 0.4s ease;
+                  border-bottom: 4px solid rgba(0, 0, 0, 0);
+
+                  &:hover {
+                    background: none;
+                    border: none;
+                    color: $white;
+                    transition: all 0.4s ease;
+                    border-bottom: 4px solid rgba(0, 0, 0, 0);
+                  }
+                }
+
+                &.active {
+                  a {
+                    color: $white;
+                    background: none;
+                    border: none;
+                    border-bottom: 4px solid $green;
+
+                    &:hover {
+                      border-bottom: 4px solid $green;
+                    }
+                  }
+                }
+              }
+            }
+
+            &__friends {
+              & {
+                padding: $padding;
+              }
+
+              img {
+                width: 30px;
+                height: 30px;
+                border-radius: 50%;
+                position: relative;
+              }
+
+              .tooltip {
+                z-index: 1;
+                position: absolute;
+              }
+            }
+          }
+        }
+
+        &.is-verified {
+          .profile__img {
+            position: relative;
+
+            &:after {
+              font-family: "Ionicons";
+              content: "\f3fd";
+              position: absolute;
+              bottom: 5px;
+              right: 25px;
+              color: $white;
+              background: $blue;
+              width: 20px;
+              height: 20px;
+              border-radius: 50%;
+              text-align: center;
+              font-size: 18px;
+              line-height: 1;
+            }
+          }
+        }
+
+        &__content {
+          & {
+            padding: $padding;
+          }
+
+          .overview {
+            display: flex;
+            flex-flow: row wrap;
+
+            &__artist {
+              padding-right: $padding;
+              width: 70%;
+
+              .latest-release {
+                margin-bottom: $margin-lg;
+
+                display: flex;
+                flex-flow: row wrap;
+
+                &__art {
+                  width: 75px;
+
+                  img {
+                    width: 75px;
+                    height: 75px;
+                  }
+                }
+
+                &__song {
+                  width: calc(100% - 75px);
+
+                  padding: $padding-sm $padding;
+                  background: $light-black;
+                  color: $grey;
+
+                  display: flex;
+                  flex-flow: column wrap;
+                  justify-content: space-between;
+
+                  &__title {
+                    color: $sand;
+                  }
+                }
+              }
+            }
+
+            &__related {
+              width: 30%;
+            }
+
+            @media (max-width: 1024px) {
+              &__artist {
+                width: 100%;
+              }
+
+              &__related {
+                width: 100%;
+                margin-top: $margin;
+              }
+            }
+
+            @media (max-width: 768px) {
+              &__artist {
+                padding-right: 0;
+              }
+            }
+          }
+        }
+      }
+
+      @media (max-width: 768px) {
+        .artist {
+          overflow-y: auto;
+        }
+      }
+
+      @media (max-width: 522px) {
+        .artist {
+          &__header {
+            height: auto;
+
+            flex-flow: column wrap;
+
+            .artist__info {
+              & {
+                margin-top: 0;
+                width: 100%;
+
+                display: flex;
+                flex-flow: column wrap;
+                align-items: center;
+                text-align: center;
+              }
+
+              .profile__img {
+                margin-right: 0;
+              }
+
+              &__type {
+                margin-top: $margin-sm;
+              }
+            }
+
+            .artist__listeners {
+              width: 100%;
+              text-align: center;
+            }
+          }
+        }
+      }
+
+      .tracks {
+        & {
+          display: flex;
+          flex-flow: column wrap;
+          margin-bottom: $margin;
+        }
+
+        &__heading {
+          & {
+            color: $grey;
+            height: 42px;
+
+            display: flex;
+            flex-flow: row wrap;
+            align-items: center;
+          }
+
+          &__number {
+            margin-left: $margin-sm;
+            font-style: italic;
+          }
+
+          &__title {
+            margin-left: 70px;
+            width: 45%;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+          }
+
+          &__length {
+            margin-left: auto;
+            font-size: $large;
+          }
+
+          &__popularity {
+            font-size: $large;
+            margin-left: 55px;
+            padding-right: $padding-sm;
+          }
+        }
+
+        .track {
+          & {
+            border-top: 1px solid $light-black;
+            height: 42px;
+            display: flex;
+            flex-flow: row wrap;
+            align-items: center;
+          }
+
+          &:hover {
+            background: $light-black;
+          }
+
+          &:last-child {
+            border-bottom: 1px solid $light-black;
+          }
+
+          &__art {
+            img {
+              width: 42px;
+              height: 42px;
+            }
+          }
+
+          &__number {
+            margin-left: $margin-sm;
+            color: $grey;
+            width: 12px;
+          }
+
+          &__added {
+            margin-left: $margin * 2;
+            color: $sand;
+
+            .added {
+              color: $sand;
+            }
+
+            .not-added {
+              color: $grey;
+            }
+          }
+
+          &__title {
+            width: 45%;
+            margin-left: $margin * 2;
+            color: $white;
+
+            &.featured {
+              .title {
+                &:after {
+                  content: "-";
+                  margin: 0 $margin-xs;
+                }
+              }
+
+              .feature {
+                color: $grey;
+
+                &:after {
+                  content: ",";
+                  margin-right: $margin-xs;
+                }
+
+                &:last-child {
+                  &:after {
+                    content: "";
+                    margin-right: 0;
+                  }
+                }
+
+                &:hover {
+                  cursor: pointer;
+                  color: $sand;
+                  text-decoration: underline;
+                }
+              }
+            }
+          }
+
+          &__explicit {
+            .label {
+              border: 1px;
+              border-style: solid;
+              border-color: lighten($light-black, 10%);
+              color: lighten($light-black, 10%);
+              text-transform: uppercase;
+            }
+          }
+
+          &__plays {
+            color: $grey;
+            margin-left: auto;
+            padding-right: $padding-sm;
+          }
+
+          &__length {
+            margin-left: auto;
+            color: $grey;
+          }
+
+          &__popularity {
+            margin-left: 46px;
+            padding-right: $padding-sm;
+            font-size: $large;
+            color: $grey;
+          }
+        }
+      }
+
+      @media (max-width: 1200px) {
+        .tracks {
+          &__heading {
+            &__title {
+              width: auto;
+            }
+
+            &__popularity {
+              display: none;
+            }
+          }
+
+          .track {
+            &__title {
+              width: auto !important;
+            }
+
+            &__explicit {
+              display: none;
+            }
+
+            &__popularity {
+              display: none;
+            }
+          }
+        }
+      }
+
+      .related-artists {
+        & {
+          display: flex;
+          flex-flow: column wrap;
+        }
+
+        .related-artist {
+          & {
+            background: $light-black;
+            padding: $padding-xs;
+            margin-bottom: 2px;
+          }
+
+          &:hover {
+            background: lighten($light-black, 6%);
+            text-decoration: none;
+          }
+
+          &__img {
+            img {
+              width: 42px;
+              height: 42px;
+              border-radius: 50%;
+            }
+          }
+
+          &__name {
+            margin-left: $margin;
+            color: $white;
+          }
+        }
+      }
+
+      @media (max-width: 1024px) {
+        .related-artists {
+          & {
+            flex-flow: row wrap;
+          }
+
+          .related-artist {
+            margin: $margin-sm;
+            width: calc((100% / 3) - 20px);
+          }
+        }
+      }
+
+      @media (max-width: 768px) {
+        .related-artists {
+          .related-artist {
+            margin: $margin-xs;
+            width: calc((100% / 2) - 10px);
+          }
+        }
+      }
+
+      @media (max-width: 480px) {
+        .related-artists {
+          .related-artist {
+            margin: $margin-xs;
+            width: 20%;
+            background: none;
+
+            &:hover {
+              background: none;
+              opacity: 0.6;
+            }
+
+            &__name {
+              display: none;
+            }
+          }
+        }
+      }
+
+      .overview {
+        &__albums {
+          width: 100%;
+          margin-top: $margin-lg;
+
+          &__head {
+            & {
+              border-bottom: 1px solid $light-black;
+              margin-bottom: $margin-sm;
+
+              display: flex;
+              flex-flow: row wrap;
+              justify-content: space-between;
+              align-items: center;
+            }
+
+            .view-type {
+              color: $white;
+              margin-bottom: 4px;
+
+              .active {
+                background: $light-black;
+                padding: 8px;
+                border-radius: 50%;
+              }
+
+              i {
+                padding: 8px;
+                border-radius: 50%;
+
+                &:hover {
+                  padding: 8px;
+                  border-radius: 50%;
+                  background: lighten($light-black, 5%);
+                  cursor: pointer;
+                }
+              }
+            }
+          }
+        }
+      }
+
+      .album {
+        &__info {
+          & {
+            margin-bottom: $margin;
+
+            display: flex;
+            flex-flow: row wrap;
+          }
+
+          &__art {
+            img {
+              width: 135px;
+              height: 135px;
+            }
+          }
+
+          &__meta {
+            & {
+              width: calc(100% - 150px);
+              margin-left: $margin;
+
+              display: flex;
+              flex-flow: column wrap;
+            }
+
+            .album__year {
+              color: $grey;
+              letter-spacing: 1px;
+            }
+
+            .album__name {
+              color: $white;
+              font-size: $xx-large / 1.2;
+              font-weight: 100;
+            }
+
+            .album__actions {
+              margin-top: auto;
+
+              .save {
+                padding-left: $padding-lg;
+                padding-right: $padding-lg;
+                margin-right: $margin-sm;
+
+                &:hover {
+                  border-color: $green;
+                }
+              }
+
+              .more {
+                width: 27px;
+                height: 27px;
+                border-radius: 50%;
+                padding: 0;
+                text-align: center;
+              }
+            }
+          }
+        }
+
+        .track {
+          &__title {
+            width: 70%;
+          }
+        }
+      }
+
+      @media (max-width: 1200px) {
+        .album {
+          .tracks {
+            .track {
+              height: auto;
+              padding: $padding-sm 0;
+            }
+          }
+        }
+      }
+
+      .social {
+        & {
+          padding: $padding;
+          text-align: center;
+          overflow-y: scroll;
+        }
+
+        .friends {
+          & {
+            display: flex;
+            flex-flow: column wrap;
+            margin-bottom: $margin;
+          }
+
+          .friend {
+            & {
+              padding: $padding 0;
+
+              display: flex;
+              flex-flow: row nowrap;
+              align-items: center;
+            }
+
+            &:first-child {
+              padding-top: 0;
+            }
+
+            i {
+              font-size: $large;
+              margin-right: $margin;
+            }
+          }
+        }
+      }
+
+      .media-cards {
+        & {
+          display: flex;
+          flex-flow: row wrap;
+        }
+
+        .media-card {
+          & {
+            margin: $margin;
+            width: calc((100% / 4) - 30px);
+          }
+
+          &__image {
+            height: 200px;
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: cover;
+
+            display: flex;
+            align-items: center;
+
+            i {
+              color: $white;
+              font-size: 72px;
+              margin: 0 auto;
+              opacity: 0;
+              transition: all 0.5s ease;
+              text-shadow: 1px 5px 15px $black;
+
+              &:hover {
+                cursor: pointer;
+              }
+            }
+
+            &:hover {
+              i {
+                opacity: 1;
+                transition: all 0.5s ease;
+              }
+            }
+          }
+
+          &__footer {
+            & {
+              display: block;
+              background: $light-black;
+              padding: $padding;
+              color: $white;
+            }
+
+            &:hover {
+              cursor: pointer;
+            }
+          }
+        }
+      }
+
+      @media (max-width: 1100px) {
+        .media-cards {
+          .media-card {
+            & {
+              width: calc((100% / 3) - 30px);
+            }
+          }
+        }
+      }
+
+      @media (max-width: 768px) {
+        .media-cards {
+          .media-card {
+            & {
+              width: calc((100% / 2) - 30px);
+            }
+          }
+        }
+      }
+
+      @media (max-width: 480px) {
+        .media-cards {
+          .media-card {
+            & {
+              margin: $margin 0;
+              width: 100%;
+            }
+          }
+        }
+      }
+
+      ::-webkit-scrollbar {
+        width: 8px;
+      }
+      ::-webkit-scrollbar-thumb {
+        border-radius: 4px;
+        background: lighten($light-black, 6%);
+      }
+
+      // Media Queries
+
+      @media (max-width: 650px) {
+        .header {
+          .window__actions {
+            width: 15%;
+          }
+
+          .page-flows {
+            width: 20%;
+            margin: 0;
+          }
+
+          .search {
+            width: 65%;
+            margin: 0;
+
+            input {
+              width: 100%;
+              background-size: 7%;
+            }
+          }
+
+          .user {
+            width: 100%;
+            margin-top: $margin;
+
+            justify-content: space-around;
+          }
+        }
+      }
+
+      // ==== Framework ==== //
+
+      .h1 {
+        font-size: 36px;
+      }
+
+      .h2 {
+        font-size: $x-small;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        margin-bottom: $margin-xs;
+      }
+
+      .red {
+        color: #fc615c;
+
+        &:hover {
+          color: darken(#fc615c, 10%);
+        }
+      }
+
+      .yellow {
+        color: #fdbe41;
+
+        &:hover {
+          color: darken(#fdbe41, 10%);
+        }
+      }
+
+      .green {
+        color: #34c94a;
+
+        &:hover {
+          color: darken(#34c94a, 10%);
+        }
+      }
+
+      button {
+        border-radius: 20px;
+        border: none;
+        padding: $padding-xs $padding;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        font-size: $x-small;
+        outline: none;
+
+        &:hover {
+          cursor: pointer;
+        }
+      }
+
+      .button-dark {
+        background: $green;
+        color: $white;
+        border: 1px solid $green;
+
+        &:hover {
+          background: lighten($green, 10%);
+        }
+      }
+
+      .button-light {
+        background: none;
+        color: $sand;
+        border: 1px solid $sand;
+
+        &:hover {
+          border-color: $white;
+          color: $white;
+        }
+      }
+
+      .section-title {
+        text-transform: uppercase;
+        color: $grey;
+        letter-spacing: 1.25px;
+        font-size: $x-small * 1.2;
+        margin-bottom: $margin-sm;
+      }
+    </style>
+  </head>
+  <body>
+    <section class="header">
+      <!--
+        <div class="window__actions">
+          <i class="ion-record red"></i>
+          <i class="ion-record yellow"></i>
+          <i class="ion-record green"></i>
+        </div>
+        -->
+
+      <div class="page-flows">
+        <span class="flow">
+          <i class="ion-chevron-left"></i>
+        </span>
+
+        <span class="flow">
+          <i class="ion-chevron-right disabled"></i>
+        </span>
+      </div>
+
+      <div class="search">
+        <input type="text" placeholder="Search" />
+      </div>
+
+      <div class="user">
+        <div class="user__notifications">
+          <i class="ion-android-notifications"></i>
+        </div>
+
+        <div class="user__inbox">
+          <i class="ion-archive"></i>
+        </div>
+
+        <div class="user__info">
+          <span class="user__info__img">
+            <img
+              src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/7022/adam_proPic.jpg"
+              alt="Profile Picture"
+              class="img-responsive"
+            />
+          </span>
+
+          <span class="user__info__name">
+            <span class="first">Adam</span>
+
+            <span class="last">Lowenthal</span>
+          </span>
+        </div>
+
+        <div class="user__actions">
+          <div class="dropdown">
+            <button
+              class="dropdown-toggle"
+              type="button"
+              id="dropdownMenu1"
+              data-toggle="dropdown"
+              aria-haspopup="true"
+              aria-expanded="true"
+            >
+              <i class="ion-chevron-down"></i>
+            </button>
+            <ul
+              class="dropdown-menu dropdown-menu-right"
+              aria-labelledby="dropdownMenu1"
+            >
+              <li><a href="#">Private Session</a></li>
+              <li><a href="#">Account</a></li>
+              <li><a href="#">Settings</a></li>
+              <li><a href="#">Log Out</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="content">
+      <div class="content__left">
+        <section class="navigation">
+          <!-- Main -->
+          <div class="navigation__list">
+            <div
+              class="navigation__list__header"
+              role="button"
+              data-toggle="collapse"
+              href="#main"
+              aria-expanded="true"
+              aria-controls="main"
+            >
+              Main
+            </div>
+
+            <div class="collapse in" id="main">
+              <a href="#" class="navigation__list__item">
+                <i class="ion-ios-browsers"></i>
+                <span>Browse</span>
+              </a>
+
+              <a href="#" class="navigation__list__item">
+                <i class="ion-person-stalker"></i>
+                <span>Activity</span>
+              </a>
+
+              <a href="#" class="navigation__list__item">
+                <i class="ion-radio-waves"></i>
+                <span>Radio</span>
+              </a>
+            </div>
+          </div>
+          <!-- / -->
+
+          <!-- Your Music -->
+          <div class="navigation__list">
+            <div
+              class="navigation__list__header"
+              role="button"
+              data-toggle="collapse"
+              href="#yourMusic"
+              aria-expanded="true"
+              aria-controls="yourMusic"
+            >
+              Your Music
+            </div>
+
+            <div class="collapse in" id="yourMusic">
+              <a href="#" class="navigation__list__item">
+                <i class="ion-headphone"></i>
+                <span>Songs</span>
+              </a>
+
+              <a href="#" class="navigation__list__item">
+                <i class="ion-ios-musical-notes"></i>
+                <span>Albums</span>
+              </a>
+
+              <a href="#" class="navigation__list__item">
+                <i class="ion-person"></i>
+                <span>Artists</span>
+              </a>
+
+              <a href="#" class="navigation__list__item">
+                <i class="ion-document"></i>
+                <span>Local Files</span>
+              </a>
+            </div>
+          </div>
+          <!-- / -->
+
+          <!-- Playlists -->
+          <div class="navigation__list">
+            <div
+              class="navigation__list__header"
+              role="button"
+              data-toggle="collapse"
+              href="#playlists"
+              aria-expanded="true"
+              aria-controls="playlists"
+            >
+              Playlists
+            </div>
+
+            <div class="collapse in" id="playlists">
+              <a href="#" class="navigation__list__item">
+                <i class="ion-ios-musical-notes"></i>
+                <span>Doo Wop</span>
+              </a>
+
+              <a href="#" class="navigation__list__item">
+                <i class="ion-ios-musical-notes"></i>
+                <span>Pop Classics</span>
+              </a>
+
+              <a href="#" class="navigation__list__item">
+                <i class="ion-ios-musical-notes"></i>
+                <span>Love $ongs</span>
+              </a>
+
+              <a href="#" class="navigation__list__item">
+                <i class="ion-ios-musical-notes"></i>
+                <span>Hipster</span>
+              </a>
+
+              <a href="#" class="navigation__list__item">
+                <i class="ion-ios-musical-notes"></i>
+                <span>New Music Friday</span>
+              </a>
+
+              <a href="#" class="navigation__list__item">
+                <i class="ion-ios-musical-notes"></i>
+                <span>Techno Poppers</span>
+              </a>
+
+              <a href="#" class="navigation__list__item">
+                <i class="ion-ios-musical-notes"></i>
+                <span>Summer Soothers</span>
+              </a>
+
+              <a href="#" class="navigation__list__item">
+                <i class="ion-ios-musical-notes"></i>
+                <span>Hard Rap</span>
+              </a>
+
+              <a href="#" class="navigation__list__item">
+                <i class="ion-ios-musical-notes"></i>
+                <span>Pop Rap</span>
+              </a>
+
+              <a href="#" class="navigation__list__item">
+                <i class="ion-ios-musical-notes"></i>
+                <span>5 Stars</span>
+              </a>
+
+              <a href="#" class="navigation__list__item">
+                <i class="ion-ios-musical-notes"></i>
+                <span>Dope Dancin</span>
+              </a>
+
+              <a href="#" class="navigation__list__item">
+                <i class="ion-ios-musical-notes"></i>
+                <span>Sleep</span>
+              </a>
+            </div>
+          </div>
+          <!-- / -->
+        </section>
+
+        <section class="playlist">
+          <a href="#">
+            <i class="ion-ios-plus-outline"></i>
+
+            New Playlist
+          </a>
+        </section>
+
+        <section class="playing">
+          <div class="playing__art">
+            <img
+              src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/7022/cputh.jpg"
+              alt="Album Art"
+            />
+          </div>
+
+          <div class="playing__song">
+            <a class="playing__song__name">Some Type of Love</a>
+
+            <a class="playing__song__artist">Charlie Puth</a>
+          </div>
+
+          <div class="playing__add">
+            <i class="ion-checkmark"></i>
+          </div>
+        </section>
+      </div>
+
+      <div class="content__middle">
+        <div class="artist is-verified">
+          <div class="artist__header">
+            <div class="artist__info">
+              <div class="profile__img">
+                <img
+                  src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/7022/g_eazy_propic.jpg"
+                  alt="G-Eazy"
+                />
+              </div>
+
+              <div class="artist__info__meta">
+                <div class="artist__info__type">Artist</div>
+
+                <div class="artist__info__name">G-Eazy</div>
+
+                <div class="artist__info__actions">
+                  <button class="button-dark">
+                    <i class="ion-ios-play"></i>
+                    Play
+                  </button>
+
+                  <button class="button-light">Follow</button>
+
+                  <button class="button-light more">
+                    <i class="ion-ios-more"></i>
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <div class="artist__listeners">
+              <div class="artist__listeners__count">15,662,810</div>
+
+              <div class="artist__listeners__label">Monthly Listeners</div>
+            </div>
+
+            <div class="artist__navigation">
+              <ul class="nav nav-tabs" role="tablist">
+                <li role="presentation" class="active">
+                  <a
+                    href="#artist-overview"
+                    aria-controls="artist-overview"
+                    role="tab"
+                    data-toggle="tab"
+                    >Overview</a
+                  >
+                </li>
+
+                <li role="presentation">
+                  <a
+                    href="#related-artists"
+                    aria-controls="related-artists"
+                    role="tab"
+                    data-toggle="tab"
+                    >Related Artists</a
+                  >
+                </li>
+
+                <!--<li role="presentation">
+                    <a href="#artist-about" aria-controls="artist-about" role="tab" data-toggle="tab">About</a>
+                  </li>-->
+              </ul>
+
+              <div class="artist__navigation__friends">
+                <a href="#">
+                  <img
+                    src="http://zblogged.com/wp-content/uploads/2015/11/17.jpg"
+                    alt=""
+                  />
+                </a>
+
+                <a href="#">
+                  <img
+                    src="http://zblogged.com/wp-content/uploads/2015/11/5.png"
+                    alt=""
+                  />
+                </a>
+
+                <a href="#">
+                  <img
+                    src="http://cdn.devilsworkshop.org/files/2013/01/enlarged-facebook-profile-picture.jpg"
+                    alt=""
+                  />
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <div class="artist__content">
+            <div class="tab-content">
+              <!-- Overview -->
+              <div role="tabpanel" class="tab-pane active" id="artist-overview">
+                <div class="overview">
+                  <div class="overview__artist">
+                    <!-- Latest Release-->
+                    <div class="section-title">Latest Release</div>
+
+                    <div class="latest-release">
+                      <div class="latest-release__art">
+                        <img
+                          src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/7022/whenDarkOut.jpg"
+                          alt="When It's Dark Out"
+                        />
+                      </div>
+
+                      <div class="latest-release__song">
+                        <div class="latest-release__song__title">
+                          Drifting (Track Commentary)
+                        </div>
+
+                        <div class="latest-release__song__date">
+                          <span class="day">4</span>
+
+                          <span class="month">December</span>
+
+                          <span class="year">2015</span>
+                        </div>
+                      </div>
+                    </div>
+                    <!-- / -->
+
+                    <!-- Popular-->
+                    <div class="section-title">Popular</div>
+
+                    <div class="tracks">
+                      <div class="track">
+                        <div class="track__art">
+                          <img
+                            src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/7022/whenDarkOut.jpg"
+                            alt="When It's Dark Out"
+                          />
+                        </div>
+
+                        <div class="track__number">1</div>
+
+                        <div class="track__added">
+                          <i class="ion-checkmark-round added"></i>
+                        </div>
+
+                        <div class="track__title">Me, Myself & I</div>
+
+                        <div class="track__explicit">
+                          <span class="label">Explicit</span>
+                        </div>
+
+                        <div class="track__plays">147,544,165</div>
+                      </div>
+
+                      <div class="track">
+                        <div class="track__art">
+                          <img
+                            src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/7022/tth.jpg"
+                            alt="These Things Happen"
+                          />
+                        </div>
+
+                        <div class="track__number">2</div>
+
+                        <div class="track__added">
+                          <i class="ion-plus not-added"></i>
+                        </div>
+
+                        <div class="track__title">I Mean It</div>
+
+                        <div class="track__explicit">
+                          <span class="label">Explicit</span>
+                        </div>
+
+                        <div class="track__plays">74,568,782</div>
+                      </div>
+
+                      <div class="track">
+                        <div class="track__art">
+                          <img
+                            src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/7022/whenDarkOut.jpg"
+                            alt="When It's Dark Out"
+                          />
+                        </div>
+
+                        <div class="track__number">3</div>
+
+                        <div class="track__added">
+                          <i class="ion-checkmark-round added"></i>
+                        </div>
+
+                        <div class="track__title">Calm Down</div>
+
+                        <div class="track__explicit">
+                          <span class="label">Explicit</span>
+                        </div>
+
+                        <div class="track__plays">13,737,506</div>
+                      </div>
+
+                      <div class="track">
+                        <div class="track__art">
+                          <img
+                            src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/7022/whenDarkOut.jpg"
+                            alt="When It's Dark Out"
+                          />
+                        </div>
+
+                        <div class="track__number">4</div>
+
+                        <div class="track__added">
+                          <i class="ion-plus not-added"></i>
+                        </div>
+
+                        <div class="track__title">Some Kind Of Drug</div>
+
+                        <div class="track__explicit">
+                          <span class="label">Explicit</span>
+                        </div>
+
+                        <div class="track__plays">12,234,881</div>
+                      </div>
+
+                      <div class="track">
+                        <div class="track__art">
+                          <img
+                            src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/7022/tth.jpg"
+                            alt="These Things Happen"
+                          />
+                        </div>
+
+                        <div class="track__number">5</div>
+
+                        <div class="track__added">
+                          <i class="ion-checkmark-round added"></i>
+                        </div>
+
+                        <div class="track__title">Let's Get Lost</div>
+
+                        <div class="track__explicit">
+                          <span class="label">Explicit</span>
+                        </div>
+
+                        <div class="track__plays">40,882,954</div>
+                      </div>
+                    </div>
+
+                    <button class="show-more button-light">Show 5 More</button>
+                    <!-- / -->
+                  </div>
+
+                  <div class="overview__related">
+                    <div class="section-title">Related Artists</div>
+
+                    <div class="related-artists">
+                      <a href="#" class="related-artist">
+                        <span class="related-artist__img">
+                          <img
+                            src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/7022/hoodie.jpg"
+                            alt="Hoodie Allen"
+                          />
+                        </span>
+
+                        <span class="related-artist__name">Hoodie Allen</span>
+                      </a>
+
+                      <a href="#" class="related-artist">
+                        <span class="related-artist__img">
+                          <img
+                            src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/7022/mikestud.jpg"
+                            alt="Mike Stud"
+                          />
+                        </span>
+
+                        <span class="related-artist__name">Mike Stud</span>
+                      </a>
+
+                      <a href="#" class="related-artist">
+                        <span class="related-artist__img">
+                          <img
+                            src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/7022/drake.jpeg"
+                            alt="Drake"
+                          />
+                        </span>
+
+                        <span class="related-artist__name">Drake</span>
+                      </a>
+
+                      <a href="#" class="related-artist">
+                        <span class="related-artist__img">
+                          <img
+                            src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/7022/jcole.jpg"
+                            alt="J. Cole"
+                          />
+                        </span>
+
+                        <span class="related-artist__name">J. Cole</span>
+                      </a>
+
+                      <a href="#" class="related-artist">
+                        <span class="related-artist__img">
+                          <img
+                            src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/7022/bigsean.jpg"
+                            alt="Big Sean"
+                          />
+                        </span>
+
+                        <span class="related-artist__name">Big Sean</span>
+                      </a>
+
+                      <a href="#" class="related-artist">
+                        <span class="related-artist__img">
+                          <img
+                            src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/7022/wiz.jpeg"
+                            alt="Wiz Khalifa"
+                          />
+                        </span>
+
+                        <span class="related-artist__name">Wiz Khalifa</span>
+                      </a>
+
+                      <a href="#" class="related-artist">
+                        <span class="related-artist__img">
+                          <img
+                            src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/7022/yonas.jpg"
+                            alt="Yonas"
+                          />
+                        </span>
+
+                        <span class="related-artist__name">Yonas</span>
+                      </a>
+                    </div>
+                  </div>
+
+                  <div class="overview__albums">
+                    <div class="overview__albums__head">
+                      <span class="section-title">Albums</span>
+
+                      <span class="view-type">
+                        <i class="fa fa-list list active"></i>
+
+                        <i class="fa fa-th-large card"></i>
+                      </span>
+                    </div>
+
+                    <div class="album">
+                      <div class="album__info">
+                        <div class="album__info__art">
+                          <img
+                            src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/7022/whenDarkOut.jpg"
+                            alt="When It's Dark Out"
+                          />
+                        </div>
+
+                        <div class="album__info__meta">
+                          <div class="album__year">2015</div>
+
+                          <div class="album__name">When It's Dark Out</div>
+
+                          <div class="album__actions">
+                            <button class="button-light save">Save</button>
+
+                            <button class="button-light more">
+                              <i class="ion-ios-more"></i>
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="album__tracks">
+                        <div class="tracks">
+                          <div class="tracks__heading">
+                            <div class="tracks__heading__number">#</div>
+
+                            <div class="tracks__heading__title">Song</div>
+
+                            <div class="tracks__heading__length">
+                              <i class="ion-ios-stopwatch-outline"></i>
+                            </div>
+
+                            <div class="tracks__heading__popularity">
+                              <i class="ion-thumbsup"></i>
+                            </div>
+                          </div>
+
+                          <div class="track">
+                            <div class="track__number">1</div>
+
+                            <div class="track__added">
+                              <i class="ion-checkmark-round added"></i>
+                            </div>
+
+                            <div class="track__title">Intro</div>
+
+                            <div class="track__explicit">
+                              <span class="label">Explicit</span>
+                            </div>
+
+                            <div class="track__length">1:11</div>
+
+                            <div class="track__popularity">
+                              <i class="ion-arrow-graph-up-right"></i>
+                            </div>
+                          </div>
+
+                          <div class="track">
+                            <div class="track__number">2</div>
+
+                            <div class="track__added">
+                              <i class="ion-checkmark-round added"></i>
+                            </div>
+
+                            <div class="track__title">Random</div>
+
+                            <div class="track__explicit">
+                              <span class="label">Explicit</span>
+                            </div>
+
+                            <div class="track__length">3:00</div>
+
+                            <div class="track__popularity">
+                              <i class="ion-arrow-graph-up-right"></i>
+                            </div>
+                          </div>
+
+                          <div class="track">
+                            <div class="track__number">3</div>
+
+                            <div class="track__added">
+                              <i class="ion-checkmark-round added"></i>
+                            </div>
+
+                            <div class="track__title featured">
+                              <span class="title">Me, Myself & I</span>
+                              <span class="feature">Bebe Rexha</span>
+                            </div>
+
+                            <div class="track__explicit">
+                              <span class="label">Explicit</span>
+                            </div>
+
+                            <div class="track__length">4:11</div>
+
+                            <div class="track__popularity">
+                              <i class="ion-arrow-graph-up-right"></i>
+                            </div>
+                          </div>
+
+                          <div class="track">
+                            <div class="track__number">4</div>
+
+                            <div class="track__added">
+                              <i class="ion-checkmark-round added"></i>
+                            </div>
+
+                            <div class="track__title featured">
+                              <span class="title">One Of Them</span>
+                              <span class="feature">Big Sean</span>
+                            </div>
+
+                            <div class="track__explicit">
+                              <span class="label">Explicit</span>
+                            </div>
+
+                            <div class="track__length">3:20</div>
+
+                            <div class="track__popularity">
+                              <i class="ion-arrow-graph-down-right"></i>
+                            </div>
+                          </div>
+
+                          <div class="track">
+                            <div class="track__number">5</div>
+
+                            <div class="track__added">
+                              <i class="ion-checkmark-round added"></i>
+                            </div>
+
+                            <div class="track__title featured">
+                              <span class="title">Drifting</span>
+                              <span class="feature">Chris Brown</span>
+                              <span class="feature">Tory Lanez</span>
+                            </div>
+
+                            <div class="track__explicit">
+                              <span class="label">Explicit</span>
+                            </div>
+
+                            <div class="track__length">4:33</div>
+
+                            <div class="track__popularity">
+                              <i class="ion-arrow-graph-up-right"></i>
+                            </div>
+                          </div>
+
+                          <div class="track">
+                            <div class="track__number">6</div>
+
+                            <div class="track__added">
+                              <i class="ion-checkmark-round added"></i>
+                            </div>
+
+                            <div class="track__title featured">
+                              <span class="title">Of All Things</span>
+                              <span class="feature">Too $hort</span>
+                            </div>
+
+                            <div class="track__explicit">
+                              <span class="label">Explicit</span>
+                            </div>
+
+                            <div class="track__length">3:34</div>
+
+                            <div class="track__popularity">
+                              <i class="ion-arrow-graph-up-right"></i>
+                            </div>
+                          </div>
+
+                          <div class="track">
+                            <div class="track__number">7</div>
+
+                            <div class="track__added">
+                              <i class="ion-checkmark-round added"></i>
+                            </div>
+
+                            <div class="track__title featured">
+                              <span class="title">Order More</span>
+                              <span class="feature">Starrah</span>
+                            </div>
+
+                            <div class="track__explicit">
+                              <span class="label">Explicit</span>
+                            </div>
+
+                            <div class="track__length">3:29</div>
+
+                            <div class="track__popularity">
+                              <i class="ion-arrow-graph-up-right"></i>
+                            </div>
+                          </div>
+
+                          <div class="track">
+                            <div class="track__number">8</div>
+
+                            <div class="track__added">
+                              <i class="ion-checkmark-round added"></i>
+                            </div>
+
+                            <div class="track__title">
+                              <span>Calm Down</span>
+                            </div>
+
+                            <div class="track__explicit">
+                              <span class="label">Explicit</span>
+                            </div>
+
+                            <div class="track__length">2:07</div>
+
+                            <div class="track__popularity">
+                              <i class="ion-arrow-graph-up-right"></i>
+                            </div>
+                          </div>
+
+                          <div class="track">
+                            <div class="track__number">9</div>
+
+                            <div class="track__added">
+                              <i class="ion-plus not-added"></i>
+                            </div>
+
+                            <div class="track__title featured">
+                              <span class="title">Don't Let Me Go</span>
+                              <span class="feature">Grace</span>
+                            </div>
+
+                            <div class="track__explicit">
+                              <span class="label">Explicit</span>
+                            </div>
+
+                            <div class="track__length">3:11</div>
+
+                            <div class="track__popularity">
+                              <i class="ion-arrow-graph-down-right"></i>
+                            </div>
+                          </div>
+
+                          <div class="track">
+                            <div class="track__number">10</div>
+
+                            <div class="track__added">
+                              <i class="ion-checkmark-round added"></i>
+                            </div>
+
+                            <div class="track__title">
+                              <span>You Got Me</span>
+                            </div>
+
+                            <div class="track__explicit">
+                              <span class="label">Explicit</span>
+                            </div>
+
+                            <div class="track__length">3:28</div>
+
+                            <div class="track__popularity">
+                              <i class="ion-arrow-graph-up-right"></i>
+                            </div>
+                          </div>
+
+                          <div class="track">
+                            <div class="track__number">11</div>
+
+                            <div class="track__added">
+                              <i class="ion-checkmark-round added"></i>
+                            </div>
+
+                            <div class="track__title featured">
+                              <span class="title">What If</span>
+                              <span class="feature">Gizzle</span>
+                            </div>
+
+                            <div class="track__explicit">
+                              <span class="label">Explicit</span>
+                            </div>
+
+                            <div class="track__length">4:13</div>
+
+                            <div class="track__popularity">
+                              <i class="ion-arrow-graph-up-right"></i>
+                            </div>
+                          </div>
+
+                          <div class="track">
+                            <div class="track__number">12</div>
+
+                            <div class="track__added">
+                              <i class="ion-checkmark-round added"></i>
+                            </div>
+
+                            <div class="track__title">
+                              <span>Sad Boy</span>
+                            </div>
+
+                            <div class="track__explicit">
+                              <span class="label">Explicit</span>
+                            </div>
+
+                            <div class="track__length">3:23</div>
+
+                            <div class="track__popularity">
+                              <i class="ion-arrow-graph-up-right"></i>
+                            </div>
+                          </div>
+
+                          <div class="track">
+                            <div class="track__number">13</div>
+
+                            <div class="track__added">
+                              <i class="ion-checkmark-round added"></i>
+                            </div>
+
+                            <div class="track__title featured">
+                              <span class="title">Some Kind Of Drug</span>
+                              <span class="feature">Marc E. Bassy</span>
+                            </div>
+
+                            <div class="track__explicit">
+                              <span class="label">Explicit</span>
+                            </div>
+
+                            <div class="track__length">3:42</div>
+
+                            <div class="track__popularity">
+                              <i class="ion-arrow-graph-up-right"></i>
+                            </div>
+                          </div>
+
+                          <div class="track">
+                            <div class="track__number">14</div>
+
+                            <div class="track__added">
+                              <i class="ion-checkmark-round added"></i>
+                            </div>
+
+                            <div class="track__title featured">
+                              <span class="title">Think About You</span>
+                              <span class="feature">Quin</span>
+                            </div>
+
+                            <div class="track__explicit">
+                              <span class="label">Explicit</span>
+                            </div>
+
+                            <div class="track__length">2:59</div>
+
+                            <div class="track__popularity">
+                              <i class="ion-arrow-graph-up-right"></i>
+                            </div>
+                          </div>
+
+                          <div class="track">
+                            <div class="track__number">15</div>
+
+                            <div class="track__added">
+                              <i class="ion-checkmark-round added"></i>
+                            </div>
+
+                            <div class="track__title featured">
+                              <span class="title">Everything Will Be OK</span>
+                              <span class="feature">Kehlani</span>
+                            </div>
+
+                            <div class="track__explicit">
+                              <span class="label">Explicit</span>
+                            </div>
+
+                            <div class="track__length">5:11</div>
+
+                            <div class="track__popularity">
+                              <i class="ion-arrow-graph-up-right"></i>
+                            </div>
+                          </div>
+
+                          <div class="track">
+                            <div class="track__number">16</div>
+
+                            <div class="track__added">
+                              <i class="ion-checkmark-round added"></i>
+                            </div>
+
+                            <div class="track__title featured">
+                              <span class="title">For This</span>
+                              <span class="feature">Iamnobodi</span>
+                            </div>
+
+                            <div class="track__explicit">
+                              <span class="label">Explicit</span>
+                            </div>
+
+                            <div class="track__length">4:11</div>
+
+                            <div class="track__popularity">
+                              <i class="ion-arrow-graph-up-right"></i>
+                            </div>
+                          </div>
+
+                          <div class="track">
+                            <div class="track__number">17</div>
+
+                            <div class="track__added">
+                              <i class="ion-checkmark-round added"></i>
+                            </div>
+
+                            <div class="track__title featured">
+                              <span class="title">Nothing to Me</span>
+                              <span class="feature">Keyshia Cole</span>
+                              <span class="feature">E-40</span>
+                            </div>
+
+                            <div class="track__explicit">
+                              <span class="label">Explicit</span>
+                            </div>
+
+                            <div class="track__length">5:30</div>
+
+                            <div class="track__popularity">
+                              <i class="ion-arrow-graph-up-right"></i>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- / -->
+
+              <!-- Related Artists -->
+              <div role="tabpanel" class="tab-pane" id="related-artists">
+                <div class="media-cards">
+                  <div class="media-card">
+                    <div
+                      class="media-card__image"
+                      style="
+                        background-image: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/7022/hoodie.jpg);
+                      "
+                    >
+                      <i class="ion-ios-play"></i>
+                    </div>
+
+                    <a class="media-card__footer">Hoodie Allen</a>
+                  </div>
+
+                  <div class="media-card">
+                    <div
+                      class="media-card__image"
+                      style="
+                        background-image: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/7022/mikestud_large.jpg);
+                      "
+                    >
+                      <i class="ion-ios-play"></i>
+                    </div>
+
+                    <a class="media-card__footer">Mike Stud</a>
+                  </div>
+
+                  <div class="media-card">
+                    <div
+                      class="media-card__image"
+                      style="
+                        background-image: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/7022/drake_large.jpg);
+                      "
+                    >
+                      <i class="ion-ios-play"></i>
+                    </div>
+
+                    <a class="media-card__footer">Drake</a>
+                  </div>
+
+                  <div class="media-card">
+                    <div
+                      class="media-card__image"
+                      style="
+                        background-image: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/7022/jcole_large.jpg);
+                      "
+                    >
+                      <i class="ion-ios-play"></i>
+                    </div>
+
+                    <a class="media-card__footer">J. Cole</a>
+                  </div>
+
+                  <div class="media-card">
+                    <div
+                      class="media-card__image"
+                      style="
+                        background-image: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/7022/bigSean_large.jpg);
+                      "
+                    >
+                      <i class="ion-ios-play"></i>
+                    </div>
+
+                    <a class="media-card__footer">Big Sean</a>
+                  </div>
+
+                  <div class="media-card">
+                    <div
+                      class="media-card__image"
+                      style="
+                        background-image: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/7022/wiz.jpeg);
+                      "
+                    >
+                      <i class="ion-ios-play"></i>
+                    </div>
+
+                    <a class="media-card__footer">Wiz Khalifa</a>
+                  </div>
+
+                  <div class="media-card">
+                    <div
+                      class="media-card__image"
+                      style="
+                        background-image: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/7022/yonas.jpg);
+                      "
+                    >
+                      <i class="ion-ios-play"></i>
+                    </div>
+
+                    <a class="media-card__footer">Yonas</a>
+                  </div>
+
+                  <div class="media-card">
+                    <div
+                      class="media-card__image"
+                      style="
+                        background-image: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/7022/childish.jpg);
+                      "
+                    >
+                      <i class="ion-ios-play"></i>
+                    </div>
+
+                    <a class="media-card__footer">Childish Gambino</a>
+                  </div>
+                </div>
+              </div>
+              <!-- / -->
+
+              <!-- About // Coming Soon-->
+              <!--<div role="tabpanel" class="tab-pane" id="artist-about">About</div>-->
+              <!-- / -->
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="content__right">
+        <div class="social">
+          <div class="friends">
+            <a href="#" class="friend">
+              <i class="ion-android-person"></i>
+
+              Sam Smith
+            </a>
+
+            <a href="#" class="friend">
+              <i class="ion-android-person"></i>
+
+              Tarah Forsyth
+            </a>
+
+            <a href="#" class="friend">
+              <i class="ion-android-person"></i>
+
+              Ricahrd Tomkins
+            </a>
+
+            <a href="#" class="friend">
+              <i class="ion-android-person"></i>
+
+              Tony Russo
+            </a>
+
+            <a href="#" class="friend">
+              <i class="ion-android-person"></i>
+
+              Alyssa Marist
+            </a>
+
+            <a href="#" class="friend">
+              <i class="ion-android-person"></i>
+
+              Ron Samson
+            </a>
+          </div>
+
+          <button class="button-light">Find Friends</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="current-track">
+      <div class="current-track__actions">
+        <a class="ion-ios-skipbackward"></a>
+
+        <a class="ion-ios-play play"></a>
+
+        <a class="ion-ios-skipforward"></a>
+      </div>
+
+      <div class="current-track__progress">
+        <div class="current-track__progress__start">0:01</div>
+
+        <div class="current-track__progress__bar">
+          <div id="song-progress"></div>
+        </div>
+
+        <div class="current-track__progress__finish">3:07</div>
+      </div>
+
+      <div class="current-track__options">
+        <a href="#" class="lyrics">Lyrics</a>
+
+        <span class="controls">
+          <a href="#" class="control">
+            <i class="ion-navicon"></i>
+          </a>
+
+          <a href="#" class="control">
+            <i class="ion-shuffle"></i>
+          </a>
+
+          <a href="#" class="control">
+            <i class="fa fa-refresh"></i>
+          </a>
+
+          <a href="#" class="control devices">
+            <i class="ion-iphone"></i>
+            <span>Devices Available</span>
+          </a>
+
+          <a href="#" class="control volume">
+            <i class="ion-volume-high"></i>
+
+            <div id="song-volume"></div>
+          </a>
+        </span>
+      </div>
+    </section>
+  </body>
+  <script>
+    // Sliders
+
+    var slider = document.getElementById("song-progress");
+
+    noUiSlider.create(slider, {
+      start: [20],
+      range: {
+        min: [0],
+        max: [100],
+      },
+    });
+
+    var slider = document.getElementById("song-volume");
+
+    noUiSlider.create(slider, {
+      start: [90],
+      range: {
+        min: [0],
+        max: [100],
+      },
+    });
+
+    // Tooltips
+
+    $(function () {
+      $('[data-toggle="tooltip"]').tooltip();
+    });
+
+    // Viewport Heights
+
+    $(window).on("resize load", function () {
+      var totalHeight = $(window).height();
+
+      var headerHeight = $(".header").outerHeight();
+      var footerHeight = $(".current-track").outerHeight();
+      var playlistHeight = $(".playlist").outerHeight();
+      var nowPlaying = $(".playing").outerHeight();
+
+      var navHeight =
+        totalHeight -
+        (headerHeight + footerHeight + playlistHeight + nowPlaying);
+      var artistHeight = totalHeight - (headerHeight + footerHeight);
+
+      console.log(totalHeight);
+
+      $(".navigation").css("height", navHeight);
+      $(".artist").css("height", artistHeight);
+      $(".social").css("height", artistHeight);
+    });
+
+    // Collapse Toggles
+
+    $(".navigation__list__header").on("click", function () {
+      $(this).toggleClass("active");
+    });
+
+    // Media Queries
+
+    $(window).on("resize load", function () {
+      if ($(window).width() <= 768) {
+        $(".collapse").removeClass("in");
+
+        $(".navigation").css("height", "auto");
+
+        $(".artist").css("height", "auto");
+      }
+    });
+
+    $(window).on("resize load", function () {
+      if ($(window).width() > 768) {
+        $(".collapse").addClass("in");
+      }
+    });
+  </script>
+</html>
