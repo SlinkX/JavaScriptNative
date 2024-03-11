@@ -1,0 +1,822 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style lang="less">
+      @import url(https://fonts.googleapis.com/css?family=Open+Sans:600,300,100|Open+Sans+Condensed:300);
+      @import url(https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css);
+
+      @sidebar-width: 250px;
+      @window-margin: 60px;
+
+      body {
+        background: #fff linear-gradient(to bottom, #3f567c, #b5ccc6) no-repeat;
+        font-family: Open Sans, sans-serif;
+      }
+
+      a {
+        text-decoration: none;
+        transition-duration: 0.3s;
+
+        &:hover {
+          transition-duration: 0.05s;
+        }
+      }
+
+      .window-margin {
+        max-width: 1200px;
+        padding: @window-margin;
+        margin: auto;
+      }
+      .window {
+        margin: auto;
+        border-radius: 5px;
+        background: #fff;
+        overflow: hidden;
+        position: relative;
+        box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+
+        .sidebar .top-bar,
+        .main .top-bar {
+          height: 65px;
+          color: #fff;
+        }
+
+        .sidebar {
+          position: absolute;
+          top: 0;
+          left: 0;
+          bottom: 0;
+          width: @sidebar-width;
+          background: #24282c;
+          transition-duration: 0.3s;
+
+          color: #ddd;
+
+          .top-bar {
+            background: #3ab0ff;
+            overflow: hidden;
+
+            .logo {
+              float: left;
+              font-family: Open Sans Condensed, sans-serif;
+              font-size: 40px;
+              line-height: 65px;
+              margin-left: 20px;
+            }
+          }
+
+          .search-box {
+            background: #373d41;
+            padding: 20px;
+            position: relative;
+
+            input {
+              width: 170px;
+              border: 0;
+              padding: 10px 20px;
+              border-radius: 50px;
+              outline: none;
+              color: #999;
+              transition-duration: 0.3s;
+
+              &:focus {
+                color: #333;
+
+                & ~ .fa {
+                  color: #999;
+                }
+              }
+            }
+
+            .fa {
+              position: absolute;
+              top: 31px;
+              right: 35px;
+              color: #ccc;
+              transition-duration: 0.3s;
+              cursor: pointer;
+            }
+          }
+
+          .menu {
+            padding-top: 20px;
+
+            .separator {
+              border-top: 1px solid #111111;
+              border-bottom: 1px solid #353535;
+              margin: 20px;
+            }
+
+            a {
+              color: #ddd;
+              text-decoration: none;
+
+              &:hover {
+                color: #fff;
+              }
+            }
+
+            .menu-name {
+              text-transform: uppercase;
+              padding: 0 20px;
+              font-size: 14px;
+              margin-bottom: 10px;
+            }
+
+            & > ul.no-bullets > li a {
+              &:before {
+                content: none !important;
+              }
+            }
+
+            & > ul > li {
+              list-style: none;
+
+              & > a {
+                position: relative;
+                top: -3px;
+                font-size: 14px;
+                padding: 8px 25px;
+                display: block;
+                font-weight: bold;
+
+                &:before {
+                  content: "";
+                  height: 9px;
+                  width: 9px;
+                  border-radius: 50px;
+                  display: inline-block;
+                  margin-right: 10px;
+                  box-shadow: inset 0 0 0 1px #eee;
+                }
+              }
+
+              &.active {
+                list-style-type: disc;
+                color: #ff3a3a;
+                padding-bottom: 10px;
+
+                & > a {
+                  padding-bottom: 0;
+
+                  &:before {
+                    background: #ff3a3a;
+                    box-shadow: none;
+                  }
+                }
+
+                ul {
+                  display: block;
+                  margin-left: 50px;
+                  margin-top: 5px;
+
+                  li.active a {
+                    color: #fff;
+                    font-weight: bold;
+                  }
+
+                  li a {
+                    padding: 5px;
+                    display: block;
+                    font-size: 13px;
+                    color: #888;
+
+                    &:hover {
+                      color: #fff;
+                    }
+                  }
+                }
+              }
+
+              ul {
+                display: none;
+              }
+            }
+          }
+        }
+
+        .main {
+          margin-left: @sidebar-width;
+          transition-duration: 0.3s;
+          position: relative;
+
+          .top-bar {
+            background: #279ceb;
+
+            .top-menu {
+              height: 65px;
+              overflow: hidden;
+
+              .menu-icon {
+                padding: 27px 20px 20px 18px;
+                display: none;
+                cursor: pointer;
+                transition-duration: 0.3s;
+
+                &:hover {
+                  background: lighten(#3ab0ff, 5%);
+                  transition-duration: 0.05s;
+                }
+
+                .line {
+                  height: 2px;
+                  width: 20px;
+                  background: #fff;
+                  margin-bottom: 4px;
+                }
+              }
+
+              li {
+                float: left;
+                font-size: 14px;
+
+                &.active a,
+                &.active a:hover {
+                  background: #3ab0ff;
+                  color: #fff;
+                  font-weight: bold;
+                }
+              }
+
+              a {
+                padding: 0 25px;
+                color: #eee;
+                line-height: 65px;
+                display: block;
+
+                &:hover {
+                  color: #fff;
+                  background: fade(#3ab0ff, 35%);
+                }
+              }
+            }
+
+            .profile-box {
+              float: right;
+              background: #3ab0ff;
+              height: 65px;
+              line-height: 65px;
+              padding: 0 20px;
+              cursor: pointer;
+
+              .circle {
+                background: #fff;
+                height: 30px;
+                width: 30px;
+                border-radius: 50px;
+                display: block;
+                float: left;
+                margin-top: 15px;
+              }
+
+              .arrow {
+                float: left;
+                margin-left: 10px;
+                line-height: 65px;
+              }
+            }
+          }
+
+          .featured-movie {
+            position: relative;
+
+            .cover {
+              width: 100%;
+              display: block;
+            }
+
+            .corner-title {
+              position: absolute;
+              top: 20px;
+              left: 20px;
+              text-transform: uppercase;
+              color: #fff;
+              background: rgba(25, 25, 25, 0.3);
+              padding: 10px;
+              font-size: 13px;
+            }
+
+            .bottom-bar {
+              position: absolute;
+              bottom: 0;
+              left: 0;
+              right: 0;
+              padding: 20px 30px;
+              background: rgba(10, 10, 10, 0.8);
+              color: #fff;
+              overflow: hidden;
+
+              .title-container {
+                float: left;
+                font-weight: 100;
+                font-size: 40px;
+
+                .fa {
+                  margin-right: 10px;
+                  color: #ff3a3a;
+                }
+
+                b {
+                  font-weight: 600;
+                }
+              }
+
+              .right {
+                float: right;
+                font-size: 14px;
+                margin-top: 14px;
+
+                .stars {
+                  float: left;
+                  color: #f0c236;
+                  margin-right: 20px;
+                }
+
+                .share {
+                  float: left;
+                  cursor: pointer;
+
+                  .fa {
+                    margin-right: 5px;
+                  }
+                }
+              }
+            }
+          }
+
+          .movie-list {
+            .title-bar {
+              padding: 20px;
+              border-bottom: 1px solid #ddd;
+              overflow: hidden;
+
+              .left {
+                float: left;
+                font-size: 15px;
+                text-transform: uppercase;
+
+                .grey {
+                  color: #999;
+                }
+
+                .bold {
+                  font-weight: bold;
+                }
+
+                p {
+                  display: inline-block;
+                  margin-right: 10px;
+                }
+              }
+
+              .right {
+                float: right;
+
+                a {
+                  color: #999;
+                  margin-left: 10px;
+
+                  &.blue {
+                    color: #279ceb;
+                  }
+                }
+              }
+            }
+
+            .list {
+              margin: 20px;
+              margin-right: 0;
+              display: flex;
+              flex-wrap: wrap;
+              justify-content: space-between;
+
+              li {
+                flex: 0 0 130px;
+                padding-bottom: 30px;
+                margin-right: 20px;
+                position: relative;
+
+                &:hover:after {
+                  opacity: 1;
+                }
+
+                &:after {
+                  position: absolute;
+                  top: 0;
+                  left: 0;
+                  right: 0;
+                  height: 195px;
+                  content: "\f144";
+                  background: rgba(0, 0, 0, 0.3);
+                  border-radius: 5px;
+                  opacity: 0;
+                  color: #fff;
+                  font-size: 40px;
+                  display: block;
+                  cursor: pointer;
+                  line-height: 195px;
+                  text-align: center;
+                  font-family: FontAwesome;
+                  font-style: normal;
+                  font-weight: normal;
+                  -webkit-font-smoothing: antialiased;
+                }
+
+                img {
+                  width: 130px;
+                  height: 195px;
+                  display: block;
+                  margin: 0 auto 5px auto;
+                  cursor: pointer;
+                }
+
+                .title,
+                .genre {
+                  text-overflow: ellipsis;
+                  overflow: hidden;
+                  white-space: nowrap;
+                  cursor: pointer;
+                }
+
+                .title {
+                  font-weight: bold;
+                  font-size: 13px;
+                  margin-bottom: 4px;
+                }
+
+                .genre {
+                  color: #999;
+                  font-size: 12px;
+                }
+              }
+            }
+
+            .load-more {
+              background: #eee;
+              padding: 15px;
+              margin: 20px;
+              border-radius: 5px;
+              text-align: center;
+              color: #666;
+              display: block;
+
+              &:hover {
+                background: #ddd;
+              }
+
+              .fa {
+                margin-left: 10px;
+              }
+            }
+          }
+        }
+      }
+
+      @tablet-bk: (1100px + (@window-margin*2));
+      @media only screen and (max-width: @tablet-bk) {
+        .window > .sidebar {
+          transform: translateX(-@sidebar-width);
+        }
+
+        .window > .main {
+          margin-left: 0;
+        }
+
+        .window > .main .top-bar .top-menu .menu-icon {
+          display: block;
+        }
+
+        .sidebar-is-open {
+          .window > .sidebar {
+            transform: translateX(0);
+          }
+          .window > .main {
+            transform: translateX(@sidebar-width);
+          }
+        }
+      }
+
+      @media only screen and(max-width: 960px) {
+        .window .main .featured-movie .bottom-bar {
+          position: static;
+
+          .title-container {
+            font-size: 25px;
+          }
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="window-margin">
+      <div class="window">
+        <aside class="sidebar">
+          <div class="top-bar">
+            <p class="logo">REPLEX</p>
+          </div>
+
+          <div class="search-box">
+            <input type="text" placeholder="Search..." />
+            <p class="fa fa-search"></p>
+          </div>
+
+          <menu class="menu">
+            <p class="menu-name">Movie trailers</p>
+            <ul>
+              <li class="active">
+                <a href="#">Action / Adventure</a>
+                <ul>
+                  <li><a href="#">Latest</a></li>
+                  <li class="active"><a href="#">Popular</a></li>
+                  <li><a href="#">Coming soon</a></li>
+                  <li><a href="#">Staff picks</a></li>
+                </ul>
+              </li>
+              <li><a href="#">Animation</a></li>
+              <li><a href="#">Comedy</a></li>
+              <li><a href="#">Documentaries</a></li>
+              <li><a href="#">Drama</a></li>
+              <li><a href="#">Horror</a></li>
+              <li><a href="#">Sci-Fi / Fantasy</a></li>
+              <li><a href="#">List A-Z</a></li>
+            </ul>
+
+            <div class="separator"></div>
+
+            <ul class="no-bullets">
+              <li><a href="#">Latest news</a></li>
+              <li><a href="#">Critic reviews</a></li>
+              <li><a href="#">Box office</a></li>
+              <li><a href="#">Top 250</a></li>
+            </ul>
+
+            <div class="separator"></div>
+          </menu>
+        </aside>
+
+        <div class="main" role="main">
+          <div class="top-bar">
+            <div class="profile-box">
+              <div class="circle"></div>
+              <span class="arrow fa fa-angle-down"></span>
+            </div>
+
+            <ul class="top-menu">
+              <li class="menu-icon trigger-sidebar-toggle">
+                <div class="line"></div>
+                <div class="line"></div>
+                <div class="line"></div>
+              </li>
+              <li><a href="#">Headlines</a></li>
+              <li><a href="#">Articles</a></li>
+              <li class="active"><a href="#">Movies & Films</a></li>
+              <li><a href="#">Television</a></li>
+              <li><a href="#">Music</a></li>
+              <li><a href="#">Celebrities</a></li>
+            </ul>
+          </div>
+          <!-- top bar -->
+
+          <div class="featured-movie">
+            <img
+              class="cover"
+              src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/22043/backdrop_ggwxvq_1.jpg"
+              alt=""
+              class="cover"
+            />
+            <p class="corner-title">Staff pick</p>
+
+            <div class="bottom-bar">
+              <div class="title-container">
+                <span class="fa fa-play-circle"></span>
+                <b>Non-stop</b> Trailer #1
+              </div>
+
+              <div class="right">
+                <div class="stars">
+                  <span class="fa fa-star"></span>
+                  <span class="fa fa-star"></span>
+                  <span class="fa fa-star"></span>
+                  <span class="fa fa-star-half-o"></span>
+                  <span class="fa fa-star-o"></span>
+                </div>
+                <div class="share">
+                  <icon class="fa fa-share-square"></icon> Share
+                </div>
+              </div>
+              <!-- right -->
+            </div>
+            <!-- bottom bar -->
+          </div>
+          <!-- featured -->
+
+          <div class="movie-list">
+            <div class="title-bar">
+              <div class="left">
+                <p class="bold">Popular Trailers</p>
+                <p class="grey">Action / Adventure</p>
+              </div>
+              <!-- left -->
+              <div class="right">
+                <a class="blue" href="#"
+                  >Rating <i class="fa fa-angle-down"></i
+                ></a>
+                <a href="#">Newest</a>
+                <a href="#">Oldest</a>
+              </div>
+              <!-- right -->
+            </div>
+            <!-- title-bar -->
+
+            <ul class="list">
+              <li>
+                <img
+                  src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/22043/2014-03-08_140412_oavbye_1.png"
+                  alt=""
+                  class="cover"
+                />
+                <p class="title">Sin City: A Dame To Kill For</p>
+                <p class="genre">Action, Crime</p>
+              </li>
+              <li>
+                <img
+                  src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/22043/2014-03-08_140329_aawn02_1.png"
+                  alt=""
+                  class="cover"
+                />
+                <p class="title">Transcendence</p>
+                <p class="genre">Action, Drama</p>
+              </li>
+              <li>
+                <img
+                  src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/22043/2014-03-08_140239_kyg9i7_1.png"
+                  alt=""
+                  class="cover"
+                />
+                <p class="title">Need For Speed</p>
+                <p class="genre">Action, Crime</p>
+              </li>
+              <li>
+                <img
+                  src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/22043/2014-03-08_140052_dq4dyx_1.png"
+                  alt=""
+                  class="cover"
+                />
+                <p class="title">The Amazing Spiderman</p>
+                <p class="genre">Action, Adventure</p>
+              </li>
+              <li>
+                <img
+                  src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/22043/2014-03-08_140104_tdgzka_1.png"
+                  alt=""
+                  class="cover"
+                />
+                <p class="title">Pompeii</p>
+                <p class="genre">Action, Adventure</p>
+              </li>
+              <li>
+                <img
+                  src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/22043/2014-03-08_140248_fmufrz_1.png"
+                  alt=""
+                  class="cover"
+                />
+                <p class="title">Divergent</p>
+                <p class="genre">Action, Sci-Fi</p>
+              </li>
+              <li>
+                <img
+                  src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/22043/2014-03-08_140401_aewzsy_1.png"
+                  alt=""
+                  class="cover"
+                />
+                <p class="title">Guardians of the Galaxy</p>
+                <p class="genre">Action, Adventure</p>
+              </li>
+              <li>
+                <img
+                  src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/22043/2014-03-08_140339_wck2gw_1.png"
+                  alt=""
+                  class="cover"
+                />
+                <p class="title">X-Men: Days of Fury</p>
+                <p class="genre">Action, Adventure</p>
+              </li>
+              <li>
+                <img
+                  src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/22043/2014-03-08_140311_rj1det_1.png"
+                  alt=""
+                  class="cover"
+                />
+                <p class="title">Captain America: The Winter Soilder</p>
+                <p class="genre">Action, Adventure</p>
+              </li>
+              <li>
+                <img
+                  src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/22043/2014-03-08_140248_fmufrz_1.png"
+                  alt=""
+                  class="cover"
+                />
+                <p class="title">Divergent</p>
+                <p class="genre">Action, Sci-Fi</p>
+              </li>
+              <li>
+                <img
+                  src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/22043/2014-03-08_140132_bcnfqk_1.png"
+                  alt=""
+                  class="cover"
+                />
+                <p class="title">RoboCop (2014)</p>
+                <p class="genre">Action, Crime</p>
+              </li>
+              <li>
+                <img
+                  src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/22043/2014-03-08_140329_aawn02_1.png"
+                  alt=""
+                  class="cover"
+                />
+                <p class="title">Transcendence</p>
+                <p class="genre">Action, Drama</p>
+              </li>
+              <li>
+                <img
+                  src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/22043/2014-03-08_140239_kyg9i7_1.png"
+                  alt=""
+                  class="cover"
+                />
+                <p class="title">Need For Speed</p>
+                <p class="genre">Action, Crime</p>
+              </li>
+              <li>
+                <img
+                  src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/22043/2014-03-08_140104_tdgzka_1.png"
+                  alt=""
+                  class="cover"
+                />
+                <p class="title">Pompeii</p>
+                <p class="genre">Action, Adventure</p>
+              </li>
+              <li>
+                <img
+                  src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/22043/2014-03-08_140412_oavbye_1.png"
+                  alt=""
+                  class="cover"
+                />
+                <p class="title">Sin City: A Dame To Kill For</p>
+                <p class="genre">Action, Crime</p>
+              </li>
+              <li>
+                <img
+                  src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/22043/2014-03-08_140339_wck2gw_1.png"
+                  alt=""
+                  class="cover"
+                />
+                <p class="title">X-Men: Days of Fury</p>
+                <p class="genre">Action, Adventure</p>
+              </li>
+              <li>
+                <img
+                  src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/22043/2014-03-08_140052_dq4dyx_1.png"
+                  alt=""
+                  class="cover"
+                />
+                <p class="title">The Amazing Spiderman</p>
+                <p class="genre">Action, Adventure</p>
+              </li>
+              <li>
+                <img
+                  src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/22043/2014-03-08_140248_fmufrz_1.png"
+                  alt=""
+                  class="cover"
+                />
+                <p class="title">Divergent</p>
+                <p class="genre">Action, Sci-Fi</p>
+              </li>
+            </ul>
+
+            <a href="#" class="load-more"
+              >Show more movies <span class="fa fa-plus"></span
+            ></a>
+          </div>
+          <!-- movie list -->
+        </div>
+        <!-- main -->
+      </div>
+      <!-- window -->
+    </div>
+    <!-- window margin -->
+  </body>
+  <script>
+    jQuery(document).ready(function ($) {
+      $("a").on("click", function (e) {
+        e.preventDefault();
+      });
+
+      $(".trigger-sidebar-toggle").on("click", function () {
+        $("body").toggleClass("sidebar-is-open");
+      });
+    });
+  </script>
+</html>
