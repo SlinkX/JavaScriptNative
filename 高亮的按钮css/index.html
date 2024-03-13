@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      :root {
+        --sz: 10vmin;
+        --c1: #e7fbfe;
+        --c2: #06a9c1;
+        --c3: #018fe9;
+        --tr: all 0.5s ease 0s;
+        --clr: 1; /* change color from 1 to 12 */
+        --hue: calc(30deg - (30deg * var(--clr)));
+      }
+
+      * {
+        box-sizing: border-box;
+        transition: var(--tr);
+      }
+
+      body {
+        margin: 0;
+        padding: 0;
+        width: 100vw;
+        height: 100vh;
+        overflow: hidden;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .content {
+        filter: hue-rotate(var(--hue));
+        width: 100%;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: radial-gradient(
+            circle at 50% 20%,
+            #fff 0%,
+            #fff8 10%,
+            #fff0 40%
+          ),
+          radial-gradient(circle at 50% 30%, var(--c1) 0%, #fff0 85%),
+          radial-gradient(circle at 50% 25%, var(--c1) 0%, var(--c2) 85%);
+      }
+
+      .toggle {
+        position: relative;
+        width: calc(var(--sz) * 4);
+        height: calc(var(--sz) * 2);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      input {
+        display: none;
+      }
+
+      label[for="btn"] {
+        position: absolute;
+        width: calc(var(--sz) * 4);
+        height: calc(var(--sz) * 2);
+        background: #49ddf8;
+        border-radius: var(--sz);
+        box-shadow: 0 calc(var(--sz) / 20) calc(var(--sz) / 10) 0 var(--c3)
+            inset,
+          0 calc(var(--sz) / 5) calc(var(--sz) / 2) calc(var(--sz) / -10)
+            var(--c1) inset,
+          0 calc(var(--sz) / 25) calc(var(--sz) / 20) 0 #fffc,
+          0 calc(var(--sz) / -50) calc(var(--sz) / 20) 0 #0003;
+      }
+
+      .thumb {
+        position: absolute;
+        width: calc(calc(var(--sz) * 2) - calc(var(--sz) / 8));
+        height: calc(calc(var(--sz) * 2) - calc(var(--sz) / 8));
+        top: calc(calc(var(--sz) / 10) + calc(var(--sz) / -20));
+        left: calc(calc(var(--sz) / 10) + calc(var(--sz) / -30));
+        background: conic-gradient(
+          from -45deg,
+          var(--c1) 0 90deg,
+          var(--c2),
+          var(--c1)
+        );
+        border-radius: var(--sz);
+        box-shadow: 0 calc(var(--sz) / 50) calc(var(--sz) / 30)
+          calc(var(--sz) / 80) var(--c3);
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 1;
+      }
+
+      #btn:checked + label .thumb {
+        --lg: var(--on);
+        transition: var(--tr);
+        left: calc(
+          calc(100% - calc(calc(var(--sz) * 2) - calc(var(--sz) / 3))) -
+            calc(calc(var(--sz) / 10) + calc(var(--sz) / 5.75))
+        );
+      }
+
+      .thumb:before {
+        content: "";
+        position: absolute;
+        width: calc(var(--sz) / 0.7);
+        height: calc(var(--sz) / 0.7);
+        background: #b7eef7;
+        border-radius: 100%;
+        box-shadow: 0 0 calc(var(--sz) / 50) 0 #fff,
+          0 0 calc(var(--sz) / 50) 0 #fff inset;
+        z-index: 3;
+      }
+
+      .thumb:after {
+        content: "";
+        position: absolute;
+        background: radial-gradient(
+            circle at 50% 50%,
+            #fff calc(var(--sz) / 40),
+            #fff0 calc(var(--sz) / 2) 100%
+          ),
+          conic-gradient(
+            from -45deg,
+            var(--c1) 0 90deg,
+            #55d5e9,
+            #55d5e9,
+            var(--c1)
+          );
+        width: 100%;
+        height: 100%;
+        border-radius: 100%;
+        transition: var(--tr);
+      }
+
+      #btn:checked + label .thumb::after {
+        background: radial-gradient(
+            circle at 95% 50%,
+            #fff calc(var(--sz) / 50),
+            #fff0 calc(var(--sz) / 1.75) 100%
+          ),
+          conic-gradient(
+            from -45deg,
+            var(--c1) 0 90deg,
+            #55d5e9,
+            #55d5e9,
+            var(--c1)
+          );
+      }
+
+      .light {
+        right: calc(var(--sz) * -2.75);
+        z-index: 1;
+        background: #121212;
+        position: relative;
+        width: calc(var(--sz) / 1);
+        height: calc(var(--sz) / 4);
+        border-radius: var(--sz);
+        box-shadow: 0 calc(var(--sz) / -100) calc(var(--sz) / 10)
+            calc(var(--sz) / 100) #fff,
+          0 calc(var(--sz) / 100) calc(var(--sz) / 50) calc(var(--sz) / 50)
+            var(--c3);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: var(--tr);
+      }
+
+      .light:before {
+        content: "";
+        transition: var(--tr);
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        background: linear-gradient(180deg, var(--c1), var(--c2));
+        border-radius: var(--sz);
+        box-shadow: 0 calc(var(--sz) / 3) calc(var(--sz) / 3)
+          calc(var(--sz) / 20) #fff8 inset;
+        z-index: 2;
+      }
+
+      .light:after,
+      .shadow {
+        content: "";
+        position: absolute;
+        width: 100%;
+        height: 8vmin;
+        background: linear-gradient(180deg, #0d7bc1cc, #5ea7d59e, #fff0 60%);
+        bottom: -6.5vmin;
+        z-index: -1;
+        opacity: 0.75;
+        filter: blur(2px);
+      }
+
+      #btn:checked + label + .light:before {
+        transition: var(--tr);
+        box-shadow: 0 0 calc(var(--sz) / 50) calc(var(--sz) / 100) var(--c1)
+            inset,
+          0 0 calc(var(--sz) / 2.5) calc(var(--sz) / 12) var(--c1),
+          0 0 calc(var(--sz) / 1) calc(var(--sz) / 100) #fff inset,
+          0 0 calc(var(--sz) / 3) calc(var(--sz) / 50) #fff;
+      }
+
+      .shadow {
+        width: calc(100% - 2px);
+        height: 20vmin;
+        background: linear-gradient(
+          180deg,
+          #005083cc,
+          #188dd79e,
+          #188dd766,
+          #fff0 60%
+        );
+        bottom: -11vmin;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="content">
+      <div class="toggle">
+        <input type="checkbox" id="btn" />
+        <label for="btn">
+          <span class="thumb">
+            <span class="shadow"></span>
+          </span>
+        </label>
+        <div class="light"></div>
+      </div>
+    </div>
+  </body>
+</html>
