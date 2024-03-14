@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      html,
+      body {
+        padding: 0;
+        margin: 0;
+        background-color: black;
+      }
+
+      .animation-container {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      canvas {
+        width: 100%;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="animation-container">
+      <canvas id="animation"></canvas>
+    </div>
+    <script>
+      const containerEl = document.querySelector(".animation-container");
+      const canvasEl = containerEl.querySelector("#animation");
+      const ctx = canvasEl.getContext("2d");
+      const resolution = 4;
+
+      let screen;
+      resizeCanvas();
+
+      const speed = 0.0018;
+      let cycleCnt = 0;
+      let pointsPrev = generatePoints();
+      let pointsNext = generatePoints();
+
+      updateCanvas();
+
+      window.addEventListener("resize", () => {
+        resizeCanvas();
+        pointsPrev = generatePoints();
+        pointsNext = generatePoints();
+      });
+
+      function resizeCanvas() {
+        screen = {
+          w: window.innerWidth * resolution,
+          h: 300 * resolution,
+        };
+        canvasEl.width = screen.w;
+        canvasEl.height = screen.h;
+      }
+
+      function updateCanvas(t) {
+        let time = (speed * t) % 1;
+        if (speed * t > cycleCnt + 1) {
+          cycleCnt++;
+          pointsPrev = [...pointsNext];
+          pointsNext = generatePoints();
+        }
+
+        ctx.clearRect(0, 0, canvasEl.width, canvasEl.height);
+        ctx.fillRect(0, 0, canvasEl.width, canvasEl.height);
+
+        ctx.lineWidth = 3 * resolution;
+        if (time > 0.7) {
+          ctx.strokeStyle = "hsl(" + 360 * Math.random() + ",100%,50%)";
+        }
+
+        ctx.beginPath();
+        ctx.moveTo(-10, 0.5 * screen.h);
+
+        pointsPrev.forEach((prev, idx) => {
+          const x = lerp(prev[0], pointsNext[idx][0], time);
+          const y = lerp(prev[1], pointsNext[idx][1], time);
+          ctx.lineTo(x, y);
+        });
+        ctx.stroke();
+
+        window.requestAnimationFrame(updateCanvas);
+      }
+
+      function generatePoints() {
+        let p = [];
+        const freq = (0.05 + Math.random() * 0.05) / resolution;
+        const amplitude = (0.1 + Math.random() * 0.45) * screen.h * 0.9;
+        for (let i = 0; i < screen.w; i++) {
+          p.push([
+            i,
+            Math.floor(amplitude * Math.sin(i * freq) + 0.5 * screen.h),
+          ]);
+        }
+        return p;
+      }
+
+      function lerp(start, end, fraction) {
+        return (1 - fraction) * start + fraction * end;
+      }
+    </script>
+  </body>
+</html>
