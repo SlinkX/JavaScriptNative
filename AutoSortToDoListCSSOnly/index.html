@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        @import url("https://fonts.googleapis.com/css2?family=Onest:wght@100;400;800&display=swap");
+body,
+html {
+  height: 100%;
+  font-family: "Onest", sans-serif;
+  font-size: 18px;
+}
+
+body {
+  margin: 0px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-image: radial-gradient(#dff9fb 20%, #9dc7c9);
+}
+h1 {
+  font-weight: 100;
+}
+.visually-hidden {
+  position: absolute;
+  left: -100vw;
+}
+
+.todo_app {
+  background-color: rgba(0, 0, 60, 0.3);
+  border-radius: 10px;
+  padding: 1em 0.2em 0.2em 0.2em;
+  text-align: right;
+  color: #fff;
+}
+.todo_app input {
+  margin-right: 1em;
+}
+
+.autosort_label {
+  position: relative;
+  cursor: pointer;
+}
+.autosort_label:before {
+  content: " ";
+  position: absolute;
+  top: 0px;
+  bottom: 0px;
+  left: 50px;
+  width: 100px;
+  z-index: 1;
+}
+.toggler {
+  display: inline-block;
+  width: 30px;
+  height: 14px;
+  background-color: rgba(0, 0, 0, 0.1);
+  box-shadow: inset 0px 1px 1px #000;
+  margin-right: 20px;
+  border-radius: 10px;
+  margin-left: 10px;
+  position: relative;
+  transition: 0.2s all 0s ease;
+}
+.toggler:before {
+  content: " ";
+  position: absolute;
+  top: 1px;
+  left: 1px;
+  width: 12px;
+  height: 12px;
+  background-color: #95afc0;
+  border-radius: 10px;
+  transition: 0.2s all 0s ease;
+}
+#autosort:checked ~ .toggler {
+  background-color: #6ab04c;
+}
+#autosort:checked ~ .toggler:before {
+  left: 100%;
+  transform: translateX(-100%);
+  margin-right: 1px;
+  background-color: #badc58;
+}
+
+.todo {
+  text-align: left;
+  width: 500px;
+  display: flex;
+  flex-direction: column;
+  border-radius: 7px;
+  box-shadow: 0px 0px 140px -10px #30336b, 0px 20px 20px -20px #130f40;
+  background-color: #fff;
+  overflow: hidden;
+  margin-top: 1em;
+  color: #12111c;
+}
+.todo label {
+  display: block;
+  border-bottom: solid 1px #eee;
+  padding: 1em 2em 1em 4em;
+  position: relative;
+  cursor: pointer;
+  user-select: none;
+}
+.todo label:hover {
+  background-image: linear-gradient(#dcf3f4, #fff);
+}
+.todo label .control-me {
+  width: 1em;
+  height: 1em;
+  border: solid 1px #ccc;
+  border-radius: 3px;
+  position: absolute;
+  top: 50%;
+  left: 1.5em;
+  transform: translateY(-50%);
+}
+.todo label input:checked ~ .control-me {
+  border: solid 1px #aaa;
+}
+.todo label .control-me::before {
+  content: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M4.929,11.414L9.586,16.071L17.071,8.586L16.364,7.879L9.586,14.657L5.636,10.707L4.929,11.414Z' style='fill:currentcolor;'/%3E%3C/svg%3E ");
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translateY(-50%) translateX(-50%) scale(2);
+  width: 22px;
+  height: 22px;
+  opacity: 0;
+  transition: 0.2s all 0s ease;
+}
+
+.todo label input:checked ~ .control-me::before {
+  transform: translateY(-50%) translateX(-50%) scale(1);
+  opacity: 1;
+  color: #3f3;
+}
+
+.todo label:has(input:checked) {
+  color: rgba(0, 0, 0, 0.4);
+}
+
+/* Put "done" items at the end, when Autosort checkbox is checked */
+input#autosort:checked ~ .todo label:has(input:checked) {
+  order: 10000;
+}
+
+    </style>
+</head>
+<body>
+    <div>
+        <h1>AutoSort ToDo List - CSS Only</h1>
+        <div class="todo_app">
+        <label for="autosort" class="autosort_label">Autosorting</label><input type="checkbox" id="autosort" class="visually-hidden" checked><div class="toggler"></div>
+          
+        <div class="todo">   
+          <label>Buy Milk
+              <input type="checkbox" id="toggle" class="visually-hidden">
+              <div class="control-me"></div>
+          </label>
+          <label>Prank neighbour
+              <input type="checkbox" id="toggle" class="visually-hidden">
+              <div class="control-me"></div>
+          </label>  
+          <label>Do homework
+              <input type="checkbox" id="toggle" class="visually-hidden">
+              <div class="control-me"></div>
+          </label>
+          <label>Pay taxes
+              <input type="checkbox" id="toggle" class="visually-hidden">
+              <div class="control-me"></div>
+          </label>
+          <label>Do the Codepen Challenge
+              <input type="checkbox" id="toggle" class="visually-hidden" checked>
+              <div class="control-me"></div>
+          </label> 
+          <label>Watch Youtube
+              <input type="checkbox" id="toggle" class="visually-hidden">
+              <div class="control-me"></div>
+          </label>  
+       
+        </div>
+        </div>
+      </div>
+</body>
+</html>
