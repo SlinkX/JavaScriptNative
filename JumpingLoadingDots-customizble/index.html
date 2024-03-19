@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+  margin: 0px;
+  background-color: #14293E;
+  overflow: hidden;
+  font-family: arial;
+  color: #ccc;
+}
+
+:root {
+  --loader-size: 10px;
+  --loader-delay : 0.5s;
+  --loader-distance : 60px;
+  --loader-size-factor : 10;
+  --loader-animation-duration: 2s;
+ 
+}
+
+.loader {
+  position: absolute;
+  top: 50%;
+  left: 0px;
+  right: 0px;
+  height: var(--loader-size);
+}
+
+.loader .dot {
+   width:  var(--loader-size);
+   height: var(--loader-size);
+   background-color: #2ECC71;
+   display: block;
+   position: absolute;
+   left: 50%;
+   top: 50%;
+  opacity: 0;
+   transform: translate(-50%, -50%);
+   border-radius: var(--loader-size);
+   animation-name: dot_move;
+   animation-duration: var(--loader-animation-duration);
+   animation-iteration-count: infinite;
+   animation-delay: var(--loader-delay);
+   margin-top: calc(var(--loader-size) / -2);
+}
+  
+
+/* yeah.... i know multiplying by 1 is stupid :D */
+
+.loader .dot1 { margin-left: calc(var(--loader-distance) * -2); animation-delay: calc(var(--loader-delay) * 4);}
+.loader .dot2 { margin-left: calc(var(--loader-distance) * -1); animation-delay: calc(var(--loader-delay) * 3);}
+.loader .dot3 { margin-left: 0; animation-delay: calc(var(--loader-delay) * 2);}
+.loader .dot4 { margin-left: calc(var(--loader-distance) * 1); animation-delay: calc(var(--loader-delay) * 1);}
+.loader .dot5 { margin-left: calc(var(--loader-distance) * 2); animation-delay: 0s;}
+
+@keyframes dot_move {
+    0% { left: 0%; opacity: 0; height:  var(--loader-size); width: calc(var(--loader-size)*var(--loader-size-factor)); scale:1;}
+    10% { left: 45%; opacity: 0.7; width:  var(--loader-size); scale:0.2;}
+    50% { background-color: #fff; scale:1.2;}
+    90% { left: 55%; opacity: 0.7; width:  var(--loader-size); scale:0.2;}
+    100% { left: 100%; opacity: 0;  height:  var(--loader-size); width:calc(var(--loader-size)*var(--loader-size-factor)); scale:1;}
+}
+
+
+
+.panel {
+  position: fixed;
+  left: 0px; 
+  right: 0px;
+  display: flex;
+  list-style: none;
+  margin: 0px;
+  padding: 20px;
+  gap: 20px;
+  opacity: 0.2;
+}
+.panel:hover { opacity: 1; }
+.panel li { margin: 0px; padding: 0px; flex-grow: 1;}
+.panel li input { display: block; width: 100%; max-width: 100%: }
+
+    </style>
+</head>
+<body>
+    
+<div class="loader">
+    <span class="dot dot1"></span>
+    <span class="dot dot2"></span>
+    <span class="dot dot3"></span>
+    <span class="dot dot4"></span>
+    <span class="dot dot5"></span>
+  </div>
+  
+  <ul class="panel">
+    <li>Dot size:<input type="range" min=1 max=100 value="10" onchange="changeVar('--loader-size',this.value ,'px');"></li>
+    <li>Dots gap:<input type="range" min=1 max=200 value=60 onchange="changeVar('--loader-distance',this.value ,'px');"></li>      
+    <li>Acc. size factor:<input type="range" min=1 max=50 value="10" onchange="changeVar('--loader-size-factor',this.value ,'');"></li>
+    <li>Dot time offset<input type="range" min=0.01 max=0.5 step=0.01 value="0.5" onchange="changeVar('--loader-delay',this.value ,'s');"></li>
+    <li>Animation duration<input type="range" min=0.5 max=5 step=0.1 value="1" onchange="changeVar('--loader-animation-duration',this.value ,'s');"></li>
+  </ul>
+
+  <script>
+    const root = document.querySelector(':root');
+function changeVar(variable, value, postfix) {
+ root.style.setProperty(variable, "" + value + postfix);
+}
+
+  </script>
+</body>
+</html>
