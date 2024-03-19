@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style lang="less">
+        body {
+  margin: 0px;
+  background-color: #34495E;
+  overflow: hidden;
+}
+
+@size: 7px;
+@delay: 0.10s;
+@dist: 20px;
+
+.loader {
+  position: absolute;
+  top: 50%;
+  left: 0px;
+  right: 0px;
+  
+  height: @size;
+  margin-top: - (@size /2);
+  .dot {
+    width: @size;
+    height: @size;
+    background-color: #2ECC71;
+    display: block;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: @size;
+    animation-name: dot_move;
+    animation-duration: 2s;
+    animation-iteration-count: infinite;
+    animation-delay: @delay * 2;
+  }
+  
+  .dot1 { margin-left: -@dist * 2; animation-delay: @delay * 4;}
+  .dot2 { margin-left: -@dist * 1; animation-delay: @delay * 3;}
+  .dot3 { margin-left: @dist * 1; animation-delay: @delay;}
+  .dot4 { margin-left: @dist * 2; animation-delay: 0s;}
+}
+
+@keyframes dot_move {
+    0% { left: 0%; opacity: 0;}
+    30% { left: 50%; opacity: 1; height: @size;}
+    40% { height: @size * 5;}
+    60% { height: @size;}
+    80% { left: 50%; opacity: 1;}
+    100% { left: 100%; opacity: 0;}
+}
+
+    </style>
+</head>
+<body>
+    
+  <div class="loader">
+    <span class="dot"></span>
+    <span class="dot dot1"></span>
+    <span class="dot dot2"></span>
+    <span class="dot dot3"></span>
+    <span class="dot dot4"></span>
+  </div>
+
+</body>
+</html>
