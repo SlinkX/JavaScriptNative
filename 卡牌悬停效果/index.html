@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Codystar&display=swap');
+
+:root {
+  --bg-card: rgb(255, 250, 250);
+  --clr-background: rgb(14, 16, 26);
+
+  --fw-200: 200;
+  --fw-300: 300;
+  --fw-400: 400;
+  --fw-500: 500;
+  --fw-600: 600;
+  --fw-700: 700;
+  --fw-800: 800;
+
+  --fs-300: 0.6875rem;
+  --fs-400: 0.8125rem;
+  --fs-500: 1rem;
+  --fs-550: 1.1rem;
+  --fs-600: 1.2rem;
+  --fs-700: 1.5rem;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Dosis", sans-serif;
+  display: grid;
+  place-content: center;
+  min-height: 100vh;
+  background-color: var(--clr-background);
+  margin: 0;
+}
+
+main {
+  display: grid;
+  gap: 3rem;
+
+  padding: 5rem 2rem;
+  width: min(95%, 85rem);
+  margin-inline: auto;
+}
+
+.info-box {
+  border-radius: 0.5rem;
+  box-shadow: 2rem 3rem 2rem -2rem hsla(221, 7%, 45%, 0.492);
+  background-color: var(--bg-card);
+}
+
+.info-box img {
+  width: 100%;
+  object-fit: cover;
+  aspect-ratio: 3/2;
+  border-radius: 0.5rem 0.5rem 0 0;
+  transition: all 0.5s ease-in-out;
+}
+
+.image-top img {
+  object-position: 50% 40%;
+}
+
+.image-bottom img {
+  object-position: 50% 100%;
+}
+
+.info-box img:hover {
+  border-radius: 0.5rem 0.5rem 0 0;
+  border: 1rem solid transparent;
+  background: linear-gradient(black, black) padding-box,
+    linear-gradient(45deg, #3bccc0, #c86feb) border-box;
+}
+
+.flow {
+  padding: 2rem 3rem;
+}
+
+h1 {
+  font-weight: var(--fw-500);
+  font-size: var(--fs-700);
+}
+
+span {
+  font-size: var(--fs-600);
+  font-weight: var(--fw-600);
+  text-transform: uppercase;
+  margin: 0.5rem 0.5rem 0 0;
+}
+
+.paragraph {
+  font-size: var(--fs-550);
+  line-height: 1.5;
+  margin: 1.5rem 0;
+}
+
+.links {
+  display: flex;
+}
+
+.links a{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  font-size: 1rem;
+  color: #fff;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  cursor: pointer;
+  text-decoration: none;
+  margin-right: 0.7rem;
+  transition: all 0.5s ease-in-out;
+}
+
+.links a:hover {
+  transform: scale(1.1);
+  -webkit-transform: scale(1.1);
+  -moz-transform: scale(1.1);
+}
+
+.spotify {
+  background-color: #10a224;
+}
+
+.instagram {
+  background-color: #527fa6;
+}
+
+.twitter {
+  background-color: #2b97f1;
+}
+
+.youtube {
+  background-color: #cf263c;
+}
+
+.pinterest {
+  background-color: #a13079;
+}
+
+
+@media (min-width: 750px) {
+  main {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1200px) {
+  main {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+    </style>
+</head>
+<body>
+    <body>  
+        <main>
+          <article class="info-box">
+                  <div class="image-top">
+                      <img src="https://images.unsplash.com/photo-1681157578627-5ca12bc38c4e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxjb2xsZWN0aW9uLXBhZ2V8MXw5SWlwT2xoVU1yVXx8ZW58MHx8fHw%3D&auto=format&fit=crop&w=500&q=60" alt="unsplash">
+                  </div>
+                  <div class="flow">
+                      <h1>The Next Plan in Travel</h1>
+                      <div>
+                          <span style="color:#6abecd;">travel</span>
+                      </div>
+                      <p class="paragraph">
+                          Sed risus felis, porta sed mattis quis, blandit id risus. Fusce sed pharetra velit. Suspendisse vel feugiat arcu. Phasellus commodo aliquam consectetur. 
+                      </p>
+                      <div class="links">
+                        <a href="#" target="_blank" class="spotify"><i class="fa fa-spotify" title="spotify"></i></i></a>
+                          <a href="#" target="_blank" class="instagram"><i class="fa fa-instagram" title="instagram"></i></i></a>
+                          <a href="#" target="_blank" class="twitter"><i class="fa fa-twitter" title="twitter"></i></a>
+                          <a href="#" target="_blank" class="youtube"><i class="fa fa-youtube" title="youtube"></i></a>
+                      </div>
+                  </div>
+              </article>
+          
+          <article class="info-box">
+                  <div>
+                      <img src="https://images.unsplash.com/photo-1457518919282-b199744eefd6?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1172&q=80" alt="unsplash">
+                  </div>
+                  <div class="flow">
+                      <h1>Love and Blueberry</h1>
+                      <div>
+                          <span style="color: #cf6390;">food & drink</span>
+                      </div>
+                      <p class="paragraph">
+                          Nulla euismod nisl non felis volutpat, a sollicitudin nisl dictum. Mauris in lectus nec lorem tempor suscipit eget ut velit. Nam tortor dignissim rhoncus ac at purus. 
+                      </p>
+                      <div class="links">
+                          <a href="#" target="_blank" class="instagram"><i class="fa fa-instagram" title="instagram"></i></i></a>
+                          <a href="#" target="_blank" class="twitter"><i class="fa fa-twitter" title="twitter"></i></a>
+                          <a href="#" target="_blank" class="pinterest"><i class="fa fa-pinterest" title="pinterest"></i></a>
+                      </div>
+                  </div>
+              </article>
+          
+              <article class="info-box">
+                  <div>
+                      <img src="https://images.unsplash.com/photo-1681938329926-c927908b89a7?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80" alt="unsplash">
+                  </div>
+                  <div class="flow">
+                      <h1>Always Awake Traveller</h1>
+                      <div>
+                          <span style="color: #6abecd;">travel</span>
+                          <span style="color: #3e54a3;">photography</span>
+                      <p class="paragraph">
+                          Morbi ac convallis justo. Aliquam id urna sed purus venenatis magna. Mauris iaculis, purus in ultrices gravida, risus turpis ornare turpis, non consectetur lacus dui ac eros. 
+                      </p>
+                      <div class="links">
+                          <a href="#" target="_blank" class="instagram"><i class="fa fa-instagram" title="instagram"></i></i></a>
+                          <a href="#" target="_blank" class="youtube"><i class="fa fa-youtube" title="youtube"></i></a>
+                          <a href="#" target="_blank" class="pinterest"><i class="fa fa-pinterest" title="pinterest"></i></a>
+                      </div>
+                  </div>
+              </article>
+      
+              <article class="info-box">
+                  <div>
+                      <img src="https://images.unsplash.com/photo-1681412327186-2e4720d2b38d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=871&q=80" alt="unsplash">
+                  </div>
+                  <div class="flow">
+                      <h1>Top Stories About Travel</h1>
+                      <div>
+                          <span style="color: #6abecd;">travel</span>
+                          <span style="color: #cf6390;">food & drink</span>
+                      </div>
+                      <p class="paragraph">
+                          Suspendisse est sapien, scelerisque sed pulvinar in, tempus aliquam ex. Vestibulum convallis lacus dignissim, non euismod nulla interdum. Ut facilisis dolor velit, id consequat mauris congue ac.
+                      </p>
+                      <div class="links">
+                          <a href="#" target="_blank" class="spotify"><i class="fa fa-spotify" title="spotify"></i></i></a>
+                          <a href="#" target="_blank" class="youtube"><i class="fa fa-youtube" title="youtube"></i></a>
+                          <a href="#" target="_blank" class="pinterest"><i class="fa fa-pinterest" title="pinterest"></i></a>
+                    <a href="#" target="_blank" class="instagram"><i class="fa fa-instagram" title="instagram"></i></i></a>
+                      </div>
+                  </div>
+              </article>
+          
+          <article class="info-box">
+                  <div>
+                      <img src="https://images.unsplash.com/photo-1526399574994-8b0de82950d7?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80" alt="unsplash">
+                  </div>
+                  <div class="flow">
+                      <h1>How to Create a Composition</h1>
+                      <div>
+                          <span style="color: #3e54a3;">photography</span>
+                      </div>
+                      <p class="paragraph">
+                          rci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nullam vel erat massa. Proin sit rutrum scelerisque sem et porttitor.
+                      </p>
+                      <div class="links">
+                          <a href="#" target="_blank" class="youtube"><i class="fa fa-youtube" title="youtube"></i></a>
+                          <a href="#" target="_blank" class="pinterest"><i class="fa fa-pinterest" title="pinterest"></i></a>
+                    <a href="#" target="_blank" class="instagram"><i class="fa fa-instagram" title="instagram"></i></i></a>
+                      </div>
+                  </div>
+              </article>
+      
+              <article class="info-box">
+                  <div class="image-bottom">
+                      <img src="https://plus.unsplash.com/premium_photo-1673518900082-ec6390c5dd63?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=435&q=80" alt="unsplash">
+                  </div>
+                  <div class="flow">
+                      <h1>FoodieCrush</h1>
+                      <div>
+                          <span style="color: #3e54a3;">photography</span>
+                          <span style="color: #cf6390;">food & drink</span>
+                      </div>
+                      <p class="paragraph">
+                          Cras ornare diam sed ligula euismod pretium. Orci varius natoque dis parturient montes, nascetur ridiculus mus. Nullam at tristique lacus. 
+                      </p>
+                      <div class="links">
+                        <a href="#" target="_blank" class="twitter"><i class="fa fa-twitter" title="twitter"></i></a>
+                          <a href="#" target="_blank" class="youtube"><i class="fa fa-youtube" title="youtube"></i></a>
+                          <a href="#" target="_blank" class="pinterest"><i class="fa fa-pinterest" title="pinterest"></i></a>
+                    <a href="#" target="_blank" class="instagram"><i class="fa fa-instagram" title="instagram"></i></i></a>
+                      </div>
+                  </div>
+              </article>
+          </main>
+      </body>
+</body>
+</html>
