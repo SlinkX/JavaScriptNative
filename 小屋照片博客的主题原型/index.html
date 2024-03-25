@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+  background-color: #fff;
+  margin: 0;
+  padding: 0;
+}
+
+/* Header
+======================== */
+header {
+  padding: 2rem;
+  text-align: center;
+  h1 {
+    color: #9BB190;
+    font-family: 'Crete Round', serif;
+    font-size: 4rem;
+    letter-spacing: 0.35rem;
+    margin: 0;
+  }
+}
+
+/* Footer
+======================== */
+footer {
+  color: #333;
+  padding: 1rem 2rem 3rem;
+  text-align: center;
+}
+
+/* Posts
+======================== */
+#postsContainer {
+  margin: 0 auto;
+  padding: 12px 0 0;
+  position: relative;
+  text-align: center;
+  z-index: -2;
+  li {
+    list-style-type: none;
+    margin-bottom: 40px;
+  }
+}
+
+/* Polaroid image styles 
+======================== */
+$polaroidWidth: 300px;
+$polaroidHeight: 300px;
+
+$polaroidWidthMobile: 264px;
+$polaroidHeightMobile: 264px;
+
+$frameleftWidth: 12px;
+$framerightWidth: 12px;
+$frametopWidth: 12px;
+$framebottomWidth: 48px;
+
+.polaroid {
+  li{
+    background: #ece9e6;
+    background: -webkit-linear-gradient(to right, #ece9e6, #fafafa);
+    background: linear-gradient(to bottom, #ece9e6, #fafafa);
+    display: inline-block;
+    margin: 0 12px;
+    padding: $frametopWidth $framerightWidth $framebottomWidth $frameleftWidth;
+    position: relative;
+  }
+  li:before,
+  li:after {
+    background: #777;
+    -webkit-box-shadow: 0 18px 10px #777;
+    -moz-box-shadow: 0 18px 10px #777;
+    box-shadow: 0 18px 10px #777;
+    content: "";
+    width: 50%;
+    max-width: 300px;
+    position: absolute;
+    bottom: 15px;
+    left: 10px;
+    top: 80%;
+    -webkit-transform: rotate(-3deg);
+    -moz-transform: rotate(-3deg);
+    -o-transform: rotate(-3deg);
+    -ms-transform: rotate(-3deg);
+    transform: rotate(-3deg);
+    z-index: -1;
+  }
+  li:after {
+    -webkit-transform: rotate(3deg);
+    -moz-transform: rotate(3deg);
+    -o-transform: rotate(3deg);
+    -ms-transform: rotate(3deg);
+    transform: rotate(3deg);
+    right: 10px;
+    left: auto;
+  }
+  article {
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: $polaroidWidth;
+    height: $polaroidHeight;
+    img { 
+      width: $polaroidWidth; 
+      height: $polaroidHeight;
+      visibility: hidden;
+    }
+    @media only screen and (max-width: 330px) {
+        width: $polaroidWidthMobile;
+        height: $polaroidHeightMobile;
+      img {
+        width: $polaroidWidthMobile;
+        height: $polaroidHeightMobile;
+      }
+    }
+  }
+}
+
+    </style>
+</head>
+<body>
+    <header>
+        <h1>CABINS</h1>
+      </header>
+      
+      <section class="posts">
+        <div class="ui grid">
+      
+          <ul id="postsContainer" class="polaroid">
+            <!--# template to be converted to vuejs -->
+            <li>
+              <article>
+                <img src="https://i.pinimg.com/originals/37/9b/58/379b5816605a0816edfdb033fca04907.jpg">
+              </article>
+            </li>
+            <!--/ template-->
+        
+            <!-- filler content -->
+            <!-- 2 -->
+            <li>
+              <article>
+                <img src="https://images.dwell.com/photos-6108729469055270912/6165713227494563840-large/this-boutique-hotel-on-norways-manshausen-island-is-made-up-of-four-sea-cabinsone-of-which-juts-out-from-a-natural-ledge-each-of-them-fit-two-to-four-travelers-or-a-family-of-five.jpg">
+              </article>
+            </li>
+            <!-- 3 -->
+            <li>
+              <article>
+                <img src="https://i.pinimg.com/originals/d3/fb/97/d3fb9755bb49d0d70a20c90000734737.jpg">
+              </article>
+            </li>
+            <!-- 4 -->
+            <li>
+              <article>
+                <img src="https://i.pinimg.com/originals/8c/98/8e/8c988e858e4cab002f13a24493394faa.jpg">
+              </article>
+            </li>
+            <!-- 5 -->
+            <li>
+              <article>
+                <img src="https://st.hzcdn.com/simgs/4841ef1203c664e1_4-0636/contemporaneo-facciata.jpg">
+              </article>
+            </li>
+            <!-- 6 -->
+            <li>
+              <article>
+                <img src="https://static.designboom.com/wp-content/uploads/2021/11/prefab-timber-my-cabin-reflects-minimalist-scandinavian-style-designboom-600.jpg">
+              </article>
+            </li>
+            <!-- 7 -->
+            <li>
+              <article>
+                <img src="https://images.dwell.com/photos/6063391372700811264/6133458340488744960/large.jpg">
+              </article>
+            </li>
+            <!-- 8 -->
+            <li>
+              <article>
+                <img src="https://dornob.com/wp-content/uploads/2010/08/log-free-wood-cabin.jpg">
+              </article>
+            </li>
+            <!-- 9 -->
+            <li>
+              <article>
+                <img src="https://www.busyboo.com/wp-content/uploads/modern-cabin-villa-boreale-800x534.jpg">
+              </article>
+            </li>
+            <!-- 10 -->
+            <li>
+              <article>
+                <img src="https://design-milk.com/images/2015/12/Modern-Cabin-2-Methow-Eggleston-Farkas-600x397.jpg">
+              </article>
+            </li>
+            <!-- 11 -->
+            <li>
+              <article>
+                <img src="https://cdn.trendhunterstatic.com/thumbs/modern-cabin-retreats.jpeg">
+              </article>
+            </li>
+            <!-- 1 -->
+            <li>
+              <article>
+                <img src="https://static.designboom.com/wp-content/uploads/2023/02/house-tjurpannan-designboom-500.jpg">
+              </article>
+            </li>
+            <!--# end of filler content -->
+          
+          </ul>  
+        </div>
+      </section>
+      
+      <footer>
+        <p>Photo blog theme by Juan Gallardo</p>
+      </footer>
+      <script>
+        document.querySelectorAll('.polaroid article img').forEach((img) => {
+  const { src } = img;
+  img.closest('article').style.backgroundImage = `url(${src})`;
+});
+      </script>
+</body>
+</html>
