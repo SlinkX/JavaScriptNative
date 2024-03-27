@@ -1,0 +1,799 @@
+
+<html>
+
+    <head>
+
+        <meta charset="utf-8">
+
+        <title>My first trial</title>
+        <meta name="description" content="This is a trial">
+        <meta name="author" content="jlalovi">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">   
+        
+        <link rel="stylesheet" href="css/normalize.css">
+        <link rel="stylesheet" href="css/main.css">
+        <link rel="stylesheet" href="https://i.icomoon.io/public/temp/90320a65cd/UntitledProject2/style.css">
+
+
+        <style>
+            @import url(http://weloveiconfonts.com/api/?family=entypo|fontawesome);
+	/* entypo */
+	[class*="entypo-"]:before {
+	  font-family: 'entypo', sans-serif;
+	}
+	/* fontawesome */
+	[class*="fontawesome-"]:before {
+	  font-family: 'FontAwesome', sans-serif;
+	}
+
+@import url(//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css);
+
+* {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+} /* This is used to fix an specific width even when you add padding */
+
+h1 {
+	font-family: sans-serif;
+	font-size: 27px;
+	font-weight: 900;
+	color: #2e3641;
+	margin: 0 0 10px 0;
+}
+h2 {
+	font-family: sans-serif;
+	font-size: 24px;
+	color: #ffffff;
+	margin: 0;
+	padding: 15px 0 0 20px;
+}
+a {
+	text-decoration: none;
+	color: #9eb2c0;
+}
+	a:hover {
+		text-decoration: underline;
+	}
+p {
+	font-size: 13px;
+	font-family: sans-serif;
+	color: #9eb2c0;
+	margin: 15px 0 5px 20px;
+}
+ul {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+
+textarea {
+	border-color: #dae4eb;
+	color: #dae4eb;
+}
+
+input[type=text]{
+	border: solid 1px #dae4eb;
+	margin: 20px 0 0 20px;
+	padding-left: 10px;	
+}
+	input[type=text]::-webkit-input-placeholder { /* WebKit browsers */
+   		color: #dae4eb;
+   		font-weight: bold;
+	}
+	input[type=text]:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+    	color: #dae4eb;
+    	font-weight: bold;
+	}
+	input[type=text]::-moz-placeholder { /* Mozilla Firefox 19+ */
+   		color: #dae4eb;
+   		font-weight: bold;
+	}
+	input[type=text]:-ms-input-placeholder { /* Internet Explorer 10+ */
+    	color: #dae4eb;
+    	font-weight: bold;
+	}
+
+input[type=checkbox] {
+	display: none;
+}
+	input[type=checkbox] + label {
+		cursor: pointer;
+		position: relative;
+	}
+	input[type=checkbox] + label:before {
+		border: 1px solid #dae4eb;
+		color: #ffffff;
+		font-family: FontAwesome;
+		font-size: 22px;
+		content: "\f00c";
+		height: 30px;
+		line-height: 30px;
+		width: 30px;
+		text-align: center;
+	}
+	input[type=checkbox]:checked + label:before {
+		color: #a8bd44;
+		content: "\f00c";
+	}
+
+.container {
+	background-color: #ffffff;
+}
+
+.bar {
+	background-color: #2e3641;
+	text-align: center;
+}
+	.bar a {
+		color: #c1cfd9;
+		-webkit-transition: background .2s ease-out;
+		-moz-transition: background .2s ease-out;
+		-o-transition: background .2s ease-out;
+		-ms-transition: background .2s ease-out;
+		transition: background .2s ease-out;
+	}
+		.bar a:hover {
+			text-decoration: none;
+			background: #242B33;
+		}
+	.title-bar {
+		height: 55px;
+		text-align: left;
+	}
+		.more-bar {
+			background-color: #c1cfd9;
+			position: relative; /*To make absolute position in .scroll (Check "Recent Posts" and "Categories")*/
+		}
+.btn {
+	display: inline-block;
+	line-height: 35px;
+	font-size: 15px;
+	font-family: sans-serif;
+	font-weight: bold;
+	text-transform: uppercase;
+	background: #f97e76;
+	color: #ffffff;
+	text-align: center;
+	-webkit-transition: background .5s ease-out;
+	-moz-transition: background .5s ease-out;
+	-o-transition: background .5s ease-out;
+	-ms-transition: background .5s ease-out;
+	transition: background .5s ease-out;
+}
+	.btn:hover {
+		text-decoration: none;
+		background: #F75145;
+	}
+.lupa {
+	font-size: 20px;
+	color: #c1cfd9;
+	position: absolute;
+}
+
+#main-container {
+	width: 1600px;
+	height: 1200px;
+	background-color: #e9f0f4;
+	margin: 0 auto;
+	padding: 80px;
+}
+	#left-container {
+		width: 570px;
+		float: left;
+	}
+		#newPost {
+			height: 675px;
+			box-shadow: rgba(0,0,0,0.2) 10px 10px 10px;
+		}
+			.side {
+				width: 90px;
+				height: 675px;
+				float: left;	
+			}
+				.side a {
+					display: block;
+					line-height: 90px;
+					font-size: 22px;
+				}					
+					#document {
+						background: #ffffff;
+						color: #2e3641;
+					}
+						#document:hover {
+							text-decoration: none;
+						}
+				
+			.newPostContent {
+				width: 480px;
+				float: left;
+				padding-left: 40px;
+				padding-top: 70px;
+			}
+				#post-title {
+					width: 400px;
+					height: 45px;
+					margin:0 0 20px 0;
+					padding-left: 15px;
+					font-size: 22px;
+					font-weight: bold;
+				}					
+				.format-bar {
+					height: 45px;
+					width: 400px;
+				}
+				.format-bar a {
+					font-size: 12px;
+					display: block;
+					float: left;
+					width: 45px;
+					line-height: 45px;
+					border-right: solid 1px #3a414d;				
+				}
+				.post-body {
+					width: 400px;
+					height: 290px;
+					color: black;
+					margin: 0 0 20px 0;
+				}
+				.newPostContent .btn {
+					width: 120px;
+					line-height: 45px;
+				}
+					.disabled {
+						background: #c1cfd9;
+					}
+						.disabled:hover {
+							background: #c1cfd9;
+							cursor: default;
+
+						}
+		#messages {
+			height: 90px;
+			margin-top: 60px;
+			position: relative;
+			box-shadow: rgba(0,0,0,0.2) 10px 10px 10px;
+		}
+			#messages a {
+				display: inline-block;
+				float: left;
+				width: 90px;
+				line-height: 90px;
+				border-right: solid 1px #3a414d;
+				font-size: 26px;
+			}
+				#messages .lupa {
+					left: 305px;
+					bottom: 34px;
+				}
+			#search-message {
+				width: 245px;
+				height: 35px;
+				border: solid 1px #49525d;
+				background: #3d444e;
+				color: white;
+				margin: 27.5px auto 0;
+				padding-left: 35px;				
+			}
+		#suscribe {
+			height: 160px;
+			margin-top: 60px;
+			box-shadow: rgba(0,0,0,0.2) 10px 10px 10px;
+		}
+			#suscribe input[type=text] {
+				width: 400px;
+				height: 35px;
+				margin: 0 0 0 20px;				
+			}
+			#suscribe .btn {
+				width: 120px;
+				margin-left: 5px;
+			}
+
+	#middle-container {
+		width: 430px;
+		float: left;
+		margin: 0px 60px;
+	}
+		#relatedPosts {
+			height: 390px;
+			box-shadow: rgba(0,0,0,0.2) 10px 10px 10px;
+		}
+			.rpost {
+				margin-bottom: 30px;
+				width: 310px;
+				display: inline-block;
+			}
+				.rpost a:first-child {
+					color: #f97e76;
+					font-size: 16px;
+					font-weight: bold;					
+					line-height: 150%;
+				}
+				.rpost-checkbox + label:before {
+					position: absolute;
+					left: 65px;
+					top: -45px;
+				}
+		#tags {
+			height: 165px;
+			margin-top: 60px;
+			box-shadow: rgba(0,0,0,0.2) 10px 10px 10px;
+		}
+			#tags input[type=text] {
+				width: 300px;
+				height: 35px;
+			}
+			#tags .btn {
+				width: 80px;
+				margin: 20px 0 0 5px;
+			}
+			#tags p {
+				font-size: 11px;
+				margin-top: 8px;
+			}
+		#map {
+			height: 370px;
+			margin-top: 60px;
+			position: relative;
+			box-shadow: rgba(0,0,0,0.2) 10px 10px 10px;
+		}
+			.map {
+				width: 430px;
+				height: 295px;
+				background: #ddcec2;
+				position: relative;
+			}
+				.map .btn {
+					width: 35px;
+					font-size: 13px;
+					display: block;
+					position: absolute;
+					top: 20px;
+					left: 20px;
+				}
+					.map .btn:last-child {
+						top: 57px;
+					}
+			#map input[type=text] {
+				width: 260px;
+				height: 35px;
+				padding-left: 35px;
+			}
+			#map .lupa {
+				bottom: 26px;
+				left: 26px;
+			}
+			#map .addMap {
+				width: 120px;
+				margin: 20px 0 0 5px;
+			}
+
+	#right-container {
+		width: 320px;
+		float: left;
+	}
+		#calendar {
+			height: 330px;
+			box-shadow: rgba(0,0,0,0.2) 10px 10px 10px;
+		}
+			.calendar-bar a {
+				display: block;
+				float: left;
+				line-height: 55px;
+				border-right: solid 2px #3a414d;
+				border-bottom: solid 2px #3a414d;
+				text-align: center;
+			}
+				.arrow {
+					width: 55px;
+				}
+				.month {
+					width: 210px;					
+				}				
+			.calendar-bar h2 {
+				padding: 0;
+			}
+			.calendar-container {
+				width: 320px;
+				height: 275px;
+				background: #f97e76;				
+			}
+				.daysWeek {
+					background: #2e3641;
+					width: 320px;
+					height: 40px;						
+				}
+					.daysWeek li {
+						color: #ffffff;
+						display: inline-block;
+						padding: 10px 0;
+						width: 40px;
+						text-align: center;
+						padding-left: 15px;
+					}
+				.calendar {
+					text-align: center;
+					width: 310px;
+					margin-left: 8px;							
+				}					
+					.days a {
+						color: #ffffff;
+						font-size: 24px;
+					}
+					.days td {
+						padding: 7px 0px; 
+					}					
+					.daysOut a {
+						color: #fbb2ad;
+					}
+					.today {
+						background: #2e3641;
+					}
+
+		#recentPosts {
+			margin-top: 30px;
+			box-shadow: rgba(0,0,0,0.2) 10px 10px 10px;			
+		}
+			.scroll {
+				display: block;
+				line-height: 55px;
+				width: 55px;
+				position: absolute; /*.more-bar is relative*/
+				top: 0;
+				right: 0;
+				text-align: center;
+				background: #9eb2c0;
+				color: #ffffff;
+				-webkit-transition: background .2s;
+				-moz-transition: background .2s;
+				-o-transition: background .2s;
+				-ms-transition: background .2s;
+				transition: background .2s;
+			}
+				.scroll:hover {
+					text-decoration: none;
+					background: #90A6B6;
+				}
+		#categories {
+			height: 305px;
+			margin-top: 10px;
+			box-shadow: rgba(0,0,0,0.2) 10px 10px 10px;
+		}
+			#categories input[type=text] {
+				width: 280px;
+				height: 35px;
+				font-size: 18px;
+				font-weight: bold;
+			}
+			#categories label {
+				color: #a4b7c4;
+				font-size: 14px;
+				font-family: sans-serif;				
+			}
+			.categories-checkbox + label:before {
+				display: inline-block;
+				margin: 10px 10px 0 20px;
+			}
+			#categories .btn {
+				width: 80px;				
+			}
+				.save {
+					float: left;
+					margin: 15px 0 0 20px;
+					background: #a8bd44;
+					-webkit-transition: background .5s ease-out;
+					-moz-transition: background .5s ease-out;
+					-o-transition: background .5s ease-out;
+					-ms-transition: background .5s ease-out;
+					transition: background .5s ease-out;
+				}
+					.save:hover {
+						background: #97AA3C;
+					}
+				.delete {
+					float: right;
+					margin: 15px 20px 0 0;
+				}
+		#moreOptions {
+			height: 250px;
+			margin-top: 60px;
+			box-shadow: rgba(0,0,0,0.2) 10px 10px 10px;
+		}
+			.moreOptions-bar a{
+				display: inline-block;
+				float: left;
+				line-height: 55px;
+				width: 106.66666666667px;
+				text-align: center;				
+				font-weight: bold;
+				font-size: 16px;
+			}
+				.popular {
+					background: #ffffff;
+					color: #c5d2dc;
+				}
+					.popular:hover {
+						text-decoration: none;
+					}
+				.comments-recent {
+					background: #c5d2dc;
+					color: #ffffff;
+					-webkit-transition: background .2s;
+					-moz-transition: background .2s;
+					-o-transition: background .2s;
+					-ms-transition: background .2s;
+					transition: background .2s;
+
+				}
+					.comments-recent:hover {
+						text-decoration: none;
+						background: #9eb2c0;
+					}	
+			.popular {
+				float: left;
+			}
+				.profile-img {
+					width: 55px;
+					height: 55px;
+					background: #786665;
+					float: left;
+					margin: 15px 0 0 20px;
+				}
+				.popular p {
+					float: left;
+					margin-left: 15px;
+				}
+					.popular a:first-child {
+						font-size: 14px;
+						color: #f97e76;
+						font-weight: 900;
+						line-height: 200%;
+					}
+
+
+        </style>
+    </head>
+
+    <body>
+ 
+        <div id="main-container">
+            <div id="left-container"> <!-- Left part -->
+                <div id="newPost" class="container"> <!-- Add New Post -->
+
+                    <div class="side bar">
+                        <ul>
+                            <li><a href="#1"><span class="fontawesome-dashboard"></span></a></li>
+                            <li><a href="#2" id="document"><span class="fontawesome-file-alt"></span></a></li>
+                            <li><a href="#3"><span class="fontawesome-picture"></span></a></li>
+                            <li><a href="#4"><span class="entypo-link"></span></a></li>
+                            <li><a href="#5"><span class="fontawesome-comments"></span></a></li> 
+                        </ul>
+                    </div>
+
+                    <div class="newPostContent">
+                        <h1>Add New Post</h1>               
+                        <input type="text" placeholder="Enter title here" id="post-title"> 
+
+                        <div class="format-bar bar">
+                            <ul>
+                                <li><a href="#6"><span class="fontawesome-bold"></span></a></li>
+                                <li><a href="#7"><span class="fontawesome-italic"></span></a></li>
+                                <li><a href="#8"><span class="fontawesome-underline"></span></a></li>
+                                <li><a href="#9"><span class="fontawesome-strikethrough"></span></a></li>
+                                <li><a href="#10"><span class="fontawesome-list-ul"></span></a></li>
+                                <li><a href="#11"><span class="fontawesome-list-ol"></span></a></li>
+                            </ul>
+                        </div>
+                        <textarea class="post-body"></textarea>
+
+                        <a href="#12" class="btn disabled">save draft</a>
+                        <a href="#13" class="btn disabled">preview</a>
+                        <a href="#14" class="btn">publish</a>
+                    </div>                   
+                </div>
+
+                <div id="messages" class="bar"> <!-- Messages -->
+                    <ul>
+                        <li><a href="#15"><span class="fontawesome-comment"></span></a></li>
+                        <li><a href="#16"><span class="entypo-mail"></span></a></li>
+                        <li><a href="#17"><span class="entypo-heart"></span></a></li>
+                        <li><input type="text" id="search-message"></li>
+                    </ul>
+                    <div class="lupa"><span class="fontawesome-search"></span></div>                    
+                </div>
+
+                <div id="suscribe" class="container"> <!-- Suscribe -->
+                    <div class="bar title-bar">
+                        <h2>Subscribe</h2>
+                    </div>
+
+                    <p>Get our feed through email.</p>
+                    <input type="text" placeholder="e.g. simbad@montecristo.com">
+                    <a href="#18" class="btn">suscribe</a>
+                </div>          
+            </div>
+
+            <div id="middle-container"> <!-- Middle Part -->
+                <div id="relatedPosts" class="container"> <!-- Related Posts -->
+                    <div class="bar title-bar">
+                        <h2>Related Posts</h2>
+                    </div>
+
+                    <div class="rpost">
+                        <p><a href="#19">Philosophy cannot be taught; it is the application of the sciences to truth</a> <br/>
+                        <a href="#20">by Lord Wilmore</a></p>
+                    </div>
+                    <input type="checkbox" class="rpost-checkbox" name="chk1" id="chk1" checked>
+                    <label for="chk1"></label>
+
+                    <div class="rpost">
+                        <p><a href="#21">Now let the avenging god make way for me to punish the wrongdoer!</a> <br/>
+                        <a href="#22">by Abbe Busoni</a></p>
+                    </div>
+                    <input type="checkbox" class="rpost-checkbox" name="chk2" id="chk2">
+                    <label for="chk2"></label>
+
+                    <div class="rpost">
+                        <p><a href="#23">There is neither happiness nor misery in the world</a> <br/>
+                        <a href="#24">by Monsieur Zaccone</a></p>
+                    </div>
+                    <input type="checkbox" class="rpost-checkbox" name="chk3" id="chk3" checked>
+                    <label for="chk3"></label>
+                </div>
+
+                <div id="tags" class="container"> <!-- Tags -->
+                    <div class="bar title-bar">
+                        <h2>Tags</h2>
+                    </div>
+                    <input type="text">
+                    <a href="#25" class="btn">add</a>
+                    <p>Separate tags with commas</p>
+                </div>
+
+                <div id="map" class="container"> <!-- Map -->
+                    <div class="map">
+                        <img src="https://maps.googleapis.com/maps/api/staticmap?center=Paris&zoom=13&size=430x295&maptype=roadmap%20&&sensor=false">
+                        <a href="#26" class="btn"><span class="fontawesome-plus"></span></a>
+                        <a href="#27" class="btn"><span class="fontawesome-minus"></span></a>
+                    </div>
+                    <input type="text">
+                    <div class="lupa"><span class="fontawesome-search"></span></div>
+                    <a href="#28" class="btn addMap">add map</a>
+                </div>                
+            </div>
+
+            <div id="right-container"> <!-- Right Part -->
+                <div id="calendar" class="container"> <!-- Calendar -->
+                    <div class="bar title-bar calendar-bar">
+                        <ul>
+                            <li><a href="#29" class="arrow"><h2>&lt;</h2></a></li>
+                            <li><a href="#30" class="month"><h2>September</h2></a></li>
+                            <li><a href="#31" class="arrow"><h2>&gt;</h2></a></li>
+                        </ul>                   
+                    </div>
+                    <div class="calendar-container">
+                        <div class="daysWeek">
+                            <ul>
+                                <li>Sun</li>
+                                <li>Mon</li>
+                                <li>Tue</li>
+                                <li>Wed</li>
+                                <li>Thu</li>
+                                <li>Fri</li>
+                                <li>Sat</li>
+                            </ul>
+                        </div>
+                        <table class="calendar">
+                            <tbody class="days">
+                                <tr>
+                                    <td class="daysOut"><a href="#48">24</a></td>
+                                    <td class="daysOut"><a href="#49">25</a></td>
+                                    <td class="daysOut"><a href="#50">26</a></td>
+                                    <td class="daysOut"><a href="#51">27</a></td>
+                                    <td class="daysOut"><a href="#52">28</a></td>
+                                    <td><a href="#53">1</a></td>
+                                    <td><a href="#54">2</a></td>
+                                </tr>
+                                <tr>
+                                    <td><a href="#55">3</a></td>
+                                    <td><a href="#56">4</a></td>
+                                    <td class="today"><a href="#57">5</a></td>
+                                    <td><a href="#58">6</a></td>
+                                    <td><a href="#59">7</a></td>
+                                    <td><a href="#60">8</a></td>
+                                    <td><a href="#61">9</a></td>
+                                </tr>
+                                <tr>
+                                    <td><a href="#62">10</a></td>
+                                    <td><a href="#63">11</a></td>
+                                    <td><a href="#64">12</a></td>
+                                    <td><a href="#65">13</a></td>
+                                    <td><a href="#66">14</a></td>
+                                    <td><a href="#67">15</a></td>
+                                    <td><a href="#68">16</a></td>
+                                </tr>
+                                <tr>
+                                    <td><a href="#69">17</a></td>
+                                    <td><a href="#70">18</a></td>
+                                    <td><a href="#71">19</a></td>
+                                    <td><a href="#72">20</a></td>
+                                    <td><a href="#73">21</a></td>
+                                    <td><a href="#74">22</a></td>
+                                    <td><a href="#75">23</a></td>
+                                </tr>
+                                <tr>
+                                    <td><a href="#76">24</a></td>
+                                    <td><a href="#77">25</a></td>
+                                    <td><a href="#78">26</a></td>
+                                    <td><a href="#79">27</a></td>
+                                    <td><a href="#80">28</a></td>
+                                    <td class="daysOut"><a href="#81">1</a></td>
+                                    <td class="daysOut"><a href="#82">2</a></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div id="recentPosts" class="title-bar more-bar"> <!-- Recent Posts -->
+                    <ul>
+                        <li><h2>Recent Posts</h2></li>
+                        <li><a href="#32" class="scroll"><span class="entypo-right-dir"></span></a></li>
+                    </ul>
+                </div>
+
+                <div id="categories" class="container"> <!-- Categories -->
+                    <div class="title-bar more-bar">
+                        <ul>
+                            <li><h2>Categories</h2></li>
+                            <li><a href="#33" class="scroll"><span class="entypo-down-dir"></span></a></li>
+                        </ul>
+                    </div>
+                    <ul>
+                        <input type="text" placeholder="Title">
+                        <li class="categories-opt">
+                            <input type="checkbox" class="categories-checkbox" name="chk4" id="chk4" checked>
+                            <label for="chk4">Display as dropdown</label>
+                            
+                        </li>
+                        <li>
+                            <input type="checkbox" class="categories-checkbox" name="chk5" id="chk5">
+                            <label for="chk5">Show posts counts</label>
+                            
+                        </li>
+                        <li>
+                            <input type="checkbox" class="categories-checkbox" name="chk6" id="chk6" checked>
+                            <label for="chk6">Show hierarchy</label>
+                            
+                        </li>
+                    </ul>
+                    <ul>
+                        <li><a href="#41" class="btn save">save</a></li>
+                        <li><a href="#42" class="btn delete">delete</a></li>
+                    </ul>    
+                </div>
+
+                <div id="moreOptions" class="container"> <!-- More Options -->
+                    <div class="title-bar more-bar moreOptions-bar">
+                        <ul>
+                            <li><a href="#34" class="popular">Popular</a></li>
+                            <li><a href="#35" class="comments-recent">Comments</a></li>
+                            <li><a href="#36" class="comments-recent">Recent</a></li>
+                        </ul>
+                    </div>
+                    <div class="popular">
+                        <img src="http://lorempixel.com/55/55/people/3" alt="Profile img" class="profile-img">
+                        <p><a href="#37">Fourteen years in Châteu d'lf</a> <br/>
+                        <a href="#38">by Edmond Dantès</a></p>                   
+                    </div>
+                    <div class="popular">
+                        <img src="http://lorempixel.com/55/55/people/4" alt="Profile img" class="profile-img">
+                        <p><a href="#39">Number 34 and number 27</a> <br/>
+                        <a href="#40">by The Count of Monte Cristo</a></p>                    
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
