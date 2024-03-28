@@ -1,0 +1,613 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style lang="scss">
+        $c_grey: #A6A6AE;
+$c_dark_grey: #2F3138;
+
+$animation_time: 0.8s;
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  height: 100vh;
+  color: #000;
+  max-width: 100vw;
+  width: 100%;
+  font-size: 16px;
+  font-family: "Roboto", sans-serif;
+  font-display: swap;
+}
+
+
+button {
+  margin: 0;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+}
+
+label {
+  cursor: pointer;
+}
+
+.btn_menu {
+  position: fixed;
+  top: 5dvh;
+  left: 10dvh;
+
+  width: 40px;
+  height: 40px;
+  z-index: 99;
+  transition: $animation_time ease-in;
+
+}
+
+
+.btn_animation {
+  position: fixed;
+  top: 50%;
+  right: 2.2dvh;
+  transform: translateY(-50%);
+  z-index: 99;
+  width: 60px;
+  height: 60px;
+  transition: .2s ease-in;
+
+  &:hover,
+  &:focus {
+    filter: brightness(1.2);
+  }
+}
+
+.btn_animation svg {
+  transition: $animation_time ease-in;
+  transform: rotate(0);
+}
+
+
+.btn_animation__checkbox {
+  position: absolute;
+  opacity: 0;
+  z-index: -1;
+}
+
+
+.header_wrapper {
+  position: relative;
+  margin-left: 38dvh;
+  top: 10dvh;
+  transition: $animation_time ease-in;
+}
+
+
+.header_title {
+  position: relative;
+  font-family: "Courgette", cursive;
+  font-size: 90px;
+  line-height: 80px;
+  margin: 0;
+  color: $c_dark_grey;
+  max-width: 270px;
+  background-color: #fff;
+  z-index: 10;
+  
+  
+  @media screen and (max-height: 470px) {
+    font-size: 50px;
+    line-height: 60px;
+  }
+}
+
+
+.header_subtitle {
+  position: relative;
+  font-family: "Courgette", cursive;
+  font-size: 32px;
+  margin-top: 2vh;
+  color: $c_grey;
+  display: inline;
+  background-color: #fff;
+  z-index: 10;
+  @media screen and (max-height: 470px) {
+    font-size: 24px;
+  }
+}
+
+
+.main {
+  position: relative;
+  height: 100dvh;
+  margin: 0;
+  display: flex;
+  //overflow-x: auto;
+  overflow: hidden;
+}
+
+.main_section {
+  position: relative;
+  z-index: 3;
+  display: inline-block;
+  min-width: calc(100vw - 10%);
+
+
+  margin: 0 5%;
+  height: 100%;
+  transition: $animation_time ease-in;
+  transform: translateX(0);
+}
+
+
+.header_wrapper {
+  height: 50%;
+}
+
+
+.main_image {
+  position: fixed;
+  top: -15%;
+  right: 3%;
+  max-height: 80dvh;
+  object-fit: contain;
+  transition: $animation_time ease-in;
+  transform: translate(0%, 0%) rotate(0deg);
+}
+
+
+.recipe_footer {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  height: 40%;
+  padding-bottom: 10dvh;
+
+}
+
+
+.subtitle {
+  color: $c_dark_grey;
+  font-weight: 700;
+  font-size: 18px;
+}
+
+.recipe_controls {
+  transition: $animation_time ease-in;
+  width: 38dvh;
+}
+
+
+.animation_hide {
+  transition: $animation_time ease-in;
+  opacity: 0;
+}
+.recipe_list{
+  margin-top: 10px;
+}
+
+.recipe_controls dd {
+  margin: 10px 0;
+  display: flex;
+  align-items: center;
+
+}
+
+.recipe_controls dd span {
+  margin-left: 10px;
+}
+
+
+.recipe_ingredients {
+  margin-right: auto;
+  transition: $animation_time ease-in;
+
+  height: calc(100% + 10dvh);
+  overflow-y: auto;
+  padding-right: 10px;
+}
+
+.recipe_list {
+  padding-left: 18px;
+}
+
+.recipe_list li:not(:last-child) {
+  margin-bottom: 4px;
+}
+
+
+.ingredients {
+
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  align-self: flex-end;
+
+  transition: $animation_time ease-in;
+  transform-origin: 100% 50%;
+  transform: rotate(0);
+
+}
+
+
+.ingredients_item {
+  position: relative;
+  transition: $animation_time ease-in;
+  margin: 0 2vw;
+  z-index: 2;
+}
+
+
+.ingredients_item img {
+  position: relative;
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  background-color: #fff;
+  padding: 10px;
+  object-fit: cover;
+  box-shadow: 5px 17px 16px 0 rgba(0, 0, 0, 0.1);
+  transition: $animation_time ease-in;
+  z-index: 2;
+}
+
+.ingredients_item figcaption {
+  margin-top: 20px;
+  text-align: center;
+  font-weight: bold;
+  transition: $animation_time ease-in;
+}
+
+.main_video {
+  display: inline-block;
+  background-color: $c_dark_grey;
+  color: #fff;
+  width: 100vw;
+}
+
+.steps_list {
+  position: absolute;
+  left: 17vw;
+  bottom: 20px;
+  width: 30vw;
+
+  height: 58dvh;
+  overflow-y: auto;
+  padding-left: 0;
+  padding-right: 5px;
+  margin: 0;
+  z-index: -1;
+  opacity: 0;
+
+
+  li:not(:first-child) {
+    margin-top: 8dvh;
+  }
+
+  b {
+    display: block;
+    font-size: 22px;
+    line-height: 1.2;
+    margin: 15px 0;
+    color: #000;
+    font-weight: bold;
+    mix-blend-mode: multiply;
+  }
+
+  p {
+    color: #9b9ca2;
+    margin-bottom: 5px;
+    line-height: 1.5;
+  }
+}
+
+.video_box {
+  position: absolute;
+  right: -30vw;
+  top: 0;
+
+  width: 30vw;
+  height: 100%;
+  z-index: 2;
+
+
+  will-change: transform;
+  transform: translateX(0);
+
+  &:before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100vw;
+    background-color: $c_dark_grey;
+    will-change: transform;
+    transform: translateX(0);
+    z-index: 2;
+  }
+
+
+}
+
+.video_box__wrap {
+  height: 100%;
+}
+
+.video_box video {
+  position: relative;
+
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+
+  height: inherit;
+  object-fit: cover;
+}
+
+
+.recipe_ingredients,
+.steps_list {
+  &::-webkit-scrollbar {
+    width: 5px;
+    background-color: rgba(26, 24, 47, 0.15);
+    border-radius: 5px;
+    height: 200px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: #53545B;
+    border-radius: 5px;
+  }
+}
+
+
+/// Animation
+
+.btn_animation__checkbox:checked + .btn_animation svg {
+  transition: $animation_time ease-in;
+  transform: rotate(180deg);
+}
+
+.btn_animation__checkbox:checked ~ .btn_menu {
+  filter: invert(1);
+  transition: $animation_time ease-in;
+}
+
+.btn_animation__checkbox:checked ~ .main {
+
+  .steps_list {
+    opacity: 1;
+    transition: ($animation_time - 0.5) ease-in $animation_time;
+    z-index: 4;
+  }
+
+  .steps_list b {
+
+    transition: $animation_time ease-in ($animation_time * 2);
+    -webkit-filter: invert(100%);
+    filter: invert(100%)
+  }
+
+  .ingredients {
+    position: relative;
+    transition: $animation_time ease-in;
+    transform: translate(-25%, 75%) rotate(90deg);
+    z-index: 5;
+
+    .ingredients_item {
+      margin: 0.8dvh 0.3dvh;
+    }
+
+    img {
+      transform: rotate(-90deg);
+    }
+
+    figcaption {
+      transform: translate(-2%, -1040%) rotate(-90deg);
+      -webkit-filter: invert(100%);
+      filter: invert(100%)
+    }
+
+  }
+
+  .main_image {
+    transform: translate(calc(-120% + 90vw), -30%) rotate(90deg);
+  }
+
+  .main_section {
+    transition: $animation_time ease-in;
+    transform: translateX(-90%);
+
+    //&:after {
+    //  transition: $animation_time ease-in;
+    //  right: calc(50vw + 16%);
+    //}
+  }
+
+
+  .video_box {
+    transition: $animation_time ease-in;
+    transform: translateX(-170%);
+
+    &:before {
+      transition: $animation_time ease-in ($animation_time * 2);
+      transform: translateX(-100vw);
+    }
+
+  }
+}
+    </style>
+</head>
+<body>
+    <div class="wrapper">
+        <input class="btn_animation__checkbox" id="animation" type="checkbox">
+        <label class="btn_animation" for="animation">
+            <svg width="60" height="60" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 800">
+                <path style="fill:#60b533" d="m178.6 202 202.1 198-202.1 198-60.3-61.8L257.2 400 118.3 263.8z"/>
+                <path style="fill:#349905" d="m273.5 0 408.2 400-408.2 400-121.9-124.9L432.3 400 151.6 124.9z"/>
+                <path style="fill:#5ecc25" d="m202.1 401-84-86.2v166.4z"/>
+            </svg>
+        </label>
+        <button class="btn_menu" type="button">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path fill-rule="evenodd" clip-rule="evenodd"
+                      d="M4 5a1 1 0 0 0 0 2h16a1 1 0 1 0 0-2H4Zm3 7a1 1 0 0 1 1-1h12a1 1 0 1 1 0 2H8a1 1 0 0 1-1-1Zm6 6a1 1 0 0 1 1-1h6a1 1 0 1 1 0 2h-6a1 1 0 0 1-1-1Z"
+                      fill="#000"/>
+            </svg>
+        </button>
+        <main class="main">
+            <div class="main_section">
+                <div class="header_wrapper">
+                    <h1 class="header_title">Borsh Recipe</h1>
+                    <p class="header_subtitle">Classic Ukrainian dishes</p>
+                </div>
+    
+                <img class="main_image" src="https://media.githubusercontent.com/media/BlackStar1991/Borsh/main/images/Borsh.png" width="800" height="800" alt="Borsh">
+    
+    
+                <div class="recipe_footer">
+    
+                    <dl class="recipe_controls">
+                        <dt class="subtitle">Cooking Time</dt>
+                        <dd>
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path fill="#0F0F0F"
+                                      d="M23 12c0 6.075-4.925 11-11 11S1 18.075 1 12 5.925 1 12 1s11 4.925 11 11ZM3.007 12a8.993 8.993 0 1 0 17.986 0 8.993 8.993 0 0 0-17.986 0Z"/>
+                                <path fill="#0F0F0F"
+                                      d="M12 5a1 1 0 0 0-1 1v6.467s0 .26.127.457c.084.166.217.31.39.41l4.62 2.668a1 1 0 0 0 1-1.732L13 11.88V6a1 1 0 0 0-1-1Z"/>
+                            </svg>
+                            <span>1h 30m</span></dd>
+    
+                        <dt class="subtitle">Serving</dt>
+                        <dd>
+                            <svg height="24" width="24" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 487.55 487.55"
+                                 xml:space="preserve"><path d="M244.625 171.415c-40 0-72.4 32.4-72.4 72.4s32.4 72.4 72.4 72.4 72.4-32.4 72.4-72.4c-.1-40-32.5-72.4-72.4-72.4zm0 48.8c-13 0-23.6 10.6-23.6 23.6 0 6-4.8 10.8-10.8 10.8s-10.8-4.8-10.8-10.8c0-24.9 20.3-45.2 45.2-45.2 6 0 10.8 4.8 10.8 10.8 0 6-4.9 10.8-10.8 10.8z"/>
+                                <path
+                                        d="M481.325 227.515c-224.8-258.6-428-53.9-476.4 2.8-6.5 7.6-6.6 18.8-.1 26.4 221.9 259 423.4 64.6 476.5 3.7 8.3-9.4 8.3-23.4 0-32.9zm-236.7 119.1c-56.8 0-102.8-46-102.8-102.8s46-102.8 102.8-102.8 102.8 46 102.8 102.8-46.1 102.8-102.8 102.8z"/></svg>
+                            <span>2 people</span>
+                        </dd>
+                    </dl>
+    
+    
+                    <div class="recipe_ingredients">
+                        <p class="recipe_title subtitle">Ingredients</p>
+                        <ul class="recipe_list">
+                            <li>Clean water - 3000 ml</li>
+                            <li>Fresh or sour cabbage - 300 g</li>
+                            <li>Fresh or boiled beets - 150 g</li>
+                            <li>Potatoes - 4-6 pieces</li>
+                            <li>Carrots - 1-2 pieces</li>
+                            <li>Onions - 1-2 heads</li>
+                            <li>Tomatoes (canned or fresh) - 2-3 pieces</li>
+                            <li>Garlic - 2-3 cloves</li>
+                            <li>Cooked meat (pork or beef) with bone - 800 g</li>
+                            <li>Herbs (parsley, dill, celery) - to taste</li>
+                            <li>Salt, pepper, vinegar - to taste</li>
+                            <li>Sunflower oil - for frying</li>
+                            <li>Sour cream - for serving</li>
+                        </ul>
+                    </div>
+    
+                    <div class="ingredients">
+                        <figure class="ingredients_item">
+                            <img src="https://media.githubusercontent.com/media/BlackStar1991/Borsh/main/images/beetroot.jpg" alt="beetroot"/>
+                            <figcaption>Beetroot</figcaption>
+                        </figure>
+                        <figure class="ingredients_item">
+                            <img src="https://media.githubusercontent.com/media/BlackStar1991/Borsh/main/images/cabbage.jpg" alt="cabbage"/>
+                            <figcaption>Cabbage</figcaption>
+                        </figure>
+                        <figure class="ingredients_item">
+                            <img src="https://media.githubusercontent.com/media/BlackStar1991/Borsh/main/images/pork-neck.jpg" alt="pork neck"/>
+                            <figcaption>Pork Neck</figcaption>
+                        </figure>
+                        <figure class="ingredients_item">
+                            <img src="https://media.githubusercontent.com/media/BlackStar1991/Borsh/main/images/potatoes.jpg" alt="Potatoes"/>
+                            <figcaption>Potatoes</figcaption>
+                        </figure>
+                        <figure class="ingredients_item">
+                            <img src="https://media.githubusercontent.com/media/BlackStar1991/Borsh/main/images/tomatoes.jpg" alt="tomatoes"/>
+                            <figcaption>Tomatoes</figcaption>
+                        </figure>
+                    </div>
+    
+    
+                </div>
+    
+            </div>
+            <div class="main_video">
+    
+                <ol class="steps_list">
+                    <li>
+                        <b>Step 1: Prepare Ingredients</b>
+                        <p>Peel and chop all vegetables. Wash the piece of meat.</p>
+                    </li>
+    
+                    <li>
+                        <b>Step 2: Boil the Meat</b>
+                        <p>Boil the meat until it starts falling off the bone. Remove the foam that forms during
+                            boiling.</p>
+                        <p>After 40 minutes, add the beans. Continue boiling for another 20 minutes over medium heat.
+                            Meanwhile, prepare the vegetables.</p>
+                    </li>
+    
+                    <li>
+                        <b>Step 3: Prepare the Main Part of the Borscht</b>
+                        <p>Chop the white cabbage and onion into small pieces.</p>
+                        <p>Chop the peeled potatoes into small cubes (4-6 pieces).</p>
+                        <p>Grate 2 carrots.</p>
+                        <p>Grate 150-200g of beetroot.</p>
+                    </li>
+    
+                    <li>
+                        <b>Step 4: Boil the Vegetables</b>
+                        <p>When the meat starts to fall off the bone, remove it from the pot.</p>
+                        <p>Add the potatoes to the broth and continue boiling for 10 minutes.</p>
+                        <p>Sauté the onion and garlic until golden brown. 1-2 minutes in sunflower oil.</p>
+                        <p>Add the carrot and sauté for another 2 minutes.</p>
+                        <p>Add the grated beetroot and sauté for 5-7 minutes, stirring frequently.</p>
+                        <p>Add 1 tablespoon of vinegar. Sauté for another 2 minutes, stirring.</p>
+                        <p>Add 20g of salt, stir, sauté for another 2 minutes.</p>
+                        <p>Add 150g of tomato paste or finely chopped tomatoes. Mix well, sauté for 3 more minutes.</p>
+                        <p>Add 100g of broth, simmer the vegetables for 15 minutes over low heat.</p>
+                    </li>
+    
+                    <li>
+                        <b>Step 5: Mix Vegetables with Broth</b>
+                        <p>Add pepper and bay leaf to the broth with boiled potatoes.</p>
+                        <p>Add cabbage and cook for 10-15 minutes.</p>
+                        <p>Add the boiled meat to the broth, add 20g of salt, and cook over medium heat for 10 minutes.</p>
+                        <p>Add the sautéed vegetables to the broth, mix, and cook for another 5 minutes.</p>
+                        <p>Turn off the stove and let it sit for 15 minutes.</p>
+                    </li>
+    
+                    <li>
+                        <b>Step 6: Serving</b>
+                        <p>Remove the bay leaf.</p>
+                        <p>Add grated garlic and chopped herbs (parsley, dill, green onion).</p>
+                        <p>Serve the borscht hot, garnished with a spoonful of sour cream on each portion.</p>
+                    </li>
+    
+                </ol>
+    
+    
+                <div class="video_box">
+                    <div class="video_box__wrap">
+                        <video src="https://media.githubusercontent.com/media/BlackStar1991/Borsh/main/images/borsh.mp4" muted autoplay loop poster="https://media.githubusercontent.com/media/BlackStar1991/Borsh/main/images/borsh.webp">Video about Borsh
+                        </video>
+                    </div>
+                </div>
+    
+            </div>
+        </main>
+    </div>
+</body>
+</html>
