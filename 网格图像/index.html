@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+  background-color: var(--bg2);
+  color: var(--txt);
+  --txt: #494949;
+  --bg: #d9d9d9;
+  --bg2: #ededed;
+  --border: #e3e3e3;
+  --accent: 255, 148, 206;
+  --accent2: 148, 206, 255;
+  --font: Inter, sans-serif;
+  --font2: Playfair Display, serif;
+}
+
+#concept {
+  width: calc(90% - 80px);
+  margin: 20px auto 0px;
+  background: linear-gradient(to right, RGBA(var(--accent), 0.5), RGBA(var(--accent2), 0.5));
+  height: 50%;
+  padding: 40px;
+  border-radius: 27px 7px 27px 7px;
+  border: 1px solid var(--border);
+  color: var(--txt);
+  font: 700 italic 5ch var(--font2);
+  text-transform: lowercase;
+}
+
+#subconcept {
+  display: grid;
+  grid-template-columns: 1fr;
+  width: 90%;
+  margin: 20px auto;
+  gap: 20px;
+}
+
+.sub2 {
+  width: calc(100% - 40px);
+  height: calc(100% - 40px);
+  background: var(--bg);
+  padding: 20px;
+  border-radius: 7px;
+  border: 1px solid var(--border);
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 20px;
+}
+
+.sub2 img {
+  width: 100%;
+  height: 100%;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  object-position: center;
+  border-radius: 7px;
+}
+    </style>
+</head>
+<body>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">  <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+  
+  <center>
+    <div id="concept">Grid Moodboard Example</div>
+    <div id="subconcept">
+      <div class="sub2">
+        <img src="https://64.media.tumblr.com/127c08e97083ffce8f19ea028f7fc97a/afae00e9edf75b4a-5a/s1280x1920/45964fdd10b435f39550afab7a9a98aaae878bc5.jpg">
+        <img src="https://64.media.tumblr.com/db0aaddddd8c5c06ed946562ec1e570e/afae00e9edf75b4a-6b/s1280x1920/ba2a1f6190db8644fe8bf23f84fcfb19ff2c5f1c.jpg">
+        <img src="https://64.media.tumblr.com/abc4382fb48db657573a952be9ca2406/afae00e9edf75b4a-9c/s1280x1920/5c8c3cf2ec4cbbee5d927fcbd86d0b4ad0dd2125.jpg">
+        <img src="https://64.media.tumblr.com/ce40e84a7672b348dde56cfa2c3c1319/afae00e9edf75b4a-39/s1280x1920/99e4307f5cde3125362e4bba0a52bf10a0f59e41.jpg">
+        <img src="https://64.media.tumblr.com/9b13bc60804ed8362d96820e587d7623/afae00e9edf75b4a-56/s500x750/52aad8912c0ec6fbada97ccfed5c9210b4ab848b.jpg">
+        <img src="https://64.media.tumblr.com/77ac842e3932c13013886444bd68d666/afae00e9edf75b4a-c6/s540x810/cc638854904b42068853a79af895757a398f30c5.jpg">
+      </div>
+    </div>
+  </center>
+</body>
+</html>
