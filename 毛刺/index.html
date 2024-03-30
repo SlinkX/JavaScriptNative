@@ -1,0 +1,131 @@
+<!-- Use preprocessors via the lang attribute! e.g. <template lang="pug"> -->
+    <template>
+        <div id="app">
+            <svg class="glitch" :style="textStyle" :viewbox="viewBox">
+                
+                
+                <clipPath id="Mask1">
+                    <use href="#Bar1" />
+                </clipPath>
+                <clipPath id="Mask2">
+                    <use href="#Bar2" />
+                </clipPath>
+    
+                <g id="original">
+                    <text
+                      :x="center"
+                      y="50%"
+                      text-anchor="middle"
+                      dominant-baseline="middle"
+                      fill="magenta"
+                    >
+                        {{ text }}
+                    </text>
+                    <text
+                          :x="offRight"
+                          y="50%"
+                          text-anchor="middle"
+                          dominant-baseline="middle"
+                          fill="yellow"
+                    >
+                        {{ text }}
+                    </text>
+                    <text
+                          :x="offLeft"
+                          y="50%"
+                          text-anchor="middle"
+                          dominant-baseline="middle"
+                          fill="cyan"
+                    >
+                        {{ text }}
+                    </text>
+                </g>
+                <rect :width="screenWidth" height="10" x="0" y="40" id="Bar1" fill="white" />
+                <rect :width="screenWidth" height="10" x="0" y="80" id="Bar2" fill="white" />
+                
+                <use href="#original" :x="-glitch" y="0" clip-path="url(#Mask1)" style="background: white" />
+                <use href="#original" :x="glitch" y="0" clip-path="url(#Mask2)" style="background: white" />
+               
+            </svg>
+            <label>
+                Text:
+                <input type="text" v-model="text">
+            </label>
+            <label>
+                Font Size:
+                <input type="number" min="10" v-model="fontSize">
+            </label>
+            <label>
+                Offset:
+                <input type="number" min="1" v-model="offset">
+            </label>
+            <label>
+                Glitch:
+                <input type="number" min="1" v-model="glitch">
+            </label>
+        </div>
+    </template>
+    
+    <script>
+    export default {
+        data() {
+            return {
+                text: 'GLITCH',
+                fontSize: 100,
+                offset: 3,
+                glitch: 5,
+                screenWidth: document.body.clientWidth
+            };
+        },
+        computed: {
+            textStyle() {
+                return {
+                    'font-size': `${this.fontSize}px`
+                }
+            },
+            viewBox() {
+                return `0 0 ${this.screenWidth} ${this.fontSize}`;
+            },
+            center() {
+                return this.screenWidth / 2;
+            },
+            offLeft() {
+                return this.center - this.offset;
+            },
+            offRight() {
+                return this.center + Number(this.offset);
+            }
+        }
+    };
+    </script>
+    
+    <!-- Use preprocessors via the lang attribute! e.g. <style lang="scss"> -->
+    <style>
+        html, body {
+            margin: 0;
+            padding: 0;
+            color: black;
+        }
+        #app {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            width: 100vw;
+            font-family: Arial, sans-serif;
+            isolation: isolated;
+        }
+        .glitch {
+            width: 100%;
+            font-family: Arial, sans-serif;
+            font-weight: bold;
+            line-height: 1;
+        }
+        text {
+            mix-blend-mode: multiply;
+        }
+        use {
+            backgound-color: white;
+        }
+    </style>
