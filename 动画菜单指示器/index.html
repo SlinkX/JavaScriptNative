@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        @import url(https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;700&display=swap);
+.nav,
+.nav-item {
+  position: relative;
+}
+.nav-item:before,
+.nav1 .nav-item:before {
+  width: 100%;
+  height: 5px;
+  background-color: #dfe2ea;
+  opacity: 0;
+}
+* {
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+body {
+  margin: 0;
+  padding: 0;
+}
+.wrapper {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  padding: 30px 0;
+}
+.nav {
+  display: -webkit-inline-box;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  overflow: hidden;
+  max-width: 660px;
+  min-width: 600px;
+  background-color: #fff;
+  padding: 0 20px;
+  border-radius: 20px;
+  -webkit-box-shadow: 0 8px 36px rgba(157, 160, 175, 0.8);
+  box-shadow: 0 8px 36px rgba(157, 160, 175, 0.8);
+}
+.nav-item {
+  color: #83818c;
+  padding: 30px 20px;
+  text-decoration: none;
+  -webkit-transition: 0.3s;
+  -o-transition: 0.3s;
+  transition: 0.3s;
+  margin: 0 6px;
+  z-index: 1;
+  font-family: "Open Sans", sans-serif;
+  font-weight: 700;
+}
+.nav-item:before {
+  content: "";
+  position: absolute;
+  -webkit-transition: 0.3s;
+  -o-transition: 0.3s;
+  transition: 0.3s;
+}
+.nav-item:not(.active):hover:before {
+  opacity: 1;
+  bottom: 0;
+}
+.nav-item:not(.active):hover {
+  color: #333;
+}
+.nav-indicator {
+  position: absolute;
+  bottom: 0;
+  -webkit-transition: 0.4s;
+  -o-transition: 0.4s;
+  transition: 0.4s;
+  height: 5px;
+  z-index: 1;
+}
+.nav1 .nav-indicator {
+  height: 5px;
+  left: 0;
+  border-radius: 8px 8px 0 0;
+}
+.nav1 .nav-item:before {
+  bottom: -6px;
+  left: 0;
+  border-radius: 8px 8px 0 0;
+  -webkit-transition: 0.3s;
+  -o-transition: 0.3s;
+  transition: 0.3s;
+}
+.nav2,
+.nav3 {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  padding: 20px;
+}
+.nav2 .nav-indicator {
+  width: 5px;
+  left: 0;
+  border-radius: 0 8px 8px 0;
+}
+.nav2 .nav-item:before {
+  bottom: 0;
+  left: -27px;
+  width: 6px;
+  height: 100%;
+  border-radius: 0 8px 8px 0;
+}
+.nav3 .nav-indicator {
+  width: 5px;
+  border-radius: 8px 0 0 8px;
+  left: initial;
+  right: 0;
+}
+.nav3 .nav-item:before {
+  bottom: 0;
+  left: initial;
+  right: -27px;
+  width: 6px;
+  height: 100%;
+  border-radius: 8px 0 0 8px;
+}
+@media (max-width: 992px) {
+  .wrapper {
+    padding: 30px 0;
+  }
+}
+@media only screen and (max-width: 768px) {
+  .nav {
+    min-width: 100%;
+  }
+  .nav1 {
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+  }
+  .nav-item {
+    padding: 25px 15px;
+  }
+}
+@media (max-width: 580px) {
+  .nav1 {
+    -webkit-box-pack: start;
+    -ms-flex-pack: start;
+    justify-content: flex-start;
+    overflow-x: auto;
+  }
+}
+
+    </style>
+</head>
+<body>
+    <div class="wrapper">
+        <!-- Nav 1 - Horizontal -->
+        <nav class="nav nav1">
+           <!-- To change color of indicator and text you should change the value of data-color (hex, rgb, rgba or text color value)
+              ===================================
+              data-color="black"
+              data-color="#006400"
+              data-color="rgb(0, 0, 255)"
+              data-color="rgba(255, 0, 0, 1)"
+              ===================================
+              -->
+           <a href="#" class="nav-item active" data-color="#663399">Home</a>
+           <a href="#" class="nav-item" data-color="#446A46">About</a>
+           <a href="#" class="nav-item" data-color="#D82148">Testimonials</a>
+           <a href="#" class="nav-item" data-color="#FFB72B">Blog</a>
+           <a href="#" class="nav-item" data-color="#1C0A00">Contact</a>
+           <span class="nav-indicator"></span>
+        </nav>
+        <!-- Nav 1 - Horizontal -->
+     </div>
+     <div class="wrapper">
+        <!-- Nav 2 - Vertical left -->
+        <nav class="nav nav2">
+           <a href="#" class="nav-item active" data-color="#663399">Home</a>
+           <a href="#" class="nav-item" data-color="#446A46">About</a>
+           <a href="#" class="nav-item" data-color="#D82148">Testimonials</a>
+           <a href="#" class="nav-item" data-color="#FFB72B">Blog</a>
+           <a href="#" class="nav-item" data-color="#1C0A00">Contact</a>
+           <span class="nav-indicator"></span>
+        </nav>
+        <!-- Nav 2 - Vertical left -->
+     </div>
+     <div class="wrapper">
+        <!-- Nav 3 - Vertical Right -->
+        <nav class="nav nav3">
+           <a href="#" class="nav-item active" data-color="#663399">Home</a>
+           <a href="#" class="nav-item" data-color="#446A46">About</a>
+           <a href="#" class="nav-item" data-color="#D82148">Testimonials</a>
+           <a href="#" class="nav-item" data-color="#FFB72B">Blog</a>
+           <a href="#" class="nav-item" data-color="#1C0A00">Contact</a>
+           <span class="nav-indicator"></span>
+        </nav>
+        <!-- Nav 3 - Vertical Right -->
+     </div>
+
+     <script>
+        function indicatorInit(navWrapper, indicatorName, navItems) {
+  const nav = document.querySelector(navWrapper);
+  const indicator = document.querySelector(indicatorName);
+  const items = document.querySelectorAll(navItems);
+
+  function indicatorHandler(el) {
+    /* Remove active status from all navigation link */
+    items.forEach((item) => {
+      item.classList.remove("active");
+      item.removeAttribute("style");
+    });
+    if (nav.classList.contains("nav1")) {
+      /* Horizontal move */
+      indicator.style.width = `${el.offsetWidth}px`;
+      indicator.style.left = `${el.offsetLeft}px`;
+      /* Changes color of indicator by attribute data-color */
+      indicator.style.backgroundColor = el.getAttribute("data-color");
+    } else {
+      /* Vertical move */
+      indicator.style.height = `${el.offsetHeight}px`;
+      indicator.style.top = `${el.offsetTop}px`;
+      /* Changes color of indicator by attribute data-color */
+      indicator.style.backgroundColor = el.getAttribute("data-color");
+    }
+    /* Changes color of text by attribute data-color */
+    el.classList.add("active");
+    el.style.color = el.getAttribute("data-color");
+  }
+
+  items.forEach((item, index) => {
+    item.addEventListener("click", (e) => {
+      e.preventDefault();
+      indicatorHandler(e.target);
+    });
+    item.classList.contains("active") && indicatorHandler(item);
+  });
+}
+
+setTimeout(function () {
+  // Init Nav 1 - Vertical
+  indicatorInit(".nav1", ".nav1 .nav-indicator", ".nav1 .nav-item");
+  // Init Nav 2 - Horizontal left
+  indicatorInit(".nav2", ".nav2 .nav-indicator", ".nav2 .nav-item");
+  // Init Nav 3 - Horizontal right
+  indicatorInit(".nav3", ".nav3 .nav-indicator", ".nav3 .nav-item");
+}, 200);
+
+     </script>
+</body>
+</html>
