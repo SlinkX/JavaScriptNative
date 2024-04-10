@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style lang="scss">
+        @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap");
+
+* {
+ padding: 0;
+ margin: 0;
+ box-sizing: border-box;
+}
+
+$body-bg: linear-gradient(-45deg, #4571d8, #21586f, #666b7a, #2b5ea5);
+$body-font: "Poppins", sans-serif;
+$ticket-color: #f5f5f5;
+
+body {
+ background-image: $body-bg;
+ display: flex;
+ justify-content: center;
+ align-items: center;
+ flex-direction: column;
+ padding: 2em;
+ width: 100%;
+ height: 100vh;
+ background-size: 400% 400%;
+ animation: bg-anim 15s ease infinite;
+}
+
+.container {
+ max-width: 1160px;
+ border-radius: 4px;
+ max-height: 660px;
+ height: 90vh;
+ width: 100%;
+ display: flex;
+ flex-direction: column;
+ overflow-y: auto;
+ overflow-x: hidden;
+ position: relative;
+}
+
+.rgbKineticSlider {
+ display: block;
+ position: relative;
+ overflow: hidden;
+ width: 100%;
+ height: 100vh;
+}
+.rgbKineticSlider canvas {
+ position: absolute;
+ display: block;
+}
+
+nav a {
+ color: #fff;
+ text-decoration: none;
+ position: absolute;
+ top: 50%;
+ z-index: 1;
+ padding: 20px;
+}
+nav a.next {
+ right: 40px;
+}
+nav a.prev {
+ left: 40px;
+}
+
+svg {
+ width: 28px;
+}
+
+.menu {
+ position: absolute;
+ top: 20px;
+ right: 20px;
+ color: #f5f5f5;
+}
+
+.slider {
+ border: 1px solid #fff;
+ border-radius: 50%;
+ width: 44px;
+ height: 44px;
+ display: flex;
+ align-items: center;
+ justify-content: center;
+ background: linear-gradient(to right, #fff 40%, transparent 0%);
+ background-size: 200% 100%;
+ background-position: right bottom;
+ transition: all 0.4s ease-out;
+ cursor: pointer;
+
+ &:hover {
+  transform: scale(1.5);
+ }
+
+ &.prev {
+  svg {
+   transform: rotate(-180deg);
+  }
+ }
+}
+
+.wrapper {
+ max-width: 900px;
+ width: 88%;
+ top: calc(100% - 160px);
+ right: 50%;
+ transform: translatex(50%);
+ position: absolute;
+ color: $ticket-color;
+}
+
+.separator {
+ border: 1px solid #fdfdfe;
+
+ &-text {
+  position: absolute;
+  top: 20px;
+ }
+}
+
+.ticket {
+ position: absolute;
+ top: 50px;
+ right: 50%;
+ font-family: $body-font;
+ display: flex;
+ align-items: center;
+ justify-content: center;
+ background-color: rgb(212 212 212 / 50%);
+ backdrop-filter: blur(5px);
+ padding: 16px 12px;
+ border-radius: 4px;
+ transform: translatex(calc(50% - 25px));
+
+ &-list {
+  display: flex;
+  align-items: center;
+  padding-right: 16px;
+
+  & + & {
+   border-left: 1px solid #fdfdfe;
+   padding-left: 16px;
+  }
+
+  &.depart {
+   border-left: 0;
+  }
+ }
+ 
+ .returning {
+  margin-left: 32px;
+ }
+
+ &-text__wrapper {
+  display: flex;
+  flex-direction: column;
+ }
+
+ &-title {
+  font-size: 12px;
+ }
+
+ &-subtitle {
+  text-transform: uppercase;
+  font-size: 15px;
+  font-weight: 500;
+  margin-top: 4px;
+  letter-spacing: 0.08em;
+  white-space: nowrap;
+ }
+
+ svg {
+  width: 20px;
+  margin-left: 60px;
+ }
+
+ .settings {
+  margin: 0;
+ }
+
+ .search {
+  background-color: #fe6651;
+  position: absolute;
+  right: -54px;
+  height: 100%;
+  width: 64px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 0 4px 4px 0;
+
+  svg {
+   margin: 0;
+   width: 20px;
+  }
+ }
+}
+
+@keyframes bg-anim {
+ 0% {
+  background-position: 0% 50%;
+ }
+ 50% {
+  background-position: 100% 50%;
+ }
+ 100% {
+  background-position: 0% 50%;
+ }
+}
+
+@media (max-width: 986px) {
+ .ticket-list:nth-child(3),
+ .ticket-list:nth-child(4) {
+  display: none;
+ }
+}
+
+@media (max-width: 800px) {
+ .ticket-list:nth-child(2) {
+  display: none;
+ }
+
+ nav a.next {
+  right: 20px;
+ }
+ nav a.prev {
+  left: 20px;
+ }
+}
+
+@media (max-width: 590px) {
+ .ticket-list:nth-child(5),
+ .ticket-list:nth-child(6) {
+  display: none;
+ }
+ 
+ body {
+  padding: 1em;
+ }
+
+ .slider {
+  width: 26px;
+  height: 26px;
+  
+  svg {
+   width: 20px;
+  }
+
+  &:hover {
+   transform: scale(1.1);
+  }
+ }
+
+ .main-nav {
+  top: 0;
+  padding: 20px 5px;
+  width: max-content;
+ }
+
+ nav a.next {
+  left: 48px;
+ }
+ nav a.prev {
+  left: 10px;
+ }
+}
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div id="rgbKineticSlider" class="rgbKineticSlider"></div>
+        <a href="#" class="menu">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+         <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+         <line x1="4" y1="8" x2="40" y2="8" />
+         <line x1="0" y1="16" x2="40" y2="16" />
+       </svg>
+        </a>
+        <div class="wrapper">
+         <div class="separator"></div>
+         <div class="separator-text">Tours</div>
+         <div class="ticket">
+          <div class="ticket-list">
+           <div class="ticket-text__wrapper">
+            <span class="ticket-title">Country</span>
+            <span class="ticket-subtitle">Italy</span>
+           </div>
+           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-down">
+            <path d="m6 9 6 6 6-6" />
+           </svg>
+          </div>
+          <div class="ticket-list">
+           <div class="ticket-text__wrapper">
+            <span class="ticket-title">City</span>
+            <span class="ticket-subtitle">Roma</span>
+           </div>
+           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-down">
+            <path d="m6 9 6 6 6-6" />
+           </svg>
+          </div>
+          <div class="ticket-list">
+           <div class="ticket-text__wrapper">
+            <span class="ticket-title">Departing</span>
+            <span class="ticket-subtitle">19 June</span>
+           </div>
+           <svg class="returning" xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-switch-horizontal" width="44" height="44" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+            <polyline points="16 3 20 7 16 11" />
+            <line x1="10" y1="7" x2="20" y2="7" />
+            <polyline points="8 13 4 17 8 21" />
+            <line x1="4" y1="17" x2="13" y2="17" />
+           </svg>
+           </svg>
+          </div>
+          <div class="ticket-list depart">
+           <div class="ticket-text__wrapper">
+            <span class="ticket-title">Returning</span>
+            <span class="ticket-subtitle">27 June</span>
+           </div>
+           </svg>
+          </div>
+          <div class="ticket-list">
+           <div class="ticket-text__wrapper">
+            <span class="ticket-title">Travelers</span>
+            <span class="ticket-subtitle">2 Adults</span>
+           </div>
+           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-down">
+            <path d="m6 9 6 6 6-6" />
+           </svg>
+           </svg>
+          </div>
+          <div class="ticket-list">
+           <svg class="settings" xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-adjustments-horizontal" width="44" height="44" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+            <circle cx="14" cy="6" r="2" />
+            <line x1="4" y1="6" x2="12" y2="6" />
+            <line x1="16" y1="6" x2="20" y2="6" />
+            <circle cx="8" cy="12" r="2" />
+            <line x1="4" y1="12" x2="6" y2="12" />
+            <line x1="10" y1="12" x2="20" y2="12" />
+            <circle cx="17" cy="18" r="2" />
+            <line x1="4" y1="18" x2="15" y2="18" />
+            <line x1="19" y1="18" x2="20" y2="18" />
+           </svg>
+           </svg>
+           </svg>
+          </div>
+          <div class="search">
+           <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+         <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+         <circle cx="10" cy="10" r="7" />
+         <line x1="21" y1="21" x2="15" y2="15" />
+       </svg>
+          </div>
+         </div>
+        </div>
+        <nav>
+         <a href="#" class="main-nav prev" data-nav="previous">
+          <div class="slider prev">
+           <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
+           </svg>
+          </div>
+         </a>
+         <a href="#" class="main-nav next" data-nav="next">
+          <div class="slider next">
+           <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
+           </svg>
+          </div>
+         </a></a>
+        </nav>
+       </div>
+
+
+       <script>
+        // https://github.com/hmongouachon/rgbKineticSlider
+const images = [
+ "https://images.unsplash.com/photo-1636537511494-c3e558e0702b?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1740&q=80",
+  "https://images.unsplash.com/photo-1468436385273-8abca6dfd8d3?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1705&q=80",
+  "https://images.unsplash.com/photo-1493707553966-283afac8c358?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1740&q=80",
+ "https://images.unsplash.com/photo-1508189860359-777d945909ef?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1740&q=80",
+];
+
+const texts = [
+  ["Istanbul", "\"Take a greatest journey on your life\""],
+  ["Amsterdam", "\"We take photos as a return ticket to a moment otherwise gone\""],
+  ["Paris", "\"Traveling – it leaves you speechless, then turns you into a storyteller\""],
+  ["Sweden", "\"Once a year, go someplace you’ve never been before\""]
+];
+
+rgbKineticSlider = new rgbKineticSlider({
+  slideImages: images,
+  itemsTitles: texts,
+
+  backgroundDisplacementSprite: "https://i.ibb.co/N246LxD/map-9.jpg", 
+  cursorDisplacementSprite: "https://i.ibb.co/KrVr51f/displace-circle.png",
+  cursorImgEffect: true,
+  cursorTextEffect: true,
+  cursorScaleIntensity: 0.65,
+  cursorMomentum: 0.14,
+
+  swipe: true,
+  swipeDistance: window.innerWidth * 0.4,
+  swipeScaleIntensity: 2,
+
+  slideTransitionDuration: 1, // transition duration
+  transitionScaleIntensity: 30, // scale intensity during transition
+  transitionScaleAmplitude: 160, // scale amplitude during transition
+
+ 
+  nav: true, // enable navigation
+  navElement: ".main-nav", // set nav class
+
+
+  imagesRgbEffect: true,
+  imagesRgbIntensity: 0.9,
+  navImagesRgbIntensity: 80,
+
+  textsDisplay: true, 
+  textsSubTitleDisplay: true, 
+  textsTiltEffect: true,
+  googleFonts: ["Playfair Display:700", "Roboto:400"],
+  buttonMode: false,
+  textsRgbEffect: true,
+  textsRgbIntensity: 0.03,
+  navTextsRgbIntensity: 15,
+
+  textTitleColor: "white",
+  textTitleSize: 125,
+  mobileTextTitleSize: 80,
+  textSubTitleColor: "white",
+  textSubTitleSize: 21,
+  mobileTextSubTitleSize: 16,
+  textSubTitleLetterspacing: 2,
+  textSubTitleOffsetTop: 90, 
+  mobileTextSubTitleOffsetTop: 90
+});
+
+       </script>
+</body>
+</html>
