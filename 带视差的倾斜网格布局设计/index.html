@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .tiltgrid {
+	overflow: hidden;
+		@media screen and (min-width:720px) {
+			margin-inline: clamp(1rem, 0.5714285714285714rem + 1.9047619047619049vw, 2rem);
+		}
+	&__container {
+		--skew-y: calc(var(--scroll-tilt, -7) * 1deg) ;
+  --easing: cubic-bezier(1,.45,.7,1.05);
+  transform: skewY(var(--skew-y)) scale(1.05);
+		display: grid;
+		grid-template-columns: repeat(3, 1fr);
+		@media screen and (min-width:720px) {
+			grid-template-columns: repeat(4, 1fr);
+		}
+		gap: clamp(0.25rem, -0.0714285714285714rem + 1.4285714285714286vw, 1rem);
+		transition: gap 0.3s ease;
+		&:hover {
+			img {
+				filter: saturate(0);
+				transition: scale 0.8s, filter 1s;
+			}
+		}
+  & > div {
+    overflow: hidden;
+    clip-path: polygon(0 0, 100% 0%, 100% 0, 0 0);
+    opacity: 0;
+    animation: tiltslide 1s forwards;
+    @for $i from 1 through 128 {
+      &:nth-child(#{$i}) {
+        animation-delay: #{0.05 * $i}s;
+        animation-duration: 0.7s;
+							
+      }
+    }
+    img {
+      aspect-ratio: 16 / 9;
+      min-width: 100%;
+      object-fit: cover;
+      object-position: 50% 50%;
+      pointer-events: none;
+      filter: saturate(1);
+      transform: skewY(calc(var(--skew-y) * -1));
+						scale: 1.4;
+      transition: scale 0.8s, filter 0.6s;
+    }
+    &:hover {
+      img {
+        scale: 1.5;
+        filter: saturate(1);
+								transition: scale 0.8s, filter 0.6s;
+      }
+    }
+  }
+	}
+}
+@keyframes tiltslide {
+  from {
+    opacity: 0;
+    clip-path: polygon(0 0, 100% 0%, 100% 0, 0 0);
+				filter: saturate(0);
+  }
+  to {
+    opacity: 1;
+    clip-path: polygon(0 0, 100% 1%, 100% 100%, 0% 100%);
+				filter: saturate(1);
+  }
+}
+//Unrelated
+.p-x {
+	padding-inline: 1.5em;
+}
+
+.hero {
+	padding-top: clamp(6rem, 4.285714285714286rem + 7.6190476190476195vw, 10rem);
+	padding-bottom: clamp(2rem, 1.1428571428571428rem + 3.8095238095238098vw, 4rem);
+	position: sticky;
+	top: 0;
+	transform-origin: 50% 0%;
+	.container {
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		text-align: center;
+		> * {
+			margin: 0;
+		}
+		h1 {
+			font-size: clamp(1.5rem, 0.8571428571428572rem + 2.857142857142857vw, 3rem);
+			line-height: 1.2;
+		}
+		p {
+			margin-top: 0.5em;
+			font-size: clamp(0.875rem, 0.7142857142857143rem + 0.7142857142857143vw, 1.25rem);
+			color: #666;
+		}
+	}
+}
+.bottom {
+	min-height: 200vh;
+	padding-block: clamp(2rem, 1.5714285714285714rem + 1.9047619047619049vw, 3rem);
+	.container {
+		text-align: center;
+	}
+}
+img {
+	max-width: 100%;
+	height: auto;
+	display: block;
+}
+.container {
+	max-width: 1000px;
+	margin: 0 auto;
+}
+body {
+	overflow-x: hidden;
+}
+    </style>
+</head>
+<body>
+    <section class="hero p-x">
+        <div class="container">
+            <h1>Tilt Grid</h1>
+            <p>Scroll to see the parallax effect</p>
+        </div>
+    </section>
+    <section class="tiltgrid">
+        <div class="tiltgrid__container">
+            <div><img loading="lazy" src="https://picsum.photos/id/11/1280/720" alt=""></div>
+            <div><img loading="lazy" src="https://picsum.photos/id/33/1280/720" alt=""></div>
+            <div><img loading="lazy" src="https://picsum.photos/id/22/1280/720" alt=""></div>
+            <div><img loading="lazy" src="https://picsum.photos/id/4/1280/720" alt=""></div>
+            <div><img loading="lazy" src="https://picsum.photos/id/15/1280/720" alt=""></div>
+            <div><img loading="lazy" src="https://picsum.photos/id/62/1280/720" alt=""></div>
+            <div><img loading="lazy" src="https://picsum.photos/id/7/1280/720" alt=""></div>
+            <div><img loading="lazy" src="https://picsum.photos/id/18/1280/720" alt=""></div>
+            <div><img loading="lazy" src="https://picsum.photos/id/29/1280/720" alt=""></div>
+            <div><img loading="lazy" src="https://picsum.photos/id/10/1280/720" alt=""></div>
+            <div><img loading="lazy" src="https://picsum.photos/id/11/1280/720" alt=""></div>
+            <div><img loading="lazy" src="https://picsum.photos/id/12/1280/720" alt=""></div>
+            <div><img loading="lazy" src="https://picsum.photos/id/13/1280/720" alt=""></div>
+            <div><img loading="lazy" src="https://picsum.photos/id/14/1280/720" alt=""></div>
+            <div><img loading="lazy" src="https://picsum.photos/id/15/1280/720" alt=""></div>
+            <div><img loading="lazy" src="https://picsum.photos/id/16/1280/720" alt=""></div>
+            <div><img loading="lazy" src="https://picsum.photos/id/17/1280/720" alt=""></div>
+            <div><img loading="lazy" src="https://picsum.photos/id/18/1280/720" alt=""></div>
+            <div><img loading="lazy" src="https://picsum.photos/id/19/1280/720" alt=""></div>
+            <div><img loading="lazy" src="https://picsum.photos/id/20/1280/720" alt=""></div>
+            <div><img loading="lazy" src="https://picsum.photos/id/21/1280/720" alt=""></div>
+            <div><img loading="lazy" src="https://picsum.photos/id/22/1280/720" alt=""></div>
+            <div><img loading="lazy" src="https://picsum.photos/id/23/1280/720" alt=""></div>
+            <div><img loading="lazy" src="https://picsum.photos/id/24/1280/720" alt=""></div>
+            <div><img loading="lazy" src="https://picsum.photos/id/25/1280/720" alt=""></div>
+            <div><img loading="lazy" src="https://picsum.photos/id/26/1280/720" alt=""></div>
+            <div><img loading="lazy" src="https://picsum.photos/id/27/1280/720" alt=""></div>
+            <div><img loading="lazy" src="https://picsum.photos/id/28/1280/720" alt=""></div>
+            <div><img loading="lazy" src="https://picsum.photos/id/29/1280/720" alt=""></div>
+            <div><img loading="lazy" src="https://picsum.photos/id/30/1280/720" alt=""></div>
+            <div><img loading="lazy" src="https://picsum.photos/id/31/1280/720" alt=""></div>
+            <div><img loading="lazy" src="https://picsum.photos/id/32/1280/720" alt=""></div>
+            <div><img loading="lazy" src="https://picsum.photos/id/33/1280/720" alt=""></div>
+            <div><img loading="lazy" src="https://picsum.photos/id/34/1280/720" alt=""></div>
+            <div><img loading="lazy" src="https://picsum.photos/id/35/1280/720" alt=""></div>
+            <div><img loading="lazy" src="https://picsum.photos/id/36/1280/720" alt=""></div>
+            <div><img loading="lazy" src="https://picsum.photos/id/37/1280/720" alt=""></div>
+            <div><img loading="lazy" src="https://picsum.photos/id/38/1280/720" alt=""></div>
+            <div><img loading="lazy" src="https://picsum.photos/id/39/1280/720" alt=""></div>
+            <div><img loading="lazy" src="https://picsum.photos/id/40/1280/720" alt=""></div>
+            <div><img loading="lazy" src="https://picsum.photos/id/41/1280/720" alt=""></div>
+            <div><img loading="lazy" src="https://picsum.photos/id/42/1280/720" alt=""></div>
+            <div><img loading="lazy" src="https://picsum.photos/id/43/1280/720" alt=""></div>
+            <div><img loading="lazy" src="https://picsum.photos/id/44/1280/720" alt=""></div>
+            <div><img loading="lazy" src="https://picsum.photos/id/45/1280/720" alt=""></div>
+            <div><img loading="lazy" src="https://picsum.photos/id/46/1280/720" alt=""></div>
+            <div><img loading="lazy" src="https://picsum.photos/id/47/1280/720" alt=""></div>
+            <div><img loading="lazy" src="https://picsum.photos/id/48/1280/720" alt=""></div>
+            <div><img loading="lazy" src="https://picsum.photos/id/49/1280/720" alt=""></div>
+            <div><img loading="lazy" src="https://picsum.photos/id/50/1280/720" alt=""></div>
+            <div><img loading="lazy" src="https://picsum.photos/id/51/1280/720" alt=""></div>
+            <div><img loading="lazy" src="https://picsum.photos/id/52/1280/720" alt=""></div>
+            <div><img loading="lazy" src="https://picsum.photos/id/53/1280/720" alt=""></div>
+            <div><img loading="lazy" src="https://picsum.photos/id/54/1280/720" alt=""></div>
+            <div><img loading="lazy" src="https://picsum.photos/id/55/1280/720" alt=""></div>
+            <div><img loading="lazy" src="https://picsum.photos/id/56/1280/720" alt=""></div>
+            <div><img loading="lazy" src="https://picsum.photos/id/57/1280/720" alt=""></div>
+            <div><img loading="lazy" src="https://picsum.photos/id/58/1280/720" alt=""></div>
+            <div><img loading="lazy" src="https://picsum.photos/id/59/1280/720" alt=""></div>
+            <div><img loading="lazy" src="https://picsum.photos/id/60/1280/720" alt=""></div>
+            <div><img loading="lazy" src="https://picsum.photos/id/61/1280/720" alt=""></div>
+            <div><img loading="lazy" src="https://picsum.photos/id/62/1280/720" alt=""></div>
+            <div><img loading="lazy" src="https://picsum.photos/id/63/1280/720" alt=""></div>
+            <div><img loading="lazy" src="https://picsum.photos/id/64/1280/720" alt=""></div>
+        </div>
+        
+    </section>
+    <section class="p-x bottom">
+        <div class="container">
+            This is some content after the Tilted Grid
+        </div>
+    </section>
+
+
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+	const heroGrid = document.querySelector(".tiltgrid");
+	const hero = document.querySelector(".hero");
+	const tiltDegree = 7;
+	function isElementInViewport(element) {
+		const rect = element.getBoundingClientRect();
+		return (
+			rect.bottom > 0 &&
+			rect.right > 0 &&
+			rect.left < (window.innerWidth || document.documentElement.clientWidth) &&
+			rect.top < (window.innerHeight || document.documentElement.clientHeight)
+		);
+	}
+	function mapRange(value, inMin, inMax, outMin, outMax) {
+		return ((value - inMin) * (outMax - outMin)) / (inMax - inMin) + outMin;
+	}
+	function updateScrollPos() {
+		const scrollPos = window.scrollY;
+		const rect = heroGrid.getBoundingClientRect();
+		const scrollPercent = (scrollPos * 100) / rect.height;
+
+		let mappedValue = mapRange(scrollPercent, 0, 100, tiltDegree * -1, tiltDegree);
+		heroGrid.style.setProperty("--scroll-tilt", `${mappedValue}`);
+		let heroOpacity = mapRange(scrollPercent, 0, 10, 1, 0);
+		let heroScale = mapRange(scrollPercent, 0, 10, 1, 0);
+		let heroTransformY = mapRange(scrollPercent, 0, 10, 0, -100);
+		let heroBlur = mapRange(scrollPercent, 0, 10, 0, 20);
+		hero.style.opacity = heroOpacity;
+		hero.style.filter = `blur(${heroBlur}px)`;
+		hero.style.transform = `translateY(${heroTransformY}px)`;
+	}
+
+	function handleScroll() {
+		if (heroGrid && isElementInViewport(heroGrid)) {
+			updateScrollPos();
+		}
+	}
+
+	window.addEventListener("scroll", handleScroll);
+
+	handleScroll();
+});
+
+    </script>
+</body>
+</html>
