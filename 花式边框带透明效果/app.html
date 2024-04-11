@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        :root {
+  /** 
+    can be edited per-box 
+    or use the sliders to change teh values
+  **/
+  --thiccness: 2px;
+  --radius: 10px;
+  --padding: 10px;
+
+  --box1-gradient: conic-gradient(
+    #ffadad,
+    #ffd6a5,
+    #ffdab6,
+    #caffbf,
+    #9bf6ff,
+    #a0c4ff,
+    #bdb2ff,
+    #ffc6ff,
+    #ffadad
+  );
+  --box2-gradient: linear-gradient(
+    125deg,
+    #ffffff00 8%,
+    #ffadad,
+    #ffd6a5,
+    #ffdab6,
+    #caffbf,
+    #9bf6ff,
+    #a0c4ff,
+    #bdb2ff,
+    #ffc6ff,
+    #ffffff00 92%
+  );
+}
+
+.fancy {
+  
+  border-radius: var(--radius);
+  padding: calc(var(--padding) + var(--thiccness));
+  position: relative;
+  isolation: isolate;
+  
+}
+
+.fancy:before {
+  
+  background-image: var(--box1-gradient);
+  
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  
+  border-radius: var(--radius);
+  border: var(--thiccness) solid transparent;
+  
+  background-repeat: no-repeat;
+  background-size: calc(100% + var(--thiccness) * 2)
+    calc(100% + var(--thiccness) * 2);
+  background-position: center center;
+  
+  mask-image: linear-gradient(transparent, transparent),
+    linear-gradient(white, white);
+  mask-clip: padding-box, border-box;
+  mask-composite: subtract;
+  -webkit-mask-composite: copy;
+  
+}
+
+
+
+
+
+
+
+
+
+
+
+
+/** flavouring, not needed for effect **/
+
+.fancy {
+  box-sizing: border-box;
+  width: 50dvw;
+  max-width: 400px;
+  height: auto;
+  aspect-ratio: 3/2;
+  display: grid;
+  font-weight: 300;
+  font-size: 1.5em;
+  text-wrap: balance;
+  font-family: monospace;
+  line-height: 1.8;
+  place-content: center;
+  outline: none;
+  transform: translateY(-25%) translateX(-25%);
+  color: white;
+  text-shadow: 2px 2px 1px rgba(0, 0, 0, 0.25), -2px 2px 1px rgba(0, 0, 0, 0.25),
+    0px 2px 1px rgba(0, 0, 0, 0.25);
+  box-shadow: rgba(0, 0, 0, 0.07) 0px 1px 2px, rgba(0, 0, 0, 0.07) 0px 2px 4px,
+    rgba(0, 0, 0, 0.07) 0px 4px 8px, rgba(0, 0, 0, 0.07) 0px 8px 16px,
+    rgba(0, 0, 0, 0.07) 0px 16px 32px, rgba(0, 0, 0, 0.07) 0px 32px 64px,
+    inset rgba(0, 0, 0, 0.07) 0px 1px 2px, inset rgba(0, 0, 0, 0.07) 0px 2px 4px,
+    inset rgba(0, 0, 0, 0.07) 0px 4px 8px,
+    inset rgba(0, 0, 0, 0.07) 0px 8px 16px,
+    inset rgba(0, 0, 0, 0.07) 0px 16px 32px,
+    inset rgba(0, 0, 0, 0.07) 0px 32px 64px;
+  backdrop-filter: blur(5px);
+}
+
+.fancy:hover {
+  backdrop-filter: blur(0px);
+}
+
+.fancy:before {
+  background-image: var(--box1-gradient);
+}
+
+@media (max-width: 600px) {
+  .fancy {
+    font-size: 12px;
+    aspect-ratio: 1;
+  }
+}
+
+.behind {
+  --thiccness: 6px;
+  --radius: 20px;
+  --padding: 10px;
+
+  position: absolute;
+  transform: translateY(25%) translateX(25%);
+  background: #2e293088;
+  box-shadow: rgba(0, 0, 0, 0.07) 0px 1px 2px, rgba(0, 0, 0, 0.07) 0px 2px 4px,
+    rgba(0, 0, 0, 0.07) 0px 4px 8px, rgba(0, 0, 0, 0.07) 0px 8px 16px,
+    rgba(0, 0, 0, 0.07) 0px 16px 32px, rgba(0, 0, 0, 0.07) 0px 32px 64px;
+}
+
+.behind:before {
+  background-image: var(--box2-gradient);
+}
+
+#app {
+  font-weight: 600;
+  grid-row: 1;
+  grid-column: 1;
+}
+
+.controls {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  align-items: center;
+  justify-content: stretch;
+  padding: 10px 20px;
+  gap: 20px;
+}
+.controls input {
+  flex: 1 1 auto;
+}
+
+header {
+  padding-top: 10vw;
+  font-size: 3.5vw;
+  text-wrap: balance;
+  text-align: center;
+  grid-row: 1;
+  grid-column: 1;
+  place-self: start;
+}
+
+body { 
+  padding-top: 80px;
+  min-height: 100%;
+} 
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Fancy Borders</h1>
+        <h2>with transparency on borders and background</h2>
+      </header>
+      
+      <main id="app">
+        <div id="two" class="fancy behind">
+        </div>
+        <div id="one" class="fancy">
+        </div>
+      </main>
+      
+      
+      
+      <section class="controls">
+        <input id="thicc" type="range" min=1 max=30>
+        <input id="round" type="range" min=0 max=100>
+      </section>
+      
+      <!-- 
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+          social icons
+      -->
+      <a class="social-icon codepen" href="https://codepen.io/simeydotme" title="view my codepens">
+        Made by Simey
+      </a>
+      
+      <a class="social-icon twitter" href="https://twitter.com/simeydotme">
+        <svg viewBox="0 0 24 24">
+          <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+          <path d="M22 4.01c-1 .49 -1.98 .689 -3 .99c-1.121 -1.265 -2.783 -1.335 -4.38 -.737s-2.643 2.06 -2.62 3.737v1c-3.245 .083 -6.135 -1.395 -8 -4c0 0 -4.182 7.433 4 11c-1.872 1.247 -3.739 2.088 -6 2c3.308 1.803 6.913 2.423 10.034 1.517c3.58 -1.04 6.522 -3.723 7.651 -7.742a13.84 13.84 0 0 0 .497 -3.753c-.002 -.249 1.51 -2.772 1.818 -4.013z"></path>
+        </svg>
+      </a>
+      <a class="social-icon github" href="https://github.com/simeydotme">
+        <svg viewBox="0 0 24 24">
+          <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+          <path d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5"></path>
+        </svg>
+      </a>
+
+
+      <script>
+        const app = document.querySelector("#app")
+
+document.querySelector("#thicc").addEventListener("input", (e) => {
+  let v = e.target.value;
+  document.querySelector("#one").style.setProperty("--thiccness", v + "px");
+  document.querySelector("#two").style.setProperty("--thiccness", v + "px");
+});
+
+document.querySelector("#round").addEventListener("input", (e) => {
+  let v = e.target.value;
+  document.querySelector("#one").style.setProperty("--radius", v + "px");
+  document.querySelector("#two").style.setProperty("--radius", v + "px");
+});
+
+      </script>
+</body>
+</html>
