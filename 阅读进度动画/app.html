@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /* REGISTER VAR TO BE ANIMATABLE*/
+@property --percentage {
+  initial-value: 0;
+  inherits: false;
+  syntax: '<number>';
+}
+
+/* animating the custom prop*/
+@keyframes updatePerc {
+  to {
+    --percentage: 100;
+  }
+}
+
+:root {
+  animation: updatePerc linear; 
+  animation-timeline: scroll();
+  
+  /* create some custom props to derive different effects*/
+ --primary-color: hsl(calc(var(--percentage, 0) * 3.6), 45%, 56%);
+ --angle: calc(var(--percentage, 0) * 3.6deg);
+ --txt: calc(var(--percentage));
+}
+
+/* Drawing the arc */
+.progress:after {
+  background: conic-gradient(
+    var(--primary-color) var(--angle),
+    transparent var(--angle)
+  ); 
+}
+
+/* Number as text */
+.progress__txt:after {
+  counter-reset: myCounter var(--txt);
+  content: counter(myCounter) "%";
+  display: block;
+}
+
+
+
+  /*COSMETIC*/
+.progress {
+  --borderWidth: 10px;
+	--size: 8rem;
+  border-radius:100%;  
+	width: var(--size);
+	height: var(--size);
+	margin: 60px auto;
+	border: 1px solid white;
+	position: fixed;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+  top: 2rem;
+  right: 2rem;
+  z-index: 2;
+  font-size: 2em;
+}
+.progress:before {
+  border-radius: 100%;
+	content: '';
+	width: calc(var(--size) - var(--borderWidth) );
+	height: calc(var(--size) - var(--borderWidth));
+	position: absolute;
+	background: #222;
+	z-index: 1;
+}
+.progress:after {
+  border-radius: 100%;
+	content: '';
+	position: absolute;
+	top: calc(var(--borderWidth)  / -2);
+	left: calc(var(--borderWidth) / -2);
+	width: calc(var(--size) + var(--borderWidth));
+	height: calc(var(--size) + var(--borderWidth))
+}
+
+.progress__txt {
+  z-index: 2;
+}
+
+/* GENERAL DOCUMENT COSMETIC */
+main{
+  width: min(90%, 80ch);
+  margin-inline: auto;
+
+}
+img {
+  width: 100%;
+}
+body{
+  margin: 0;
+  padding: 0;
+  padding-top: 2rem;
+  font-family: sans-serif;
+  background: #222;
+  color: #bbb;
+}
+
+h1 {
+  width: 100%;   
+  position:sticky;
+  top: 0;
+  color:  var(--primary-color);
+  background: #222;
+  font-size: 5em;
+  line-height: 0.9;
+  z-index: 1;
+  padding-block: 2rem;
+  margin-inline: -2em;
+  padding-inline: 2em;
+}
+p{
+  line-height: 1.75;
+}
+    </style>
+</head>
+<body>
+    <div class="progress">
+        <span class="progress__txt"></span>
+      </div>
+      
+      <main>
+        <h1>Circular reading progress</h1>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Unde labore maxime nostrum rerum cumque, soluta nisi impedit, ratione dolorem pariatur voluptates modi itaque. Possimus ullam cumque voluptas explicabo rem mollitia, accusantium alias perferendis eum cupiditate, officiis eius corporis fugit fuga animi quod sequi sit odio neque? Suscipit atque harum facilis eius perspiciatis ab, officia ducimus mollitia! Quod fuga et ipsa autem aspernatur officiis minus iure veritatis asperiores nam illo facere sequi dolorum dolor ipsum pariatur, odio iste ex eum ad explicabo magni architecto? Corporis laboriosam incidunt veniam? Consequuntur cum mollitia dicta beatae pariatur corrupti nesciunt praesentium blanditiis numquam sapiente delectus ea nobis eaque nisi quasi quod similique repellendus fugiat id, minima eos temporibus, repellat error illum. Enim dolorem voluptatibus beatae voluptatum nemo sunt explicabo autem illo et placeat doloremque laborum alias facilis, nostrum officia neque, nisi cupiditate. Magnam mollitia a error qui ex ipsa earum repellendus nobis nostrum? Iure obcaecati, quidem inventore dicta natus id magnam. Eius id quas rem dignissimos commodi voluptatibus velit enim amet illo asperiores quos, expedita, sapiente veniam a porro facere aut error cumque, quisquam in provident! Nobis beatae officia rerum commodi repudiandae mollitia quas, autem tenetur! Eaque facilis error fuga a consequatur saepe tenetur ut!</p>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Unde labore maxime nostrum rerum cumque, soluta nisi impedit, ratione dolorem pariatur voluptates modi itaque. Possimus ullam cumque voluptas explicabo rem mollitia, accusantium alias perferendis eum cupiditate, officiis eius corporis fugit fuga animi quod sequi sit odio neque? Suscipit atque harum facilis eius perspiciatis ab, officia ducimus mollitia! Quod fuga et ipsa autem aspernatur officiis minus iure veritatis asperiores nam illo facere sequi dolorum dolor ipsum pariatur, odio iste ex eum ad explicabo magni architecto? Corporis laboriosam incidunt veniam? Consequuntur cum mollitia dicta beatae pariatur corrupti nesciunt praesentium blanditiis numquam sapiente delectus ea nobis eaque nisi quasi quod similique repellendus fugiat id, minima eos temporibus, repellat error illum. Enim dolorem voluptatibus beatae voluptatum nemo sunt explicabo autem illo et placeat doloremque laborum alias facilis, nostrum officia neque, nisi cupiditate. Magnam mollitia a error qui ex ipsa earum repellendus nobis nostrum? Iure obcaecati, quidem inventore dicta natus id magnam. Eius id quas rem dignissimos commodi voluptatibus velit enim amet illo asperiores quos, expedita, sapiente veniam a porro facere aut error cumque, quisquam in provident! Nobis beatae officia rerum commodi repudiandae mollitia quas, autem tenetur! Eaque facilis error fuga a consequatur saepe tenetur ut!</p><p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Unde labore maxime nostrum rerum cumque, soluta nisi impedit, ratione dolorem pariatur voluptates modi itaque. Possimus ullam cumque voluptas explicabo rem mollitia, accusantium alias perferendis eum cupiditate, officiis eius corporis fugit fuga animi quod sequi sit odio neque? Suscipit atque harum facilis eius perspiciatis ab, officia ducimus mollitia! Quod fuga et ipsa autem aspernatur officiis minus iure veritatis asperiores nam illo facere sequi dolorum dolor ipsum pariatur, odio iste ex eum ad explicabo magni architecto? Corporis laboriosam incidunt veniam? Consequuntur cum mollitia dicta beatae pariatur corrupti nesciunt praesentium blanditiis numquam sapiente delectus ea nobis eaque nisi quasi quod similique repellendus fugiat id, minima eos temporibus, repellat error illum. Enim dolorem voluptatibus beatae voluptatum nemo sunt explicabo autem illo et placeat doloremque laborum alias facilis, nostrum officia neque, nisi cupiditate. Magnam mollitia a error qui ex ipsa earum repellendus nobis nostrum? Iure obcaecati, quidem inventore dicta natus id magnam. Eius id quas rem dignissimos commodi voluptatibus velit enim amet illo asperiores quos, expedita, sapiente veniam a porro facere aut error cumque, quisquam in provident! Nobis beatae officia rerum commodi repudiandae mollitia quas, autem tenetur! Eaque facilis error fuga a consequatur saepe tenetur ut!</p>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Unde labore maxime nostrum rerum cumque, soluta nisi impedit, ratione dolorem pariatur voluptates modi itaque. Possimus ullam cumque voluptas explicabo rem mollitia, accusantium alias perferendis eum cupiditate, officiis eius corporis fugit fuga animi quod sequi sit odio neque? Suscipit atque harum facilis eius perspiciatis ab, officia ducimus mollitia! Quod fuga et ipsa autem aspernatur officiis minus iure veritatis asperiores nam illo facere sequi dolorum dolor ipsum pariatur, odio iste ex eum ad explicabo magni architecto? Corporis laboriosam incidunt veniam? Consequuntur cum mollitia dicta beatae pariatur corrupti nesciunt praesentium blanditiis numquam sapiente delectus ea nobis eaque nisi quasi quod similique repellendus fugiat id, minima eos temporibus, repellat error illum. Enim dolorem voluptatibus beatae voluptatum nemo sunt explicabo autem illo et placeat doloremque laborum alias facilis, nostrum officia neque, nisi cupiditate. Magnam mollitia a error qui ex ipsa earum repellendus nobis nostrum? Iure obcaecati, quidem inventore dicta natus id magnam. Eius id quas rem dignissimos commodi voluptatibus velit enim amet illo asperiores quos, expedita, sapiente veniam a porro facere aut error cumque, quisquam in provident! Nobis beatae officia rerum commodi repudiandae mollitia quas, autem tenetur! Eaque facilis error fuga a consequatur saepe tenetur ut!</p>
+      </main>
+</body>
+</html>
