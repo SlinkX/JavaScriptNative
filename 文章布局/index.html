@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        :root {
+  --font-display: usual, sans-serif;
+  --font-body: kepler-std, sans-serif;
+
+  --black: hsl(0, 0%, 12%);
+  --grey: hsl(0, 0%, 24%);
+  --grey-light: hsl(0, 0%, 42%);
+
+  --container-width: min(94ch, 100%);
+}
+
+body {
+  font-family: var(--font-body);
+  color: var(--black);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5 {
+  font-family: var(--font-display);
+}
+
+a {
+  color: var(--black);
+  text-decoration: unset;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+img {
+  max-width: 100%;
+}
+
+.categories,
+.headline,
+.byline {
+  padding-left: 16px;
+  padding-right: 16px;
+}
+
+.categories {
+  font-size: 0.75rem;
+  letter-spacing: 0.5px;
+  margin-bottom: 32px;
+  text-transform: uppercase;
+}
+
+.headline {
+  display: grid;
+  row-gap: 12px;
+  grid-template-columns: 4fr 1fr;
+}
+
+.headline h2 {
+  font-size: clamp(1.75rem, 9vw + 1rem, 2.75rem);
+  grid-column-start: 1;
+}
+
+.headline p {
+  font-size: 1.5rem;
+  color: var(--grey);
+  line-height: 1.35;
+  grid-column-start: 1;
+}
+
+.byline,
+.byline a {
+  font-size: 0.85rem;
+  color: var(--grey-light);
+}
+
+.byline div:not(:last-child):after {
+  position: relative;
+  content: "/";
+}
+
+.byline a {
+  text-decoration: underline;
+}
+
+.byline {
+  display: flex;
+  column-gap: 8px;
+  padding-top: 32px;
+  padding-bottom: 32px;
+}
+
+.container .fullbleed {
+  grid-column: 1 / -1;
+}
+
+.container .fullbleed figure img {
+  width: 100%;
+  object-fit: cover;
+  height: 400px;
+}
+
+.container .fullbleed figure figcaption {
+  margin: 0 auto;
+  width: var(--container-width);
+  padding: 8px 0;
+}
+
+.social {
+  display: flex;
+  column-gap: 8px;
+}
+
+.social div {
+  background: linear-gradient(90deg, #dcbba4, #ff9f84);
+  height: 24px;
+  width: 24px;
+  border-radius: 100%;
+}
+
+article {
+  padding-top: 64px;
+  padding-bottom: 64px;
+  display: grid;
+  grid-template-columns: 1fr 4fr;
+  grid-auto-flow: dense;
+}
+
+article p {
+  font-size: 1.25rem;
+  line-height: 1.25;
+  margin-bottom: 16px;
+  grid-column: 2;
+}
+
+article .fullbleed {
+  margin-top: 32px;
+  margin-bottom: 32px;
+}
+
+.container {
+  display: grid;
+  grid-template-columns: 1fr var(--container-width) 1fr;
+}
+
+.container:first-of-type {
+  margin-top: 64px;
+}
+
+.container > * {
+  display: grid;
+  grid-column: 2 / -2;
+}
+
+.container blockquote {
+  grid-column: 1 / -1;
+  font-size: 3rem;
+  padding: 1rem 1rem 2rem 1rem;
+}
+
+@media (max-width: 720px) {
+  article {
+    grid-template-columns: 1fr;
+  }
+
+  article p,
+  .social {
+    grid-column: 1;
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+
+  .social {
+    margin-bottom: 32px;
+  }
+}
+
+    </style>
+</head>
+<body>
+    <div class="container">
+
+        <div class="categories">
+          <a href="#">Thoughts</a>
+        </div>
+      
+        <div class="headline">
+          <h2>
+            How I got my first job
+          </h2>
+          <p>
+            My first job was at a .NET shop. I knew a little bit of Visual Basic and I had heard of ASP.Net. No joke. When I was being interviewed at my first job I was asked "Is your .NET experience in WebForms or MVC?" I stared blankly and answered "Web...Forms...?" The interviewer looked back at me and said "That's exactly what we use here. When can you start?"
+          </p>
+        </div>
+      
+        <div class="byline">
+          <div>
+            Written by <a href="#">David East</a>
+          </div>
+          <div>
+            Photography by <a href="https://unsplash.com/@saralea">Various</a>
+          </div>
+          <div>
+            Posted on June 1st 2021
+          </div>
+        </div>
+      
+        <div class="fullbleed">
+          <figure>
+            <img src="https://images.unsplash.com/photo-1505081564132-169a067802f6?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1498&q=80" alt="The Lincoln Memorial from the view of the reflecting pool in Washington DC. There is an orange sunset." />
+            <figcaption>
+              The Lincoln Memorial from the view of the reflecting pool in Washington DC. There is an orange sunset. Photo courtesy of <a href="https://unsplash.com/@mischievous_penguins">Casey Horner</a>.
+            </figcaption>
+          </figure>
+        </div>
+      
+        <article>
+      
+          <div class="social">
+            <div></div>
+            <div></div>
+            <div></div>
+          </div>
+      
+          <p>
+            My first job was at a .NET ship. I knew a little bit of Visual Basic and I had heard of ASP.Net. No joke. When I was being interviewed at my first job I was asked "Is your .NET experience in WebForms or MVC?" I stared blankly and answered "Web...Forms...?" The interviewer looked back at me and said "That's exactly what we use here. When can you start?"
+          </p>
+      
+          <p>
+            I left and bought a book called "30 Days to learn WebForms". I went through that entire book in 5 days.
+          </p>
+      
+          <p>
+            When I started that Monday I felt really good about myself. I walked into the office at 8:30am. A man asked me who I was. I told them I was a new hire. He looked skeptical and asked me if I was in the right place. I told him George had hired me last week. He said George wasn't here today and again asked me if I was sure I was in the right place. I told him I was. He looked at me for a few seconds and finally said "Okay. Good enough for me. Let's get you a computer."
+          </p>
+      
+          <p>
+            I was walked back into the a big cubical room and given my own little slice at a large connected desk. Another man walked me through setting up my computer. He checked the code for my project using Team Foundation Server. He opened up a file, it had over 50,000 lines of code in it. My heart sank. The man said "This should all look pretty standard to you."
+          </p>
+      
+          <blockquote>
+            "Oh my god. My college professors were right. The real world is really freaking hard."
+          </blockquote>
+      
+          <p>
+            My mind began to race. My heart was beating rapidly. "Oh my god. My college professors were right." I thought. "The real world is really freaking hard. There's probably every sorting algorthm implemented from scratch in here. I should have studied harder!"
+          </p>
+      
+          <div class="fullbleed">
+            <figure>
+              <img src="https://images.unsplash.com/photo-1565103575388-72a501f3d752?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1500&q=80" alt="">
+              <figcaption>The halls of the Capitol building by <a href="https://unsplash.com/@saralea">Sara Cottle</a>.</figcaption>
+            </figure>
+      
+          </div>
+          <p>
+            Little did I know that the file was generated by an ORM. No one could read that code.
+          </p>
+        </article>
+      
+      </div>
+</body>
+</html>
