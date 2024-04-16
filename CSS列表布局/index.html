@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        
+:root {
+  --dark: #1b1b1b;
+  --light: hsl(0deg 0% 100%);
+}
+
+body {
+  background: var(--dark);
+  display: grid;
+  font-family: "Rethink Sans", sans-serif;
+  font-size: 1rem;
+  gap: 1.5rem;
+  line-height: 1.35;
+  padding: 3rem;
+  place-items: center;
+}
+
+h2 { margin: 0; }
+  
+.card {
+  align-items: center;
+  background: var(--light);
+  border-radius: 12px;
+  color: var(--dark);
+  display: grid;
+  gap: 1.5rem;
+  grid-template-columns: 10rem 1fr;
+  padding: 1.5rem;
+  width: min(100%, 50ch);
+}
+
+.card h2 {
+  color: dodgerblue;
+}
+
+.card img {
+  aspect-ratio: 1;
+  filter: grayscale(100%);
+  border-radius: 50%;
+  max-width: 100%;
+}
+
+.inverse h2 {
+  color: aquamarine;
+}
+
+.fancy {
+  --border: 5px solid aquamarine;
+  border: var(--border);
+}
+
+.fancy h2 {
+  color: darkgreen;
+}
+
+.fancy img {
+    border: var(--border);
+    filter: grayscale(0%);
+}
+
+.inverse {
+  color: white;
+  background: black;
+}
+
+
+    </style>
+</head>
+<body>
+    <article class="card">
+        <img src="https://images.unsplash.com/photo-1707767787271-b00e648a61e4?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3wzMjM4NDZ8MHwxfHJhbmRvbXx8fHx8fHx8fDE3MDg1MzQ3Nzh8&ixlib=rb-4.0.3&q=80&w=400" alt="A female and male lion couple perched on a large, round rock looking stoically toward the west.">
+        <div>
+          <h2>Heading</h2>
+          <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit.</p>
+        </div>
+      </article>
+      
+      <article class="card inverse">
+        <img src="https://images.unsplash.com/photo-1707767787271-b00e648a61e4?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3wzMjM4NDZ8MHwxfHJhbmRvbXx8fHx8fHx8fDE3MDg1MzQ3Nzh8&ixlib=rb-4.0.3&q=80&w=400" alt="A female and male lion couple perched on a large, round rock looking stoically toward the west.">
+        <div>
+          <h2>Heading</h2>
+          <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit.</p>
+        </div>
+      </article>
+      
+      <article class="card fancy">
+        <img src="https://images.unsplash.com/photo-1707767787271-b00e648a61e4?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3wzMjM4NDZ8MHwxfHJhbmRvbXx8fHx8fHx8fDE3MDg1MzQ3Nzh8&ixlib=rb-4.0.3&q=80&w=400" alt="A female and male lion couple perched on a large, round rock looking stoically toward the west.">
+        <div>
+          <h2>Heading</h2>
+          <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit.</p>
+        </div>
+      </article>
+</body>
+</html>
