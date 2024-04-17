@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        @import url("https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Comfortaa:wght@500&display=swap");
+
+:root {
+	--base-width: 960px;
+}
+
+body {
+	font-size: 16px;
+	background-color: #5500ab;
+}
+
+* {
+	box-sizing: border-box;
+}
+
+.headline {
+	color: #3b2600;
+	font-family: "Press Start 2P", cursive;
+	font-size: 2rem;
+	font-weight: bold;
+	text-align: center;
+	background-color: #fff314;
+	padding: 2.5rem 2rem 2.5rem;
+}
+
+.subhead {
+	color: #ffffff;
+	font-family: "Press Start 2P", cursive;
+	font-size: 1.25rem;
+	background-color: #000000;
+	width: calc(100% - 3rem);
+	max-width: var(--base-width);
+	padding: 1.5rem;
+	margin: 0 auto;
+	border: solid 0.3rem #00850b;
+	border-radius: 1rem;
+	box-shadow: 0 0.6rem 1.5rem rgba(0, 0, 0, 0.3);
+	transform: translateY(-1rem);
+}
+
+.article-meta {
+	width: calc(100% - 6rem);
+	max-width: calc(var(--base-width) - 6rem);
+	margin: 0.5rem auto 1rem;
+	display: grid;
+	grid-template-columns: auto auto;
+	grid-template-rows: auto auto auto;
+	justify-content: start;
+	align-content: start;
+}
+
+#author-avatar {
+	border: solid 0.3rem #f7ff12;
+	margin-right: 1rem;
+	grid-row-start: span 3;
+	border-radius: 50%;
+	box-shadow: 0 0.4rem 1rem rgba(0, 0, 0, 0.3);
+}
+
+.byline,
+.dateline {
+	color: #ffffff;
+	font-family: "Fredoka One", cursive;
+	text-shadow: 0 0.2rem 0.5rem rgba(0, 0, 0, 0.3);
+	margin-bottom: 1rem;
+}
+
+.byline {
+	font-size: 1.75rem;
+}
+
+.dateline {
+	font-size: 1.25rem;
+}
+
+.article-tags {
+	display: flex;
+	flex-wrap: wrap;
+}
+
+.tag {
+	color: #5e4700;
+	font-family: "Comfortaa", cursive;
+	font-size: 0.8rem;
+	background-color: #ffce3b;
+	padding: 0.6rem 1.1rem;
+	margin-bottom: 0.5rem;
+	margin-right: 1.2rem;
+	border-radius: 0.5rem;
+	box-shadow: 0 0.4rem 1rem rgba(0, 0, 0, 0.3);
+	transition: all 256ms ease-out;
+}
+
+.tag:hover {
+	box-shadow: 0 0 2rem rgba(255, 255, 255, 0.5);
+	transform: scale(1.2);
+}
+
+.article-meta ~ p,
+.article-meta ~ h2,
+.article-meta ~ figure {
+	color: #ffffff;
+	font-family: "Comfortaa", cursive;
+	width: calc(100% - 4rem);
+	max-width: calc(var(--base-width) - 4rem);
+	line-height: 150%;
+	margin: 0 auto 1rem;
+}
+
+.article-meta ~ p {
+	text-align: justify;
+}
+
+.article-meta ~ h2 {
+	font-size: 1.5rem;
+	font-weight: bold;
+}
+
+.article-meta ~ aside {
+	color: #ffffff;
+	font-family: "Press Start 2P", cursive;
+	font-size: 1.25rem;
+	text-align: center;
+	background-color: #000000;
+	width: calc(100% - 8rem);
+	max-width: calc(var(--base-width) - 8rem);
+	padding: 1.5rem;
+	border: solid 0.3rem #7fff36;
+	margin: 1rem auto 1.5rem;
+	border-radius: 0.75rem;
+	box-shadow: 0 0.6rem 1.5rem rgba(0, 0, 0, 0.3);
+}
+
+.article-meta ~ figure img {
+	width: 50%;
+	vertical-align: top;
+	margin-bottom: -0.5rem;
+	display: block;
+	box-shadow: 0 0.6rem 1.5rem rgba(0, 0, 0, 0.3);
+}
+
+.article-meta ~ figure figcaption {
+	color: #5e4700;
+	font-size: 0.8rem;
+	background-color: #ffce3b;
+	width: auto;
+	padding: 0.5rem 1rem;
+	margin-left: 1.5rem;
+	display: inline-block;
+	border-radius: 0.7rem;
+	box-shadow: 0 0.6rem 1.5rem rgba(0, 0, 0, 0.3);
+	transform: translateY(-0.5rem);
+}
+
+    </style>
+</head>
+<body>
+    <h1 class="headline">Arcade Life</h1>
+<h2 class="subhead">The next generation of arcade gamers top the leaderboard</h2>
+<div class="article-meta">
+	<svg id="author-avatar" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg" width="80" height="80">
+		<title id="avatarTitle">Author Avatar</title>
+		<desc id="avatarDesc">A cartoon avatar of a smiling purple square on a blue background.</desc>
+		<mask id="mask__beam" maskUnits="userSpaceOnUse" x="0" y="0" width="36" height="36">
+			<rect width="36" height="36" rx="72" fill="white"></rect>
+		</mask>
+		<g mask="url(#mask__beam)">
+			<rect width="36" height="36" fill="#0ebeff"></rect>
+			<rect x="0" y="0" width="36" height="36" transform="translate(6 6) rotate(192 18 18) scale(1)" fill="#754cac" rx="6"></rect>
+			<g transform="translate(0 2) rotate(-2 18 18)">
+				<path d="M13,19 a1,0.75 0 0,0 10,0" fill="white"></path>
+				<rect x="12" y="14" width="1.5" height="2" rx="1" stroke="none" fill="white"></rect>
+				<rect x="22" y="14" width="1.5" height="2" rx="1" stroke="none" fill="white"></rect>
+			</g>
+		</g>
+	</svg>
+	<p class="byline">by Penny Pen</p>
+	<p class="dateline">June 21, 2021</p>
+	<p class="article-tags">
+		<span class="tag">culture</span> <span class="tag">games</span> <span class="tag featured">featured</span>
+	</p>
+</div>
+<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Facilis quidem est minima quam! Laborum odit quidem earum perferendis eius laudantium perspiciatis similique deleniti delectus suscipit, cum corrupti facere reprehenderit esse.</p>
+<p>Animi aut, atque quibusdam similique distinctio enim iure, blanditiis rerum autem illum eum in. Dolorem quasi aspernatur nemo deserunt quo, libero dolore atque magni, ullam nihil corrupti et illo earum?</p>
+<p>Quos, ad? Et, iure. Officia fuga unde quibusdam nemo modi perspiciatis quisquam consectetur voluptates, dolore ab eaque voluptatem corporis placeat consequatur itaque qui asperiores. Consequuntur quas vitae animi est ea!</p>
+<p>Accusantium nemo labore corrupti laudantium! Quo reprehenderit ea perspiciatis temporibus! Illo sapiente harum fuga molestias temporibus iste animi. Velit, tenetur mollitia sit magni nulla quos veniam molestias consectetur aliquam eaque.</p>
+<p>Voluptatem, omnis, placeat recusandae iste explicabo accusantium velit laboriosam voluptatum similique, fugit culpa enim! Suscipit labore odit porro assumenda, molestiae aperiam laboriosam explicabo nemo soluta facere sed libero magnam. Odio.</p>
+
+<aside>
+	<p>Quos, ad? Et, iure. Libero dolore atque magni.</p>
+</aside>
+
+<figure><img src="https://assets.codepen.io/t-1/freddy-g-lhy1lY3CyLI-unsplash.jpg" alt="a smiling person in a pink hoodie, standing in front of a bright pink lighted arcade basketball game. " />
+	<figcaption>Photo by Freddy G</figcaption>
+</figure>
+<!-- full size image: https://images.unsplash.com/flagged/photo-1556339911-7ef846e7db43-->
+
+<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Facilis quidem est minima quam! Laborum odit quidem earum perferendis eius laudantium perspiciatis similique deleniti delectus suscipit, cum corrupti facere reprehenderit esse. Sed officia ipsum, soluta quibusdam enim quisquam ea atque nulla sunt temporibus, dolorum veniam dolor aspernatur quod. Praesentium vitae exercitationem quod, inventore eius quidem ea sit, nemo reprehenderit voluptatum officia.</p>
+<p>Animi aut, atque quibusdam similique distinctio enim iure, blanditiis rerum autem illum eum in. Dolorem quasi aspernatur nemo deserunt quo, libero dolore atque magni, ullam nihil corrupti et illo earum?</p>
+<p>Voluptatem, omnis, placeat recusandae iste explicabo accusantium velit laboriosam voluptatum similique, fugit culpa enim! Suscipit labore odit porro assumenda, molestiae aperiam laboriosam explicabo nemo soluta facere sed libero magnam. Odio.</p>
+<p>Quae, cumque blanditiis? Nisi rem ullam, ducimus qui praesentium, temporibus mollitia ex voluptatibus aut accusamus reprehenderit soluta eius expedita dicta adipisci debitis repudiandae quibusdam laborum possimus cupiditate quidem doloribus quas.</p>
+<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Harum vitae debitis reiciendis nam molestias, iure, recusandae magnam cupiditate ut dolore aliquam nesciunt ipsum sit illum nihil quibusdam mollitia veritatis maiores.</p>
+
+<h2>High Scores &amp; High Drama</h2>
+
+<p>Voluptatem, omnis, placeat recusandae iste explicabo accusantium velit laboriosam voluptatum similique, fugit culpa enim! Suscipit labore odit porro assumenda, molestiae aperiam laboriosam explicabo nemo soluta facere sed libero magnam. Odio.</p>
+<p>Animi aut, atque quibusdam similique distinctio enim iure, blanditiis rerum autem illum eum in. Dolorem quasi aspernatur nemo deserunt quo, libero dolore atque magni, ullam nihil corrupti et illo earum?</p>
+<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Facilis quidem est minima quam! Laborum odit quidem earum perferendis eius laudantium perspiciatis similique deleniti delectus suscipit, cum corrupti facere reprehenderit esse.</p>
+
+<figure><img src="https://assets.codepen.io/t-1/cassidy-james-blaede-1lzJt360gkE-unsplash.jpg" alt="two people playing Guitar Hero Arcade. " />
+	<figcaption>Photo by Cassidy James Blaede</figcaption>
+</figure>
+<!-- full size image: https://images.unsplash.com/photo-1536818968680-deeec2e9fd11-->
+
+<p>Voluptatem, omnis, placeat recusandae iste explicabo accusantium velit laboriosam voluptatum similique, fugit culpa enim! Suscipit labore odit porro assumenda, molestiae aperiam laboriosam explicabo nemo soluta facere sed libero magnam. Odio.</p>
+<p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Id amet ad blanditiis vero delectus incidunt tempore reiciendis eius qui vel placeat reprehenderit, ut, dolore asperiores possimus impedit. Ipsum, culpa eaque!</p>
+<p>Velit vero esse quisquam accusantium? Dolore alias, quaerat quod excepturi officiis ipsa placeat officia necessitatibus illo, vero quasi esse aut. Doloremque nesciunt placeat animi saepe tempore aspernatur, officia vitae laudantium!</p>
+
+<h2>Leveling Up</h2>
+<p>Animi aut, atque quibusdam similique distinctio enim iure, blanditiis rerum autem illum eum in. Dolorem quasi aspernatur nemo deserunt quo, libero dolore atque magni, ullam nihil corrupti et illo earum?</p>
+<figure><img src="https://assets.codepen.io/t-1/nick-jones-QTk3Llc-oKU-unsplash.jpg" alt="a person wearing a bucket hat, sitting on a skee ball machine lane. " />
+	<figcaption>Photo by Nick Jones</figcaption>
+</figure>
+
+<!-- full size image: https://images.unsplash.com/photo-1601637155580-ac6c49428450-->
+
+<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Facilis quidem est minima quam! Laborum odit quidem earum perferendis eius laudantium perspiciatis similique deleniti delectus suscipit, cum corrupti facere reprehenderit esse.</p>
+<p>Voluptatem, omnis, placeat recusandae iste explicabo accusantium velit laboriosam voluptatum similique, fugit culpa enim! Suscipit labore odit porro assumenda, molestiae aperiam laboriosam explicabo nemo soluta facere sed libero magnam. Odio.</p>
+<p>Animi aut, atque quibusdam similique distinctio enim iure, blanditiis rerum autem illum eum in. Dolorem quasi aspernatur nemo deserunt quo, libero dolore atque magni, ullam nihil corrupti et illo earum?</p>
+<p>Voluptatem, omnis, placeat recusandae iste explicabo accusantium velit laboriosam voluptatum similique, fugit culpa enim! Suscipit labore odit porro assumenda, molestiae aperiam laboriosam explicabo nemo soluta facere sed libero magnam. Odio.</p>
+<p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Id amet ad blanditiis vero delectus incidunt tempore reiciendis eius qui vel placeat reprehenderit, ut, dolore asperiores possimus impedit. Ipsum, culpa eaque!</p>
+
+<figure><img src="https://assets.codepen.io/t-1/ersin-mandaliev-C5DC5bJhpRE-unsplash.jpg" alt="a person in black high-heeled boots sitting on an arcade basketball game. " />
+	<figcaption>Photo by Ersin Mandaliev</figcaption>
+</figure>
+
+<!-- full size image: https://images.unsplash.com/flagged/photo-1556491168-3e6ffa3e26b2-->
+
+<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Facilis quidem est minima quam! Laborum odit quidem earum perferendis eius laudantium perspiciatis similique deleniti delectus suscipit, cum corrupti facere reprehenderit esse.</p>
+<p>Velit vero esse quisquam accusantium? Dolore alias, quaerat quod excepturi officiis ipsa placeat officia necessitatibus illo, vero quasi esse aut. Doloremque nesciunt placeat animi saepe tempore aspernatur, officia vitae laudantium!</p>
+
+<figure><img src="https://assets.codepen.io/t-1/nick-jones-g7jhzbd9WFQ-unsplash.jpg" alt="a person in a white t-shirt sitting on a wheel of fortune arcade game. " />
+	<figcaption>Photo by Nick Jones</figcaption>
+</figure>
+
+<!-- full size image: https://images.unsplash.com/photo-1604112900927-e4d6d3ce3a2e -->
+
+<p>Asperiores cum quisquam voluptate adipisci nihil ipsa eum libero recusandae inventore facilis modi nulla, provident ut, ad explicabo magnam unde voluptates commodi.</p>
+<p>Consectetur sed, itaque modi fugit asperiores similique maxime voluptatum incidunt labore vero cumque provident, deleniti nam? Molestiae impedit nostrum soluta quo iure, iste, nobis expedita minus ad officia dolor saepe.</p>
+<aside>
+	<p>Labore vero cumque provident, deleniti nam, cumque vero.</p>
+</aside>
+<p>Consectetur sed, itaque modi fugit asperiores similique maxime voluptatum incidunt labore vero cumque provident, deleniti nam? Molestiae impedit nostrum soluta quo iure, iste, nobis expedita minus ad officia dolor saepe.</p>
+<p>Aperiam est ab harum alias quae rem, cumque vero. Dolore possimus quas eius dolor voluptatibus cumque velit, ratione aspernatur voluptatem? Nulla voluptatem quaerat placeat error, ipsam alias dignissimos odit excepturi?</p>
+
+<h2>Game Over?</h2>
+
+<p>Animi aut, atque quibusdam similique distinctio enim iure, blanditiis rerum autem illum eum in. Dolorem quasi aspernatur nemo deserunt quo, libero dolore atque magni, ullam nihil corrupti et illo earum?</p>
+
+<figure><img src="https://assets.codepen.io/t-1/element5-digital-dwcC-OJ-bRs-unsplash.jpg" alt="three neon-lit skee ball lanes. " />
+	<figcaption>Photo by Element5 Digital</figcaption>
+</figure>
+
+<!-- full size image: https://images.unsplash.com/photo-1533236897111-3e94666b2edf -->
+
+<p>Velit vero esse quisquam accusantium? Dolore alias, quaerat quod excepturi officiis ipsa placeat officia necessitatibus illo, vero quasi esse aut. Doloremque nesciunt placeat animi saepe tempore aspernatur, officia vitae laudantium!</p>
+<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Facilis quidem est minima quam! Laborum odit quidem earum perferendis eius laudantium perspiciatis similique deleniti delectus suscipit, cum corrupti facere reprehenderit esse.</p>
+<p>Aperiam est ab harum alias quae rem, cumque vero. Dolore possimus quas eius dolor voluptatibus cumque velit, ratione aspernatur voluptatem? Nulla voluptatem quaerat placeat error, ipsam alias dignissimos odit excepturi?</p>
+<p>Consectetur sed, itaque modi fugit asperiores similique maxime voluptatum incidunt labore vero cumque provident, deleniti nam? Molestiae impedit nostrum soluta quo iure, iste, nobis expedita minus ad officia dolor saepe.</p>
+<aside>
+	<p>Labore vero cumque provident, deleniti nam, cumque vero.</p>
+</aside>
+<p>Consectetur sed, itaque modi fugit asperiores similique maxime voluptatum incidunt labore vero cumque provident, deleniti nam? Molestiae impedit nostrum soluta quo iure, iste, nobis expedita minus ad officia dolor saepe.</p>
+<p>Aperiam est ab harum alias quae rem, cumque vero. Dolore possimus quas eius dolor voluptatibus cumque velit, ratione aspernatur voluptatem? Nulla voluptatem quaerat placeat error, ipsam alias dignissimos odit excepturi?</p>
+</body>
+</html>
