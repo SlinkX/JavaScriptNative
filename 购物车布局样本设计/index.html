@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        @import url("https://fonts.googleapis.com/css2?family=Reggae+One&family=Source+Sans+Pro&family=Oleo+Script&family=Dela+Gothic+One&family=Atma&display=swap");
+
+/* ----- RESET ----- */
+* {
+	padding: 0;
+	margin: 0;
+	box-sizing: border-box;
+}
+
+body {
+	font-size: 16px;
+	background-color: #e2efff;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+body,
+select,
+option,
+button {
+	font-family: "Source Sans Pro", sans-serif;
+}
+
+header {
+	background-color: #1a1a1c;
+	text-shadow: 0 -1px #0a0a0a;
+	width: 100%;
+	padding: 1.8rem 2.2rem;
+	display: grid;
+	justify-content: start;
+	align-items: center;
+}
+
+#brand-name {
+	color: #ededed;
+	font-family: "Reggae One", cursive;
+	flex-shrink: 1;
+}
+
+.tagline {
+	color: #b3b3b3;
+	font-family: "Oleo Script", cursive;
+	flex-shrink: 1;
+}
+
+header svg {
+	fill: #ededed;
+	width: 3.2rem;
+	margin-left: 1.4rem;
+	grid-row: 1 / span 2;
+	grid-column: 2 / span 1;
+}
+
+h2,
+.category-description {
+	background-image: linear-gradient(90deg, #f2bc18, #fffc2e);
+	width: calc(100% - calc(2.2rem * 2));
+	max-width: 640px;
+	padding: 2.8rem;
+	transform: translateY(2.2rem);
+}
+
+h2 {
+	color: rgba(0, 0, 0, 0.8);
+	font-family: "Dela Gothic One", cursive;
+	font-size: 2rem;
+	padding-bottom: 1.5rem;
+	margin-bottom: 0;
+	border-radius: 2.7rem 2.7rem 0 0;
+}
+
+.category-description {
+	color: rgba(0, 0, 0, 0.45);
+	font-family: "Atma", cursive;
+	font-size: 1.25rem;
+	padding-top: 0;
+	padding-bottom: 6.5rem;
+	margin-top: 0;
+	border-radius: 0 0 2.7rem 2.7rem;
+}
+
+.item {
+	background-color: rgba(255, 255, 255, 0.5);
+	width: calc(100% - calc(4.8rem * 2));
+	max-width: 480px;
+	padding: 2.8rem;
+	margin-bottom: 2.2rem;
+	display: flex;
+	flex-direction: column;
+	border-radius: 1.7rem;
+	box-shadow: 0 1.5rem 3rem rgba(0, 0, 0, 0.2);
+	transform: translateY(-1rem);
+	backdrop-filter: blur(1.5rem);
+}
+
+.item:last-child {
+	margin-bottom: 0.5rem;
+}
+
+.item h3 {
+	font-size: 1.75rem;
+	font-weight: bold;
+	height: 2.8rem;
+	margin-bottom: 0.5rem;
+}
+
+.item figure {
+	width: 100%;
+	margin-bottom: 1.5rem;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	overflow: hidden;
+	border-radius: 1.5rem;
+}
+
+.item figure img {
+	height: 320px;
+	display: block;
+}
+
+.description {
+	color: rgba(255, 255, 255, 0.7);
+	background-color: rgba(0, 0, 0, 0.5);
+	width: calc(100% - calc(2.8rem * 2));
+	height: 320px;
+	line-height: 1.75rem;
+	padding: 2.5rem;
+	position: absolute;
+	top: calc(2.8rem + 3.3rem);
+	left: 2.8rem;
+	overflow: auto;
+	opacity: 0;
+	border-radius: 1.5rem;
+	transition: opacity 200ms ease-out;
+}
+
+.item figure:hover + .description,
+.description:hover {
+	opacity: 1;
+}
+
+.item button {
+	width: 100%;
+	color: #d99904;
+	font-size: 1.5rem;
+	font-weight: bold;
+	text-shadow: 0 -1px #ffc233;
+	background-image: linear-gradient(#ffe46e 0%, #ffd936 30% 80%, #ffcd19 100%);
+	padding: 1.4rem;
+	border: solid 1px #c98d00;
+	outline: none;
+	border-radius: 2.5rem / 50%;
+	transition: filter 500ms ease-out;
+}
+
+.item button:hover {
+	filter: brightness(90%);
+}
+
+.item button:active {
+	filter: brightness(80%);
+}
+
+.price {
+	font-size: 1.4rem;
+	font-weight: bold;
+	margin-bottom: 1.5rem;
+}
+
+.special {
+	margin-bottom: 0.5rem;
+}
+
+select {
+	padding: 0.8rem 1.2rem;
+	border: solid 1px #efefef;
+	margin-bottom: 1.2rem;
+	outline: none;
+	border-radius: 0.75rem;
+	transition: box-shadow 200ms ease-out;
+}
+
+select:focus,
+select:active {
+	box-shadow: 0 0 0 0.25rem rgba(43, 153, 255, 0.5);
+}
+
+label {
+	margin-bottom: 0.7rem;
+}
+
+    </style>
+</head>
+<body>
+    <header>
+        <h1 id="brand-name">LikeNuShus</h1>
+        <p class="tagline">Lightly Used Shoes, Cheap!</p>
+        <svg viewBox="0 0 640 512" width="100" title="shoe-logo" id="logo">
+            <path d="M192 160h32V32h-32c-35.35 0-64 28.65-64 64s28.65 64 64 64zM0 416c0 35.35 28.65 64 64 64h32V352H64c-35.35 0-64 28.65-64 64zm337.46-128c-34.91 0-76.16 13.12-104.73 32-24.79 16.38-44.52 32-104.73 32v128l57.53 15.97c26.21 7.28 53.01 13.12 80.31 15.05 32.69 2.31 65.6.67 97.58-6.2C472.9 481.3 512 429.22 512 384c0-64-84.18-96-174.54-96zM491.42 7.19C459.44.32 426.53-1.33 393.84.99c-27.3 1.93-54.1 7.77-80.31 15.04L256 32v128c60.2 0 79.94 15.62 104.73 32 28.57 18.88 69.82 32 104.73 32C555.82 224 640 192 640 128c0-45.22-39.1-97.3-148.58-120.81z" />
+        </svg>
+    </header>
+    <h2>Clearance Items</h2>
+    <p class="category-description">Gently used floor model sneakers and discontinued styles at our lowest prices of the year. Get 'em before they're gone!</p>
+    <div class="item">
+        <h3>Asics</h3>
+        <figure>
+            <img src="https://assets.codepen.io/t-1/maksim-larin-jZyacqaR4iI-unsplash.jpg" alt="a pair of blue and red ASICS sneakers">
+            <!-- full size image at: https://images.unsplash.com/photo-1560072810-1cffb09faf0f -->
+            <figcaption>Photo by Maksim Larin</figcaption>
+    
+        </figure>
+        <p class="description">
+            Suede fabric pointed toe stylish cut front low heel sharp on-trend toe point raised heel drop sides unique silhouette. Bow detail metallic eyelets leather lining luxurious finish classic courts formal slingback square toe contrasting cap. Lace up fastening bow detailing high stiletto heel leather lining beautiful lace upper elegant peep toe t-bar strap. Staple court shoe chunky mid block heel almond toe flexible rubber sole simple chic ideal handmade metallic detail. Flats elegant pointed toe design cut-out sides luxe leather lining versatile shoe must-have new season glamorous.</p>
+        <p class="price">$65 USD</p>
+        <p class="special">Free Shipping!</p>
+        <label for="size-select">Size:</label>
+        <select name="size" id="size-select">
+            <option value=""></option>
+            <option value="6">6</option>
+            <option value="6.5">6.5</option>
+            <option value="7" disabled>7</option>
+            <option value="7">7.5</option>
+            <option value="8">8</option>
+            <option value="9">9</option>
+            <option value="9.5" disabled>9.5</option>
+            <option value="10">10</option>
+        </select>
+        <label for="color-select">Color:</label>
+        <select name="color" id="color-select">
+            <option value=""></option>
+            <option value="blue">blue</option>
+            <option value="red">red</option>
+            <option value="black">black</option>
+        </select>
+        <label for="quantity-select">Quantity:</label>
+        <select name="quantity" id="quantity-select">
+            <option value=""></option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+        </select>
+        <button type="button">Add to Cart</button>
+    </div>
+    
+    <div class="item">
+        <h3>Adidas</h3>
+        <figure>
+            <img src="https://assets.codepen.io/t-1/daniel-storek-JM-qKEd1GMI-unsplash.jpg" alt="a pair of white Adidas sneakers with red and blue trim">
+            <!-- full size image at: https://images.unsplash.com/flagged/photo-1556637640-2c80d3201be8 -->
+            <figcaption>Photo by Daniel Storek</figcaption>
+        </figure>
+        <p class="description">
+            Effortless comfortable full leather lining eye-catching unique detail to the toe low 'cut-away' sides clean and sleek. Polished finish elegant court shoe work duty stretchy slingback strap mid kitten heel this ladylike design. Suede fabric pointed toe stylish cut front low heel sharp on-trend toe point raised heel drop sides unique silhouette. Effortless comfortable full leather lining eye-catching unique detail to the toe low 'cut-away' sides clean and sleek.</p>
+    
+        <p class="price">$30 USD</p>
+    
+        <label for="size-select">Size:</label>
+        <select name="size" id="size-select">
+            <option value=""></option>
+            <option value="6">6</option>
+            <option value="6.5" disabled>6.5</option>
+            <option value="7">7</option>
+            <option value="7">7.5</option>
+            <option value="8">8</option>
+            <option value="9">9</option>
+            <option value="9.5" disabled>9.5</option>
+            <option value="10" disabled>10</option>
+        </select>
+    
+        <label for="color-select">Color:</label>
+        <select name="color" id="color-select">
+            <option value=""></option>
+            <option value="olive">olive & black</option>
+            <option value="blue">blue & black</option>
+            <option value="pink">pink & black</option>
+        </select>
+    
+        <label for="quantity-select">Quantity:</label>
+        <select name="quantity" id="quantity-select">
+            <option value=""></option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+        </select>
+    
+        <button type="button">Add to Cart</button>
+    </div>
+    
+    <div class="item">
+        <h3>New Balance</h3>
+        <figure>
+            <img src="https://assets.codepen.io/t-1/felipepelaquim-6zO5VKogoZE-unsplash.jpg" alt="a New Balance sneaker in olive drab with a black logo">
+            <!-- full size image at: https://images.unsplash.com/photo-1539185441755-769473a23570 -->
+            <figcaption>Photo by felipepelaquim</figcaption>
+        </figure>
+        <p class="description">
+            Suede fabric pointed toe stylish cut front low heel sharp on-trend toe point raised heel drop sides unique silhouette. Bow detail metallic eyelets leather lining luxurious finish classic courts formal slingback square toe contrasting cap. Lace up fastening bow detailing high stiletto heel leather lining beautiful lace upper elegant peep toe t-bar strap. Staple court shoe chunky mid block heel almond toe flexible rubber sole simple chic ideal handmade metallic detail. Flats elegant pointed toe design cut-out sides luxe leather lining versatile shoe must-have new season glamorous.</p>
+        <p class="price">$45 USD</p>
+        <p class="special">Just One Left!</p>
+        <select name="size" id="size-select">
+            <option value=""></option>
+            <option value="6">6</option>
+            <option value="6.5" disabled>6.5</option>
+            <option value="7" disabled>7</option>
+            <option value="7" disabled>7.5</option>
+            <option value="8" disabled>8</option>
+            <option value="9" disabled>9</option>
+            <option value="9.5" disabled>9.5</option>
+            <option value="10" disabled>10</option>
+        </select>
+        <label for="color-select">Color:</label>
+        <select name="color" id="color-select">
+            <option value=""></option>
+            <option value="red-blue">white with red and blue trim</option>
+            <option value="black" disabled>white with black trim</option>
+        </select>
+        <label for="quantity-select">Quantity:</label>
+        <select name="quantity" id="quantity-select">
+            <option value=""></option>
+            <option value="1">1</option>
+            <option value="2" disabled>2</option>
+            <option value="3" disabled>3</option>
+            <option value="4" disabled>4</option>
+            <option value="5" disabled>5</option>
+        </select>
+        <button type="button">Add to Cart</button>
+    </div>
+</body>
+</html>
