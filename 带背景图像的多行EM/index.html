@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        @import "normalize.css";
+
+@font-face {
+  font-family: "Geist Sans";
+  src: url("https://assets.codepen.io/605876/GeistVF.ttf") format("truetype");
+}
+
+*,
+*:after,
+*:before {
+	box-sizing: border-box;
+}
+
+:root {
+  color-scheme: dark only;
+	--line: color-mix(in lch, canvasText 15%, transparent);
+}
+
+:root[data-theme=light] {
+	color-scheme: light only;
+	--line: color-mix(in lch, canvasText 35%, transparent);
+}
+
+body {
+	display: grid;
+	place-items: center;
+	min-height: 100vh;
+	font-family:  "Geist Sans", sans-serif;
+	font-weight: 80;
+}
+
+body::before {
+	--size: 60px;
+	content: '';
+	height: 100vh;
+	width: 100vw;
+	position: fixed;
+	background: linear-gradient(
+				90deg,
+				var(--line) 1px,
+				transparent 1px var(--size)
+			)
+			50% 50% / var(--size) var(--size),
+		linear-gradient(var(--line) 1px, transparent 1px var(--size)) 50% 50% /
+			var(--size) var(--size);
+	mask: linear-gradient(-15deg, transparent 40%, white);
+	top: 0;
+	transform-style: flat;
+	pointer-events: none;
+	z-index: -1;
+}
+
+:root {
+  --primary-bg: linear-gradient(var(--primary), var(--primary));
+}
+
+[data-gradient=true] {
+  --primary-bg: conic-gradient(from var(--angle, 180deg) at 50% 70%,hsla(0,0%,98%,1) 0deg,#eec32d 72.0000010728836deg,#ec4b4b 144.0000021457672deg,#709ab9 216.00000858306885deg,#4dffbf 288.0000042915344deg,hsla(0,0%,98%,1) 1turn);
+}
+
+h2 {
+  font-weight: 120;
+	line-height: 1.025;
+  resize: both;
+  overflow: hidden;
+  width: 10ch;
+  background:
+    var(--primary-bg),
+    linear-gradient(var(--secondary) 0 calc(var(--spread) * 1lh), transparent);
+  background-repeat: no-repeat;
+  background-size: 
+    100% calc(var(--highlight) * 1lh),
+    100% calc(100% - (var(--highlight) * 1lh));
+ 	background-position: 0 0, 0 calc(var(--highlight) * 1lh);
+  background-clip: text;
+  color: transparent;
+  text-wrap: balance;
+  font-size: clamp(2rem, 1rem + 4vw, 12rem);
+  display: inline-block;
+  margin: 0;
+}
+
+.wrapper {
+  padding: 2rem;
+  background: var(--bg);
+  position: relative;
+}
+
+@media(prefers-reduced-motion: no-preference) {
+  @property --angle {
+    inherits: true;
+    initial-value: 180deg;
+    syntax: '<angle>';
+  }
+  @keyframes rotate {
+    to { --angle: 540deg; }
+  }
+  [data-gradient=true][data-animate=true] {
+    animation: rotate 6s infinite linear;
+  }
+}
+
+.bear-link {
+	color: canvasText;
+	position: fixed;
+	top: 1rem;
+	left: 1rem;
+	width: 48px;
+	aspect-ratio: 1;
+	display: grid;
+	place-items: center;
+	opacity: 0.8;
+}
+
+:where(.x-link, .bear-link):is(:hover, :focus-visible) {
+	opacity: 1;
+}
+.bear-link svg {
+	width: 75%;
+}
+
+div.tp-dfwv {
+	width: 300px;
+}
+
+::view-transition-group(root) {
+	animation-duration: 1.25s;
+}
+::view-transition-new(root),
+::view-transition-old(root) {
+	mix-blend-mode: normal;
+}
+
+::view-transition-new(root) {
+	animation-name: reveal-light;
+}
+
+::view-transition-old(root) {
+	animation: none;
+}
+
+@keyframes reveal-light {
+	from {
+		clip-path: polygon(130% 0, 130% 0, 115% 100%, 110% 115%);
+	}
+	to {
+		clip-path: polygon(130% 0, -30% 0, -15% 100%, 110% 115%);
+	}
+}
+    </style>
+</head>
+<body>
+    <a class="bear-link" href="https://twitter.com/intent/follow?screen_name=jh3yy" target="_blank" rel="noreferrer noopener">
+        <svg class="w-9" viewBox="0 0 969 955" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="161.191" cy="320.191" r="133.191" stroke="currentColor" stroke-width="20"></circle>
+          <circle cx="806.809" cy="320.191" r="133.191" stroke="currentColor" stroke-width="20"></circle>
+          <circle cx="695.019" cy="587.733" r="31.4016" fill="currentColor"></circle>
+          <circle cx="272.981" cy="587.733" r="31.4016" fill="currentColor"></circle>
+          <path d="M564.388 712.083C564.388 743.994 526.035 779.911 483.372 779.911C440.709 779.911 402.356 743.994 402.356 712.083C402.356 680.173 440.709 664.353 483.372 664.353C526.035 664.353 564.388 680.173 564.388 712.083Z" fill="currentColor"></path>
+          <rect x="310.42" y="448.31" width="343.468" height="51.4986" fill="#FF1E1E"></rect>
+          <path fill-rule="evenodd" clip-rule="evenodd" d="M745.643 288.24C815.368 344.185 854.539 432.623 854.539 511.741H614.938V454.652C614.938 433.113 597.477 415.652 575.938 415.652H388.37C366.831 415.652 349.37 433.113 349.37 454.652V511.741L110.949 511.741C110.949 432.623 150.12 344.185 219.845 288.24C289.57 232.295 384.138 200.865 482.744 200.865C581.35 200.865 675.918 232.295 745.643 288.24Z" fill="currentColor"></path>
+        </svg>
+      </a>
+      <div class="wrapper">
+        <h2>Bringing your ideas to life one pixel at a time.</h2>
+      </div>
+
+
+      <script>
+        import { Pane } from 'https://cdn.skypack.dev/tweakpane'
+
+const CONFIG = {
+  gradient: true,
+  animated: true,
+  dark: true,
+  highlight: 2,
+  spread: 1,
+  primary: '#ffffff',
+  secondary: '#606060',
+}
+
+const CTRL = new Pane({ title: 'Config', expanded: false })
+
+const UPDATE = () => {
+  for (const key of Object.keys(CONFIG)) {
+    document.documentElement.style.setProperty(`--${key}`, CONFIG[key])
+  }
+  document.documentElement.dataset.gradient = CONFIG.gradient
+  document.documentElement.dataset.animate = CONFIG.animated
+}
+
+const HIGHLIGHT_ONE = CTRL.addFolder({ title: 'Highlight One' })
+HIGHLIGHT_ONE.addBinding(CONFIG, 'highlight', { min: 0, max: 5, step: 1, label: 'Spread' })
+HIGHLIGHT_ONE.addBinding(CONFIG, 'primary', { label: 'Color' })
+HIGHLIGHT_ONE.addBinding(CONFIG, 'gradient', { label: 'Use Gradient'})
+HIGHLIGHT_ONE.addBinding(CONFIG, 'animated', { label: 'Animate Gradient'})
+
+const HIGHLIGHT_TWO = CTRL.addFolder({ title: 'Highlight Two' })
+HIGHLIGHT_TWO.addBinding(CONFIG, 'spread', { min: 0, max: 5, step: 1, label: 'Spread' })
+HIGHLIGHT_TWO.addBinding(CONFIG, 'secondary', { label: 'Color' })
+
+const MODE = CTRL.addBinding(CONFIG, 'dark', { label: 'Dark Mode' })
+
+CTRL.on('change', UPDATE)
+MODE.on('change', () => {
+  if (document.startViewTransition) {
+    document.startViewTransition(() => {
+      document.documentElement.dataset.theme = CONFIG.dark ? 'dark' : 'light'
+    })
+  } else {
+    document.documentElement.dataset.theme = CONFIG.dark ? 'dark' : 'light'
+  }
+})
+
+UPDATE()
+
+        </script>
+</body>
+</html>
