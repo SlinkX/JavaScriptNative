@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+  padding: 0;
+  margin: 0;
+  font-family:"Segoe UI",-apple-system,BlinkMacSystemFont,Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif;
+  font-size: calc(1vw + .65em);
+  line-height: 1.4;
+  background-color: #000;
+  color: #fff;
+}
+
+div {
+  width: 90vw;
+  height: 50.625vw;
+  margin: 0 5vw;
+  bacground-color: #fff;
+  color: #000;
+  background-repeat: no-repeat;
+  background-position: 50% 50%;
+  position: relative;
+  background-size: contain;
+  border-top: .25vw solid #000;
+  border-bottom: .25vw solid #000;
+}
+
+div p {
+  position: absolute;
+  background-color: #fff;
+  font-weight: bold;
+  padding: .5em 1em;
+  box-sizing: border-box;
+  text-transform: uppercase;
+}
+
+div:first-child {
+  background-image: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/2729/AmericanChopper_1.jpg);
+}
+
+div:nth-child(2) {
+  background-image: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/2729/AmericanChopper_2.jpg);
+}
+
+div:nth-child(3) {
+  background-image: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/2729/AmericanChopper_3.jpg);
+}
+
+div:nth-child(4) {
+  background-image: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/2729/AmericanChopper_4.jpg);
+}
+
+div:nth-child(5) {
+  background-image: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/2729/AmericanChopper_5.jpg);
+}
+
+div:first-child p, div:nth-child(2) p, div:nth-child(3) p {
+  bottom: 3vw;
+  left: 0;
+  margin: 0 10vw;
+}
+
+div:nth-child(2) p {
+  bottom: 1vw;
+  margin: 0 18vw;
+}
+
+div:nth-child(3) p {
+  bottom: 1vw;
+  margin: 0 12vw;
+}
+
+div:nth-child(4) p {
+  bottom: 1vw;
+  left: 5vw;
+  margin: 0 50vw 0 0;
+}
+
+div:nth-child(5) p {
+  bottom: 0;
+  right: 1vw;
+  margin: 0 0 0 50vw;
+}
+
+span {
+  position: absolute;
+  top: auto;
+  overflow: hidden;
+  clip: rect(1px 1px 1px 1px); /* IE 6/7 */
+  clip: rect(1px, 1px, 1px, 1px);
+  width: 1px;
+  height: 1px;
+  white-space: nowrap;
+}
+    </style>
+</head>
+<body>
+    <main>
+        <div>
+          <span>The father sitting at his desk, angrily pointing away, shouting.</span>
+          <p>
+            This is just a meme, the format of which is often dependent on visuals whose context relies on understanding imagery extant in pop culture
+          </p>
+        </div>
+        <div>
+          <span>The son sitting in front of the desk, animatedly pointing down, leaning forward, and shouting.</span>
+          <p>
+            But the reliance on imagery, by definition, excludes those who cannot see it from participating
+          </p>
+        </div>
+        <div>
+          <span>The father leaning far forward in his chair, clearly shouting at the top of his lungs.</span>
+          <p>
+            Not every gag on the internet needs to be made accessible to all possible users; that alone will stymy the creativity that defines memes
+          </p>
+        </div>
+        <div>
+          <span>The son, standing, throwing a chair straight down into the ground while yelling.</span>
+          <p>
+            You are wantonly depriving those who may enjoy it because of your concern over the effort to make it inclusive
+          </p>
+        </div>
+        <div>
+          <span>The father standing in a doorway, pointing at his departing son, shouting.</span>
+          <p>
+            Perhaps you should take your skills in this space and generate an accessible version of this meme
+          </p>
+        </div>
+      </main>
+</body>
+</html>
