@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /* --------------------- */
+/* Filters ✨✨✨        */
+/* --------------------- */
+
+:root {
+  --filter-blur: 10px;
+  --filter-brightness: 60%;
+  --filter-contrast: 60%;
+  --filter-grayscale: 30%;
+  --filter-hue-rotate: 30%;
+  --filter-saturate: 30%;
+  --filter-invert: 100%;
+}
+
+.Filter[data-filter-name="blur"] .Filter-lens {
+  backdrop-filter: blur(var(--filter-blur));
+}
+
+.Filter[data-filter-name="brightness"] .Filter-lens {
+  backdrop-filter: brightness(var(--filter-brightness));
+}
+
+.Filter[data-filter-name="contrast"] .Filter-lens {
+  backdrop-filter: contrast(var(--filter-contrast));
+}
+
+.Filter[data-filter-name="grayscale"] .Filter-lens {
+  backdrop-filter: grayscale(var(--filter-grayscale));
+}
+
+.Filter[data-filter-name="hue-rotate"] .Filter-lens {
+  backdrop-filter: hue-rotate(var(--filter-hue-rotate));
+}
+
+.Filter[data-filter-name="saturate"] .Filter-lens {
+  backdrop-filter: saturate(var(--filter-saturate));
+}
+
+.Filter[data-filter-name="invert"] .Filter-lens {
+  backdrop-filter: invert(var(--filter-invert));
+}
+
+/* --------------------- */
+/* Global style          */
+/* --------------------- */
+
+body::before {
+  content: "";
+  position: fixed;
+  z-index: -1;
+  inset: 0;
+  background-image: url('https://cdn.pixabay.com/photo/2023/05/03/11/20/bird-7967356_1280.jpg');
+  background-size: cover;
+  background-position: center center;
+}
+
+.Header {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  padding: 12px 24px;
+  border-bottom: 1px solid #fff;
+  font-weight: 700;
+  color: #fff;
+  backdrop-filter: blur(10px) brightness(60%);
+}
+
+.Container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+}
+
+.Filter {
+  display: inline-block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  border: 5px solid #fff;
+  border-radius: 3px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+  transform: translate(-50%, -50%);
+  user-select: none;
+}
+
+.Filter[hidden] {
+  display: none;
+}
+
+.Filter-lens {
+  content: "";
+  display: block;
+  width: 100%;
+  aspect-ratio: 1/1;
+  cursor: pointer;
+}
+
+.Filter-content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  width: 300px;
+  height: 70px;
+  padding: 12px 24px;
+  background: #fff;
+  font-size: 1.5rem;
+  text-align: center;
+}
+
+.Filter-name {
+  position: absolute;
+  top: 0;
+  left: 5px;
+  border-radius: 5px;
+  padding: 2px 8px;
+  background: linear-gradient(-25deg, #4affd3, #4a00d3);
+  color: #fff;
+  font-size: 1rem;
+  font-weight: 700;
+  transform: translateY(-50%);
+}
+
+.Filter input {
+  width: 100%;
+  cursor: pointer;
+}
+
+/* --------------------- */
+/* Other styles          */
+/* --------------------- */
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: 'Poppins', sans-serif;
+  overflow: hidden;
+}
+
+.Me {
+  position: fixed;
+  z-index: 10;
+  bottom: 20px;
+  left: 50%;
+  color: #000;
+  transform: translateX(-50%);
+  font-weight: 700;
+  opacity: .5;
+} 
+    </style>
+</head>
+<body>
+    <header class="Header">
+        <div>
+          <input id="FilterBlur" name="FilterBlur" type="checkbox" data-filter-name="blur" checked/>
+          <label for="FilterBlur">Blur</label>
+        </div>
+        <div>
+          <input id="FilterBrightness" name="FilterBrightness" type="checkbox" data-filter-name="brightness"/>
+          <label for="FilterBrightness">Brightness</label>
+        </div>
+        <div>
+          <input id="FilterContrast" name="FilterContrast" type="checkbox" data-filter-name="contrast"/>
+          <label for="FilterContrast">Contrast</label>
+        </div>
+        <div>
+          <input id="FilterGrayscale" name="FilterGrayscale" type="checkbox" data-filter-name="grayscale"/>
+          <label for="FilterGrayscale">Grayscale</label>
+        </div>
+        <div>
+          <input id="FilterHueRotate" name="FilterHueRotate" type="checkbox" data-filter-name="hue-rotate"/>
+          <label for="FilterHueRotate">Hue-rotate</label>
+        </div>
+        <div>
+          <input id="FilterSaturate" name="FilterSaturate" type="checkbox" data-filter-name="saturate"/>
+          <label for="FilterSaturate">Saturate</label>
+        </div>
+        <div>
+          <input id="FilterInvert" name="FilterInvert" type="checkbox" data-filter-name="invert"/>
+          <label for="FilterInvert">Invert</label>
+        </div>
+      </header>
+      <main>
+      <div class="Container">
+        <div class="Filter" data-filter-name="blur">
+          <div class="Filter-lens"></div>
+          <div class="Filter-content">
+            <label class="Filter-name" for="blur">Blur</label>
+            <input type="range" id="blur" name="blur"
+               value="10" min="0" max="100" />
+          </div>
+        </div>
+        <div class="Filter" data-filter-name="brightness" hidden>
+          <div class="Filter-lens"></div>
+          <div class="Filter-content">
+            <label class="Filter-name" for="brightness">Brightness</label>
+            <input type="range" id="brightness" name="brightness"
+               value="60" min="0" max="200" />
+          </div>
+        </div>
+        <div class="Filter" data-filter-name="contrast" hidden>
+          <div class="Filter-lens"></div>
+          <div class="Filter-content">
+            <label class="Filter-name" for="contrast">Contrast</label>
+            <input type="range" id="contrast" name="contrast"
+               value="60" min="0" max="200" />
+          </div>
+        </div>
+        <div class="Filter" data-filter-name="grayscale" hidden>
+          <div class="Filter-lens"></div>
+          <div class="Filter-content">
+            <label class="Filter-name" for="grayscale">Grayscale</label>
+            <input type="range" id="grayscale" name="grayscale"
+               value="30" min="0" max="100" />
+          </div>
+        </div>
+        <div class="Filter" data-filter-name="hue-rotate" hidden>
+          <div class="Filter-lens"></div>
+          <div class="Filter-content">
+            <label class="Filter-name" for="hue-rotate">Hue-rotate</label>
+            <input type="range" id="hue-rotate" name="hue-rotate"
+               value="30" min="0" max="360" />
+          </div>
+        </div>
+        <div class="Filter" data-filter-name="saturate" hidden>
+          <div class="Filter-lens"></div>
+          <div class="Filter-content">
+            <label class="Filter-name" for="saturate">Saturate</label>
+            <input type="range" id="saturate" name="saturate"
+               value="30" min="0" max="100" />
+          </div>
+        </div>
+        <div class="Filter" data-filter-name="invert" hidden>
+          <div class="Filter-lens"></div>
+          <div class="Filter-content">
+            <label class="Filter-name" for="invert">Invert</label>
+            <input type="range" id="invert" name="invert"
+               value="100" min="0" max="100" />
+          </div>
+        </div>
+      </div>
+      <a class="Me" href="https://twitter.com/DeyJordan" target="_top">Pen by Dey Jordan</a>
+      </main>
+
+
+      <script>
+        const rootElement = document.querySelector(':root');
+const filters = document.querySelectorAll('.Filter');
+const filterTrigger = document.querySelectorAll('.Header input');
+let filterZIndex = 0;
+let previousTouch = undefined;
+
+function updateElementPosition(element, event) {
+  let movementX, movementY;
+
+  if (event.type === 'touchmove') {
+    const touch = event.touches[0];
+    movementX = previousTouch ? touch.clientX - previousTouch.clientX : 0;
+    movementY = previousTouch ? touch.clientY - previousTouch.clientY : 0;
+    previousTouch = touch;
+  } else {
+    movementX = event.movementX;
+    movementY = event.movementY;
+  }
+  
+  const elementY = parseInt(element.style.top || 0) + movementY;
+  const elementX = parseInt(element.style.left|| 0) + movementX;
+
+  element.style.top = elementY + "px";
+  element.style.left = elementX + "px";
+}
+
+function startDrag(element, event) {
+  updateZIndex(element);
+  const updateFunction = (event) => updateElementPosition(element, event);
+  const stopFunction = () => stopDrag({update: updateFunction, stop: stopFunction});
+  document.addEventListener("mousemove", updateFunction);
+  document.addEventListener("touchmove", updateFunction);
+  document.addEventListener("mouseup", stopFunction);
+  document.addEventListener("touchend", stopFunction);
+}
+
+function stopDrag(functions) {
+  previousTouch = undefined;
+  document.removeEventListener("mousemove", functions.update);
+  document.removeEventListener("touchmove", functions.update);
+  document.removeEventListener("mouseup", functions.stop);
+  document.removeEventListener("touchend", functions.stop);
+}
+
+function updateZIndex(element) {
+  element.style.zIndex = filterZIndex;
+  filterZIndex++;
+}
+
+function inputHandler(event) {
+  const unit = event.target.name === 'blur' ? 'px' :
+               event.target.name === 'hue-rotate' ? 'deg' : '%';
+  const value = `${event.target.value}${unit}`;
+  rootElement.style.setProperty(`--filter-${event.target.name}`, value);
+}
+
+filterTrigger.forEach(trigger => {
+  trigger.addEventListener('change', (event) => {
+    const filter = document.querySelector(`.Filter[data-filter-name="${event.target.dataset.filterName}"]`);
+    if (event.currentTarget.checked) {
+      filter.removeAttribute("hidden");
+      updateZIndex(filter);
+    } else {
+      filter.setAttribute("hidden", "");
+    }
+  })
+});
+
+filters.forEach(filter => {
+  const inputElement = filter.querySelector('input');
+  const lensElement = filter.querySelector('.Filter-lens');
+  const startFunction = (event) => startDrag(filter, event);
+  
+  filter.style.top = `0px`;
+  filter.style.left = `0px`;
+  
+  lensElement.addEventListener("mousedown", startFunction);
+  lensElement.addEventListener("touchstart", startFunction);
+  inputElement.addEventListener('input', inputHandler);
+});
+      </script>
+</body>
+</html>
