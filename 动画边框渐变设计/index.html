@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style lang="scss">
+        html {
+  height: 100%;
+  background: #223;
+  display: grid;
+  place-items: center;
+}
+
+.box {
+  --border-size: 3px;
+  --border-angle: 0turn;
+  overflow: hidden;
+  width: 80vmin;
+  height: 50vmin;
+  color: white;
+  font-size: 10vmin;
+  background-image:
+    // conic-gradient(
+    //   from var(--border-angle),
+    //   #213,
+    //   #112 50%,
+    //   #213
+    // ),
+    conic-gradient(from var(--border-angle), transparent 20%, #08f, #f03);
+  background-size: 100%;
+  background-position: center center;
+  background-repeat: no-repeat;
+  position: relative;
+  border-radius: 2rem;
+
+  animation: bg-spin 4s linear infinite;
+  @keyframes bg-spin {
+    to {
+      --border-angle: 1turn;
+    }
+  }
+
+  &:hover {
+    animation-play-state: paused;
+  }
+  & .before {
+    width: calc(100% - 4px);
+    height: calc(100% - 4px);
+    background: #223;
+    top: 2px;
+    left: 2px;
+    position: absolute;
+    border-radius: inherit;
+    display: grid;
+    place-content: center;
+  }
+}
+
+@property --border-angle {
+  syntax: "<angle>";
+  inherits: true;
+  initial-value: 0turn;
+}
+
+    </style>
+</head>
+<body>
+    <div class="box">
+        <div class="before">My button</div>    
+      </div>
+</body>
+</html>
