@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css?family=Anton|Fredoka+One&display=swap');
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500&display=swap');
+
+:root {
+  --bg: #1A1D24;
+}
+
+* {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+body {
+  height: 100vh;
+  width: 100%;
+  background-color: #1f2229;
+  background: radial-gradient(circle 490px, #383d46 0%, #1f2229 80%),
+    black url('https://c.wallhere.com/photos/f7/dd/2048x1251_px_Chile_clouds_lake_landscape_mountain_nature_Patagonia-1076143.jpg!d') 100% 50% no-repeat;
+  background-blend-mode: luminosity;
+  background-color: #1f2229;
+  font-family: 'Poppins', sans-serif;
+  overflow: hidden;
+  position: relative;
+  justify-content: center;
+  align-items: center;
+  margin: 0;
+  padding: 0;
+}
+
+
+
+
+.container {
+   padding: 0;
+   margin: 0 auto;
+   position: relative;
+   height: 100vh;
+   width: 100%;
+   text-align: center;
+}
+
+.codix {
+   position: absolute;
+   width: 100%;
+   font-family: 'Poppins', sans-serif;
+   padding: 0;
+   height: 100vh;
+   letter-spacing: 1px;
+   text-transform: uppercase;
+   text-align: left;
+   font-size: 6vw;
+   font-weight: 700;
+   margin: 0 auto;
+   text-shadow: 0 5px 14px rgba(0,0,0,0.22);
+   animation: colorrr 10s infinite;
+}
+.codix span {
+  display: block;
+}
+.codix span:nth-child(1) {
+  font-size: 250%;
+  line-height: 90%;
+  text-align: left;
+}
+.codix span:nth-child(2) {
+  font-size: 222%;
+  line-height: 100%;
+}
+.codix span:nth-child(3) {
+  font-size: 232%;
+  line-height: 120%;
+}
+@keyframes colorrr {
+  0% {
+       filter: hue-rotate(0deg)
+      }
+  50% {
+       filter: hue-rotate(360deg)
+      }
+}
+.colorbox {
+    background: -webkit-gradient(linear, left top, right top, from(#246EB9), color-stop(#EE4266), color-stop(#FFD23F), color-stop(#3BCEAC), to(#FF6F59));
+    background: linear-gradient(-90deg, #246EB9, #EE4266, #FFD23F, #3BCEAC, #FF6F59);
+      -webkit-background-clip: text;
+   -webkit-text-fill-color: transparent;
+   background-blend-mode: exclusion;
+  background-blend-mode: luminosity;
+}
+.colorrain {
+    position: absolute;
+    display: block;
+    border-radius: 0;
+    -webkit-box-flex: 1;
+    -webkit-flex-grow: 1;
+    -ms-flex-positive: 1;
+    flex-grow: 1;
+    margin: 0;
+    padding: 0;
+    background: -webkit-gradient(linear, left top, right top, from(#246EB9), color-stop(#EE4266), color-stop(#FFD23F), color-stop(#3BCEAC), to(#FF6F59));
+    background: linear-gradient(90deg, #246EB9, #EE4266, #FFD23F, #3BCEAC, #FF6F59);
+    animation: colorrr 10s infinite;
+}
+.colorrain.bottom {position: fixed; bottom: 0; height: 4px; width: 100%; }
+
+/* Media Block */
+
+@media (max-width: 1920px) {
+  .container .codix {
+   font-size: 83px;
+   position: relative;
+  }
+}
+@media (max-width: 1140px) {
+  .container {
+    transform: scale(0.75) translateY(-300px);
+  }
+}
+@media (max-width: 1019px) {
+  .container {
+    transform: scale(0.65) translateY(-500px);
+  }
+}
+@media (max-width: 900px) {
+  .container {
+    transform: scale(0.55) translateY(-800px);
+  }
+}
+@media (max-width: 769px) {
+  .container .codix {
+   font-size: 34px;
+   position: absolute;
+}
+@media (max-width: 620px) {
+  .container .codix {
+   font-size: 33px;
+   position: relative;
+   transform: scale(1.6) translateY(550px);
+  }
+}
+@media (max-width: 480px) {
+  .container .codix {
+   font-size: 31px;
+   position: relative;
+   transform: scale(1.6) translateY(600px);
+  }
+}
+@media (max-width: 340px) {
+  .container .codix {
+   font-size: 27px;
+   position: relative;
+   transform: scale(1.7) translateY(620px);
+  }
+}
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="codix colorbox">Shits on <span>CORONAVIRUS</span> <span style="text-align:center;">and prefers</span> <span style="text-align:right;">❤️ CodePen.io</span>
+        </div>
+       <div class="colorrain bottom"></div>
+      </div>
+</body>
+</html>
