@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+/*   background: linear-gradient(90deg, red, blue); */
+/*   mix-blend-mode: hard-light; */
+}
+body {
+  background: black;
+  color: red;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  font-size: 50px;
+  flex-direction: column;
+  gap: 0px;
+  font-family: sans-serif;
+}
+* {
+  margin: 0;
+  padding: 0;
+}
+p, h1 {
+    background: -webkit-linear-gradient(45deg, #fc00ff, #00dbde);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-weight: bold;
+}
+p {
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+p:after,
+h1:after {
+  display: block;
+  content: '';
+  width: 20px;
+  height: 50px;
+  mix-blend-mode: overlay;
+  background: white;
+  z-index: 1;
+  position: relative;
+  animation: left-right 3s infinite ease;
+  transform: rotate(45deg);
+  box-shadow: 0px 0px 20px 20px white;
+  margin-bottom: -50px;
+}
+p:after {
+    top: -50px;
+}
+h1:after {
+    top: -80px;
+}
+
+@keyframes left-right {
+  0%{
+    left: calc(0% - 80px);
+  }
+  100% {
+    left: calc(100% + 50px);
+  }
+}
+    </style>
+</head>
+<body>
+    <h1>Adam Curzon</h1>
+<p>Full Stack Developer</p>
+</body>
+</html>
