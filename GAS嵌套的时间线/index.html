@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        @import url("https://fonts.googleapis.com/css?family=Signika+Negative:300,400&display=swap");
+body {
+	display: grid;
+	place-items: center;
+	background: cornsilk;
+	font-family: "Signika Negative", sans-serif;
+}
+.banner {
+	display: grid;
+	grid-template-columns: repeat(3, 30vw);
+	grid-template-rows: auto;
+	place-content: center;
+	gap: 1rem;
+	margin-block: 3rem;
+	/* outline: 1px solid; */
+}
+.panel {
+	position: relative;
+	display: grid;
+	place-items: center;
+	aspect-ratio: 2 / 1.3;
+	margin-block: 0.5rem;
+	outline: 1px solid #000;
+	border-radius: 1rem;
+}
+.panel4,
+.panel5,
+.panel6 {
+	width: 30vw;
+	background: blue;
+	box-shadow: 5px 5px 30px -5px rgba(0 0 0 / 0.5);
+}
+img {
+	max-width: 100%;
+	aspect-ratio: 2 / 1.3;
+	border-radius: 1rem;
+	box-shadow: 5px 5px 30px -5px rgba(0 0 0 / 0.5);
+	object-fit: cover;
+}
+.text {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	width: 100%;
+	font-size: max(3.5vw, 14pt);
+	font-weight: 600;
+	text-align: center;
+	color: white;
+	text-shadow: 2px 2px rgba(0, 0, 0, 0.5);
+}
+.text span {
+	display: inline-block;
+}
+
+    </style>
+</head>
+<body>
+    <div class="banner">
+        <div class="panel panel1">
+            <img src="https://picsum.photos/id/301/500/250" alt="">
+            <div class="text">
+                <span>Panel</span> <span>One</span>
+            </div>
+        </div>
+    
+        <div class="panel panel2">
+            <img src="https://picsum.photos/id/201/500/250" alt="">
+            <div class="text">
+                <span>Panel</span> <span>Two</span>
+            </div>
+        </div>
+    
+        <div class="panel panel3">
+            <img src="https://picsum.photos/id/351/500/250" alt="">
+            <div class="text">
+                <span>Panel</span> <span>Three</span>
+            </div>
+        </div>
+    
+        <div class="panel panel4">
+            <div class="text">
+                <span>Panel</span> <span>Four</span>
+            </div>
+        </div>
+    
+        <div class="panel panel5">
+            <div class="text">
+                <span>Panel</span> <span>Five</span>
+            </div>
+        </div>
+    
+        <div class="panel panel6">
+            <div class="text">
+                <span>Panel</span> <span>Six</span>
+            </div>
+        </div>
+    </div>
+    <script>
+        function createPanel(panel) {
+	var tl = new TimelineLite();
+
+	// PANEL
+	// spin panel in 0.8s. stagger interval = 0.2
+	tl.from(
+		panel + " img",
+		0.8,
+		{ scale: 0, rotation: 180, ease: Power4.easeInOut },
+		0.2
+	);
+
+	tl
+		.from(panel, 0.8, { scale: 0, rotation: 180, ease: Power4.easeInOut }, 0.4)
+
+		// TEXT
+		// 0.75 = duration. 0.1 = stagger interval for each word
+		.staggerFrom(
+			panel + " .text span",
+			0.75,
+			{ y: 50, opacity: 0, ease: Power4.easeOut },
+			0.1
+		);
+
+	return tl;
+}
+var master = new TimelineMax({ repeat: 0 });
+// delay start of panel 1 by .75s
+master
+	.add(createPanel(".panel1"), "+=.75")
+	// begin the animation of panel 2 & 3 1.05s before end of previous one
+	.add(createPanel(".panel2"), "-=1.35")
+	.add(createPanel(".panel3"), "-=1.35")
+	.add(createPanel(".panel4"), "-=1.35")
+	.add(createPanel(".panel5"), "-=1.35")
+	.add(createPanel(".panel6"), "-=1.35");
+
+    </script>
+</body>
+</html>
