@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        @import url("https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap");
+
+:root {
+  --text-1: #f8fafc;
+  --text-2: #cbd5e1;
+  --surface-1: #020617;
+  --surface-2: #0f172a;
+  --surface-3: #1e293b;
+  --surface-4: #334155;
+  --button-surface: #1d4ed8;
+  --gradient: linear-gradient(
+    to bottom,
+    hsla(0 0% 0% / 0) 0%,
+    hsla(0 0% 100% / 0.065) 100%
+  );
+}
+
+.fifty-fifty {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.fifty-fifty > * {
+  flex-grow: 1;
+  flex-basis: var(--min-inline-size, 250px);
+}
+
+.card {
+  overflow: hidden;
+  width: 100%;
+  border-radius: 0.5rem;
+  background-image: var(--gradient);
+  box-shadow: inset 0 0 0 1px var(--surface-3);
+}
+
+.card p {
+  color: var(--text-2);
+}
+
+.card img {
+  aspect-ratio: 3 / 2;
+  width: 100%;
+  height: 100%;
+  vertical-align: bottom;
+  object-fit: cover;
+}
+
+.content {
+  padding: 2rem;
+  background-image: var(--surface-gradient);
+}
+
+.flow > * + * {
+  margin-top: 1rem;
+}
+
+.wrapper {
+  width: min(40rem, 100%);
+  margin-inline: auto;
+}
+
+.cluster {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.2rem 0.5rem;
+}
+
+label {
+  display: block;
+}
+
+.tnum {
+  --_offset: 0.04em;
+
+  padding-inline: var(--_offset);
+  letter-spacing: calc(var(--_offset) * -1);
+  font-variant-numeric: tabular-nums;
+  font-weight: 600;
+}
+
+:where(input, button) {
+  font: inherit;
+  color: inherit;
+  padding: 0.25rem 0.5rem;
+  border: 1px solid var(--surface-4);
+  background-color: var(--surface-2);
+  border-radius: 0.15rem;
+}
+
+input[id="size"] {
+  inline-size: 5em;
+}
+
+button {
+  padding-inline: 0.75rem;
+  border-color: var(--button-surface);
+  background-color: var(--button-surface);
+  background-image: var(--gradient);
+}
+
+button:active {
+  translate: 0 1px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+ul {
+  padding-inline-start: 1em;
+}
+
+:where(h2, p) {
+  margin: 0;
+}
+
+:where(h1, h2) {
+  font-weight: 600;
+  letter-spacing: -0.015em;
+  line-height: normal;
+}
+
+h1 {
+  font-size: 1.8rem;
+}
+
+h2 {
+  font-size: 1.5rem;
+}
+
+a {
+  color: #38bdf8;
+}
+
+header {
+  margin-block-end: 2rem;
+}
+
+main {
+  display: grid;
+  gap: 1rem;
+  grid-auto-rows: 1fr;
+}
+
+body {
+  margin: 0;
+  margin-block-end: 4rem;
+  padding: 2rem;
+  font-family: "Inter", sans-serif;
+  color: var(--text-1);
+  line-height: 1.5;
+  background-color: var(--surface-1);
+}
+
+    </style>
+</head>
+<body>
+    <header class="wrapper flow">
+        <h1>50/50 flexbox layout</h1>
+        <form id="size-form">
+          <div class="cluster">
+            <label for="size">Minimum size of each side:</label>
+            <input type="text" id="size" name="size" value="250px" />
+            <button type="submit">Update</button>
+          </div>
+        </form>
+      
+        <ul>
+          <li>Card width: <span class="tnum" id="card-width"></span>px</li>
+          <li>Side width: <span class="tnum" id="side-width"></span>px</li>
+        </ul>
+      </header>
+      
+      <main class="wrapper">
+        <article class="card fifty-fifty">
+          <section class="poster">
+            <img src='https://images.unsplash.com/photo-1516370873344-fb7c61054fa9?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3wzMjM4NDZ8MHwxfHJhbmRvbXx8fHx8fHx8fDE3MDc5MjA5MTF8&ixlib=rb-4.0.3&q=80&w=600' alt='Two people in bathing suits holding surfboards approach the ocean shoreline. One person holds their hand high in the sky.'>
+          </section>
+          <section class="content flow">
+            <h2>Catch some waves</h2>
+            <p>Enim nemo, exercitationem ullam voluptatum vero assumenda qui repellendus dolore.</p>
+          </section>
+        </article>
+      
+        <article class="card fifty-fifty">
+          <section class="poster">
+            <img src='https://images.unsplash.com/photo-1559339352-11d035aa65de?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3wzMjM4NDZ8MHwxfHJhbmRvbXx8fHx8fHx8fDE3MDc5MjU4MTh8&ixlib=rb-4.0.3&q=80&w=600' alt='Beautiful outdoor patio dining area with the ocean and mountain in the background'>
+          </section>
+          <section class="content flow">
+            <h2>Stay for the views</h2>
+            <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Officia illo voluptatibus.</p>
+          </section>
+        </article>
+      </main>
+
+      <script>
+        let root = document.documentElement;
+let form = document.getElementById("size-form");
+let submitBtn = form.querySelector("button");
+let sizeInput = document.getElementById("size");
+let cards = document.querySelectorAll(".card");
+let card = cards[0];
+let side = card.children[0];
+let cardWidthValue = document.getElementById("card-width");
+let sideWidthValue = document.getElementById("side-width");
+
+function reportSizes() {
+  cardWidthValue.textContent = card.clientWidth;
+  sideWidthValue.textContent = side.clientWidth;
+}
+
+function handleSubmit(e) {
+  e.preventDefault();
+
+  let duration = 400;
+  let keyframes = {
+    backgroundColor: ["var(--surface-3)", "var(--surface-3)"],
+    offset: [0.1, 0.4],
+    easing: "ease-out"
+  };
+
+  root.style.setProperty("--min-inline-size", sizeInput.value);
+
+  sizeInput.animate(keyframes, duration);
+
+  for (let card of cards) {
+    card.animate(keyframes, duration);
+  }
+
+  reportSizes();
+}
+
+window.addEventListener("resize", reportSizes);
+form.addEventListener("submit", handleSubmit);
+
+reportSizes();
+
+      </script>
+</body>
+</html>
