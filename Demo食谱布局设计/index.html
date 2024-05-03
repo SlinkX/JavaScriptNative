@@ -1,0 +1,539 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,500;1,400;1,600;1,800&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+*,::before,::after{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+/******************************************
+/* BASE STYLES
+/*******************************************/
+
+body {
+  font-size: 1.4rem;
+  line-height: 1.4;
+  color: black;
+}
+
+h3{
+  font-size: clamp(1.2rem, 5vw, 4rem);
+}
+
+/******************************************
+/* LAYOUT
+/*******************************************/
+
+header{
+  border-bottom: 2px solid black;
+/*   min-height: 3rem; */
+  padding: .75rem 1rem;
+  display: flex;
+  aligh-items: center;
+  justify-content: space-between;
+}
+
+.logo{
+  /*padding-left: 25px;*/
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(1.6rem, 2.5vw, 2.8rem);
+}
+
+nav{
+  display: none;
+  align-items: center;
+  gap: 1rem;
+}
+nav ul {
+  display: flex;
+  aligh-items: center;
+  gap: 20px;
+  list-style: none;
+  font-size: 1.2rem;
+}
+
+nav a{
+  text-decoration: none;
+}
+
+
+/* HERO */
+.welcome-container {
+  /*min-height: 85rem;*/
+  background-image: url(https://shaytestingcafe.netlify.app/assets/fruitLeftAd.jpg);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: bottom bottom;
+	background-attachment: local;
+}
+.welcome-contents{
+  padding: 4rem 12vw;
+}
+
+.welcome-container h1{
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(1.4rem, 5vw, 5rem);
+  font-style: italic;
+  width: 15ch;
+}
+.search-form{
+  font-size: 2rem;
+  padding-block: 1rem;
+}
+.search-form input{
+  height: 2.5rem;
+  width: 100%;
+  padding: 1rem;
+}
+.socialmedia{
+  font-size: clamp(1.8rem, 2.5vw,2.5rem);
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+  color: orange;
+  display: flex;
+}
+.socialmedia span{
+  display: flex;
+  gap: .8rem;
+}
+
+
+/* ABOUT */
+.about{
+  background-image: url(https://shaytestingcafe.netlify.app/assets/background-2.jpg);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
+  display: flex;
+  justify-content: end;
+}
+.about-container{
+  padding: 4rem 12vw;
+}
+
+.aboutus{
+  font-size: 2rem;
+  color: orange;
+  font-weight: 700;
+  padding-top: 2rem;
+}
+
+.about-container button{
+  margin-top: 2rem;
+  padding: .75rem 3rem;
+  font-size: 1.5rem;
+  align-self: flex-start;
+  color: white;
+  background-color: orange;
+}
+button span{
+  background-color: rgb(243, 197, 112);
+}
+
+
+.menu-container {
+  text-align: center;
+  padding: 1rem;
+}
+
+.tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px; 
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.menu-items {
+  
+  display: grid;
+  grid-template-columns: repeat(auto-fill,minmax(230px,1fr));
+  justify-items: center;
+  gap: 1rem;
+  width: 80%; 
+  margin: 0 auto; 
+}
+
+.menu-item {
+  position: relative;
+  max-width: 300px;
+}
+
+.menu-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; 
+}
+
+.menu-item:hover .overlay {
+  opacity: 1;
+}
+
+.overlay {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 1rem;
+  color: #FFF;
+  background: rgba(0,0,0,0.5);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.menu-section{
+  background-color: #f2f6f7;
+}
+
+
+/* BOOKING */
+.booking-section{
+  background-color: rgb(242, 242, 242);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.booking-section{
+  padding-block: 1rem;
+	color: orange;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+   gap:1rem;
+}
+.contact{
+   display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.fa-phone{
+	border: 2px solid orange;
+	background-color: transparent;
+	color: orange;
+	border-radius: 50%;
+	font-weight: 800;
+	height: auto;
+	width: auto;
+	padding: 10px;
+	margin-top: 25px;
+	margin-bottom: 15px;
+}
+
+.tel{
+	font-size: clamp(1.6rem,5vw,4rem);
+	font-weight: 600;
+	color: orange;
+	letter-spacing: .5rem;
+}
+
+.hours{
+	display: flex;
+	justify-content: space-between;
+	font-size: clamp(1.2rem,3.5vw,3rem);
+  gap: 2rem;
+}
+.hours > div{
+  text-align: center;
+}
+.hours span{
+  font-size: 1.2rem;
+}
+.mapiframe{
+  width: 100%;
+  height: 500px;
+}
+
+/* TESTIMONIALS */
+.testimonials{
+	text-align: center;
+  padding-block: 1rem;
+}
+
+.review-card{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+.customericon{
+	border-radius: 50%;
+	width: 140px;
+  height: 140px;
+	border: 2px solid black
+}
+
+
+
+.customername{
+	font-size: clamp(1.4rem,3vw,2rem);
+	font-weight: 700;
+}
+
+.customeroccupation{
+	color: gray;
+}
+.rating{
+  display: flex;
+  gap: .25rem;
+}
+.fa-star{
+	color: gold;
+	font-size: 1.4rem;
+	padding-bottom: 15px;
+}
+
+.fa-star:last-of-type{
+	color: #888;
+}
+.customer-testimonial{
+	font-size: clamp(1.2rem,2.5vw,1.6rem);
+	text-align: center;
+  width: 100%;
+	max-width: 800px;
+  margin-inline: auto;
+}
+
+
+@media (min-width: 800px) {
+    nav{
+      display: flex;
+    }
+    .welcome-contents,
+    .about-container{
+      padding: 10rem 12vw;
+      width: 75%;
+    }
+}
+
+    </style>
+</head>
+<body>
+    
+		<header>
+            <div class="logo"><i>Shay's Cuisine</i></div>
+                    <nav>
+                            <ul>
+                                    <li><a href="">Home</a></li>
+                                    <li><a href="">About Us</a></li>
+                                    <li><a href="">Menu</a></li>
+                                    <li><a href="">Order Now</a></li>
+                                    <li><a href="">Blog</a></li>
+                                    <li><a href="">Location</a></li>
+                            </ul>
+                            <i class="fa-regular fa-cart-shopping"></i>
+                            <i class="fa-regular fa-magnifying-glass"></i>
+            </nav>
+          </header>
+        
+          <!-- HERO -->
+                <section class="welcome-container">
+                        <div class="welcome-contents">
+                <h1>
+                  Welcome To Our Cuisine Restaurant
+                </h1>
+                <form class="search-form" action="/search" method="GET">
+                    <label for="search"></label>
+                    <input type="text" placeholder="search" id="search" name="q">
+                    <button type="submit">Search</button>
+                 </form>
+                  <div class="socialmedia">
+                    <span><i class="fa-brands fa-facebook-f"></i>151k </span>
+                    <span><i class="fa-brands fa-twitter"></i>252k</span>
+                    <span><i class="fa-brands fa-instagram"></i>420k</span>
+                  </div>
+              </div>
+                    </section>				
+              
+          <!-- ABOUT -->	
+                <section class="about">
+                    <section class="about-container">
+                        <span class="aboutus">About Us</span>					
+                        <h3 class="small-padding">Discover Our Resturant Story</h3>
+                        <p class="padding-bottom-small">Our story is one of culinary passion, woven into an enchanting dining narrative. Conceived from a love for unique flavors, we welcome every epicurean, every adventurous palate.
+    
+                        We redefine the dining experience by crafting an extraordinary cuisine - a fusion of traditional methods and modern tastes. Here, every dish tells a tale, every bite is a memory in making.
+                            
+                        Join us for a journey, not just of taste, but a voyage into the unexplored terrains of the palate. Our restaurant is more than a dining space; it’s a vibrant  universe, awaiting your discovery."</p>
+    
+                        <p>Immerse yourself in our universe of innovative cuisine. Each dish reflects our dedication to craft and flavor, connecting you to our culinary passion with every bite.</p>
+    
+                        <button>
+                            Discover Now <span>&rarr;</span>
+                        </button>
+                    </section>	
+                </section>
+          
+          <!-- MENU -->
+                <section class="menu-section">
+                    <section class="menu-container">
+                        <h6>Order Online Now!</h6>
+                        <h3>Our Specialty Cuisine</h3>
+                    
+                        <div class="menu">
+                            <div class="tabs">
+                            <a class="tablinks active">Lunch</button>
+                            <a class="tablinks">Breakfast</button>
+                            <a class="tablinks">Dinner</button>
+                            <a class="tablinks">Desserts</button>
+                            <a class="tablinks">Sides</button>
+                            </div>			 
+                        </div>
+              
+                        <section class="menu-items">
+    
+                            <div class="menu-item">
+                                <img src="https://shaytestingcafe.netlify.app/assets/IMG_1054.png" alt="Description of Image">
+                                <div class="overlay">
+                                  <div class="card-content">
+                                    <h4 class="menu-item-title">Menu Item Name</h4>
+                                    <p class="menu-item-desc">Description of Menu Item</p>
+                                  </div>
+                                </div>
+                            </div>
+    
+                            <div class="menu-item">
+                                <img src="https://shaytestingcafe.netlify.app/assets/IMG_1054.png" alt="Description of Image">
+                                <div class="overlay">
+                                  <div class="card-content">
+                                    <h4 class="menu-item-title">Menu Item Name</h4>
+                                    <p class="menu-item-desc">Description of Menu Item</p>
+                                  </div>
+                                </div>
+                            </div>
+    
+                              <div class="menu-item">
+                                <img src="https://shaytestingcafe.netlify.app/assets/IMG_1054.png" alt="Description of Image">
+                                <div class="overlay">
+                                  <div class="card-content">
+                                    <h4 class="menu-item-title">Menu Item Name</h4>
+                                    <p class="menu-item-desc">Description of Menu Item</p>
+                                  </div>
+                                </div>
+                            </div>
+    
+    
+                            <div class="menu-item">
+                                <img src="https://shaytestingcafe.netlify.app/assets/IMG_1054.png" alt="Description of Image">
+                                <div class="overlay">
+                                  <div class="card-content">
+                                    <h4 class="menu-item-title">Menu Item Name</h4>
+                                    <p class="menu-item-desc">Description of Menu Item</p>
+                                  </div>
+                                </div>
+                            </div>
+    
+    
+                            <div class="menu-item">
+                                <img src="https://shaytestingcafe.netlify.app/assets/IMG_1054.png" alt="Description of Image">
+                                <div class="overlay">
+                                  <div class="card-content">
+                                    <h4 class="menu-item-title">Menu Item Name</h4>
+                                    <p class="menu-item-desc">Description of Menu Item</p>
+                                  </div>
+                                </div>
+                            </div>
+    
+    
+                            <div class="menu-item">
+                                <img src="https://shaytestingcafe.netlify.app/assets/IMG_1054.png" alt="Description of Image">
+                                <div class="overlay">
+                                  <div class="card-content">
+                                    <h4 class="menu-item-title">Menu Item Name</h4>
+                                    <p class="menu-item-desc">Description of Menu Item</p>
+                                  </div>
+                                </div>
+                            </div>
+    
+    
+                            <div class="menu-item">
+                                <img src="https://shaytestingcafe.netlify.app/assets/IMG_1054.png" alt="Description of Image">
+                                <div class="overlay">
+                                  <div class="card-content">
+                                    <h4 class="menu-item-title">Menu Item Name</h4>
+                                    <p class="menu-item-desc">Description of Menu Item</p>
+                                  </div>
+                                </div>
+                            </div>
+    
+                        
+                            <div class="menu-item">
+                                <img src="https://shaytestingcafe.netlify.app/assets/IMG_1054.png" alt="Description of Image">
+                                <div class="overlay">
+                                  <div class="card-content">
+                                    <h4 class="menu-item-title">Menu Item Name</h4>
+                                    <p class="menu-item-desc">Description of Menu Item</p>
+                                  </div>
+                                </div>
+                            </div>
+    
+    
+                        </section>
+                    </section>	
+    
+                </section>
+    
+          <!-- BOOKING -->
+                <section class="booking-section">
+                    <h6>Book Table</h6>
+                    <h3>Opening Hours</h3>
+                    
+            <section class="contact">
+                        <i class="fa-sharp fa-solid fa-phone largefont"></i>
+                        <p>call now</p>
+                        <p class="tel">1234567890</p>
+                    </section>	
+            
+                    <section class="hours">
+                            <div class="hoursdays">
+                                <p>Monday - Friday</p>
+                                <span>09:00 AM - 22:00 PM </span>
+                            </div>
+                        
+                        <div class="hoursdays">
+                            <p>Saturday - Sunday</p>
+                            <span>11:00 AM - 20:00 PM</span>
+                        </div>
+                </section>
+                        
+            <section class="mapiframe">
+                            <iframe width="100%" height="100%" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.com/maps?width=800&amp;height=800&amp;hl=en&amp;q=%20110%20N%20Carpenter%20St,%20Chicago,%20IL%2060607+(My%20Business%20Name)&amp;t=&amp;z=14&amp;ie=UTF8&amp;iwloc=B&amp;output=embed">
+                                <a href="https://www.maps.ie/distance-area-calculator.html">distance maps</a>
+                            
+                            </iframe>
+                        </section>	
+                </section>
+    
+          <!-- TESTEMONIALS -->
+                <section class="testimonials">
+                    <h6>Testimonials</h6>
+                    <h3>Customers Say</h3>
+                    
+            <article class="review-card">
+                        <img src="https://shaytestingcafe.netlify.app/assets/Capture.JPG" alt="a smiling black woman" class="customericon">
+                        <p class="customername">Ms Ashley Jean-Pierre</p>
+                        <span class="customeroccupation">Art Director</span>
+                        <div class="rating">
+                  <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+              </div>
+                        <p class="customer-testimonial">As an art director, I am drawn to the aesthetic, and this restaurant didn't disappoint. The fusion of traditional and modern, not just in the dishes, but in the ambiance, made for an unforgettable dining experience. Each dish was an artwork, a testament to the chef's creativity and precision. </p>
+                    </article>
+                </section>
+    
+    
+    
+</body>
+</html>
