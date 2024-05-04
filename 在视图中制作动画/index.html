@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .pt-200 {
+  padding-top: 200px;
+}
+.mb-250 {
+  margin-bottom: 250px;
+}
+.container-max {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 15px;
+}
+.bg-img {
+  background-size: cover;
+}
+
+.full-width-overlay {
+  .content-box {
+    transform: translateY(100%);
+  }
+}
+
+.img-shadow-wrap {
+    display: inline-block;
+    position: relative;
+  
+  .img-shadow {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    top: 10px;
+    left: 10px;
+    overflow: hidden;
+    
+    .img-shadow-bottom {
+      filter: blur(100px);
+      transform: scale(1.1);
+    }
+  }
+  .img-shadow-top {
+    position: relative;
+  }
+}
+
+.content-side-by-side {
+  .order-0 {
+    .img-shadow-wrap {
+      transform: translateX(-50%);
+    }
+  }
+  .order-1 {
+    .img-shadow-wrap {
+      transform: translateX(50%);
+    }
+  }
+}
+    </style>
+</head>
+<body>
+    <section class="full-width-overlay position-relative pt-200 mb-250">
+        <div class="position-absolute top-0 h-100 w-100 bg-img" style="background-image: url('https://harborchase24.wpenginepowered.com/wp-content/uploads/harborchase-delicious-destinations-02.jpg'); background-position: center;"></div>
+        <div class="container-max position-relative">
+          <div class="row justify-content-start">
+            <div class="col-12 col-md-9 col-lg-6">
+              <div class="content-box bg-white rounded-3 bg-white p-4 shadow">
+                <h2>Delicious Destinations</h2>
+                <p>With numerous upscale restaurants and chef events throughout our communities, at HarborChase, you’ll discover a social-focused culinary paradise that transforms every meal into a delicious destination.</p>
+                <div class="d-flex justify-content-start">
+                  <a href="#" class="btn btn-primary btn-secondary-hover anchor-white anchor-white-hover">
+                    Discover Our Cuisine
+                    <i class="fa-solid fa-angle-right ms-2"></i>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      
+      <section class="full-width-overlay position-relative pt-200 mb-250">
+        <div class="position-absolute top-0 h-100 w-100 bg-img" style="background-image: url('https://harborchase24.wpenginepowered.com/wp-content/uploads/harborchase-refined-residences.jpg'); background-position: center;"></div>
+        <div class="container-max position-relative">
+          <div class="row justify-content-end">
+            <div class="col-12 col-md-9 col-lg-6">
+              <div class="content-box bg-white rounded-3 bg-white p-4 shadow">
+                <h2>Delicious Destinations</h2>
+                <p>With numerous upscale restaurants and chef events throughout our communities, at HarborChase, you’ll discover a social-focused culinary paradise that transforms every meal into a delicious destination.</p>
+                <div class="d-flex justify-content-start">
+                  <a href="#" class="btn btn-primary btn-secondary-hover anchor-white anchor-white-hover">
+                    Discover Our Cuisine
+                    <i class="fa-solid fa-angle-right ms-2"></i>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      
+      <section class="full-width-overlay position-relative pt-200 mb-250">
+        <div class="position-absolute top-0 h-100 w-100 bg-img" style="background-image: url('https://harborchase24.wpenginepowered.com/wp-content/uploads/harborchase-engaging-experiences.jpg'); background-position: center;"></div>
+        <div class="container-max position-relative">
+          <div class="row justify-content-start">
+            <div class="col-12 col-md-9 col-lg-6">
+              <div class="content-box bg-white rounded-3 bg-white p-4 shadow">
+                <h2>Delicious Destinations</h2>
+                <p>With numerous upscale restaurants and chef events throughout our communities, at HarborChase, you’ll discover a social-focused culinary paradise that transforms every meal into a delicious destination.</p>
+                <div class="d-flex justify-content-start">
+                  <a href="#" class="btn btn-primary btn-secondary-hover anchor-white anchor-white-hover">
+                    Discover Our Cuisine
+                    <i class="fa-solid fa-angle-right ms-2"></i>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      
+      <section class="content-side-by-side mb-5 ">
+        <div class="container-max">
+          <div class="row">
+            <div class="col-12 col-md-6 d-flex align-items-center justify-content-center order-0">
+              <div class="content-wrap text-center pe-2">
+                <div class="img-shadow-wrap mb-5">
+                  <div class="img-shadow">
+                    <img src="https://harborchase24.wpenginepowered.com/wp-content/uploads/harborchase-resort-style-luxury.jpg" alt="See Yourself in Luxury, Resort-Style Senior Living Shadow" class="img-shadow-bottom img-fluid">
+                  </div>
+                  <img src="https://harborchase24.wpenginepowered.com/wp-content/uploads/harborchase-resort-style-luxury.jpg" alt="See Yourself in Luxury, Resort-Style Senior Living" class="img-fluid img-shadow-top">
+                </div>
+              </div>
+            </div>
+            <div class="col-12 col-md-6 d-flex align-items-center order-1">
+              <div class="content-wrap">
+                <h2>See Yourself in Luxury, Resort-Style Senior Living</h2>
+                <p>HarborChase takes pride in blending indulgence with personal exploration, connection, and support for older adults and their families. Whether you’re a foodie, a dancer, a social butterfly, a bookworm, a lover of routine, or a seeker of new experiences, our mission is to make it possible.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      
+      <section class="content-side-by-side mb-5 ">
+        <div class="container-max">
+          <div class="row">
+            <div class="col-12 col-md-6 d-flex align-items-center justify-content-center order-1">
+              <div class="content-wrap text-center pe-2">
+                <div class="img-shadow-wrap mb-5">
+                  <div class="img-shadow">
+                    <img src="https://harborchase24.wpenginepowered.com/wp-content/uploads/harborchase-resort-style-luxury.jpg" alt="See Yourself in Luxury, Resort-Style Senior Living Shadow" class="img-shadow-bottom img-fluid">
+                  </div>
+                  <img src="https://harborchase24.wpenginepowered.com/wp-content/uploads/harborchase-dr-phillips-high-note.jpg" alt="See Yourself in Luxury, Resort-Style Senior Living" class="img-fluid img-shadow-top">
+                </div>
+              </div>
+            </div>
+            <div class="col-12 col-md-6 d-flex align-items-center order-0">
+              <div class="content-wrap">
+                <h2>See Yourself in Luxury, Resort-Style Senior Living</h2>
+                <p>HarborChase takes pride in blending indulgence with personal exploration, connection, and support for older adults and their families. Whether you’re a foodie, a dancer, a social butterfly, a bookworm, a lover of routine, or a seeker of new experiences, our mission is to make it possible.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <script>
+        import { animate, scroll, inView, stagger } from 'https://cdn.skypack.dev/motion@10.13.1';
+
+inView(".row", ({ target }) => {
+  animate(
+    target.querySelector(".content-box"),
+    { opacity: 1, transform: "translateY(50%)" },
+    { delay: 0.25, duration: 0.75, easing: "ease-in-out" }
+  ),
+  animate(
+    target.querySelector(".img-shadow-wrap"),
+    { opacity: 1, transform: "translateX(0%)" },
+    { delay: 0.25, duration: 0.75, easing: "ease-in-out" }
+  )
+});
+      </script>
+</body>
+</html>
