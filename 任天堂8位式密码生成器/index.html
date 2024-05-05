@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style lang="scss">
+        $cursor-url: url(./assets/cursor.png) !default
+$inner-background: url("https://www.toptal.com/designers/subtlepatterns/patterns/folk-pattern.png")
+$green: #1AAB8A
+
+body
+  background: silver url("https://i.imgur.com/u49xcTY.png") fixed
+
+#app
+  display: flex
+  justify-content: center
+  align-items: center
+  font-family: "Press Start 2P"
+  width: 650px
+  margin: 0 auto
+
+  .container
+    margin-top: 2em
+    margin-bottom: 2em
+    background: rgba(245, 222, 179, 0.9)
+
+    .icon-list
+      i
+        margin-right: 40px
+        transform: scale(3)
+
+    .character-container
+      background: rgba(255, 255, 255, 1)
+      margin-top: 2em
+
+      .char-length-wrapper
+        display: flex
+        justify-content: space-around
+        align-items: center
+
+        label
+          margin-bottom: 0
+
+        .range-slider_wrapper
+          position: relative
+          width: 300px
+          margin: 17px 0 30px
+
+        .range-slider
+          -webkit-appearance: none
+          appearance: none
+          background: lighten($green, 20%)
+          width: 100%
+          border-radius: 8px
+          vertical-align: bottom
+          margin: 0
+          height: 12px
+          transition: all ease-in 0.25s
+          cursor: $cursor-url, auto
+
+        .range-slider::-webkit-slider-thumb
+          -webkit-appearance: none
+          appearance: none
+          border-radius: 0
+          border: 0
+          position: relative
+          width: 42px
+          height: 42px
+          background-color: darken($green, 5%)
+          background: url("https://i.imgur.com/t0q8nDG.png")
+
+        .range-slider::-moz-range-thumb
+          -moz-appearance: none
+          appearance: none
+          border-radius: 0
+          border: 0
+          position: relative
+          width: 23px
+          height: 24px
+          background-color: darken($green, 5%)
+          background: url("https://www.w3schools.com/howto/contrasticon.png")
+
+        .range-slider
+          &:focus
+            outline: none
+
+          &:hover,
+          &:active
+            &::-webkit-slider-thumb
+              top: 0px
+
+        \::-moz-range-track
+          background: transparent
+          border: 0
+
+        input::-moz-focus-inner,
+        input::-moz-focus-outer
+          border: 0
+
+        .slider-bar
+          position: absolute
+          height: 12px
+          border-top-left-radius: 8px
+          border-bottom-left-radius: 8px
+          background: $green
+          left: 0
+          bottom: 0
+          pointer-events: none
+
+        .number-tip
+          width: 30px
+
+    .pwd-length-setting-wrapper
+      background: silver url(https://www.toptal.com/designers/subtlepatterns/patterns/old_wall.png) fixed
+      background: rgba(14, 190, 255, 0.4)
+
+      .message-list
+        display: flex
+        flex-direction: column
+
+        .message.-left
+          display: flex
+          align-self: flex-start
+
+          .pwd_length_field
+            width: 90px
+            margin-top: 1em
+
+          .nes-bcrikko
+            margin-right: 2em
+
+        .message.-right
+          display: flex
+          align-self: flex-end
+
+          .nes-octocat
+            margin-left: 2em
+
+          .pwd-strength-weak
+            color: red
+
+          .pwd-strength-better
+            color: blue
+
+          .pwd-strength-strong
+            color: #db7d3a
+
+          .pwd-strength-strongest
+            color: #378241
+
+    .generate-pwd-container
+      background: rgba(255, 255, 255, 1)
+      margin-top: 2em
+
+      .btn-wrapper
+        display: flex
+        justify-content: space-between
+        width: 101%
+        margin-top: 1em
+    </style>
+</head>
+<body>
+    <div id="app">
+        <section class="container nes-container with-title">
+          <h2 class="title">Password Generator</h2>
+          <section class="icon-list">
+            <!-- Twitter -->
+            <a href="https://twitter.com/share?url=https://weichiachang.github.io/pwd-generator/&amp;text=password-generator%20&amp;hashtags=passwordGenerator" target="_blank">
+              <i class="nes-icon twitter is-large"></i>
+            </a>
+            <!-- Facebook -->
+            <a href="http://www.facebook.com/sharer.php?u=https://weichiachang.github.io/pwd-generator/" target="_blank">
+              <i class="nes-icon facebook is-large"></i>
+            </a>
+            <!-- Reddit -->
+            <a href="http://reddit.com/submit?url=https://weichiachang.github.io/pwd-generator/&amp;title=password-generator" target="_blank">
+              <i class="nes-icon reddit is-large"></i>
+            </a>
+            <!-- <img class="ac-logo" src="./assets/ac-8-bit.png" alt=""> -->
+          </section>
+          <section class="nes-container with-title pwd-length-setting-wrapper">
+            <h3 class="title">Password Setting</h3>
+            <div id="balloons" class="item">
+              <section class="message-list">
+                <section class="message -left">
+                  <i class="nes-bcrikko"></i>
+                  <!-- Balloon -->
+                  <div class="nes-balloon from-left">
+                    <p>
+                      Your Password Length
+                      <input
+                        type="number"
+                        min="6"
+                        :max="config.maxLength"
+                        class="nes-input pwd_length_field"
+                        v-model="config.minLength"
+                      >
+                    </p>
+                  </div>
+                </section>
+                <section class="message -right">
+                  <!-- Balloon -->
+                  <div class="nes-balloon from-right">
+                    <p :class="`pwd-strength-${pwdStrength.text}`">{{formatter(pwdStrength.text)}}</p>
+                  </div>
+                  <i class="nes-octocat animate"></i>
+                </section>
+              </section>
+            </div>
+          </section>
+          <section class="character-container nes-container with-title">
+            <h2 class="title">Character Set</h2>
+            <div class="char-length-wrapper">
+              <label>Symbols:</label>
+              <div class="range-slider_wrapper">
+                <span class="slider-bar" :style="{ width: symbolsProgress + '%' }"></span>
+                <input
+                  type="range"
+                  min="0"
+                  :max="config.maxSymbols"
+                  class="range-slider"
+                  v-model="config.minSymbols"
+                >
+              </div>
+              <span class="number-tip">{{ config.minSymbols }}</span>
+            </div>
+            <div class="char-length-wrapper">
+              <label>Numbers:</label>
+              <div class="range-slider_wrapper">
+                <span class="slider-bar" :style="{ width: numbersProgress + '%' }"></span>
+                <input
+                  type="range"
+                  min="0"
+                  :max="config.maxNumbers"
+                  class="range-slider"
+                  v-model="config.minNumbers"
+                >
+              </div>
+              <span class="number-tip">{{ config.minNumbers }}</span>
+            </div>
+          </section>
+          <section class="generate-pwd-container nes-container with-title">
+            <h2 class="title">Generated Password</h2>
+            <p id="pwd-input" class="nes-input">{{ password }}</p>
+            <div class="btn-wrapper">
+              <button type="button" class="nes-btn is-primary" @click="generatePwd">Generate Password</button>
+              <button type="button" class="nes-btn is-success" @click="clipboardCopied">
+                <!-- 使用 v-if v-else 簡單判斷做流程控制  -->
+                <span v-if="isCopied">Copied!</span>
+                <span v-else>Copy</span>
+              </button>
+            </div>
+          </section>
+        </section>
+      </div>
+
+      <script>
+        new Vue({
+  el: '#app',
+  data: function() {
+    return {
+      config: {
+        minLength: 6,
+        minNumbers: 0,
+        minSymbols: 0,
+        maxLength: 24,
+        maxNumbers: 12,
+        maxSymbols: 12
+      },
+      password: '',
+      isCopied: false
+    }
+  },
+  computed: {
+    // TODO
+    pwdStrength () {
+      let pwdStrength = {
+        text: '',
+        score: 0
+      };
+      
+      let counter = {
+        excess: 0,
+        upperCase: 0,
+        numbers: 0,
+        symbols: 0
+      };
+
+      let weight = {
+        excess: 3,
+        upperCase: 4,
+        numbers: 5,
+        symbols: 5,
+        combo: 0,
+        flatLower: 0,
+        flatNumber: 0
+      };
+      
+      let baseScore = 30;
+
+      for (let i = 0; i < this.password.length; i++){
+        if (this.password.charAt(i).match(/[A-Z]/g)) {
+          counter.upperCase++;
+        }
+        if (this.password.charAt(i).match(/[0-9]/g)) {
+          counter.numbers++;
+        }
+        if (this.password.charAt(i).match(/(.*[-,#,^,+,@,^,%,|,*,?,!,$,=])/)) {
+          counter.symbols++;
+        } 
+      }
+      
+      counter.excess = this.password.length - 6;
+      
+      if (counter.upperCase && counter.numbers && counter.symbols){
+        weight.combo = 25; 
+      } else if ((counter.upperCase && counter.numbers) || (counter.upperCase && counter.symbols) || (counter.numbers && counter.symbols)){
+        weight.combo = 15; 
+      }
+      
+      if (this.password.match(/^[\sa-z]+$/)) { 
+        weight.flatLower = -30;
+      }
+      
+      if (this.password.match(/^[\s0-9]+$/)) { 
+        weight.flatNumber = -50;
+      }
+      let score = 
+        baseScore + 
+        (counter.excess * weight.excess) + 
+        (counter.upperCase * weight.upperCase) + 
+        (counter.numbers * weight.numbers) + 
+        (counter.symbols * weight.symbols) + 
+        weight.combo + weight.flatLower + 
+        weight.flatNumber;
+      
+      switch (true) {
+        case score < 30:
+          pwdStrength.text = "weak";
+          pwdStrength.score = 10;
+          return pwdStrength;
+        case score >= 30 && score < 75:
+          pwdStrength.text = "better";
+          pwdStrength.score = 40;
+          return pwdStrength;
+        case score >= 75 && score < 150:
+          pwdStrength.text = "strong";
+          pwdStrength.score = 75;
+          return pwdStrength;
+        default:
+          pwdStrength.text = "strongest";
+          pwdStrength.score = 100;
+          return pwdStrength;
+      }
+    },
+    // TODO
+    lengthThumbPosition () {
+      return (( (this.config.minLength - 6) / (this.config.maxLength - 6)) * 100);
+    },
+    numbersProgress () {
+      return (( (this.config.minNumbers) / (this.config.maxNumbers)) * 100);
+    },
+    symbolsProgress () {
+      return (( (this.config.minSymbols) / (this.config.maxSymbols)) * 100);
+    }
+  },
+  methods: {
+    // 一般來說都是開個 input 或是 textarea，
+    // 這邊會使用 createRange() 這個 API，實作複製到剪貼板這個功能
+    clipboardCopied () {
+      let text = document.getElementById("pwd-input");
+      let range = document.createRange();
+
+      window.getSelection().removeAllRanges();
+      range.selectNode(text);
+      window.getSelection().addRange(range);
+      document.execCommand("copy");
+      window.getSelection().removeAllRanges();
+
+      this.isCopied = true;
+      // setTimeout 用途提一下
+      setTimeout(() => {
+        this.isCopied = false;
+      }, 850);
+    },
+    // TODO
+    generatePwd () {
+      let tempPasswordArray  = [];
+      let tempNumbersArray  = [];
+
+      const LETTERS_ARRAY = this.generateLettersArray("a", "z")
+      const SYMBOLS_ARRAY = [ "-","#","^","+","@","^","%","|","*","?","!","$","="]
+
+      // first, fill the password array with letters, uppercase and lowecase
+      for (let i = 0; i < this.config.minLength; i++) {
+        // get an array for all indexes of the password array
+        tempNumbersArray .push(i);
+        let upperCase = Math.round(Math.random() * 1);
+        if (upperCase === 0) {
+          tempPasswordArray [i] = LETTERS_ARRAY[Math.floor(Math.random()*LETTERS_ARRAY.length)].toUpperCase();
+        } else {
+          tempPasswordArray [i] = LETTERS_ARRAY[Math.floor(Math.random()*LETTERS_ARRAY.length)];
+        }
+      }
+      // Add digits to password
+      for (let i = 0; i < this.config.minNumbers; i++) {
+        let digit = Math.round(Math.random() * 9);
+        let numberIndex = tempNumbersArray [Math.floor(Math.random()*tempNumbersArray.length)];
+        tempPasswordArray [numberIndex] =  digit;
+        /* remove position from tempNumbersArray  so we make sure to the have the exact number of digits in our password
+        since without this step, numbers may override other numbers */
+        let j = tempNumbersArray.indexOf(numberIndex);
+        if (i !== -1) {
+          tempNumbersArray.splice(j, 1);
+        }
+      }
+      // add symbols
+      for (let i = 0; i < this.config.minSymbols; i++) {
+        let symbol = SYMBOLS_ARRAY[Math.floor(Math.random()*SYMBOLS_ARRAY.length)];
+        let symbolIndex = tempNumbersArray [Math.floor(Math.random()*tempNumbersArray.length)];
+        tempPasswordArray [symbolIndex] =  symbol;
+        /* remove position from tempNumbersArray  so we make sure to the have the exact number of digits in our password
+        since without this step, numbers may override other numbers */
+        let j = tempNumbersArray.indexOf(symbolIndex);
+        if (i !== -1) {
+          tempNumbersArray.splice(j, 1);
+        }
+      }
+      this.password = tempPasswordArray .join("");
+    },
+    // 把餵進來的密碼強度 wording 轉成首字大寫，並加上驚嘆號回傳
+    formatter (s) {
+      if (typeof s !== 'string') {
+        return ''
+      }
+      // 不知道 slice 用法的也可以直接在 Chrome DevTools 打開起來玩玩看
+      // 一邊複習前面章節提到的工具使用小技巧
+      return s.charAt(0).toUpperCase() + s.slice(1) + '!'
+    },
+    // 讓 charCodeAt 去生出一個 a 到 z 的 Array
+    generateLettersArray (a, z) {
+      let temp = [],
+          i = a.charCodeAt(0),
+          j = z.charCodeAt(0);
+
+      for (; i <= j; i++) {
+        temp.push(String.fromCharCode(i));
+      }
+      return temp;
+    }
+  },
+  // TODO
+  watch: {
+    config: {
+      handler: function() {
+        this.generatePwd();
+      },
+      deep: true
+    }
+  },
+  // 在 mounted 這個生命週期的狀態就去呼叫 generatePwd 這支函式
+  mounted() {
+    this.generatePwd ();
+  }
+})</script>
+</body>
+</html>
