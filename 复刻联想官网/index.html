@@ -1,0 +1,1446 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style lang="scss">
+        /* //公共样式 */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+ul {
+  list-style: none;
+}
+
+a:link,
+a:visited,
+a:hover,
+a:active {
+  text-decoration: none;
+}
+
+%ellipsis {
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+%underline-link {
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+//mixins
+//nav
+@mixin navstyle($height, $color) {
+  height: $height;
+  background-color: $color;
+}
+
+//yuan xing tou xiang
+@mixin circlehead($radius) {
+  height: $radius;
+  border-radius: 50%;
+  vertical-align: middle;
+}
+
+//banner
+@mixin welcomeban($back-img, $height, $head-radius) {
+  background: url(#{$back-img}) 100% no-repeat;
+  height: $height;
+  div {
+    line-height: $height;
+    padding-left: 40px;
+    width: 140px;
+    float: left;
+  }
+  div img {
+    @include circlehead($head-radius);
+    border: #fff 5px solid;
+  }
+  span {
+    line-height: 40px;
+    position: relative;
+    top: 50px;
+    overflow: hidden;
+  }
+  span.font-2 {
+    font-size: 1.5em;
+  }
+  span.font-1 {
+    color: #233;
+  }
+}
+
+//shadow
+@mixin shadow {
+  border: 1px #ddd solid;
+  box-shadow: #ccc 1px 1.5px;
+}
+
+//background img
+@mixin background-img($back-url, $back-pos, $width:auto, $height:auto) {
+  // display: block;
+  background: $back-url $back-pos no-repeat;
+  height: $height;
+  width: $width;
+}
+
+@mixin setText($font-size, $font-color, $text-align:left, $font-weight:normal) {
+  font-size: $font-size;
+  color: $font-color;
+  font-weight: $font-weight;
+  text-align: $text-align;
+}
+
+@mixin setBtn($width, $height, $back-color, $color, $font-size, $border-radius:0, $border:none) {
+  width: $width;
+  height: $height;
+  background-color: $back-color;
+  color: $color;
+  font-size: $font-size;
+  border: $border;
+  border-radius: $border-radius;
+}
+
+//lenovo官网样式变量
+//字体
+$fz-1: 12px;
+$fz-2: 13px;
+$fz-3: 14px;
+$fz-4: 17px;
+$fz-5: 20px;
+//颜色
+$white: #fff;
+$gray-1: #f5f5f5;
+$gray-2: #EEEEEE;
+$gray-3: #bdbdbd;
+$gray-4: #6f7170;
+$gray-5: #555;
+$black: #000;
+//back-img
+$back-url: url(https://pic.shop.lenovo.com.cn/g1/M00/00/F0/CmBZD1ZynUyAUnWjAAGn0mxLsoI703.png);
+body {
+  font-size: $fz-2;
+  margin-left: calc(100vw - 100%);
+}
+
+body::-webkit-scrollbar {
+  display: none;
+}
+
+nav {
+  @include navstyle(38px, $black);
+  padding: 0 30px;
+  color: $white;
+  a {
+    line-height: 38px;
+    vertical-align: middle;
+    color: $white;
+    font-size: $fz-2;
+    padding: 0 10px;
+    border-right: 1px $white solid;
+  }
+  .no-right-bar {
+    border-right: none;
+  }
+  .right {
+    float: right;
+  }
+  span {
+    @include background-img($back-url, -185px -201px, 19px, 19px);
+    font-size: $fz-1;
+    position: absolute;
+    margin: 6px -8px;
+    text-align: center;
+  }
+}
+
+.intro-box {
+  width: 1200px;
+  margin: 30px auto;
+}
+
+.search-box {
+  height: 50px;
+  div {
+    @include background-img($back-url, -4px -363px, 189px, 37px);
+    float: left;
+  }
+  div>a {
+    font-size: $fz-1;
+    color: transparent;
+  }
+  input {
+    float: right;
+    height: 37px;
+    width: 630px;
+    padding: 10px;
+    border: 1px $black solid;
+  }
+  .btn {
+    float: right;
+    @include background-img(url(https://pic.shop.lenovo.com.cn/g1/M00/00/76/CmBZEFZWvNiAUa4zAAAGUlPCg-4527.jpg), 0, 61px, 37px);
+  }
+  ul {
+    display: block;
+    position: absolute;
+    margin: 10px 0 0 740px;
+  }
+  ul li {
+    float: left;
+    padding-right: 10px;
+  }
+  li a {
+    color: $gray-3;
+    font-size: $fz-1;
+  }
+}
+
+#tabs {
+  height: 50px;
+  text-align: center;
+  a {
+    font-size: $fz-4;
+    color: $black;
+    padding-right: 45px;
+    line-height: 50px;
+  }
+  span {
+    position: absolute;
+    margin: 3px -50px;
+  }
+  #new {
+    @include background-img($back-url, -275px -198px, 332px, 21px);
+  }
+  #hot {
+    @include background-img($back-url, -268px -3px, 332px, 21px);
+  }
+}
+
+.left-bar {
+  float: left;
+  border: $gray-2 1px solid;
+  height: 365px;
+  width: 190px;
+  li {
+    font-size: $fz-4;
+    line-height: 45.6px;
+    padding: 0 20px;
+    border-bottom: $gray-2 1px solid;
+  }
+  a {
+    color: $black;
+  }
+  .no-bot-bdr {
+    border: none;
+  }
+}
+
+#detail {
+  display: none;
+  width: 1010px;
+  height: 365px;
+  background-color: $gray-1;
+  position: absolute;
+  margin: -368px 0 0 190px;
+  padding: 40px 30px 0 50px;
+  .cls {
+    width: 630px;
+  }
+  .display {
+    float: right;
+    position: relative;
+    top: -280px;
+    width: 252px;
+  }
+}
+
+.cls p {
+  line-height: 2em;
+  font-size: $fz-2;
+}
+
+.cls>li {
+  height: 5em;
+}
+
+.sub-type {
+  display: block;
+  font-size: $fz-1;
+  height: 2em;
+  margin-left: 40px;
+  border-bottom: $gray-2 1px solid;
+  li {
+    float: left;
+    padding: 0 10px;
+    border-left: $gray-2 1px solid;
+  }
+}
+
+.center {
+  overflow: hidden;
+  margin: 0;
+  padding: 0 10px;
+}
+
+.right-bar {
+  float: right;
+  border: $gray-2 1px solid;
+  height: 365px;
+  width: 220px;
+  #broadcast {
+    font-size: $fz-1;
+    padding: 3px 10px;
+    height: 60px;
+    border-bottom: $gray-2 1px solid;
+  }
+  #horn {
+    height: 13px;
+    width: 16px;
+    position: absolute;
+    background: $back-url -299px -320px;
+  }
+  #discuss {
+    font-size: $fz-4;
+    line-height: 2em;
+    padding-left: 10px;
+    border-bottom: $gray-2 1px dashed;
+  }
+  #discuss a {
+    color: $black;
+    font-size: $fz-1;
+    float: right;
+  }
+}
+
+#titles {
+  padding: 10px 5px;
+  a {
+    color: $black;
+    font-size: $fz-1;
+    line-height: 3em;
+    vertical-align: middle;
+  }
+}
+
+.recommend {
+  float: left;
+}
+
+.type a {
+  color: $black;
+}
+
+.slogan a {
+  color: $gray-3;
+}
+
+.price {
+  color: red;
+  font-size: $fz-1;
+}
+
+#star,
+#guess {
+  margin: 20px 0 60px 0;
+  >p {
+    font-size: $fz-5;
+  }
+  ul {
+    display: block;
+    margin-top: 10px;
+    height: 225px;
+  }
+  ul li {
+    width: 200px;
+    float: left;
+    border: $gray-2 1px solid;
+    text-align: center;
+    padding-bottom: 20px;
+  }
+  img {
+    width: 180px;
+    height: 180px;
+    margin: 0 auto;
+  }
+  a {
+    font-size: $fz-1;
+  }
+  li p {
+    line-height: 1.5em;
+  }
+}
+
+.top-red {
+  border-top: red 1px solid !important;
+}
+
+.shop-box {
+  width: 100%;
+  background-color: $gray-1;
+  .floor {
+    width: 1200px;
+    margin: 0 auto 20px;
+  }
+}
+
+.floor {
+  >p {
+    font-size: $fz-5;
+    padding: 30px 0;
+  }
+  .brand {
+    float: left;
+  }
+  ul {
+    display: block;
+    height: 535px;
+  }
+  ul li {
+    width: 240px;
+    height: 267px;
+    float: left;
+    background-color: $white;
+    border: $gray-2 1px solid;
+    text-align: center;
+  }
+  a {
+    font-size: $fz-1;
+  }
+  li p {
+    line-height: 20px;
+  }
+}
+
+.operate {
+  float: right;
+  margin-left: 10px;
+}
+
+.text {
+  float: right;
+  font-size: 10px;
+  color: $gray-4;
+}
+
+#previous {
+  @include background-img($back-url, -143px -31px, 18px, 18px);
+}
+
+#next {
+  @include background-img($back-url, -117px -31px, 18px, 18px);
+}
+
+#change {
+  @include background-img($back-url, -96px -34px, 18px, 18px);
+}
+
+.more {
+  @include background-img($back-url, -12px -433px, 50px, 16px);
+  padding-right: 20px;
+  margin-left: 12px;
+}
+
+#social-floor {
+  @extend .floor;
+  ul {
+    height: 250px;
+  }
+  ul li {
+    width: 190px;
+    height: 212px;
+    margin-right: 12px;
+    border: none;
+  }
+  ul li:last-child {
+    margin: 0;
+  }
+  .cover {
+    height: 43px;
+    width: 190px;
+    background-color: #FF9C35;
+    opacity: 0.4;
+    position: absolute;
+    margin: -45px 0;
+  }
+  .caption {
+    height: 43px;
+    position: absolute;
+    margin: -45px 0;
+  }
+  .logo {
+    position: absolute;
+  }
+  .name {
+    color: $white;
+    font-size: $fz-3;
+    position: relative;
+    top: 20px;
+    left: 120px;
+  }
+}
+
+.shadow {
+  box-shadow: 0 0 5px 3px #555;
+}
+
+#social {
+  @include background-img($back-url, -170px -72px, 44px, 22px);
+  margin: 10px 10px;
+}
+
+#wechat {
+  @include background-img($back-url, -227px -67px, 37px, 34px);
+  margin: 2px 10px;
+}
+
+#qzone {
+  @include background-img($back-url, -170px -106px, 36px, 32px);
+  margin: 5px 10px;
+}
+
+#tieba {
+  @include background-img($back-url, -220px -109px, 28px, 28px);
+  margin: 7px 10px;
+}
+
+#weibo {
+  @include background-img($back-url, -264px -107px, 37px, 30px);
+  margin: 5px 10px;
+}
+
+#blog {
+  @include background-img($back-url, -276px -67px, 32px, 27px);
+  margin: 5px 10px;
+}
+
+#service {
+  width: 1200px;
+  margin: 0 auto;
+  >ul {
+    display: block;
+    height: 140px;
+  }
+  >ul>li {
+    float: left;
+    padding-right: 142px;
+  }
+  >ul>li:last-child {
+    padding: 0;
+  }
+}
+
+.single-serv {
+  li {
+    color: $gray-4;
+    font-size: $fz-1;
+    line-height: 2em;
+  }
+  li:first-child {
+    color: $black;
+    font-size: $fz-3;
+    line-height: 2.5em;
+  }
+}
+
+footer {
+  text-align: center;
+  background-color: $gray-1;
+  padding: 30px 0 30px 0;
+  a,
+  span {
+    color: $gray-4;
+    line-height: 2em;
+    vertical-align: middle;
+    font-size: $fz-1;
+    padding: 0 10px;
+    border-right: 1px $gray-4 solid;
+  }
+  a:last-child,
+  span:last-child {
+    border: none;
+  }
+  a>span {
+    margin-right: 5px;
+    padding: 0 5px;
+  }
+}
+
+#sale-point {
+  @include background-img($back-url, -234px -3px, 10px, 13px);
+}
+
+#service-point {
+  @include background-img($back-url, -248px -3px, 10px, 13px);
+}
+
+aside {
+  padding: 3px;
+  border: 1px $gray-3 solid;
+  position: fixed;
+  right: 50px;
+  bottom: 200px;
+  text-align: center;
+  background-color: $white;
+  span {
+    font-size: $fz-2;
+  }
+}
+
+.qrcode {
+  background: $back-url -88px -592px no-repeat;
+  @include background-img($back-url, -88px -592px, 76px, 76px);
+}
+
+.right-btn {
+  @include background-img($back-url, -328px -476px, 16px, 36px);
+  position: fixed;
+  right: 0;
+  bottom: 60%;
+}
+
+.hover-link {
+  color: red !important;
+}
+
+.hover-li {
+  color: $black !important;
+}
+    </style>
+</head>
+<body>
+    <nav>
+        <a href="" class="left">个人及家用解决方案</a>
+        <!--
+          --><a href="" class="left">商用PC及解决方案</a>
+        <!--
+          --><a href="" class="left">企业级产品及解决方案</a>
+        <!--
+          --><a href="" class="left">服务与支持</a>
+        <!--
+          --><a href="" class="left">EPP会员专享</a>
+        <!--
+          --><a href="" class="left no-right-bar">想约我么</a>
+        <div class="right"><a href="#">登录</a>
+          <!--
+          --><a href="#">注册</a>
+          <!--
+          --><a href="" class="no-right-bar">购物车</a>
+          <!--
+          --><span>0</span></div>
+      </nav>
+      <div class="container">
+        <div class="intro-box">
+          <div class="search-box">
+            <div>
+              <a href="https://www.lenovo.com.cn/">联想官方网上商城</a>
+            </div>
+            <a href="" class="btn"></a>
+            <input type="text" placeholder='请输入'>
+            <ul id="search-ad">
+              <li><a href="">乐檬X3</a></li>
+              <li><a href="">小新笔记本</a></li>
+              <li><a href="">YOGA 4 Pro</a></li>
+              <li><a href="">ThinkPad X1系列</a></li>
+              <li><a href="">联想P1</a></li>
+              <li><a href="">看家宝</a></li>
+            </ul>
+          </div>
+          <div id="tabs">
+            <a href="#">YOGA上鲜</a><span id="new"></span>
+            <!--
+           --><a href="#">爆款</a>
+            <!--
+           --><a href="#">特惠</a>
+            <!--
+           --><a href="#">联想合伙人</a>
+            <!--
+      --><a href="#">新品试用</a><span id="hot"></span>
+            <!--
+           --><a href="#">以旧换新</a>
+            <!--
+           --><a href="#">用户社区</a>
+          </div>
+          <div class="banner">
+            <div class="left-bar">
+              <ul id="left-list">
+                <a href="#">
+                  <li>Lenovo 电脑</li>
+                </a>
+                <a href="#">
+                  <li>ThinkPad 电脑</li>
+                </a>
+                <a href="#">
+                  <li>手机 通信卡</li>
+                </a>
+                <a href="#">
+                  <li>平板电脑</li>
+                </a>
+                <a href="#">
+                  <li>智能电视</li>
+                </a>
+                <a href="#">
+                  <li>选件</li>
+                </a>
+                <a href="#">
+                  <li>我要服务</li>
+                </a>
+                <a href="#">
+                  <li class="no-bot-bdr">商用产品</li>
+                </a>
+              </ul>
+            </div>
+            <div class="right-bar">
+              <ul>
+                <li id="broadcast">
+                  <span id="horn"></span>
+                  <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;联想小新Air 13寸新品来袭，轻薄时尚，性能强劲，新品免费试用申请中，快来参与！</p>
+                </li>
+                <li id="discuss">精彩讨论<a href="#">更多 ></a></li>
+                <li id="titles">
+                  <ul>
+                    <li><a href="#">【新品】X1 Carbon到手两周晒单</a></li>
+                    <li><a href="#">【曝光】小新出色版I2000星空银开箱</a></li>
+                    <li><a href="#">【晒单】Y700开箱加装固态硬盘评测</a></li>
+                    <li><a href="#">【曝光】Moto 360 Sport高清图赏</a></li>
+                    <li><a href="#">【活动】最详细的MOTO X极外观评测</a></li>
+                    <li><a href="#">【开箱】Moto X 极上手：真心不怕摔</a></li>
+                    <li><a href="#">【活动】联想社区同城会北京站招募</a></li>
+                  </ul>
+                </li>
+              </ul>
+            </div>
+            <div class="center">
+              <img src="http://p3.lefile.cn/product/adminweb/2016/04/28/75d0f68a-a783-4c58-839c-e5e829980095.jpg" alt="">
+              <img src="" alt="">
+              <img src="" alt="">
+              <img src="" alt="">
+              <img src="" alt="">
+              <img src="" alt="">
+            </div>
+            <div id="detail">
+              <ul class="cls">
+                <li>
+                  <p>笔记本</p>
+                  <ul class="sub-type">
+                    <li>常规笔记本</li>
+                    <li>超轻薄笔记本</li>
+                    <li>互联网爆款</li>
+                    <li>游戏本</li>
+                    <li>变形笔记本</li>
+                  </ul>
+                </li>
+                <li>
+                  <p>笔记本场景</p>
+                  <ul class="sub-type">
+                    <li>校园学生</li>
+                    <li>时尚女生</li>
+                    <li>家庭娱乐</li>
+                    <li>商务办公</li>
+                    <li>高清游戏</li>
+                    <li>轻薄便携</li>
+                  </ul>
+                </li>
+                <li>
+                  <p>台式机</p>
+                  <ul class="sub-type">
+                    <li>一体台式机</li>
+                    <li>分体台式机</li>
+                  </ul>
+                </li>
+                <li>
+                  <p>台式机场景</p>
+                  <ul class="sub-type">
+                    <li>商务办公</li>
+                    <li>家庭娱乐</li>
+                    <li>随心触控</li>
+                    <li>疯狂游戏</li>
+                    <li>健康学习</li>
+                    <li>绚丽大屏</li>
+                  </ul>
+                </li>
+              </ul>
+              <div class="display">
+                <img src="http://p3.lefile.cn/product/adminweb/2016/03/31/f0d66807-ddeb-4241-9804-000359f325f0.jpg" alt="">
+                <!--
+                      --><img src="http://p2.lefile.cn/product/adminweb/2016/03/15/f36126c3-0522-496c-89fd-c16e37c00d5b.jpg" alt="">
+              </div>
+            </div>
+          </div>
+          <div class="recommend">
+            <img src="https://pic.shop.lenovo.com.cn/g1/M00/01/4C/CmBZD1aXk7qAQgetAAAQAdMVMFM526.jpg" alt=""><!--
+                --><a href="#"><img src="https://pic.shop.lenovo.com.cn/g1/M00/00/84/CmBZEFZfo3SAYvG5AABM8-okDuc247.jpg" alt=""></a><!----><a href="#"><img src="https://pic.shop.lenovo.com.cn/g1/M00/01/42/CmBZD1aTHxaAG4J1AAArR3Ck_kA060.jpg" alt=""></a><!----><a href="#"><img src="http://p1.lefile.cn/product/adminweb/2016/04/20/691b6a86-401b-4df2-a76b-49f1774696db.jpg" alt=""></a><!----><a href="#"><img src="https://pic.shop.lenovo.com.cn/g1/M00/00/84/CmBZD1ZfpDqAJivuAABPYkHthxM410.jpg" alt=""></a><!---->
+          </div>
+          <div id="star"><p>明星单品<span class="operate" id="next"></span><span class="operate" id="previous"></span></p>
+            <ul>
+              <li>
+                <a href="#">
+                  <img src="http://p2.lefile.cn/g1/M00/01/E0/CmPJi1Vxfq6AF9gvAADWVm3RwcE797.w180.jpg" alt="">
+                </a>
+                <p class="type"><a href="#">小新出色版I2000 IRIS -草莓红</a></p>
+                <p class="slogan"><a href="#">纤薄多彩 轻松便携</a></p>
+                <p class="price">4,399元</p>
+              </li>
+              <li>
+                <a href="#">
+                  <img src="https://pic.shop.lenovo.com.cn/180/g1/M00/00/4E/CmBZD1ZMTvSAO4kbAABgZL1Gl7U142.jpg" alt="">
+                </a>
+                <p class="type"><a href="">IdeaPad 700S-14ISK-6Y30</a></p>
+                <p class="slogan"><a href="">赠送专属配件套装</a></p>
+                <p class="price">4,999元</p>
+              </li>
+              <li>
+                <a href="#">
+                  <img src="http://p3.lefile.cn/product/adminweb/2016/02/29/tJa3FzRk2hWC1agkp6HeYwVlc-2111.w180.jpg" alt="">
+                </a>
+                <p class="type"><a href="">联想移动电源 MP1260 玫瑰红</a></p>
+                <p class="slogan"><a href="">安全耐用 匹配所有手机及平板</a></p>
+                <p class="price">40元</p>
+              </li>
+              <li>
+                <a href="#">
+                  <img src="http://p4.lefile.cn/product/adminweb/2016/03/14/YsHTHeRYEq6llIqwO95OLZRoy-0821.w180.jpg" alt="">
+                </a>
+                <p class="type"><a href="">联想乐檬3(K32C36) 金色</a></p>
+                <p class="slogan"><a href="">让世界清晰可现</a></p>
+                <p class="price">699元</p>
+              </li>
+              <li>
+                <a href="#">
+                  <img src="https://pic.shop.lenovo.com.cn/180/g1/M00/00/7A/CmBZD1ZbzDCAeGcZAABsUpQ-6Pg026.jpg" alt="">
+                </a>
+                <p class="type"><a href="">ThinkPad E550 20DFA08ECD</a></p>
+                <p class="slogan"><a href="">开学换新机，最高直降2000元</a></p>
+                <p class="price">4,199元</p>
+              </li>
+              <li>
+                <a href="#">
+                  <img src="http://p4.lefile.cn/product/adminweb/2016/04/18/sCS4QSESKOvSPReSfzDz2kYUM-8607.w180.jpg" alt="">
+                </a>
+                <p class="type"><a href="">拯救者15-ISK i7悦动版</a></p>
+                <p class="slogan"><a href="">GTX960M专业游戏显卡</a></p>
+                <p class="price">6,699元</p>
+              </li>
+            </ul>
+          </div>
+          <div id="guess">
+            <p>猜你喜欢<span class="operate" id="change"></span><span class="text">换一批</span></p>
+            <ul>
+              <li>
+                <a href="#">
+                  <img src="http://p2.lefile.cn/g1/M00/01/E0/CmPJi1Vxfq6AF9gvAADWVm3RwcE797.w180.jpg" alt="">
+                </a>
+                <p class="type"><a href="#">小新出色版I2000 IRIS -草莓红</a></p>
+                <p class="price">4,399元</p>
+              </li>
+              <li>
+                <a href="#">
+                  <img src="https://pic.shop.lenovo.com.cn/180/g1/M00/00/4E/CmBZD1ZMTvSAO4kbAABgZL1Gl7U142.jpg" alt="">
+                </a>
+                <p class="type"><a href="">IdeaPad 700S-14ISK-6Y30</a></p>
+                <p class="price">4,999元</p>
+              </li>
+              <li>
+                <a href="#">
+                  <img src="http://p3.lefile.cn/product/adminweb/2016/02/29/tJa3FzRk2hWC1agkp6HeYwVlc-2111.w180.jpg" alt="">
+                </a>
+                <p class="type"><a href="">联想移动电源 MP1260 玫瑰红</a></p>
+                <p class="price">40元</p>
+              </li>
+              <li>
+                <a href="#">
+                  <img src="http://p4.lefile.cn/product/adminweb/2016/03/14/YsHTHeRYEq6llIqwO95OLZRoy-0821.w180.jpg" alt="">
+                </a>
+                <p class="type"><a href="">联想乐檬3(K32C36) 金色</a></p>
+                <p class="price">699元</p>
+              </li>
+              <li>
+                <a href="#">
+                  <img src="https://pic.shop.lenovo.com.cn/180/g1/M00/00/7A/CmBZD1ZbzDCAeGcZAABsUpQ-6Pg026.jpg" alt="">
+                </a>
+                <p class="type"><a href="">ThinkPad E550 20DFA08ECD</a></p>
+                <p class="price">4,199元</p>
+              </li>
+              <li>
+                <a href="#">
+                  <img src="http://p4.lefile.cn/product/adminweb/2016/04/18/sCS4QSESKOvSPReSfzDz2kYUM-8607.w180.jpg" alt="">
+                </a>
+                <p class="type"><a href="">拯救者15-ISK i7悦动版</a></p>
+                <p class="price">6,699元</p>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="shop-box">
+          <div class="floor">
+            <p>1F Lenovo 电脑<span class="operate more text">更多</span><span class="text">YOGA4&nbsp;Pro系列&nbsp;V4000系列&nbsp;拯救者系列&nbsp;700S系列&nbsp;Y900系列&nbsp;</span></p>
+            <div class="brand">
+              <img src="http://p2.lefile.cn/product/adminweb/2016/03/17/a8409dcc-c9e2-4087-ac90-6cc96ef4bf5c.jpg" alt="">
+            </div>
+            <ul>
+              <li>
+                <a href=""><img src="https://pic.shop.lenovo.com.cn/164/g1/M00/02/68/CmPJi1W05z2AQuPkAABYW1CyqT0197.jpg" alt=""></a>
+                <p class="type"><a href="">小新V4000(Win10升级版)</a></p>
+                <p class="slogan">大屏性能独显 畅玩游戏</p>
+                <p class="price">5,199元</p>
+              </li>
+              <li>
+                <a href=""><img src="https://pic.shop.lenovo.com.cn/164/g1/M00/00/7A/CmBZD1ZbyimAT7SsAACgYoGkhAE693.jpg" alt=""></a>
+                <p class="type"><a href="">小新V4000(Win10升级版)</a></p>
+                <p class="slogan">大屏性能独显 畅玩游戏</p>
+                <p class="price">5,199元</p>
+              </li>
+              <li>
+                <a href=""><img src="https://pic.shop.lenovo.com.cn/164/g1/M00/00/8C/CmBZD1ZlU1OAEmQfAADECSxqiw8832.jpg" alt=""></a>
+                <p class="type"><a href="">小新V4000(Win10升级版)</a></p>
+                <p class="slogan">大屏性能独显 畅玩游戏</p>
+                <p class="price">5,199元</p>
+              </li>
+              <li>
+                <a href=""><img src="https://pic.shop.lenovo.com.cn/164/g1/M00/00/8C/CmBZD1ZlU1OAEmQfAADECSxqiw8832.jpg" alt=""></a>
+                <p class="type"><a href="">小新V4000(Win10升级版)</a></p>
+                <p class="slogan">大屏性能独显 畅玩游戏</p>
+                <p class="price">5,199元</p>
+              </li>
+              <li>
+                <a href=""><img src="https://pic.shop.lenovo.com.cn/164/g1/M00/00/01/CmBZD1Y8ij6AA7OvAADr-4kzeX4564.jpg" alt=""></a>
+                <p class="type"><a href="">小新V4000(Win10升级版)</a></p>
+                <p class="slogan">大屏性能独显 畅玩游戏</p>
+                <p class="price">5,199元</p>
+              </li>
+              <li>
+                <a href=""><img src="https://pic.shop.lenovo.com.cn/164/g1/M00/00/D0/CmBZD1YnXfKAfM2tAACYpTJ4reU290.jpg" alt=""></a>
+                <p class="type"><a href="">小新V4000(Win10升级版)</a></p>
+                <p class="slogan">大屏性能独显 畅玩游戏</p>
+                <p class="price">5,199元</p>
+              </li>
+              <li>
+                <a href=""><img src="https://pic.shop.lenovo.com.cn/164/g1/M00/03/9D/CmBZEFY4fFOAGMOiAACVIl7z1UQ956.jpg" alt=""></a>
+                <p class="type"><a href="">小新V4000(Win10升级版)</a></p>
+                <p class="slogan">大屏性能独显 畅玩游戏</p>
+                <p class="price">5,199元</p>
+              </li>
+              <li>
+                <a href=""><img src="https://pic.shop.lenovo.com.cn/164/g1/M00/02/52/CmPJi1WeNeqAYbI1AADxtXqqIUc447.jpg" alt=""></a>
+                <p class="type"><a href="">小新V4000(Win10升级版)</a></p>
+                <p class="slogan">大屏性能独显 畅玩游戏</p>
+                <p class="price">5,199元</p>
+              </li>
+            </ul>
+          </div>
+          <div class="floor">
+            <p>2F ThinkPad 电脑<span class="operate more text">更多</span><span class="text">YOGA4&nbsp;Pro系列&nbsp;V4000系列&nbsp;拯救者系列&nbsp;700S系列&nbsp;Y900系列&nbsp;</span></p>
+            <div class="brand">
+              <img src="http://p2.lefile.cn/product/adminweb/2016/03/17/a8409dcc-c9e2-4087-ac90-6cc96ef4bf5c.jpg" alt="">
+            </div>
+            <ul>
+              <li>
+                <a href=""><img src="https://pic.shop.lenovo.com.cn/164/g1/M00/02/68/CmPJi1W05z2AQuPkAABYW1CyqT0197.jpg" alt=""></a>
+                <p class="type"><a href="">小新V4000(Win10升级版)</a></p>
+                <p class="slogan">大屏性能独显 畅玩游戏</p>
+                <p class="price">5,199元</p>
+              </li>
+              <li>
+                <a href=""><img src="https://pic.shop.lenovo.com.cn/164/g1/M00/00/7A/CmBZD1ZbyimAT7SsAACgYoGkhAE693.jpg" alt=""></a>
+                <p class="type"><a href="">小新V4000(Win10升级版)</a></p>
+                <p class="slogan">大屏性能独显 畅玩游戏</p>
+                <p class="price">5,199元</p>
+              </li>
+              <li>
+                <a href=""><img src="https://pic.shop.lenovo.com.cn/164/g1/M00/00/8C/CmBZD1ZlU1OAEmQfAADECSxqiw8832.jpg" alt=""></a>
+                <p class="type"><a href="">小新V4000(Win10升级版)</a></p>
+                <p class="slogan">大屏性能独显 畅玩游戏</p>
+                <p class="price">5,199元</p>
+              </li>
+              <li>
+                <a href=""><img src="https://pic.shop.lenovo.com.cn/164/g1/M00/00/8C/CmBZD1ZlU1OAEmQfAADECSxqiw8832.jpg" alt=""></a>
+                <p class="type"><a href="">小新V4000(Win10升级版)</a></p>
+                <p class="slogan">大屏性能独显 畅玩游戏</p>
+                <p class="price">5,199元</p>
+              </li>
+              <li>
+                <a href=""><img src="https://pic.shop.lenovo.com.cn/164/g1/M00/00/01/CmBZD1Y8ij6AA7OvAADr-4kzeX4564.jpg" alt=""></a>
+                <p class="type"><a href="">小新V4000(Win10升级版)</a></p>
+                <p class="slogan">大屏性能独显 畅玩游戏</p>
+                <p class="price">5,199元</p>
+              </li>
+              <li>
+                <a href=""><img src="https://pic.shop.lenovo.com.cn/164/g1/M00/00/D0/CmBZD1YnXfKAfM2tAACYpTJ4reU290.jpg" alt=""></a>
+                <p class="type"><a href="">小新V4000(Win10升级版)</a></p>
+                <p class="slogan">大屏性能独显 畅玩游戏</p>
+                <p class="price">5,199元</p>
+              </li>
+              <li>
+                <a href=""><img src="https://pic.shop.lenovo.com.cn/164/g1/M00/03/9D/CmBZEFY4fFOAGMOiAACVIl7z1UQ956.jpg" alt=""></a>
+                <p class="type"><a href="">小新V4000(Win10升级版)</a></p>
+                <p class="slogan">大屏性能独显 畅玩游戏</p>
+                <p class="price">5,199元</p>
+              </li>
+              <li>
+                <a href=""><img src="https://pic.shop.lenovo.com.cn/164/g1/M00/02/52/CmPJi1WeNeqAYbI1AADxtXqqIUc447.jpg" alt=""></a>
+                <p class="type"><a href="">小新V4000(Win10升级版)</a></p>
+                <p class="slogan">大屏性能独显 畅玩游戏</p>
+                <p class="price">5,199元</p>
+              </li>
+            </ul>
+          </div>
+          <div class="floor">
+            <p>3F 手机<span class="operate text more">更多</span><span class="text">YOGA4&nbsp;Pro系列&nbsp;V4000系列&nbsp;拯救者系列&nbsp;700S系列&nbsp;Y900系列&nbsp;</span></p>
+            <div class="brand">
+              <img src="http://p2.lefile.cn/product/adminweb/2016/03/17/a8409dcc-c9e2-4087-ac90-6cc96ef4bf5c.jpg" alt="">
+            </div>
+            <ul>
+              <li>
+                <a href=""><img src="https://pic.shop.lenovo.com.cn/164/g1/M00/02/68/CmPJi1W05z2AQuPkAABYW1CyqT0197.jpg" alt=""></a>
+                <p class="type"><a href="">小新V4000(Win10升级版)</a></p>
+                <p class="slogan">大屏性能独显 畅玩游戏</p>
+                <p class="price">5,199元</p>
+              </li>
+              <li>
+                <a href=""><img src="https://pic.shop.lenovo.com.cn/164/g1/M00/00/7A/CmBZD1ZbyimAT7SsAACgYoGkhAE693.jpg" alt=""></a>
+                <p class="type"><a href="">小新V4000(Win10升级版)</a></p>
+                <p class="slogan">大屏性能独显 畅玩游戏</p>
+                <p class="price">5,199元</p>
+              </li>
+              <li>
+                <a href=""><img src="https://pic.shop.lenovo.com.cn/164/g1/M00/00/8C/CmBZD1ZlU1OAEmQfAADECSxqiw8832.jpg" alt=""></a>
+                <p class="type"><a href="">小新V4000(Win10升级版)</a></p>
+                <p class="slogan">大屏性能独显 畅玩游戏</p>
+                <p class="price">5,199元</p>
+              </li>
+              <li>
+                <a href=""><img src="https://pic.shop.lenovo.com.cn/164/g1/M00/00/8C/CmBZD1ZlU1OAEmQfAADECSxqiw8832.jpg" alt=""></a>
+                <p class="type"><a href="">小新V4000(Win10升级版)</a></p>
+                <p class="slogan">大屏性能独显 畅玩游戏</p>
+                <p class="price">5,199元</p>
+              </li>
+              <li>
+                <a href=""><img src="https://pic.shop.lenovo.com.cn/164/g1/M00/00/01/CmBZD1Y8ij6AA7OvAADr-4kzeX4564.jpg" alt=""></a>
+                <p class="type"><a href="">小新V4000(Win10升级版)</a></p>
+                <p class="slogan">大屏性能独显 畅玩游戏</p>
+                <p class="price">5,199元</p>
+              </li>
+              <li>
+                <a href=""><img src="https://pic.shop.lenovo.com.cn/164/g1/M00/00/D0/CmBZD1YnXfKAfM2tAACYpTJ4reU290.jpg" alt=""></a>
+                <p class="type"><a href="">小新V4000(Win10升级版)</a></p>
+                <p class="slogan">大屏性能独显 畅玩游戏</p>
+                <p class="price">5,199元</p>
+              </li>
+              <li>
+                <a href=""><img src="https://pic.shop.lenovo.com.cn/164/g1/M00/03/9D/CmBZEFY4fFOAGMOiAACVIl7z1UQ956.jpg" alt=""></a>
+                <p class="type"><a href="">小新V4000(Win10升级版)</a></p>
+                <p class="slogan">大屏性能独显 畅玩游戏</p>
+                <p class="price">5,199元</p>
+              </li>
+              <li>
+                <a href=""><img src="https://pic.shop.lenovo.com.cn/164/g1/M00/02/52/CmPJi1WeNeqAYbI1AADxtXqqIUc447.jpg" alt=""></a>
+                <p class="type"><a href="">小新V4000(Win10升级版)</a></p>
+                <p class="slogan">大屏性能独显 畅玩游戏</p>
+                <p class="price">5,199元</p>
+              </li>
+            </ul>
+          </div>
+          <div class="floor">
+            <p>4F 平板电脑<span class="operate  text more">更多</span><span class="text">YOGA4&nbsp;Pro系列&nbsp;V4000系列&nbsp;拯救者系列&nbsp;700S系列&nbsp;Y900系列&nbsp;</span></p>
+            <div class="brand">
+              <img src="http://p2.lefile.cn/product/adminweb/2016/03/17/a8409dcc-c9e2-4087-ac90-6cc96ef4bf5c.jpg" alt="">
+            </div>
+            <ul>
+              <li>
+                <a href=""><img src="https://pic.shop.lenovo.com.cn/164/g1/M00/02/68/CmPJi1W05z2AQuPkAABYW1CyqT0197.jpg" alt=""></a>
+                <p class="type"><a href="">小新V4000(Win10升级版)</a></p>
+                <p class="slogan">大屏性能独显 畅玩游戏</p>
+                <p class="price">5,199元</p>
+              </li>
+              <li>
+                <a href=""><img src="https://pic.shop.lenovo.com.cn/164/g1/M00/00/7A/CmBZD1ZbyimAT7SsAACgYoGkhAE693.jpg" alt=""></a>
+                <p class="type"><a href="">小新V4000(Win10升级版)</a></p>
+                <p class="slogan">大屏性能独显 畅玩游戏</p>
+                <p class="price">5,199元</p>
+              </li>
+              <li>
+                <a href=""><img src="https://pic.shop.lenovo.com.cn/164/g1/M00/00/8C/CmBZD1ZlU1OAEmQfAADECSxqiw8832.jpg" alt=""></a>
+                <p class="type"><a href="">小新V4000(Win10升级版)</a></p>
+                <p class="slogan">大屏性能独显 畅玩游戏</p>
+                <p class="price">5,199元</p>
+              </li>
+              <li>
+                <a href=""><img src="https://pic.shop.lenovo.com.cn/164/g1/M00/00/8C/CmBZD1ZlU1OAEmQfAADECSxqiw8832.jpg" alt=""></a>
+                <p class="type"><a href="">小新V4000(Win10升级版)</a></p>
+                <p class="slogan">大屏性能独显 畅玩游戏</p>
+                <p class="price">5,199元</p>
+              </li>
+              <li>
+                <a href=""><img src="https://pic.shop.lenovo.com.cn/164/g1/M00/00/01/CmBZD1Y8ij6AA7OvAADr-4kzeX4564.jpg" alt=""></a>
+                <p class="type"><a href="">小新V4000(Win10升级版)</a></p>
+                <p class="slogan">大屏性能独显 畅玩游戏</p>
+                <p class="price">5,199元</p>
+              </li>
+              <li>
+                <a href=""><img src="https://pic.shop.lenovo.com.cn/164/g1/M00/00/D0/CmBZD1YnXfKAfM2tAACYpTJ4reU290.jpg" alt=""></a>
+                <p class="type"><a href="">小新V4000(Win10升级版)</a></p>
+                <p class="slogan">大屏性能独显 畅玩游戏</p>
+                <p class="price">5,199元</p>
+              </li>
+              <li>
+                <a href=""><img src="https://pic.shop.lenovo.com.cn/164/g1/M00/03/9D/CmBZEFY4fFOAGMOiAACVIl7z1UQ956.jpg" alt=""></a>
+                <p class="type"><a href="">小新V4000(Win10升级版)</a></p>
+                <p class="slogan">大屏性能独显 畅玩游戏</p>
+                <p class="price">5,199元</p>
+              </li>
+              <li>
+                <a href=""><img src="https://pic.shop.lenovo.com.cn/164/g1/M00/02/52/CmPJi1WeNeqAYbI1AADxtXqqIUc447.jpg" alt=""></a>
+                <p class="type"><a href="">小新V4000(Win10升级版)</a></p>
+                <p class="slogan">大屏性能独显 畅玩游戏</p>
+                <p class="price">5,199元</p>
+              </li>
+            </ul>
+          </div>
+          <div class="floor">
+            <p>5F 选件产品<span class="text"></span><span class="operate more text">更多</span></p>
+            <div class="brand">
+              <img src="http://p2.lefile.cn/product/adminweb/2016/03/17/a8409dcc-c9e2-4087-ac90-6cc96ef4bf5c.jpg" alt="">
+            </div>
+            <ul>
+              <li>
+                <a href=""><img src="https://pic.shop.lenovo.com.cn/164/g1/M00/02/68/CmPJi1W05z2AQuPkAABYW1CyqT0197.jpg" alt=""></a>
+                <p class="type"><a href="">小新V4000(Win10升级版)</a></p>
+                <p class="slogan">大屏性能独显 畅玩游戏</p>
+                <p class="price">5,199元</p>
+              </li>
+              <li>
+                <a href=""><img src="https://pic.shop.lenovo.com.cn/164/g1/M00/00/7A/CmBZD1ZbyimAT7SsAACgYoGkhAE693.jpg" alt=""></a>
+                <p class="type"><a href="">小新V4000(Win10升级版)</a></p>
+                <p class="slogan">大屏性能独显 畅玩游戏</p>
+                <p class="price">5,199元</p>
+              </li>
+              <li>
+                <a href=""><img src="https://pic.shop.lenovo.com.cn/164/g1/M00/00/8C/CmBZD1ZlU1OAEmQfAADECSxqiw8832.jpg" alt=""></a>
+                <p class="type"><a href="">小新V4000(Win10升级版)</a></p>
+                <p class="slogan">大屏性能独显 畅玩游戏</p>
+                <p class="price">5,199元</p>
+              </li>
+              <li>
+                <a href=""><img src="https://pic.shop.lenovo.com.cn/164/g1/M00/00/8C/CmBZD1ZlU1OAEmQfAADECSxqiw8832.jpg" alt=""></a>
+                <p class="type"><a href="">小新V4000(Win10升级版)</a></p>
+                <p class="slogan">大屏性能独显 畅玩游戏</p>
+                <p class="price">5,199元</p>
+              </li>
+              <li>
+                <a href=""><img src="https://pic.shop.lenovo.com.cn/164/g1/M00/00/01/CmBZD1Y8ij6AA7OvAADr-4kzeX4564.jpg" alt=""></a>
+                <p class="type"><a href="">小新V4000(Win10升级版)</a></p>
+                <p class="slogan">大屏性能独显 畅玩游戏</p>
+                <p class="price">5,199元</p>
+              </li>
+              <li>
+                <a href=""><img src="https://pic.shop.lenovo.com.cn/164/g1/M00/00/D0/CmBZD1YnXfKAfM2tAACYpTJ4reU290.jpg" alt=""></a>
+                <p class="type"><a href="">小新V4000(Win10升级版)</a></p>
+                <p class="slogan">大屏性能独显 畅玩游戏</p>
+                <p class="price">5,199元</p>
+              </li>
+              <li>
+                <a href=""><img src="https://pic.shop.lenovo.com.cn/164/g1/M00/03/9D/CmBZEFY4fFOAGMOiAACVIl7z1UQ956.jpg" alt=""></a>
+                <p class="type"><a href="">小新V4000(Win10升级版)</a></p>
+                <p class="slogan">大屏性能独显 畅玩游戏</p>
+                <p class="price">5,199元</p>
+              </li>
+              <li>
+                <a href=""><img src="https://pic.shop.lenovo.com.cn/164/g1/M00/02/52/CmPJi1WeNeqAYbI1AADxtXqqIUc447.jpg" alt=""></a>
+                <p class="type"><a href="">小新V4000(Win10升级版)</a></p>
+                <p class="slogan">大屏性能独显 畅玩游戏</p>
+                <p class="price">5,199元</p>
+              </li>
+            </ul>
+          </div>
+          <div class="floor">
+            <p>6F 我要服务<span class="operate more text">&nbsp;更多</span><span class="text">固态硬盘升级服务&nbsp;&nbsp;内存升级服务</span></p>
+            <div class="brand">
+              <img src="http://p2.lefile.cn/product/adminweb/2016/03/17/a8409dcc-c9e2-4087-ac90-6cc96ef4bf5c.jpg" alt="">
+            </div>
+            <ul>
+              <li>
+                <a href=""><img src="https://pic.shop.lenovo.com.cn/164/g1/M00/02/68/CmPJi1W05z2AQuPkAABYW1CyqT0197.jpg" alt=""></a>
+                <p class="type"><a href="">小新V4000(Win10升级版)</a></p>
+                <p class="slogan">大屏性能独显 畅玩游戏</p>
+                <p class="price">5,199元</p>
+              </li>
+              <li>
+                <a href=""><img src="https://pic.shop.lenovo.com.cn/164/g1/M00/00/7A/CmBZD1ZbyimAT7SsAACgYoGkhAE693.jpg" alt=""></a>
+                <p class="type"><a href="">小新V4000(Win10升级版)</a></p>
+                <p class="slogan">大屏性能独显 畅玩游戏</p>
+                <p class="price">5,199元</p>
+              </li>
+              <li>
+                <a href=""><img src="https://pic.shop.lenovo.com.cn/164/g1/M00/00/8C/CmBZD1ZlU1OAEmQfAADECSxqiw8832.jpg" alt=""></a>
+                <p class="type"><a href="">小新V4000(Win10升级版)</a></p>
+                <p class="slogan">大屏性能独显 畅玩游戏</p>
+                <p class="price">5,199元</p>
+              </li>
+              <li>
+                <a href=""><img src="https://pic.shop.lenovo.com.cn/164/g1/M00/00/8C/CmBZD1ZlU1OAEmQfAADECSxqiw8832.jpg" alt=""></a>
+                <p class="type"><a href="">小新V4000(Win10升级版)</a></p>
+                <p class="slogan">大屏性能独显 畅玩游戏</p>
+                <p class="price">5,199元</p>
+              </li>
+              <li>
+                <a href=""><img src="https://pic.shop.lenovo.com.cn/164/g1/M00/00/01/CmBZD1Y8ij6AA7OvAADr-4kzeX4564.jpg" alt=""></a>
+                <p class="type"><a href="">小新V4000(Win10升级版)</a></p>
+                <p class="slogan">大屏性能独显 畅玩游戏</p>
+                <p class="price">5,199元</p>
+              </li>
+              <li>
+                <a href=""><img src="https://pic.shop.lenovo.com.cn/164/g1/M00/00/D0/CmBZD1YnXfKAfM2tAACYpTJ4reU290.jpg" alt=""></a>
+                <p class="type"><a href="">小新V4000(Win10升级版)</a></p>
+                <p class="slogan">大屏性能独显 畅玩游戏</p>
+                <p class="price">5,199元</p>
+              </li>
+              <li>
+                <a href=""><img src="https://pic.shop.lenovo.com.cn/164/g1/M00/03/9D/CmBZEFY4fFOAGMOiAACVIl7z1UQ956.jpg" alt=""></a>
+                <p class="type"><a href="">小新V4000(Win10升级版)</a></p>
+                <p class="slogan">大屏性能独显 畅玩游戏</p>
+                <p class="price">5,199元</p>
+              </li>
+              <li>
+                <a href=""><img src="https://pic.shop.lenovo.com.cn/164/g1/M00/02/52/CmPJi1WeNeqAYbI1AADxtXqqIUc447.jpg" alt=""></a>
+                <p class="type"><a href="">小新V4000(Win10升级版)</a></p>
+                <p class="slogan">大屏性能独显 畅玩游戏</p>
+                <p class="price">5,199元</p>
+              </li>
+            </ul>
+          </div>
+          <div id="social-floor">
+            <p>7F 社交平台</p>
+            <ul>
+              <li>
+                <img src="http://p2.lefile.cn/product/adminweb/2016/04/19/6079876c-8834-4e8f-9bed-f6b9ad2bc5f1.jpg" alt="">
+                <div class="cover"></div>
+                <div class="caption">
+                  <span class="logo" id="social"></span><span class="name">联想社区</span>
+                </div>
+              </li>
+              <li>
+                <img src="https://pic.shop.lenovo.com.cn/g1/M00/00/87/CmBZD1ZgP9mARZ8RAABNDNnkBLc533.jpg" alt="">
+                <div class="cover"></div>
+                <div class="caption">
+                  <span class="logo" id="wechat"></span><span class="name">官方微信</span>
+                </div>
+              </li>
+              <li>
+                <img src="https://pic.shop.lenovo.com.cn/g1/M00/00/87/CmBZEFZgQCKAEYvZAABlfViSkCk073.jpg" alt="">
+                <div class="cover"></div>
+                <div class="caption">
+                  <span class="logo" id="qzone"></span><span class="name">QQ空间</span>
+                </div>
+              </li>
+              <li>
+                <img src="https://pic.shop.lenovo.com.cn/g1/M00/00/87/CmBZD1ZgQICAYMSIAABgBG4L_mM482.jpg" alt="">
+                <div class="cover"></div>
+                <div class="caption">
+                  <span class="logo" id="tieba"></span><span class="name">百度贴吧</span>
+                </div>
+              </li>
+              <li>
+                <img src="https://pic.shop.lenovo.com.cn/g1/M00/00/87/CmBZEFZgQKyAKz4RAABb-PHYPNM450.jpg" alt="">
+                <div class="cover"></div>
+                <div class="caption">
+                  <span class="logo" id="weibo"></span><span class="name">官方微博</span>
+                </div>
+              </li>
+              <li>
+                <img src="https://pic.shop.lenovo.com.cn/g1/M00/00/87/CmBZD1ZgQLyATWrZAAA9-UmFFAY559.jpg" alt="">
+                <div class="cover"></div>
+                <div class="caption">
+                  <span class="logo" id="blog"></span><span class="name">兴趣部落</span>
+                </div>
+              </li>
+            </ul>
+            <img src="https://pic.shop.lenovo.com.cn/g1/M00/00/F6/CmBZEFZz7I-ADJipAABALgU8YUw364.jpg" alt="">
+          </div>
+        </div>
+        <div id="service">
+          <ul>
+            <li>
+              <ul class="single-serv">
+                <li>购物指南</li>
+                <li>服务商信息</li>
+                <li>购买流程</li>
+                <li>注册登录</li>
+              </ul>
+            </li>
+            <li>
+              <ul class="single-serv">
+                <li>配送方式</li>
+                <li>配送方式</li>
+                <li>配送方式信息</li>
+                <li>签收原则</li>
+                <li>物流查询</li>
+              </ul>
+            </li>
+            <li>
+              <ul class="single-serv">
+                <li>支付方式</li>
+                <li>支付方式</li>
+                <li>支付问题</li>
+                <li>分期支付</li>
+              </ul>
+            </li>
+            <li>
+              <ul class="single-serv">
+                <li>订单信息</li>
+                <li>订单信息</li>
+                <li>其它频道订单发票</li>
+                <li>手机频道订单发票</li>
+              </ul>
+            </li>
+            <li>
+              <ul class="single-serv">
+                <li>售后服务</li>
+                <li>Lenovo频道商品售后</li>
+                <li>手机频道商品售后7天</li>
+                <li>无理由退换货说明</li>
+                <li>24小时在线客服</li>
+              </ul>
+            </li>
+            <li>
+              <ul class="single-serv">
+                <li>其他说明</li>
+                <li>服务承诺</li>
+                <li>账户安全</li>
+                <li>产品安全</li>
+                <li>银行分期</li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <footer>
+        <div class="line-1"><a href="">关于联想</a>
+          <!--
+          --><a href="">联系我们</a>
+          <!--
+          --><a href="">工作机会</a>
+          <!--
+          --><a href="">新闻中心</a>
+          <!--
+          --><a href="">EPP会员专享</a>
+          <!--
+          --><a href="">ZUK官网</a>
+          <!--
+          --><a href="">联想社区</a>
+          <!--
+          --><a href="">NBD</a>
+          <!--
+          --><a href="">联想超融合</a>
+          <!--
+          --><a href="">懂的通信</a>
+          <!--
+          --><a href=""><span id="sale-point"></span>销售网点</a>
+          <!--
+          --><a href=""><span id="service-point"></span>服务网点</a>
+          <!--
+          -->
+        </div>
+        <div class="line-2">
+          <span>版权所有：1998-2016 联想集团</span>
+          <!--
+          --><a href="">法律公告</a>
+          <!--
+          --><a href="">隐私保护</a>
+          <!--
+          --><a href="">京ICP备11035381</a>
+          <!--
+          --><a href="">京公网安备110108007970号</a>
+          <!--
+          --><a href="">营业执照：110000410127232</a></div>
+      </footer>
+      <aside>
+        <div class="qrcode"></div>
+        <span>商城客户端</span>
+      </aside>
+      <div class="right-btn"></div>
+
+      <script>
+        $(function() {
+  $(document).on('mouseover', 'nav a,#tabs>a,#broadcast>p,#discuss>a,#titles>ul a', function(event) {
+      event.preventDefault();
+      $(event.target).addClass('hover-link');
+    })
+    .on('mouseout', 'nav a,#tabs>a,#broadcast>p,#discuss>a,#titles>ul a', function(event) {
+      event.preventDefault();
+      $(event.target).removeClass('hover-link');
+    })
+    .on('mouseover', '#search-ad>li', function(event) {
+      event.preventDefault();
+      $(event.target).css({
+        'backgroundColor': '#bdbdbd',
+        'color': '#fff'
+      });
+    })
+    .on('mouseout', '#search-ad>li', function(event) {
+      event.preventDefault();
+      $(event.target).css({
+        'backgroundColor': '#fff',
+        'color': '#bdbdbd'
+      });
+    })
+    .on('mouseover', '#left-list>a>li', function(event) {
+      event.preventDefault();
+      $(event.target).css({
+        'backgroundColor': '#f5f5f5',
+        'color': 'red'
+      });
+      $('#detail').show();
+    })
+    .on('mouseout', '#left-list>a>li', function(event) {
+      event.preventDefault();
+      $(event.target).css({
+        'backgroundColor': '#fff',
+        'color': '#000'
+      });
+    })
+    .on('mouseout', '#detail', function(event) {
+      event.preventDefault();
+      $('#detail').hide();
+    })
+    .on('mouseover', '#star', function(event) {
+      event.preventDefault();
+      $(event.target).closest('li').addClass('top-red');
+    })
+    .on('mouseout', '#star', function(event) {
+      event.preventDefault();
+      $(event.target).closest('li').removeClass('top-red');
+    })
+    .on('mouseover', '.floor>ul>li', function(event) {
+      event.preventDefault();
+      $(event.target).closest('img').css('position', 'relative').animate({
+        left: '+=20px',
+      }, 'slow').animate({
+        left: '-=20px',
+      }, 'slow');
+    })
+    .on('mouseover', '#social-floor', function(event) {
+      event.preventDefault();
+      $(event.target).closest('li').addClass('shadow');
+    })
+    .on('mouseout', '#social-floor', function(event) {
+      event.preventDefault();
+      $(event.target).closest('li').removeClass('shadow');
+    })
+    .on('mouseover', '#service .single-serv', function(event) {
+      event.preventDefault();
+      $(event.target).addClass('hover-li');
+    })
+    .on('mouseout', '#service .single-serv', function(event) {
+      event.preventDefault();
+      $(event.target).removeClass('hover-li');
+    });
+});
+      </script>
+</body>
+</html>
