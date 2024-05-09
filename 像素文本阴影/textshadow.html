@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style lang="scss">
+        :root{
+  --base: #010101;
+  --contrast: #ddd;
+}
+
+body {
+  background-color: var(--base);
+  color: var(--contrast);
+  font-family: ui-monospace, 'Cascadia Code', 'Source Code Pro', Menlo, Consolas, 'DejaVu Sans Mono', monospace;
+  font-size:.8rem;
+  line-height:1.5;
+}
+
+h2 {
+  font-family: Avenir, Montserrat, Corbel, 'URW Gothic', source-sans-pro, sans-serif;
+  font-size: clamp(3rem, 2.0909rem + 3.8788vw, 5rem);
+  font-weight:bold;
+  letter-spacing: .8rem;
+  line-height:1;
+  margin-bottom:1.75rem;
+  text-align: center;
+  text-transform:uppercase;
+}
+
+p{
+  margin-bottom:2rem;
+  
+  &:last-child{ 
+    margin-bottom:0;
+  }
+}
+
+.container {
+  margin: 3em auto;
+  max-width: 600px;
+  padding:0 3em;
+}
+
+
+.box{
+  border: 1px solid rgba(255,255,255,0.1);
+  padding: 3em;
+  margin-bottom: 3em;
+}
+
+.border {
+  a{
+    color: var(--base);
+    text-decoration:none;
+    text-shadow:
+      -4px 2px 0 dodgerblue,
+      4px -2px 0 mediumvioletred;
+    transition: .2s all ease-in-out;
+    text-underline-offset:-10px;
+    
+    &:focus,
+    &:hover {
+      text-shadow:
+      -4px 2px 0 dodgerblue,
+      4px 2px 0 mediumvioletred;
+    }
+  }
+    
+   &.b-2 a {
+     text-decoration:underline;
+     text-decoration-skip-ink:auto;
+     text-decoration-thickness: 0.6rem;
+     text-decoration-color: yellow;
+     text-shadow:
+          -2px 2px 0 dodgerblue,
+          -2px -2px 0 dodgerblue,
+          -1px -2px 0 green,
+          2px -2px 0 mediumvioletred,
+          2px 2px 0 mediumvioletred,
+          -1px 2px 0 yellow;
+      
+      &:focus,
+      &:hover {
+        text-shadow:
+          -2px 2px 0 dodgerblue,
+          -2px -2px 0 dodgerblue,
+          -5px -2px 0 green,
+          2px -2px 0 mediumvioletred,
+          2px 2px 0 mediumvioletred,
+          5px 2px 0 yellow;
+        text-decoration-color: var(--base);
+        text-decoration-skip-ink:unset;
+        text-decoration-thickness: 10px;
+      }
+    }
+}
+
+.button {
+  margin-top:1.75rem;
+  letter-spacing:1px;
+  text-align:center;
+  text-transform:uppercase;
+  
+  a{
+    background-color:var(--base);
+    color:white;
+    display:inline-block;
+    padding:8px 18px;
+    text-decoration:none;
+    transition: all .2s ease-in-out;
+  }
+  
+  &.btn-1 { 
+    a{
+      box-shadow: 
+      -4px 4px 0 dodgerblue,
+      4px -4px 0 mediumvioletred;
+      
+      &:focus,
+      &:hover {
+        box-shadow: 
+        -4px 4px 0 dodgerblue,
+        4px 4px 0 mediumvioletred;
+      }
+    }
+  }
+  
+  &.btn-2{
+    a{
+      color:yellow;
+      border:2px solid var(--base);
+      box-shadow:
+      -2px -2px 0 dodgerblue,
+      -2px 2px 0 dodgerblue,
+      2px -2px 0 mediumvioletred,
+      2px 2px 0 mediumvioletred,
+      -2px 2px 0 green,
+      2px 2px 0 yellow;
+      
+      &:hover,
+      &:focus{
+        box-shadow:
+        -2px -2px 0 dodgerblue,
+        -2px 2px 0 dodgerblue,
+        2px -2px 0 mediumvioletred,
+        2px 2px 0 mediumvioletred,
+        -5px -4px 0 green,
+        5px 4px 0 yellow;
+      }
+    }
+  }
+}
+    </style>
+</head>
+<body>
+    <div class="container">
+  
+        <div class="box">
+          <h2 class="border">
+            <a href="#">Text</a>
+          </h2>
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean ac ante eu eros laoreet condimentum rhoncus non ante. Curabitur ornare ornare porttitor. Quisque non vehicula nibh. Integer tristique non justo ac condimentum.</p>
+          <p class="button btn-1">
+            <a href="#" >Read More</a>
+          </p>
+        </div>
+            
+        <div class="box">
+          <h2 class="border b-2">
+            <a href="#">Text</a>
+          </h2>
+          
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean ac ante eu eros laoreet condimentum rhoncus non ante. Curabitur ornare ornare porttitor. Quisque non vehicula nibh. Integer tristique non justo ac condimentum.</p>
+          <p class="button btn-2"><a href="#" >Read More</a></p>
+        </div>
+        
+      </div>
+</body>
+</html>
