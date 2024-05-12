@@ -1,0 +1,1075 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        
+/*=================
+           BASE
+=====================*/
+* {
+  box-sizing: border-box;
+}
+html, body {
+  height: 100%;
+  /* overflow: hidden;  這個會凍結vh*/
+  background-color: #232323;
+}
+
+a {
+  text-decoration: none;
+}
+
+.slides h1,
+#slide-0 h1,
+#slide-0 h3 {
+  color:#961d1d;
+  text-align: center;
+  font-size: 900;
+}
+h2,
+p,
+.overlay h2,  /*有youtube icon的時候*/
+li {
+ color: #f2dca6;     
+  // #FFF8DC;
+ font-size: 900;
+ font-family: monospace;
+ text-align: center;
+}
+
+.slider {
+  margin: 1em auto 2em;
+  /*width:;為何不用設定height,沒有width就散開*/
+}
+.slides{
+  display: flex; /*從column變row*/
+  overflow-x: auto; /*在範圍內移動scroll, hidden,auto,visible*/
+  scroll-snap-type: x mandatory; /*proximity*/
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;  
+  /*
+  scroll-snap-points-x: repeat(300px);
+  scroll-snap-type: mandatory;
+  */
+}
+/*=====================
+調整封面
+=======================*/
+#slide-7 .img-cover {
+  object-fit: cover;
+  height:105%;
+}
+#slide-9 .img-cover{
+  object-fit: cover;
+  height:100%;
+}
+#slide-6-1 .img-cover,
+#slide-8-1 .img-cover,
+#slide-9-1 .img-cover{
+  object-fit: cover;
+  // height:108%;
+  position: absolute;
+  top: 20px;
+  right:0;
+}
+/*=====================
+    scrollbar
+=======================*/
+.slides::-webkit-scrollbar { /*是我的紅色bar*/
+  width: 10px;
+  height: 10px;
+} 
+.slides::-webkit-scrollbar-thumb {
+  background: firebrick;
+  border-radius: 10px;
+}
+.slides::-webkit-scrollbar-track {
+  background: transparent; /*看不出有啥不同*/
+}
+/* scrollbar*/
+/*=================
+           FADE
+=====================*/
+.slides > div {
+  scroll-snap-align:start; /*沒有這個滑的時候會卡在圖與圖之間*/
+  flex-shrink: 0;
+  width: 300px; /*slider一定要有不然圖會不見*/
+  height: 300px;
+  position: relative; /*沒有這個圖片變超大,但如果img也沒有position似乎沒差？？*/
+  overflow: hidden;/*scale the overlay the content will hide behind the cover*/
+}
+.slides > div:hover .img-cover{
+  /* 為何
+    .slides > div:hover,
+    .img-cover {
+     會使youtube顏色變淺？？
+    }
+  */
+  transform: scale(1.1);
+}
+#slide-8 .img-cover:hover,
+#slide-9 .img-cover:hover {
+  opacity: 0.3;
+}
+/*
+// .slides>.nav-slide:hover .img-cover{     這個為何不行啊？<div id="nav-slide slide-1">
+//   transform: scale(1.1);
+//   opacity: 0.3;
+// }*/
+.slides > div:hover .overlay {
+  opacity: 1;
+}
+.img-cover {
+  object-fit: cover;
+  position: absolute; /*原來是這個,但overlay是relative*/
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%; /*overlay: auto*/
+  /*overlay*/
+  opacity: 1;
+  transition: .5s ease;
+  backface-visibility: hidden;
+  /*overlay原本沒加*/
+  display: block; 
+}
+/*======================
+flexbox icons
+========================*/
+.wrap,
+.footer {
+  display: flex;
+  justify-content: center;
+}
+
+#facebook,
+#youtube,
+#twitter,
+#IG{
+  width:40px;
+  height:40px;
+  flex-basis: 1em 1.5em;
+  margin: 2em 1em;
+  transition: transform .3s;
+  fill: #961d1d;
+}
+
+
+
+#facebook:hover,
+#youtube:hover,
+#twitter:hover,
+#IG:hover {
+  transform: rotate(15deg) scale(1.1); 
+  fill: firebrick;
+}  
+/*=================
+  YouTube   目前沒有先關燈 slide 8,9,10有需要
+=====================*/
+/*
+// #YouTube {
+//   width:50%;
+//   height:50%;
+//   flex-basis: 1em 1.5em;
+//   margin: 0 1em;
+//   transition: transform .3s;
+//   fill: #fff5ee;
+// }
+*/
+.overlay { /*這個比較不同再看看*/
+  transition: .5s ease;
+  opacity: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  text-align: center;
+}
+
+/*=================
+           FADE end
+=====================*/
+/* @supports (scroll-snap-type) {
+  .slider > a {
+    display: none;
+  }
+} */
+/*
+
+body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(to bottom, #74ABE2, #5563DE);
+  font-family: 'Ropa Sans', sans-serif;
+}
+
+/*=================
+            article DIV
+=====================*/
+.outer-div {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-flow: column nowrap;
+  font-family: monospace;
+  /*flex功能小螢幕可置中*/
+  height: 100%;
+  font-family: monospace;
+  overflow: auto;
+  width: 100%;
+  height: 100%;
+  scroll-snap-align: center; /*沒有這個滑的時候會卡在圖與圖之間*/
+  scroll-snap-type: y proximity;
+}
+
+/*=================
+           DIV end
+=====================*/
+/*=================
+    video and iframe
+=====================*/
+
+.video1,
+.video2,
+.video3,
+.video4,
+.video5,
+.video6,
+.video7,
+.video8,
+.video9,
+.video10,
+.video11,
+.video12,
+.video13,
+.video14,
+.video15,
+.video16,
+.video17{
+  margin: 1em auto;
+  text-align: center;
+  font-family: 'Dancing Script', cursive;
+  font-weight: normal;
+  font-style: normal;
+  line-height: 1;
+  overflow: hidden;
+  width: 100%;
+  height: 100%;
+}
+
+
+iframe {
+  width: 100%;
+  height: 100%;
+}
+
+
+
+    </style>
+</head>
+<body>
+    <div id="slide-0">
+        <div class="div-introduction outer-div">
+        <h1>旅居法國的喬治亞鋼琴家-Khatia Buniatishvili</h1>
+        <h3>會說六國語言的Khatia - 喬治亞文、法文、德文、英文、俄文 - 還有鋼琴 - 是目前當紅的鋼琴家之ㄧ。33歲的她讓古典音樂也一起變年輕。</h3>
+        <h3>以下為所有目前Khatia所發行過的專輯，有詳細的曲目以及所有能在YouTube上找到的公開演奏，偏愛浪漫時期的她，連巴哈都有少女心。<br>另外還附有各國語言的訪問片段。</h3>
+        
+      </div> <!--outer-div-->
+     </div>  <!--slide-0 -->
+  <!--================ =============-->
+             <!--  navigation-->
+              <!--Carousel-->
+  <!--================ =============-->
+  <div class="slider">
+  
+    <div class="slides"> <!--flex-->
+      <div id="slide-1"> <!--container-->
+        <a href="#slide-1-1"><img class="img-cover" src="https://m.media-amazon.com/images/I/512l8ofcQxL._AC_UL640_FMwebp_QL65_.jpg" class="d-block w-100" alt="Liszt"></a> <!--cover-->
+        
+       <!--overlay-->
+        <div class="overlay"> 
+          
+        </div> <!--overlay--> 
+      </div> <!--slide-#1 / container-->
+       
+      <div id="slide-2">
+         <a href="#slide-2-1"><img class="img-cover" src="https://m.media-amazon.com/images/I/71ONsQMP3SL._AC_UL640_FMwebp_QL65_.jpg" class="d-block w-100" alt="Chopin"></a>
+               <div class="overlay"> 
+            
+        </div> <!--overlay-->
+      </div> <!--slide-2 /container -->
+      
+      <div id="slide-3">
+        <a href="#slide-3-1"><img class="img-cover" src="https://m.media-amazon.com/images/I/61AzNSt1xYL._AC_UL640_FMwebp_QL65_.jpg" class="d-block w-100" alt="Motherland"></a>
+              <div class="overlay"> 
+            
+        </div> <!--overlay-->
+      </div> <!--slide-#3 /container -->
+      
+      <div id="slide-4">
+        <a href="#slide-4-1"><img class="img-cover" src="https://m.media-amazon.com/images/I/61+L05lKN0L._AC_UL640_FMwebp_QL65_.jpg" class="d-block w-100" alt="Mussorgsky-Ravel-Stravinsky"></a>
+              <div class="overlay"> 
+            
+        </div> <!--overlay-->
+      </div> <!--slide-#4 -->
+      
+      <div id="slide-5">
+        <a href="#slide-5-1"><img class="img-cover" src="https://m.media-amazon.com/images/I/81uk-kaS-DL._AC_UL640_FMwebp_QL65_.jpg" class="d-block w-100" alt="Rachmanioff"></a>
+              <div class="overlay"> 
+          
+        </div> <!--overlay-->
+      </div> <!--slide-#5-->
+      
+      <div id="slide-6">
+        <a href="#slide-6-1"><img class="img-cover" src="https://m.media-amazon.com/images/I/71rGjllgU6L._AC_UL640_FMwebp_QL65_.jpg" class="d-block w-100" alt="Schubert"></a>
+              <div class="overlay"> 
+           
+        </div> <!--overlay-->
+      </div> <!--slide-#6-->
+      
+      <div id="slide-7">
+        <a href="#slide-7-1"><img class="img-cover" src="https://m.media-amazon.com/images/I/71bYhibI+HL._AC_UL640_FMwebp_QL65_.jpg" class="d-block w-100" alt="Khatia"></a>
+              <div class="overlay"> 
+           
+        </div> <!--overlay-->
+      </div> <!--slide-#7 -->
+      
+          <div id="slide-8">
+        <a href="#slide-8-1"><img class="img-cover" width="512" alt="Khatia Buniatishvili" src="https://philharmoniedeparis.fr/sites/default/files/styles/fancybox_limit/public/Khatia-Buniatishvili-by-Gavin-Evans.jpg?itok=KevzMYap">
+        <div class="overlay"> 
+          <a href="#slide-8-1"><h2>Live Concerts</h2> <p></p></a>
+           
+        </div> <!--overlay-->
+      </div> <!--slide-#8 -->
+      
+      <div id="slide-9">
+        <a href="#slide-9-1"><img class="img-cover" width="512" alt="Khatia Buniatishvili" src="http://www.bfmi.at/images/program_concert/khatia_buniatishvili_in_kiev_top_1.jpg"></a>
+        <div class="overlay"> 
+          <a href="#slide-9-1"><h2>Promotion</h2><p></p></a>
+            
+        </div> <!--overlay-->
+      </div> <!--slide-#9 -->
+      
+      <div id="slide-10">
+        <!--文字檔用-->
+  <!--       <div class="div1 outer-div">
+        <h2>ＮＥＷＳ</h2>
+        <p>editing...</p> -->
+        <h2>ＮＥＷＳ</h2>
+          <a href="https://www.ipo.co.il/en/virtual-ipo-global-gala/" target="_blank">
+          <img class="img-cover" width="512" alt="Khatia Buniatishvili" src="https://www.ipo.co.il/wp-content/uploads/2020/06/gala-logo-768x768.jpg">
+          </a><!--cover-->
+          <!--overlay-->
+            <div class="overlay">
+  <!--             <a href="https://www.ipo.co.il/en/virtual-ipo-global-gala/">
+                <h2>About Global Gala</h2>  
+              </a> -->
+            </div>                          
+  <!--     </div>  --><!--outer-div-->
+     </div>  <!--slide-10 -->
+  </div><!--slideSS-->
+  <!--================ =============-->
+             <!--  navigation-->
+              <!--Carousel END-->
+  <!--================ =============-->
+      <!--================ ================= =============-->
+    
+              <!--SVG-->
+      <!--================ ================= =============-->
+      <div class="wrap">
+    <!--codepen-->
+    <div class="youtube">
+      <a href="https://www.youtube.com/channel/UC16fl9DPbQhum2oHnjCnZfQ" target="_blank">
+                
+          <svg version="1.1" id="youtube" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+             viewBox="0 0 100 100" style="enable-background:new 0 0 100 100;" xml:space="preserve">
+          <g>
+            <path d="M38.4,55.5c0-1.3,0-2.5,0-3.8c-3.8,0-7.6,0-11.3,0c-0.1,0,0,0.1,0,0.1c0,1.2,0,2.4,0,3.6c1.3,0,2.7-0.1,3.8,0
+              c0,6.8,0,13.7,0,20.5c1.2,0,2.5,0,3.7,0c0-6.8-0.1-13.8,0-20.6C35.9,55.5,37.1,55.5,38.4,55.5z"/>
+            <path d="M44.5,69.7c0,0.6,0.1,1.3,0,1.7c-0.1,0.5-1.4,1.5-2.1,1.4c-1-0.1-0.7-2.1-0.7-3.2c0-4,0-7.8,0-11.7c-1.1,0-2.2,0-3.2,0
+              c-0.1,0,0,0.1,0,0.1c0,3.9,0,9,0,13.3c0,1.6-0.1,3.1,0.5,3.9c1.2,1.8,4,0.3,4.9-0.6c0.2-0.2,0.4-0.5,0.7-0.6c0,0.6,0,1.3,0,1.9
+              c1.1,0,2.2,0,3.3,0c0-6,0-12,0-18c-1.1,0-2.2,0-3.3,0C44.5,61.7,44.5,66,44.5,69.7z"/>
+            <g>
+              <path d="M46.4,35.6c0,0.8-0.1,2.2,0.2,2.7c0.6,0.9,2.2,0.5,2.5-0.3c0.3-0.7,0.1-1.9,0.1-2.7c0-2.2,0-3.5,0-5.6
+                c0-1,0.2-2.2-0.1-2.7c-0.3-0.6-1.1-0.7-1.6-0.6c-1.4,0.2-1.1,2-1.1,3.5C46.4,31.4,46.4,34,46.4,35.6z"/>
+              <path d="M50,0C22.4,0,0,22.4,0,50s22.4,50,50,50s50-22.4,50-50S77.6,0,50,0z M55.4,32.9c0-3.3,0-6.4,0-9.2c1-0.1,2.3-0.1,3.3,0
+                c0,2.2,0,4.5,0,6.9s-0.2,4.9,0,7c0.2,1.2,1.1,1.1,1.9,0.5c0.3-0.2,0.8-0.6,0.9-0.9c0.1-0.4,0-1.2,0-1.7c0-3.7,0-8.1,0-11.7
+                c1-0.1,2.3-0.1,3.3,0c0,5.9,0,11.8,0,17.7c-1,0.1-2.3,0.1-3.3,0c0-0.6,0-1.2,0-1.8c-0.8,0.9-3.4,3.2-5.2,1.7
+                C54.9,40.1,55.4,35.5,55.4,32.9z M47.2,23.2c2.4-0.2,4,0.7,4.8,2.1c0.9,1.5,0.6,4.9,0.6,7.1s0.2,5.7-0.5,7.2
+                c-1.1,2.1-4.6,3.1-6.9,1.6c-1.2-0.7-2-2.1-2.1-3.6c-0.2-1.6,0-3.5,0-5.3c0-2.7-0.3-5.4,0.5-6.9C44.2,24.3,45.4,23.4,47.2,23.2z
+                 M30.7,17.4c1.1-0.1,2.5,0,3.7,0c0.8,2.8,1.5,5.7,2.2,8.5c0.1,0.4,0.1,0.8,0.4,1.1c0.3-0.3,0.3-0.8,0.4-1.1
+                c0.7-2.8,1.4-5.8,2.1-8.5c1.2,0,2.4,0,3.7,0c-1.1,4-2.5,8.2-3.7,12.3c-0.2,0.6-0.5,1.2-0.5,1.8c-0.1,0.8,0,1.7,0,2.5
+                c0,2.6,0,5,0,7.5c-1.2,0-2.5,0.1-3.7,0c0-1.6,0-3.2,0-4.7c0-1.6,0.2-3.2,0-4.7c-0.1-0.6-0.4-1.2-0.5-1.8
+                C33.3,25.9,32.1,21.5,30.7,17.4L30.7,17.4z M77,73.9c0,4.9-3.9,8.8-8.8,8.8H31.7c-4.9,0-8.8-3.9-8.8-8.8V55c0-4.9,3.9-8.8,8.8-8.8
+                h36.5c4.9,0,8.8,3.9,8.8,8.8V73.9z"/>
+            </g>
+            <path d="M60.5,67.4c0-2.1,0.1-4.2,0-5.6c-0.1-1.5-0.5-2.8-1.3-3.4c-1.1-0.9-2.8-0.7-3.8,0c-0.4,0.3-0.7,0.7-1.1,0.9
+              c0-2.5,0-5.1,0-7.6c-1.1,0-2.2,0-3.3,0c-0.1,0,0,0.1,0,0.1c0,8.1,0,16.1,0,24.2c1.1,0,2.2,0,3.3,0c0-0.4,0-0.9,0-1.3
+              c0.9,1.1,2.9,2,4.6,1.2c0.9-0.5,1.5-1.6,1.6-2.9C60.6,71.4,60.5,69.4,60.5,67.4z M56.6,73.4c-0.8,0.5-1.7-0.2-2.2-0.7
+              c0-2.4,0-5.5,0-8.2c0-0.9-0.2-2.1,0-2.7c0.2-0.6,1.3-1.1,2.1-0.6c1.1,0.6,0.6,4.4,0.6,6.1c0,1.1,0,2.2,0,3.4
+              C57.1,71.7,57.2,73,56.6,73.4z"/>
+            <path d="M72.7,69.4c-1.1,0-2.3,0-3.4,0c-0.1,1.3,0.3,3.2-0.6,3.8c-0.3,0.2-1,0.4-1.6,0.1c-1.4-0.6-0.5-3.9-0.8-5.7
+              c2.1,0,4.2,0,6.3,0c-0.1-2.5,0.2-4.9-0.2-6.9c-0.5-2-2.2-3.3-4.8-3.2c-2.4,0.1-4.3,1.8-4.6,3.9c-0.3,2.1-0.1,5.3-0.1,8.1
+              c0,3,0.3,5,2,6.2c1.4,1,4,1.1,5.7,0.1C72.4,74.8,72.8,72.6,72.7,69.4z M66.7,61.4c0.4-0.6,1.5-0.6,2.1-0.2c0.8,0.6,0.5,2.2,0.6,3.4
+              c-1,0-2,0-2.9,0C66.4,63.4,66.2,62.1,66.7,61.4z"/>
+          </g>
+          </svg>
+      </a>
+    </div>
+    <!--twitter-->
+     <div class="twitter">
+       <a href="https://twitter.com/buniatishvilikh?lang=en" target="_blank">
+                 
+          <svg version="1.1" id="twitter" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+             viewBox="0 0 100 100" style="enable-background:new 0 0 100 100;" xml:space="preserve">
+          <path d="M50,0C22.4,0,0,22.4,0,50s22.4,50,50,50s50-22.4,50-50S77.6,0,50,0z M76.7,36.4c0.3,9.1-2.3,16.4-5.7,22.1
+            c-3.3,5.6-7.8,10.1-13.2,13.3c-5.4,3.3-12.6,5.7-21.1,5.4c-7.9-0.2-14.2-2.5-19.3-5.6c-0.3-0.2-0.7-0.4-0.9-0.7
+            c8.8,1,15.5-1.9,20.3-5.6c-3.5-0.1-6.2-1.3-8.2-3c-2-1.6-3.7-3.8-4.6-6.6c1.8,0.4,4.4,0.3,6-0.2c-3.3-0.7-5.7-2.5-7.6-4.7
+            c-1.9-2.1-3.2-5-3.2-9c0.1-0.2,0.4,0.1,0.6,0.2c1.5,0.7,3.4,1.3,5.5,1.4c-3.4-2.4-6.8-7-5.8-13.5c0.3-1.9,0.9-3.5,1.7-4.9
+            c0.9,0.9,1.7,1.9,2.6,2.8C30,34,38,38.5,49.6,39.4c-1.6-7.1,2.1-12.4,6.6-15c2.5-1.4,6-2.1,9.4-1.4c3.1,0.6,5.5,2.2,7.3,4
+            c3.4-0.6,6.1-1.9,8.7-3.3c-1.2,3.3-3.1,5.9-6,7.5c2.8-0.2,5.5-1.2,7.8-2.1C81.7,32,79.3,34.3,76.7,36.4z"/>
+          </svg>
+  
+       </a>
+     </div>
+    <!--IG-->
+     <div class="IG">
+       <a href="https://www.instagram.com/khatiabuniatishvili/?hl=zh-tw" target="_blank">
+                 
+          <svg version="1.1" id="IG" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+             viewBox="0 0 100 100" style="enable-background:new 0 0 100 100;" xml:space="preserve">
+          <g>
+            <path d="M50.1,58.4c4.1,0,7.8-3.4,8-7.6c0.3-5.6-4.5-9.1-9.3-8.5c-3.5,0.5-6.1,2.9-6.8,6.4C40.9,54.2,45.6,58.4,50.1,58.4z"/>
+            <path d="M71.3,26.6H65c-0.9,0-1.6,0.7-1.6,1.6v6.3c0,0.9,0.7,1.6,1.6,1.6h6.3c0.9,0,1.6-0.7,1.6-1.6v-6.3
+              C73,27.3,72.2,26.6,71.3,26.6z"/>
+            <path d="M50,0C22.4,0,0,22.4,0,50s22.4,50,50,50s50-22.4,50-50S77.6,0,50,0z M78.1,65.2c0,3.8-0.7,6.7-2.7,9c-1.8,2-4.2,3.7-7.6,4
+              c-5.6,0.4-11.6,0-17.6,0c-5.7,0-11.8,0.4-17.6,0c-5.7-0.4-10.1-4.6-10.5-10.5c-0.6-7.8,0.4-17,0-25.4c0-0.2,0.1-0.4,0.3-0.4
+              c5.3,0,10.5,0,15.8,0c0.5,0.3-0.4,1-0.7,1.5c-1.1,2-1.9,5-1.6,8.3c0.4,6.6,6,12.3,13.1,12.8c5.2,0.4,9.4-2.1,12-5.3
+              c2.4-2.9,4.4-8,2.6-13.4c-0.2-0.7-0.6-1.4-1-2c-0.3-0.6-0.8-1.2-0.8-1.9c5.4,0,10.7,0,16.1,0C78.2,50.1,78.1,57.6,78.1,65.2z
+               M39,50.5c-0.1-3.6,1.6-6.5,3.3-8.2s3.8-2.8,7.1-3c6.1-0.4,11.1,3.9,11.7,9.5c0.6,6.2-3.7,11.7-9.3,12.4c-1,0.1-2.4,0.1-3.4,0
+              C43.5,60.7,39.1,56.2,39,50.5z M78.1,40.3c-4.5,0-8.6,0-13.2,0c-1.4,0-3.1,0.3-4.4,0c-0.8-0.2-1.2-1-1.9-1.5
+              c-2.2-1.6-5.6-3-9.8-2.7c-3.1,0.2-5.2,1.3-7.2,2.9c-0.5,0.4-1.3,1.2-1.9,1.4c-1.2,0.3-3,0-4.5,0c-4.3,0-8.5,0-13.1,0
+              c0.2-3.3-0.4-6.5,0.1-9.3c0.6-3.3,2.6-5.6,4.6-7c0,3.9,0,11.7,0,11.7H29c0,0-0.2-9,0.1-13.1c0.3-0.3,1-0.2,1.4-0.5
+              c0.3,4.2,0.3,13.6,0.3,13.6H33c0,0,0-9,0-13.5c0-0.2,0-0.4,0.1-0.4c0.5,0,0.9,0,1.4,0c0,4.6,0,13.9,0,13.9h2.3c0,0,0-9.3,0-13.9
+              c9.4,0.5,21.5-0.6,30.7,0c3.6,0.2,6.6,2,8.3,4.2C78.3,29.3,78.2,34,78.1,40.3z"/>
+          </g>
+          </svg>
+       <a>
+      </div>
+    <!--facebook-->
+    <div class="facebook">
+      <a href="https://www.facebook.com/khatiabuniatishvili/" target="_blank">
+        
+        <svg version="1.1" id="facebook" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+           viewBox="0 0 100 100" style="enable-background:new 0 0 100 100;" xml:space="preserve">
+        <path d="M50,0C22.4,0,0,22.4,0,50s22.4,50,50,50s50-22.4,50-50S77.6,0,50,0z M57,36.9c3.5,0,7.2-0.1,10.7,0.1
+          c-0.1,3.7,0,7.6-0.1,11.3c-3.5,0-7.1,0-10.6,0c0,11.7,0,23.3,0,35c-5,0-10,0-15,0c0-11.7,0-23.3,0-35c-3.1-0.1-6.4,0-9.6-0.1
+          c0-3.8,0-7.6,0-11.4c3.2,0,6.4,0,9.5,0c0.1-3,0-5.7,0.2-8.1s1-4.4,2.1-6.1c2.2-3.2,5.8-5.8,10.7-6c4-0.2,8.5,0.1,12.8,0.1
+          c0,3.8,0.1,7.7-0.1,11.4c-2.1,0.1-4.3-0.2-6.1,0c-1.9,0.2-3.3,1.3-3.9,2.7C56.7,32.5,57,34.6,57,36.9z"/>
+        </svg>
+      </a>
+    </div>
+    
+  </div>
+      <!--==== ==== ====== ======-->
+        <!--part One-->
+        <!--Liszt-->
+  <!--=== ==== ====== ======-->
+  <div class="slider">
+    <div class="slides">     <!--flex-->
+        <div id="slide-1-1"> <!--container-->
+          <a href="#slide-1"><img class="img-cover" src="https://m.media-amazon.com/images/I/512l8ofcQxL._AC_UL640_FMwebp_QL65_.jpg" class="d-block w-100" alt="Liszt"></a><!--cover-->
+          <!--overlay-->
+        </div> <!--slide-1-1-->
+      
+        <div id="slide-1-2"><!--flex item 2-->
+           <div class="outer-div">
+            <ol>
+              <li>Liebestraum No. 3 in A-Flat Major, S. 541/3</li>
+              <li>Lento assai - Allegro energico - Grandioso</li>
+              <li>Andante sostenuto</li>
+              <li>Allegro energico</li>
+              <li>Mephisto Waltz No. 1, S. 514</li>
+              <li>La lugubre gondola, S. 200</li>
+              <li>No. 1, Prelude in A Minor (After BWV 543)</li>
+              <li>No. 1, Fugue in A Minor (After BWV 543)</li>
+              <li>Disc2: Franz Liszt, Sonata B Minor</li>
+            </ol>
+          </div> <!--outer-div-->
+        </div>  <!--slide-1-2 -->
+      
+      <div id="slide-1-3">
+          <div class="div1 outer-div">
+            <h2>About the Album<br></h2>
+            <p>Editing...</p>
+         </div> <!--outer-div-->
+     </div>  <!--slide-1-3 -->
+      
+        <div class="video1">
+         <iframe width="560" height="315" src="https://www.youtube.com/embed/IA6lHbEv3g8" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div> <!--video1-->
+  
+        <div class="video2">
+  
+        </div> <!--video2-->
+  
+        <div class="video3">
+  
+        </div> <!--video3-->
+  
+        <div class="video4">
+  
+        </div> <!--video4-->
+      </div> <!--slides-->
+    </div> <!--slider-->
+  <!--==== ==== ====== ======-->
+        <!--part One-->
+        <!--END-->
+  <!--=== ==== ====== ======-->
+      <!--==== ==== ====== ======-->
+        <!--part Two-->
+        <!--Chopin-->
+  <!--=== ==== ====== ======-->
+  <div class="slider">
+    <div class="slides">     <!--flex-->
+        <div id="slide-2-1"> <!--container-->
+          <a href="#slide-2"><img class="img-cover" src="https://m.media-amazon.com/images/I/71ONsQMP3SL._AC_UL640_FMwebp_QL65_.jpg" class="d-block w-100" alt="Chopin"></a><!--cover-->
+          <!--overlay-->
+        </div> <!--slide-2-1-->
+      
+        <div id="slide-2-2"><!--flex item 2-->
+           <div class="outer-div">
+            <ol>
+              <li>Waltz in C-Sharp Minor, Op. 64 No. 2</li>
+              <li>	
+  Piano Sonata No. 2 in B-Flat Minor, Op. 35 "Funeral March": I. Grave - Doppio movimento</li>
+              <li>Piano Sonata No. 2 in B-Flat Minor, Op. 35 "Funeral March": II. Scherzo</li>
+              <li>Piano Sonata No. 2 in B-Flat Minor, Op. 35 "Funeral March": III. Marche funèbre. Lento</li>
+              <li>Piano Sonata No. 2 in B-Flat Minor, Op. 35 "Funeral March": IV. Finale. Presto</li>
+              <li>Ballade No. 4 in F Minor, Op. 52</li>
+              <li>Piano Concerto No. 2 in F Minor, Op. 21: I. Maestoso</li>
+              <li>Piano Concerto No. 2 in F Minor, Op. 21: II. Larghetto</li>
+              <li>
+  Piano Concerto No. 2 in F Minor, Op. 21: III. Allegro vivace</li>
+              <li>Mazurka in A Minor, Op. 17 No. 4</li>
+            </ol>
+          </div> <!--outer-div-->
+        </div>  <!--slide-2-2 -->
+      
+      <div id="slide-2-3">
+          <div class="div1 outer-div">
+            <h2>About the Album<br></h2>
+            <p>Editing...</p>
+         </div> <!--outer-div-->
+     </div>  <!--slide-2-3 -->
+      
+        <div class="video1">
+          
+        </div> <!--slide-2-4-->
+  
+        <div class="video2">
+  
+        </div> <!--slide-2-5-->
+  
+        <div class="video3">
+  
+        </div> <!--slide-2-6-->
+  
+        <div class="video4">
+  
+        </div> <!--slide-2-7-->
+      </div> <!--slides-->
+    </div> <!--slider-->
+  <!--==== ==== ====== ======-->
+        <!--part Two-->
+        <!--END-->
+  <!--=== ==== ====== ======-->
+  
+  <!--==== ==== ====== ======-->
+        <!--part Three-->
+        <!--MotherLand-->
+  <!--=== ==== ====== ======-->
+  <div class="slider">
+    <div class="slides">     <!--flex-->
+        <div id="slide-3-1"> <!--container-->
+          <a href="#slide-3"><img class="img-cover" src="https://m.media-amazon.com/images/I/61AzNSt1xYL._AC_UL640_FMwebp_QL65_.jpg" class="d-block w-100" alt="Motherland"></a><!--cover-->
+          <!--overlay-->
+        </div> <!--slide-3-1-->
+      
+        <div id="slide-3-2"><!--flex item 2-->
+           <div class="outer-div">
+            <ol>
+              <a href="#slide-3-4"><li>	
+  Was mir behagt, ist nur die muntre Jagd, BWV 208: IX. Schafe können sicher weiden (Arr. for Piano)</li></a>
+              <a href="#slide-3-5"><li>	
+                The Seasons, Op. 37b: X. October (Autumn Song)</li></a>
+              <a href="#slide-3-6"><li>Lied ohne Worte in F-Sharp Minor, Op. 67/2</li></a>
+              <a href="#slide-3-7"><li>	
+                Suite Bergamasque, L. 75: III. Clair de lune</li></a>
+              <a href="#slide-3-8"><li>	
+                Tune from the Film by Lana Gogoberidze: When Almonds Blossomed</li></a>
+              <a href="#slide-3-9"><li>Musica ricercata No. 7 in B-Flat Major</li></a>
+              <a href="#slide-3-10"><li>
+                Intermezzo in B-Flat Minor, Op. 117/2</li></a>
+              <a href="#slide-3-11"><li>	
+                Wiegenlied, S. 198</li></a>
+              <a href="#slide-3-12"><li>
+                Slavonic Dance for Four Hands in E Minor, Op. 72/2: Dumka (Allegretto grazioso)</li></a>
+              <a href="#slide-3-13"><li>Pavane pour une infante défunte in G Major, M. 19</li></a>
+              <a href="#slide-3-14"><li>	
+                Etude in C-Sharp Minor, Op. 25/7</li></a>
+              <a href="#slide-3-15"><li>Etude in C-Sharp Minor, Op. 2/1</li></a>
+              <a href="#slide-3-16"><li>Sonata in E Major, K. 380</li></a>
+              <a href="#slide-3-17"><li>
+                Lyric Piece in E Minor, Op. 57/6: Homesickness</li></a>
+              <a href="#slide-3-18"><li>Vagiorko mai / Don't You Love Me?</li></a>
+              <a href="#slide-3-19"><li>	
+                Suite in B-Flat Major, HWV 434: IV. Menuet</li></a>
+              <a href="#slide-3-20"><li>	
+                Für Alina in B Minor</li></a>
+            </ol>
+          </div> <!--outer-div-->
+        </div>  <!--slide-3-2 -->
+      
+        <div id="slide-3-3">
+          <div class="div1 outer-div">
+            <h2>About the Album<br></h2>
+            <p>Editing...</p>
+         </div> <!--outer-div-->
+     </div>  <!--slide-# -->
+      
+        <div id="slide-3-4" class="video1">
+          <iframe width="560" height="315" src="https://www.youtube.com/embed/P4ao120_V4w" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div> <!--video1-->
+      
+        <div id="slide-3-5" class="video2">
+          <iframe width="560" height="315" src="https://www.youtube.com/embed/SVKNGqQbX54" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div> <!--video2-->
+      
+        <div id="slide-3-6" class="video3">
+          <iframe width="560" height="315" src="https://www.youtube.com/embed/LNthRr6Dd5o" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div> <!--video3-->
+  
+        <div id="slide-3-7" class="video4">
+          <iframe width="560" height="315" src="https://www.youtube.com/embed/YdWNeQc-Pig" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div> <!--video4-->
+  
+        <div id="slide-3-8" class="video5">
+          <iframe width="560" height="315" src="https://www.youtube.com/embed/TEZfqQBOUsg" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div> <!--video5-->
+      
+        <div id="slide-3-9" class="video6">
+          <iframe width="560" height="315" src="https://www.youtube.com/embed/u2CSL9-BS2s" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div> <!--video6-->
+      
+        <div id="slide-3-10" class="video7">
+          <iframe width="560" height="315" src="https://www.youtube.com/embed/aUr-Poc-QSA" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div> <!--video7-->
+      
+        <div id="slide-3-11" class="video8">
+          <iframe width="560" height="315" src="https://www.youtube.com/embed/P7hBqP9Ezog" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div> <!--video8-->
+      
+        <div id="slide-3-12" class="video9">
+          <iframe width="560" height="315" src="https://www.youtube.com/embed/LJkre2AxY78" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div> <!--video9-->
+      
+        <div id="slide-3-13" class="video10">
+          <iframe width="560" height="315" src="https://www.youtube.com/embed/rOjLrOormvM" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div> <!--video10-->
+      
+        <div id="slide-3-14" class="video11">
+          <iframe width="560" height="315" src="https://www.youtube.com/embed/lxuMT17rhss" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div> <!--video11-->
+      
+        <div id="slide-3-15" class="video12">
+          <iframe width="560" height="315" src="https://www.youtube.com/embed/CHElM7nGNBY" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div> <!--video12-->
+      
+        <div id="slide-3-16" class="video13">
+          <iframe width="560" height="315" src="https://www.youtube.com/embed/O-LyT9JRrVg" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div> <!--video13-->
+      
+        <div id="slide-3-17" class="video14">
+          <iframe width="560" height="315" src="https://www.youtube.com/embed/3a3q3gY6QRA" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div> <!--video14-->
+      
+        <div id="slide-3-18" class="video15">
+          <iframe width="560" height="315" src="https://www.youtube.com/embed/OiyX9TkRwtA" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div> <!--video15-->
+      
+        <div id="slide-3-19" class="video16">
+          <iframe width="560" height="315" src="https://www.youtube.com/embed/yTV0CJapgs4" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div> <!--video16-->
+      
+        <div id="slide-3-20" class="video17">
+          <iframe width="560" height="315" src="https://www.youtube.com/embed/kH45cDG7V1E" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div> <!--video17-->
+      </div> <!--slides-->
+    </div> <!--slider-->
+  <!--==== ==== ====== ======-->
+        <!--part Three-->
+        <!--END-->
+  <!--=== ==== ====== ======-->
+      <!--==== ==== ====== ======-->
+        <!--part Four-->
+        <!--Stravinsky-->
+  <!--=== ==== ====== ======-->
+  <div class="slider">
+    <div class="slides">     <!--flex-->
+        <div id="slide-4-1"> <!--container-->
+          <a href="#slide-4"><img class="img-cover" src="https://m.media-amazon.com/images/I/61+L05lKN0L._AC_UL640_FMwebp_QL65_.jpg" class="d-block w-100" alt="Mussorgsky-Ravel-Stravinsky"></a><!--cover-->
+          <!--overlay-->
+        </div> <!--slide-4-1-->
+      
+        <div id="slide-4-2"><!--flex item 2-->
+           <div class="outer-div">
+            <ol>
+              <li>Promenade</li>
+              <li>I. Gnomus</li>
+              <li>Promenade</li>
+              <li>II. Il vecchio castello</li>
+              <li>Promenade</li>
+              <li>III. Tuileries (Dispute d'enfants après jeux)</li>
+              <li>IV. Bydlo</li>
+              <li>Promenade</li>
+              <li>V. Ballet des poussins dans leurs coques</li>
+              <li>VI. Samuel Goldenberg und Schmuyle (Deux juifs - L'un riche et l'autre pauvre)</li>
+              <li>Promenade</li>
+              <li>VII. Limoges - Le Marché (La Grande Nouvelle)</li>
+              <li>VIII. Catacombae (Sepulcrum romanum)</li>
+              <li>Cum mortuis in lingua mortua</li>
+              <li>IX. La Cabane sur des pattes de poule (Baba-Yaga)</li>
+              <li>X. La Grande Porte (de l'ancienne capitale Kiev)</li>
+              <li>La valse</li>
+              <li>I. Russian Dance</li>
+              <li>II. Petrushka's Room</li>
+              <li>III. The Shrovetide Fair</li>
+              
+            </ol>
+          </div> <!--outer-div-->
+        </div>  <!--slide-4-2 -->
+      
+      <div id="slide-4-3">
+          <div class="div1 outer-div">
+            <h2>About the Album<br></h2>
+            <p>Editing...</p>
+         </div> <!--outer-div-->
+     </div>  <!--slide-4-3 -->
+      
+        <div class="video1">
+          
+        </div> <!--video1-->
+  
+        <div class="video2">
+  
+        </div> <!--video2-->
+  
+        <div class="video3">
+  
+        </div> <!--video3-->
+  
+        <div class="video4">
+  
+        </div> <!--video4-->
+      </div> <!--slides-->
+    </div> <!--slider-->
+  <!--==== ==== ====== ======-->
+        <!--part Four-->
+        <!--END-->
+  <!--=== ==== ====== ======-->
+      <!--==== ==== ====== ======-->
+        <!--part Five-->
+        <!--Rachmanioff-->
+  <!--=== ==== ====== ======-->
+  <div class="slider">
+    <div class="slides">     <!--flex-->
+        <div id="slide-5-1"> <!--container-->
+          <a href="#slide-5"><img class="img-cover" src="https://m.media-amazon.com/images/I/81uk-kaS-DL._AC_UL640_FMwebp_QL65_.jpg" class="d-block w-100" alt="Rachmanioff"></a><!--cover-->
+          <!--overlay-->
+        </div> <!--slide-5-1-->
+      
+      <div id="slide-5-3">
+          <div class="div1 outer-div">
+            <h2>About the Album<br></h2>
+            <p>Editing...</p>
+         </div> <!--outer-div-->
+     </div>  <!--slide-5-3 -->
+      
+        <div class="video1">
+          <iframe width="560" height="315" src="https://www.youtube.com/embed/tSvq_GnGfTI" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div> <!--video1-->
+  
+        <div class="video2">
+  
+        </div> <!--video2-->
+  
+        <div class="video3">
+  
+        </div> <!--video2-->
+  
+        <div class="video4">
+  
+        </div> <!--video4-->
+      </div> <!--slides-->
+    </div> <!--slider-->
+  <!--==== ==== ====== ======-->
+        <!--part five-->
+        <!--END-->
+  <!--=== ==== ====== ======-->
+      <!--==== ==== ====== ======-->
+        <!--part Six-->
+        <!--Schubert-->
+  <!--=== ==== ====== ======-->
+  <div class="slider">
+    <div class="slides">     <!--flex-->
+        <div id="slide-6-1"> <!--container-->
+          <a href="#slide-6"><img class="img-cover" src="https://m.media-amazon.com/images/I/71rGjllgU6L._AC_UL640_FMwebp_QL65_.jpg" class="d-block w-100" alt="Schubert"></a><!--cover-->
+          <!--overlay-->
+        </div> <!--slide-6-1-->
+      
+        <div id="slide-6-2"><!--flex item 2-->
+           <div class="outer-div">
+            <ol>
+              <li>Sonata in B-flat major D 960: I. Molto moderato</li>
+              <li>Sonata in B-flat major D 960: II. Andante sostenuto</li>
+              <li>Sonata in B-flat major D 960: III. Scherzo - Allegro vivace con delicontezza</li>
+              <li>Sonata in B-flat major D 960: Allegro ma non troppo</li>
+              <li>Impromptus, Op. 90, D. 899, No.1 in C Minor</li>
+               <li>Impromptus, Op. 90, D. 899, No. 2 in E-flat Major</li>
+              <li>Impromptus, Op. 90, D. 899, No. 3 in G-flat Major</li>
+              <li>Impromptus, Op. 90, D. 899, No. 4 in A-flat Major</li>
+              <li>Standchen, S. 560 (Trans. from Schwanengesang No. 4, D. 957)</li>
+            </ol>
+          </div> <!--outer-div-->
+        </div>  <!--slide-6-2 -->
+      
+      <div id="slide-6-3">
+          <div class="div1 outer-div">
+            <h2>About the Album<br></h2>
+            <p>Editing...</p>
+         </div> <!--outer-div-->
+     </div>  <!--slide-6-3 -->
+      
+        <div class="video1">
+          <iframe width="560" height="315" src="https://www.youtube.com/embed/SlTTgJau33Q" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div> <!--video1-->
+  
+        <div class="video2">
+  
+        </div> <!--video2-->
+  
+        <div class="video3">
+  
+        </div> <!--video3-->
+  
+        <div class="video4">
+  
+        </div> <!--video4-->
+      </div> <!--slides-->
+    </div> <!--slider-->
+  <!--==== ==== ====== ======-->
+        <!--part Six-->
+        <!--END-->
+  <!--=== ==== ====== ======-->
+      <!--==== ==== ====== ======-->
+        <!--part Seven-->
+        <!--Beethoven-->
+  <!--=== ==== ====== ======-->
+  <div class="slider">
+    <div class="slides">     <!--flex-->
+        <div id="slide-7-1"> <!--container-->
+          <a href="#slide-7"><img class="img-cover" src="https://m.media-amazon.com/images/I/71bYhibI+HL._AC_UL640_FMwebp_QL65_.jpg" class="d-block w-100" alt="Khatia"></a><!--cover-->
+          <!--overlay-->
+        </div> <!--slide-7-1-->
+      
+      <div id="slide-7-3">
+          <div class="div1 outer-div">
+            <h2>About the Record<br></h2>
+            <p>In an interview, Khatia said that her favorite conductor is Zubin Mehta. I am not sure if the statement is still true.</p>
+            <p>Editing...</p>
+         </div> <!--outer-div-->
+     </div>  <!--slide-7-3 -->
+      
+        <div class="video1">
+          
+        </div> <!--video1-->
+  
+        <div class="video2">
+  
+        </div> <!--video2-->
+  
+        <div class="video3">
+  
+        </div> <!--video3-->
+  
+        <div class="video4">
+  
+        </div> <!--video4-->
+      </div> <!--slides-->
+    </div> <!--slider-->
+  <!--==== ==== ====== ======-->
+        <!--part Seven-->
+        <!--END-->
+  <!--=== ==== ====== ======-->
+      <!--==== ==== ====== ======-->
+        <!--part 8-->
+        <!--Live Concerts-->
+  <!--=== ==== ====== ======-->
+  <div class="slider">
+    <div class="slides">     <!--flex-->
+        <div id="slide-8-1"> <!--container-->
+          <a href="#slide-8"><img class="img-cover" width="512" alt="Khatia Buniatishvili" src="https://philharmoniedeparis.fr/sites/default/files/styles/fancybox_limit/public/Khatia-Buniatishvili-by-Gavin-Evans.jpg?itok=KevzMYap"></a><!--cover-->
+          <!--overlay-->
+            <div class="overlay">
+              <h2>Live Concerts</h2>
+            </div>
+        </div> <!--slide-8-1-->
+      
+        <div class="video1">
+          <iframe width="560" height="315" src="https://www.youtube.com/embed/3jbHbDena_U" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div> <!--video1-->
+  
+        <div class="video2">
+          <iframe width="560" height="315" src="https://www.youtube.com/embed/AZkl29KqRt4" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div> <!--video2-->
+  
+        <div class="video3">
+          <iframe width="560" height="315" src="https://www.youtube.com/embed/Kqtz6a8ikGg" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div> <!--video3-->
+  
+        <div class="video4">
+          <iframe width="560" height="315" src="https://www.youtube.com/embed/k6jPkgm-oD0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div> <!--video4-->
+      
+      </div> <!--slides-->
+    </div> <!--slider-->
+  <!--==== ==== ====== ======-->
+        <!--part 8-->
+        <!--END-->
+  <!--=== ==== ====== ======-->
+  <!--==== ==== ====== ======-->
+        <!--part 9-->
+        <!--Interviews-->
+  <!--=== ==== ====== ======-->
+  <div class="slider">
+    <div class="slides">     <!--flex-->
+        <div id="slide-9-1"> <!--container-->
+          <a href="#slide-9"><img class="img-cover" width="512" alt="Khatia Buniatishvili" src="http://www.bfmi.at/images/program_concert/khatia_buniatishvili_in_kiev_top_1.jpg"></a><!--cover-->
+          <!--overlay-->
+          
+            <div class="overlay">
+              <h2>Promotion</h2>
+            </div>
+           
+        </div> <!--slide-9-1-->
+      
+        <div class="video1">
+          <iframe width="560" height="315" src="https://www.youtube.com/embed/mITt4GkMikA" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div> <!--video1-->
+      
+      <div class="div1 outer-div">
+        <h2>About the Video</h2>
+  
+        <p>How cool when Khatia play Viva la Vida ! What else did Khatia listen to?</p>
+                                                            
+      </div> <!--outer-div-->
+  
+        <div class="video2">
+          <a href="#slide-9"><iframe width="560" height="315" src="https://www.youtube.com/embed/hfrRZA_ZGtc" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></a>
+        </div> <!--video2-->
+      
+      <div class="div1 outer-div">
+        <h2>About the Video</h2>
+  
+        <p>What an evil question to ask a pianist - Sviatoslav Richter or Glenn Gould ? </p>
+        <p>It's like ask me -  Martha Argerich or Khatia Buniatishvili ? I am not going to answer that. :p</p>
+                                                            
+      </div> <!--outer-div-->
+  
+        <div class="video3">
+          
+        </div> <!--video3-->
+  
+        <div class="video4">
+          
+        </div> <!--video4-->
+      
+      </div> <!--slides-->
+    </div> <!--slider-->
+  <!--==== ==== ====== ======-->
+        <!--part 9-->
+        <!--END-->
+  <!--=== ==== ====== ======-->
+   <!--================ =============-->
+    <!--  About Creator-->
+   <!--Carousel--> <!--class, id need change-->
+  <!--================ =============-->
+  <div class="slider">
+  
+    <div class="slides"> <!--flex-->
+      <div id="slide-10"> <!--container-->
+     
+        <img class="img-cover" src="https://lh3.googleusercontent.com/RR9kQlstjx3qZ-ivBQ2iho_4chmXXyJUhaMU4QfLA2shTSwMedZpwQbSJL5ocHvtDQV_0Af-c9G2QrNEDdRHQ59Z_D4zemNxTGfkxNmiRURlYKHbMz3w9mN7kskdtbgCcYCntgyhEWhfFRKMgJc6CUYodN7dCOigyS2BYZujadr-DfQGLs_b17sbqm5NNzOWDEyn9RFfi4Hsl2wWqDPsJpATWHCOZ8xmMqZ0TaLkthesd_7-8J9tsQKBdZ1LVjwjQQrlUN_3XB57TzBSrCdu6iqwmkM_fMdMquKtVE6OuBu1gueU_D3Z8siieT26_GMuFpUg0i0p8WfOgtUKYKL7TwZZiiExKTy1NzyirxeXq5Q0pc6nSyFKA6Cj1NhZeG5kyFympbIErWrv1fgJW8eztmXXv_azE7_Z4B7j5bltWjP2U25MMmX0CTxjyOpZ5CsY60XSm5prh5oaXBuM6GqHN0qUnLEVsu3J7NvUQalgukdc9mHN3NOkH8a0pcXgoj1C2jzwxSitMHBdB19O-Ez6gOv7EOOnc-2Gunyy4tsJAp-j_klxpRu--MFAagUF_kQbQqCqtMbhgbyMnXFierJpQfNeEgDGv_J7UsCPyDGXi-pFtyfcYGCHxvK55xryJxzvRnmB6aAqVRH6CtR8xczi7U3xLb5SB5wAD9LrIQUS_S_qqXawODso8A90kvEfiQ=w1434-h1076-no?authuser=1 class="" alt="">
+        <div class="overlay"> 
+          <a href="https://katechoo.github.io/" target="_blank"><h2>About the Creator<br></h2></a>
+            
+        </div> <!--overlay-->
+      </div> <!--slide-10 -->
+      
+      <div id="slide-10">
+        <div class="div1 outer-div">
+        <h2>What I want to say:</h2>
+        <p>That is the book I'm reading.--></p>
+        <p></p>
+                                                            
+      </div> <!--outer-div-->
+     </div>  <!--slide-10 -->
+     <div id="slide-creator"> <!--container-->
+       
+        <img class="img-cover" src="https://m.media-amazon.com/images/I/41gr0fllE9L.jpg" alt="book cover">
+        <!-- <div class="overlay"> 
+          <a target="_blank"><h2><br></h2></a> 
+        </div>  --><!--overlay-->
+      </div> <!--slide-bookreading -->
+  </div><!--slideSS-->
+  </div>
+  <!--================ =============-->
+             <!--  About Creator-->
+              <!--Carousel END-->
+  <!--================ =============-->
+  
+  <script>
+    // const slide_3_4 = document.querySelector('.outer-div a')[0];
+// const video_3_4 = document.getElementById('slide-3-4');
+// slide_3_4.addEventListener = ('click',()=>{
+//   video_3_4.style.transform = "scale(1.1)";
+// })
+
+//myself
+// <img class="img-cover" src="https://lh3.googleusercontent.com/RR9kQlstjx3qZ-ivBQ2iho_4chmXXyJUhaMU4QfLA2shTSwMedZpwQbSJL5ocHvtDQV_0Af-c9G2QrNEDdRHQ59Z_D4zemNxTGfkxNmiRURlYKHbMz3w9mN7kskdtbgCcYCntgyhEWhfFRKMgJc6CUYodN7dCOigyS2BYZujadr-DfQGLs_b17sbqm5NNzOWDEyn9RFfi4Hsl2wWqDPsJpATWHCOZ8xmMqZ0TaLkthesd_7-8J9tsQKBdZ1LVjwjQQrlUN_3XB57TzBSrCdu6iqwmkM_fMdMquKtVE6OuBu1gueU_D3Z8siieT26_GMuFpUg0i0p8WfOgtUKYKL7TwZZiiExKTy1NzyirxeXq5Q0pc6nSyFKA6Cj1NhZeG5kyFympbIErWrv1fgJW8eztmXXv_azE7_Z4B7j5bltWjP2U25MMmX0CTxjyOpZ5CsY60XSm5prh5oaXBuM6GqHN0qUnLEVsu3J7NvUQalgukdc9mHN3NOkH8a0pcXgoj1C2jzwxSitMHBdB19O-Ez6gOv7EOOnc-2Gunyy4tsJAp-j_klxpRu--MFAagUF_kQbQqCqtMbhgbyMnXFierJpQfNeEgDGv_J7UsCPyDGXi-pFtyfcYGCHxvK55xryJxzvRnmB6aAqVRH6CtR8xczi7U3xLb5SB5wAD9LrIQUS_S_qqXawODso8A90kvEfiQ=w1434-h1076-no?authuser=1 class="" alt="">
+
+
+//smile
+// <img class="img-cover" src="https://lh3.googleusercontent.com/btjjytPk5r6oMZCNWsV4eZ5Z2COSXYfXYuLnwffiSaqnkKY6-6E4QOIWqrJFak7LDpMBAhWYeZNnmFvCYiGX2UTd6moz4uQcHaIjk-Ae589bAmXPjSH2QIsuSzHp2_I3M87p1cVvbwqKfdqCvtqSSH5ry0MGSStQG4t-4mPTJM2gg_32Bardya8H0zvTFTDtWMYBrPItcBXVN_PqGU1vE0pzZSTwHNyvNsLMYvi25SWF5tZTzOc2Xc0-fZHWlezNKd-cgYtIyeSJlas5JLVaczYCRi-3GAHgX-a9322rojc0py2aGLM12Wz7eF61O7NKi5u2oexaaWChsczvZIpA7Kr2bmy8nfHw4ZhL2Swsq2G1RkTBJswUAssw40jjmfjsmrD3RjAkHQRW314XUMe3iNrS5fd_Y2D1LUIYpxVhgbTkoSvxYrY_cw5VCuFbW73AqtvtXCSRmwfRy_1zd35VvkD0OEX85ofW5uAIMAmNmLeoKerCc16kz7ompe5t0BbTqnl7ju288e1T2Z5RseAbauiIZOdZvJv6QI2T64pQjIjl-NfbCpqqfaCtLcsMopFw4r9HBWPNQkxXHpTS--Ihx8Ee9aJwXDz3B3ExDrnem3eQ9mYg4ablHwz8aRAndA3vZNXkh5wvfOJBFLGJW993MF_XzMbB8nHnrsOiJCIqdPuM3CdZtHWfd-hODn6BNa0=s1440-no?authuser=0 class="" alt="">
+
+// <div class="slider">
+//   <div class="slides">     <!--flex-->
+//       <div id="slide-10"> <!--container-->
+//         <h2>ＮＥＷＳ</h2>
+//         <img class="img-cover" width="512" alt="Khatia Buniatishvili" src="https://www.ipo.co.il/wp-content/uploads/2020/06/gala-logo-768x768.jpg"><!--cover-->
+//         <!--overlay-->
+//           <div class="overlay">
+//             <a href="https://www.ipo.co.il/en/virtual-ipo-global-gala/"><h2>About Global Gala</h2></a>
+//           </div>
+//       </div> <!--slide-11-->
+
+// https://www.ipo.co.il/wp-content/uploads/2020/06/gala-logo-768x768.jpg
+  </script>
+</body>
+</html>
