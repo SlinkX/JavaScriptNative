@@ -1,0 +1,780 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style lang="scss">
+        @import url('https://fonts.googleapis.com/css?family=Open+Sans:300,500,700|Lato');
+//colors
+$primary: #84EDBE;
+$primary-background: rgba(72%, 98%, 87%, 0.9), rgba(72%, 98%, 87%, 1.0);
+$accent: #983F64;
+$accent2: #D86B85;
+$neutral-white: #ffffff;
+$neutral-gray: #28282B;
+
+//fonts
+$primary-font: "Lato";
+$secondary-font: "Open Sans";
+$large-font-size: 68px;
+$small-font-size: 24px;
+$extra-small-font-size: 16px;
+$mobile-large-font-size: 38px;
+$mobile-small-font-size: 8px;
+$mobile-extra-small-font-size: 6px;
+$thick-font-weight: 500;
+$medium-font-weight: 300;
+$uppercase-transform: uppercase;
+//shapes
+$triangle: polygon(50% 43%, 0% 100%, 100% 100%);
+
+body,
+html {
+    width: 100%;
+    height: 100%;
+}
+
+.icon{
+  margin-right: 10px;
+  color: white;
+}
+
+.icon-webpage{
+  position: absolute;
+  top: 25%;
+  left: 25%;
+  color: $accent;
+}
+
+.intro-header {
+    padding-top: 0px;
+    padding-bottom: 20px;
+    text-align: center;
+    background: linear-gradient($primary-background),
+  url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/827672/Screen%20Shot%202017-01-02%20at%209.26.36%20PM.png")
+  no-repeat center center;
+  background-size: cover;
+}
+
+.bottom-triangle{
+  position: absolute;
+  bottom: -20px;
+  left: 25%;
+  height: 30%;
+  width: 50%;
+  background: $accent;
+  -webkit-clip-path: $triangle;
+clip-path: $triangle;
+  
+}
+
+.intro-message {
+    position: relative;
+    padding-top: 15%;
+    padding-bottom: 20%;
+}
+
+.intro-message > h1 {
+    color: $accent2;
+    font-weight: 100;
+    font-size: $large-font-size;
+    font-family: $primary-font;
+}
+
+#bold{
+  color: $accent;
+  font-weight: 700;
+}
+
+.intro-message > h3 {
+    color: $accent2;
+    font-size: $small-font-size;
+    font-family: $secondary-font;
+    margin-top: 20px;
+}
+
+#button-a{
+  color: $neutral-white;
+  font-size: $small-font-size;
+  font-family: $secondary-font;
+  margin-top: 30px;
+  border: solid 6px $neutral-white;
+  background: $accent;
+  padding: 15px;
+  text-transform: $uppercase-transform;
+  font-weight: $thick-font-weight;
+  
+}
+
+#button-b{
+  color: $neutral-white;
+  font-size: $small-font-size;
+  font-family: $secondary-font;
+  margin-top: 10px;
+  float: left;
+  border: solid 6px $neutral-white;
+  background: $accent;
+  padding: 15px;
+  text-transform: $uppercase-transform;
+  font-weight: $thick-font-weight;
+  
+}
+
+#button-two{
+  color: $neutral-white;
+  font-size: $small-font-size;
+  font-family: $secondary-font;
+  margin-top: 10px;
+  margin-bottom: 20px;
+  border: solid 6px $neutral-white;
+  background: none;
+  padding: 15px;
+  text-transform: $uppercase-transform;
+  font-weight: $thick-font-weight;
+  
+}
+
+.section-heading-a, .lead-a{
+  text-align: left;
+}
+
+.section-heading-b, .lead-b{
+  text-align: right;
+  color: $accent2;
+}
+
+.content-section-a {
+    padding: 50px;
+    padding-bottom: 80px;
+    background: $accent;
+    text-align: center;
+    color: $neutral-white;
+}
+
+.content-section-b {
+    padding: 50px;
+    padding-bottom: 80px;
+    background: linear-gradient($primary-background);
+    text-align: center;
+    color: $neutral-white;
+   
+}
+
+
+//mobile responsive
+@media all and (max-width: 600px) {
+  .intro-message > h1 {
+    font-size: $mobile-large-font-size;
+}
+ .section-heading-a, .lead-a{
+  text-align: center;
+}
+
+.section-heading-b, .lead-b{
+  text-align: center;
+}
+  #button-b{
+    float: none;
+  }
+}
+
+//Eleftheria's rule
+#footer{
+  h5{font-size:1.8rem}
+  a{color:black}
+  a:hover{color:lightcyan}
+}
+
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <div class="intro-header">
+        <div class="container">
+
+            <div class="row">
+                <div class="col-lg-12">
+                  <div class="bottom-triangle">
+                    
+                  </div>
+                    <div class="intro-message">   
+                        <h1 class="animated bounceInDown">Eleftheria Batsou</h1>
+                      <h3 class="animated lightSpeedIn">portfolio for my CSS master artist journey</h3>
+                      
+                 
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <!-- /.container -->
+
+    </div>
+
+    <!-- /.content-section-a -->
+    <div class="content-section-a">
+
+        <div class="container">
+
+            <div class="row">
+                 <div class="col-lg-12">
+                    
+                    <h2 class="section-heading-a">Week 1</h2>
+                  
+                  
+                    <p class="lead-a">*Cute little animals*</p>
+                  
+               
+                </div>
+              
+            </div>
+          <div class="row">
+        <div class="col-sm-2">
+          <a target='_blank' href="https://codepen.io/EleftheriaBatsou/pen/zNbYVz?editors=0100" class="thumbnail">Bear-Cub
+            <img src="https://lh3.googleusercontent.com/yU24uu5axkynyKGGUewZu3gU4EsOWuhNkVMnkWu9DYc5aEqBBm61yDjQGPN8PBcAqbj9kRAhOVRjAN3PcrPl8LgH11vfHkVp58cjfgq_Kj9-w_jTxmkZ3t8LYbpktbUyhe44uMm6O1aXbE-4Gi2dCjP5qoUqMxR_nI7GD82JoLqb_3B6fp2P0W9xPsa5w_uA3J3_Qd5XBFetq2oljSCwc0NfG4KP6FTqXDwx8SobPdJvKbY4Xi5Su_ykPG-OOh0VxeyuZ20gKSVlAJKrfJfk3BPxInhGWDTufEgtf35TmLxZtZNsJlzaD_xxq6gSA5xQLeltZtS6PgJ-TbZTn-Ew0MINs_XoTwkkpuyZ4h3-GhBu-0cqJJh36_zqxnIaxm7JjAAzjfDm8qJYuTimlVRaQ3i4jP6rLGudD7jRlt61gBloYL7WZ_P3J92t1tHMKZ6Evb7uVekVaVgKqHO4nDhYrTxUMuBxXLly7QGM27l86lRPCHKG-Q8_yyQEojVKsu-7ef-eHQu1w9vzxMk_qjLqo9IO7Sq-BP8F_fQbw3gy6Nat2RlaIfPGpkQlsoAGWDPcCFfb-mGeuFeJduaWg_IZRo-RILkJmwCVN4ADSYX69g=w565-h472-no" alt="Bear Cub | Day 1 | dailycssimages">
+          </a>
+        </div>
+         <div class="col-sm-2">
+          <a target='_blank' href="https://codepen.io/EleftheriaBatsou/pen/xgBJBr?editors=0100" class="thumbnail">Elephant
+            <img src="https://lh3.googleusercontent.com/wbobycpWOoXwp9LSUsKs1VVUESrfhdX7MUXtOMM2xAOJ1cmqv-qt0HJYaNcjoqmbJkHwutoJJh5t-1UVvF-Cf3hH8KfRZGXbs93p4Dk3_9KtVWYzcFBUb3YoQFiNnCPTbVgtQk-NSh8GzuvJShMS33q3NdyBXtFN_t_ZkfFOKbxrJsl7RaGmorg2ezuWne3DGe8e_zYP5m3rwD5whVYX9m4hR7t0sscrPfSm6m4NIG7RgsQp_c1qkAFbvHcfT6WYmItPWGdlqLF06TgKipPZ6XClNwhCGfuTkB8KOpiyYA28Uk8x7YWZq74FHoLPxzzGolpEZPdMu6sWU4WLr40QkbpvwuufHPTjnxpfgQotFOePvhR3dvylYIJw1-5YCC7zh5rgeIdGe337A85iItUjUbp1WCT8UoY8Xh3TN4gFFyUmZbQXU5WAtDmf6_GiEQeq1Y98WP8SaGlkAbfpUGTT3auRazfqylOG3ussyWt7bQevbeQrwBjTl-5k6JfYwaCsD_IuNVytdGoWTlmwuXd4vK4pJQhEZRaSwxHadd31EdHzF7vL5Z9bmu1q6bAKWAxO99_OkRBWmruudFw-nLtFFrB4iqiXymj-8-sqrT4WNg=w605-h449-no" alt="Elephant | Day 2 | dailycssimages">
+          </a>
+        </div>       
+        <div class="col-sm-2">
+           <a target='_blank' href="https://codepen.io/EleftheriaBatsou/pen/OpVaeK?editors=0100" class="thumbnail">Beaver
+            <img src="https://lh3.googleusercontent.com/vUdxkdyJ1EqQeXPszLa_qoGVhCxDWHdAF8KbkRujU8K3W6oMqy-S92_kvWaqZGFA-j7pgs517wZ62fcTUCVxAqkioEQCCqRFLLUkMpQTArtdVmuZSA9LkDk33t44SmiIYZ9cTvblGkIrna_F_bKEequ-gCs3nuscAL5bnyzU5mDeTTHhex1IizwPFEaS5r_lyF0MdKDHlJ6ypINwFhuh-c4wI0nuniPv_UFOK1rDu-OuWQivgoahDzswSMdmu6WetoS8ahkYlalldfxsc4S2gldPGNrTgBmdX6J_VKcaw-R0DR-_Z8XCY1pWqcCD7dQHMp9qlKZi08i88jCRUnhql5Ixo02K1c0qXR2DC3kiR_8C8mYMYX_Xce75E8AZBoXwsPe3b4hHnN19Xyp8yrjKRBqHP4qzmrlsUKrRP8oY_gOtOPHy5s0946f1VX7-K-qTTMhLRHRXTjOq0NG6M7b1xJ4MpHFKGGNyzsoz6eNaB9I0ewLS9HjGZPEExip3GwIPn2Ghr-uL0cJl-IAnSUq8wWdJ00l7LeuvARZxmghB88hksZDK9zAVWr5A3uCMkBkRW2cJiMEbxXY8do8f4QcvKkuDU_RthG_ptJhrs6LL8A=w514-h386-no" alt="Beaver | Day 3 | dailycssimages">
+          </a>
+        </div>
+        <div class="col-sm-2">
+           <a target='_blank' href="https://codepen.io/EleftheriaBatsou/full/BWorPM/" class="thumbnail">Tiger
+            <img src="https://lh3.googleusercontent.com/LRqvvv87zoNW4NRy7R7MIYmCb7S1bMoNrPw5uAD3h-65gG7tKSnjxr_15Yrg63c1ANYRzKkGauferrkd4xgsMJp5P8H0jVr9WLiZfoJbhgA3vWIA93EoJ1AkZ8AAkIykam7Lx5Mrlw2_M2dEJ6DbjIsdzTALpqohRxT8YLrIh7Fvy11OFpjNPdnsGIWDCt5Y3KSkU6R1j8rSbo5Io4fDPMIn1HXaNhxnQDQj-cCICkq1bmiuUBOcyzXf5OKBA-aDll0UxRPB_BbLL-RWFgreRIVGbzPdyaylx2140YLO0AoTeI671NdFI15hqYVX4ZqXSFVWD7LiBBC7hCbX5wAJYKaZ5LhRg6Y_i2_RwBhKn_r9x-94swSo00OOxiGc0YqpO99dSIj1iO2zOITpW46fltwdUm15S2aFk68uI39GnvKj-C5mp6zsWvfqRg8Id6SQzKR-pdYAkre0DbHVEt4BUiqxnk1QIcmCXaInZkMA35qOyyEVGWCvmxhrf6EIXwo4DGug3nOsbfytbDEKwzadpms29LEPx7c0rm-BPYrwvqxWGqy_zKtaA2Ia0vM-RNWKSdG9n9CSGk-E-DMHDliaQ1oKldnFibXa4ENxKbmAhQ=w489-h402-no" alt="Tiger | Day 4 | dailycssimages">
+          </a>
+        </div>
+        <div class="col-sm-2">
+          <a target='_blank' href="https://codepen.io/EleftheriaBatsou/full/LWGpGZ/" class="thumbnail">Favourite Animal
+            <img id="scale" src="https://lh3.googleusercontent.com/9fImbHJvSlGH2uK_5NA0aBvi3YVCnqW6g0CC-u4fO-P8oeOzurzUEIE4L6fBpcvmOMnialesPRkuV9OdfoS5jcKdjUXoWW9QsYvvp3QnOXEhmflmBmhVDCRLHXa4phdQzRY27tfdZ6SEBlA5KZEZpxOL92hvoH0PQSyIDWnBY_CJstlUNVqa5AgEO9kw6FMx970a_4-ATC-7-UqaDCR1mQObWBd_3HqdHNtVn24DVWOyBapkYP6V6yb1Y1zQkFmbKDlK6THIGLwTDTDcanCherHtTintrZ65MnxhKfSjmAaxjnZ_kGvKSU0VqqNREo2OQiXj8Tno5okrR0YxBapRCNMz4NBfyC4TMRwipvu_LQKeByWf49DIWsy5RLmJknMVMMZU5YmUR6ZXVtZTTcY4wJ7y7d8iGYLuM8OwBOjouogtVDtUX5IuHBVBe_OYs8SrrAPKtTPFWOoiHkJ_NOyVNoW4e1HWtJgS1ucOjlnuIeladCgiCo7N69V9NjAF4EGnD_y-brpltr7y5scKWwobENrtoM-7fASuGdsbRPudzcj-Z8yS7pKq0wbxw1pZFw2VS2987aZNGXymgj0klfMr3ONQYPzXP6T5F0I8_3sNzw=w502-h415-no" alt="Favourite Animal | Day 5 | dailycssimages">
+          </a>
+        </div>
+          
+        </div>
+
+        </div>
+        <!-- /.container -->
+
+    </div>
+    
+    <!-- /.content-section-a -->
+    <div class="content-section-b">
+
+        <div class="container">
+
+            <div class="row">
+              <div class="col-lg-8"></div>
+                    <div class="col-lg-4">
+                    <h2 class="section-heading-b">Week 2</h2>
+                  
+                  
+                    <p class="lead-b">*For your office*</p>
+                  
+               
+                </div>
+              
+            </div>
+          <div class="row">
+            <div class="col-sm-2">
+            </div>
+            
+        <div class="col-sm-2">
+          <a target='_blank' href="#" class="thumbnail">Clock
+            <img id="scale" src="https://lh3.googleusercontent.com/Jj5fID42G1-Qv6YrNxL0THyfM6nSM6lMHwIr4TTbzaYWx5lCiUEhqdOrQPsT9SdJ3fW-7CD_eO4Ak1oraMppKdbiVpaMYzaem3-nj8hEnK7j2abc10AuVDc1phGwfnhe4aOiP9UpV8PZKCVJY7w0u2WFy6H5Mw_DHD6cYJGiWKd1IvheO6A4IZKePVZqmDNPXOlsCV3yok3NtfpZRoy3JQTCu7uA2AWuKFi5pYSoeSI72M7UcEFCQt22qPIL-khkBAsikIG-l_IOOlHw1Uh6nW2lWe4FnnSk_Igyhfnu8fq06rxoDLeyIxpmTPWSl13MvVVRwhkCekrg8HbYSyZfsY6s5tyg4V9AwtM6CVFOPogu_kjy6D1BMP-Jw_n84xPQIpqvx-gYon1QFMpUQd6znRgFEJuFlh2vWWDlJ_Nsq6AoGte_ejIEr-GG_9IKpfDUNaEJeFJhoTAsO6vyo6GO80a1E5WTDhxvtsgx61VOraA7kVrF7nHeUN2JnOC-V229HA8SeMalIVugRy8AYZ2pAEx1zdVpbnbcn6SePu9DvQCZfIiJedWIWkil16QEvQQK7QacvpGwPwL2n7G3N5UcxSMGPHRWXZ6pMS0-9xnLnw=w392-h435-no" alt="clock | Day 6 | dailycssimages">
+          </a>
+        </div>
+            
+         <div class="col-sm-2">
+          <a target='_blank' href="https://codepen.io/EleftheriaBatsou/full/NprQKz/" class="thumbnail">Ruler
+            <img src="https://lh3.googleusercontent.com/-codxY8FR1rFMrbUQNe9IaMd-c01B9Qgt_qgxYd_Fy0Rjbfwy4vhwT4zjT66LrIgyz3mJcCUUM8rAFb_qxDqHMPOlf7g_TkMtETTwhDxuhIIcM0jp3Iv-F2_FIlxu88513pGQM8FNIsxKJ6M0GPy15ZL699q2gpLsXbH5NTAphL71L_EHvs6_LcT5loV7yviusBDh2c3e94DGkuGyyjkw3__7dda2vZhNVoBj4owNA67DW70O5hG7okucgiVenBhUzDAQTePnkkP7P_qi9wP1zNOZ09fft538Xq-rE-VfdynRDWRLQqTzsyp9vB9-hcX5TCPsxpoonQAr0FWmhJ0A5eRzCirgCuTDPpjJFXdnWW8SKnqFmtz0-A6aHhgVpAn80PpN44KpfUyE1lG27F-gBlMNH7ifYKYHOxNgtplujWm5V93AyMtr2cnq52gEU-CBuYiSeN9zd4ACcRy-NXyMKL7XPNBWruCrWUg9g3SDJV0jjpHyvYMviFca0932_au6JpTMepwWJVO58mmP5Mdd-Mw-SM9nTNffRVGpzuV9mKsBsQ4zfkEujNeBiJQcbBkf9NdBB4qNwdYqp4YS6WwclloNLcRvdMxBA3MlIpTDw=w548-h267-no" alt="ruler | Day 7 | dailycssimages">
+          </a>
+        </div>       
+        <div class="col-sm-2">
+           <a target='_blank' href="https://codepen.io/EleftheriaBatsou/full/NpbXLL/" class="thumbnail">Notepad
+            <img src="https://lh3.googleusercontent.com/zsN1y7qXNYlnCVqG3wIKLq_R4XoVy5kLXkdrpfxgRne9JlRa0xyQ67_BhwPRIDbyKSqi8mTdI1R5z8pqEGQ5U288wlyvz_wl5soAgiHzziXVYyeDXNLk8GNFg-IOoIqT0046-Y5MOF_oF1dOJHXrWx8jsSMyJ-WAs0aw3SSWR712eaNAFb9lSGQWRZ7K6EX-7o56MMtdj5Gd3hMi5xAPnE2mRmy1toK1eUcDkQ4haEi0_HWh_BJq8RVfSj6X8aDjKvgPFUCGUZ62buctT8cZFTIB4jawQLm4lfIRAOFJP_XlD16Fjwi639Z4-3qfLNvXU_oMErb5LOH57O8hsr432CQln5udmHPcC-t1yv2Xn4mdsDgX-MZ8iyeXT2agiPq89r4SZyBDP9dxbulv9HOyjzPhzE6PjgdhRwpNxMVSHxbU9NbmMC5Y3TSQ92jD0Pk_R1tskBG1T1WJKMHg7agWu8q4-YOPOMF_26_AFn6Eh6bft7lcfokCNUi1c018Cy79TTGivq63BS7KuHHLgniJjXLO1j2YSJL72m8Ixx8n1XAU4sc4ILvRlKdSZwda9VNMdDYCT8jwXfgOvVznaKnw9E9HOlmsWzOCrD6dFqEbGQ=w694-h426-no" alt="Notepad | Day 8 | dailycssimages">
+          </a>
+        </div>
+        <div class="col-sm-2">
+           <a target='_blank' href="https://codepen.io/EleftheriaBatsou/full/MpbMPQ/" class="thumbnail">Calendar
+            <img src="https://lh3.googleusercontent.com/aXZrYvZv6P6pgQNYKN543YJOWVJxKBj2iWcXOaDDbwnOdWnMO60dZHkvhWCkdnsHTsYYpp2fyfz78UMBmhtkAnz_im6oRFM1zfEIliP21xRrKaPm9SoSYJpRjPWyp6RWXpAEIaZSW5B9DpfGUzwQpzdwIuDqXUPyI8bDlBKhRShurYLWL_-0h7Qb61nR9tSZ-9Uyq5uk4V4gngJweiP6lqAQs3dvrYndvgGHhcELwCZ5OEr4lxEqkzsEqw3_FfrDq2IuXejDTZEYBHtUSC5BuSQF7kA5oHjxO6Ee8UPHMgdU5SkRGYDo7y3mN05a97ye2rAjzzUfGIpxZSkzV_hzG5_QG9Y7AraIPdBJe2Aq4jk5G3OdmR9rOtQv8MKrTBL7CATiVTfJ4E0v37T4MoQj53Qf7FlA4hlGUzk3aJS661mL7uShTkiH1lj1uYvR9GgP4NHimtIlCfda8SqM6ZhtpuXMC-zyJv8ZkArMi9u6dkBx9aoNJhc69Becz0qVFpz1swdfUpkLlq3EmzwnEeigUyn1iQkoLe4PCa2MPWIYFOv6p0WPf6C1neCf1oKyMSK7petbHTN8KxiHfcXLJXfSQoAkJowu1AHtN9XohdncCw=w789-h559-no" alt="Calendar | Day 9 | dailycssimages">
+          </a>
+        </div>
+        <div class="col-sm-2">
+          <a target='_blank' href="https://codepen.io/EleftheriaBatsou/full/WpRmGv/" class="thumbnail">Pencil-Jar
+            <img id="scale" src="https://lh3.googleusercontent.com/20OXCD6_Yz9V5_HNPtYlOKrCbmOLGF3rY68Az69C1gC6lMdO5f2S-YjbJJHeal4PysEsmgJxHrGuQlqbwEsy_UkbVAZkMVotRQNR2byjFSGPlzpooB7lplFZ5fNVqsoIGjl0uLSgs8nhQxrToCKhnAVm-L2E0TSw0KHXZ5HZ1BB-lh0yXkqQYdAI4mNN-GBywr1U6ody2BNPSwtJOOaLg1jIEl0_KDm1cm0GbH0eo2oqtxYtHYT-LnncroUO7RRQltvhcziG9_4bcCgsEkmNqy-0FbwItwbZ2oNj-wXqizuG4me0zMHL-H5SdXCUXsTzFVL2J9D0MuH494cI8vCgIToFepwFKayCE9BYURmVlVA9uV2qeG9lycaF1rkFYxq6uqJGHi3Ae7etjBfI6coetsMGg-Ksc4IyG1nJQPKNgAuncuBSGrP0YG9rm70cIzaTTYuAWMwC8NkDUv2KsNGjBijTAKB1s1fJtLF1uNGauR7B70IGu05bg4ldiPZRroCcIV9fDEzeadHyJDAI86On-v82QMbqUFqV1RKsxGiZW_SFTmmYV70nKbpz_nl5gsI-FOqed7GOxjfARbTaZio4_wfLm75AU1Nt8wExNHkzmg=w492-h524-no" alt="Pencil-jar | Day 10 | dailycssimages">
+          </a>
+        </div>
+          
+        </div>
+
+        </div>
+        <!-- /.container -->
+
+    </div>
+
+ <!-- /.content-section-a -->
+    <div class="content-section-a">
+
+        <div class="container">
+
+            <div class="row">
+                 <div class="col-lg-12">
+                    
+                    <h2 class="section-heading-a">Week 3</h2>
+                  
+                  
+                    <p class="lead-a">*foods*</p>
+                  
+               
+                </div>
+              
+            </div>
+          <div class="row">
+        <div class="col-sm-2">
+          <a target='_blank' href="https://codepen.io/EleftheriaBatsou/full/JWWzQB/" class="thumbnail">Pizza
+            <img id="scale" src="https://lh3.googleusercontent.com/hNLq4idH_t7pnncyWi7AuTy_j9BAKGqZj-JslTtXJgtYbFV_DqpS7wAQ3EYvAMUYGFn6JapwJJmBnvIEWlqE4tOSwuDHn2hZrsggNwuFp7okgGvZYidFGiDTSYAnrH3FV0PCdJzJPUO962Qe0012Tjy9yvhzvyzFl3WOo4i4cu0DMP812-K6jwzZh_kYrRqqBcnW2sNJ9WBtA9A1mbtXCracHdgjILgwfVzerfwn2aIcfRgQGKOhNhmo-J71K0NalspwPbjnERYGRzqnOoogQBwP6GnV0VEFVV3VZs8l2lUK8oP8ESHa5-Oi0vq7rBBOwkAxTpG9XStq-AM6YXetdpRTpJAKzgyX9uSt9UvXM7BXAQFhxKNyBU4Qoi9TAmIpeUD5sVSj15dIPIWPwPBiDBbzrXcImYzhilPRsufwdIoY8v_prIR1T2x35CHxlzghu2DFrNL3Lqz79t0gvyo_8H5krRQVXavC--M7uE39LRiKLuEvJk4qEHZLyl4Nbf78ANIZoz7Qk_HkF0M2wCmXLxRI8nTsxeuWu8q4luv28IOT_3roqdvQkaiVWzSA7CtLrz54toTgeqCh9pZThQQvGuUzYLYuPA_Cm5rQGcvTUQ=w575-h422-no" alt="Pizza | Day 11 | dailycssimages">
+          </a>
+        </div>
+         <div class="col-sm-2">
+          <a target='_blank' href="https://codepen.io/EleftheriaBatsou/full/gmWwEL/" class="thumbnail">Hamburger
+            <img src="https://lh3.googleusercontent.com/DAfBbfBnsAwN22O7nE3o6lkvamtpz4ud5yN5W5j1iGnI3lZGmwNFLyQs6_TT60glajCnjzopCn5IQRd1e92nkRi0K_-VGzj25pW8mSmVW5sQD6sELP8efVwaaGykHfhzjjB8vAQygq5vZBJTXRrGLy2gYRKUPqyaOn8uzMMASAboSeVjVRx3pJtKS48IJE8PzZ5qCbWM62GDPD3VOoH6qyVbLvaY_TAatHYYsmF8agxUbBQQp_LiS9JSgmv88-A0l_9PN7AM7lOSGuQWZrZ0CvlS_PMfkHN54-hckGtB71M9uch29CjussZU9nyyvp_3DAce1qUOIYej9Budy1cTrnchfaNtvKiKj17d4ebNqlLg3F9fzWixYYkvPjqQVz3W7euqysKHrZfJiYTvYqpLvKUSFfs6qDQmUduBBifYGGpXRArwKohU9U8XgkXaYeK25xBYbQDPcVrMenkStotq49sGHQT2gsm-eAtXIuibwMqUctY1wmDKZUCp7ThlaSMqpA1KsZYoXrrmjF8qdwUM3tMFqmu7o0ZKjQ4FinoO3_r5dYNxIq4BnlBXrP1eIWh4DLiogDePFnhO5cPxfz3RFiNc94YRGLN2oVdTn89XPA=w518-h419-no" alt="Hamburger | Day 12 | dailycssimages">
+          </a>
+        </div>       
+        <div class="col-sm-2">
+           <a target='_blank' href="https://codepen.io/EleftheriaBatsou/full/BWRvOL/" class="thumbnail">Tacos
+            <img src="https://lh3.googleusercontent.com/L-m6J4kjxOqdJ-2q3yrlzMJuRS7xQ0084n0X573EMl1Thm3rPdSuatEKe_2ZoMhbsajVjE9WjKCWCCHn-BokL5B3gCOxcsfkcr-_XRFCvWfWj80prIpvK0tASeTnAevjSOJdZJ4pv16spbA0LmqhDSNocGbNTV2qxt8kyntH2Uh4UANxsNQBkKIXy87Pka3Iy0tQwgzAHt1_OinfE-lpsKCSBsrCVkgMTjEE8ogBADbPy6OrBS7E6k_k8tPWnfaYjNiJDHIrC0VZYjTabxArpyvQSqh361JFfr0hLrfV4XTMMpPuYDreWxO7WzNnQE1OU6hK_HxO2IRDzOyR-o5-lxZOG6Ls-hI0ERcNhXKhhb-cWnlkIiMGwYn7JpMPMBPSOHbPE8Rk4c5oBaDP93tL1fiMVrYWYvCXEbCtr3X0rBX5LBrRp0G2-X8gl4xfMGlMBG2qGR63aK3BHbotIAc6lM_VCvkSdFl8jHRn8vI88j9bOr5TG7DwsOZGTWVK6FjZg1P9l_9drx5v4fGEd2gT0jX4OQtDCY2xxuvOCc-spziXHIHQH9W1Kgi_seR5tI2meOSbYOi5eZAcWVw1WeEIqHbUzgmGUKWEx2Wun7Q3lQ=w630-h419-no" alt="Tacos | Day 13 | dailycssimages">
+          </a>
+        </div>
+        <div class="col-sm-2">
+           <a target='_blank' href="https://codepen.io/EleftheriaBatsou/full/jBwyEd/" class="thumbnail">Cheesecake
+            <img src="https://lh3.googleusercontent.com/DZ8vCNGDOP1VAdkRBXAlF87UsVbiP9NecdZu8OUWKrcXC727ev_Luu_wNu1p3wkx3xm2j40oKkmI97VDeaWCz7cht-R2cuCWyCc9lv_ar9hHFHnv6zCDzFEr6e8DWP9gZAWV-dywKqxyjdykmC8maeMo0-GBTue2oPVGLzgUFqpxNe1OQ4kbXHHUFh_n1d1pymIjDz0yeAyicvkP0jcOko4aMILUd-LjWqtQA-o-3Dr4uZWDBKUs9c8jf4JH_uoY6511L-70TmRQu7x63mxGbRrAiv5noUVV2So0-80Ub-OEmvI3r0YEf2DK0a0atpBeO13fPXIPJSZ97H12KSGRT7DEiY1NJp-r5js6TA2aVZ5TVjQy4ULBzNGTdXuQ_fSUFijaQRGWIRn5HV_GVdpbGjNQu0ScQ7Ih_4WCCparfkYZzyF623OUVC-RqX0QAtdAFUJO9qUWySniblVYzqTD_CbmScvjqgMzZNY0SWOXxFhorOCkVAIyk2xqlwhO4AR8-4h5ngvwWdMEkWlYjl0a9rR_rE_Ho3MVmcqTJ5zuIs3omtXDV121WbUSVGbfXoIri8d3AtMR3JjYpg4RXcekrIAAz4mdrOViX_vIuaDhCg=w605-h403-no" alt="Cheesecake | Day 14 | dailycssimages">
+          </a>
+        </div>
+        <div class="col-sm-2">
+          <a target='_blank' href="https://codepen.io/EleftheriaBatsou/full/xqLVjo/" class="thumbnail">Pie
+            <img id="scale" src="https://lh3.googleusercontent.com/y3puGOctuwvUobj6AAMCDX7zIbaMeuFbyWzKWy0YjS2xBl0I0H7TcPYSIyPeaQEN6CGOkbXWdUyMng4viAXQEl8uQuvdxHVw0qiFRAPGmnujvOEwgeYC0ANxz9h3yL7pmQ4EzoFXow7imB7PZpAPyQAvarwrvtmjv7UlBp5D4rcgEcDSscWFCntKqqwb2-P43zmkuaWjyVvhsFAj9D7nr6RxzAk2RHnUhkysdelSvyat3_kMGepXBjqG6ButLAX6kLd9Ym-n46FjYqNSOEnVcx45GQLOd8PEgf0DsKSYBm01_TSBPTpnZQhhLa39i8uix-RM3ureosswF4Xfl8OchM1CNFlifZ458ESnjlfZJXCOPxT_8DVeDmOcrC-td7NmCZxgLsJAccNiL3-e-ZlRRbVisp_pYtu97MZeVpT6NCTiXx5W9pgZy6aciEUSohpndAStQo44DMYSXpdCM7XNFSHeefoHVmMdzHYZuDflnMBt72m6Dcnflcxtlb8qv2RWSz0ZprOCjsiuYNBblrrveL8RVAdEouL5CicYx-hNjRPkQBg3zTOTsMHFMdgTpOM85pj2N_yXcw26eJCamSeDfl7VxeXqwSElC4C3EIBBLw=w679-h491-no" alt="Pie | Day 15 | dailycssimages">
+          </a>
+        </div>
+          
+        </div>
+
+        </div>
+        <!-- /.container -->
+
+    </div>
+  
+   <!-- /.content-section-a -->
+    <div class="content-section-b">
+
+        <div class="container">
+
+            <div class="row">
+              <div class="col-lg-8"></div>
+                    <div class="col-lg-4">
+                    <h2 class="section-heading-b">Week 4</h2>
+                  
+                  
+                    <p class="lead-b">*Monsters and Zombies*</p>
+                  
+               
+                </div>
+              
+            </div>
+          <div class="row">
+            <div class="col-sm-2">
+            </div>
+        <div class="col-sm-2">
+          <a target='_blank' href="https://codepen.io/EleftheriaBatsou/full/XMeWar/" class="thumbnail">Frankestein
+            <img id="scale" src="https://lh3.googleusercontent.com/6fiCoxeYsf4BefUIWnNIoM1zysHj9wWh6qKoXJ73Ooe1EGwYrdHUQRc5C4eNpEFVUf8NNXfw9ADNaoZKDLZfZ2NRxNfzPP3imF1LzBpenztlezwCpIIWCkENDVs59-4hruBD1x_gdkdujC0xFLdym1V6tYP5IWiDwRvGPm3dfe7MVw7Hzof3y4EF9ht905mz90KRupwdsMAyLmMGBh_iEhOL_VDqGFvpEJ-VfWF00xqBwR25i_muNw_l_VeFEVVYp1dL0qFJ5qsGHPsRL3WiyWNToQ2EVDhcnOfLlT0SXoNK9Zw5iKcmbZ1dBkwKWgx-W1GeLjpQRJpAwWlEbsk38mkQ8ZBBlGbB4J2YIGMVN4lHO-V6iDmy6oLyeM0dzeqxpamVYyDnJsy9QNjVn2BZj94i61fnLruZTbVH8Q_lg3uQ40oM2L6L4hyCFhJVsGXauy_b9zO4NQbQEpIlwgPpUcyH9zz7u9QFDBNT3MyzwcFTeySamkyui50ES-_fvwb0Y2EEW76HNuW4d6h7TBlG_aYBA2Jj3iUolTauTKjJMNNCA4Elr_rznZuvKPJW-S3JQhmC01MITP6KiFa525s05RHLrGfRCmIIRPlyP-s63w=w455-h561-no" alt="Frankestein | Day 16 | dailycssimages">
+          </a>
+        </div>
+         <div class="col-sm-2">
+          <a target='_blank' href="https://codepen.io/EleftheriaBatsou/full/PpOypM/" class="thumbnail">Zombie
+            <img src="https://lh3.googleusercontent.com/BZ--315hRmQlMSiZg95Y0noL3HyIrqRKvWzLVR-W9ecEOcOGCLYR_EvzaS0DmEpr6qkpTa2Lzc81FiebO4A6BiCj1sZXsTsUcTwaMF0KyooAt-Ehy6PfFx7cCUTupD_DI9_vLFh3D4MKbgxVub9qitxJk7x1Eyot43Vt8SglzjHZAGOY7Zn0DTcjT79hSKogQRNOQfU_m2lbWyelxTrgYeSoSCyfQBEqsHkmFdJPKHWFgi7SWq5dTyKcucTOyXAcPM0aHerS_qxdA8t1zH1Ss2AEEpDp94vhb5GWZNM7aZSNfH0NPKKcT25rGdGS-wQbE40gMyRM8RWrdFlJ83xUNVbB7qI8B0cmSM0DGLUUVqeKfGyGbyoAQtrIoY4n_RO8oMdRtzfV_xwalKXHcbtm0ds204SW9JejjC4E8tK5f_1uVtm6Dn5iL3i1yypsdNzPI8tega_ELUGlShZItxKmgdXeQrJRdwj3rRBZOf3JL256DubdmK-1CZmwUb-eJmN2SAqPTb2u7ALRx6hX8aYTh7RI8-bgWwpkLIm3h00tlpzs8F-3h18tL0zYzrSdSi6hO1VqhkEWHlMndG_-pg-jOmZS0H6CRFelFv9geoe1QQ=w227-h551-no" alt="Zombie | Day 17 | dailycssimages">
+          </a>
+        </div>       
+        <div class="col-sm-2">
+           <a target='_blank' href="https://codepen.io/EleftheriaBatsou/full/KWQGEz/" class="thumbnail">Vampire
+            <img src="https://lh3.googleusercontent.com/IMevnNJW21khhvsfxC4nhpSO4aCfgCSUUX-NZB7Z3z2R9A0Fw-6kgmRIVhSBfc-cjjlpQqnTeSko_nQ-rW78JjZ1hY6aD3enquMpYgsF-dZyXHSyGzTuUAUPsI9FHCMpJ6Q37PPckJcKmzD9Kj1DDMqdK5ATDv1ve9ZRU2KoJgTGVTR-w17sWF5goCvzCu7-4n-qi5JzrNnvrVgK0O7ZUAC_XblV1mEgX9-uqtK7zolW5sNGJ_H4ftIzpUm6NulZpJfu23TDybyzVeXknHKyDuwCB-ZEmbUy77vsRe5q7LO5qaAKeGei97lgPtrRDGGoBkF7rNHPYjr4eI4qJt4KFIJeia-EIYs-O54A7wayU3AfD7DI0Nr49IxMulCwGP1tQv7VITKa6ZLKycvABxMpzdInNsq9CdXZZxCHBs1IE71xRpzKJWXboYwmm1K6bMydfJBxD60sMeq6ZG1i4dRET4BWErG8zMSYrm5fW3Cud-prCfZU9ideoctyLZDZQhZF4JcIityKmTGXmMwNoOuz3dSN4b35Hffqx4fINo9xhR1LvaMf5aGYgpt3Z01dBT9WyNW_71F7GZknddavl2xZfQwjJ1z2wH-lyiNNiuBGDA=w458-h531-no" alt="Vampire | Day 18 | dailycssimages">
+          </a>
+        </div>
+        <div class="col-sm-2">
+           <a target='_blank' href="https://codepen.io/EleftheriaBatsou/full/wJmprr/" class="thumbnail">Monster
+            <img src="https://lh3.googleusercontent.com/jUlC32PiyKSS0XwNXfeOuEOItUWwg-ERzABrWPoI79XnCz4_80jC1r5E3_Al-9A5nei4SOeHoHaqcp1kitJG8fFdSp7Lpnp5JuUUilN_5XxlZ3TTI2E6epHmUbUUMlQNM8a0onAW1XErH8B1GQLHaYfUdPDMo1zmvCCmg2S5LohbrrMSv-Q6FRs0J15wP8m4-xSlqzVBIs1vUzW2f_eSobviHqe9Ur4ycyJwHIUB8EaPfAm5W7gcMtOx-xE7_W9JFGBp4U4CFtb2Jq2E8QBcbPeJQtrb6HtMD9SWmy5KA6oiCB2FwTNwERuMddxrtw1z47OfYZZSfy4CuM-XqpMsNvdJcmN9kfXkPLHANNmGU0rjXryS9_3XLyX7QbTJdVw4Hhwht1rFjDoIIesNYSb76nP3Hi-zKK7P3oRSCOlwmOwtQ0H5yKrkzEiNPHytNU1_bdi820xl5wVrqKNYiHGAc592_MMXq_l-L2Oj1Z1jGjh6fPquY7X-zYnUQ_OzkjnPPKBspUkakZ-nRTCSdzmm2sIRwpHGxGo2UshJfaIbreSVi6EKsVmYoPMmZl3ndTkxJIHF_T9ABHrNNmX980CSnzjN0e32X5dymnvG4fcgFA=w453-h535-no" alt="Monster | Day 19 | dailycssimages">
+          </a>
+        </div>
+        <div class="col-sm-2">
+          <a target='_blank' href="https://codepen.io/EleftheriaBatsou/full/KWRWJB/" class="thumbnail">Monster
+            <img id="scale" src="https://lh3.googleusercontent.com/tW8Ij6GF9yErQfF4mYSQUkWbh5tAKPnMXMGp7QErTW5Ley50LKe4DtZzk_YT3af-IVts_eYzZ82nD4E2ddX1vaNMmaBINjv7d7QvRA6R7qTbyaz9qJhCaBDoDZkM4k_02z8tl26w81t0ZeJvmder9BcUiUa1AbmD7UVd556DSufDea2jUf-9df-4kvpEEr0yv8cPNkdF_DTj2xKES4D6j83Bb1lLZBMnQzkPbyvzJ95ZoXw7ChNh5N5Jw55E4qgkA-4cy8aFhvsc5LsF4R0XV8h5Rtem6HJr3fSNz2ZOPH5R6RF504tQdlM_weIc40NMTxjBFt_uHL_wqAsyl4WxmL6GmFq0spb6W7c655PGs53Yd6DpHTMooliwUJw7UuIS2qc-dmhGI14HPQ5H91blQdra5H2zDjj8S48O75p1APuf6DeF2_geU-kh29-PAuM-XrIcjr9Oq9ZXPrJ_cWLIg9RZ_1C5WrlVxYvfbXZx12Dul6Vj_QarQtmz5GqsJSCvPUsU-AswgDUUZ4ruaEPOXoqH0bwt1gDreV5LTBfIm5hHrYJqF48Z8-ih8dCG8deXN5SC6caL2IPOR8WnMdNWR2Z4tB2QxBR2g9PtEpqNaA=w600-h554-no" alt="Monster | Day 20 | dailycssimages">
+          </a>
+        </div>
+          
+        </div>
+
+        </div>
+        <!-- /.container -->
+
+    </div>
+
+<!-- /.content-section-a -->
+    <div class="content-section-a">
+
+        <div class="container">
+
+            <div class="row">
+                 <div class="col-lg-12">
+                    
+                    <h2 class="section-heading-a">Week 5</h2>
+                  
+                  
+                    <p class="lead-a">*Super Heroes*</p>
+                  
+               
+                </div>
+              
+            </div>
+          <div class="row">
+        <div class="col-sm-2">
+          <a target='_blank' href="https://codepen.io/EleftheriaBatsou/full/yMjGxE/" class="thumbnail">Superman
+            <img id="scale" src="https://lh3.googleusercontent.com/rgtg10-KHZxnjSVQvxZJbBHTe6s4esTSzkEmhs40lEuEZM2D0SU_FGYRwSF9pQEXZFxRCskd8W4SvEzKGNGtA-PEcNg7yBbDx6vFhT2zh4Wh5-7M-p9Kni7Em-BTXBLBXk_oCbIYpcRVELiGd_BxQXvbbhDqLQAt8-JMvYPnS-4_IvrdIy6YJAG9d-7E0EAe1SCWmKcZx5pE_eIRAgSxR6wZhxNT7gPvgk-BM1xfQfrADzEPDcq2WsDeDJITKfILVglWBc-8Qb3Ee6RYjdwRWH78Vf7l8RCJAzV6DWznub_xvaR4fGg-i1MAUH_8ESYsFyF9Y0p_A7TjxZdT0TuZ_gsaGsZlXnOOk9Mdz2jx9567ecLZUwKO4ovGIs0dTA3MFNUjvMUKuGhXxOkor-c92bTyMTz-Bk0ljLTG1A593RW2ZSlIyn8NoVGYsCCpLzWO54Pzmx8maHGbzU2jR7n7qllTHYlRRv_e-vvmBEPgJcPJhf40vU3BxBiH105erTPchyP4vPKMYj9hpSNu0APA7FrkmK5eC458dh6HQqwebu46lDjnGsfXe9GeLj3kO170m71FSvSV4A2eCPQTYuqBPOsstbbogeJ4-cXtz5WMbQ=w600-h576-no" alt="Superman | Day 21 | dailycssimages">
+          </a>
+        </div>
+         <div class="col-sm-2">
+          <a target='_blank' href="https://codepen.io/EleftheriaBatsou/full/BWVYgO/" class="thumbnail">Green Lantern
+            <img src="https://lh3.googleusercontent.com/yDOZWd6wvooTwLC2sUJ2G28NCHtgq4cVMz67AEwTrwufVCVv_LdL1XAG4szGqoARWE-zjSrmGLVMIyxA4N4gVgAx4gdquLaH-TLheK9dOiPTt1aI0_I8P5sQLK4Q1ZtnjeqvPPGScg9mjJWsNNBmy4lQkJCJTvAgYlYMvdt6CmqQaGQ-JVmFVZBqB25hC052E5nxHu0DnWntXWxCGQuZ-K1Z7HrAIXYGmGvB4T_uUwjFJP2Uqyp0O274VEIibjrD5Rf9GzqxRhhOYioo2B9k57PpmoyHLUKZMexH91L8_4SEfElL2XyGVqB4_jzALD31RDZ8uRs64JDgcfS5YQrnJpc3ohHpy4p6WyBLDDM8rsJkcRaI1jubMljmL6hMs-5S25LMScRtI2q6V70r8v-2Uvz1eToT9w_B_KDcqtzwgmNht2eIFq6qEkHqxw8vLBMjxvE1On9iIGWz7G6ehD8oP-Rdh6EeFUKAJ2aQgVqFA9cqTR8Zg8c-EOUTybk7AqYje8pbmMsvdXlCKubKgCd0vfVt59LxSQM0l9xXCbLzWkbdFlgr-FDM1GeFoTiJJKUdxWcUNjcErX4DTR4kU8cDemnbV6eyf9Rp98PUVWyBQw=w331-h528-no" alt="Green Lantern | Day 22 | dailycssimages">
+          </a>
+        </div>       
+        <div class="col-sm-2">
+           <a target='_blank' href="https://codepen.io/EleftheriaBatsou/pen/peKqEe?editors=0100" class="thumbnail">Wolverine
+            <img src="https://lh3.googleusercontent.com/jfd_6-tVYLVrS9GYZSBahoHIhV8QFQmAgzQhO8fMFqcnJs7tCHubGQZfpLnIC7c11JJtka1afeNsrCYImzVQqwqLHnRruTVonE_Oi8BoDhG7EjotQRjG7qbIZu0XlKmyUwIota1W8rgsK9LpPKCwMP_2AEpiOMWZjDrUOR84MCbbw6Zwx2K4PqOUfM4sT0utMx1T4g9poYL2MK-qaXAsVESZL_c0Qwe-zipSIhtahnMn_nTiAYSWjxrDWttSnPDWDA2pZSvNyvyiAOi2g5nMe625RAQIv7u9GesRFzLb0UwuxloUI5Hte_4vWPHwG_CjIN8YzF_ozlm30AKi8G3PunT6KWXJ_ctFahmoHFLsW_1CTBycgAsLPyeEc7hIjcANT3X5HWigD-1qFQVz55nFccCqY09V-jrxd6FGyvf3aSdkzOx_u3CY5Y3Kls4Em7Fe7FPEvGAmB9FTchwKDCCO6c4JV5njnDZbhfObPPxV-Qqe3QXBFS4qnyisd4m2H9v3d3Rv4-3lx8zvzUCAPqVqv-wa4y5mc8waNWmYeZS4-MCzoTz2d7ge5TAf3zXYwUUBcH0crUWED_NJGpsMYibdiAXdLsg7lzThcfAjRCW1nQ=w415-h524-no" alt="Wolverine | Day 23 | dailycssimages">
+          </a>
+        </div>
+        <div class="col-sm-2">
+           <a target='_blank' href="https://codepen.io/EleftheriaBatsou/full/qryOQp/" class="thumbnail">Iron Man
+            <img src="https://lh3.googleusercontent.com/7pm7crjhS-8BnvgyMmhACCtSklfbcuU7sJaU0YxEMKxaQsf50cZyDHE6JGx0nCTJdMXOs1_KPuNi2X_4uuIsiOK3ueuFlfNuICuBfHTz18zPW069_CfRi0sHpOnPxKN9O9y_ERGqrdHXCz4sWc2dTkZdvdEidD4cNnW0mCuk64ip1iI5v0lgFyP7dQ7K1_IfBbDs-rBZ8mtu3WkG1epNsvINfsW9rvAun68YXd5TNYYvA-xKzdpQNS8Z4Qqhr1ow-pJyDH2nYBMxWl7x7EZbKrdWLPtoP0as3f8x3nP3JP45-dJT62y1_s8QCnG3skQFOYMrNa2r6Q_IIOrq41Nj7hsBPPbKg3ogRenbnrwzX2Q1vMGO6eFbaAM7wWkrlr2YIBa30JL5yFLw3aRZslwQazjOaByzSXl8Ck_cWeiRY24A4Yes60jmgxR3Fz4sQZwZlS7pksaClzKZB2-N4--CVlzuoORYfLG1_qz06Y7aPMGfZM_kuv0YrVeW__jXW4QiRHV6LYEG8XlMTUFfxwomVTYPtaMxGUYgm9cp-LBbCawKuo5AZcRqeEYZCyVh9y_WnvJCzf7XdHi0HN_b4PxnwFMibkTeE8r3Vgd-4KWgog=w632-h420-no" alt="Iron Man | Day 24 | dailycssimages">
+          </a>
+        </div>
+        <div class="col-sm-2">
+          <a target='_blank' href="https://codepen.io/EleftheriaBatsou/full/yMqXed/" class="thumbnail">Captain America
+            <img id="scale" src="https://lh3.googleusercontent.com/ONHj0qjxqB0oicOCmItl27ToT3MjxyNe4pWrj1FujZMcHzehYInZubf4UOdhBdNdachMIBJG6IZEJR3WOUzp4ie1MlE-yRN8YxEc2PDsQmhaMi47PE2E5hK25J6PlrxdSSi3kT0TVfFJloSOgHDYW6XgVJNpzpbhpcwhUGTb_kMeuoisxLIFzH2eq7Hb1a67NiKQkHmFU9SlIfkV6by6plPMQ0EIYQuY0yn2SnwtN3s5YLZo9h-yISwS3KmXbUi46dboFHKvQhJnKC2tJWLV87hbRTp_EiUY4M1KsVdUu1nu8sDH06M8roT6iJp4Cn4-wmDQvV0ZIYh3DJxlVv98P07PU6taUIGqObmegkxtaU8PxnCiOxJq5Ox9ZEXjyNVf-PHxm2KKJq452LneSu69z9XFhWgp9msaQsiv9P3oKN6mLTBY3WST14IbY9mYrUWLVvSloL-sKeuOkBcZaABt3d64fPmvnY6ghAYbI3QTI2R5_ZlvoXPyvqMOao3rGFtly4S30DjKwz6IupKCvP9R7g4F715Pcw0_5h3oXA4fUIzYXSQajvNZZzSfH7wxRcAvfX5SZOz9FcILVr0lOsCePIzy0boGkRbUUlyWVUU-Rg=w539-h562-no" alt="Captain America | Day 25 | dailycssimages">
+          </a>
+        </div>
+          
+        </div>
+
+        </div>
+        <!-- /.container -->
+
+    </div>
+      
+     <!-- /.content-section-a -->
+    <div class="content-section-b">
+
+        <div class="container">
+
+            <div class="row">
+              <div class="col-lg-8"></div>
+                    <div class="col-lg-4">
+                    <h2 class="section-heading-b">Week 6</h2>
+                  
+                  
+                    <p class="lead-b">*Icons Week*</p>
+                  
+               
+                </div>
+              
+            </div>
+          <div class="row">
+            <div class="col-sm-2">
+            </div>
+        <div class="col-sm-2">
+          <a target='_blank' href="https://codepen.io/EleftheriaBatsou/full/KWBBvj/" class="thumbnail">Apple App Store
+            <img id="scale" src="https://lh3.googleusercontent.com/5kMEKzyvVDlrHxcBsbbyP0jZJk32NiCcK4iwLDLYLgPJokUMSrpSNLGVDs5zWBBBeouDuwXuhyi4-eVSBjAUaZORys5C7OUqXi0HO8I0ofamOwV3OuysmqhHJ0NW5P28bvlLexXVmVxYY-BQadZxwe7zXz2ev4I5wjF6grwC1cJVjovht4pS136TGPGIZHuModABqC4n7PzVgCmrktMkEBoioZrVd0i1OPA9cIYLmGA4dEalkTK-dEL5eEfEl-nU4Arn9s_JqdKgHhYXKVLmlUi79KRts8QNHejkayggm2YqrwZuT4ylllifTuPuNkH5nhVKeJYKxdWVkSbASE4EdEc2hzQ7pYttOC9Wq3gTH6p6LROeM95CPyeVSmTvQVIKQ6gUI1PY9y80AwRSR3jftBdi-_fEj16JeElCi_mnqofa1zUCGkjfz6id_0hkohbFTQVOAVmK-dFSpDPP5n15Xjp2JJz4RGVvVRCE8RtmyUqgY7UJmmCeEfSRxzh-A9z1CtYWRdhHbbXDFoauV-VTvm41ECmGQbOb8AZQ2ATKDZIavdpgKJgMuhAWMGPfyxdYV_X_woL1uD-4tU6BNfyR5_vNrLaxwob3sAH7KCKSVg=w584-h529-no" alt="Apple App Store Icon | Day 26 | dailycssimages">
+          </a>
+        </div>
+         <div class="col-sm-2">
+          <a target='_blank' href="https://codepen.io/EleftheriaBatsou/full/gmjZQb/" class="thumbnail">Bug
+            <img src="https://lh3.googleusercontent.com/qKV3eQZhg3je6Ohz4PIFrHTLTfxW7thTT5nRD78hpaRU9mIzdAzqzJHkA1QtiT694QVb9_MUMC4ETh9yz2yLRjEoczp0bgfOuXjqXxavxwRD-Yu6AMmukj-AoFjJcWIn1b8UsHXjCBwNiCcMsT8AnMTvub5Gq9PrZJ-Jl6Rwel07mlq-z3R01ZFgUUuocVAPgDmHKdeAtNyXJzUY8a3Cjr2y_U8i7geNKLw87mvPJce4XylfvQ3XwWYY1X7QyXp-8qQOo91xrQy33o1g23HwWk9cXnClwDQceLmptnDjepAC_gK6vXNPSLPHwOhxNIiOH_mRvj5b8Pt5-Vy_R2ji9xgocDL5eHwpU9a434lQj3rjWSmbfA0fJwA6aNo3o6xbHTS9z8oyXrUpZmd7RJ-j-RBXQOoSsrI5tRRdGkVCnhzmV_hICtQ9JGompPMcgjwfw4WzerpLMuprC2WRo-T3I567mInEEizkunnmUoJSKsxnXSwUowQVt72klG8vO-RRd_DLk2kOLUBdAmW_MzBpwBRZJhIjodZMKS0DDad2OXETqu338dGQvwDUIbXG3YNhDyqtvNfsf-1pxCTkPpsDqPxwB7cETHeh0JWquOh3Vw=w362-h447-no" alt="Bug | Day 27 | dailycssimages">
+          </a>
+        </div>       
+        <div class="col-sm-2">
+           <a target='_blank' href="https://codepen.io/EleftheriaBatsou/full/gmdrpP/" class="thumbnail">Cogs
+            <img src="https://lh3.googleusercontent.com/nyZWNR5bcCwvzhaBl2N_Ep9BzpTeMueE2j3WndaUb2eYVX-r946RzO2OatCAIi1h3lfMrzEX8wGXkOZJqJzaIu0qm5ZUjnkfZ74nVN0-WA1ldjwMx31VwAzCZLMlYnlyWO-1TzX8Rm0W9SItd-Jl9HptEFv8Zh8fTsWSIBPad2wOKQCVNg1wnQBQQ8tRPwUYwUEBaZhMG01uI1vTELXxG8sjamCcdfl8PsbmHAk2-qMl3HiiPS5g4kZvVZXoLak1r2f5jtaYyCIet9A7A-1CFvUQ0Dh7CWgVDfiHgBrMCiQnZT1Q0Ftb_NT7nIljE4WnfxH5dK_lNVzVhfIH7ZIyBMkfOdXFW8zowQCgqkSXbDvPYiBPU9OpLQI7NdCif-pGhdLb7VQAazamhWaZY20-7hGhgMODC1XuosDVNPueFh6iZpWvTUXAg2m3Emh4wFE9WACd0p-_ik6aRnqlD_vxw1qAy8D8bT96QHT-wKNYJnmsX71tHA7z-2UQtXLtQkMo7nzQKJCLTsrrdw5BHnUbN_0rtADD1cS6XFf72lCpSnhKJc513N0Tb_LxRIPaq8nvfbMz4vYzq2O-Rc74QPXGbVVq6zLdAJzaRHfcw7wZdQ=w690-h521-no" alt="Cogs | Day 28 | dailycssimages">
+          </a>
+        </div>
+        <div class="col-sm-2">
+           <a target='_blank' href="https://codepen.io/EleftheriaBatsou/full/mWGrEa/" class="thumbnail">Download
+            <img src="https://lh3.googleusercontent.com/53-gyAeCAz6Wr3UX-AArlED1_oPVb2ePGxFkzAxKQSojo-4Qzf7mjd4EWX6y4W4FE3YKiQKmvwsY0NHcPARG8e6F6Fv-5urgruEOqH26s_-kRliycyudkoxkbHcJ5HrRGuElB8Prh8-5VP5exB-Wwz5Iidlc9Ra5tLlzRJYLLMS5LRbbCfGPBvHE4ei0i9zL1CM3Q81nmLPusQUML_NBm4XM17jhPb3LJm4vReCOrAtMYl1IK4LtCk0q2ReaTs1jq_1OGmI4U6nzzjeIs17YhTFP0rCEz8VtzbdhTzj1SBY9slxgtoSbuqf7B0-rCQxUNqUeemgrCxT2DHIIGqNE7IVgQ7dMZJawtAgNz1_tZCSbGIy5V-VEpA45SntNVtoltAzKCxVpYxyCdQF_2DLxoxYWAblwxr2rYydtnUMKbUIyug9mMIFG0tSDfO1cozDkntokTFawzEmVK52C_Mg2DWt4BbQGx5IJdO_9J0beDIqdLCLWojIhaFdhwbT6zW6_Cej623nrQJbQQffHZKW9dCOXJ6SxpnNPg3HFQfad1SdcLdSNPB0PREDSSx4eTu65iFbQu9duCynRCGkuccGE9Hgm09bdZs6mPNStTVyO3w=w384-h451-no" alt="Download Icon | Day 29 | dailycssimages">
+          </a>
+        </div>
+        <div class="col-sm-2">
+          <a target='_blank' href="https://codepen.io/EleftheriaBatsou/full/vxVebN/" class="thumbnail">Bar Graph
+            <img id="scale" src="https://lh3.googleusercontent.com/PPDmcXLV6Jl-LEr1qemvNmq-oL2ZDuN1WBknerAoZqEq9n8QG01IuTt4ISvEMvFi1fOH1eo_J7wUTFCT7fry0evc-jCB-gVFctTCKBFbr8ju6c3d8V6Qs5YnOuvboMjLtTrGqW2PAf3uWwBFwCikp5pxu7npgesBQs892IlOYQ2I9tKtM1p_iInZJMirHrgw5aEq0FdAfYC63WJeTr2BnZxBCLsJ5G4q4ObXqBsSAiAfmPfRDrcoBQRfsb9cOx1VBZXeSeQ0x1q-VG_y4x16oLFyFVHC-U7Zli79b8iY4a9oLEZPEKnl7pqbBnbC_FVrn8Uww5wAzhM0Zjsfxe1LiQWPDgPyyG0nwBNG5U_s5FJPPf7agyKRKnGGadjC1XKysx9t8GzigMgeCUwo9CzASuPA0pJehX19uhXUNWfqGMZfTlCgFMotNG8sXrmT_vNWAoTqIuaOXqqKdqsKdip8Vp1Qp4zN2ty_5zekIEE1RhITI63NWxYN6Y-4izq1toEkOtkcBLO4ldtpgU04Tx0sufbOxFeYa57XWreMbxJc0kmF00wlvheEw_WKLC5267fzCYXiVw5ZzAyxDi9GE4ReaJccXmeBnT-Mi_JSRoit9A=w723-h566-no" alt="Graph Bar | Day 30 | dailycssimages">
+          </a>
+        </div>
+          
+        </div>
+
+        </div>
+        <!-- /.container -->
+
+    </div>
+      
+      <!-- /.content-section-a -->
+    <div class="content-section-a">
+
+        <div class="container">
+
+            <div class="row">
+                 <div class="col-lg-12">
+                    
+                    <h2 class="section-heading-a">Week 7</h2>
+                  
+                  
+                    <p class="lead-a">*Logo week*</p>
+                  
+               
+                </div>
+              
+            </div>
+          <div class="row">
+        <div class="col-sm-2">
+          <a target='_blank' href="https://codepen.io/EleftheriaBatsou/full/EWdrNL/" class="thumbnail">JavaScript Logo
+            <img id="scale" src="https://lh3.googleusercontent.com/hz-KOCpSDuZIYpnAgFGSYmlNOtVFZoXH88xwxo7HdPwVUC58E7_qTirJ1wrK9jPRyACuQay83-MRAA16kDKCBOcKYEv1GCVBbEnpdWP8pxaxfVmdwHY5hwMio5WBGtXA7DOopgGND6c_B1p6Ul8hVUiWZ-_gS_KP-pVG56ndFZZCyk06q24slW4jefsIKHXay-2OzJ77EJcDbH_X6MX3TUIqBtgwWbfjI-JXmpj7DwlsCuOPvXBB-RNtEcVM5He36VksQ6tcWSy5-GNHZ4yXrR5flMXm-npMjHWq79D1DWyS2225vlFWYQkA56IF8bCvuKFyB7oodqqhsh9I0bLTyheLym8RA2ry2uQpgj1MxFif6T-yoarZ8VPj2XnVbhs3IJeYg4kobzhr0gP1yBlUtGIOk0Idvw6Rm8ecBXlHazB3whjbxis9uvxv4iGa1fgYh1HqGgSe5W64io8BWnuiApJkJ6vWHlPJ3Aam2oI9UHTP1OvxUL0IeFm4XZD-tqZEk2pMvX6cPpw8Pdn3oUZCAuAS_vlNEWTVcpNt1y-kd11cePX2bHNWlcLi_VqwmtjvsZ4iMvzVaTEkuNU2NCajIMsic8HC1Ty4O1ZIzdhBtQ=w544-h369-no" alt="JavaScript Logo | Day 31 | dailycssimages">
+          </a>
+        </div>
+         <div class="col-sm-2">
+          <a target='_blank' href="https://codepen.io/EleftheriaBatsou/full/aJQbmg/" class="thumbnail">Angular Logo
+            <img src="https://lh3.googleusercontent.com/NOf8VWGw4sakq2cB4r7WtyD0cwe2erfAQ5FwHUXpmbuiRfp4FLYdeegyLBfRG8ejMjJbmzEbsxRW649g-lTguvRd3LTu0w7AstBcTYH1x-1GnoaimvU_sXI3qriBvo31eVyAGQ_BPPPENhzAHFcfEbK78MQ_pBVv5yj9C8dy1n_2_fATeX0YTtZoaiCVZz9JnsRk62VX5_OkjnYCRiQ0_BnnDinc9O7Nld7Mfco38DZ3mgTeW4CnpK6C2Ceh-_-RAYyrzEtiNGIK9zRqNwQXSBWcRqVCFz4VSdleUqpt7X3k43m2cUbYWZb2mXVI9ek4h6I3yKlp52XNvFzC5NOGoMQEYoaJKdE_HoHpjjG-w1JxlXGOHj3eFV6QZqlIgNksoMhE86hQt9xZu9eRPSyaLS35hXHxTK_u1X0arFmZpr0TXM9QTUAMsfZbovUDmMLe1dK5nTXZqpqQ-lq88yJQL1YP9-r5r1F6s-ixi3VbVPKYocF19fuvCiAeKwKYiWwiwC3Q3M0KIMoTONPPzgXwLUxk5lu0jlZShn3bMq-ic1eJ8TRTroiuPkJMNfARXW4l5DqV20OeclyaMt9Y3fF0BaQXVYcGHortbGNXbt126A=w340-h312-no" alt="Angular Logo | Day 32 | dailycssimages">
+          </a>
+        </div>       
+        <div class="col-sm-2">
+           <a target='_blank' href="https://codepen.io/EleftheriaBatsou/full/aJQjLg/" class="thumbnail">Vue JS Logo
+            <img src="https://lh3.googleusercontent.com/HNOy_JtVPazyIpoCy4ppTLtCz6fYQE5l008oGqzblo04lTJM_zsH2iIfmWBIIvhVdpBLGb8Lfs7Te4Gc50KxP2IC8FzLfzuct-drJB_hnZ9DRSfXXFvWz_G4s6LX1u0KX6xRUDFK1tJlnJQhJI-gxKd7dFwOe4-h3Vbxs2fwSkpv_isdTsqMuQTEUJ6a5JGsh2-DzHVk6Rg9wLlAw9pstu_YYr89o4ljmcP3f5StIgOL9kNL1ZIB6OwXuqyogunGHWOwYkXA9-w38OsM4tsxkDOLrbCtNCETT04jZG5M6mHDg3c0vw49Ir6SgF6xS7-bu2LFUdFejoWJ3RHISfjVDudmdYlEDYC2rDRXjRmcHLzx-ELKU4nIYLNbsIlCybANxiaZRg1S-RPAqstBBGS3KETczFOXsu34tRZNAg4x2yeI1jHmZAAHXKm6mHyGT__o00KKsIWhuY2-bsSDjR2EVWZpJBWw1LGdbsi_ZHBF5xmBghRaNLDvrsBNNnP41lin0-TeNs73pbkQzEF-4CAqV5oNgY4DHBzqKyIfXrU-fKHw-WvjW9UrnoWi0It2eB25p7oDpvMAd1YM63P_d9-D6bUkuockUEUZ1ZlS_q6UiQ=w465-h421-no" alt="Vue JS Logo | Day 33 | dailycssimages">
+          </a>
+        </div>
+        <div class="col-sm-2">
+           <a target='_blank' href="https://codepen.io/EleftheriaBatsou/full/Opdyyy/" class="thumbnail">React Logo
+            <img src="https://lh3.googleusercontent.com/SuLkATyxdpW84GXI7M5ICLeSZZVVA2nT1NN_TVItLQdE6u9IwUqLFxNbxOQeKGlogpFQNcELlXWsUNhkAjggw6Ao6YKP7IF5bnVvuHEpRkjoR0rWuIygI6DKK7k9iEuChn5shaKYRgK2EixeXiIW-jWunXNqed9SHYqLyKPvC3Eh3aXBpy4sXc89MuzjW955mBtGjOJT8g1ls_tUh2iflL9iPuvuOdLT-rVplGw55uquqpR9P-Le34ZSSFGRoYShghnOaz0l2h_R0DZ2UEmyaikegTfJH2YIvzdNJZJubu_avTP33gsbZ_O_lyHhnZjti59gtS-c9VxE-xb0tu167zvrNsQwB8DgAy8zxX70eqsoVjC4Z841Y6J1jQPIe2q-yQqFbwaOZmJX0NjmJFw2wI2j3G7vFup93Ba5ZtJIQ_q1j803knXfDTQ04jgQSgnM1LBdhW3UsTum-UqCkrQIw-S37cAzJHH5RX5w5a3y3CfVXwY9rBqNwYW90LaLcnOGyKbi6rmqp9kI3SW0Nl66D1nYbsJZZChXaAJ-wg0djiZzZnSAwM8KStDPRd_J2zr-hFEAwDaLB_9oabwLOBE5NLHV8cwIPkXltgCeLU3hAQ=w455-h406-no" alt="React Logo | Day 34 | dailycssimages">
+          </a>
+        </div>
+        <div class="col-sm-2">
+          <a target='_blank' href="https://codepen.io/EleftheriaBatsou/full/wJOYZb/" class="thumbnail">Elm Logo
+            <img id="scale" src="https://lh3.googleusercontent.com/rDgaIeEpQg7LMrYqzjyFk1BAqEi0N3L8EqYgJvCFjJms5vZM-jRWq6DryoHuK9PE-6X1CWPoR3gu31WUYpSRF-TaJrQpWWQ-KlzDu7qgFc5R5FsrJeFjQ3uOofYSt_BC-uHJEIc65t1yNN333Hlk0PNmiZ-FsKwR_xCfv1xBZZ89uknzQsAImv8RD5KYPAa7XC-TRVNdGJz1fVwRoTyb-wbPKgO9cA3PlLdL7mKTzAZrQd2oNSbno6yqAHgNIQnN_6ZtqzFDV5lV4fNdtO5uLGgs3l5oLAPIphKRUN4e5OzqewKBLUj6IoPn4FGwfyTOFxMaywrXe7p_scqc4uc9yprpR8qHAKwB8jpuL9W3s6jU-blp48AKajY5ORUHP_rOfXqmshYiD3hLZKz-9LoJEAgjeEilpVKo6OA8BREPYi6lyp2xj1QCw7Uh73ymaXdytmzPcix5atYBmtY375i2VfUFdMbNvnJyxTRSFXeoZ-THSjVbACo7qbY5UaBf4Cl_QEqqECiI933l4G1pVoCIB-iSPmsMrnQDwHrQsluPk38UL3hb01UZJiPwSBd5ST1VkPq6TSNLCILFA9lsyG_aXoEMAZtphrS69zAGuLEANQ=w444-h474-no" alt="Elm Logo | Day 35 | dailycssimages">
+          </a>
+        </div>
+          
+        </div>
+
+        </div>
+        <!-- /.container -->
+
+    </div>
+      
+      <!-- /.content-section-a -->
+    <div class="content-section-b">
+
+        <div class="container">
+
+            <div class="row">
+              <div class="col-lg-8"></div>
+                    <div class="col-lg-4">
+                    <h2 class="section-heading-b">Week 8</h2>
+                  
+                  
+                    <p class="lead-b">*week of electronics*</p>
+                  
+               
+                </div>
+              
+            </div>
+          <div class="row">
+            <div class="col-sm-2">
+            </div>
+        <div class="col-sm-2">
+          <a target='_blank' href="https://codepen.io/EleftheriaBatsou/full/MpdmXM/" class="thumbnail">Cell Phone
+            <img id="scale" src="https://lh3.googleusercontent.com/bW19IDTeNN2YXwVUKyVYXxFoR1d_lXBwnTsWC6hL_iN_-LjAbf158ctiT_pHPTfAGSlOpv5QFhuT1pD8jB9BaapfI6WobQ_yog3tKdewHOlh4cg9iU6EYscxu9zQojHTd3Ei1oGak_yc_g_68MoZRm2eWaionkqWu18F8Jrd3KBkwwWIkJd9UVePFJoJ-r0G5T7Vw-uFdIw-5ekfjEZmRMbO8Zryk87Z3pjOz6Lvcsy5lCNFoLgDnEBqIMSM-MzLhLVFKF6fVClN2Ry4aPhX8oTI8iERkKLYUQ0Rxm_RSW1r3FCLF_ZOXHQT9JlaufF02YSEvFNnhmL7pbAqds7xyuZtaVojVNeq-461bYgp8Yh0nZ-2tKGVaz7JrcTLF3ogZeaxqahR-nAFjS4O9cyRvTwAw-6UdLLUWVvU_6Non9YyR5Vsf9e5KljctjtORDsRnFU-IefCHsaHEesNKtAvmT4eyfQzPHcXMSXlFB3CUvBxjkxRYOgUAuBQO0vdRkoTc37m95vJFcH2rwHx_sp62n-CxoJw-fUySx259EhK5bVgHjFQDIbYwFaCV8MaJuM3wY3mziRRIZ4JAgOyr4lzOdp0oS0JqwmP6mMjCBK7-g=w384-h472-no" alt="Cell Phone | Day 36 | dailycssimages">
+          </a>
+        </div>
+         <div class="col-sm-2">
+          <a target='_blank' href="https://codepen.io/EleftheriaBatsou/full/OpYxjz/" class="thumbnail">Laptop
+            <img src="https://lh3.googleusercontent.com/t5bQHHHtGUIkQZSX3YqTTAJVuZo8yyVk6_I8SjueBrLFBzxDCNUgEQ_h7gFWcl5K0v3YD9bxlQe5E9cRJAVLI-FD3lRSq6Qv1N40DWN2O19fMxsHCfMd6tjPabtOrYd0nzCTNejkzHxmL3t8SypZAo8D07EGDpISwFXZOx2AiYL6uShSzq2iep78PwHTms3tRYg7_FeHvRclp7tTyIAT8icz4Y7D_xzx4MpB54wRtVEfZRXbOxEYxBuIUpqHmVDEXHyZJzLSHOpqB9PDyw0dS7j76LdGkMSlPtrAOPljKY4QoFqJHfTZi47d9IlPcrPjmsfOO8KJHweBQmRNyg6jPlMOuC5hhTacSKHSPDybrpyhN6aDs_BaSybDXHqd65oq1c2fpgpIrBb3oG4ukMR_0fllwkSnaDHE7FFaLTOPo3RojK8fh9dVnG8q6WnqJjftX4t_KNHAraok_4cZDAOMLgoIsV3pyPbnSH97ly9KcTSnd7mRbaK3nZ3_uETjxvDznRy_SAfDexXmT7LUoZoSwHeKn2WjCIZ6_A95Ks7cyxqwWzuOpSxl_tNYl206g_N0PB-0yV_TRMghXRoIHyF05dZbXvGcvFv32pQz-UjNPg=w668-h574-no" alt="Laptop | Day 37 | dailycssimages">
+          </a>
+        </div>       
+        <div class="col-sm-2">
+           <a target='_blank' href="https://codepen.io/EleftheriaBatsou/full/vxqypy/" class="thumbnail">External Monitor
+            <img src="https://lh3.googleusercontent.com/2h2YXkwJwRlJDvU5F8pMC7GixQzuSKNoIiYyxG8NSMOOiTHdaBcOnanZXApa4qnj3F0yteg9jUfrBK6WurC8H1Zj9cjB-tx0rmvjqtG2TwOKeDn1JSLUKxzSt26Mii5yjxgvXxCO7sf3VQyFhBIkwdyIHl-zYNa74k-1jGXySzC4WX2ae4BMpgxGyiAHZKJ97G-o3K98hJNT1XZvFug6jFRN1QqrPu-4XpvTglM4FGFojFab851GcGdXyEV3OR-nBrLHEFYwefT8bFj1ZI2KnOjLvjJsOngc0prvHvDT7pRDVqKT5Nj3_VOg99IUPfOjbs-Nnoggz2MiQ8NoySBnDg80EV_rG7lD-zmLFee147Qg0iTobB7m7RwfMoBlinQnON3FbZw-JY-zhO87sAgUinXMW8QBMFIVPM80Xc5W61F1DRE3JgxIFytVeU1cdbi5_9JQBlZ1EzeUCBx4_tOOe5L5qWijjaWo_O49JzfKuaKRnvArzIHU0UolV599DV48uLl-2a-fdbVc-2_5iPO5ZHJgr6FWgOaHhTCCJOfiyRdfOXIuyRYX0K4XGZ-A_J6nCpzZI1_CyMtlyQd-JNa2Z03GBHWrv53hvVc21yG8Kg=w676-h541-no" alt="External Monitor | Day 38 | dailycssimages">
+          </a>
+        </div>
+        <div class="col-sm-2">
+           <a target='_blank' href="https://codepen.io/EleftheriaBatsou/full/EWBwEq/" class="thumbnail">Keyboard
+            <img src="https://lh3.googleusercontent.com/Au0SeqCwvNGgk-f32du-2HOY4wUH5J3dtfXNUoV2GoZZGlDp2Qj8TgpM2lk16tvXaRroOjbiJrvUI9ckbUR6VJ-Xavbg7sTPIqfSCv2PSWUybqQYMTlRcI2zLOyKCIkFTLZwQUAwEhe_H6bpQSlrlo9XhhYaZLu4UpNKFI08_SiS_vnv8gaLAhws3IIkfvqiiGPD0pUzlvMl5UyczH8QrtshG4TJ-_iAczvK2RCuYO1NB4ZnBLM5lpkV8sAddeQd46XToMWcMBTXp_UCEHePw_lbfAloNd_XbhQ8Tv9d8035Ro6HAaXwBsiZnYJADd0pODv2Lwrw-4qkjg3sqRJ244srniP51R_dQMZH3K2-POUbC1_GeO9gBP7g8peaT4dG0JyZ59bOWlFuE5de2dGSqDfZgv4IA6hdP-FFcxFfqXW-aDIE1t-BFje41o1_mcAL4FlMY5T-fmFP8ut7TthLbuLMc7bFv9gw8yWVw2_N9M4MB7q1_Ag_CkDzvwmLwoHmhWNYVNeTNK_ZbUMhMoOkLNksYlHZeTA5dMZnn5a27GzWSBlqZ4B2HzUCc2yJUagrssmIyPWRp_PjXc-BL90GJnnKVu96KKefJBBTayBR2A=w857-h555-no" alt="Keyboard | Day 39 | dailycssimages">
+          </a>
+        </div>
+        <div class="col-sm-2">
+          <a target='_blank' href="https://codepen.io/EleftheriaBatsou/full/EmxxoY/" class="thumbnail">Nintendo 2DS
+            <img id="scale" src="https://lh3.googleusercontent.com/Ui1NTKEcDhsDNdlwKTvGFzGZWMHae7CZ-28G4Rsb2vpaK81wU0q2p-tBF8q6Kz0OZawg82QK-byML6k-TStR_VcofhDvbasNP6cegsTiunxfpQh2kbGi-q7qQvGc721xOoN6kIyPulYWfxyGb_YYUcswuw09CbB2PNaGQhHuWr3GAflGAgdktI4asExHLkpDrWFiThBePxbNtnULpeabDsJTZHxeDXJsi59j7zoBGFbpbShhzLGbwlOlNWtz4mhUPW9VMILrbFkiV1hlnif7wan3urmlDlwxYYnp1-aNOVAS3OAliBq5IY-a_5bCSaf-5K2UxDe7FboZX32pjh_9mH8kWYOCE-kqQ5_-l1PwfjpZgeaCJpdV7VZ6c3bfc_DYXcY4ZWeiRl2yncgoTJc05MBMeaNjN8-xIskjcWo8nXYUc8YJEJW28mkRz-YHpMh0dYq1GdZUMDh7FsE2nQh2_nnqYOP0nfkBBTlRXUd4cTOW-kYYhv89m6QgSHwogewNZVPO_-DPq4RtB7YooXVkzInKnc8BKkA2JsdEsnDIy4wlJQZyRZEuO93y06-_fml2a20isNwf4KyZiM0PZeUP6KqbXyPi0ECwEmoZOIIqDQ=w545-h463-no" alt="Nintendo 2DS | Day 40 | dailycssimages">
+          </a>
+        </div>
+          
+        </div>
+
+        </div>
+        <!-- /.container -->
+
+    </div>
+      
+    <!-- /.content-section-a -->
+    <div class="content-section-a">
+
+        <div class="container">
+
+            <div class="row">
+                 <div class="col-lg-12">
+                    
+                    <h2 class="section-heading-a">Week 9</h2>
+                  
+                  
+                    <p class="lead-a">*Cute mascots*</p>
+                  
+               
+                </div>
+              
+            </div>
+          <div class="row">
+        <div class="col-sm-2">
+          <a target='_blank' href="https://codepen.io/EleftheriaBatsou/full/JNoGyb/" class="thumbnail">Mascot for a start up
+            <img id="scale" src="https://lh3.googleusercontent.com/1q_j_s3oxxjOcsu11rV1dQfM1bd8Zw2vEqQSvav89vPeG0egRSMAbsZX0fqvyc4TTP_urqclyo8YUsSwt1Md_yfPcHoniuJhtPm8D0qPwwoGDj8fbXA7LGWSCe7WNSwfMHl2Rgq9a1szPl9U0neL6u5jWUQRmLMQJ5OcsOcUuaFwiut51RwG3_9k3lMBNfN1x8joVcgJLHTbk9GZ7yAHVtyrKR_YWVMf8-3fuEAQnwf4Zqc9QCBU18hOnLRGgaV80jXNlwYtpEA0H-k4_5xANtcs5jkCEwTlaZHw1VABan9a7lM6qD5Vp5aETuwZ2CHIfsiPSktm1zvCAFJs1_DI7j13HuYGzKxIm77S8yTN_0UEr4Il3QJALGG8iURT82szxdsW5WZbUR0b5mY50ECewqKccMilH5adtsCVbnrgKySBsohhiDrAhRO8F6JZdrtQj1EWI5q5IC9-OZv9Io1zp7pybjAUvoxCRUfOKTPncQDXAHgZrVv3_WdwHkLtIUJOD8ZBOa26M4qu-Flp6hPMkGcJFsjSav789iBiTh4ocxutb3FfC0Aq3_rhTuWdbW02Bxf3vCr6DkrpjAHUGeBX9agYnoI7DdGZUnjhvuKmMw=w536-h426-no" alt="Mascot | Day 41 | dailycssimages">
+          </a>
+        </div>
+         <div class="col-sm-2">
+          <a target='_blank' href="https://codepen.io/EleftheriaBatsou/full/mmyExr/" class="thumbnail">Mascot - Fish
+            <img src="https://lh3.googleusercontent.com/LYyP2W1EzeyP4EO8AZGNDyJy1U6gMfHS1wJmlyEeFrgHuyCD1jX2l_zc2GSNcuskmiRiRGc-C133GxnjmgGNKZNRQOUeOwiR6ztQ8opczSYvhCVZs9ItcFNZOVe5tvsTJ1n64WYyWcnnDsbNLxzSCq8UiPaklgjyXEB4hQEd-vj1DJd_CwthhxRw3Ub3-Vw4mjinXDVCoWOxA_8lEz4kSZa0zo-34ReKFj9OuIqBlD7IiXPD8ZFz0JuZCTojnKMwPGoFCdAtRo93sRrNLMhgVzA37Z-hTgFjMA7m9v1KenMVupDyo7P75NfBJjm75EzxfPRQs_-lqH81kXvHW6Gb4BgLHTufybAn80XQ6mSoMt8mHEsD_rtnIftkcoyk9UbsAamps6J2Z1i_e8MsdB1h6FmpSbeULVQUAfu9dFZW1GTW2ckADJwkMPa2ltCN6XcyrS4Dh4MI4tJ3zp_0MCACuCVfAsE9hWJIiEO63vE4LzD4ZfeQiZDud1mbBFcxkqBE86X8q20_8BABCamjJ-P-FDGr7x1jm7LUt7mttS550feqy1dB-wKWPxfa102a8Yn_hrVwhLEYwzjiGIezZsA1qKTCIJbpRaJYPCqkkfB2nA=w508-h440-no" alt="Mascot | Day 42| dailycssimages">
+          </a>
+        </div>       
+        <div class="col-sm-2">
+           <a target='_blank' href="https://codepen.io/EleftheriaBatsou/full/RVNjqG/" class="thumbnail">Mascot - Critter
+            <img src="https://lh3.googleusercontent.com/PxwBDyl4999kRsbT9yn9HSdlcT0byIDmENdH7C_T8LPWM-tifjEWZDrTrN8CcDZORCCSavLINiSPFyyFAlLNHRbQCU7pY4Gb2b32Rx423F25J1VU39LReIgZThprFaYTb4M54LT0rIhswl0aTCKXt7LjKypJlm8bMvg4FgSLjHezZQSiSuzO1DQ76dDXQF5cn2eDCAhUSYnYgGO1O0-6M4Xf3wXlaZmRiUrZz_oD6AZpjimW0S67U3_ZaShVsX-SBZ6ZxAkMFwHP18ESq81dZzZUwqbD5jtXgoaSKyqvhjpbN91nQzaVOXpooQ4k75x8zATt8xTy4rL2wtmAj3BTBYO9V8etkBFjSEgurf-glZ0_IRHmxTZG3vkryabu5wO2sBAes6sxSUAECyadDVxw6WcMv75rSKd0v8nclpe5HAyzqXVRZ8busO2MyQVZc1kaxze1uieyYTNETQMYWAtjrZe26hSnZwaDy1eBib_DrcVBFZWZok6-65hk0OwANh2YAvTQho76300EPXzSU5_3NbEs1wrhtVwsVyp73HVOEcRvfVrlkVTjBD3AcGhg6DsfNFZ6foBqWO-82yWdPZqOenCsUGbUxf3BbqlN6ebxDA=w514-h438-no" alt="Mascot | Day 43 | dailycssimages">
+          </a>
+        </div>
+        <div class="col-sm-2">
+           <a target='_blank' href="https://codepen.io/EleftheriaBatsou/full/JNoLPe/" class="thumbnail">Robot
+            <img src="https://lh3.googleusercontent.com/oQvdnZDTt1oBFMS80R9EdQqsqxIVNOYOChlz5tol4MOv0JcAWREBDRdc5EuSXVDEESDSkt3PLzXkN1FlFRvfnSnxHooK8CSvJA3TBxv5B9TS1JFmsSqcQWyO41CnErNvC9gyyz3xAZSMXZHr7-_sikiG63IgRtm6RMgFamKrURs53VCmXxI95oFV4_3Jbupu66c9Gnoc6sMyW-eiAzZ9hOK_VSmitYlvunu46Odh_2KCtxbArHEdTxYCCzY6SE9RLS8piKpMPjuan4mOAHpK85PyfcexZa5pS9BtZNkARb1f2m4gSXodwFcpWyLhJkE3UIs4jNkE5PsrDJ-Mg7mWi2ZSbdQ4KyqvQSoqGvZbcI5DUSuad8F4MZhwyZRzlPLxsiXrXPL1M51bVFnABwR0Ue3OOK7MOt_vQhQgD49ucR6wFH8hrHCfGlyucqIVNhL0FGzTucd4fDKron87bioxI_47q6ME-AVVxz4sj5HVKNdNXWnRh4Qo-oyFFRB3qDlaEWUj7gTwqrGXvsvu0sG33hFPpGwWp5_RdqyfR5SzOm0OWVftX-jUsf7FjifJnRiZ5rxZ1Ujn-dOoauSV10_ZGSA_G3FAM09eYnDYhUqbJQ=w478-h484-no" alt="Robot | Day 44 | dailycssimages">
+          </a>
+        </div>
+        <div class="col-sm-2">
+          <a target='_blank' href="https://codepen.io/EleftheriaBatsou/full/dWGXar/" class="thumbnail">Space-Inspired Mascot
+            <img id="scale" src="https://lh3.googleusercontent.com/2_47P03Ci6Ggs66OOcnXEmE2MMTyBAnHKbOV6CJrB5I4XqckAJVOXVfoD5dWljs5iIWEy4lD5O03wQJ2MdZft58Svobh-z2i9HEUuFwCFZRiIsRsbGoL6ERuHzTo2U5SCbQww2ZQqq-MX5UgwV3eudt-Dq0jTduKfjjitorJXaOkgly-lUeuNho2-75eHlxmTVjInVUYvSQG0qP9mrvs9gPkUishPrPfTtSkjwwEc54Ich3bahyGSxV7d3uee3Uqa6a2C8NdU-8e1_bGpbX69TZzLqSpnJgDwFPNmnOHNmqgoOsMJizKAeus8cRbCOyMCJRmAwIcOf-t5INvHS2qRq-wAsYFdKuBEZWZWetacw8WQfxMkpBJWqb5uFLAl7jjUsDUNZzoqiopSt4LMc8UCuf17jEllEO51PzuWT9pWGDEzd2pTTDiugSltt8jc_0PZ5vPA-EApSpcdVZKLIILlgrHmnfoSq6kLiZWXcltk8Csb5U0UbbfVkoSHiSEPH3s9rP0qMLs8eZdK3-rLdlCOs3DWVx_kaqJERZnE16BJQy-F6QnjNVaZklbyRmoSD5763TDsTHKuqyaEN1BXhTsF_OdRHxXZtLAMJ4wOzmdLg=w491-h428-no" alt="Space-Inspired Mascot | Day 45 | dailycssimages">
+          </a>
+        </div>
+          
+        </div>
+
+        </div>
+        <!-- /.container -->
+
+    </div>
+      
+    <!-- /.content-section-a -->
+    <div class="content-section-b">
+
+        <div class="container">
+
+            <div class="row">
+              <div class="col-lg-8"></div>
+                    <div class="col-lg-4">
+                    <h2 class="section-heading-b">Week 10</h2>
+                  
+                  
+                    <p class="lead-b">*Celebrations and parties!*</p>
+                  
+               
+                </div>
+              
+            </div>
+          <div class="row">
+            <div class="col-sm-2">
+            </div>
+        <div class="col-sm-2">
+          <a target='_blank' href="https://codepen.io/EleftheriaBatsou/full/OmNJmG/" class="thumbnail">Pinata
+            <img id="scale" src="https://lh3.googleusercontent.com/9w_nwEwqHo5GFcdok8C81zznVifrxj_Y08A0JTxt45s-Tm2bcV69g8ok0XJDJNFwLC05nUudsZEcVyzCoEkKUf1SZ0AaK7ZglrCP5wZUjXzDNoVBJDtbP8TCoyIiDDRHA_LxP8MwNeOHhzCp_WEEPXmhQI6JwSqmO-miCs9ANlgciBWAREPKWfOLdMmFj3wnKn5tdfxyQ5ET95Hkzrebjnexfaw58vZfvK0foFewLDVXH3T3VAYMuC-6IqIDF8qjNnHLp_oNH9qwFhipeVsrnQyd7uUfvoegcOMP1l_j86oKgY9VKmnoDIpiWI6-XzXq3JUeh_mN7x0jj5j1-1JA9DhmhPgEP1zuybOnxmvibujapYsxRax2dtVNwW7W3KKg1iX7D6V1E-aX9Eno_aemG9X4JdhaohLkG8isyo7vDIZdT0l1SaXzS2hNNKq5rrzwPlEDXPLJwJZQbWDnCljbFRdvIqzIAkoaEy0gzL_hmmbODRRZMQFFQnxZdHejJRxUb6QJtYBAGbk8p8tVU60maEV-r3reMDiPKQ9OfnsJD0SIZcV0KgYymMQpbRxwk5dSQCB-RLmSQxqjV7ZNFwru0yV-ivK6NA0cVxCAo2H0Cw=w440-h487-no" alt="Pinata | Day 46 | dailycssimages">
+          </a>
+        </div>
+         <div class="col-sm-2">
+          <a target='_blank' href="https://codepen.io/EleftheriaBatsou/full/vmKQQr/" class="thumbnail">Cake
+            <img src="https://lh3.googleusercontent.com/4n3sdRRXzPkHxKyXTeEmT48mdOjmV0qrlLYETJpUyBFiLO3dE3hC7lP-GDWqf5fg2ZOWqfOqr8YwVkMu__nwPY-XQQB-MoDF33cK_G-6faDD27x9EUON2Ho7nx3YhUGCeYoQnYHgXzOXDXuDToEPNvAOPWV-o-LMuxPLAWeVz5l-UDQwcbkLtTpgBAgoYktBtIMkep-4a2rptbE6yyLVr9NcQOrwzfAXNzR96j2KMCt6364LJaWWjg4SKYO340M0kfsdLQ8NKCyQ8l-Z5zXyXhF1lbF3BQ4R57SaDWftREH2LLx154p0NK63h0XIZY4xjXeVI3Rtumrs_x3Aai0IQZVEIblYWZ6G9JDU7k9InVaklr2jfWPiw4RQe0suNIn1jBye9rqXpb6f1NBScd-EedM3jorLh1NmrpNIkdkrvFj57waMqpTrRO91fzq-Gv6LboTKX-H6lH1azBAm4v7naRf3k2iq0qUAd-7-UXOphc1QdsqC4wCgLQbY8GJMD3cybI8T23-qAzPDR9RPBtdyLJY3L9sU6EuiqheQGiBOqPbOdUQV4ZXcxGr8xcQYhdiE3cfwwxLra0XtmEJcu4CqbfT_toAqUCBNBo5qjBnp6Q=w457-h449-no" alt="Cake | Day 47 | dailycssimages">
+          </a>
+        </div>       
+        <div class="col-sm-2">
+           <a target='_blank' href="https://codepen.io/EleftheriaBatsou/full/QvEoMP/" class="thumbnail">Craft Beer
+            <img src="https://lh3.googleusercontent.com/2P2oRutl5e07vLxefPK_xB0pauXTGRJv80rouuOzbVod1-jCj_imf7E24POyUdweUL5u1jPuwysmI9jWWA3PB8JWvxqnoJ7NDF6sGddHNize40nSo57tmqW-rAS8S3Mi7hdrcvrUPsnaVSBv9CH7osjV--7ndmD52eCQr4ko2QG558uiIsmvJxnJlTdkj2YriAZWXnLcjOBg1tyb0HxCD-vcxToWEbzQ8Z0fmnOjzvnH2qZ3_rxEeRrGfAkKIA6cQgdvlBfvIrDBNtrxtKEbchN1POmQaIf_Nu07Bz4SLRSKlFLgSnZC-yyGpzLS-YN2oHEqDo_opgUCkTuiunbgqlwDOinnwE9Oq1PAsJ5faiTuJ3nQ3ZkQN8hhmo77dMC4Rm3OezGqHt_wiJnGLM2dlOVkmyl61AnV7v_vbbeyRuOc3kPfLjbk21BnJDYQczzOAP8LOmNaJc1zFNzpVScv3ooO_43XyR7pESVYaj85g2b2x3TpgFE_-Jrwls_ForcwrvU63QdQ0AAWWTtg6UiDW0xW8oYNrGKiRncIdNkQmjUGEQu6_VPQcEwM9f5i7Mv2ZFuf6pDR_wIhWHy2y9eR2nFuMp1_c3XiqOlf8cj_eA=w431-h466-no" alt="Craft Beer | Day 48 | dailycssimages">
+          </a>
+        </div>
+        <div class="col-sm-2">
+           <a target='_blank' href="https://codepen.io/EleftheriaBatsou/full/RVRmpa/" class="thumbnail">Dance Dance Revolution Mat
+            <img src="https://lh3.googleusercontent.com/Ti8mMjJWhWKG-se6PpWEYtbYrIxsoj7-AtZW8p6WLcTaAE65XkzJgCGMW-oQ2KeKw-51lgkJQc0Qs3jCDwIdsJ7s6AmhQ4BOOkc-ClHGcd4qzzAYrrQ32FmBI0vagm9J57oMKRG8aR22ICLH_7pP_oZ76hVaGJBmCsDkjnCOsWpFfQXKR1vpb0_khD8AHGOgEycHcZdZwbJwSpqGfHVFwClLKafDsOv3CyZJvayuKUYsADeEeVHNXEuvWX80AoXVcDY-Z9fxCRUOuTy4W_3e9Lyku8NHBr0KqAFRP0_2oUVMb1rRgXQfuI5k1fehcAH7NE6_6ohNcNVllNh4_MnF75QG2epE_gYSckvYOEZ1KJssjJCdRF6DSKLZRWJBPQXLuRZ8lw84FOhxXqtKU2gjftdtgxbYjLcI5NBI1GESswUXc5JNmRBX_9EL_cUHXCE06OOIJuz5mLTroQw3yj6kxttUfvQ0mlZe9v5WXycK2JATyTnB5jnu7F3IeBfPu-dspT0A9W1xdzgg2zEzCls1VwYEwMHQCdeB8FMoLem-5FQ6f57gM7RpGFJL1hmyDut0c7YGcbldVqBwlBdc0XJ46f16DsnKbtY3ySLoxzUcWQ=w609-h503-no" alt="Dance Dance Revolution Mat | Day 49 | dailycssimages">
+          </a>
+        </div>
+        <div class="col-sm-2">
+          <a target='_blank' href="https://codepen.io/EleftheriaBatsou/full/YVNXOK/" class="thumbnail">Party City
+            <img id="scale" src="https://lh3.googleusercontent.com/Pr85sv2mBWI2fdERtl2WXDVcfRWjR1xm17By92Bl24TXExW5hS-EfdgBKAC9421kR3CEHbqoDGOL5dyBBwDQkQdMfoULjv2O9hr_jgt1YkImwcoaJtbofmNUbq_ZyU2_GEo9gKBTHYBjuD9ZI6glOxQouOobaqhfixhdzjzVockH7QFqqdphDzb7SvukLT18z1UlVV4zXtemd_ghVSlvmf4L_1urcHirQ3H3qsMlnaxSceNQB7FHfOjvOcf3twfgpLfUMqnJNHeYgb11Y5S3UIqCNhv4NtIM7ogZbAYmcdAD9P7x8gHu9RDtiP02liMXwyeWKem2ITR1N0ApjVB9IaW9ZaMJxEn3ozJ4U8aiKcvNelxxqcy4fJXiaEgoGHcaRc4VG3TNJPfDXDT2dWGxT1XIyhAW10hsMrUFhZUPWz9BOE9VgN-cGcxAm1TQ0WXA6DgwabmVWaD7ig4s8YxHpeBSUX7LajyjUSgYg60bOPuXxuT_Mn9x_jxrrGZuzko-BQdG6R72bPXmGeWdWhPmgdmQgtBk1uxnNaRpfYlrGkuA820pnr-dP6PaX1jjfFtmn8iVHRCBP8TL4RX9yhYiRUusaW_DCgpx0cxHsV-qSQ=w435-h453-no" alt="Party City | Day 50 | dailycssimages">
+          </a>
+        </div>
+          
+        </div>
+        </div>
+        <!-- /.container -->
+  
+    </div>
+  
+  <!-- FOOTER -->
+  <!-- /.content-section-a -->
+    <div class="content-section-a">
+
+        <div class="container">
+
+            <div class="row">
+                 <div class="col-lg-12">
+                    
+                     <div class="text-center" id="footer"> <!-- for footer -->
+      <div class="col-xs-6">
+      <h5><a href="http://www.eleftheriabatsou.com" target="_blank">Eleftheria</a> | <a href="https://codepen.io/EleftheriaBatsou" target="_blank">Projects</a> | <a href="https://www.youtube.com/channel/UCC-WwYv3DEW7Nkm_IP6VeQQ" target="_blank"> Coding videos </a></h5>
+      </div>
+      <!-- social media -->
+      <div class="col-xs-6 text-primary">
+        <a href="https://twitter.com/BatsouElef" target="_blank">
+     <img src="https://left.gr/sites/all/themes/newleft/images/socialicons/twitter.png" 
+      style="text-align:center" alt="twitter"> 
+    </a>
+         <a href="https://github.com/EleftheriaBatsou" target="_blank">
+     <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSqSttU57LZvtB2Y77j2E2EkC6qgiTbYjVK75XU2SOzUXz2EFjX" 
+      style="text-align:center" alt="github"> 
+    </a>
+        <a href="https://www.youtube.com/channel/UCC-WwYv3DEW7Nkm_IP6VeQQ" target="_blank">
+     <img src="http://mx1.salsacycles.com/images/template_images/icons/icon-youtube.png" 
+       style="text-align:center" alt="youtube"> 
+    </a>
+      </div>
+    </div> <!-- end footer -->
+                  
+               
+                </div>
+              
+            </div>
+          
+
+        </div>
+        <!-- /.container -->
+
+    </div>
+  
+  
+</body>
+
+</html>
