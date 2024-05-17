@@ -1,0 +1,797 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style lang="scss">
+        @import url(https://fonts.googleapis.com/css?family=Poppins:400,500,600,700,300);
+@import url(https://fonts.googleapis.com/css?family=Montserrat:400,700);
+
+@mixin clearfix {
+  &:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+}
+
+.hide {display:none}
+
+*, *::after,*::before{
+  box-sizing:border-box;
+}
+
+body, html{
+  background: #E4E0E0;
+  font-size:6px;
+   padding:4rem 2rem;
+   -webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+  font-family: 'Poppins', sans-serif;
+  
+   @media (min-width: 860px) {
+      font-size:8px;
+      padding:3rem 5rem;
+  }
+
+  @media (min-width: 1200px) {
+      font-size:10px;
+      padding:2rem 3rem;
+  }
+}
+
+#icons {
+  display:none;
+}
+
+.header-wrapper {
+  position:absolute;
+  top:0;
+  left:0;
+  width:100%;
+  padding:2rem 4rem;
+  z-index:20;
+  
+  .header {
+    position:relative;
+    display:block;
+    width:100%;
+    height:6rem;
+  }
+  
+  .menu-wrapper {
+    
+  }
+  
+  .menu-hamburger {
+    position:relative;
+    width:1.3rem;
+    display:inline-block;
+    vertical-align:middle;
+    background:black;
+    height:0.2rem;
+    cursor:pointer;
+    
+    &::before {
+      content:"";
+      width:1.3rem;
+      height:0.2rem;
+      background:black;
+      position:absolute;
+      top:-0.4rem;
+    }
+    
+    &::after {
+      content:"";
+      width:1.3rem;
+      height:0.2rem;
+      background:black;
+      position:absolute;
+      top:0.4rem;
+    }
+  }
+  .menu-txt {
+    position:relative;
+    display:inline-block;
+    vertical-align:middle;
+    margin-left:0.5rem;
+    text-transform:uppercase;
+    cursor:pointer;
+  }
+  
+  .logo-wrapper {
+    position:absolute;
+    top:0;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+  
+  .logo {
+    display:block;
+    font-size:2rem;
+    font-weight:bold;
+    margin-top:3rem;
+    line-height:1;
+    font-weight:600;
+    
+    span {display:block}
+  }
+}
+
+.number-wrapper {
+  position:absolute;
+  height:100%;
+  width:12rem;
+  z-index:10;
+  
+  .number-count{
+     position:relative;
+     display:inline-block;
+     top:50%;
+     transform: translateY( -50%);
+  }
+  
+  .number {
+    position:relative;
+    font-family: 'Montserrat', sans-serif;
+    font-size:12rem;
+    color:#efefef;
+    margin-left:-5rem;
+    font-weight:700;
+  }
+}
+
+.nav-wrapper {
+    position:absolute;
+    height:100%;
+    width:12rem;
+    padding:0 4rem;
+    top:0;
+    right:0;
+    text-align:center;
+    z-index:10;
+    
+    .nav-arrows{
+      position:relative;
+      display:inline-block;
+      top:50%;
+      transform: translateY( -50%);
+    }
+  
+    .nav-up{
+      opacity:0;
+    }
+  
+    .nav-up, .nav-down{
+      width:2rem;
+      height:3rem;
+      cursor:pointer;
+      
+      svg {
+        fill:#666666;
+        width:100%;
+        max-height:100%;
+        
+        &:hover {
+          fill:black;
+        }
+      }
+    } 
+  
+    .nav-up {
+      transform:rotate(180deg);
+    }
+  
+    .nav-line {
+       width:100%;
+       height:0.1rem;
+       background:black;
+       margin:1rem 0;
+      background:#666666;
+        
+    }
+  }
+
+.slider-content {
+  position:relative;
+  max-width: 112rem;
+  min-width: 480px;
+  background:#fff;
+  margin: 0 auto;
+  overflow:hidden;
+  box-shadow: 0 0 35px 20px rgba(79,69,66,0.2);
+  
+  .slide {
+    position:absolute;
+    width:100%;
+    height:100%;
+    
+    @include clearfix;
+    
+    &:first-child {
+      .txt-wrapper span.copy {
+         opacity:1;
+       }
+    }
+    
+    &:nth-child(odd) {
+    
+      .img{  
+        margin-left:50%;
+        transform:translateY(-100%);
+      }
+      .txt {
+        transform:translateY(100%);
+      }
+    
+    }
+    &:nth-child(even) {
+    
+    .img {
+        transform:translateY(100%);
+      }  
+      
+    .txt{  
+        margin-left:50%;
+        transform:translateY(-100%);
+      }
+    }
+ 
+     &.active {
+       position:absolute;
+       z-index:5;
+       
+      .img, .txt {
+        transform: translateY(0);
+      }
+    }
+    
+  }
+  
+}
+
+.slider-container {
+  position:relative;
+  height: 65rem;
+  overflow:hidden;
+  
+  @include clearfix;
+  
+    .slide-content {
+      position:absolute;
+      display:block;
+      width:50%;
+      height:100%;
+      transition: transform 0.3s ease;
+      transition-delay:0.15s;
+      &.txt {
+        display:table;
+        padding:8rem 14rem;
+        background:white;
+      }
+      
+      .txt-wrapper {
+        position:relative;
+        display:table-cell;
+        vertical-align:middle;
+        
+        span.copy {
+          position:relative;
+          text-transform:uppercase;
+          width:2rem;
+          display:block;
+          font-size:1rem;
+          line-height:1;
+          margin-bottom:4rem;
+          font-weight:500;
+          opacity:0;
+        }
+        
+        h2 {
+          margin:0;
+          font-size:4.3rem;
+          margin-bottom:4rem;
+          line-height:1;
+          font-weight:600;
+          
+          span {display:block;}
+        }
+        
+        h3 {
+          margin:0;
+          font-size:2rem;
+          margin-bottom:2rem;
+          line-height:1;
+          font-weight:400;
+          
+          span {color:#ccc;}
+        }
+        
+        a {
+          text-decoration:none;
+          color:#AEACAB;
+        }
+        
+        button {
+          position:relative;
+          padding:1rem 3.5rem;
+          color:white;
+          text-align:center;
+          display:block;
+          border-radius:3rem;
+          background:#d02e2e;
+          text-transform:uppercase;
+          border:none;
+          font-size:1rem;
+          margin-top:3rem;
+          font-weight:bold;
+          outline:none;
+          box-shadow: 0 0 1rem 0 rgba(0,0,0,0.3);
+          
+        }
+        
+        .phone{
+         display:block;
+          color:black;
+          font-size:1.9rem;
+        }
+        
+        .subtitle {
+          display:block;
+          text-transform:uppercase;
+          color: #AEACAB;
+          font-weight:bold;
+          letter-spacing:0.3rem;
+          font-size:1.2rem;
+          margin-bottom:1rem;
+        }
+        
+        p.excerpt {
+          margin:0;
+          color: #AEACAB;
+          font-size:1.2rem;
+          line-height:1.5;
+        }
+        
+        span.view-all {
+          color:#AEACAB;
+        }
+        
+        ul {
+          margin:0;
+          padding:0;
+          list-style:none;
+          margin-bottom:1.5rem;
+          
+          li {
+            position:relative;
+            margin:1.5rem 0;
+            padding:0;
+            
+            @include clearfix;
+          }
+        }
+        
+        .date-wrapper {
+          width:20%;
+          float:left;
+          color: #AEACAB;
+          text-align:left;
+          
+          .date {font-size:1.7rem}
+          .month {font-size:1rem}
+        }
+        
+        .post-wrapper{
+          width:80%;
+          float:left;
+          
+          .post-title{
+            display:block;
+            font-size:1.4rem;
+            line-height:1.3;
+            
+            a { 
+              display:block;
+              color:black;
+              cursor:pointer;
+              
+              &:hover {
+                  text-decoration:underline;
+              }
+            
+            }
+          }
+          
+          .post-info{
+            display:block;
+            color: #AEACAB;
+            font-size:1rem;
+            
+            @include clearfix;
+            
+            ul {margin:0}
+            
+            li { 
+              float:left;
+              margin:0 0.5rem;
+              
+              &:first-child {
+                margin-left:0;
+              }
+            }
+          }
+        }
+      }
+      
+      img {
+        width:100%;
+        height:100%;
+        object-fit:cover;
+      }
+  }
+  
+}
+
+.footer {
+  position:absolute;
+  display:block;
+  width:100%;
+  height:6rem;
+  bottom:0;
+  left:0; 
+  padding:2rem 4rem;
+  z-index:10;
+
+  @include clearfix;
+}
+  
+  .social-wrapper, .language-wrapper {
+    position:relative;
+    
+    ul {
+      position: relative;
+      list-style:none;
+      margin:0;
+      padding:0;
+    }
+    
+    li {
+      position:relative;
+      display:inline-block;
+      vertical-align:middle;
+      margin:0 0.5rem;
+    }
+    
+    a {
+      text-decoration:none;
+      color: black;
+    }
+  }
+
+.social-wrapper {
+  float:left;
+}
+
+.language-wrapper {
+  float:right;
+}
+    </style>
+</head>
+<body>
+    <svg id="icons" xmlns="http://www.w3.org/2000/svg">  
+        <symbol id="icon-arrow" viewBox="0 0 476.213 476.213" >
+        <polygon fill="inherit" points="347.5,324.393 253.353,418.541 253.353,0 223.353,0 223.353,419.033 128.713,324.393 107.5,345.607 
+            238.107,476.213 368.713,345.606 "/>
+        </symbol>
+        </svg>
+        
+        
+        <div class="slider-content">
+          
+          <div class="header-wrapper">
+            <div class="header">
+              <div class="menu-wrapper">
+                <div class="menu-hamburger"></div>
+                <div class="menu-txt">Menu</div>
+              </div>
+              <div class="logo-wrapper">
+                <div class="logo"><span>Mr.</span> Bara</div>
+              </div>
+              <div class="shop-wrapper"></div>
+            </div>
+          </div>
+          
+          <div class="number-wrapper">
+            <div class="number-count">
+              <div class="number">01</div>
+            </div>
+          </div>
+          
+          <div class="nav-wrapper">
+            <div class="nav-arrows">
+              <div class="nav-up">
+                   <svg id="arrow-up">
+                    <use xlink:href="#icon-arrow"></use>
+                  </svg>
+               </div>
+              <div class="nav-line"></div>
+              <div class="nav-down">
+                 <svg id="arrow-down">
+                    <use xlink:href="#icon-arrow"></use>
+                  </svg>
+              </div>
+            </div>
+          </div>
+          
+          <div class="slider-wrapper">
+            <div class="slider-container">                       
+              <div class="slide active" data-order="1">
+                  <div class="slide-content txt">
+                    <div class="txt-wrapper">
+                      <span class="copy">Intro about me</span>
+                      <h2><span>Hello!</span> I’m Mr.Bara</h2>
+                      <span class="subtitle">Fashion designer</span>
+                      <p class="excerpt">I combine the best of our skills and ideas to present you products really worth your attention that will change the way you think about design, structure, color and website itself. </p>
+                    </div>
+                  </div>
+                  <div class="slide-content img">
+                    <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/42764/slider1.jpg" alt="" />
+                  </div>
+                </div>  
+              <div class="slide" data-order="2">
+                  <div class="slide-content txt">
+                    <div class="txt-wrapper">
+                      <span class="copy">Show with me</span>
+                      <h2><span>Love Simple</span> Fashion</h2>
+                       <p class="excerpt">Lorem ipsum dolor sit amet, consectetur adipisicing elit. </p>
+                       <button>Shop now</button>
+                    </div>
+                  </div>
+                  <div class="slide-content img">
+                    <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/42764/slide2.jpg" alt="" />
+                  </div>
+                </div>  
+              <div class="slide " data-order="3">
+                  <div class="slide-content txt">
+                    <div class="txt-wrapper">
+                      <span class="copy">Fashion around me</span>
+                      <ul>
+                        <li>
+                          <div class="date-wrapper">
+                            <div class="date">25</div>
+                            <div class="month">April</div>
+                          </div>
+                          <div class="post-wrapper">
+                            <div class="post-title"><a href="">Top colour pantone for fashion 2016</a></div>
+                            <div class="post-info"> 
+                              <ul>
+                                <li>Admin /</li>
+                                <li>Discovery /</li>
+                                <li>15 comments</li>
+                              </ul>
+                            </div>
+                          </div>
+                        </li>
+                        <li>
+                          <div class="date-wrapper">
+                            <div class="date">18</div>
+                            <div class="month">April</div>
+                          </div>
+                          <div class="post-wrapper">
+                            <div class="post-title"><a href="">Inspiration for fashion for Logan's designer</a></div>
+                            <div class="post-info"> 
+                              <ul>
+                                <li>Admin /</li>
+                                <li>Inspirations /</li>
+                                <li>08 comments</li>
+                              </ul>
+                            </div>
+                          </div>
+                        </li>
+                        <li>
+                          <div class="date-wrapper">
+                            <div class="date">06</div>
+                            <div class="month">April</div>
+                          </div>
+                          <div class="post-wrapper">
+                            <div class="post-title"><a href="">Hipster -Fashion trand this summer</a></div>
+                            <div class="post-info"> 
+                              <ul>
+                                <li>Admin /</li>
+                                <li>Discovery /</li>
+                                <li>22 comments</li>
+                              </ul>
+                            </div>
+                          </div>
+                        </li>
+                      </ul>
+                      <span class="view-all">View all articles</span> 
+                     
+                    </div>
+                  </div>
+                  <div class="slide-content img">
+                    <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/42764/slide3.jpg" alt="" />
+                  </div>
+                </div>
+              <div class="slide " data-order="4">
+                  <div class="slide-content txt">
+                    <div class="txt-wrapper">
+                      <span class="copy">What clients say</span>
+                      <h2><span>Mr.Bara</span> Best Choice </h2>
+                      <p class="excerpt">I combine the best of our skills and ideas to present you products really worth your attention that will change the way you think about design, structure, color and website itself. </p>
+                    </div>
+                  </div>
+                  <div class="slide-content img">
+                    <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/42764/slide4.jpg" alt="" />
+                  </div>
+                </div>
+              <div class="slide " data-order="5">
+                  <div class="slide-content txt">
+                    <div class="txt-wrapper">
+                      <span class="copy">Keep in touch</span>
+                      <h3>Melbourne, <span>Australia</span></h3>
+                      <p class="excerpt">269 King Str, 05th Floor, Utral House Building. Melbourne. VIC 3000. Australia</p>
+                      <p><strong>Email:</strong> <a href="mailto:mariosm18@gmail.com">mariosm18@gmail.com</a></p>
+                      <p>Call directly: <span class="phone">+99 (0) 344 956 4050</span></p>
+                    </div>
+                  </div>
+                  <div class="slide-content img">
+                    <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/42764/slide5.jpg" alt="" />
+                  </div>
+                </div>
+            </div>
+          </div>
+          <div class="footer">
+            <div class="social-wrapper">
+              <ul>
+                <li><a href="">Codepen</a></li>
+                <li><a href="">Dribbble</a></li>
+                <li><a href="">Behance</a></li>
+              </ul>
+            </div>
+            <div class="language-wrapper">
+              <ul>
+                <li><a href="">EN</a></li>
+                <li><a href="">ES</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <script>
+            /*
+Check out the original dribbble shot
+https://dribbble.com/shots/2797559-Mr-bara-Split-Screen
+*/
+
+
+
+const up = $('.nav-up');
+const down = $('.nav-down');
+let counter = 1;
+let number = $('.number');
+
+function moveDown(currentSlide) {
+  
+  var nextSlide = currentSlide.next();
+  var currentSlideUp = currentSlide.find('.txt');
+  var currentSlideDown = currentSlide.find('.img');
+  var nextSlideUp = nextSlide.find('.img');
+  var nextSlideDown = nextSlide.find('.txt');
+  let currentCopy = currentSlide.find('.copy'); 
+  let nextCopy = nextSlide.find('.copy'); 
+  
+  if( nextSlide.length !== 0 ) {
+    
+    counter = counter + 1;
+    
+    if( counter % 2 === 0 ) {
+      
+      TweenMax.to(number, 0.3, {x: '-100%'})
+      TweenMax.to( currentSlideUp, 0.4, { y: '-100%', delay:0.15 });
+      TweenMax.to( currentSlideDown, 0.4, { y: '100%', delay:0.15 });
+      setTimeout(function() {number.html('')},300);
+      
+    } else {
+      
+      number.html('0'+counter);
+      TweenMax.to(number, 0.3, {x: '0%', delay:1})
+      TweenMax.to( currentSlideUp, 0.4, { y: '100%', delay:0.15 });
+      TweenMax.to( currentSlideDown, 0.4, { y: '-100%', delay:0.15 });
+    }
+    
+    TweenMax.to( currentCopy, 0.3, {autoAlpha: 0, delay:0.15});
+    TweenMax.to( nextCopy, 0.3, {autoAlpha: 1, delay:1});
+    TweenMax.to( nextSlideUp, 0.4, { y: '0%', delay:0.15 });
+    TweenMax.to( nextSlideDown, 0.4, { y: '0%', delay:0.15 });
+    
+    $(currentSlide).removeClass('active');
+    $(nextSlide).addClass('active');
+    
+  } 
+}
+
+function moveUp(currentSlide) {
+  
+  var prevSlide = currentSlide.prev();
+  var currentSlideUp = currentSlide.find('.img');
+  var currentSlideDown = currentSlide.find('.txt');
+  var prevSlideUp = prevSlide.find('.txt');
+  var prevSlideDown = prevSlide.find('.img');
+  let currentCopy = currentSlide.find('.copy');
+  let prevCopy = prevSlide.find('.copy'); 
+  
+  if( prevSlide.length !== 0 ) {
+    
+    counter = counter - 1;
+    
+    if( counter % 2 === 0 ) {
+      
+      
+      TweenMax.to(number, 0.3, {x: '-100%'});
+      TweenMax.to( currentSlideUp, 0.4, { y: '-100%', delay:0.15 });
+      TweenMax.to( currentSlideDown, 0.4, { y: '100%', delay:0.15 });
+      setTimeout(function() {number.html('')},300);
+
+      
+    }else {
+      
+      number.html('0'+counter);
+      TweenMax.to(number, 0.3, {x: '0%', delay:1})
+      TweenMax.to( currentSlideUp, 0.4, { y: '100%', delay:0.15 });
+      TweenMax.to( currentSlideDown, 0.4, { y: '-100%', delay:0.15 });
+    }
+    
+    TweenMax.to( currentCopy, 0.3, {autoAlpha: 0, delay:0.15});
+    TweenMax.to( prevCopy, 0.3, {autoAlpha: 1, delay:1});
+    TweenMax.to( prevSlideUp, 0.4, { y: '0%', delay:0.15 });
+    TweenMax.to( prevSlideDown, 0.4, { y: '0%', delay:0.15 });
+    
+    $(currentSlide).removeClass('active');
+    $(prevSlide).addClass('active');
+    
+  }
+  
+}
+
+function hideNav() {
+  
+  if( counter == $('.slide').length) {    
+    TweenMax.to($('.nav-down'),0.5, {autoAlpha: 0, delay:0.5} );
+  }else {
+     TweenMax.to($('.nav-down'),0.5, {autoAlpha: 1, delay:0.5} );
+  }
+  if( counter === 1) {    
+    TweenMax.to($('.nav-up'),0.5, {autoAlpha: 0, delay:0.5} );
+  }else {
+     TweenMax.to($('.nav-up'),0.5, {autoAlpha: 1, delay:0.5} );
+  }
+  
+}
+
+
+down.on('click', function() {
+  
+  var currentSlide = $('.active');
+  moveDown(currentSlide); 
+  hideNav();
+  
+});
+
+up.on('click', function() {
+  
+  var currentSlide = $('.active');
+  moveUp(currentSlide);
+  hideNav();
+
+});
+
+
+ 
+
+
+        </script>
+</body>
+</html>
