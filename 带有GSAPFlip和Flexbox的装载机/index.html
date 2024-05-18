@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style lang="scss">
+        body {
+  margin: 0;
+  background: #041d39;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  width: 100vw;
+}
+
+.loader {
+  height: 60px;
+  width: 60px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-direction: column;
+}
+
+.row {
+  width: 60px;
+  height: 10px;
+  border: 1px solid white;
+  border-radius: 10px;
+}
+
+.reorder {
+  flex-direction: row;
+}
+
+.shape {
+  height: 60px;
+  width: 10px;
+}
+
+    </style>
+</head>
+<body>
+    <div class="loader">
+        <div class="row"></div>
+        <div class="row"></div>
+        <div class="row"></div>
+      </div>
+      <script>
+        gsap.registerPlugin(Flip);
+
+const loader = document.querySelector(".loader");
+
+const rows = document.querySelectorAll(".row");
+
+var interval = setInterval(shift, 1000);
+
+function shift() {
+  const state = Flip.getState(".loader, .row");
+  loader.classList.toggle("reorder");
+
+  rows.forEach((row) => {
+    row.classList.toggle("shape");
+  });
+
+  Flip.from(state, {
+    absolute: true,
+    duration: 0.5,
+    stagger: 0.1,
+    ease: "power1.inOut"
+  });
+}
+
+      </script>
+</body>
+</html>
