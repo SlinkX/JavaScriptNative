@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style lang="scss">
+        @import url("https://fonts.googleapis.com/css?family=Cardo:400i|Rubik:400,700&display=swap");
+
+$offWhite: #bdbdbd;
+$offBlack: #171717;
+
+body {
+  background: linear-gradient(to right, #332542, #473746, #17315e);
+  margin: 0;
+  height: 100vh;
+  width: 100vw;
+}
+
+.container,
+.lightenLayer {
+  height: 100vh;
+  width: 100vw;
+  min-height: 400px;
+  min-width: 1000px;
+  position: relative;
+}
+
+.lightenLayer {
+  background: rgba(160, 215, 255, 0.5);
+  transition: background 0.8s;
+}
+
+.container {
+  max-height: 800px;
+  max-width: 1000px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto;
+}
+
+.cards {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  padding: 30px 0px;
+}
+
+.credit {
+  width: 100%;
+  position: relative;
+}
+
+a,
+.site,
+.switchLabels {
+  color: $offBlack;
+  transition: color 0.8s;
+}
+
+.site {
+  right: 0;
+  top: 0px;
+}
+
+.borderBox,
+.active {
+  border-radius: 0px 20px 0px 20px;
+  height: 220px;
+  width: 270px;
+  z-index: 30;
+  transition: border 1.4s;
+}
+
+.active {
+  border-left: 1px solid $offWhite;
+  border-bottom: 1px solid $offWhite;
+  top: 22px;
+  left: 5px;
+}
+
+.borderBox {
+  top: 4px;
+  left: 25px;
+  border-right: 1px solid $offBlack;
+  border-top: 1px solid $offBlack;
+}
+
+.card {
+  height: 250px;
+  width: 498px;
+  border-radius: 20px;
+  margin-left: -190px;
+  transition: margin-left 0.8s;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  z-index: 10;
+}
+
+.card0 {
+  background: url("https://assets.codepen.io/489403/paris.jpg");
+  background-size: cover;
+}
+
+.card1 {
+  background: url(https://assets.codepen.io/489403/chicago.jpg);
+  background-size: cover;
+}
+
+.card2 {
+  background: url(https://assets.codepen.io/489403/coneyIsland.jpg);
+  background-size: cover;
+}
+
+.cover {
+  border-radius: 20px;
+  height: 250px;
+  width: 300px;
+  z-index: 20;
+  overflow: hidden;
+  position: relative;
+  box-shadow: 0 70px 63px -60px #000000;
+}
+
+.lightText,
+.darkText,
+.borderBox,
+.slider,
+.site,
+.active,
+.slider:before {
+  position: absolute;
+}
+
+.darkText {
+  color: $offBlack;
+  right: 25px;
+  top: -5px;
+}
+
+.lightText {
+  left: 18px;
+  bottom: -4px;
+  color: $offWhite;
+}
+
+p {
+  font-family: "Cardo", serif;
+  font-weight: 700;
+}
+
+.switchLabels {
+  top: 20px;
+  left: calc(50% - 75px);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 150px;
+  height: 50px;
+}
+
+.label {
+  width: 30px;
+  display: flex;
+  justify-content: center;
+}
+
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 34px;
+}
+
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  cursor: pointer;
+  top: -1px;
+  left: -2px;
+  right: 0;
+  bottom: 0;
+  background-color: transparent;
+  border: 1px solid $offBlack;
+  -webkit-transition: 0.8s;
+  transition: 0.8s;
+}
+
+.slider:before {
+  content: "";
+  height: 26px;
+  width: 26px;
+  left: 4px;
+  bottom: 4px;
+  background-color: $offBlack;
+  -webkit-transition: 0.8s;
+  transition: 0.8s;
+}
+
+input:checked + .slider {
+  background-color: #463745;
+  border: 1px solid $offWhite;
+}
+
+input:checked + .slider:before {
+  -webkit-transform: translateX(26px);
+  -ms-transform: translateX(26px);
+  transform: translateX(26px);
+  background: $offWhite;
+}
+
+.slider.round {
+  border-radius: 34px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
+}
+
+    </style>
+</head>
+<body>
+    <div class="lightenLayer">
+        <div class="container">
+          <div class="switchLabels">
+            <p class="label label1">day</p>
+            <label class="switch">
+              <input type="checkbox">
+              <span class="slider round"></span>
+            </label>
+            <p class="label label2">night</p>
+          </div>
+      
+          <div class="cards">
+            <div class="cover">
+              <div class="borderBox"></div>
+              <div class="card card0">
+                <p class="darkText">pont de le tournelle, paris</p>
+                <p class="lightText">pont de le tournelle, paris</p>
+      
+              </div>
+            </div>
+      
+            <div class="cover">
+              <div class="borderBox"></div>
+              <div class="card card1">
+                <p class="darkText">millenium park, chicago</p>
+                <p class="lightText">millenium park, chicago</p>
+              </div>
+            </div>
+      
+            <div class="cover">
+              <div class="borderBox"></div>
+              <div class="card card2">
+                <p class="darkText">coney island boardwalk</p>
+                <p class="lightText">coney island boardwalk</p>
+              </div>
+            </div>
+          </div>
+          <div class="credit">
+            <p class="site">photo credit: <a href="https://stephenwilkes.com/">https://stephenwilkes.com/</a></p>
+          </div>
+        </div>
+      </div>
+
+      <script>
+        //photos: https://stephenwilkes.com/
+
+const offBlack = "#171717";
+const offWhite = "#bdbdbd";
+
+const input = document.querySelector("input");
+const cards = document.querySelectorAll(".card");
+const borderBox = document.querySelectorAll(".borderBox");
+const switchLabels = document.querySelector(".switchLabels");
+const lightenLayer = document.querySelector(".lightenLayer");
+const site = document.querySelector(".site");
+
+const link = document.querySelector("a");
+
+const colorChanges = [link, site, switchLabels];
+
+input.addEventListener("click", function () {
+  if (input.checked) {
+    borderBox.forEach((box) => box.setAttribute("class", "active"));
+    lightenLayer.style.background = "none";
+    cards.forEach((card) => {
+      card.style.marginLeft = "0px";
+    });
+    colorChanges.forEach((el) => {
+      el.style.color = offWhite;
+    });
+  } else {
+    borderBox.forEach((box) => box.setAttribute("class", "borderBox"));
+    lightenLayer.style.background = "rgba(160, 215, 255, 0.7)";
+    cards.forEach((card) => {
+      card.style.marginLeft = "-190px";
+    });
+    colorChanges.forEach((el) => {
+      el.style.color = offBlack;
+    });
+  }
+});
+
+      </script>
+</body>
+</html>
