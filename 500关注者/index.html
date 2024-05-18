@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+  display: grid;
+  place-content: center;
+  margin: 0;
+  height: 100vh;
+  background: #222;
+  color: #ddd;
+  font: italic clamp(1.25em, 13vw, 7em) / 1.25 marck script, purisa,
+    segoe script, comic sans ms, cursive;
+  text-align: center;
+}
+
+.p1,
+.p2 {
+  margin: 0;
+}
+
+.p2 {
+  font-size: 50px;
+}
+
+    </style>
+</head>
+<body>
+    <p class="p1"></p>
+<p class="p2"></p>
+
+<script>
+    let t = gsap.to(".p1", {
+  scrambleText: {
+    text: "6798",
+    tweenLength: false,
+    speed: 0.5,
+    revealDelay: 2.5,
+    chars: "lowercase",
+    newClass: "after"
+  },
+  duration: 5,
+  ease: "none"
+});
+
+// let d = gsap.to(".p2", {
+//   scrambleText: {
+//     text: "Rarity Guide",
+//     tweenLength: false,
+//     speed: 0.5,
+//     revealDelay: 1.5,
+//     chars: "lowercase",
+//     newClass: "after"
+//   },
+//   duration: 7,
+//   ease: "none"
+// });
+
+</script>
+</body>
+</html>
