@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style lang="scss">
+        .fancytext {
+// uncomment below for a new bg image
+// background: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/150150/horizon-nature-ocean-17688.jpg);
+	background: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/150150/beach-calm-waters-cloud-formation-187919.jpg);
+	background-size: cover;
+	-webkit-background-clip: text;
+	color: transparent;
+}
+
+body {
+	background: hsl(270, 50%, 9%);
+	color: hsla(0, 0%, 90%, .9);
+	display: flex;
+	flex-direction: column;
+	font-family: bookmania, serif;
+	font-feature-settings: "ss10";
+	justify-content: center;
+	min-height: 100vh;	
+	text-align: center;
+}
+
+h1 {
+	font-size: 11rem;
+	margin: 0 auto;
+
+	.s {
+		font-feature-settings: "ss16";
+	}
+
+	.x {
+		font-feature-settings: "ss14";
+	}
+	
+	.re {
+		font-feature-settings: "ss17";
+		font-size: 80%;
+		font-weight: 300;
+	}
+}
+
+h2 {
+	font-feature-settings: "ss10";
+	
+	span {
+		font-size: 90%;
+		font-weight: 400;
+	}
+}
+
+.tagline {
+	font-feature-settings: "ss10";
+	font-size: 3rem;
+	font-weight: 400;
+	line-height: 1;
+	margin: 3rem auto 0;
+	position: relative;
+
+	&:before,
+	&:after {
+		border: 0;
+		content: '';
+		display: block;
+	  height: 1px;
+  	position: absolute;
+		top: 50%;
+		width: 50%;
+	}
+	
+	&:before {
+  	background-image: linear-gradient(to right, hsl(270, 50%, 9%), hsl(270, 50%, 39%));
+		margin-right: 1rem;
+		right: 100%;
+	}
+	
+	&:after {
+  	background-image: linear-gradient(to right, hsl(270, 50%, 39%), hsl(270, 50%, 9%));
+		margin-left: 1rem;
+		left: 100%;
+	}
+	
+	span {
+		font-feature-settings: "ss11";
+	}
+}
+
+
+    </style>
+</head>
+<body>
+    <h1 class="fancytext"><span class="re">Re:</span><span class="s">S</span>tru<span class="x">x</span>ure</h1>
+<h2><span>by</span> Stacy Kvernmo</h2>
+<h3 class="tagline fancytext">Give <span>&</span> Receive
+</h3>
+
+</body>
+</html>
