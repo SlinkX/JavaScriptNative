@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style lang="scss">
+        /* Aspect Ratio */
+img {
+  aspect-ratio: 2/1;
+  object-fit: contain;
+  width: 14rem;
+}
+
+/* Scroll Snap */
+main {
+  max-height: 100vh;
+  overflow-y: scroll;
+  scroll-snap-type: y mandatory;
+  display: grid;
+  grid-template: "logos heading" auto / 1fr min-content;
+  padding-inline-end: 1.5rem;
+}
+
+li {
+  scroll-snap-align: start;
+}
+
+/* Writing Mode */
+h1 {
+  writing-mode: vertical-lr;
+}
+
+// Styles to make it look nice, not relevent to workshop materials
+body {
+  margin: 0;
+  padding: 0;
+}
+
+.heading {
+  grid-area: heading;
+}
+
+h1 {
+  background-color: oklch(0.3259 0.1333 265.49);
+  color: white;
+  margin: 0;
+  padding: 1.5rem 0.75rem;
+  position: sticky;
+  top: 0;
+}
+
+ul {
+  display: grid;
+  gap: 2rem;
+  grid-area: logos;
+  grid-template-columns: repeat(auto-fit, minmax(18rem, 1fr));
+  list-style-type: none;
+  margin: 0;
+  padding: 0 2rem;
+}
+
+li {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  min-height: 22vh;
+  outline: 2px dotted hsl(200 10% 70%);
+  outline-offset: -1px;
+  padding: 2rem;
+}
+
+    </style>
+</head>
+<body>
+    <main>
+        <div class="heading">
+          <h1>Featured Work</h1>
+        </div>
+        <ul class="logos">
+          <li class="logo">
+            <img src="https://assets.codepen.io/150150/logoipsum-287.svg" alt="" />
+          </li>
+          <li class="logo">
+            <img src="https://assets.codepen.io/150150/logoipsum-214.svg" alt="" />
+          </li>
+          <li class="logo">
+            <img src="https://assets.codepen.io/150150/logoipsum-262.svg" alt="" />
+          </li>
+          <li class="logo">
+            <img src="https://assets.codepen.io/150150/vertlogo.svg" alt="" />
+          </li>
+          <li class="logo">
+            <img src="https://assets.codepen.io/150150/logoipsum-254.svg" alt="" />
+          </li>
+          <li class="logo">
+            <img src="https://assets.codepen.io/150150/logoipsum-284.svg" alt="" />
+          </li>
+          <li class="logo">
+            <img src="https://assets.codepen.io/150150/logoipsum-251.svg" alt="" />
+          </li>
+          <li class="logo">
+            <img src="https://assets.codepen.io/150150/logoipsum-218.svg" alt="" />
+          </li>
+          <li class="logo">
+            <img src="https://assets.codepen.io/150150/vertlogo.svg" alt="" />
+          </li>
+          <li class="logo">
+            <img src="https://assets.codepen.io/150150/logoipsum-241.svg" alt="" />
+          </li>
+          <li class="logo">
+            <img src="https://assets.codepen.io/150150/logoipsum-291.svg" alt="" />
+          </li>
+          <li class="logo">
+            <img src="https://assets.codepen.io/150150/logoipsum-289.svg" alt="" />
+          </li>
+          <li class="logo">
+            <img src="https://assets.codepen.io/150150/logoipsum-274.svg" alt="" />
+          </li>
+          <li class="logo">
+            <img src="https://assets.codepen.io/150150/vertlogo.svg" alt="" />
+          </li>
+          <li class="logo">
+            <img src="https://assets.codepen.io/150150/logoipsum-287.svg" alt="" />
+          </li>
+          <li class="logo">
+            <img src="https://assets.codepen.io/150150/logoipsum-214.svg" alt="" />
+          </li>
+          <li class="logo">
+            <img src="https://assets.codepen.io/150150/logoipsum-262.svg" alt="" />
+          </li>
+          <li class="logo">
+            <img src="https://assets.codepen.io/150150/vertlogo.svg" alt="" />
+          </li>
+          <li class="logo">
+            <img src="https://assets.codepen.io/150150/logoipsum-254.svg" alt="" />
+          </li>
+          <li class="logo">
+            <img src="https://assets.codepen.io/150150/logoipsum-284.svg" alt="" />
+          </li>
+          <li class="logo">
+            <img src="https://assets.codepen.io/150150/logoipsum-251.svg" alt="" />
+          </li>
+          <li class="logo">
+            <img src="https://assets.codepen.io/150150/logoipsum-218.svg" alt="" />
+          </li>
+          <li class="logo">
+            <img src="https://assets.codepen.io/150150/vertlogo.svg" alt="" />
+          </li>
+          <li class="logo">
+            <img src="https://assets.codepen.io/150150/logoipsum-241.svg" alt="" />
+          </li>
+          <li class="logo">
+            <img src="https://assets.codepen.io/150150/logoipsum-291.svg" alt="" />
+          </li>
+          <li class="logo">
+            <img src="https://assets.codepen.io/150150/logoipsum-289.svg" alt="" />
+          </li>
+          <li class="logo">
+            <img src="https://assets.codepen.io/150150/logoipsum-274.svg" alt="" />
+          </li>
+          <li class="logo">
+            <img src="https://assets.codepen.io/150150/vertlogo.svg" alt="" />
+          </li>
+          <li class="logo">
+            <img src="https://assets.codepen.io/150150/logoipsum-287.svg" alt="" />
+          </li>
+          <li class="logo">
+            <img src="https://assets.codepen.io/150150/logoipsum-214.svg" alt="" />
+          </li>
+          <li class="logo">
+            <img src="https://assets.codepen.io/150150/logoipsum-262.svg" alt="" />
+          </li>
+          <li class="logo">
+            <img src="https://assets.codepen.io/150150/vertlogo.svg" alt="" />
+          </li>
+          <li class="logo">
+            <img src="https://assets.codepen.io/150150/logoipsum-254.svg" alt="" />
+          </li>
+          <li class="logo">
+            <img src="https://assets.codepen.io/150150/logoipsum-284.svg" alt="" />
+          </li>
+          <li class="logo">
+            <img src="https://assets.codepen.io/150150/logoipsum-251.svg" alt="" />
+          </li>
+          <li class="logo">
+            <img src="https://assets.codepen.io/150150/logoipsum-218.svg" alt="" />
+          </li>
+          <li class="logo">
+            <img src="https://assets.codepen.io/150150/vertlogo.svg" alt="" />
+          </li>
+          <li class="logo">
+            <img src="https://assets.codepen.io/150150/logoipsum-241.svg" alt="" />
+          </li>
+          <li class="logo">
+            <img src="https://assets.codepen.io/150150/logoipsum-291.svg" alt="" />
+          </li>
+          <li class="logo">
+            <img src="https://assets.codepen.io/150150/logoipsum-289.svg" alt="" />
+          </li>
+          <li class="logo">
+            <img src="https://assets.codepen.io/150150/logoipsum-274.svg" alt="" />
+          </li>
+          <li class="logo">
+            <img src="https://assets.codepen.io/150150/vertlogo.svg" alt="" />
+          </li>
+        </ul>
+      </main>
+</body>
+</html>
