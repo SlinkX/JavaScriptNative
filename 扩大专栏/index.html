@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style lang="scss">
+        * {
+  position: relative;
+  box-sizing: border-box;
+}
+
+html {
+  --tan: #fdf7f2;
+  --blue: #05094a;
+  --duration: 2s;
+  --easing: cubic-bezier(0.5, 0, 0.5, 1);
+  background: var(--tan);
+  color: var(--blue);
+  height: 100%;
+  overflow: hidden;
+}
+
+.columns {
+  display: flex;
+  width: 100vw;
+  height: 100vh;
+  align-items: center;
+  gap: 1vw;
+
+  --scale: 2;
+  --container-transform: scale(calc(1 / var(--scale)))
+    translateX(calc(100% / var(--scale)));
+  --img-transform: scale(var(--scale));
+  --img-clip: polygon(0% 0%, 40% 0%, 40% 100%, 0% 100%);
+
+  flex: 1 1 auto;
+  transform-origin: left center;
+  animation: container var(--duration) both var(--easing);
+
+  @keyframes container {
+    from,
+    60% {
+      transform: var(--container-transform);
+    }
+
+    to {
+      transform: none;
+    }
+  }
+
+  div {
+    display: block;
+    width: 290px;
+    flex: 0 1 auto;
+
+    transform-origin: left center;
+    transform: var(--img-transform);
+
+    --half-duration: calc(var(--duration) / 2);
+    animation: inherit;
+    animation-name: slide-down, expand;
+    animation-fill-mode: backwards, forwards;
+    animation-duration: var(--half-duration);
+    animation-delay: calc(var(--i) * 0.1s), var(--half-duration);
+
+    @keyframes slide-down {
+      from {
+        transform: translateY(-50vh) var(--img-transform);
+        clip-path: var(--img-clip);
+        opacity: 0;
+      }
+
+      70%,
+      100% {
+        opacity: 1;
+        transform: var(--img-transform);
+        clip-path: var(--img-clip);
+      }
+    }
+
+    @keyframes expand {
+      // cut in 1/2
+      from {
+        transform: var(--img-transform);
+        clip-path: var(--img-clip);
+      }
+      to {
+        transform: none;
+        clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%);
+      }
+    }
+  }
+
+  img {
+    max-width: 100%;
+    height: auto;
+  }
+}
+
+    </style>
+</head>
+<body>
+    <!--
+
+Summary:
+Negative transform illusion with clip-path
+
+-->
+
+<div class="columns">
+    <div style="--i: 0"><img src='https://images.unsplash.com/photo-1584283626572-b768ba958d00?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwxNDU4OXwwfDF8cmFuZG9tfHx8fHx8fHx8MTYzMzAxODk5NQ&ixlib=rb-1.2.1&q=80&w=400' alt=''></div>
+    <div style="--i: 1"><img src='https://images.unsplash.com/photo-1617884157905-b66741c4a445?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwxNDU4OXwwfDF8cmFuZG9tfHx8fHx8fHx8MTYzMzAxODk5NQ&ixlib=rb-1.2.1&q=80&w=700' alt=''></div>
+    <div style="--i: 2"><img src='https://images.unsplash.com/photo-1582201942961-2e1c3e63d9b4?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwxNDU4OXwwfDF8cmFuZG9tfHx8fHx8fHx8MTYzMzAyMTg0OQ&ixlib=rb-1.2.1&q=80&h=800' alt=''></div>
+    <div style="--i: 3"><img src='https://images.unsplash.com/photo-1584448097935-a4b1aed506ad?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwxNDU4OXwwfDF8cmFuZG9tfHx8fHx8fHx8MTYzMzAxODk2Mw&ixlib=rb-1.2.1&q=80&w=300' alt=''></div>
+    <div style="--i: 4"><img src='https://images.unsplash.com/photo-1575995872537-3793d29d972c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwxNDU4OXwwfDF8cmFuZG9tfHx8fHx8fHx8MTYzMzAxOTA5OA&ixlib=rb-1.2.1&q=80&w=600' alt=''></div>
+  </div>
+  
+  <a href="https://youtu.be/guwdpkHAWmc" target="_blank" data-keyframers-credit style="color: #000"></a>
+  <script src="https://codepen.io/shshaw/pen/QmZYMG.js"></script>
+
+
+  <script>
+    // Replay animation by hiding & showing the element again
+let el = document.body;
+el.addEventListener("click", function (e) {
+  el.hidden = true;
+  requestAnimationFrame(() => {
+    el.hidden = false;
+  });
+});
+
+/* Play / Pause on keypress */
+var s = document.createElement("style");
+s.innerHTML =
+  " *, *:before, *:after { animation-play-state: paused !important; }";
+
+document.addEventListener("keypress", function () {
+  s.parentNode ? document.head.removeChild(s) : document.head.appendChild(s);
+});
+
+  </script>
+</body>
+</html>
