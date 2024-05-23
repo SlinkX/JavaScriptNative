@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style lang="scss">
+        *, *:before, *:after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+html, body {
+  height: 100%;
+  font-size: 62.5%;
+  
+  @media (max-width: 900px) {
+    font-size: 50%;
+  }
+}
+body {
+  overflow: hidden;
+  background: linear-gradient(#F7F7FF, #BDD6DD);
+}
+
+$w: 40.5rem;
+$h: 60rem;
+$imgW: 41.6rem;
+$imgH: 53.7rem;
+$animTime: 2s;
+
+.demo {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: $w;
+  height: $h;
+  margin-left: $w/-2;
+  margin-top: $h/-2;
+  perspective: 1000px;
+  transform-style: preserve-3d;
+  animation: rotateReverse $animTime infinite linear;
+
+  &__content {
+    position: relative;
+    height: 100%;
+    transform-style: preserve-3d;
+    animation: rotate $animTime infinite linear;
+    transform: rotateX(10deg) rotateZ(0);
+    background: #fff;
+
+    &:before {
+      content: "";
+      z-index: -1;
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      box-shadow: 0 5rem 10rem rgba(0,0,0,0.4);
+    }
+  }
+
+  &__img {
+    overflow: hidden;
+    position: absolute;
+    left: ($w - $imgW)/2;
+    top: ($h - $imgH)/2;
+    width: $imgW;
+    height: $imgH;
+    transform: translateZ(5rem) scale(0.95);
+
+    &:before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background-image: url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/142996/macbeth.png');
+      background-size: cover;
+    }
+
+    &:after {
+      content: "";
+      z-index: 2;
+      overflow: hidden;
+      position: absolute;
+      left: -20%;
+      top: 0;
+      width: 80%;
+      padding-bottom: 80%;
+      border-radius: 50%;
+      background: radial-gradient(ellipse farthest-corner at center, rgba(255,255,255,0.20) 0%, rgba(255,255,255,0) 100%);
+      transform: translateY(-100%);
+      animation: shiny $animTime infinite ease-in-out;
+    }
+  }
+}
+
+@keyframes rotate {
+  100% {
+    transform: rotateX(10deg) rotateZ(360deg);
+  }
+}
+
+@keyframes rotateReverse {
+  100% {
+    transform: rotateZ(-360deg);
+  }
+}
+
+@keyframes shiny {
+  25% {
+    transform: translateY(-100%);
+  }
+  50% {
+    transform: translateY($h);
+  }
+  50.1% {
+    transform: translate(75%, $h);
+  }
+  75% {
+    transform: translate(75%, -100%);
+  }
+}
+
+
+.source {
+  position: absolute;
+  left: 0.5rem;
+  bottom: 0.5rem;
+  font-size: 2rem;
+}
+
+.tip {
+  padding: 1rem;
+  font-size: 1.8rem;
+}
+    </style>
+</head>
+<body>
+    <div class="demo">
+        <div class="demo__content">
+          <div class="demo__img"></div>
+        </div>
+      </div>
+      <a class="source" href="https://dribbble.com/shots/2245238-Apple-TV-Macbeth-poster" target="_blank">Source of inspiration</a>
+      <p class="tip">Reload, if the position is incorrect.</p>
+</body>
+</html>
