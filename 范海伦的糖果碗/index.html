@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style lang="scss">
+        $red: #b11224;
+$yellow: #ffdd00; // #fff200
+$blue: #2f9fd7;
+$green: #31ac55;
+$orange: #f26f22;
+$brown: #603a34;
+$chocolate: #592512;
+$letter-color: #efefefcc;
+$letter-color-alt: #fefefe9a;
+$candy-shadow: #ffffff88;
+$button-shadow: #6d4c41; //#964040bb;
+
+body {
+	box-sizing: border-box;
+	height: 100vh;
+	padding: 0;
+	margin: 0;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	font-family: monospace;
+	background-color: #111;
+	padding: 2em;
+}
+
+.grid {
+	display: flex;
+	flex-wrap: wrap;
+	//	grid-gap: 0.2em;
+	grid-auto-flow: dense;
+	gap: 0.2em;
+
+	justify-content: center;
+}
+
+.candy {
+	font-family: "Roboto Slab", serif;
+	font-weight: 500;
+	line-height: 1;
+	height: 38px;
+	width: 38px;
+	font-size: 15px;
+	border-radius: 50%;
+	background-color: $red;
+	color: $letter-color;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	box-shadow: inset -1px -1px 3px $candy-shadow;
+	user-select: none;
+}
+
+.smaller-font {
+	font-size: 14px;
+}
+
+.larger-font {
+	font-size: 16px;
+}
+
+.red {
+	background-color: $red;
+}
+
+.yellow {
+	background-color: $yellow;
+}
+
+.blue {
+	background-color: $blue;
+}
+.orange {
+	background-color: $orange;
+}
+
+.green {
+	background-color: $green;
+}
+
+.brown {
+	background-color: $brown;
+}
+
+.faded {
+	color: $letter-color-alt;
+}
+
+.slim {
+	font-weight: 360;
+}
+
+.rotate {
+	transform: rotate(5deg);
+}
+
+.anti-rotate {
+	transform: rotate(-4deg);
+}
+
+.filter-buttons {
+	display: flex;
+	gap: 1em;
+	flex-wrap: wrap;
+	padding-bottom: 2em;
+	justify-content: center;
+}
+
+button {
+	font-family: "Bevan", serif;
+	font-size: 0.9rem;
+	border-radius: 2em;
+	padding: 0.4em 1em;
+	background-color: $chocolate;
+	border: 3px solid white;
+	color: $letter-color;
+	flex: 0 0 auto;
+	font-weight: 400;
+	&:hover {
+		color: $letter-color-alt;
+		border-radius: 1em;
+		cursor: pointer;
+	}
+}
+
+#show-all {
+	border-color: $red;
+}
+
+#hide-some {
+	border-color: $yellow;
+}
+
+    </style>
+</head>
+<body>
+    <div class="filter-buttons">
+        <button id="show-all">Show All M&Ms</button>
+        <button id="hide-some">Remove Brown M&Ms</button>
+    </div>
+    
+    <div id="candy-grid" class="grid">
+        <div class="candy red faded">m</div>
+        <div class="candy orange anti-rotate">m</div>
+        <div class="candy yellow">m</div>
+        <div class="candy orang rotate">m</div>
+        <div class="candy brown anti-rotate">m</div>
+        <div class="candy blue slim anti-rotate">m</div>
+        <div class="candy red">m</div>
+        <div class="candy orange rotate">m</div>
+        <div class="candy brown rotate">m</div>
+        <div class="candy green anti-rotate">m</div>
+        <div class="candy red">m</div>
+        <div class="candy orange anti-rotate">m</div>
+        <div class="candy brown">m</div>
+        <div class="candy blue rotate">m</div>
+        <div class="candy yellow anti-rotate faded">m</div>
+        <div class="candy orange faded">m</div>
+        <div class="candy brown slim">m</div>
+        <div class="candy green">m</div>
+        <div class="candy red">m</div>
+        <div class="candy orange anti-rotate">m</div>
+        <div class="candy brown slim">m</div>
+        <div class="candy green">m</div>
+        <!-- 	<div class="candy red rotate">m</div>
+        <div class="candy brown">m</div>
+        <div class="candy blue anti-rotate">m</div>
+        <div class="candy yellow">m</div>
+        <div class="candy orange">m</div>
+        <div class="candy brown anti-rotate">m</div>
+        <div class="candy green slim">m</div>
+        <div class="candy red">m</div>
+        <div class="candy orange">m</div>
+        <div class="candy brown">m</div>
+        <div class="candy green rotate ">m</div>
+        <div class="candy red faded">m</div>
+        <div class="candy brown anti-rotate faded">m</div>
+        <div class="candy blue rotate">m</div>
+        <div class="candy yellow faded">m</div>
+        <div class="candy orange">m</div>
+        <div class="candy brown rotate">m</div>
+        <div class="candy green">m</div>
+        <div class="candy red">m</div>
+        <div class="candy orange">m</div>
+        <div class="candy brown alt-text">m</div>
+        <div class="candy red">m</div>
+        <div class="candy green">m</div>
+        <div class="candy red rotate">m</div>
+        <div class="candy brown faded ">m</div>
+        <div class="candy blue faded">m</div>
+        <div class="candy yellow rotate">m</div>
+        <div class="candy orange rotate faded">m</div>
+        <div class="candy brown">m</div>
+        <div class="candy blue faded">m</div>
+        <div class="candy red">m</div>
+        <div class="candy orange anti-rotate">m</div>
+        <div class="candy brown anti-rotate">m</div>
+        <div class="candy orange rotate">m</div>
+        <div class="candy brown">m</div>
+        <div class="candy green">m</div>
+        <div class="candy red rotate">m</div>
+        <div class="candy brown alt-text">m</div>
+        <div class="candy blue">m</div>
+        <div class="candy yellow faded">m</div>
+        <div class="candy orange anti-rotate">m</div>
+        <div class="candy brown anti-rotate">m</div>
+        <div class="candy green alt-text">m</div>
+        <div class="candy red">m</div>
+        <div class="candy orange anti-rotate">m</div>
+        <div class="candy brown rotate">m</div>
+        <div class="candy green faded">m</div>
+        <div class="candy red">m</div> -->
+    </div>
+
+
+    <script>const showAllButton = document.getElementById("show-all");
+        const hideSomeButton = document.getElementById("hide-some");
+        const candyGrid = document.getElementById("candy-grid");
+        
+        showAllButton.addEventListener("click", function () {
+            const gridItems = Array.from(candyGrid.getElementsByClassName("candy"));
+            gridItems.forEach((item) => (item.style.visibility = "visible"));
+            showAllButton.setAttribute("aria-pressed", true);
+            hideSomeButton.setAttribute("aria-pressed", false);
+        });
+        
+        hideSomeButton.addEventListener("click", function () {
+            const gridItems = Array.from(candyGrid.getElementsByClassName("candy"));
+            const filteredCandy = gridItems.filter((item) => {
+                return !item.classList.contains("brown");
+            });
+            gridItems.forEach((item) => (item.style.visibility = "hidden"));
+            filteredCandy.forEach((item) => (item.style.visibility = "visible"));
+            showAllButton.setAttribute("aria-pressed", false);
+            hideSomeButton.setAttribute("aria-pressed", true);
+        });
+        
+        function createCandy(count) {
+            for (let i = 0; i < count; i++) {
+                const candy = document.createElement("div");
+                candy.classList.add("candy");
+                candy.innerHTML = "m";
+        
+                let randomNumber = Math.floor(Math.random(i) * 6);
+                switch (randomNumber) {
+                    case 0:
+                        candy.classList.add("brown");
+                        break;
+                    case 1:
+                        candy.classList.add("orange");
+                        break;
+                    case 2:
+                        candy.classList.add("yellow");
+                        break;
+                    case 3:
+                        candy.classList.add("green");
+                        break;
+                    case 4:
+                        candy.classList.add("blue");
+                        break;
+                    default:
+                        candy.classList.add("red");
+                }
+        
+                randomNumber = Math.floor(Math.random(i) * 24);
+                // Modify letter weight
+                if (randomNumber % 3 === 0) {
+                    candy.classList.add("thin");
+                }
+                // Modify letter opacity
+                if (randomNumber % 4 === 0) {
+                    candy.classList.add("faded");
+                }
+                // Turn slightly
+                if (randomNumber % 12 === 8) {
+                    candy.classList.add("anti-rotate");
+                } else if (randomNumber % 12 === 7) {
+                    candy.classList.add("rotate");
+                }
+                // Change Font-Size
+                // Turn slightly
+                if (randomNumber % 6 === 0) {
+                    candy.classList.add("smaller-font");
+                } else if (randomNumber % 6 === 1) {
+                    candy.classList.add("larger-font");
+                }
+        
+                candyGrid.appendChild(candy);
+            }
+        }
+        
+        document.addEventListener("DOMContentLoaded", function () {
+            const height = window.innerHeight / 2 / 40;
+            const width = window.innerWidth / 2 / 40;
+            const area = width * height;
+            const numberOfCandies = area;
+            createCandy(area);
+        });
+        </script>
+</body>
+</html>
