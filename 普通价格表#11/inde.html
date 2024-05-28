@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
+
+*{
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+  
+ul{
+  list-style: none;
+ }
+
+body, html{
+  background: #111;
+  font-family: 'Roboto', sans-serif;
+  width: 100%;
+  height: auto;
+  color: #ffffff;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  gap: 32px;
+  justify-content: center;
+  align-items: center;
+
+}
+
+html{
+  background: linear-gradient(to bottom right, #D7FFF1, #8CD790 )
+}
+
+body{
+    padding: 32px 0px 100px 0px;
+    position: relative;
+  background: rgba(20,20,20, 0.5);
+}
+
+.wrapper-toggle-plains{
+  height: 36px;
+  display: flex;
+  flex-direction: row;
+  gap: 8px;
+  align-items: center;
+  text-transform: capitalize;
+  font-weight: 500;
+}
+
+.btn-toggle{
+  height: 24px;
+  width: 54px;
+  border-radius: 32px;
+  border: none;
+  position: relative;
+  cursor: pointer;
+}
+
+.btn-toggle::after{
+  content: "";
+  position: absolute;
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  background: #4BA67D;
+  border: 1px solid #4BA67D;
+    top: -1px;
+  left: -1px;
+}
+.btn-toggle[aria-pressed="false"]::after{
+   animation: moveDown 650ms ease-in-out forwards;
+}
+
+.btn-toggle[aria-pressed="true"]::after{
+   animation: moveUp 650ms ease-in-out forwards;
+}
+
+@keyframes moveUp{
+  100%{
+  left: 0px;
+  transform: translatex(calc(100%))
+  }
+}
+
+@keyframes moveDown{
+  0%{
+     left: calc(100% - 25px);
+  }
+  100%{
+
+   transform: translatex(0%)
+  }
+}
+
+.btn-toggle span{
+  clip: rect(1px, 1px, 1px, 1px);
+  height: 1px;
+  overflow: hidden;
+  position: absolute !important;
+  white-space: nowrap;
+  width: 1px;
+}
+
+.desc{
+  color: #D7FFF1;
+  display: inline-block;
+  padding-bottom: 3px;
+  border-bottom: 2px solid #D7FFF1;
+  letter-spacing: 0.06rem
+}
+
+.wrapper{
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  padding: 16px;
+  gap: 16px;
+  color: #1D4030;
+}
+
+.wrapper .card{
+  width: calc((100% / 3) - 32px);
+  padding: 16px;
+  min-width: 290px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  border-radius: 6px;
+   background: #AAFCB8;
+  transition: 250ms linear;
+}
+
+
+.wrapper .card:hover{
+  transform: translatey(-3px)
+}
+
+.wrapper .card:nth-child(3){
+  background: #D7FFF1;
+}
+
+
+
+.wrapper .card .title{
+  font-size: 15px;
+  font-weight: 500;
+}
+
+.wrapper .card .price{
+  font-weight: bold;
+  font-size: 32px;
+  line-height: 32px;
+}
+
+.wrapper .card .price .plain-type{
+  font-size: 15px;
+  text-transform: capitalize;
+}
+
+.wrapper .card .advantages{
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.wrapper .card .advantages .menu-item{
+  display: flex;
+  flex-direction: row;
+  gap: 4px;
+    font-size: 15px;
+}
+
+.wrapper .card .advantages .menu-item svg{
+  width: 16px;
+  height: auto;
+}
+
+.wrapper .card .btn-submit{
+  height: 38px;
+  width: 100%;
+  font-weight: bold;
+  cursor: pointer;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 500;
+  margin-top: auto;
+  border-radius: 8px;
+  border: none;
+  background: #285943;
+  color: #D7FFF1;
+  text-transform: uppercase;
+  transition: 250ms linear;
+}
+
+.wrapper .card .btn-submit:hover{
+  background: #1D4030;
+}
+    </style>
+</head>
+<body>
+    <script src="https://unpkg.com/feather-icons"></script>
+<h1>Planos e Preços</h1>
+<div class="wrapper-toggle-plains" <span class="plain-type">mês</span>
+  <button aria-pressed="false" class="btn-toggle">
+    <span>toggle plains type</span>
+  </button>
+  <span class="plain-type">ano</span>
+</div>
+<p class="desc">Escolha um plano e aproveite um desconto de 25% pagando anualmente!</p>
+<div class="wrapper">
+
+  <!--     CARD 1    -->
+  <div class="card">
+    <h3 class="title">Sentinela Digital</h3>
+    <h1 class="price" data-type="starting"><span class="value">R$ 29,99</span>/<span class="plain-type">mês</span></h1>
+    <ul class="advantages">
+      <li class="menu-item"><i data-feather="check-circle"></i>Proteção antivírus básica</li>
+      <li class="menu-item"><i data-feather="check-circle"></i>Firewall básico</li>
+      <li class="menu-item"><i data-feather="check-circle"></i>Verificação de vulnerabilidades</li>
+    </ul>
+    <button class="btn-submit">Adquirir Agora</button>
+  </div>
+
+  <!--     CARD 2    -->
+  <div class="card">
+    <h3 class="title">Guardião Cibernético</h3>
+    <h1 class="price" data-type="intermediary"><span class="value">R$ 59,99</span>/<span class="plain-type">mês</span></h1>
+    <ul class="advantages">
+      <li class="menu-item"><i data-feather="check-circle"></i>Proteção antivírus avançada</li>
+      <li class="menu-item"><i data-feather="check-circle"></i>Firewall avançado</li>
+      <li class="menu-item"><i data-feather="check-circle"></i>Verificação de vulnerabilidades</li>
+      <li class="menu-item"><i data-feather="check-circle"></i>Proteção contra malware e ransomware</li>
+      <li class="menu-item"><i data-feather="check-circle"></i>Monitoramento de ameaças em tempo real</li>
+    </ul>
+    <button class="btn-submit">Adquirir Agora</button>
+  </div>
+  <!--     CARD 3    -->
+  <div class="card">
+    <h3 class="title">Escudo Virtual</h3>
+    <h1 class="price" data-type="advanced"><span class="value">R$ 99,99</span>/<span class="plain-type">mês</span></h1>
+    <ul class="advantages">
+      <li class="menu-item"><i data-feather="check-circle"></i>Proteção antivírus premium</li>
+      <li class="menu-item"><i data-feather="check-circle"></i>Firewall avançado</li>
+      <li class="menu-item"><i data-feather="check-circle"></i>Verificação de vulnerabilidades</li>
+      <li class="menu-item"><i data-feather="check-circle"></i>Proteção contra malware e ransomware</li>
+      <li class="menu-item"><i data-feather="check-circle"></i>Monitoramento de ameaças em tempo real</li>
+      <li class="menu-item"><i data-feather="check-circle"></i>Análise de comportamento de usuários</li>
+      <li class="menu-item"><i data-feather="check-circle"></i>Backup e recuperação de dados</li>
+      <li class="menu-item"><i data-feather="check-circle"></i>Suporte técnico 24/7</li>
+    </ul>
+    <button class="btn-submit">Adquirir Agora</button>
+  </div>
+</div>
+
+<script>
+  feather.replace()
+</script>
+
+
+<script>
+    const plain = {
+  starting: {
+    ms: "R$ 29,99",
+    yn: "R$ 269,99"
+  },
+  intermediary: {
+    ms: "R$ 59,99",
+    yn: "R$ 539,99"
+  },
+  advanced: {
+    ms: "R$ 99,99",
+    yn: "R$ 899,99"
+  }
+};
+
+const btn = document.querySelector(".btn-toggle");
+const prices = document.querySelectorAll(".card .price");
+const pricesType = document.querySelectorAll(".card .price .plain-type");
+btn.addEventListener("click", () => {
+  const atr = btn.getAttribute("aria-pressed");
+
+  pricesType.forEach((el) => {
+    if (atr !== "true") {
+      el.innerHTML = "Ano";
+    } else {
+      el.innerHTML = "Mês";
+    }
+  });
+  
+  prices.forEach((el) => {
+    const value = el.querySelector(".value");
+    const type = el.dataset.type;
+    if(atr !== "true"){
+      value.innerHTML = plain[type].yn
+    }else{
+     value.innerHTML = plain[type].ms
+    }
+  })
+
+  btn.setAttribute("aria-pressed", atr === "true" ? false : true);
+});
+
+</script>
+</body>
+</html>
