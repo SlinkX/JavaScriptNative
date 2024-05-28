@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Halant:wght@700&family=Nunito+Sans:wght@300&display=swap');
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body{
+  height: 100vh;
+  width: 100vw;
+  position: relative;
+  background-color: #000;
+  background-image: linear-gradient(to left, rgba(55,55,55,0.5), #050505),url(https://cdn.pixabay.com/photo/2021/08/20/22/05/flowers-6561379_960_720.jpg);
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+  
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  padding-left: 16px;
+    font-family: 'Halant', serif;
+  line-height: 1.5;
+}
+
+h1{
+  max-width: 60vw;
+  font-size: 24px;
+  color: #d9dfd9;
+  letter-spacing: 0.08rem;
+  max-width: calc(100vw - 350px);
+}
+
+@media (max-width: 720px){
+  h1{
+    max-width: calc(100vw - 150px);
+    font-size: 20px;
+    line-height:1.8rem;
+  }
+}
+
+h1 span{
+  font-family: 'Nunito Sans', sans-serif;
+  font-size: 16px;
+  font-weight: 300;
+  display: block;
+}
+
+ul{
+  height: 100vh;
+  width: 300px;
+  position: absolute;
+  right: 0px;
+  top: 0px;
+background: rgba(255, 255, 255, 0.04);
+    backdrop-filter: blur( 13.5px );
+    -webkit-backdrop-filter: blur(81.55px );
+  list-style: none;
+  
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+}
+
+@media (max-width: 720px){
+  ul{
+    max-width: 250px;
+  }
+}
+
+.btn-open{
+    background: unset;
+  border: unset;
+  position: absolute;
+  top: 16px;
+  right: 16px;
+}
+
+.btn-open svg{
+  stroke: #ddd;
+  stroke-width: 3;
+  cursor: pointer;
+}
+
+ul .btn-close{
+  background: unset;
+  border: unset;
+  position: absolute;
+  top: 16px;
+  right: 16px;
+}
+
+ul .btn-close svg{
+  stroke: #ddd;
+  stroke-width: 3;
+  cursor: pointer;
+}
+
+ul li{
+text-transform: uppercase;
+  width: 115px;
+  height: auto;
+  display: block;
+  color: white;
+  font-family: 'Nunito Sans', sans-serif;
+  cursor: pointer;
+}
+
+ul li:hover{
+text-decoration: underline}
+
+ul.close{
+display: none;
+transform: translateX(-1000px)
+  animation: close 350ms linear forwards;
+}
+
+ul.open{
+  animation: open 350ms linear forwards;
+}
+
+@keyframes open{
+  0%{
+  display: flex;
+    opacity: 0;
+        transform: translateX(0)
+  }
+  100%{
+    opacity: 1;
+    transform: translateX(0)
+  }
+}
+
+
+@keyframes close{
+  0%{
+  display: flex;
+    opacity: 1;
+  }
+  100%{
+    display: none
+    opacity: 0;
+    transform: translateX(-1000px)
+  }
+}
+    </style>
+</head>
+<body>
+    <h1>A beleza pode ser vista em todas as coisas, ver e compor a beleza é o que separa a simples imagem da fotografia. <span>- por Matt Hardy</span></h1>
+
+<button class="btn-open">
+  <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-menu-2" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+   <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+   <line x1="4" y1="6" x2="20" y2="6"></line>
+   <line x1="4" y1="12" x2="20" y2="12"></line>
+   <line x1="4" y1="18" x2="20" y2="18"></line>
+</svg>
+</button>
+<ul class="open">
+  <button class="btn-close">
+    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-x" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+   <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+   <line x1="18" y1="6" x2="6" y2="18"></line>
+   <line x1="6" y1="6" x2="18" y2="18"></line>
+</svg>
+  </button>
+  <li><span>01</span> Portfolio</li>
+  <li><span>02</span> Galeria</li>
+  <li><span>03</span> Sobre mim</li>
+  <li><span>04</span> Contato</li>
+</ul>
+
+<script>
+    const menu = document.querySelector('ul')
+const btnClose = document.querySelector('.btn-close');
+const btnOpen = document.querySelector('.btn-open');
+
+btnOpen
+btnOpen.onclick = () => {
+    menu.classList.remove('close')
+  menu.classList.add('open')
+
+}
+btnClose.onclick = () => {
+  menu.classList.remove('open')
+  menu.classList.add('close')
+}
+</script>
+</body>
+</html>
