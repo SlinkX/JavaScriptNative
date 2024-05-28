@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+  padding: 0px;
+  margin: 0px;
+  box-sizing: border-box;
+}
+
+body {
+  height: 100vh;
+  width: 100%;
+  background-color: #111;
+}
+
+video,
+.js-canvas {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.js-canvas {
+  background: #ddd;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  opacity: 0.315;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+}
+
+video {
+  border-radius: 8px;
+}
+
+.container {
+  max-width: 1024px;
+  width: 100%;
+  height: 100vh;
+  position: relative;
+  box-shadow: inset 0 0 5rem 5.5rem #111;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.video {
+  overflow: hidden;
+  border-radius: 8px;
+  padding: 4em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <canvas width="10" height="6" class="js-canvas" aria-hidden="true"></canvas>
+       <div class="video">
+         <video id="video-shadow" src="https://cdn.pixabay.com/vimeo/382770814/sunrise-30850.mp4?width=1280&hash=737db6a1e38673d85848c52c36322e86582709dd" autoplay ></video>
+       </div>
+     </div>
+     <script>
+        /*
+FONTES: https://www.smashingmagazine.com/2023/07/recreating-youtube-ambient-mode-glow-effect/
+*/
+let steps;
+
+const video = document.querySelector('#video-shadow')
+const canvas = document.querySelector('.js-canvas')
+const ctx = canvas.getContext('2d')
+
+ctx.filder = 'blur(1px)'
+
+const draw = () => {
+  ctx.drawImage(video, 0,0, canvas.width, canvas.height)
+}
+
+const drawLoop = () => {
+  draw();
+  step = window.requestAnimationFrame(drawLoop)
+}
+
+const drawPause = () => {
+  window.cancelAnimationFrame(steps)
+  step = undefined
+}
+
+const init = () => {
+  video.addEventListener('loadeddata', draw, false)
+  video.addEventListener('seeked', draw, false)
+  video.addEventListener('play', drawLoop, false)
+  video.addEventListener('pause', drawPause, false)
+  video.addEventListener('ended', drawPause, false)
+}
+
+const cleanUp = () => {
+  video.removeEventListener('loadeddata', draw, false)
+  video.removeEventListener('seeked', draw, false)
+  video.removeEventListener('play', drawLoop, false)
+  video.removeEventListener('pause', drawPause, false)
+  video.removeEventListener('ended', drawPause, false)
+}
+
+window.addEventListener('load', init)
+window.addEventListener('unload', cleanUp)
+     </script>
+</body>
+</html>
