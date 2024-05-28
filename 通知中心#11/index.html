@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        @import url("https://fonts.googleapis.com/css2?family=PT+Sans:wght@400;700&display=swap");
+
+* {
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+}
+
+html {
+	font-size: 62.5%;
+}
+
+body {
+	font-family: "PT Sans", sans-serif;
+	font-size: 1.6rem;
+	font-weight: 400;
+	line-height: 1.5;
+	background: #000;
+	color: #a1a1a1;
+}
+
+:root {
+	--skeleton-bg: rgba(255, 255, 255, 5%);
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	line-height: 1.2;
+	color: #ededed;
+	font-weight: bold;
+}
+
+input,
+button {
+	font-family: "PT Sans", sans-serif;
+	font-size: 1.6rem;
+	line-height: 1.5;
+	color: #ededed;
+	font-weight: bold;
+}
+
+button {
+	border: 0;
+	cursor: pointer;
+	background: transparent;
+}
+
+.header {
+	padding: 0px 5vw;
+	background-color: rgba(255, 255, 255, 3%);
+	height: 65px;
+	border-bottom: 1px solid rgba(255, 255, 255, 4%);
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	align-items: center;
+}
+
+.header .brand {
+	width: 40px;
+	height: 40px;
+	border-radius: 50%;
+	border: 1px solid #fff;
+	position: relative;
+	opacity: 0.5;
+}
+
+.header .brand::before {
+	content: "";
+	width: 30px;
+	height: 30px;
+	border-radius: 50%;
+	background: radial-gradient(#ffffff00, #edededed);
+	display: block;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+}
+
+.header .form {
+	height: 40px;
+	width: 100%;
+	max-width: 400px;
+	background: var(--skeleton-bg);
+	border-radius: 6px;
+	opacity: 0.8;
+}
+
+.header button {
+	width: 40px;
+	height: 40px;
+	border-radius: 4px;
+	background: rgba(255, 255, 255, 5%);
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	position: relative;
+}
+
+.header button svg {
+	max-width: 24px;
+	color: #525252;
+	line-height: 1.2;
+}
+
+.header button[data-notify="true"]::before {
+	content: "";
+	width: 7px;
+	height: 7px;
+	border-radius: 50%;
+	background: #2980b9;
+	position: absolute;
+	top: 11px;
+	right: 12px;
+}
+
+.header button[data-modal-show="true"] {
+	color: #fff;
+	background: #323232;
+	outline: 1px solid #555;
+}
+.header button[data-modal-show="true"] svg {
+	stroke: #fff;
+}
+.header button[data-modal-show="true"]::before {
+	display: none;
+}
+
+.container {
+	padding: 0px 5vw;
+	padding-top: 64px;
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	gap: 32px;
+	padding-bottom: 100px;
+}
+
+.card {
+	width: 100%;
+	max-width: 375px;
+	display: flex;
+	flex-direction: column;
+	gap: 16px;
+	margin-top: 16px;
+}
+
+@media (max-width: 850px) {
+	.card {
+		width: calc(((100% - 5vw) / 2) - 16px);
+	}
+}
+
+@media (max-width: 580px) {
+	.card {
+		width: calc(100% - 32px);
+	}
+}
+
+.card .thumbnail {
+	width: 100%;
+	height: 200px;
+	background-color: var(--skeleton-bg);
+	border-radius: 10px;
+}
+
+.card .meta {
+	display: flex;
+	justify-content: space-between;
+	width: 100%;
+}
+
+.card .meta .title {
+	width: 100%;
+	max-width: 70%;
+	height: 20px;
+	border-radius: 10px;
+	background-color: var(--skeleton-bg);
+}
+
+.card .meta .info {
+	height: 20px;
+	width: 20px;
+	border-radius: 50%;
+	background-color: var(--skeleton-bg);
+}
+
+.notify-center {
+	position: absolute;
+	top: 80px;
+	right: 5vw;
+	width: min(430px, calc(100% - 32px));
+	background: #151515;
+	padding: 16px;
+	padding-top: 4px;
+	border-radius: 12px;
+	display: flex;
+	flex-direction: column;
+	outline: 1px solid #282828;
+}
+
+.notify-header {
+	height: 64px;
+	align-items: center;
+	display: flex;
+	border-bottom: 1px solid #212121;
+	justify-content: space-between;
+}
+
+.notify-header button {
+	font-size: 1.2rem;
+	color: #aeaeae;
+	display: flex;
+	gap: 6px;
+	align-items: center;
+	justify-content: center;
+	padding: 0px 24px;
+	height: 34px;
+	padding-left: 16px;
+	border-radius: 10px;
+	border: 1px solid #202020;
+}
+
+.notify-header button svg {
+	max-width: 18px;
+}
+
+.notify-header h2 {
+	font-size: 2.4rem;
+}
+
+.notify-tabs {
+	height: 40px;
+	display: flex;
+	align-items: center;
+	gap: 12px;
+	border-bottom: 1px solid #212121;
+	position: relative;
+}
+
+.notify-tabs::before {
+	content: "";
+	width: 80px;
+	height: 2px;
+	background-color: #fff;
+	position: absolute;
+	bottom: 0px;
+}
+
+.notify-tabs button {
+	color: #aaa;
+	font-weight: 600;
+	font-size: 1.4rem;
+	width: 80px;
+}
+
+.notify-tabs button:first-child {
+	color: #fff;
+}
+
+.notify-list {
+	display: flex;
+	flex-direction: column;
+}
+
+.notify-item {
+	display: flex;
+	flex-direction: column;
+	padding: 16px 0px;
+	align-items: flex-start;
+	gap: 12px;
+	width: 100%;
+}
+
+.notify-item:first-child {
+	margin-top: 24px;
+}
+
+.notify-item + .notify-item::before {
+	content: "";
+	width: 100%;
+	height: 1.2px;
+	background-color: #2f2f2f;
+	margin-bottom: 16px;
+	border-radius: 32px;
+}
+
+.notify-item > button {
+	margin-left: 8px;
+	padding: 4px 24px;
+	background: #34495e;
+	border-radius: 4px;
+	color: #7f8c8d;
+	display: none;
+}
+
+.notify-item .info {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: 8px;
+	width: 100%;
+}
+
+.notify-item .info .status {
+	display: block;
+	width: 6px;
+	height: 6px;
+	border-radius: 50%;
+	flex-shrink: 0;
+}
+
+.notify-item .info .status[data-read="false"] {
+	background: #2980b9;
+}
+
+.notify-source-type {
+	width: 45px;
+	height: 45px;
+	border-radius: 4px;
+	overflow: hidden;
+}
+
+.notify-source-type img {
+	width: 100%;
+	max-width: 100%;
+	object-fit: cover;
+	object-position: center;
+	display: block;
+}
+
+.source-content {
+	display: flex;
+	flex-grow: 1;
+	flex-direction: column;
+}
+
+.source-content .user {
+	font-size: 1.3rem;
+}
+
+.source-content .user .name {
+	font-weight: bold;
+	color: #fff;
+}
+
+.source-content .conten {
+	color: #fff;
+}
+
+.date {
+	font-size: 1.4rem;
+}
+
+    </style>
+</head>
+<body>
+    <main class="main">
+        <header class="header">
+            <div class="brand"></div>
+            <div class="form"></div>
+            <button data-notify="true" data-modal-show="true">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round">
+                    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                    <path d="M10 5a2 2 0 1 1 4 0a7 7 0 0 1 4 6v3a4 4 0 0 0 2 3h-16a4 4 0 0 0 2 -3v-3a7 7 0 0 1 4 -6" />
+                    <path d="M9 17v1a3 3 0 0 0 6 0v-1" />
+                </svg>
+            </button>
+        </header>
+    
+        <section class="container">
+            <div class="card">
+                <div class="thumbnail"></div>
+                <div class="meta">
+                    <div class="title"></div>
+                    <div class="info"></div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="thumbnail"></div>
+                <div class="meta">
+                    <div class="title"></div>
+                    <div class="info"></div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="thumbnail"></div>
+                <div class="meta">
+                    <div class="title"></div>
+                    <div class="info"></div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="thumbnail"></div>
+                <div class="meta">
+                    <div class="title"></div>
+                    <div class="info"></div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="thumbnail"></div>
+                <div class="meta">
+                    <div class="title"></div>
+                    <div class="info"></div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="thumbnail"></div>
+                <div class="meta">
+                    <div class="title"></div>
+                    <div class="info"></div>
+                </div>
+            </div>
+    
+            <div class="notify-center">
+                <div class="notify-header">
+                    <h2>Notifications</h2>
+                    <button>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-checks">
+                            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                            <path d="M7 12l5 5l10 -10" />
+                            <path d="M2 12l5 5m5 -5l5 -5" />
+                        </svg>
+                        <span>Mark all as read</span></button>
+                </div>
+                <div class="notify-tabs">
+                    <button>Inbox</button>
+                    <button>Team</button>
+                </div>
+                <div class="notify-list">
+                    <div class="notify-item">
+                        <div class="info">
+    
+                            <div class="status" data-read="false"></div>
+    
+                            <div class="notify-source-type">
+                                <img src="https://avatar.iran.liara.run/public/74" alt="Ana Lise">
+                            </div>
+    
+                            <div class="source-content">
+                                <div class="user">
+                                    <span class="name">Ana Lise</span>
+                                    <span class="action">Commented on you post</span>
+                                </div>
+                                <div class="content">"Wishing you boundless success as y..."</div>
+                            </div>
+                            <div class="date">3:40 AM</div>
+                        </div>
+                        <button>Replay</button>
+                    </div>
+    
+                    <div class="notify-item">
+                        <div class="info">
+    
+                            <div class="status" data-read="false"></div>
+    
+                            <div class="notify-source-type">
+                                <img src="https://avatar.iran.liara.run/public/66" alt="">
+                            </div>
+    
+                            <div class="source-content">
+                                <div class="user">
+                                    <span class="name">Kadie Colluns</span>
+                                    <span class="action">Commented on you post</span>
+                                </div>
+                                <div class="content">"Here's to the bold step you've taken ..."</div>
+                            </div>
+                            <div class="date">4:16 AM</div>
+                        </div>
+                        <button>Replay</button>
+                    </div>
+    
+                    <div class="notify-item">
+                        <div class="info">
+    
+                            <div class="status" data-read="false"></div>
+    
+                            <div class="notify-source-type">
+                                <img src="https://avatar.iran.liara.run/public/24" alt="">
+                            </div>
+    
+                            <div class="source-content">
+                                <div class="user">
+                                    <span class="name">João Paulo</span>
+                                    <span class="action">start follow you</span>
+                                </div>
+                            </div>
+                            <div class="date">8:16 PM</div>
+                        </div>
+                        <button>Replay</button>
+                    </div>
+    
+                    <div class="notify-item">
+                        <div class="info">
+    
+                            <div class="status" data-read="false"></div>
+    
+                            <div class="notify-source-type">
+                                <img src="https://avatar.iran.liara.run/public/63" alt="">
+                            </div>
+    
+                            <div class="source-content">
+                                <div class="user">
+                                    <span class="name">Ali Colluns</span>
+                                    <span class="action">Commented on you post</span>
+                                </div>
+                                <div class="content">"Well done, love your new startup..."</div>
+                            </div>
+                            <div class="date">10:16 PM</div>
+                        </div>
+                        <button>Replay</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+</body>
+</html>
