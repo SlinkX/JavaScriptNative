@@ -1,0 +1,1041 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        @import url("https://fonts.googleapis.com/css?family=Poppins");
+
+body {
+	font-family: "Poppins", Roboto;
+	font-size: 18px;
+	background: #ededed;
+}
+main {
+	width: 1000px;
+	margin: 10px auto;
+	padding: 30px;
+	background: #fff;
+	box-shadow: 0 3px 5px rgba(0, 0, 0, 0.2);
+}
+
+h1 {
+	text-align: center;
+	margin-top: 0px;
+	color: #009688;
+}
+
+span {
+	color: #009688;
+}
+
+h4 {
+	font-size: 17px;
+	margin-bottom: 10px;
+}
+
+p {
+	font-size: 15px;
+	margin-bottom: 10px;
+}
+
+p.details {
+	color: #888888;
+}
+
+.content {
+	position: relative;
+	display: flex;
+	align-items: center;
+	gap: 40px;
+}
+
+ul {
+	list-style: none;
+	margin-left: 0;
+	padding-left: 0;
+}
+
+li h4:before {
+	font-family: webdatarocks-icons;
+	content: "\e90e";
+	color: #009688;
+	padding-right: 5px;
+}
+
+    </style>
+</head>
+<body>
+    <link href="https://cdn.webdatarocks.com/latest/theme/teal/webdatarocks.min.css" rel="stylesheet" />
+<script src="https://cdn.webdatarocks.com/latest/webdatarocks.toolbar.min.js"></script>
+<script src="https://cdn.webdatarocks.com/latest/webdatarocks.js"></script>
+
+<main>
+	<h1>WebDataRocks Pivot Grid Filters</h1>
+	<div class="content">
+		<div id="wdr-component"></div>
+		<div class="note">
+			<h3> WebDataRocks supports <span>three</span> types of filters: </h3>
+			<ul>
+				<li>
+					<h4>Filtering by member names.</h4>
+					<p>Use it to show the values of the specific members.</p>
+					<p class="details"><span>Date.Month</span> field is filtered by Spring months.</p>
+				</li>
+
+				<li>
+					<h4>Filtering by values.</h4>
+					<p>Also known as the Top/Bottom X filter.
+						Use it to keep records within a specified range (with values higher or lower than a specified number).</p>
+					<p class="details"><span>Date.Year</span> field shows Top 5 sum of Sales.</p>
+				</li>
+
+				<li>
+					<h4>A report filter.</h4>
+					<p>Use it to apply filtering to the entire report.</p>
+					<p class="details">Aircraft and Bikes are excluded from <span>Category</span> field.</p>
+				</li>
+			</ul>
+		</div>
+
+	</div>
+</main>
+<script>
+    var pivot = new WebDataRocks({
+	container: "#wdr-component",
+	//toolbar: true,
+	width: 480,
+	height: 480,
+	report: {
+		dataSource: {
+			dataSourceType: "json",
+			data: getSalesData()
+		},
+		slice: {
+			reportFilters: [
+				{
+					uniqueName: "Category",
+					filter: {
+						members: ["Category.Aircraft", "Category.Bikes"],
+						negation: true
+					}
+				}
+			],
+			rows: [
+				{
+					uniqueName: "Date.Year",
+					filter: {
+						type: "top",
+						quantity: 5,
+						measure: "Sales"
+					},
+					sort: "unsorted"
+				},
+				{
+					uniqueName: "Date.Month",
+					filter: {
+						members: ["Date.Month.February", "Date.Month.January"],
+						negation: true
+					}
+				}
+			],
+			columns: [
+				{
+					uniqueName: "Country"
+				},
+				{
+					uniqueName: "Measures"
+				}
+			],
+			measures: [
+				{
+					uniqueName: "Sales",
+					aggregation: "sum",
+					format: "currency"
+				}
+			],
+			sorting: {
+				column: {
+					type: "desc",
+					tuple: [],
+					measure: "Sales"
+				}
+			},
+			expands: {
+				rows: [
+					{
+						tuple: ["Date.Year.2018"]
+					},
+					{
+						tuple: ["Date.Year.2014"]
+					}
+				]
+			}
+		},
+		formats: [
+			{
+				name: "",
+				maxDecimalPlaces: 2
+			},
+			{
+				name: "currency",
+				thousandsSeparator: " ",
+				decimalSeparator: ".",
+				currencySymbol: "$",
+				currencySymbolAlign: "left",
+				nullValue: "",
+				textAlign: "right",
+				isPercent: false
+			}
+		]
+	}
+});
+
+function getSalesData() {
+	return [
+		{
+			Country: "Canada",
+			Category: "Aircraft",
+			Sales: 204,
+			Date: "2018-01-02",
+			Profit: 216
+		},
+		{
+			Country: "Germany",
+			Category: "Clothing",
+			Sales: 292,
+			Date: "2018-01-02",
+			Profit: 644
+		},
+		{
+			Country: "Canada",
+			Category: "Aircraft",
+			Date: "2018-01-02",
+			Sales: 901,
+			Profit: 237
+		},
+		{
+			Country: "Canada",
+			Category: "Wood",
+			Date: "2018-01-02",
+			Sales: 348
+		},
+		{
+			Country: "Canada",
+			Category: "Clothing",
+			Date: "2018-01-02",
+			Sales: 725,
+			Profit: 335
+		},
+		{
+			Country: "Canada",
+			Category: "Clothing",
+			Date: "2018-02-02",
+			Sales: 780,
+			Profit: 687
+		},
+		{
+			Country: "Germany",
+			Category: "Wood",
+			Date: "2018-02-02",
+			Sales: 62,
+			Profit: 378
+		},
+		{
+			Country: "Germany",
+			Category: "Bikes",
+			Date: "2018-02-02",
+			Sales: 125,
+			Profit: 340
+		},
+		{
+			Country: "Germany",
+			Category: "Clothing",
+			Date: "2018-02-02",
+			Sales: 190,
+			Profit: 980
+		},
+		{
+			Country: "Canada",
+			Category: "Aircraft",
+			Date: "2018-02-02",
+			Sales: 140,
+			Profit: 255
+		},
+		{
+			Country: "Canada",
+			Category: "Bikes",
+			Date: "2018-02-02",
+			Sales: 140,
+			Profit: 236
+		},
+		{
+			Country: "Canada",
+			Category: "Cars",
+			Date: "2018-03-02",
+			Sales: 588,
+			Profit: 770
+		},
+		{
+			Country: "Canada",
+			Category: "Clothing",
+			Date: "2018-03-02",
+			Sales: 470,
+			Profit: 255
+		},
+		{
+			Country: "Germany",
+			Category: "Cars",
+			Date: "2018-03-02",
+			Sales: 365,
+			Profit: 1400
+		},
+		{
+			Country: "Canada",
+			Category: "Bikes",
+			Date: "2018-03-02",
+			Sales: 320,
+			Profit: 1032
+		},
+		{
+			Country: "Germany",
+			Category: "Clothing",
+			Date: "2018-03-02",
+			Sales: 900,
+			Profit: 800
+		},
+		{
+			Country: "Germany",
+			Category: "Cars",
+			Date: "2018-03-02",
+			Sales: 700,
+			Profit: 800
+		},
+		{
+			Country: "Canada",
+			Category: "Aircraft",
+			Date: "2018-03-02",
+			Sales: 320,
+			Profit: 500
+		},
+		{
+			Country: "Canada",
+			Category: "Aircraft",
+			Date: "2018-03-02",
+			Sales: 365,
+			Profit: 240
+		},
+		{
+			Country: "Canada",
+			Category: "Aircraft",
+			Date: "2018-04-02",
+			Sales: 522,
+			Profit: 200
+		},
+		{
+			Country: "Germany",
+			Category: "Clothing",
+			Date: "2018-04-02",
+			Sales: 292,
+			Profit: 644
+		},
+		{
+			Country: "Canada",
+			Category: "Aircraft",
+			Date: "2018-04-02",
+			Sales: 260,
+			Profit: 700
+		},
+		{
+			Country: "Canada",
+			Category: "Wood",
+			Date: "2018-04-02",
+			Sales: 348,
+			Profit: 500
+		},
+		{
+			Country: "Canada",
+			Category: "Clothing",
+			Date: "2017-05-02",
+			Sales: 566,
+			Profit: 870
+		},
+		{
+			Country: "Canada",
+			Category: "Clothing",
+			Date: "2017-05-02",
+			Sales: 350,
+			Profit: 400
+		},
+		{
+			Country: "Germany",
+			Category: "Wood",
+			Date: "2017-05-02",
+			Sales: 900,
+			Profit: 1200
+		},
+		{
+			Country: "Germany",
+			Category: "Wood",
+			Date: "2017-02-02",
+			Sales: 62,
+			Profit: 378
+		},
+		{
+			Country: "Germany",
+			Category: "Bikes",
+			Date: "2017-02-02",
+			Sales: 125,
+			Profit: 340
+		},
+		{
+			Country: "Germany",
+			Category: "Clothing",
+			Date: "2017-02-02",
+			Sales: 190,
+			Profit: 980
+		},
+		{
+			Country: "Canada",
+			Category: "Aircraft",
+			Date: "2017-02-02",
+			Sales: 140,
+			Profit: 255
+		},
+		{
+			Country: "Canada",
+			Category: "Bikes",
+			Date: "2017-02-02",
+			Sales: 140,
+			Profit: 236
+		},
+		{
+			Country: "Canada",
+			Category: "Cars",
+			Date: "2017-03-02",
+			Sales: 588,
+			Profit: 770
+		},
+		{
+			Country: "Canada",
+			Category: "Clothing",
+			Date: "2017-03-02",
+			Sales: 470,
+			Profit: 255
+		},
+		{
+			Country: "Germany",
+			Category: "Cars",
+			Date: "2017-03-02",
+			Sales: 365,
+			Profit: 1400
+		},
+		{
+			Country: "Canada",
+			Category: "Bikes",
+			Date: "2017-03-02",
+			Sales: 320,
+			Profit: 1032
+		},
+		{
+			Country: "Germany",
+			Category: "Clothing",
+			Date: "2015-03-02",
+			Sales: 900,
+			Profit: 800
+		},
+		{
+			Country: "Germany",
+			Category: "Cars",
+			Date: "2015-03-02",
+			Sales: 700,
+			Profit: 800
+		},
+		{
+			Country: "Canada",
+			Category: "Aircraft",
+			Date: "2015-03-02",
+			Sales: 320,
+			Profit: 500
+		},
+		{
+			Country: "Canada",
+			Category: "Aircraft",
+			Date: "2015-03-02",
+			Sales: 365,
+			Profit: 240
+		},
+		{
+			Country: "Canada",
+			Category: "Aircraft",
+			Date: "2015-04-02",
+			Sales: 522,
+			Profit: 200
+		},
+		{
+			Country: "Germany",
+			Category: "Clothing",
+			Date: "2015-04-02",
+			Sales: 292,
+			Profit: 644
+		},
+		{
+			Country: "Canada",
+			Category: "Aircraft",
+			Date: "2015-04-02",
+			Sales: 260,
+			Profit: 700
+		},
+		{
+			Country: "Canada",
+			Category: "Wood",
+			Date: "2015-04-02",
+			Sales: 348,
+			Profit: 500
+		},
+		{
+			Country: "Canada",
+			Category: "Clothing",
+			Date: "2015-05-02",
+			Sales: 566,
+			Profit: 870
+		},
+		{
+			Country: "Canada",
+			Category: "Clothing",
+			Date: "2015-05-02",
+			Sales: 350,
+			Profit: 400
+		},
+		{
+			Country: "Germany",
+			Category: "Wood",
+			Date: "2019-05-02",
+			Sales: 900,
+			Profit: 1200
+		},
+		{
+			Country: "Canada",
+			Category: "Aircraft",
+			Date: "2015-03-02",
+			Sales: 365,
+			Profit: 240
+		},
+		{
+			Country: "Canada",
+			Category: "Aircraft",
+			Date: "2015-04-02",
+			Sales: 522,
+			Profit: 200
+		},
+		{
+			Country: "Germany",
+			Category: "Clothing",
+			Date: "2017-04-02",
+			Sales: 292,
+			Profit: 644
+		},
+		{
+			Country: "Canada",
+			Category: "Aircraft",
+			Date: "2017-04-02",
+			Sales: 260,
+			Profit: 700
+		},
+		{
+			Country: "Canada",
+			Category: "Wood",
+			Date: "2017-04-02",
+			Sales: 348,
+			Profit: 500
+		},
+		{
+			Country: "Canada",
+			Category: "Clothing",
+			Date: "2014-05-02",
+			Sales: 566,
+			Profit: 870
+		},
+		{
+			Country: "Canada",
+			Category: "Clothing",
+			Date: "2014-05-02",
+			Sales: 350,
+			Profit: 400
+		},
+		{
+			Country: "Germany",
+			Category: "Wood",
+			Date: "2014-05-02",
+			Sales: 900,
+			Profit: 1200
+		},
+		{
+			Country: "Germany",
+			Category: "Cars",
+			Date: "2014-03-02",
+			Sales: 700,
+			Profit: 800
+		},
+		{
+			Country: "Canada",
+			Category: "Aircraft",
+			Date: "2014-03-02",
+			Sales: 320,
+			Profit: 500
+		},
+		{
+			Country: "Canada",
+			Category: "Aircraft",
+			Date: "2014-03-02",
+			Sales: 365,
+			Profit: 240
+		},
+		{
+			Country: "Canada",
+			Category: "Aircraft",
+			Date: "2014-04-02",
+			Sales: 522,
+			Profit: 200
+		},
+		{
+			Country: "Germany",
+			Category: "Clothing",
+			Date: "2014-04-02",
+			Sales: 292,
+			Profit: 644
+		},
+		{
+			Country: "Canada",
+			Category: "Aircraft",
+			Date: "2014-04-02",
+			Sales: 260,
+			Profit: 700
+		},
+		{
+			Country: "Canada",
+			Category: "Wood",
+			Date: "2014-04-02",
+			Sales: 348,
+			Profit: 500
+		},
+		{
+			Country: "Canada",
+			Category: "Clothing",
+			Date: "2014-05-02",
+			Sales: 566,
+			Profit: 870
+		},
+		{
+			Country: "Canada",
+			Category: "Clothing",
+			Date: "2014-05-02",
+			Sales: 350,
+			Profit: 400
+		},
+		{
+			Country: "Germany",
+			Category: "Wood",
+			Date: "2014-05-02",
+			Sales: 900,
+			Profit: 1200
+		},
+		{
+			Country: "Canada",
+			Category: "Aircraft",
+			Date: "2014-03-02",
+			Sales: 365,
+			Profit: 240
+		},
+		{
+			Country: "Canada",
+			Category: "Aircraft",
+			Date: "2014-04-02",
+			Sales: 522,
+			Profit: 200
+		},
+		{
+			Country: "Germany",
+			Category: "Clothing",
+			Date: "2014-04-02",
+			Sales: 292,
+			Profit: 644
+		},
+		{
+			Country: "Canada",
+			Category: "Aircraft",
+			Date: "2014-04-02",
+			Sales: 260,
+			Profit: 700
+		},
+		{
+			Country: "Canada",
+			Category: "Wood",
+			Date: "2014-04-02",
+			Sales: 348,
+			Profit: 500
+		},
+		{
+			Country: "Canada",
+			Category: "Clothing",
+			Date: "2014-05-02",
+			Sales: 566,
+			Profit: 870
+		},
+		{
+			Country: "Canada",
+			Category: "Clothing",
+			Date: "2014-05-02",
+			Sales: 350,
+			Profit: 400
+		},
+		{
+			Country: "Germany",
+			Category: "Wood",
+			Date: "2014-05-02",
+			Sales: 900,
+			Profit: 1200
+		},
+		{
+			Country: "Germany",
+			Category: "Wood",
+			Date: "2018-02-02",
+			Sales: 62,
+			Profit: 378
+		},
+		{
+			Country: "Germany",
+			Category: "Bikes",
+			Date: "2018-02-02",
+			Sales: 125,
+			Profit: 340
+		},
+		{
+			Country: "Germany",
+			Category: "Clothing",
+			Date: "2018-02-02",
+			Sales: 190,
+			Profit: 980
+		},
+		{
+			Country: "Canada",
+			Category: "Aircraft",
+			Date: "2018-02-02",
+			Sales: 140,
+			Profit: 255
+		},
+		{
+			Country: "Canada",
+			Category: "Bikes",
+			Date: "2018-02-02",
+			Sales: 140,
+			Profit: 236
+		},
+		{
+			Country: "Canada",
+			Category: "Cars",
+			Date: "2018-03-02",
+			Sales: 588,
+			Profit: 770
+		},
+		{
+			Country: "Canada",
+			Category: "Clothing",
+			Date: "2018-03-02",
+			Sales: 470,
+			Profit: 255
+		},
+		{
+			Country: "Germany",
+			Category: "Cars",
+			Date: "2018-03-02",
+			Sales: 365,
+			Profit: 1400
+		},
+		{
+			Country: "Canada",
+			Category: "Bikes",
+			Date: "2018-03-02",
+			Sales: 320,
+			Profit: 1032
+		},
+		{
+			Country: "Germany",
+			Category: "Clothing",
+			Date: "2018-03-02",
+			Sales: 900,
+			Profit: 800
+		},
+		{
+			Country: "Germany",
+			Category: "Cars",
+			Date: "2018-03-02",
+			Sales: 700,
+			Profit: 800
+		},
+		{
+			Country: "Canada",
+			Category: "Aircraft",
+			Date: "2018-03-02",
+			Sales: 320,
+			Profit: 500
+		},
+		{
+			Country: "Canada",
+			Category: "Aircraft",
+			Date: "2018-03-02",
+			Sales: 365,
+			Profit: 240
+		},
+		{
+			Country: "Canada",
+			Category: "Aircraft",
+			Date: "2018-04-02",
+			Sales: 522,
+			Profit: 200
+		},
+		{
+			Country: "Germany",
+			Category: "Clothing",
+			Date: "2018-04-02",
+			Sales: 292,
+			Profit: 644
+		},
+		{
+			Country: "Canada",
+			Category: "Aircraft",
+			Date: "2018-04-02",
+			Sales: 260,
+			Profit: 700
+		},
+		{
+			Country: "Canada",
+			Category: "Wood",
+			Date: "2018-04-02",
+			Sales: 348,
+			Profit: 500
+		},
+		{
+			Country: "Canada",
+			Category: "Clothing",
+			Date: "2017-05-02",
+			Sales: 566,
+			Profit: 870
+		},
+		{
+			Country: "Canada",
+			Category: "Clothing",
+			Date: "2017-05-02",
+			Sales: 350,
+			Profit: 400
+		},
+		{
+			Country: "Germany",
+			Category: "Wood",
+			Date: "2017-05-02",
+			Sales: 900,
+			Profit: 1200
+		},
+		{
+			Country: "Germany",
+			Category: "Wood",
+			Date: "2017-02-02",
+			Sales: 62,
+			Profit: 378
+		},
+		{
+			Country: "Germany",
+			Category: "Bikes",
+			Date: "2017-02-02",
+			Sales: 125,
+			Profit: 340
+		},
+		{
+			Country: "Germany",
+			Category: "Clothing",
+			Date: "2017-02-02",
+			Sales: 190,
+			Profit: 980
+		},
+		{
+			Country: "Canada",
+			Category: "Aircraft",
+			Date: "2017-02-02",
+			Sales: 140,
+			Profit: 255
+		},
+		{
+			Country: "Canada",
+			Category: "Bikes",
+			Date: "2017-02-02",
+			Sales: 140,
+			Profit: 236
+		},
+		{
+			Country: "Canada",
+			Category: "Cars",
+			Date: "2017-03-02",
+			Sales: 588,
+			Profit: 770
+		},
+		{
+			Country: "Canada",
+			Category: "Clothing",
+			Date: "2017-03-02",
+			Sales: 470,
+			Profit: 255
+		},
+		{
+			Country: "Germany",
+			Category: "Cars",
+			Date: "2017-03-02",
+			Sales: 365,
+			Profit: 1400
+		},
+		{
+			Country: "Canada",
+			Category: "Bikes",
+			Date: "2019-03-02",
+			Sales: 320,
+			Profit: 1032
+		},
+		{
+			Country: "Germany",
+			Category: "Clothing",
+			Date: "2019-03-02",
+			Sales: 900,
+			Profit: 800
+		},
+		{
+			Country: "Germany",
+			Category: "Cars",
+			Date: "2019-03-02",
+			Sales: 700,
+			Profit: 800
+		},
+		{
+			Country: "Germany",
+			Category: "Clothing",
+			Date: "2018-04-02",
+			Sales: 292,
+			Profit: 644
+		},
+		{
+			Country: "Canada",
+			Category: "Aircraft",
+			Date: "2013-04-02",
+			Sales: 260,
+			Profit: 700
+		},
+		{
+			Country: "Canada",
+			Category: "Wood",
+			Date: "2013-04-02",
+			Sales: 348,
+			Profit: 500
+		},
+		{
+			Country: "Canada",
+			Category: "Clothing",
+			Date: "2013-05-02",
+			Sales: 566,
+			Profit: 870
+		},
+		{
+			Country: "Canada",
+			Category: "Clothing",
+			Date: "2013-05-02",
+			Sales: 350,
+			Profit: 400
+		},
+		{
+			Country: "Germany",
+			Category: "Wood",
+			Date: "2013-05-02",
+			Sales: 900,
+			Profit: 1200
+		},
+		{
+			Country: "Germany",
+			Category: "Wood",
+			Date: "2013-02-02",
+			Sales: 62,
+			Profit: 378
+		},
+		{
+			Country: "Germany",
+			Category: "Bikes",
+			Date: "2013-02-02",
+			Sales: 125,
+			Profit: 340
+		},
+		{
+			Country: "Germany",
+			Category: "Clothing",
+			Date: "2013-02-02",
+			Sales: 190,
+			Profit: 980
+		},
+		{
+			Country: "Canada",
+			Category: "Aircraft",
+			Date: "2013-02-02",
+			Sales: 140,
+			Profit: 255
+		},
+		{
+			Country: "Canada",
+			Category: "Bikes",
+			Date: "2013-02-02",
+			Sales: 140,
+			Profit: 236
+		},
+		{
+			Country: "Canada",
+			Category: "Cars",
+			Date: "2013-03-02",
+			Sales: 588,
+			Profit: 770
+		},
+		{
+			Country: "Canada",
+			Category: "Clothing",
+			Date: "2013-03-02",
+			Sales: 470,
+			Profit: 255
+		},
+		{
+			Country: "Germany",
+			Category: "Cars",
+			Date: "2013-03-02",
+			Sales: 365,
+			Profit: 1400
+		},
+		{
+			Country: "Canada",
+			Category: "Bikes",
+			Date: "2013-03-02",
+			Sales: 320,
+			Profit: 1032
+		},
+		{
+			Country: "Germany",
+			Category: "Clothing",
+			Date: "2013-03-02",
+			Sales: 900,
+			Profit: 800
+		},
+		{
+			Country: "Germany",
+			Category: "Cars",
+			Date: "2013-03-02",
+			Sales: 700,
+			Profit: 800
+		}
+	];
+}
+
+</script>
+</body>
+</html>
