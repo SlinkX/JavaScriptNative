@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+	background-color: #FEE6C8;
+	font-family: 'Architects Daughter', cursive;
+	color: #2D3436;
+}
+div.container-card{
+	background-color: #EEEDF0;
+	border-radius: 0.2em;
+	overflow: hidden;
+}
+div.container .row .col-md-6 img{
+	width: 100%;
+}
+.lenovo-brand{
+	background-color: #E22426;
+	color: white;
+	padding: 0.3em;
+	width: 120px;
+	text-align: center;
+	border-radius: 0.2em;
+}
+.lenovo-brand span{
+	font-size: 22px;
+	font-weight: bold;
+}
+.lenovo-brand sub{
+	font-size: 8px;
+}
+.share-button i{
+	color: #E22426;
+	font-size: 30px;
+	float: right;
+}
+.left-side-card{
+	background-color: #545D7A;
+	z-index: 1;
+}
+.light{
+	fill: #FFBF00;
+}
+.night{
+	fill: #152238;
+}
+.ribbon{
+	width: 220px;
+	height: 45px;
+	box-shadow: 0px 2px 3px rgba(136, 136, 136, 0.25); 
+	background-color: #E22426;
+	color: white;
+	text-align: center;
+	font-weight: bold;
+	transform: rotate(45deg);
+	position: absolute;
+	right: -55px;
+	top: 32px;
+	padding: 10px;
+	font-size: 20px;
+}
+.heading-card-title h3{
+	font-weight: bold;
+	color: #545D7A;
+}
+.heading-card-title .badge-tag{
+	background-color: #1F6C75;
+}
+.heading-card-title-info{
+	color: #CF365F;
+}
+.card-product-info, .price-tag{
+	font-family: 'Acme', sans-serif;
+	font-size: 20px;
+}
+.card-product-support{
+	font-family: 'Caveat', cursive;
+}
+.card-product-support i{
+	color: #306BF3;
+}
+.price-tag{
+	margin-left: 0.5em;
+}
+.price-tag .symbol {
+  	font-size: 35px;
+  	color: #ABC4FF;
+}
+.price-tag .amount {
+  	letter-spacing: -2px;
+  	font-size: 64px;
+  	color: #306BF3;
+}
+.add-to-cart-button button{
+	margin-top: 2em;
+	background-color: #CF365F;
+	border: none;
+	padding: 0.8em;
+	float: right;
+}
+.add-to-cart-button button:hover{
+	background-color: #F9ACA7;
+	color: #2D3436;
+	font-weight: bold;
+}
+.color-card{
+	height: 100px;
+}
+.card-footer{
+	font-weight: bold;
+}
+#main-color-header{
+	color: #2D3436;
+}
+    </style>
+</head>
+<body>
+    <div class="container">
+		<div class="row mt-2">
+			<div class="offset-md-6 col-md-6 mt-2 row" style="text-align: center;">				
+				<div class="col-md-2 col-2">
+					<div style="margin-top: 20%;">
+						<svg id="mode" class="night" enable-background="new 0 0 24 24" height="28pt" viewBox="0 0 24 24" width="28pt" xmlns="http://www.w3.org/2000/svg"><path d="m12 3.457c-.414 0-.75-.336-.75-.75v-1.957c0-.414.336-.75.75-.75s.75.336.75.75v1.957c0 .414-.336.75-.75.75z"/><path d="m18.571 6.179c-.192 0-.384-.073-.53-.22-.293-.293-.293-.768 0-1.061l1.384-1.384c.293-.293.768-.293 1.061 0s.293.768 0 1.061l-1.384 1.384c-.147.146-.339.22-.531.22z"/><path d="m23.25 12.75h-1.957c-.414 0-.75-.336-.75-.75s.336-.75.75-.75h1.957c.414 0 .75.336.75.75s-.336.75-.75.75z"/><path d="m19.955 20.705c-.192 0-.384-.073-.53-.22l-1.384-1.384c-.293-.293-.293-.768 0-1.061s.768-.293 1.061 0l1.384 1.384c.293.293.293.768 0 1.061-.147.147-.339.22-.531.22z"/><path d="m4.045 20.705c-.192 0-.384-.073-.53-.22-.293-.293-.293-.768 0-1.061l1.384-1.384c.293-.293.768-.293 1.061 0s.293.768 0 1.061l-1.384 1.384c-.147.147-.339.22-.531.22z"/><path d="m2.707 12.75h-1.957c-.414 0-.75-.336-.75-.75s.336-.75.75-.75h1.957c.414 0 .75.336.75.75s-.336.75-.75.75z"/><path d="m5.429 6.179c-.192 0-.384-.073-.53-.22l-1.384-1.384c-.293-.293-.293-.768 0-1.061s.768-.293 1.061 0l1.384 1.384c.293.293.293.768 0 1.061-.148.146-.339.22-.531.22z"/><path d="m15 21v1.25c0 .96-.79 1.75-1.75 1.75h-2.5c-.84 0-1.75-.64-1.75-2.04v-.96z"/><path d="m16.41 6.56c-1.64-1.33-3.8-1.85-5.91-1.4-2.65.55-4.8 2.71-5.35 5.36-.56 2.72.46 5.42 2.64 7.07.59.44 1 1.12 1.14 1.91v.01c.02-.01.05-.01.07-.01h6c.02 0 .03 0 .05.01v-.01c.14-.76.59-1.46 1.28-2 1.69-1.34 2.67-3.34 2.67-5.5 0-2.12-.94-4.1-2.59-5.44zm-.66 5.94c-.41 0-.75-.34-.75-.75 0-1.52-1.23-2.75-2.75-2.75-.41 0-.75-.34-.75-.75s.34-.75.75-.75c2.34 0 4.25 1.91 4.25 4.25 0 .41-.34.75-.75.75z"/><path d="m8.93 19.5h.07c-.02 0-.05 0-.07.01z"/><path d="m15.05 19.5v.01c-.02-.01-.03-.01-.05-.01z"/></svg>
+					</div>
+				</div>
+				<div class="col-md-2 col-2">
+					<div class="ribbon-color" data-color="#E22426" style="background-color: #E22426;height:30px; width: 30px;margin-top: 20%;"></div>
+				</div>
+				<div class="col-md-2 col-2">
+					<div class="ribbon-color" data-color="#E2662b" style="background-color: #E2662b;height:30px; width: 30px;margin-top: 20%;"></div>
+				</div>
+				<div class="col-md-2 col-2">
+					<div class="ribbon-color" data-color="#541743" style="background-color: #541743;height:30px; width: 30px;margin-top: 20%;"></div>
+				</div>
+				<div class="col-md-2 col-2">
+					<div class="ribbon-color" data-color="#ABC4FF" style="background-color: #ABC4FF;height:30px; width: 30px;margin-top: 20%;"></div>
+				</div>
+			</div>			
+		</div>
+	</div>
+	<div class="container container-card mt-3">
+		<div class="row">
+			<!-- left side card -->
+			<div class="col-md-6 left-side-card pt-5">
+				<div class="row mt-3 mb-3">
+					<div class="col-md-6">
+						<div class="lenovo-brand ml-4">
+							<span>Lenovo</span> <sub>TM</sub>
+						</div>
+					</div>
+					<div class="col-md-6">
+						<div class="share-button mr-5">
+							<i class="fa fa-share-alt" aria-hidden="true"></i>
+						</div>
+					</div>
+				</div>
+				<div>
+					<img src="https://www.lenovo.com/medias/lenovo-laptop-thinkpad-x1-carbon-gen8-subseries-hero.png?context=bWFzdGVyfHJvb3R8ODQ4NDd8aW1hZ2UvcG5nfGgyMi9oOGYvMTA2NzQ1ODc3Mjk5NTAucG5nfDQzODYxOTc5ODA0MWJhZTQyYThjOTAzZjE0NDI2NWVjYjY5MjE3MGFiMWEzODhlN2UyMGUwNGZhMWRmOTJmNzg">				
+				</div>
+			</div>	
+			<!-- right side card -->
+			<div class="col-md-6 pb-2 right-side-card">
+				<div class="main-card">
+					<div class="heading-card-title mt-4">
+						<h3>Laptops <span class="badge badge-secondary badge-tag">New</span></h3>
+						<div class="ribbon" contenteditable="true">Best Value</div>
+					</div>	
+					<div class="heading-card-title-info">
+						<h1>ThinkPad X1 Carbon</h1>
+					</div>
+					<div class="card-product-info pt-3 pb-3">
+						<h5>PRODUCT INFO</h5>
+						<div>
+							<ul>
+								<li>8th Generation Intel® Core™ i7 Processors</li>
+								<li>One of our first Intel® 14" mobility-certified laptops</li>
+								<li>Thin and lightweight</li>
+								<li>Amazing display options</li>
+								<li>Up to 19.5 hours of battery life</li>
+								<li>Best-in-class connectivity, and rapid charging technology</li>
+								<li>Advanced security options and enhanced audio</li>
+								<li>Delivers the ultimate in premium performance</li>
+							</ul>							
+						</div>
+						<div class="card-product-support">
+							<i class="fa fa-info-circle pr-2" aria-hidden="true"></i>For a limited time only, 1 year of Premier Onsite Support is included for only a penny!							
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-6">
+				            <div class="price-tag">
+				               <span class="symbol">$</span>
+				               <span class="amount">949.99</span>
+				            </div>						
+						</div>
+						<div class="col-md-6 add-to-cart-button">
+							<button class="btn btn-success"><i class="fa fa-shopping-cart" aria-hidden="true"></i> ADD TO CART</button>
+						</div>
+					</div>
+				</div>
+			</div>	
+		</div>
+	</div>
+	<div class="container mt-3 p-1">
+		<h1 style="text-align: center;" id="main-color-header">Main color</h1>
+		<div class="row">
+			<div class="col-md-2 col-sm-4 col-6">
+				<div class="card">
+					<input type="color" id="logo-color" value="#E22426" style="height:80px; width: 100%; border: none;"> 
+				    <div class="card-footer">#E22426</div>
+				</div>
+			</div>
+			<div class="col-md-2 col-sm-4 col-6">
+				<div class="card">
+				    <input type="color" id="picture-bg-color" value="#545D7A" style="height:80px; width: 100%; border: none;"> 
+				    <div class="card-footer">#545D7A</div>
+				</div>
+			</div>
+			<div class="col-md-2 col-sm-4 col-6">
+				<div class="card">
+				    <input type="color" id="info-bg-color" value="#EEEDF0" style="height:80px; width: 100%; border: none;"> 
+				    <div class="card-footer">#EEEDF0</div>
+				</div>
+			</div>
+			<div class="col-md-2 col-sm-4 col-6">
+				<div class="card">
+				    <input type="color" id="info-badge-color" value="#1F6C75" style="height:80px; width: 100%; border: none;">
+				    <div class="card-footer">#1F6C75</div>
+				</div>
+			</div>
+			<div class="col-md-2 col-sm-4 col-6">
+				<div class="card">
+				    <input type="color" id="button-add-color" value="#CF365F" style="height:80px; width: 100%; border: none;">
+				    <div class="card-footer">#CF365F</div>
+				</div>
+			</div>
+			<div class="col-md-2 col-sm-4 col-6">
+				<div class="card">
+				    <input type="color" id="price-color" value="#306BF3" style="height:80px; width: 100%; border: none;">
+				    <div class="card-footer">#306BF3</div>
+				</div>
+			</div>
+		</div>
+	</div>
+    <script>
+        $(document).ready(function(){
+
+$(document).on('click', '#mode', function(){
+    if ( $(this).hasClass("light") ) {
+      $(this).removeClass( "light" );
+      $(this).addClass( "night" );
+      $('body').css("background-color", "#FEE6C8");
+      $('#main-color-header').css("color", "#2D3436");
+      $('.left-side-card').css("background-color", "#545D7A");
+      $('.container-card').css("background-color", "#EEEDF0").css("color", "#2D3436");
+    }
+    else if ( $(this).hasClass("night") ){
+      $(this).removeClass( "night" );
+      $(this).addClass( "light" );
+      $('body').css("background-color", "#23395D");
+      $('#main-color-header').css("color", "white");
+      $('.left-side-card').css("background-color", "#EEEDF0");
+      $('.container-card').css("background-color", "#00225D").css("color", "white");
+    }
+});
+
+$(document).on('click', '.ribbon-color', function(){
+  let color = $(this).data( "color");
+  $('.ribbon').css("background-color", color);
+  $('.symbol').css("color", color);
+});
+
+/*************************************************/
+  $(document).on('input', '#logo-color', function(){
+      let color = $('#logo-color').val();
+    $(".lenovo-brand").css("background-color", color);
+  });
+
+$(document).on('input', '#picture-bg-color', function(){
+      let color = $('#picture-bg-color').val();
+    $('.left-side-card').css("background-color", color);
+    $('.heading-card-title').css("color", color);
+  });
+
+$(document).on('input', '#info-bg-color', function(){
+      let color = $('#info-bg-color').val();
+    $(".container-card").css("background-color", color);
+  });
+
+$(document).on('input', '#info-badge-color', function(){
+      let color = $('#info-badge-color').val();
+    $(".badge-tag").css("background-color", color);
+  });
+
+$(document).on('input', '#button-add-color', function(){
+      let color = $('#button-add-color').val();
+    $(".heading-card-title-info").css("color", color);
+    $(".add-to-cart-button button").css("background-color", color);
+  });
+
+$(document).on('input', '#price-color', function(){
+      let color = $('#price-color').val();
+    $(".card-product-support i").css("color", color);
+    $(".amount").css("color", color);
+  });
+
+});
+    </script>
+</body>
+</html>
