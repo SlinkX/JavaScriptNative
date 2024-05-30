@@ -1,0 +1,2208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style lang="scss">
+        @import url("https://fonts.googleapis.com/css2?family=Archivo+Black&display=swap");
+
+$black: #000038;
+$white: #fff;
+$red: #ff7d66;
+$blue: #419197;
+$yellow: #f5fccd;
+$pink: #eb80b1;
+$dark-blue: #12486b;
+$green: #80c0a1;
+$light-grey: #bdc3c6;
+$grey: #919ea3;
+
+$default-skin: #ffdbac;
+$default-hair: $black;
+$default-body: $red;
+$default-background: $blue;
+
+html {
+  @media screen and (max-height: 650px) {
+    font-size: 14px;
+  }
+  @media screen and (max-width: 650px), screen and (max-height: 550px) {
+    font-size: 12px;
+  }
+  @media screen and (max-width: 450px), screen and (max-height: 450px) {
+    font-size: 10px;
+  }
+}
+
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0;
+  height: 100vh;
+  color: $white;
+  background: linear-gradient(
+    var(--background, $default-background),
+    $black 200%
+  );
+  font-family: "Archivo Black", sans-serif;
+  text-transform: uppercase;
+  overflow: hidden;
+}
+
+.characters-choose {
+  position: absolute;
+  top: 0;
+  left: 0;
+  padding: 0.5rem 1.2rem 0.5rem 0.5rem;
+  height: 100%;
+  background-color: rgba($black, 0.5);
+  overflow-x: hidden;
+  overflow-y: auto;
+  scrollbar-color: $white transparent;
+  scrollbar-width: thin;
+
+  &::-webkit-scrollbar {
+    width: 0.5rem;
+  }
+  &::-webkit-scrollbar-thumb {
+    border-radius: 0.5rem;
+    background-color: $white;
+  }
+  &__selector {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 9rem;
+    text-align: center;
+    &:last-child {
+      margin-bottom: 1rem;
+    }
+  }
+  &__arrow {
+    margin: 0.8rem 0.2rem;
+    border-top: 0.5rem solid transparent;
+    border-bottom: 0.5rem solid transparent;
+    cursor: pointer;
+    transition-property: border-left-color, border-right-color;
+    transition-duration: 0.1s;
+    &--right {
+      border-left: 0.94rem solid $white;
+    }
+    &--left {
+      border-right: 0.94rem solid $white;
+    }
+    &:hover {
+      border-left-color: $pink;
+      border-right-color: $pink;
+    }
+  }
+}
+
+.character {
+  $component-class: &;
+  position: relative;
+  width: 16rem;
+  height: 26rem;
+  &__frame {
+    position: absolute;
+    top: -4rem;
+    left: -4rem;
+    width: 22rem;
+    height: 28.5rem;
+    border-top: 1rem solid $white;
+    border-left: 1rem solid $white;
+    border-right: 1rem solid $white;
+    border-bottom: 5rem solid $white;
+    transition: box-shadow 0.3s ease;
+    &:hover {
+      box-shadow: 0 0 2rem 1rem rgba($black, 0.3);
+    }
+  }
+  &__frame-text {
+    position: absolute;
+    bottom: -6.5rem;
+    right: -1rem;
+    color: $white;
+    pointer-events: none;
+  }
+  &__frame-icon {
+    position: absolute;
+    bottom: -4.5rem;
+    right: -0.5rem;
+    transform: scale(0.2);
+    transform-origin: 100% 100%;
+    opacity: 0.6;
+    pointer-events: none;
+  }
+  &__body {
+    position: absolute;
+    top: 17.5rem;
+    left: 0;
+    width: 16rem;
+    height: 8rem;
+    background: linear-gradient(var(--body, $default-body), $black 200%);
+    border-radius: 4rem 4rem 0 0;
+    transition: border-radius 1s ease;
+  }
+  &__neck {
+    position: absolute;
+    top: 16rem;
+    left: 6rem;
+    width: 4rem;
+    height: 4rem;
+    border-radius: 1rem 1rem 2rem 2rem;
+    overflow: hidden;
+    &:before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: -50%;
+      width: 200%;
+      height: 100%;
+      background: radial-gradient(
+        circle at 50% 0,
+        var(--skin, $default-skin),
+        $black 200%
+      );
+    }
+  }
+  &__hat {
+    position: absolute;
+    &--cap {
+      top: 0.5rem;
+      left: 2rem;
+      z-index: 1;
+      width: 12rem;
+      height: 6rem;
+      background: linear-gradient($red, $black 300%);
+      border-radius: 3rem 3rem 0.5rem 0.5rem;
+      &:before {
+        content: "ͼ";
+        position: absolute;
+        top: 2rem;
+        left: 7rem;
+        opacity: 0.6;
+        font-size: 3rem;
+        font-weight: 700;
+      }
+      &:after {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 15rem;
+        height: 0.5rem;
+        background: linear-gradient($red, $black 300%);
+      }
+    }
+    &--wool {
+      top: 1rem;
+      left: 2rem;
+      z-index: 1;
+      width: 12rem;
+      height: 6rem;
+      background: linear-gradient($light-grey, $black 300%);
+      border-radius: 4rem 4rem 0.5rem 0.5rem;
+      &:before {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: -0.5rem;
+        width: 13rem;
+        height: 2rem;
+        background: linear-gradient($light-grey, $black 300%);
+      }
+      &:after {
+        content: "ͼ";
+        position: absolute;
+        bottom: 0.5rem;
+        right: 1rem;
+        padding: 0.2rem 0.3rem;
+        color: $black;
+        background-color: $white;
+        font-weight: 700;
+      }
+    }
+    &--top-hat {
+      top: 0;
+      left: 2rem;
+      z-index: 1;
+      width: 12rem;
+      height: 7rem;
+      background: linear-gradient($white -300%, $black);
+      border-radius: 1rem 1rem 0 0;
+      &:before {
+        content: "";
+        position: absolute;
+        top: 5rem;
+        left: 0;
+        width: 100%;
+        height: 1.5rem;
+        background-color: $white;
+      }
+      &:after {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: -2rem;
+        width: 16rem;
+        height: 0.5rem;
+        background: linear-gradient($white -300%, $black);
+      }
+    }
+    &--party {
+      top: 3rem;
+      left: 1.5rem;
+      z-index: -2;
+      width: 10rem;
+      height: 10rem;
+      background: radial-gradient(
+        circle at 100% 100%,
+        transparent 50%,
+        $black 50%,
+        $dark-blue 65%,
+        $yellow 65%,
+        $yellow 70%,
+        $pink 70%,
+        $pink 75%,
+        $yellow 75%,
+        $yellow 80%,
+        $pink 80%,
+        $pink 85%,
+        $yellow 85%,
+        $yellow 90%,
+        $pink 90%,
+        $pink 95%,
+        $yellow 95%,
+        $yellow
+      );
+      transform: rotate(45deg) skew(25deg, 25deg) rotate(-10deg);
+    }
+    &--cap-backwards {
+      top: 0.5rem;
+      left: 2rem;
+      z-index: 1;
+      width: 12rem;
+      height: 6rem;
+      background: linear-gradient($green, $black 300%);
+      border-radius: 3rem 3rem 0.5rem 0.5rem;
+      &:before {
+        content: "";
+        position: absolute;
+        top: 4.5rem;
+        left: 7rem;
+        width: 2rem;
+        height: 0.5rem;
+        background-color: $dark-blue;
+      }
+      &:after {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        right: 0;
+        width: 15rem;
+        height: 0.5rem;
+        background: linear-gradient($green, $black 300%);
+      }
+    }
+    &--halo {
+      top: 1rem;
+      left: 1rem;
+      z-index: -1;
+      width: 13rem;
+      height: 7rem;
+      border-radius: 50%;
+      border: 0.5rem solid $yellow;
+    }
+    &--horns {
+      &:before,
+      &:after {
+        content: "";
+        position: absolute;
+        z-index: -2;
+        top: 5rem;
+        width: 6rem;
+        height: 6rem;
+        background: linear-gradient(135deg, $red, $black 200%);
+      }
+      &:before {
+        left: 3rem;
+        transform: rotate(15deg) skew(30deg, 30deg);
+      }
+      &:after {
+        left: 7rem;
+        transform: rotate(75deg) skew(30deg, 30deg);
+      }
+    }
+    &--beret {
+      top: 2rem;
+      left: 3rem;
+      z-index: 1;
+      width: 10rem;
+      height: 5rem;
+      background: linear-gradient(
+        $black -100%,
+        $dark-blue 60%,
+        transparent 60%
+      );
+      border-radius: 50%;
+      &:before {
+        content: "";
+        position: absolute;
+        top: -0.8rem;
+        left: 4.5rem;
+        width: 0.3rem;
+        height: 1rem;
+        background: linear-gradient($dark-blue, $black 300%);
+        transform: rotate(-25deg);
+      }
+      &:after {
+        content: "";
+        position: absolute;
+        bottom: 2rem;
+        left: 0;
+        width: 11rem;
+        height: 0.3rem;
+        background: linear-gradient($dark-blue, $black 300%);
+      }
+    }
+    &--furry {
+      &:before,
+      &:after {
+        content: "";
+        position: absolute;
+        z-index: -2;
+        top: 4rem;
+        width: 6rem;
+        height: 6rem;
+        background: linear-gradient(135deg, $pink, $black 200%);
+        border: 1rem solid $grey;
+      }
+      &:before {
+        left: 1rem;
+        transform: rotate(30deg) skew(25deg, 25deg);
+        border-radius: 20% 0 0 50%;
+      }
+      &:after {
+        left: 7rem;
+        transform: rotate(60deg) skew(25deg, 25deg);
+        border-radius: 20% 50% 0 0;
+      }
+    }
+    display: none;
+    &--active {
+      display: blocK;
+    }
+  }
+  &__face {
+    position: absolute;
+    top: 6rem;
+    left: 2rem;
+    width: 12rem;
+    height: 12rem;
+    background: radial-gradient(
+      circle at 70% 20%,
+      var(--skin, $default-skin),
+      $black 180%
+    );
+    &--round {
+      border-radius: 40% 40% 50% 50%;
+    }
+    &--ellipse {
+      top: 6.5rem;
+      height: 11rem;
+      border-radius: 40% 40% 50% 50%;
+    }
+    &--square {
+      border-radius: 45% 45% 5rem 5rem;
+    }
+    &--pointy {
+      background: radial-gradient(
+        circle at 80% 50%,
+        var(--skin, $default-skin),
+        $black 180%
+      );
+      border-radius: 50% 50% 50% 35%;
+      transform: rotate(-45deg);
+    }
+    display: none;
+    &--active {
+      display: blocK;
+    }
+  }
+  &__hair {
+    position: absolute;
+    top: 6rem;
+    left: 2rem;
+    width: 12rem;
+    height: 12rem;
+    background-color: var(--hair, $default-hair);
+    &--long {
+      top: 3.5rem;
+      left: 6rem;
+      width: 8rem;
+      height: 5rem;
+      border-radius: 0 5rem 0 50%;
+      &:before {
+        content: "";
+        position: absolute;
+        top: 0.5rem;
+        left: -4rem;
+        z-index: -1;
+        width: 12rem;
+        height: 10rem;
+        background-color: var(--hair, $default-hair);
+        border-radius: 50% 50% 1rem 1rem;
+      }
+      &:after {
+        content: "";
+        position: absolute;
+        left: -4rem;
+        width: 4rem;
+        height: 5rem;
+        background: var(--hair, $default-hair);
+        border-radius: 5rem 0 50% 0;
+      }
+    }
+    &--square {
+      top: 4rem;
+      height: 4rem;
+      border-radius: 1rem 1rem 50% 50%;
+      &:before {
+        content: "";
+        position: absolute;
+        top: 1rem;
+        left: 0rem;
+        z-index: -1;
+        width: 12rem;
+        height: 10rem;
+        background: linear-gradient(
+          var(--hair, $default-hair) 50%,
+          $black 200%
+        );
+        border-radius: 0 0 1rem 1rem;
+      }
+    }
+    &--afro {
+      top: 2rem;
+      z-index: -1;
+      border-radius: 50%;
+      background: linear-gradient(var(--hair, $default-hair) 50%, $black 200%);
+    }
+    &--short {
+      top: 5rem;
+      left: 3rem;
+      width: 10rem;
+      height: 2.5rem;
+      border-radius: 50%;
+      &:before {
+        content: "";
+        position: absolute;
+        top: -1.5rem;
+        left: -1rem;
+        z-index: -1;
+        width: 12rem;
+        height: 10rem;
+        background-color: var(--hair, $default-hair);
+        border-radius: 50% 50% 3rem 3rem;
+      }
+    }
+    &--very-long {
+      top: 3.5rem;
+      left: 6rem;
+      width: 8rem;
+      height: 5rem;
+      border-radius: 0 5rem 0 50%;
+      &:before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: -5rem;
+        z-index: -1;
+        width: 14rem;
+        height: 12rem;
+        background: linear-gradient(
+          var(--hair, $default-hair) 50%,
+          $black 300%
+        );
+        border-radius: 5rem 5rem 2rem 2rem;
+      }
+      &:after {
+        content: "";
+        position: absolute;
+        left: -4rem;
+        width: 4rem;
+        height: 5rem;
+        background-color: var(--hair, $default-hair);
+        border-radius: 5rem 0 50% 0;
+      }
+    }
+    &--mane {
+      top: 3.5rem;
+      left: 6rem;
+      width: 8rem;
+      height: 5rem;
+      border-radius: 0 5rem 0 50%;
+      &:before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: -5rem;
+        z-index: -1;
+        width: 14rem;
+        height: 16rem;
+        background: linear-gradient(
+          var(--hair, $default-hair) 50%,
+          $black 300%
+        );
+        border-radius: 5rem 5rem 0.5rem 0.5rem;
+      }
+      &:after {
+        content: "";
+        position: absolute;
+        left: -4rem;
+        width: 4rem;
+        height: 5rem;
+        background-color: var(--hair, $default-hair);
+        border-radius: 5rem 0 50% 0;
+      }
+    }
+    &--wavy {
+      top: 3.5rem;
+      left: 6rem;
+      width: 9rem;
+      height: 4.5rem;
+      border-radius: 0 3rem 0 40%;
+      &:before {
+        content: "";
+        position: absolute;
+        top: 3rem;
+        left: -5.5rem;
+        z-index: -1;
+        width: 15rem;
+        height: 16rem;
+        background: linear-gradient(
+          var(--hair, $default-hair) 50%,
+          $black 300%
+        );
+        --mask: radial-gradient(17.2px at 24px 50%, #000 99%, #0000 101%) 0
+            calc(50% - 20px) / 51% 40px repeat-y,
+          radial-gradient(17.2px at -14px 50%, #0000 99%, #000 101%) 10px 50% /
+            calc(51% - 10px) 40px repeat-y,
+          radial-gradient(17.2px at calc(100% - 24px) 50%, #000 99%, #0000 101%)
+            100% calc(50% - 20px) / 51% 40px repeat-y,
+          radial-gradient(17.2px at calc(100% + 14px) 50%, #0000 99%, #000 101%)
+            calc(100% - 10px) 50% / calc(51% - 10px) 40px repeat-y;
+        -webkit-mask: var(--mask);
+        mask: var(--mask);
+      }
+      &:after {
+        content: "";
+        position: absolute;
+        left: -5rem;
+        width: 5rem;
+        height: 5rem;
+        background-color: var(--hair, $default-hair);
+        border-radius: 4rem 0 50% 0;
+      }
+    }
+    &--bald {
+      background-color: transparent;
+    }
+    &--crest {
+      top: 4rem;
+      left: 6.5rem;
+      width: 3rem;
+      height: 3rem;
+      background: linear-gradient(var(--hair, $default-hair) 50%, $black 300%);
+      border-radius: 1rem 1rem 0.5rem 0.5rem;
+    }
+    &--emo {
+      top: 3.5rem;
+      left: 6rem;
+      width: 8rem;
+      height: 7.5rem;
+      border-radius: 0 5rem 0 50%;
+      background: linear-gradient(var(--hair, $default-hair) 50%, $black 300%);
+      &:before {
+        content: "";
+        position: absolute;
+        top: 0.5rem;
+        left: -4rem;
+        z-index: -1;
+        width: 12rem;
+        height: 10rem;
+        background-color: var(--hair, $default-hair);
+        border-radius: 50%;
+      }
+      &:after {
+        content: "";
+        position: absolute;
+        left: -4rem;
+        width: 4rem;
+        height: 5rem;
+        background: var(--hair, $default-hair);
+        border-radius: 5rem 0 50% 0;
+      }
+    }
+    &--metal {
+      top: 4rem;
+      left: 10rem;
+      width: 4rem;
+      height: 15rem;
+      border-radius: 0 50% 3rem 0;
+      &:before {
+        content: "";
+        position: absolute;
+        top: -0.5rem;
+        left: -9rem;
+        z-index: -1;
+        width: 14rem;
+        height: 16rem;
+        background: linear-gradient(
+          var(--hair, $default-hair) 50%,
+          $black 300%
+        );
+        border-radius: 5rem 5rem 0.5rem 0.5rem;
+      }
+      &:after {
+        content: "";
+        position: absolute;
+        left: -5rem;
+        width: 5rem;
+        height: 5rem;
+        background-color: var(--hair, $default-hair);
+        border-radius: 5rem 0 50% 0;
+      }
+    }
+    display: none;
+    &--active {
+      display: blocK;
+    }
+  }
+  &__nose {
+    position: absolute;
+    top: 11rem;
+    left: 7rem;
+    width: 2rem;
+    height: 2rem;
+    background: radial-gradient(
+      circle at 70% 20%,
+      var(--skin, $default-skin),
+      $black 300%
+    );
+    box-shadow: -0.5rem 0.5rem 0.5rem -0.3rem rgba($black, 0.3);
+    &--round {
+      border-radius: 50%;
+    }
+    &--square {
+      border-radius: 0.5rem;
+    }
+    &--flat {
+      top: 12rem;
+      height: 1rem;
+      border-radius: 0.5rem;
+    }
+    &--small {
+      top: 12rem;
+      left: 7.25rem;
+      width: 1.5rem;
+      height: 1rem;
+      border-radius: 0.5rem;
+    }
+    &--big {
+      border-radius: 50% 50% 0.5rem 0.5rem;
+    }
+    &--none {
+      background: none;
+      box-shadow: none;
+    }
+    display: none;
+    &--active {
+      display: blocK;
+    }
+  }
+  &__eyebrows {
+    position: absolute;
+    top: 8.5rem;
+    left: 4.25rem;
+    width: 7.5rem;
+    &:before,
+    &:after {
+      content: "";
+      position: absolute;
+      border-radius: 2rem;
+    }
+    &:before {
+      left: 0;
+    }
+    &:after {
+      right: 0;
+    }
+    &--thin {
+      &:before,
+      &:after {
+        width: 2rem;
+        height: 0.2rem;
+        background-color: var(--hair, $default-hair);
+      }
+    }
+    &--thick {
+      &:before,
+      &:after {
+        top: -0.1rem;
+        width: 2rem;
+        height: 0.4rem;
+        background-color: var(--hair, $default-hair);
+      }
+    }
+    &--in {
+      &:before,
+      &:after {
+        width: 2rem;
+        height: 0.3rem;
+        background-color: var(--hair, $default-hair);
+      }
+      &:before {
+        transform: rotate(20deg);
+      }
+      &:after {
+        transform: rotate(-20deg);
+      }
+    }
+    &--out {
+      &:before,
+      &:after {
+        width: 2rem;
+        height: 0.3rem;
+        background-color: var(--hair, $default-hair);
+      }
+      &:before {
+        left: -0.2rem;
+        transform: rotate(-20deg);
+      }
+      &:after {
+        right: -0.2rem;
+        transform: rotate(20deg);
+      }
+    }
+    display: none;
+    &--active {
+      display: flex;
+    }
+  }
+  &__eyes {
+    position: absolute;
+    top: 9rem;
+    left: 4rem;
+    justify-content: space-between;
+    width: 8rem;
+    height: 2rem;
+    @keyframes blinking {
+      0%,
+      34%,
+      36%,
+      100% {
+        transform: scaleY(1);
+      }
+      35% {
+        transform: scaleY(0.15);
+      }
+    }
+    &--round {
+      #{$component-class}__eye {
+        position: relative;
+        width: 2rem;
+        height: 2rem;
+        background-color: $white;
+        border-radius: 50%;
+        &:after {
+          content: "";
+          position: absolute;
+          top: 30%;
+          left: 25%;
+          width: 50%;
+          height: 50%;
+          background-color: $black;
+          border-radius: 50%;
+        }
+        animation: blinking;
+        animation-duration: 10s;
+        animation-iteration-count: infinite;
+      }
+    }
+    &--suspicious {
+      top: 9.5rem;
+      #{$component-class}__eye {
+        position: relative;
+        width: 2rem;
+        height: 1.2rem;
+        background-color: $white;
+        border-radius: 0 0 50% 50%;
+        &:after {
+          content: "";
+          position: absolute;
+          top: 0.1rem;
+          left: 0.5rem;
+          width: 1rem;
+          height: 1rem;
+          background-color: $black;
+          border-radius: 50%;
+        }
+        animation: blinking;
+        animation-duration: 10s;
+        animation-iteration-count: infinite;
+      }
+    }
+    &--black {
+      top: 9.5rem;
+      #{$component-class}__eye {
+        position: relative;
+        width: 1.5rem;
+        height: 1.5rem;
+        background: radial-gradient(
+          circle at 80% 20%,
+          $white -200%,
+          $black 50%
+        );
+        border-radius: 50%;
+        animation: blinking;
+        animation-duration: 10s;
+        animation-iteration-count: infinite;
+      }
+    }
+    &--line {
+      #{$component-class}__eye {
+        position: relative;
+        top: 1rem;
+        width: 2rem;
+        height: 0.3rem;
+        background: $black;
+      }
+    }
+    &--cartoon {
+      #{$component-class}__eye {
+        width: 2rem;
+        height: 2rem;
+        background: radial-gradient(
+          circle at 70% 30%,
+          $white,
+          $white 10%,
+          $black 10%
+        );
+        border-radius: 50%;
+        animation: blinking;
+        animation-duration: 10s;
+        animation-iteration-count: infinite;
+      }
+    }
+    &--vertical {
+      #{$component-class}__eye {
+        position: relative;
+        top: 0.5rem;
+        width: 1rem;
+        height: 1.5rem;
+        margin: 0 0.5rem;
+        background: radial-gradient(
+          circle at 70% 30%,
+          $white,
+          $white 10%,
+          $black 10%
+        );
+        border-radius: 0.5rem;
+        animation: blinking;
+        animation-duration: 10s;
+        animation-iteration-count: infinite;
+      }
+    }
+    &--crosses {
+      #{$component-class}__eye {
+        position: relative;
+        width: 2rem;
+        height: 2rem;
+        &:before,
+        &:after {
+          content: "";
+          position: absolute;
+          top: 1rem;
+          width: 2rem;
+          height: 0.3rem;
+          background-color: $black;
+        }
+        &:before {
+          transform: rotate(45deg);
+        }
+        &:after {
+          transform: rotate(-45deg);
+        }
+      }
+    }
+    display: none;
+    &--active {
+      display: flex;
+    }
+  }
+  &__mole {
+    $mole-color: color-mix(in srgb, var(--skin, $default-skin) 50%, $black);
+    position: absolute;
+    background-color: $mole-color;
+    &--left {
+      top: 13rem;
+      left: 5.5rem;
+      width: 0.3rem;
+      height: 0.3rem;
+      border-radius: 50%;
+    }
+    &--right {
+      top: 13rem;
+      left: 10rem;
+      width: 0.3rem;
+      height: 0.3rem;
+      border-radius: 50%;
+    }
+    &--harry {
+      top: 8.5rem;
+      left: 7.5rem;
+      width: 1rem;
+      height: 1rem;
+      background: none;
+      border-top: 0.3rem solid $mole-color;
+      border-right: 0.3rem solid $mole-color;
+      transform: skewX(-25deg);
+      &:before {
+        content: "";
+        position: absolute;
+        top: -1rem;
+        with: 1rem;
+        height: 1rem;
+        border-left: 0.3rem solid $mole-color;
+      }
+    }
+    &--scar {
+      top: 13rem;
+      left: 10rem;
+      width: 2rem;
+      height: 1rem;
+      background: none;
+      border-top: 0.2rem solid $mole-color;
+      &:before,
+      &:after {
+        content: "";
+        position: absolute;
+        top: -0.35rem;
+        with: 1rem;
+        height: 0.6rem;
+        border-left: 0.2rem solid $mole-color;
+      }
+      &:before {
+        left: 0.66rem;
+      }
+      &:after {
+        left: 1.33rem;
+      }
+    }
+    &--freckles {
+      &:before,
+      &:after {
+        content: "";
+        position: absolute;
+        top: 13rem;
+        width: 2rem;
+        height: 1rem;
+        background: none;
+        background-image: radial-gradient($mole-color 0.08rem, transparent 0);
+        background-size: 0.5rem 0.5rem;
+        background-position: -1.5rem -1.5rem;
+      }
+      &:before {
+        left: 4rem;
+      }
+      &:after {
+        left: 10rem;
+      }
+    }
+    &--skull {
+      &:before,
+      &:after {
+        content: "";
+        position: absolute;
+        top: 13.5rem;
+        width: 1rem;
+        height: 1rem;
+        background: none;
+        border-top: 0.2rem solid $mole-color;
+      }
+      &:before {
+        left: 4rem;
+        border-right: 0.2rem solid $mole-color;
+        border-radius: 0 1rem 0 0;
+      }
+      &:after {
+        left: 10.8rem;
+        border-left: 0.2rem solid $mole-color;
+        border-radius: 1rem 0 0 0;
+      }
+    }
+    display: none;
+    &--active {
+      display: flex;
+    }
+  }
+  &__glasses {
+    position: absolute;
+    z-index: 1;
+    top: 8.5rem;
+    left: 1rem;
+    width: 14rem;
+    height: 4rem;
+    &--round {
+      &:before {
+        content: "";
+        position: absolute;
+        top: 2rem;
+        left: 5.7rem;
+        width: 2.6rem;
+        height: 1rem;
+        display: block;
+        border-top: 0.2rem solid $black;
+        border-bottom: none;
+        border-radius: 50% 50% 0 0;
+      }
+      #{$component-class}__glass {
+        position: absolute;
+        width: 4rem;
+        height: 4rem;
+        border: 0.2rem solid $black;
+        background: linear-gradient(
+          135deg,
+          rgba($white, 0.3),
+          rgba($white, 0.6)
+        );
+        border-radius: 50%;
+        &--left {
+          left: 1.5rem;
+        }
+        &--right {
+          right: 1.5rem;
+        }
+      }
+    }
+    &--square {
+      &:before {
+        content: "";
+        position: absolute;
+        top: 1.8rem;
+        left: 6rem;
+        width: 2rem;
+        height: 1rem;
+        display: block;
+        border-top: 0.4rem solid $black;
+        border-bottom: none;
+      }
+      #{$component-class}__glass {
+        position: absolute;
+        top: 0.5rem;
+        width: 4rem;
+        height: 2rem;
+        border: 0.4rem solid $black;
+        background: linear-gradient(
+          135deg,
+          rgba($white, 0.3),
+          rgba($white, 0.6)
+        );
+        border-radius: 20%;
+        &--left {
+          left: 1.5rem;
+        }
+        &--right {
+          right: 1.5rem;
+        }
+      }
+    }
+    &--black {
+      &:before {
+        content: "";
+        position: absolute;
+        top: 1.5rem;
+        left: 5.7rem;
+        width: 2.6rem;
+        height: 1rem;
+        display: block;
+        border-top: 0.2rem solid $black;
+        border-bottom: none;
+        border-radius: 50% 50% 0 0;
+      }
+      &:after {
+        content: "";
+        position: absolute;
+        top: 1rem;
+        left: 5.6rem;
+        width: 2.7rem;
+        display: block;
+        border-top: 0.2rem solid $black;
+      }
+      #{$component-class}__glass {
+        position: absolute;
+        top: 1rem;
+        width: 4rem;
+        height: 2rem;
+        border: 0.2rem solid $black;
+        background: linear-gradient(
+          135deg,
+          rgba($black, 0.3),
+          rgba($black, 0.6) 40%,
+          rgba($white, 0.6) 40%,
+          rgba($white, 0.6) 55%,
+          rgba($black, 0.3) 55%,
+          rgba($black, 0.6)
+        );
+        border-radius: 0 0 50% 50%;
+        &--left {
+          left: 1.5rem;
+        }
+        &--right {
+          right: 1.5rem;
+        }
+      }
+    }
+    &--small {
+      &:before {
+        content: "";
+        position: absolute;
+        top: 2rem;
+        left: 5.7rem;
+        width: 2.6rem;
+        height: 1rem;
+        display: block;
+        border-top: 0.2rem solid $black;
+        border-bottom: none;
+        border-radius: 50% 50% 0 0;
+      }
+      #{$component-class}__glass {
+        position: absolute;
+        top: 1.5rem;
+        width: 2rem;
+        height: 2rem;
+        border: 0.2rem solid $black;
+        background: linear-gradient(
+          135deg,
+          rgba($black, 0.3),
+          rgba($black, 0.6) 40%,
+          rgba($white, 0.6) 40%,
+          rgba($white, 0.6) 55%,
+          rgba($black, 0.3) 55%,
+          rgba($black, 0.6)
+        );
+        border-radius: 50%;
+        &--left {
+          left: 3.5rem;
+        }
+        &--right {
+          right: 3.5rem;
+        }
+      }
+    }
+    &--hearts {
+      &:before {
+        content: "";
+        position: absolute;
+        top: 2rem;
+        left: 5.9rem;
+        width: 2.2rem;
+        height: 1rem;
+        display: block;
+        border-top: 0.2rem solid $red;
+        border-bottom: none;
+        border-radius: 50% 50% 0 0;
+      }
+      #{$component-class}__glass {
+        position: absolute;
+        top: 1rem;
+        &:before,
+        &:after {
+          content: "";
+          position: absolute;
+        }
+        &:before {
+          top: 0;
+          width: 2rem;
+          height: 3rem;
+          border-top: 0.2rem solid $red;
+          border-left: 0.2rem solid $red;
+          border-bottom: 0.2rem solid $red;
+          border-radius: 2rem 2rem 0 0;
+          background: linear-gradient(
+            0deg,
+            rgba($pink, 0.5),
+            $pink 40%,
+            rgba($white, 0.6) 40%,
+            $white 55%,
+            rgba($pink, 0.5) 55%,
+            $pink
+          );
+          transform: rotate(-45deg);
+        }
+        &:after {
+          top: 0.16rem;
+          left: 1rem;
+          width: 2rem;
+          height: 1rem;
+          border-top: 0.2rem solid $red;
+          border-left: 0.2rem solid $red;
+          border-right: 0.2rem solid $red;
+          border-radius: 2rem 2rem 0 0;
+          background: linear-gradient(
+            -90deg,
+            rgba($pink, 0.5) -40%,
+            $pink 59%,
+            rgba($white, 0.6) 59%,
+            $white 81%,
+            rgba($pink, 0.5) 81%,
+            $pink 140%
+          );
+          transform: rotate(45deg);
+          transform-origin: 50% 100%;
+        }
+        &--left {
+          left: 2.7rem;
+        }
+        &--right {
+          right: 5.7rem;
+        }
+      }
+    }
+    &--spark {
+      &:before,
+      &:after {
+        content: "";
+        position: absolute;
+        top: -0.2rem;
+        left: 11rem;
+        background-color: $white;
+      }
+      &:before {
+        width: 1.2rem;
+        height: 1.2rem;
+        transform: rotate(45deg) skew(32deg, 32deg);
+      }
+      &:after {
+        width: 1.2rem;
+        height: 1.2rem;
+        transform: rotate(135deg) skew(32deg, 32deg);
+      }
+    }
+    &--censored {
+      left: 3rem;
+      width: 10rem;
+      height: 2.5rem;
+      background-color: $black;
+    }
+    display: none;
+    &--active {
+      display: flex;
+    }
+  }
+  &__ears {
+    position: absolute;
+    top: 10rem;
+    left: 1rem;
+    display: flex;
+    justify-content: space-between;
+    width: 14rem;
+    height: 3rem;
+    &:before,
+    &:after {
+      content: "";
+      background: linear-gradient(var(--skin, $default-skin) -50%, $black 300%);
+      width: 1.5rem;
+      height: 3rem;
+    }
+    &--round {
+      &:before {
+        border-radius: 2rem 0.5rem 0.5rem 2rem;
+      }
+      &:after {
+        border-radius: 0.5rem 2rem 2rem 0.5rem;
+      }
+    }
+    &--square {
+      &:before {
+        border-radius: 1rem 0.5rem 0.5rem 1rem;
+      }
+      &:after {
+        border-radius: 0.5rem 1rem 1rem 0.5rem;
+      }
+    }
+    &--big {
+      left: 0.5rem;
+      width: 15rem;
+      &:before,
+      &:after {
+        width: 2rem;
+      }
+      &:before {
+        border-radius: 2rem 0.5rem 0.5rem 2rem;
+      }
+      &:after {
+        border-radius: 0.5rem 2rem 2rem 0.5rem;
+      }
+    }
+    &--small {
+      top: 10.5rem;
+      &:before,
+      &:after {
+        height: 2.5rem;
+      }
+      &:before {
+        border-radius: 1rem 0.5rem 0.5rem 1rem;
+      }
+      &:after {
+        border-radius: 0.5rem 1rem 1rem 0.5rem;
+      }
+    }
+    display: none;
+    &--active {
+      display: flex;
+    }
+  }
+  &__ear-rings {
+    position: absolute;
+    top: 12rem;
+    left: 1rem;
+    width: 14rem;
+    height: 1rem;
+    &--left:before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0.4rem;
+      width: 0.5rem;
+      height: 0.5rem;
+      background-color: $yellow;
+      border-radius: 50%;
+    }
+    &--right:after {
+      content: "";
+      position: absolute;
+      top: 0;
+      right: 0.4rem;
+      width: 0.5rem;
+      height: 0.5rem;
+      background-color: $yellow;
+      border-radius: 50%;
+    }
+    &--both {
+      &:before,
+      &:after {
+        content: "";
+        position: absolute;
+        top: 0;
+        width: 0.5rem;
+        height: 0.5rem;
+        background-color: $yellow;
+        border-radius: 50%;
+      }
+      &:before {
+        left: 0.4rem;
+      }
+      &:after {
+        right: 0.4rem;
+      }
+    }
+    &--round {
+      &:before,
+      &:after {
+        content: "";
+        position: absolute;
+        top: 0;
+        display: block;
+        width: 1rem;
+        height: 1rem;
+        border: 0.2rem solid $yellow;
+        border-radius: 50%;
+      }
+      &:before {
+        left: -0.2rem;
+      }
+      &:after {
+        right: -0.2rem;
+      }
+    }
+    &--big {
+      &:before,
+      &:after {
+        content: "";
+        position: absolute;
+        top: 0;
+        display: block;
+        width: 0.3rem;
+        height: 1.8rem;
+        background-color: $yellow;
+      }
+      &:before {
+        left: 0.5rem;
+      }
+      &:after {
+        right: 0.5rem;
+      }
+    }
+    display: none;
+    &--active {
+      display: block;
+    }
+  }
+  &__blush {
+    position: absolute;
+    top: 12rem;
+    left: 3rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 10rem;
+    height: 2rem;
+    &--red {
+      &:before,
+      &:after {
+        content: "";
+        width: 2rem;
+        height: 2rem;
+        background: radial-gradient($red -100%, transparent 80%);
+      }
+    }
+    &--big {
+      &:before,
+      &:after {
+        content: "";
+        width: 3rem;
+        height: 3rem;
+        background: radial-gradient($red -80%, transparent 80%);
+      }
+    }
+    display: none;
+    &--active {
+      display: flex;
+    }
+  }
+  &__mouth {
+    position: absolute;
+    top: 14rem;
+    left: 6rem;
+    width: 4rem;
+    height: 2rem;
+    &--smile {
+      top: 14.5rem;
+      left: 6.3rem;
+      width: 3rem;
+      height: 1rem;
+      border-radius: 0 0 20rem 20rem;
+      border-left: 0.3rem solid $black;
+      border-right: 0.3rem solid $black;
+      border-bottom: 0.3rem solid $black;
+    }
+    &--round {
+      left: 7.5rem;
+      width: 1rem;
+      height: 1rem;
+      background-color: $black;
+      border-radius: 1rem;
+    }
+    &--teeth {
+      height: 1rem;
+      background: linear-gradient(
+        $white,
+        $white 60%,
+        $grey 60%,
+        $grey 70%,
+        $white 70%,
+        $white
+      );
+      border-radius: 1rem;
+    }
+    &--square {
+      background-color: $black;
+      border-radius: 1rem;
+      &:after {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 1rem;
+        width: 2rem;
+        height: 0.5rem;
+        background-color: $red;
+        border-radius: 50% 50% 0 0;
+      }
+    }
+    &--sad {
+      top: 14.5rem;
+      left: 6.3rem;
+      width: 3rem;
+      height: 1rem;
+      border-radius: 20rem 20rem 0 0;
+      border-left: 0.3rem solid $black;
+      border-right: 0.3rem solid $black;
+      border-top: 0.3rem solid $black;
+    }
+    &--full-smile {
+      top: 14.5rem;
+      left: 6rem;
+      height: 1.5rem;
+      background-color: $black;
+      border-radius: 0 0 20rem 20rem;
+      &:after {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 1rem;
+        width: 2rem;
+        height: 0.5rem;
+        background-color: $red;
+        border-radius: 50% 50% 0.5rem 0.5rem;
+      }
+    }
+    &--full-sad {
+      top: 14.2rem;
+      left: 6rem;
+      height: 1.5rem;
+      background-color: $black;
+      border-radius: 20rem 20rem 10rem 10rem;
+      &:after {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 1rem;
+        width: 2rem;
+        height: 0.3rem;
+        background-color: $red;
+        border-radius: 50% 50% 0.5rem 0.5rem;
+      }
+    }
+    display: none;
+    &--active {
+      display: block;
+    }
+  }
+  &__beard {
+    position: absolute;
+    &--full {
+      top: 13.2rem;
+      left: 5rem;
+      width: 4.5rem;
+      height: 2rem;
+      border-radius: 1rem 1rem 2rem 2rem;
+      border: var(--hair, $default-hair) solid 0.8rem;
+      border-bottom: var(--hair, $default-hair) solid 2rem;
+    }
+    &--hogan {
+      top: 13.2rem;
+
+      left: 5rem;
+
+      width: 4.5rem;
+
+      height: 2rem;
+
+      border-radius: 1rem;
+
+      border: var(--hair, $default-hair) solid 0.8rem;
+
+      border-bottom: none;
+    }
+    &--big {
+      top: 13.2rem;
+      left: 3.8rem;
+      width: 4.5rem;
+      height: 2rem;
+      border-radius: 2rem 2rem 3rem 3rem;
+      border: var(--hair, $default-hair) solid 2rem;
+      border-top: var(--hair, $default-hair) solid 0.8rem;
+      border-bottom: var(--hair, $default-hair) solid 5rem;
+    }
+    &--moustache {
+      top: 13.2rem;
+      left: 5.6rem;
+      width: 5rem;
+      height: 2rem;
+      border-radius: 1rem 1rem 0 0;
+      border-top: var(--hair, $default-hair) solid 0.8rem;
+    }
+    &--goatee {
+      top: 16.2rem;
+      left: 7rem;
+      width: 0;
+      height: 0;
+      border-left: transparent solid 1rem;
+      border-right: transparent solid 1rem;
+      border-top: var(--hair, $default-hair) solid 0.8rem;
+    }
+    display: none;
+    &--active {
+      display: block;
+    }
+  }
+  // Following the cursor
+  &__eyebrows-wrapper,
+  &__eyes-wrapper,
+  &__glasses-wrapper,
+  &__nose-wrapper,
+  &__mole-wrapper,
+  &__mouth-wrapper,
+  &__blush-wrapper,
+  &__ears-wrapper,
+  &__ear-rings-wrapper,
+  &__hair-wrapper,
+  &__hat-wrapper,
+  &__beard-wrapper,
+  &__neck-wrapper,
+  &__body-wrapper {
+    position: relative;
+    top: 0;
+    left: 0;
+    transition-property: top, left, transform, transform-origin;
+    transition-duration: 1s;
+  }
+  &__hat-wrapper {
+    top: var(--hat-variation, 0);
+    // Lower hats when bald
+    &:has(+ #{$component-class}__hair-wrapper
+        > #{$component-class}__hair--bald#{$component-class}__hair--active),
+    &:has(+ #{$component-class}__hair-wrapper
+        > #{$component-class}__hair--crest#{$component-class}__hair--active) {
+      --hat-variation: 0.5rem; // General variation
+    }
+    &:has(> #{$component-class}__hat--wool#{$component-class}__hat--active):has(+ #{$component-class}__hair-wrapper
+        > #{$component-class}__hair--bald#{$component-class}__hair--active),
+    &:has(> #{$component-class}__hat--wool#{$component-class}__hat--active):has(+ #{$component-class}__hair-wrapper
+        > #{$component-class}__hair--crest#{$component-class}__hair--active),
+    &:has(> #{$component-class}__hat--top-hat#{$component-class}__hat--active):has(+ #{$component-class}__hair-wrapper
+        > #{$component-class}__hair--bald#{$component-class}__hair--active),
+    &:has(> #{$component-class}__hat--top-hat#{$component-class}__hat--active):has(+ #{$component-class}__hair-wrapper
+        > #{$component-class}__hair--crest#{$component-class}__hair--active) {
+      --hat-variation: 1rem; // Extra variation for "wool hat"
+    }
+    &:has(> #{$component-class}__hat--beret#{$component-class}__hat--active):has(+ #{$component-class}__hair-wrapper
+        > #{$component-class}__hair--bald#{$component-class}__hair--active),
+    &:has(> #{$component-class}__hat--beret#{$component-class}__hat--active):has(+ #{$component-class}__hair-wrapper
+        > #{$component-class}__hair--crest#{$component-class}__hair--active) {
+      --hat-variation: 1.5rem;
+    }
+  }
+  &--left {
+    #{$component-class}__eyebrows-wrapper,
+    #{$component-class}__eyes-wrapper,
+    #{$component-class}__glasses-wrapper,
+    #{$component-class}__nose-wrapper,
+    #{$component-class}__mole-wrapper,
+    #{$component-class}__mouth-wrapper,
+    #{$component-class}__blush-wrapper,
+    #{$component-class}__beard-wrapper {
+      left: -1rem;
+    }
+    #{$component-class}__ears-wrapper,
+    #{$component-class}__ear-rings-wrapper {
+      transform-origin: 100% 50%;
+      transform: scaleX(0.9);
+    }
+    #{$component-class}__hair-wrapper,
+    #{$component-class}__hat-wrapper,
+    #{$component-class}__neck-wrapper,
+    #{$component-class}__body-wrapper {
+      left: 0.5rem;
+    }
+    #{$component-class}__body {
+      border-radius: 4rem 6rem 0 0;
+    }
+  }
+  &--right {
+    #{$component-class}__eyebrows-wrapper,
+    #{$component-class}__eyes-wrapper,
+    #{$component-class}__glasses-wrapper,
+    #{$component-class}__nose-wrapper,
+    #{$component-class}__mole-wrapper,
+    #{$component-class}__mouth-wrapper,
+    #{$component-class}__blush-wrapper,
+    #{$component-class}__beard-wrapper {
+      left: 1rem;
+    }
+    #{$component-class}__ears-wrapper,
+    #{$component-class}__ear-rings-wrapper {
+      transform-origin: 0 50%;
+      transform: scaleX(0.9);
+    }
+    #{$component-class}__hair-wrapper,
+    #{$component-class}__hat-wrapper,
+    #{$component-class}__neck-wrapper,
+    #{$component-class}__body-wrapper {
+      left: -0.5rem;
+    }
+    #{$component-class}__body {
+      border-radius: 6rem 4rem 0 0;
+    }
+  }
+  &--top {
+    #{$component-class}__eyebrows-wrapper,
+    #{$component-class}__eyes-wrapper,
+    #{$component-class}__glasses-wrapper,
+    #{$component-class}__nose-wrapper,
+    #{$component-class}__mole-wrapper,
+    #{$component-class}__mouth-wrapper,
+    #{$component-class}__blush-wrapper,
+    #{$component-class}__beard-wrapper {
+      top: -0.5rem;
+    }
+    #{$component-class}__ears-wrapper,
+    #{$component-class}__ear-rings-wrapper {
+      top: 0.5rem;
+    }
+    #{$component-class}__hair-wrapper {
+      top: 0.5rem;
+    }
+    #{$component-class}__hat-wrapper {
+      top: calc(0.5rem + var(--hat-variation, 0));
+    }
+  }
+  &--bottom {
+    #{$component-class}__eyebrows-wrapper,
+    #{$component-class}__eyes-wrapper,
+    #{$component-class}__glasses-wrapper,
+    #{$component-class}__nose-wrapper,
+    #{$component-class}__mole-wrapper,
+    #{$component-class}__mouth-wrapper,
+    #{$component-class}__blush-wrapper,
+    #{$component-class}__beard-wrapper {
+      top: 1rem;
+    }
+    #{$component-class}__ears-wrapper,
+    #{$component-class}__ear-rings-wrapper {
+      top: -0.5rem;
+    }
+    #{$component-class}__hair-wrapper {
+      top: 0.5rem;
+    }
+    #{$component-class}__hat-wrapper {
+      top: calc(0.5rem + var(--hat-variation, 0));
+    }
+  }
+  @media screen and (max-width: 1024px) {
+    left: 8%;
+  }
+  @media screen and (max-width: 767px) {
+    left: 14%;
+  }
+}
+
+    </style>
+</head>
+<body>
+    <div id="character" class="character">
+        <div class="character__body-wrapper">
+          <div class="character__body"></div>
+        </div>
+        <div class="character__neck-wrapper">
+          <div class="character__neck"></div>
+        </div>
+        <div class="character__ears-wrapper">
+          <div class="character__ears character__ears--round character__ears--active"></div>
+          <div class="character__ears character__ears--square"></div>
+          <div class="character__ears character__ears--big"></div>
+          <div class="character__ears character__ears--small"></div>
+        </div>
+        <div class="character__ear-rings-wrapper">
+          <div class="character__ear-rings character__ear-rings--left character__ear-rings--active"></div>
+          <div class="character__ear-rings character__ear-rings--right"></div>
+          <div class="character__ear-rings character__ear-rings--both"></div>
+          <div class="character__ear-rings character__ear-rings--round"></div>
+          <div class="character__ear-rings character__ear-rings--big"></div>
+          <div class="character__ear-rings character__ear-rings--none"></div>
+        </div>
+        <div class="character__face-wrapper">
+          <div class="character__face character__face--round character__face--active"></div>
+          <div class="character__face character__face--ellipse"></div>
+          <div class="character__face character__face--square"></div>
+          <div class="character__face character__face--pointy"></div>
+        </div>
+        <div class="character__eyebrows-wrapper">
+          <div class="character__eyebrows character__eyebrows--thin character__eyebrows--active"></div>
+          <div class="character__eyebrows character__eyebrows--thick"></div>
+          <div class="character__eyebrows character__eyebrows--in"></div>
+          <div class="character__eyebrows character__eyebrows--out">
+          </div>
+          <div class="character__eyebrows character__eyebrows--none">
+          </div>
+        </div>
+        <div class="character__eyes-wrapper">
+          <div class="character__eyes character__eyes--cartoon character__eyes--active">
+            <div class="character__eye character__eye--left"></div>
+            <div class="character__eye character__eye--right"></div>
+          </div>
+          <div class="character__eyes character__eyes--black">
+            <div class="character__eye character__eye--left"></div>
+            <div class="character__eye character__eye--right"></div>
+          </div>
+          <div class="character__eyes character__eyes--line">
+            <div class="character__eye character__eye--left"></div>
+            <div class="character__eye character__eye--right"></div>
+          </div>
+          <div class="character__eyes character__eyes--round">
+            <div class="character__eye character__eye--left"></div>
+            <div class="character__eye character__eye--right"></div>
+          </div>
+          <div class="character__eyes character__eyes--suspicious">
+            <div class="character__eye character__eye--left"></div>
+            <div class="character__eye character__eye--right"></div>
+          </div>
+          <div class="character__eyes character__eyes--vertical">
+            <div class="character__eye character__eye--left"></div>
+            <div class="character__eye character__eye--right"></div>
+          </div>
+          <div class="character__eyes character__eyes--crosses">
+            <div class="character__eye character__eye--left"></div>
+            <div class="character__eye character__eye--right"></div>
+          </div>
+        </div>
+        <div class="character__mole-wrapper">
+          <div class="character__mole character__mole--left character__mole--active"></div>
+          <div class="character__mole character__mole--right"></div>
+          <div class="character__mole character__mole--harry"></div>
+          <div class="character__mole character__mole--scar"></div>
+          <div class="character__mole character__mole--freckles"></div>
+          <div class="character__mole character__mole--skull"></div>
+          <div class="character__mole character__mole--none"></div>
+        </div>
+        <div class="character__blush-wrapper">
+          <div class="character__blush character__blush--red character__blush--active"></div>
+          <div class="character__blush character__blush--big"></div>
+          <div class="character__blush character__blush--none"></div>
+        </div>
+        <div class="character__glasses-wrapper">
+          <div class="character__glasses character__glasses--round character__glasses--active">
+            <div class="character__glass character__glass--left"></div>
+            <div class="character__glass character__glass--right"></div>
+          </div>
+          <div class="character__glasses character__glasses--square">
+            <div class="character__glass character__glass--left"></div>
+            <div class="character__glass character__glass--right"></div>
+          </div>
+          <div class="character__glasses character__glasses--black">
+            <div class="character__glass character__glass--left"></div>
+            <div class="character__glass character__glass--right"></div>
+          </div>
+          <div class="character__glasses character__glasses--small">
+            <div class="character__glass character__glass--left"></div>
+            <div class="character__glass character__glass--right"></div>
+          </div>
+          <div class="character__glasses character__glasses--hearts">
+            <div class="character__glass character__glass--left"></div>
+            <div class="character__glass character__glass--right"></div>
+          </div>
+          <div class="character__glasses character__glasses--spark"></div>
+          <div class="character__glasses character__glasses--censored"></div>
+          <div class="character__glasses character__glasses--none"></div>
+        </div>
+        <div class="character__mouth-wrapper">
+          <div class="character__mouth character__mouth--smile character__mouth--active"></div>
+          <div class="character__mouth character__mouth--round"></div>
+          <div class="character__mouth character__mouth--teeth"></div>
+          <div class="character__mouth character__mouth--square"></div>
+          <div class="character__mouth character__mouth--sad"></div>
+          <div class="character__mouth character__mouth--full-smile"></div>
+          <div class="character__mouth character__mouth--full-sad"></div>
+        </div>
+        <div class="character__hat-wrapper">
+          <div class="character__hat character__hat--party character__hat--active"></div>
+          <div class="character__hat character__hat--cap"></div>
+          <div class="character__hat character__hat--halo"></div>
+          <div class="character__hat character__hat--horns"></div>
+          <div class="character__hat character__hat--cap-backwards"></div>
+          <div class="character__hat character__hat--beret"></div>
+          <div class="character__hat character__hat--wool"></div>
+          <div class="character__hat character__hat--furry"></div>
+          <div class="character__hat character__hat--top-hat"></div>
+          <div class="character__hat character__hat--none"></div>
+        </div>
+        <div class="character__hair-wrapper">
+          <div class="character__hair character__hair--long character__hair--active"></div>
+          <div class="character__hair character__hair--square"></div>
+          <div class="character__hair character__hair--afro"></div>
+          <div class="character__hair character__hair--short"></div>
+          <div class="character__hair character__hair--very-long"></div>
+          <div class="character__hair character__hair--mane"></div>
+          <div class="character__hair character__hair--wavy"></div>
+          <div class="character__hair character__hair--bald"></div>
+          <div class="character__hair character__hair--emo"></div>
+          <div class="character__hair character__hair--crest"></div>
+          <div class="character__hair character__hair--metal"></div>
+        </div>
+        <div class="character__nose-wrapper">
+          <div class="character__nose character__nose--round character__nose--active"></div>
+          <div class="character__nose character__nose--square"></div>
+          <div class="character__nose character__nose--flat"></div>
+          <div class="character__nose character__nose--small"></div>
+          <div class="character__nose character__nose--big"></div>
+          <div class="character__nose character__nose--none"></div>
+        </div>
+        <div class="character__beard-wrapper">
+          <div class="character__beard character__beard--none character__beard--active"></div>
+          <div class="character__beard character__beard--full"></div>
+          <div class="character__beard character__beard--moustache"></div>
+          <div class="character__beard character__beard--big"></div>
+          <div class="character__beard character__beard--hogan"></div>
+          <div class="character__beard character__beard--goatee"></div>
+        </div>
+        <div id="frame" class="character__frame">
+          <span class="character__frame-text">Move mouse over frame to pose</span>
+          <div class="character__frame-icon"><svg xmlns='http://www.w3.org/2000/svg' width='200px' height='200px' viewBox='-15 0 178 175' style="font-family: 'Archivo Black'; font-size: 90px; font-weight: 600;">
+              <text class="p" x="2" y="75" fill="#000" style="transform: skewX(20deg);">P</text>
+              <text class="o" x="50" y="100" fill="#000" style="transform: skewX(20deg);">O</text>
+              <text class="n" x="38" y="140" fill="#000" style="transform: skewX(-20deg);">N</text>
+              <text class="d" x="101" y="162" fill="#000" style="transform: skewX(-20deg);">D</text>
+              <text class="dot" x="162" y="162" fill="#000" style="transform: skewX(-20deg);">.</text>
+            </svg></div>
+        </div>
+      </div>
+      
+      <div class="characters-choose">
+        <div class="characters-choose__selector characters-choose__selector--hat">
+          <div id="hat-left" class="characters-choose__arrow characters-choose__arrow--left"></div>Hat
+          <div id="hat-right" class="characters-choose__arrow characters-choose__arrow--right"></div>
+        </div>
+        <div class="characters-choose__selector characters-choose__selector--skin">
+          <div id="skin-left" class="characters-choose__arrow characters-choose__arrow--left"></div>Skin
+          <div id="skin-right" class="characters-choose__arrow characters-choose__arrow--right"></div>
+        </div>
+        <div class="characters-choose__selector characters-choose__selector--face">
+          <div id="face-left" class="characters-choose__arrow characters-choose__arrow--left"></div>Face
+          <div id="face-right" class="characters-choose__arrow characters-choose__arrow--right"></div>
+        </div>
+        <div class="characters-choose__selector characters-choose__selector--hair">
+          <div id="hair-left" class="characters-choose__arrow characters-choose__arrow--left"></div>Hair
+          <div id="hair-right" class="characters-choose__arrow characters-choose__arrow--right"></div>
+        </div>
+        <div class="characters-choose__selector characters-choose__selector--hair-color">
+          <div id="hair-color-left" class="characters-choose__arrow characters-choose__arrow--left"></div>Hair color
+          <div id="hair-color-right" class="characters-choose__arrow characters-choose__arrow--right"></div>
+        </div>
+        <div class="characters-choose__selector characters-choose__selector--eyebrows">
+          <div id="eyebrows-left" class="characters-choose__arrow characters-choose__arrow--left"></div>Eye- brows
+          <div id="eyebrows-right" class="characters-choose__arrow characters-choose__arrow--right"></div>
+        </div>
+        <div class="characters-choose__selector characters-choose__selector--eyes">
+          <div id="eyes-left" class="characters-choose__arrow characters-choose__arrow--left"></div>Eyes
+          <div id="eyes-right" class="characters-choose__arrow characters-choose__arrow--right"></div>
+        </div>
+        <div class="characters-choose__selector characters-choose__selector--glasses">
+          <div id="glasses-left" class="characters-choose__arrow characters-choose__arrow--left"></div>Glasses
+          <div id="glasses-right" class="characters-choose__arrow characters-choose__arrow--right"></div>
+        </div>
+        <div class="characters-choose__selector characters-choose__selector--nose">
+          <div id="nose-left" class="characters-choose__arrow characters-choose__arrow--left"></div>Nose
+          <div id="nose-right" class="characters-choose__arrow characters-choose__arrow--right"></div>
+        </div>
+        <div class="characters-choose__selector characters-choose__selector--mole">
+          <div id="mole-left" class="characters-choose__arrow characters-choose__arrow--left"></div>Marks
+          <div id="mole-right" class="characters-choose__arrow characters-choose__arrow--right"></div>
+        </div>
+        <div class="characters-choose__selector characters-choose__selector--ears">
+          <div id="ears-left" class="characters-choose__arrow characters-choose__arrow--left"></div>Ears
+          <div id="ears-right" class="characters-choose__arrow characters-choose__arrow--right"></div>
+        </div>
+        <div class="characters-choose__selector characters-choose__selector--ear-rings">
+          <div id="ear-rings-left" class="characters-choose__arrow characters-choose__arrow--left"></div>Ear- rings
+          <div id="ear-rings-right" class="characters-choose__arrow characters-choose__arrow--right"></div>
+        </div>
+        <div class="characters-choose__selector characters-choose__selector--blush">
+          <div id="blush-left" class="characters-choose__arrow characters-choose__arrow--left"></div>Blush
+          <div id="blush-right" class="characters-choose__arrow characters-choose__arrow--right"></div>
+        </div>
+        <div class="characters-choose__selector characters-choose__selector--mouth">
+          <div id="mouth-left" class="characters-choose__arrow characters-choose__arrow--left"></div>Mouth
+          <div id="mouth-right" class="characters-choose__arrow characters-choose__arrow--right"></div>
+        </div>
+        <div class="characters-choose__selector characters-choose__selector--beard">
+          <div id="beard-left" class="characters-choose__arrow characters-choose__arrow--left"></div>Beard
+          <div id="beard-right" class="characters-choose__arrow characters-choose__arrow--right"></div>
+        </div>
+        <div class="characters-choose__selector characters-choose__selector--body">
+          <div id="body-left" class="characters-choose__arrow characters-choose__arrow--left"></div>Body
+          <div id="body-right" class="characters-choose__arrow characters-choose__arrow--right"></div>
+        </div>
+        <div class="characters-choose__selector characters-choose__selector--background">
+          <div id="background-left" class="characters-choose__arrow characters-choose__arrow--left"></div>Back- ground
+          <div id="background-right" class="characters-choose__arrow characters-choose__arrow--right"></div>
+        </div>
+      </div>
+
+
+      <script>
+        // Changing character items
+const changePrev = (elements, className) => {
+  const selectedElement = document.querySelector(`.${className}`);
+  let index = Array.from(elements).indexOf(selectedElement);
+  index = index - 1 < 0 ? elements.length - 1 : index - 1;
+  elements.forEach((element) => element.classList.remove(className));
+  elements[index].classList.add(className);
+};
+
+const changeNext = (elements, className) => {
+  const selectedElement = document.querySelector(`.${className}`);
+  let index = Array.from(elements).indexOf(selectedElement);
+  index = (index + 1) % elements.length;
+  elements.forEach((element) => element.classList.remove(className));
+  elements[index].classList.add(className);
+};
+
+const registerControls = (id) => {
+  const elements = document.querySelectorAll(`.character__${id}`);
+  document
+    .getElementById(`${id}-left`)
+    .addEventListener("click", () =>
+      changePrev(elements, `character__${id}--active`)
+    );
+  document
+    .getElementById(`${id}-right`)
+    .addEventListener("click", () =>
+      changeNext(elements, `character__${id}--active`)
+    );
+};
+
+// Register controls of character items
+registerControls("hat");
+registerControls("face");
+registerControls("hair");
+registerControls("eyebrows");
+registerControls("eyes");
+registerControls("glasses");
+registerControls("nose");
+registerControls("mole");
+registerControls("ears");
+registerControls("ear-rings");
+registerControls("blush");
+registerControls("beard");
+registerControls("mouth");
+
+// Changing general values
+let skinIndex = 0;
+let hairIndex = 0;
+let bodyIndex = 0;
+let backgroundIndex = 0;
+const skinTones = [
+  "#ffdbac",
+  "#f1c27d",
+  "#e0ac69",
+  "#c68642",
+  "#8d5524",
+  "#FFFFFF"
+];
+const hairTones = [
+  "#000038",
+  "#9a3300",
+  "#4f1a00",
+  "#241c11",
+  "#f5fccd",
+  "#aa8866",
+  "#e2e2e2",
+  "#80c0a1"
+];
+const bodyTones = [
+  "#ff7d66",
+  "#f5fccd",
+  "#eb80b1",
+  "#12486b",
+  "#80c0a1",
+  "#bdc3c6",
+  "#ffffff",
+  "#419197",
+  "#000038",
+  "#ffa500"
+];
+const backgroundTones = [
+  "#419197",
+  "#ff7d66",
+  "#eb80b1",
+  "#12486b",
+  "#80c0a1",
+  "#bdc3c6",
+  "#000038",
+  "#ffa500",
+  "#78D6C6",
+  "#66777F"
+];
+
+const changeCSSVars = () =>
+  (document.body.style = `--skin: ${skinTones[skinIndex]}; --hair: ${hairTones[hairIndex]}; --body: ${bodyTones[bodyIndex]}; --background: ${backgroundTones[backgroundIndex]};`);
+
+document.getElementById("skin-left").addEventListener("click", () => {
+  skinIndex = skinIndex - 1 < 0 ? skinTones.length - 1 : skinIndex - 1;
+  changeCSSVars();
+});
+document.getElementById("skin-right").addEventListener("click", () => {
+  skinIndex = (skinIndex + 1) % skinTones.length;
+  changeCSSVars();
+});
+
+document.getElementById("hair-color-left").addEventListener("click", () => {
+  hairIndex = hairIndex - 1 < 0 ? hairTones.length - 1 : hairIndex - 1;
+  changeCSSVars();
+});
+document.getElementById("hair-color-right").addEventListener("click", () => {
+  hairIndex = (hairIndex + 1) % hairTones.length;
+  changeCSSVars();
+});
+
+document.getElementById("body-left").addEventListener("click", () => {
+  bodyIndex = bodyIndex - 1 < 0 ? bodyTones.length - 1 : bodyIndex - 1;
+  changeCSSVars();
+});
+document.getElementById("body-right").addEventListener("click", () => {
+  bodyIndex = (bodyIndex + 1) % bodyTones.length;
+  changeCSSVars();
+});
+
+document.getElementById("background-left").addEventListener("click", () => {
+  backgroundIndex =
+    backgroundIndex - 1 < 0 ? backgroundTones.length - 1 : backgroundIndex - 1;
+  changeCSSVars();
+});
+document.getElementById("background-right").addEventListener("click", () => {
+  backgroundIndex = (backgroundIndex + 1) % backgroundTones.length;
+  changeCSSVars();
+});
+
+// Character following cursor
+const className = "character";
+const character = document.getElementById(className);
+const frame = document.getElementById("frame");
+
+const mouseFunction = (mouse) => {
+  const clientX = mouse.offsetX ? mouse.offsetX : mouse.touches[0].offsetX;
+  const clientY = mouse.offsetY ? mouse.offsetY : mouse.touches[0].offsetY;
+
+  if (clientX > frame.offsetWidth / 2 + 20) {
+    character.classList.add(`${className}--right`);
+    character.classList.remove(`${className}--left`);
+  } else if (clientX < frame.offsetWidth / 2 - 20) {
+    character.classList.add(`${className}--left`);
+    character.classList.remove(`${className}--right`);
+  } else {
+    character.classList.remove(`${className}--right`);
+    character.classList.remove(`${className}--left`);
+  }
+  if (clientY > frame.offsetHeight / 2 + 20) {
+    character.classList.add(`${className}--bottom`);
+    character.classList.remove(`${className}--top`);
+  } else if (clientY < frame.offsetHeight / 2 - 20) {
+    character.classList.add(`${className}--top`);
+    character.classList.remove(`${className}--bottom`);
+  } else {
+    character.classList.remove(`${className}--bottom`);
+    character.classList.remove(`${className}--top`);
+  }
+};
+
+// In a PROD case we should use a "throttle function" for these events
+frame.addEventListener("mousemove", mouseFunction);
+frame.addEventListener("touchstart", mouseFunction);
+</script>
+</body>
+</html>
