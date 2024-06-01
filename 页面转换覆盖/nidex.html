@@ -1,0 +1,551 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Bai+Jamjuree:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;1,200;1,300;1,400;1,500;1,600;1,700&family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+
+*,
+*::after,
+*::before {
+	box-sizing: border-box;
+}
+
+:root {
+	font-size: 12px;
+}
+
+body {
+	margin: 0;
+	overflow: hidden;
+	--color-text: #fff;
+	--color-gr-1: #ece4b7;
+	--color-gr-2: #fe9053;
+	--color-bg: #272f2e;
+	--color-link: #6d91c9;
+	--color-link-hover: #60c18d;
+	--padding-ver: 1.5rem;
+	--padding-hor: 1.5rem;
+	--color-bg-overlay: #ff8cb3;
+	--color-back: #6d91c9;
+	--color-back-hover: #60c18d;
+	color: var(--color-text);
+	background-color: var(--color-bg);
+	font-family: area-normal, -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica, Arial, sans-serif;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
+
+a {
+	text-decoration: none;
+	color: var(--color-link);
+	outline: none;
+}
+
+a:hover {
+	color: var(--color-link-hover);
+	outline: none;
+}
+
+/* Better focus styles from https://developer.mozilla.org/en-US/docs/Web/CSS/:focus-visible */
+a:focus {
+	/* Provide a fallback style for browsers that don't support :focus-visible */
+	outline: none;
+	background: lightgrey;
+}
+
+a:focus:not(:focus-visible) {
+	/* Remove the focus indicator on mouse-focus for browsers that do support :focus-visible */
+	background: transparent;
+}
+
+a:focus-visible {
+	/* Draw a very noticeable focus style for keyboard-focus on browsers that do support :focus-visible */
+	outline: 2px solid red;
+	background: transparent;
+}
+
+.unbutton {
+	background: none;
+	border: 0;
+	padding: 0;
+	margin: 0;
+	font: inherit;
+	cursor: pointer;
+}
+
+.unbutton:focus {
+	outline: none;
+}
+
+.hidden {
+	opacity: 0;
+	pointer-events: none;
+	position: absolute;
+}
+
+main {
+	display: grid;
+	height: 100vh;
+	padding: 0;
+	position: relative;
+}
+
+.intro,
+.content-wrap {
+	position: relative;
+	grid-area: 1 / 1 / 2 / 2;
+}
+
+.intro {
+	flex: 1;
+	max-height: 80vmax;
+	margin: auto 0;
+	padding: 0 var(--padding-ver);
+	font-size: 9vw;
+	line-height: 1;
+	text-transform: uppercase;
+	display: flex;
+	flex-wrap: wrap;
+	column-gap: 2vw;
+	row-gap: 1vw;
+	white-space: nowrap;
+	font-family: "stinger-variable", sans-serif;
+	font-variation-settings: "wdth" 120, "wght" 300;
+	background-color: var(--color-text);
+	background-image: linear-gradient(45deg, var(--color-gr-1), var(--color-gr-2));
+	background-size: 100%;
+	background-repeat: repeat;
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+	-moz-background-clip: text;
+	-moz-text-fill-color: transparent;
+	will-change: transform, opacity;
+  align-items: center;
+}
+
+.intro--closed {
+	opacity: 0;
+	pointer-events: none;
+}
+
+.font-1 {
+  font-family: "Bai Jamjuree", sans-serif;
+  font-weight: 500;
+}
+
+.font-2 {
+	font-family: "Bai Jamjuree", sans-serif;
+  font-weight: 600;
+}
+
+.intro__text {
+	line-height: 2;
+	padding-top: 0vw;
+}
+
+.intro__text .highlight {
+  background-color: var(--color-text);
+	background-image: linear-gradient(45deg, #ff8cb3, #bc8bb6);
+  background-size: 100%;
+	background-repeat: repeat;
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+	-moz-background-clip: text;
+	-moz-text-fill-color: transparent;
+	will-change: transform, opacity;
+  align-items: center;
+}
+
+.intro__image {
+	flex: 1;
+	position: relative;
+	cursor: pointer;
+	will-change: transform;
+	background-size: cover;
+	background-position: 50% 30%;
+	border-radius: 1vw;
+	min-width: 50px;
+	max-width: 100%;
+	transition: opacity 0.3s;
+  height: 50vh;
+}
+
+.intro__image:hover {
+	opacity: 0.8;
+}
+
+.content-wrap {
+	align-self: stretch;
+	display: grid;
+	pointer-events: none;
+}
+
+.content {
+	opacity: 0;
+	pointer-events: none;
+	grid-area: 1 / 1 / -1 / -1;
+	display: grid;
+	grid-template-columns: 100%;
+	height: 100%;
+	grid-template-rows: 50% 1fr;
+	gap: 5vh;
+	padding: 2rem var(--padding-ver) 2rem;
+}
+
+.content--open {
+	opacity: 1;
+	pointer-events: auto;
+}
+
+.content__img {
+	position: relative;
+	overflow: hidden;
+	border-radius: 1.85rem;
+	display: grid;
+	will-change: transform, opacity;
+}
+
+.content__img-inner {
+	background-size: auto;
+	background-position: 50% 34%;
+}
+
+.content__text {
+	display: grid;
+	grid-template-areas: 'back number title''... ... title''meta meta meta';
+	grid-column-gap: 2rem;
+	grid-template-columns: auto 1fr auto;
+	grid-template-rows: auto 1fr auto;
+}
+
+.content__title {
+	font-variation-settings: "wdth" 120, "wght" 100;
+	grid-area: title;
+	margin: 0;
+	font-family: stinger-variable, sans-serif;
+	font-size: clamp(2rem, 5vw, 5rem);
+	background-color: var(--color-text);
+	background-image: linear-gradient(45deg, var(--color-gr-1), var(--color-gr-2));
+	background-size: 100%;
+	background-repeat: repeat;
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+	-moz-background-clip: text;
+	-moz-text-fill-color: transparent;
+	line-height: 1;
+	max-width: 30ch;
+	text-align: right;
+}
+
+.content__number {
+	grid-area: number;
+	line-height: 1;
+	margin-top: -1vw;
+	align-self: start;
+	font-size: clamp(3rem, 6vw, 10rem);
+	background-color: var(--color-text);
+	background-image: linear-gradient(45deg, var(--color-gr-1), var(--color-gr-2));
+	background-size: 100%;
+	background-repeat: repeat;
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+	-moz-background-clip: text;
+	-moz-text-fill-color: transparent;
+	position: relative;
+}
+
+.content__back {
+	grid-area: back;
+	overflow: hidden;
+	align-self: center;
+}
+
+.content__back svg {
+	width: 12vw;
+  height: 12vw;
+	fill: var(--color-back);
+	transition: fill 0.2s;
+}
+
+.content__back:hover svg {
+	fill: var(--color-back-hover);
+}
+
+.content__meta {
+	grid-area: meta;
+	text-transform: uppercase;
+	display: flex;
+	justify-content: space-between;
+	font-size: clamp(0.75rem, 3vw, 1.5rem);
+	line-height: 1;
+}
+
+.overlay {
+	grid-area: 1 / -1;
+	display: grid;
+	position: relative;
+	z-index: 1000;
+	pointer-events: none;
+	opacity: 0;
+	--columns: 20;
+	grid-template-columns: repeat(var(--columns), 1fr);
+  gap: 0;
+}
+
+.overlay div {
+	background: var(--color-bg-overlay);
+  margin: 0;
+  padding: 0;
+  border: none;
+  box-sizing: border-box; 
+}
+
+@media screen and (min-width: 53em) {
+	.intro__image {
+		min-width: 200px;
+		max-width: 50%;
+	}
+
+	.content {
+		padding-top: 5rem;
+	}
+}
+    </style>
+</head>
+<body>
+    <main>
+        <div class="intro">
+          <div class="intro__text font-1">
+            <span class="highlight">h</span>
+            <span class="highlight">e</span>
+            <span class="highlight">a</span>
+            <span class="highlight">d</span>
+            <span class="highlight"></span>
+            <span class="normal">i</span>
+            <span class="normal">n</span>
+            <span class="normal">g</span>
+            <span class="highlight">s</span>
+          </div>
+          <div class="intro__image" style="background-image:url(https://img.freepik.com/free-vector/hand-drawn-picasso-style-illustration_23-2149539063.jpg?t=st=1717158461~exp=1717162061~hmac=7d0831a7df74c891dca5b41bb9483e6ad85fc9216c294d1ddc3e697afb6774a6&w=996)"></div>
+        </div>
+        <div class="overlay"></div>
+        <section class="content-wrap">
+          <div class="content">
+           <div class="content__img">
+              <div class="content__img-inner" style="background-image:url(https://img.freepik.com/free-vector/hand-drawn-picasso-style-illustration_23-2149539072.jpg?t=st=1717158522~exp=1717162122~hmac=69f629279b5ce222fd54426d1255d258e14ba264ba2ee91b000bdcc9167c4d5c&w=996)"></div>
+           </div>
+           <div class="content__text">
+              <h2 class="content__title font-2">You aren't the voice in your head; you are the one who listens. </h2>
+              <button class="content__back unbutton">
+                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><g data-name="Left Box"><rect x="2" y="2" width="20" height="20" rx="1" ry="1" style="fill:#ece4b7"/><path d="m6.293 12.707 3 3a1 1 0 0 0 1.414-1.414L9.414 13H17a1 1 0 0 0 0-2H9.414l1.293-1.293a1 1 0 0 0-1.414-1.414l-3 3a1 1 0 0 0 0 1.414z" style="fill:#ff8e31"/></g></svg>
+              </button>
+            </div>
+          </div>
+        </section>
+      </main>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.5/gsap.min.js"></script>
+      </body>
+      <script>
+        
+document.addEventListener('DOMContentLoaded', function() {
+	class Cell {
+		DOM = {
+			el: null
+		};
+		row;
+		column;
+
+		constructor(row, column) {
+			this.DOM.el = document.createElement('div');
+			gsap.set(this.DOM.el, {
+				willChange: 'opacity, transform'
+			});
+			this.row = row;
+			this.column = column;
+		}
+	}
+
+	class Overlay {
+		DOM = {
+			el: null
+		};
+		cells = [];
+		options = {
+			rows: 10,
+			columns: 10,
+		};
+
+		constructor(DOM_el, customOptions) {
+			this.DOM.el = DOM_el;
+			this.options = Object.assign({}, this.options, customOptions);
+			this.DOM.el.style.setProperty('--columns', this.options.columns);
+			this.cells = new Array(this.options.rows);
+			for (let i = 0; i < this.options.rows; ++i) {
+				this.cells[i] = new Array(this.options.columns);
+			}
+			for (let i = 0; i < this.options.rows; ++i) {
+				for (let j = 0; j < this.options.columns; ++j) {
+					const cell = new Cell(i, j);
+					this.cells[i][j] = cell;
+					this.DOM.el.appendChild(cell.DOM.el);
+				}
+			}
+		}
+
+		show(customConfig = {}) {
+			return new Promise((resolve) => {
+				const defaultConfig = {
+					transformOrigin: '50% 50%',
+					duration: 0.5,
+					ease: 'none',
+					stagger: {
+						grid: [this.options.rows, this.options.columns],
+						from: 0,
+						each: 0.05,
+						ease: 'none'
+					}
+				};
+				const config = Object.assign({}, defaultConfig, customConfig);
+				gsap.set(this.DOM.el, {
+					opacity: 1
+				});
+				gsap.fromTo(this.cells.flat().map(cell => cell.DOM.el), {
+					scale: 0,
+					opacity: 0,
+					transformOrigin: config.transformOrigin
+				}, {
+					duration: config.duration,
+					ease: config.ease,
+					scale: 1.01,
+					opacity: 1,
+					stagger: config.stagger,
+					onComplete: resolve
+				});
+			});
+		}
+
+		hide(customConfig = {}) {
+			return new Promise((resolve) => {
+				const defaultConfig = {
+					transformOrigin: '50% 50%',
+					duration: 0.5,
+					ease: 'none',
+					stagger: {
+						grid: [this.options.rows, this.options.columns],
+						from: 0,
+						each: 0.05,
+						ease: 'none'
+					}
+				};
+				const config = Object.assign({}, defaultConfig, customConfig);
+				gsap.fromTo(this.cells.flat().map(cell => cell.DOM.el), {
+					transformOrigin: config.transformOrigin
+				}, {
+					duration: config.duration,
+					ease: config.ease,
+					scale: 0,
+					opacity: 0,
+					stagger: config.stagger,
+					onComplete: resolve
+				});
+			});
+		}
+	}
+
+	const overlayEl = document.querySelector('.overlay');
+	const intro = document.querySelector('.intro');
+	const images = [...intro.querySelectorAll('.intro__image')];
+	const contentElements = [...document.querySelectorAll('.content-wrap > .content')];
+	const overlay = new Overlay(overlayEl, {
+		rows: 8,
+		columns: 14
+	});
+
+	let isAnimating = false;
+
+	images.forEach((image, position) => {
+		image.addEventListener('click', () => {
+			if (isAnimating) return;
+			isAnimating = true;
+
+			gsap.to(intro, {
+				duration: 0.8,
+				ease: 'power3.inOut',
+				yPercent: 15,
+				opacity: 0
+			});
+
+			overlay.show({
+					transformOrigin: '50% 0%',
+					duration: 0.4,
+					ease: 'power3.inOut',
+					stagger: index => 0.03 * (overlay.cells.flat()[index].row + gsap.utils.random(0, 5))
+				})
+				.then(() => {
+					intro.classList.add('intro--closed');
+					contentElements[position].classList.add('content--open');
+					overlay.hide({
+						transformOrigin: '50% 100%',
+						duration: 0.4,
+						ease: 'power2',
+						stagger: index => 0.03 * (overlay.cells.flat()[index].row + gsap.utils.random(0, 5))
+					}).then(() => isAnimating = false);
+
+					gsap.fromTo(contentElements[position].querySelector('.content__img'), {
+						yPercent: -25,
+						opacity: 0
+					}, {
+						duration: 0.8,
+						ease: 'power3',
+						yPercent: 0,
+						opacity: 1
+					});
+				});
+		});
+	});
+
+	contentElements.forEach((content, position) => {
+		content.querySelector('.content__back').addEventListener('click', () => {
+			if (isAnimating) return;
+			isAnimating = true;
+
+			gsap.to(content.querySelector('.content__img'), {
+				duration: 0.8,
+				ease: 'power3.inOut',
+				yPercent: -15,
+				opacity: 0
+			});
+
+			overlay.show({
+					transformOrigin: '50% 100%',
+					duration: 0.4,
+					ease: 'power3.inOut',
+					stagger: (index, _, array) => 0.03 * (overlay.cells.flat()[array.length - index - 1].row + gsap.utils.random(0, 5))
+				})
+				.then(() => {
+					intro.classList.remove('intro--closed');
+					content.classList.remove('content--open');
+					overlay.hide({
+						transformOrigin: '50% 0%',
+						duration: 0.4,
+						ease: 'power2',
+						stagger: (index, _, array) => 0.03 * (overlay.cells.flat()[array.length - index - 1].row + gsap.utils.random(0, 5))
+					}).then(() => isAnimating = false);
+
+					gsap.to(intro, {
+						duration: 0.8,
+						ease: 'power3',
+						yPercent: 0,
+						opacity: 1
+					});
+				});
+		});
+	});
+});
+      </script>
+</body>
+</html>
