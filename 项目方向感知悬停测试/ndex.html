@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style lang="scss">
+        @import "compass/css3";
+
+$animlength: 0.3s;
+$boxwidth: 350;
+$boxheight: 350;
+$spacebetween: 30px;
+
+
+/* Logic */
+
+.hoverable {
+  position: relative;
+  width:  #{$boxwidth}px;
+  height:  #{$boxheight}px;
+  background-size: cover !important; /* Ensures the image covers the entire box */
+  background-position: center bottom; 
+  border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
+  overflow: hidden;
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 14px 28px, rgba(0, 0, 0, 0.22) 0px 10px 10px;
+  transition: box-shadow .2s ease-in-out;
+  &:hover {
+    box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
+  }
+}
+.hoverable-content {
+  opacity: 0;
+  -webkit-animation-fill-mode: forwards;
+  -webkit-animation-duration: $animlength;
+}
+.hoverable:hover .hoverable-content {
+  opacity: 1;
+}
+.hoverable-content-wrap, .hoverable-content, .hoverable-exit {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+.hoverable-content-wrap {
+  overflow: hidden;
+}
+/* Exit areas are full size and shifted to one side of square. */
+.hoverable-exit {
+  display: none;
+  z-index: 2;
+}
+.hoverable:hover .hoverable-exit {
+  display: block;
+}
+.hoverable-exit:nth-of-type(1), .hoverable-exit:nth-of-type(2) {
+  width: $spacebetween;
+}
+.hoverable-exit:nth-of-type(4), .hoverable-exit:nth-of-type(3) {
+  height: $spacebetween;
+}
+.hoverable-exit:nth-of-type(1) { left: 100%; }
+.hoverable-exit:nth-of-type(2) { right: 100%; }
+.hoverable-exit:nth-of-type(3) { bottom: 100%; }
+.hoverable-exit:nth-of-type(4) { top: 100%; }
+/* Enter areas are triangles inside box - actually built with rotated squares that are shifted halfway towards various sides */
+.hoverable-enter {
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom:0;
+  margin: auto;
+  width:  #{sqrt(($boxwidth*$boxheight)/2)}px;
+  height: #{sqrt(($boxwidth*$boxheight)/2)}px;
+  z-index: 1;
+}
+.hoverable-enter:nth-of-type(1) {
+  -webkit-transform: translate(70%, 0%) rotate(45deg);
+}
+.hoverable-enter:nth-of-type(2) {
+  -webkit-transform: translate(-70%,0) rotate(45deg);
+}
+.hoverable-enter:nth-of-type(3) {
+  -webkit-transform: translate(0,-70%) rotate(45deg);
+}
+.hoverable-enter:nth-of-type(4) {
+  -webkit-transform: translate(0,70%) rotate(45deg);
+}
+/* Enter area in use should cover whole area so other enter areas dont get triggered. */
+.hoverable-enter:hover {
+  display: block;
+  -webkit-transform: none;
+  z-index: 2;
+  width: 100%;
+  height: 100%;
+}
+.hoverable-enter:nth-of-type(1):hover ~ .hoverable-content {
+  -webkit-animation-name: enter-left;
+}
+
+.hoverable:hover .hoverable-enter:nth-of-type(2):hover ~ .hoverable-content {
+  -webkit-animation-name: enter-right;
+}
+
+.hoverable:hover .hoverable-enter:nth-of-type(3):hover ~ .hoverable-content {
+  -webkit-animation-name: enter-bottom;
+}
+
+.hoverable:hover .hoverable-enter:nth-of-type(4):hover ~ .hoverable-content {
+  -webkit-animation-name: enter-top;
+}
+
+.hoverable-exit:nth-of-type(1):hover ~ .hoverable-content-wrap .hoverable-content {
+  -webkit-animation-name: exit-right;
+}
+.hoverable-exit:nth-of-type(2):hover ~ .hoverable-content-wrap .hoverable-content {
+  -webkit-animation-name: exit-left;
+}
+.hoverable-exit:nth-of-type(3):hover ~ .hoverable-content-wrap .hoverable-content {
+  -webkit-animation-name: exit-top;
+}
+.hoverable-exit:nth-of-type(4):hover ~ .hoverable-content-wrap .hoverable-content {
+  -webkit-animation-name: exit-bottom;
+}
+
+.post-content {
+  padding: 1em;
+  box-sizing: border-box;
+  // background-color: #050203b8;
+  color: #FFF;
+  text-align: center;
+  font-family: helvetica, sans-serif;
+  border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
+  opacity: 0; /* Initially hide the post content */
+  animation-fill-mode: forwards;
+  animation-duration: $animlength;
+  animation-delay: 0.1s; /* Delay the animation */
+}
+
+
+.post-title, .post-description, .cta-button {
+  opacity: 0; /* Initially hide the elements */
+  animation-fill-mode: forwards;
+  animation-duration: $animlength;
+  animation-delay: 0.2s; /* Delay the animation */
+}
+
+/* Animations */
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.hoverable:hover .post-content {
+  animation-name: fade-in;
+}
+
+.hoverable:hover .post-title,
+.hoverable:hover .post-description,
+.hoverable:hover .cta-button {
+  animation-name: fade-in;
+}
+
+/* Animations */
+
+@-webkit-keyframes enter-top {
+  from {  bottom: -100%;  }
+  to {  bottom: 0;  }
+}
+@-webkit-keyframes enter-left {
+  from {  left: 100%;  }
+  to {  left: 0;  }
+}
+@-webkit-keyframes enter-bottom {
+  from {  bottom: 100%;  }
+  to {  bottom: 0;  }
+}
+@-webkit-keyframes enter-right {
+  from {  left: -100%;  }
+  to {  left: 0;  }
+}
+
+@-webkit-keyframes exit-top {
+  from { top: 0; }
+  to { top: -100%; }
+}
+@-webkit-keyframes exit-left {
+  from { left: 0; }
+  to { left: -100%; }
+}
+@-webkit-keyframes exit-bottom {
+  from { top: 0; }
+  to { top: 100%; }
+}
+@-webkit-keyframes exit-right {
+  from { left: 0; }
+  to { left: 100%; }
+}
+
+
+/* Styling */
+body {
+  width: ($spacebetween*6)+($boxwidth*3);
+  margin: auto;
+  background: #EDEBEE;
+}
+.hoverable {
+  float: left;
+  background: #CCC;
+  margin: $spacebetween $spacebetween;
+}
+.hoverable-content {
+  padding: 1em;
+  box-sizing: border-box;
+  background-color: #050203b8;
+  color: #FFF;
+  text-align: center;
+  font-family: helvetica, sans-serif;
+  // border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
+}
+.cta-button {
+  text-decoration: none;
+  color: wheat;
+}
+
+
+    </style>
+</head>
+<body>
+    <div class="hoverable" style="background-image: url('https://images.unsplash.com/photo-1583502070955-f195c352ff30?q=80&w=1883&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');">
+        <div class="hoverable-exit"></div>
+        <div class="hoverable-exit"></div>
+        <div class="hoverable-exit"></div>
+        <div class="hoverable-exit"></div>
+        <div class="hoverable-content-wrap">
+          <div class="hoverable-enter"></div>
+          <div class="hoverable-enter"></div>
+          <div class="hoverable-enter"></div>
+          <div class="hoverable-enter"></div>
+          <div class="hoverable-content">
+            <div class="blog-post">
+      <!--         <img src="image-url.jpg" alt="Post Image"> -->
+              <div class="post-content">
+                <h2 class="post-title">Post Title</h2>
+                <p class="post-description">Space, the final frontier. These are the voyages of the Starship Enterprise. </p>
+                <a href="#" class="cta-button">Read More</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="hoverable" style="background-image: url('https://images.unsplash.com/photo-1577083639236-0f560d3d771c?q=80&w=1967&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3Dx'); border-radius:
+      47% 53% 45% 55% / 30% 30% 70% 70%;">
+        <div class="hoverable-exit"></div>
+        <div class="hoverable-exit"></div>
+        <div class="hoverable-exit"></div>
+        <div class="hoverable-exit"></div>
+        <div class="hoverable-content-wrap">
+          <div class="hoverable-enter"></div>
+          <div class="hoverable-enter"></div>
+          <div class="hoverable-enter"></div>
+          <div class="hoverable-enter"></div>
+          <div class="hoverable-content">
+            <div class="blog-post">
+      <!--         <img src="image-url.jpg" alt="Post Image"> -->
+              <div class="post-content">
+                <h2 class="post-title">Post Title</h2>
+                <p class="post-description">Light years quasar as a patch of light gathered by gravity Vangelis radio telescope.</p>
+                <a href="#" class="cta-button">Read More</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="hoverable" style="background-image: url('https://images.unsplash.com/photo-1578926078693-4eb3d4499e43?q=80&w=2008&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'); border-radius:
+      30% 70% 15% 85% / 59% 47% 53% 41%;">
+        <div class="hoverable-exit"></div>
+        <div class="hoverable-exit"></div>
+        <div class="hoverable-exit"></div>
+        <div class="hoverable-exit"></div>
+        <div class="hoverable-content-wrap">
+          <div class="hoverable-enter"></div>
+          <div class="hoverable-enter"></div>
+          <div class="hoverable-enter"></div>
+          <div class="hoverable-enter"></div>
+          <div class="hoverable-content">
+            <div class="blog-post">
+      <!--         <img src="image-url.jpg" alt="Post Image"> -->
+              <div class="post-content">
+                <h2 class="post-title">Post Title</h2>
+                <p class="post-description">Da hat der sein ganzes Leben lang geackert bis er nich mehr konnte und dann is ihn ein Jahr nache Rente abgenippelt. </p>
+                <a href="#" class="cta-button">Read More</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+</body>
+</html>
