@@ -1,0 +1,750 @@
+<!-- <!DOCTYPE html> -->
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Explore the Math Birb Cards gallery, download files, and order prints on demand.">
+  <meta name="keywords" content="Math Birb Cards, Fractal Kitty, Print on Demand, Download">
+
+  <title>Math Birb Cards</title>
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    body {
+  font-family: "Montserrat", sans-serif;
+
+  margin: 0;
+  padding: 0;
+  background-color: #f8f8f8;
+  color: #333;
+}
+html {
+  scroll-behavior: smooth;
+}
+.container {
+  width: 80%;
+  margin: 0 auto;
+}
+
+header {
+  background-color: #333;
+  color: #fff;
+  padding: 1rem 0;
+  position: relative;
+}
+
+header h1 {
+  margin: 0;
+  text-align: center;
+}
+
+.menu-toggle {
+  display: none;
+  font-size: 1.5rem;
+  background: none;
+  border: none;
+  color: #fff;
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+}
+
+nav ul {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  margin: 1rem 0 0;
+}
+
+nav ul li {
+  margin: 0 1rem;
+}
+
+nav ul li a {
+  color: #fff;
+  text-decoration: none;
+}
+
+@media (max-width: 768px) {
+  .menu-toggle {
+    display: block;
+  }
+
+  nav ul {
+    display: none;
+    flex-direction: column;
+    text-align: center;
+  }
+
+  nav ul.nav-list.active {
+    display: flex;
+  }
+
+  nav ul li {
+    margin: 0.5rem 0;
+  }
+}
+
+#gallery {
+  margin: auto;
+}
+
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  gap: 1rem 1rem;
+  padding-bottom: 1em;
+  padding-top: 1em;
+  grid-auto-rows: 200px;
+}
+
+@media (min-width: 300px) {
+  .gallery-grid {
+    grid-template-columns: repeat(2, 1fr);
+    grid-auto-rows: 200px;
+  }
+}
+
+@media (min-width: 500px) {
+  .gallery-grid {
+    grid-template-columns: repeat(4, 1fr);
+    grid-auto-rows: 150px;
+  }
+}
+
+@media (min-width: 700px) {
+  .gallery-grid {
+    grid-template-columns: repeat(4, 1fr);
+    grid-auto-rows: 200px;
+  }
+}
+
+@media (min-width: 900px) {
+  .gallery-grid {
+    grid-template-columns: repeat(4, 1fr);
+    grid-auto-rows: 290px;
+  }
+}
+
+.grid-item {
+  perspective: 1000px;
+}
+
+.card {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  transform-style: preserve-3d;
+  transition: transform 0.8s;
+}
+
+.grid-item:hover .card {
+  transform: rotateY(180deg);
+}
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.card {
+  animation: fadeIn 0.5s ease-in-out;
+}
+
+.card-front,
+.card-back {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  backface-visibility: hidden;
+  border-radius: 8px;
+  overflow: hidden;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.card-front {
+}
+
+.card-back {
+  transform: rotateY(180deg);
+}
+
+.card-front img,
+.card-back img {
+  width: auto;
+  height: 100%;
+  object-fit: contain;
+  border-radius: 8px;
+}
+
+#about,
+#contact {
+  margin: 2rem 0;
+}
+
+footer {
+  background-color: #333;
+  color: #fff;
+  padding: 1rem 0;
+  text-align: center;
+}
+
+footer ul {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  margin: 1rem 0 0;
+}
+
+footer ul li {
+  margin: 0 1rem;
+}
+
+footer ul li a {
+  color: #fff;
+  text-decoration: none;
+}
+
+.cc {
+  color: lightskyblue;
+}
+header {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+/* The Modal (background) */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1000;
+  padding-top: 60px;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.9);
+  opacity: 0;
+  transition: opacity 0.5s ease;
+  transition-delay: 0.1s;
+}
+
+/* Show modal with fade-in effect */
+.modal.show {
+  display: block;
+  opacity: 1;
+}
+
+/* Modal Content (image) */
+.modal-content {
+  margin: auto;
+  display: block;
+  width: 90%;
+  max-width: 90%;
+  max-height: 80vh;
+  object-fit: contain;
+}
+
+/* Caption of Modal Image */
+#caption {
+  margin: auto;
+  display: block;
+  width: 80%;
+  max-width: 700px;
+  text-align: center;
+  color: #ccc;
+  padding: 10px 0;
+}
+
+/* Add Animation */
+.modal-content,
+#caption {
+  animation-name: zoom;
+  animation-duration: 0.6s;
+}
+
+@keyframes zoom {
+  from {
+    transform: scale(0);
+  }
+  to {
+    transform: scale(1);
+  }
+}
+
+  </style>
+</head>
+
+<body>
+  <header>
+    <div class="container">
+      <h1>Math Birb Cards</h1>
+      <button class="menu-toggle" aria-label="Toggle menu">&#9776;</button>
+      <nav>
+        <ul class="nav-list">
+          <li><a href="https://fractalkitty.com/" target=blank>Fractal Kitty</a></li>
+          <li><a href="https://drive.google.com/file/d/1MOlpfvyq014tGXLd3flBRjN8EX0AAzfc/view?usp=drive_link" target=blank>Download Files</a></li>
+          <li><a href="https://www.makeplayingcards.com/sell/marketplace/math-birb.html" target=blank>Print on Demand</a></li>
+
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <section id="gallery" class="container">
+
+    <div id="gallery-grid" class="gallery-grid">
+
+    </div>
+  </section>
+
+  <footer>
+
+    <div class="container">
+
+      <ul>
+        <li><a href="https://fractalkitty.com/" target=blank>Fractal Kitty</a></li>
+        <li><a href="https://drive.google.com/file/d/1MOlpfvyq014tGXLd3flBRjN8EX0AAzfc/view?usp=drive_link" target=blank>Download Files</a></li>
+        <li><a href="https://www.makeplayingcards.com/sell/marketplace/math-birb.html" target=blank>Print on Demand</a></li>
+
+      </ul>
+      <p xmlns:cc="http://creativecommons.org/ns#">This work is licensed under <a class="cc" href="http://creativecommons.org/licenses/by-sa/4.0/?ref=chooser-v1" target="_blank" rel="license noopener noreferrer" style="display:inline-block;">CC BY-SA 4.0<img style="height:22px!important;margin-left:3px;vertical-align:text-bottom;" src="https://mirrors.creativecommons.org/presskit/icons/cc.svg?ref=chooser-v1"><img style="height:22px!important;margin-left:3px;vertical-align:text-bottom;" src="https://mirrors.creativecommons.org/presskit/icons/by.svg?ref=chooser-v1"><img style="height:22px!important;margin-left:3px;vertical-align:text-bottom;" src="https://mirrors.creativecommons.org/presskit/icons/sa.svg?ref=chooser-v1"></a></p>
+    </div>
+  </footer>
+  <script src="script.js"></script>
+  <div id="cardModal" class="modal">
+    <span class="close">&times;</span>
+    <img class="modal-content" id="modalImage">
+    <div id="caption"></div>
+  </div>
+
+
+  <script>
+    let backC = "https://fractalkitty.com/wp-content/uploads/2021/11/back-2.png";
+let p = "https://assets.codepen.io/4559259/";
+document.addEventListener("DOMContentLoaded", () => {
+  const cards = [
+    {
+      front: p + "0g_1.png",
+      back: backC,
+      alt:
+        "Zero with bushtit feathers with graph suit marking -  flips to back of card design"
+    },
+    {
+      front: p + "0dih_1.png",
+      back: backC,
+      alt:
+        "Zero with towhee feathers with dihedral suit marking - flips to back of card design"
+    },
+    {
+      front: p + "0knot_1.png",
+      back: backC,
+      alt:
+        "Zero with two nuthatches facing each other with knot suit marking -  flips to back of card design"
+    },
+    {
+      front: p + "0r_1.png",
+      back: backC,
+      alt:
+        "Zero with two hummingbirds with rose suit -  flips to back of card design"
+    },
+    {
+      front: p + "1g_1.png",
+      back: backC,
+      alt:
+        "One large round bushtit with graph suit -  flips to back of card design"
+    },
+    {
+      front: p + "1dih_1.png",
+      back: backC,
+      alt:
+        "Two towhees on a line with 2 nodes with dihedral suit - flips to back of card design"
+    },
+    {
+      front: p + "1knot_1.png",
+      back: backC,
+      alt:
+        "One large round nuthatch with knot suit -  flips to back of card design"
+    },
+    {
+      front: p + "1r _1.png",
+      back: backC,
+      alt:
+        "Two hummingbirds on cardioid with rose suit -  flips to back of card design"
+    },
+    {
+      front: p + "2g.png",
+      back: backC,
+      alt:
+        "Two bushtits on a line with 2 nodes with dihedral suit - flips to back of card design"
+    },
+    {
+      front: p + "2dih.png",
+      back: backC,
+      alt:
+        "Three towhees on a dihedral group  with dihedral suit - flips to back of card design"
+    },
+    {
+      front: p + "2knot.png",
+      back: backC,
+      alt:
+        "Two nutchatches reflected with knot suit - flips to back of card design"
+    },
+    {
+      front: p + "2r .png",
+      back: backC,
+      alt:
+        "Two hummingbirds on rose curve with rose suit - flips to back of card design"
+    },
+    {
+      front: p + "3g.png",
+      back: backC,
+      alt:
+        "Three rotated bushtits on a triangle with graph suit - flips to back of card design"
+    },
+    {
+      front: p + "3dih.png",
+      back: backC,
+      alt:
+        "Two towhees on the next (number 3) dihedral group with dihedral suit - flips to back of card design"
+    },
+    {
+      front: p + "3knot.png",
+      back: backC,
+      alt:
+        "Two nuthatches on a trefoil knot with knot suit - flips to back of card design"
+    },
+    {
+      front: p + "3r .png",
+      back: backC,
+      alt:
+        "Two hummingbirds on rose curve with 3 loops with rose suit - flips to back of card design"
+    },
+    {
+      front: p + "4g.png",
+      back: backC,
+      alt:
+        "Four rotated bushtits on a complete graph of 4 nodes with graph suit - flips to back of card design"
+    },
+    {
+      front: p + "4dih.png",
+      back: backC,
+      alt:
+        "Two towhees on the next (number 4) dihedral group with dihedral suit - flips to back of card design"
+    },
+    {
+      front: p + "4knot.png",
+      back: backC,
+      alt:
+        "Two nuthatches on a 4 knot with knot suit - flips to back of card design"
+    },
+    {
+      front: p + "4r .png",
+      back: backC,
+      alt:
+        "Two hummingbirds on rose curve with 4 loops with rose suit - flips to back of card design"
+    },
+    {
+      front: p + "5G.png",
+      back: backC,
+      alt:
+        "Five rotated bushtits on a complete graph of 5 nodes with graph suit - flips to back of card design"
+    },
+    {
+      front: p + "5dih.png",
+      back: backC,
+      alt:
+        "Two towhees on the next (number 5) dihedral group with dihedral suit - flips to back of card design"
+    },
+    {
+      front: p + "5knot.png",
+      back: backC,
+      alt:
+        "Two nuthatches on a 5 knot with knot suit - flips to back of card design"
+    },
+    {
+      front: p + "5r .png",
+      back: backC,
+      alt:
+        "Two hummingbirds on rose curve with 5 loops with rose suit - flips to back of card design"
+    },
+    {
+      front: p + "6g.png",
+      back: backC,
+      alt:
+        "Six rotated bushtits on a complete graph of 6 nodes with graph suit - flips to back of card design"
+    },
+    {
+      front: p + "6dih.png",
+      back: backC,
+      alt:
+        "Two towhees on the next (number 6) dihedral group with dihedral suit - flips to back of card design"
+    },
+    {
+      front: p + "6knot.png",
+      back: backC,
+      alt:
+        "Two nuthatches on a 6 knot with knot suit - flips to back of card design"
+    },
+    {
+      front: p + "6r.png",
+      back: backC,
+      alt:
+        "Two hummingbirds on rose curve with 6 loops with rose suit - flips to back of card design"
+    },
+    {
+      front: p + "7g.png",
+      back: backC,
+      alt:
+        "Seven rotated bushtits on a complete graph of 7 nodes with graph suit - flips to back of card design"
+    },
+    {
+      front: p + "7dih.png",
+      back: backC,
+      alt:
+        "Two towhees on the next (number 7) dihedral group with dihedral suit - flips to back of card design"
+    },
+    {
+      front: p + "7knot.png",
+      back: backC,
+      alt:
+        "Two nuthatches on a 7 knot with knot suit - flips to back of card design"
+    },
+    {
+      front: p + "7r.png",
+      back: backC,
+      alt:
+        "Two hummingbirds on rose curve with 7 loops with rose suit - flips to back of card design"
+    },
+    {
+      front: p + "8g.png",
+      back: backC,
+      alt:
+        "Eight rotated bushtits on a complete graph of 8 nodes with graph suit - flips to back of card design"
+    },
+    {
+      front: p + "8dih.png",
+      back: backC,
+      alt:
+        "Two towhees on the next (number 8) dihedral group with dihedral suit - flips to back of card design"
+    },
+    {
+      front: p + "8knot.png",
+      back: backC,
+      alt:
+        "Two nuthatches on a 8 knot with knot suit - flips to back of card design"
+    },
+    {
+      front: p + "8r.png",
+      back: backC,
+      alt:
+        "Two hummingbirds on rose curve with 8 loops with rose suit - flips to back of card design"
+    },
+    {
+      front: p + "9g.png",
+      back: backC,
+      alt:
+        "Nine rotated bushtits on a complete graph of 9 nodes with graph suit - flips to back of card design"
+    },
+    {
+      front: p + "9dih.png",
+      back: backC,
+      alt:
+        "Two towhees on the next (number 9) dihedral group with dihedral suit - flips to back of card design"
+    },
+    {
+      front: p + "9knot.png",
+      back: backC,
+      alt:
+        "Two nuthatches on a 9 knot with knot suit - flips to back of card design"
+    },
+    {
+      front: p + "9r.png",
+      back: backC,
+      alt:
+        "Two hummingbirds on rose curve with 9 loops with rose suit - flips to back of card design"
+    },
+    {
+      front: p + "Jg .png",
+      back: backC,
+      alt:
+        "A face card of a canada jay with graph suit - flips to back of card design"
+    },
+    {
+      front: p + "Join.png",
+      back: backC,
+      alt:
+        "A face card of a scrub jay with graph suit - flips to back of card design"
+    },
+    {
+      front: p + "Jknot .png",
+      back: backC,
+      alt:
+        "A face card of a blue jay with graph suit - flips to back of card design"
+    },
+    {
+      front: p + "Jr.png",
+      back: backC,
+      alt:
+        "A face card of a stellar's jay with graph suit - flips to back of card design"
+    },
+    {
+      front: p + "Pg .png",
+      back: backC,
+      alt:
+        "A face card of an acorn woodpecker with graph suit - flips to back of card design"
+    },
+    {
+      front: p + "Pdih .png",
+      back: backC,
+      alt:
+        "A face card of a northern flicker with dihedral suit - flips to back of card design"
+    },
+    {
+      front: p + "Pknot .png",
+      back: backC,
+      alt:
+        "A face card of a hairy woodpecker with knot suit - flips to back of card design"
+    },
+    {
+      front: p + "Pr .png",
+      back: backC,
+      alt:
+        "A face card of a pileated woodpecker with rose suit - flips to back of card design"
+    },
+    {
+      front: p + "Rg .png",
+      back: backC,
+      alt:
+        "A face card of a cooper's hawk with graph suit - flips to back of card design"
+    },
+    {
+      front: p + "Ridge.png",
+      back: backC,
+      alt:
+        "A face card of a northern goshawk with dihedral suit - flips to back of card design"
+    },
+    {
+      front: p + "Rknot .png",
+      back: backC,
+      alt:
+        "A face card of a greathorned owl with knot suit - flips to back of card design"
+    },
+    {
+      front: p + "Rr .png",
+      back: backC,
+      alt:
+        "A face card of a red-tailed hawk with dihedral suit - flips to back of card design"
+    },
+    {
+      front: p + "Crows x2.png",
+      back: backC,
+      alt: "A card with two crows - flips to back of card design"
+    },
+    {
+      front: p + "Mischief_x10.png",
+      back: backC,
+      alt:
+        "A card with a geometric design of magpies - flips to back of card design"
+    },
+    {
+      front: p + "Poop x2.png",
+      back: backC,
+      alt: "A card with two bird poops - flips to back of card design"
+    },
+    {
+      front: p + "Robin x2.png",
+      back: backC,
+      alt: "A card with two robins in hoods - flips to back of card design"
+    },
+    {
+      front: p + "back and 3x.png",
+      back: backC,
+      alt: "A card with both sides being the back of the card"
+    },
+    {
+      front: p + "rules.jpg",
+      back: backC,
+      alt: "A card with example rules - flips to back of card design"
+    }
+  ];
+
+  const galleryGrid = document.getElementById("gallery-grid");
+
+  cards.forEach((card) => {
+    const gridItem = document.createElement("div");
+    gridItem.classList.add("grid-item");
+
+    const cardElement = document.createElement("div");
+    cardElement.classList.add("card");
+
+    const cardFront = document.createElement("div");
+    cardFront.classList.add("card-front");
+    const frontImage = document.createElement("img");
+    frontImage.src = card.front;
+    frontImage.alt = card.alt;
+    cardFront.appendChild(frontImage);
+
+    const cardBack = document.createElement("div");
+    cardBack.classList.add("card-back");
+    const backImage = document.createElement("img");
+    backImage.src = card.back;
+    backImage.alt = card.alt;
+    cardBack.appendChild(backImage);
+
+    cardElement.appendChild(cardFront);
+    cardElement.appendChild(cardBack);
+
+    gridItem.appendChild(cardElement);
+    galleryGrid.appendChild(gridItem);
+
+    // Add event listener to open modal on click
+    gridItem.addEventListener("click", () => {
+      const modal = document.getElementById("cardModal");
+      const modalImg = document.getElementById("modalImage");
+      const captionText = document.getElementById("caption");
+
+      modal.style.display = "block";
+      setTimeout(() => {
+        modal.classList.add("show");
+        modalImg.src = frontImage.src;
+        // captionText.innerHTML = frontImage.alt;
+      }, 10); // Small delay to trigger transition
+    });
+  });
+
+  const menuToggle = document.querySelector(".menu-toggle");
+  const navList = document.querySelector(".nav-list");
+
+  if (menuToggle && navList) {
+    menuToggle.addEventListener("click", () => {
+      navList.classList.toggle("active");
+    });
+  }
+
+  // Get the modal
+  const modal = document.getElementById("cardModal");
+
+  // When the user clicks anywhere on the modal, close it
+  modal.onclick = function () {
+    modal.classList.remove("show");
+    setTimeout(() => {
+      modal.style.display = "none";
+    }, 500); // Match this to the transition duration
+  };
+});
+
+  </script>
+</body>
+
+</html>
