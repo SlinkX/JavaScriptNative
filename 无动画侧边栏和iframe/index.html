@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>html,body {
+        height: 100%;
+        width: 100%;
+        position: relative;
+        margin: 0;
+        padding: 0;
+    }
+    
+    .sidenav {
+        height: 100%;
+        width: 20%;
+        position: fixed;
+        z-index: 1;
+        top: 0;
+        left: 0;
+        background-color: #000066;
+        overflow-x: hidden;
+        padding-top: 20px;
+    }
+    
+    .sidenav:hover{
+      width: 300px;
+    }
+    
+    
+    .sidenav a {
+        padding: 6px 8px 6px 16px;
+        text-decoration: none;
+        font-size: 15px;
+        color: #fff;
+        display: block;
+    }
+    
+    .sidenav a:hover {
+        color: #f1f1f1;
+    }
+    
+    .frameContainer{
+        position: fixed; 
+        height: 100%;
+        top:0px;
+        left: 300px;
+        right:0px;
+        bottom:0px;
+        z-index:1;
+    }
+    
+    .main_iframe{
+        height: 100%;
+        width: 100%;
+        border:none;
+        background:#3366ff;
+    }
+    #main-section.sidebar-expanded{
+      .sidebar{
+        width: 300px;
+    
+        .item-label{
+          display: inline;
+        }
+      }
+    }
+    
+    #main-section.sidebar-collapsed{
+      .sidebar{
+        width: 60px;
+    
+        .item-label{
+          display: none;
+        }
+      }
+    }
+    
+    @media(min-width: 992px){
+        .main{
+          position: relative;
+          min-height: 1px;
+          padding-left: 15px;
+          padding-right: 15px;  
+          margin-left: 16.6666666667%;
+          float:left;
+          width: 83.3333333333%;
+        }
+        #main-section.sidebar-collapsed{
+          .main{
+            widows: 100%;
+            margin-left:0;
+          }
+        }
+        .sidebar{
+            width: 16.6666666667%;
+    
+            .item-label{
+              display: inline;
+            }
+        }
+    
+        #main-section.sidebar-expanded{
+          .sidebar{
+            width: 16.6666666667%;
+          }
+        }
+    }
+    
+    .nav-sidebar{
+        margin: 0 -20px 20px;
+    }
+    .nav-sidebar > li:last-child{
+      border-top:1px solid rgba(255, 255, 255, .2); /* for the collapse toggle item */
+    }
+    .nav-sidebar > li > a {
+      padding-right: 20px;
+      padding-left: 20px;
+      color: #fff;
+      text-transform: uppercase;
+    }
+    .nav-sidebar > .active > a,
+    .nav-sidebar > .active > a:hover,
+    .nav-sidebar > .active > a:focus,
+    .nav > li > a:hover, 
+    .nav > li > a:focus{
+      color: #fff;
+      background-color: #ea045c;
+    }
+    
+    /* SUBMENU */
+    .nav-sidebar > ul > a{ 
+      color: #fff;
+    }</style>
+</head>
+<body>
+    <div class="sidenav" id="animate">
+ 
+        <a href="https://bluecommunitysustainability.github.io/assessment/dist/questions.html" target="load">Assessment Questions</a>
+        <a href="https://bluecommunitysustainability.github.io/assessment/dist/dashboard.html" target="load">Assessor Dashboard</a>
+        <a href="https://bluecommunity.chartmat.app/stakeholders" target="load">Stakeholder Dashboard</a>
+       
+        <table style="width: 60%;" >
+      <tbody>
+      <tr>
+      <td> <a href="#contact" target="load">📇</a>
+        <a href="#contact" target="load">⚙️</a>
+        <a href="#contact" target="load">😎</a>
+        <a href="#contact" target="load">🧲</a>
+        <a href="#contact" target="load">💹</a>
+        <a href="#contact" target="load">🏖️</a>
+        <a href="#contact" target="load">🍛</a>
+        <a href="#contact" target="load">☀️</a>
+        <a href="#contact" target="load">💧</a>
+        <a href="#contact" target="load">♻️</a></td>
+      <td> <a href="#contact" target="load">🌄</a>
+        <a href="#contact" target="load">🏗️</a>
+        <a href="#contact" target="load">🚇</a>
+        <a href="#contact" target="load">🍼</a>
+        <a href="#contact" target="load">🌿</a>
+        <a href="#contact" target="load">🦐</a>
+        <a href="#contact" target="load">🏞️</a>
+        <a href="#contact" target="load">⛵</a>
+        <a href="#contact" target="load">🏫</a>
+        <a href="#contact" target="load">🌎</a></td>
+      </tr>
+      </tbody>
+      </table>
+          <!-- DivTable.com -->
+      </div>
+      
+      <div class="frameContainer">
+          <iframe class="main_iframe" name="load" scrolling="yes"></iframe>
+      </div>
+      
+      <script>
+        var sidebarState = sessionStorage.getItem('sidebarState');
+      
+      windowWidth = $(window).width();
+      
+      $(window).resize(function() {
+        windowWidth = $(window).width();
+      
+        if( windowWidth < 992 ){ //992 is the value of $screen-md-min in boostrap variables.scss
+              $('#main-section').removeClass('sidebar-expanded').addClass('sidebar-collapsed');
+              $('#toggle-collapse').removeClass('glyphicon-circle-arrow-left').addClass('glyphicon-circle-arrow-right');
+          }
+          else{
+              if(sidebarState){
+                  $('#main-section').addClass('sidebar-collapsed').removeClass('sidebar-expanded'); 
+                  $('#toggle-collapse').removeClass('glyphicon-circle-arrow-left').addClass('glyphicon-circle-arrow-right');
+              }
+              else{
+                  $('#main-section').addClass('sidebar-expanded').removeClass('sidebar-collapsed'); 
+                  $('#toggle-collapse').removeClass('glyphicon-circle-arrow-right').addClass('glyphicon-circle-arrow-left');
+              }
+          }
+      });
+      function setSidebarState(value){
+          sessionStorage.setItem('sidebarState', value);
+      }
+      
+      function clearSidebarState(){
+          sessionStorage.removeItem('sidebarState');
+      }
+      
+      function collapseSidebar(){
+          $('#main-section').addClass('sidebar-collapsed').removeClass('sidebar-expanded');
+          $('#toggle-collapse').removeClass('glyphicon-circle-arrow-left').addClass('glyphicon-circle-arrow-right');
+      }
+      
+      function expandSidebar(){
+          $('#main-section').addClass('sidebar-expanded').removeClass('sidebar-collapsed');
+          $('#toggle-collapse').removeClass('glyphicon-circle-arrow-right').addClass('glyphicon-circle-arrow-left');
+      }
+      
+      $(function(){
+      
+          console.log(windowWidth);
+      
+          /** check sessionStorage to expand/collapse sidebar onload **/
+      
+      
+          if (sidebarState == "collapsed"){
+              collapseSidebar();
+          }
+          else{
+      
+      
+      
+              if( windowWidth < 992 ){ //992 is the value of $screen-md-min in boostrap variables.scss
+                  $('#main-section').removeClass('sidebar-expanded').addClass('sidebar-collapsed');
+                  $('#toggle-collapse').removeClass('glyphicon-circle-arrow-left').addClass('glyphicon-circle-arrow-right');
+              }
+              else{
+                  if(sidebarState){
+                  $('#main-section').addClass('sidebar-collapsed').removeClass('sidebar-expanded'); 
+                  $('#toggle-collapse').removeClass('glyphicon-circle-arrow-left').addClass('glyphicon-circle-arrow-right');
+              }
+              else{
+                  $('#main-section').addClass('sidebar-expanded').removeClass('sidebar-collapsed'); 
+                  $('#toggle-collapse').removeClass('glyphicon-circle-arrow-right').addClass('glyphicon-circle-arrow-left');
+              }
+              }
+              
+          }
+      
+          
+      
+      
+          /** collapse the sidebar navigation **/    
+          $('#collapse-nav').click(function(){
+              if ( !($('#main-section').hasClass('sidebar-collapsed')) ) { // if sidebar is not yet collapsed
+                  collapseSidebar();
+                  setSidebarState('collapsed');
+              }
+              else{
+                  expandSidebar();
+                  clearSidebarState();
+              }
+              return false;
+          })
+      })
+      </script>
+      <script>
+         function openNav() 
+{
+document.getElementById("animate").style.width = "300px";
+}
+    
+function closeNav() 
+{
+document.getElementById("animate").style.width = "0";
+}
+      </script>
+</body>
+</html>
