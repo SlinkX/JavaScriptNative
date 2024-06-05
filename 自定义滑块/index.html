@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style lang="scss">
+        //base styles
+* {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  box-sizing: border-box;
+
+  &:focus {
+    // outline
+  }
+}
+
+html {
+  height: 100%;
+  font-size: 62.5%;
+  line-height: 1;
+}
+
+// flickity styles
+.carousel{
+  // height: 100%; //set gallery height
+}
+
+.carousel-cell{
+  padding: 2rem 0 1rem 0
+}
+
+.flickity-viewport{
+  overflow: visible;
+}
+
+// product styles
+.products-feature{
+  transition: .3s ease all;
+  margin-left: 2rem;
+  @media (min-width: 460px) {
+    margin-left: 3rem;
+    margin-bottom: 2.5rem;
+  }
+  @media (min-width: 768px) {
+    margin-left: 5rem;
+    margin-top: 10rem;
+    // margin-top: -5rem;
+    margin-bottom: 6rem;
+  }
+  @media (min-width: 1200px) {
+    margin-left: 10rem;
+    // margin-top: -5rem;
+  }
+  @media (min-width: 1440px) {
+    margin-left: 18rem;
+    // margin-top: -7.5rem;
+  }
+  @media (min-width: 1600px) {
+    margin-left: 30rem;
+  }
+  overflow:hidden;
+  @media (min-width: 768px){
+    // overflow: visible;
+  }
+}
+
+.product-actions{
+  transition: .3s ease all;
+  margin: 2rem;
+  @media (min-width: 460px) {
+    margin: 3rem 2rem 3rem 2rem;
+  }
+  @media (min-width: 768px) {
+    margin: 6rem 5rem;
+  }
+  @media (min-width: 1200px) {
+    margin: 6rem 10rem;
+  }
+  @media (min-width: 1440px) {
+    margin: 6rem 18rem;
+  }
+  @media (min-width: 1900px) {
+    margin: 6rem 30rem;
+  }
+  &.mobile{
+    margin: 3rem 2rem 2rem 2rem;
+  }
+}
+
+.product-card{
+  height: 100%;
+  overflow: hidden;
+  display:block;
+  background: white;
+  border-radius: 3px;
+  box-shadow: 0 0 15px 0 rgba(0,0,0,0.1);
+  transition: .3s ease transform;
+  
+  &--slide{
+    height: 32rem;
+    min-width: 30rem;
+    margin-right: 2rem;
+  }
+
+  @media (min-width: 768px){
+    // height: auto;
+    width: auto;
+    margin-right: 0;
+    &:hover{
+      transform: translateY(-2rem);
+      box-shadow: 0 8px 18px 0 rgba(0,0,0,0.1);
+      .product-card__content{
+        transform: translateY(-1rem);
+        &_link{
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+    }
+  }
+  &__link{
+    display:inline-block;
+    padding: 3rem 4.5rem 3rem 4.5rem;
+    width: 100%;
+  }
+
+  &__content{
+    text-align:center;
+    color: black;
+    text-transform: uppercase;
+    transition: .3s ease all;
+    img{
+      margin-bottom: 2rem;
+      width: 210px;
+      height:210px;
+    }
+    &_brand{
+      font-family: Arial;
+      font-size: 1.6rem;
+      line-height: 2.2rem;
+    }
+    &_title{
+      font-family: Arial;
+      font-size: 1.7rem;
+      margin-bottom: 1rem;
+      line-height: 2.2rem;
+    }
+    &_link{
+      opacity: 0;
+      cursor: pointer;
+      font-family: Arial;
+      color: tomato;
+      transition: .4s ease all;
+      font-size: 1.5rem;
+      display:inline-block;
+      transform: translateY(5rem);
+    }
+  }
+}
+
+
+// for arrows and view all
+.product-actions{
+  position:relative;
+  &.mobile{
+    display: block;
+    @media(min-width: 768px){
+      display: none;
+    }
+    h6{
+      margin-bottom: 0;
+    }
+    .product-actions__arrows{
+      text-align: right;
+      padding-bottom: 0;
+    }
+
+    .product-actions__link{
+      display: none;
+    }
+  }
+
+  &.desktop{
+    .product-actions__arrows{
+      display: none;
+      @media(min-width: 768px){
+        display: block;
+      }
+    }
+  }
+
+  &__arrows{
+    color: teal;
+    padding-bottom: 1rem;
+
+    &_single{
+      &--disabled{
+        pointer-events: none;
+        opacity: .5;
+      }
+    }
+    .material-icons{
+      width: 3.5rem;
+    }
+  }
+  &__link{
+    display: flex;
+    flex-direction: column-reverse;
+    align-items: center;
+    @media (min-width: 768px){
+      flex-direction: row;
+    }
+
+    &_line{
+      width: 100%;
+      border-top: 2px solid darkgrey;
+      margin-top: 2rem;
+      @media (min-width: 768px){
+        margin-top: 0;
+        margin-right: 4rem;
+      }
+    }
+    a{
+      color: black;
+      font-family: Arial;
+      text-transform: uppercase;
+      font-size: 1.5rem;
+      line-height: 1.7rem;
+      white-space: nowrap;
+      &:hover{
+        img{
+          transform: translateX(1rem);
+        }
+      }
+    }
+    img{
+      transition: .3s ease all;
+      padding-left: 1rem;
+    }
+  }
+}
+
+.grid-container {
+  position: relative;
+  margin: 0 auto;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.column,
+.columns {
+  width: 100%;
+  box-sizing: border-box;
+}
+
+@media (min-width: 320px) {
+  // .grid-container {
+  //   margin: 0 2rem;
+  // }
+}
+
+@media (min-width: 768px) {
+  .grid-container {
+    margin: 0;
+    display: block;
+
+    .column,
+    .columns {
+       margin-left: 2rem;
+    }
+
+    .column:first-child,
+    .columns:first-child {
+      // margin-left: 0;
+    }
+  }
+  .three.columns{
+    width: 25%;
+  }
+}
+
+.grid-container:after,
+.row:after,
+.u-cf {
+  content: '';
+  display: table;
+  clear: both;
+}
+
+
+
+    </style>
+</head>
+<body>
+    <div class="products-feature">
+
+        <div class="product-actions mobile"> <!-- different than product landing -->
+          <!-- h6 included on product landing -->
+          <!-- <h6>Adhesives</h6> -->
+          <div class="product-actions__arrows">
+            <a class="product-actions__arrows_single product-actions__arrows_single--disabled" href="#"><i class="material-icons">arrow_backward</i></a>
+            <a class="product-actions__arrows_single" href="#"><i class="material-icons">arrow_forward</i></a>
+          </div>
+        </div>
+      
+        <div class="product-feature__row">
+          <div class="grid-container carousel" data-flickity='{ "cellAlign": "left", "wrapAround": "true", "freeScroll": "true"}'>
+            <!-- this product card is used on multiple templates but the first divs class changes columns depending on template -->
+            
+            <div class="three columns carousel-cell">
+              <div class="product-card product-card--slide">
+                <a class="product-card__link" href="#">
+                  <div class="product-card__content">
+                    <img src="https://images.containerstore.com/catalogimages/132237/PaintCanWithHandleSilverLg_x.jpg?width=1200&height=1200&align=center" alt=""/>
+                    <div class="product-card__content_brand">Sikaflex</div>
+                    <div class="product-card__content_title">Self Leveling sdfsdf sdfadf a sdfd Sealant</div>
+                    <div class="product-card__content_link">Product Details</div>
+                  </div>
+                </a>
+              </div>
+            </div>
+      
+      
+            <div class="three columns carousel-cell">
+              <div class="product-card product-card--slide">
+                <a class="product-card__link" href="#">
+                  <div class="product-card__content">
+                    <img src="https://images.containerstore.com/catalogimages/132237/PaintCanWithHandleSilverLg_x.jpg?width=1200&height=1200&align=center" alt=""/>
+                    <div class="product-card__content_brand">Sikaflex</div>
+                    <div class="product-card__content_title">Self Leveling Sealant</div>
+                    <div class="product-card__content_link">Product Details</div>
+                  </div>
+                </a>
+              </div>
+            </div>
+      
+      
+            <div class="three columns carousel-cell">
+              <div class="product-card product-card--slide">
+                <a class="product-card__link" href="#">
+                  <div class="product-card__content">
+                    <img src="https://images.containerstore.com/catalogimages/132237/PaintCanWithHandleSilverLg_x.jpg?width=1200&height=1200&align=center" alt=""/>
+                    <div class="product-card__content_brand">Sikaflex</div>
+                    <div class="product-card__content_title">Self Leveling Sealant</div>
+                    <div class="product-card__content_link">Product Details</div>
+                  </div>
+                </a>
+              </div>
+            </div>
+      
+            <div class="three columns carousel-cell">
+              <div class="product-card product-card--slide">
+                <a class="product-card__link" href="#">
+                  <div class="product-card__content">
+                    <img src="https://images.containerstore.com/catalogimages/132237/PaintCanWithHandleSilverLg_x.jpg?width=1200&height=1200&align=center" alt=""/>
+                    <div class="product-card__content_brand">Sikaflex</div>
+                    <div class="product-card__content_title">Self Leveling Sealant</div>
+                    <div class="product-card__content_link">Product Details</div>
+                  </div>
+                </a>
+              </div>
+            </div>
+            
+            <div class="three columns carousel-cell">
+              <div class="product-card product-card--slide">
+                <a class="product-card__link" href="#">
+                  <div class="product-card__content">
+                    <img src="https://images.containerstore.com/catalogimages/132237/PaintCanWithHandleSilverLg_x.jpg?width=1200&height=1200&align=center" alt=""/>
+                    <div class="product-card__content_brand">Sikaflex</div>
+                    <div class="product-card__content_title">Self Leveling Sealant</div>
+                    <div class="product-card__content_link">Product Details</div>
+                  </div>
+                </a>
+              </div>
+            </div>
+            
+            <div class="three columns carousel-cell">
+              <div class="product-card product-card--slide">
+                <a class="product-card__link" href="#">
+                  <div class="product-card__content">
+                    <img src="https://images.containerstore.com/catalogimages/132237/PaintCanWithHandleSilverLg_x.jpg?width=1200&height=1200&align=center" alt=""/>
+                    <div class="product-card__content_brand">Sikaflex</div>
+                    <div class="product-card__content_title">Self Leveling Sealant</div>
+                    <div class="product-card__content_link">Product Details</div>
+                  </div>
+                </a>
+              </div>
+            </div>
+            
+            <div class="three columns carousel-cell">
+              <div class="product-card product-card--slide">
+                <a class="product-card__link" href="#">
+                  <div class="product-card__content">
+                    <img src="https://images.containerstore.com/catalogimages/132237/PaintCanWithHandleSilverLg_x.jpg?width=1200&height=1200&align=center" alt=""/>
+                    <div class="product-card__content_brand">Sikaflex</div>
+                    <div class="product-card__content_title">Self Leveling Sealant</div>
+                    <div class="product-card__content_link">Product Details</div>
+                  </div>
+                </a>
+              </div>
+            </div>
+          </div><!-- end of grid-container -->
+        </div>
+      </div>
+      
+      <div class="product-actions desktop"> <!-- different than product landing -->
+      <!--   <div class="product-actions__arrows">
+          <a class="product-actions__arrows_single product-actions__arrows_single--disabled" href="#"><i class="material-icons">arrow_backward</i></a>
+          <a class="product-actions__arrows_single" href="#"><i class="material-icons">arrow_forward</i></a>
+        </div> -->
+        <!-- the wrapper product actions and this div is included on product detail w/o the span -->
+        <div class="product-actions__link">
+          <span class="product-actions__link_line"></span>
+          <a href="#">View All Products<img src="/themes/custom/sika_pro/assets/dist/img/yellow_arrow.svg" alt=""/></a>
+        </div>
+      </div>
+      <script>
+        Flickity.prototype._createResizeClass = function() {
+  this.element.classList.add('flickity-resize');
+};
+
+Flickity.createMethods.push('_createResizeClass');
+
+var resize = Flickity.prototype.resize;
+Flickity.prototype.resize = function() {
+  this.element.classList.remove('flickity-resize');
+  resize.call( this );
+  this.element.classList.add('flickity-resize');
+};
+      </script>
+</body>
+</html>
