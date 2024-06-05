@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style lang="scss">
+        @import url(https://fonts.googleapis.com/css?family=Roboto:400,900|Nunito);
+
+$DBlack: #0A0A0A;
+$LBlack: #141414;
+$DWhite: #D2D2CA;
+$LWhite: #D9D9D3;
+$DBlue: #0D1B3E;
+$LBlue: #122554;
+$DRed: #58070D;
+$LRed: #710910;
+$DBrown: #1D1312;
+$LBrown: #261918;
+$DGray: #2D343C;
+$LGray: #353D46;
+
+$Roboto: "Roboto", sans-serif;
+$Nunito: "Nunito", sans-serif;
+
+/* Mixins */
+@mixin transition($transition) {
+    -webkit-transition: $transition;
+    -moz-transition: $transition;
+    transition: $transition;
+}
+
+@mixin transform($transform) {
+    -webkit-transform: $transform;
+    -moz-tranform: $transform;
+    transform: $transform;
+}
+
+@mixin position($position: null, $top: null, $right: null, $bottom: null, $left: null) {
+    position: $position;
+    top: $top;
+    right: $right;
+    bottom: $bottom;
+    left: $left;
+}
+
+@mixin p-center {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    @include transform(translate(-50%, -50%));
+}
+
+body, html {
+    height: 100%;
+}
+
+body {
+    background: linear-gradient(0, $LBlack 50.1%, $DBlack 50%);
+    font-family: $Nunito;
+}
+
+/*=== Product Card ===*/
+.product-card {
+    @include position($position: absolute, $top: 60%, $left: 50%);
+    width: 500px;
+    height: 365px;
+    background: #F5F5F5;
+    border-radius: 5px;
+    overflow: hidden;
+    text-align: center;
+    z-index: 2;
+    @include transform(translate(-50%, -60%));
+
+    .nissanZ-info, .nissanM-info {
+        @include position($position: absolute, $top: 0, $left: 0);
+        width: 100%;
+        height: 100%;
+        padding: 25px;
+        @include transition(all 0.35s ease-in-out);
+        opacity: 0;
+        visibility: hidden;
+
+        &.active {
+            opacity: 1;
+            visibility: visible;
+        }
+    }
+
+    h1 {
+        padding: 2.75em 0 0;
+        margin: 0 0 5px;
+        font-family: $Roboto;
+        font-weight: 900;
+        font-size: 2.2em;
+        text-transform: uppercase;
+    }
+
+    span {
+        display: block;
+        font-size: 0.875em;
+        margin-bottom: 5px;
+        opacity: 0.75;
+    }
+
+    p {
+        font-size: 0.925em;
+        margin-bottom: 30px;
+    }
+}
+
+.info-wrap {
+    a {
+        background: $DBlack;
+
+        &:hover {
+            background: $DBlack;
+        }
+    }
+}
+
+.slider {
+    position: absolute;
+    width: 500px;
+    height: 250px;
+    top: 0;
+    left: 50%;
+    @include transform(translate(-50%, -12.5%));
+    @include transition(all 0.35s ease-in-out);
+    z-index: 10;
+    opacity: 0;
+    visibility: hidden;
+
+    &.active {
+        @include transform(translate(-50%, 0));
+        opacity: 1;
+        visibility: visible;
+    }
+
+    figure {
+        margin: 0;
+    }
+}
+
+.car-nav {
+    @include position($position: absolute, $bottom: 5%, $left: 50%);
+    width: 100%;
+    text-align: center;
+    @include transform(translate(-50%, 5%));
+    z-index: 5;
+
+    a {
+        margin: 0 10px 0;
+        width: 10%;
+        background: #FFF;
+        color: #000;
+
+        &:hover {
+            background: rgba(255,255,255,0.8);
+        }
+    }
+}
+
+.bg-color {
+    @include p-center;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(0, $LBlack 50.1%, $DBlack 50%);
+    z-index: 1;
+    display: none;
+}
+
+/*=== Slick Properties ===*/
+.slick-dots {
+  bottom: -10%;
+  
+  a {
+    position: relative;
+    display: block;
+    width: 24px;
+    height: 24px;
+  }
+  
+  span {
+    @include p-center;
+    width: 12px;
+    height: 12px;
+  }
+
+  rect {
+    fill: none;
+    stroke-width: 1;
+    stroke-linecap: round;
+    stroke-dasharray: 64 64;
+    stroke-dashoffset: 64;
+    transition: all .9s ease-in-out;
+    transition: stroke-dashoffset 0.5s;
+  }
+
+  .slick-active rect {
+    stroke-dashoffset: 0;
+  }
+}
+    </style>
+</head>
+<body>
+    <div class="product-card z-depth-1">
+        <div class="nissanZ-info active">
+            <h1>Nissan 370Z</h1>
+            <span>Sports Car</span>
+            <p>It's a living legend. With the emphasis on living. The iconic lines, low center of gravity, wide track, and short wheelbase give it that unmistakable, instantly recognizable profile.</p>
+            <div class="info-wrap">
+                <a class="waves-effect waves-light btn-large" href="#">More Info</a>
+                <a class="waves-effect waves-light btn-large" href="#">Get Quote</a>
+            </div>
+        </div>
+        <div class="nissanM-info">
+            <h1>Nissan Maxima</h1>
+            <span>Sedan Car</span>
+            <p>With 300 horsepower, a performance tuned suspension, a luxurious driver’s cockpit loaded with technology, and a Sport Mode setting that’ll get your heart racing, it really isn’t a sedan after all.</p>
+            <div class="info-wrap">
+                <a class="waves-effect waves-light btn-large" href="#">More Info</a>
+                <a class="waves-effect waves-light btn-large" href="#">Get Quote</a>
+            </div>
+        </div>
+    </div>
+    <div class="slider active" id="nissanZ">
+        <figure data-color="#141414, #0A0A0A">
+            <img src="http://i515.photobucket.com/albums/t355/Zson718/blackZ_zpsgjv0ch8v.png" class="responsive-img" />
+        </figure>
+        <figure data-color="#D9D9D3, #D2D2CA">
+            <img src="http://i515.photobucket.com/albums/t355/Zson718/whiteZ_zpskgzsbwic.png" class="responsive-img" />
+        </figure>
+        <figure data-color="#122554, #0D1B3E">
+            <img src="http://i515.photobucket.com/albums/t355/Zson718/blueZ_zpsqb9ka7ok.png" class="responsive-img" />
+        </figure>
+    </div>
+    <div class="slider" id="nissanM">
+        <figure data-color="#710910, #58070D">
+            <img src="http://i515.photobucket.com/albums/t355/Zson718/redM_zpsmtu6gyln.png" class="responsive-img" />
+        </figure>
+        <figure data-color="#261918, #1D1312">
+            <img src="http://i515.photobucket.com/albums/t355/Zson718/brownM_zpslf4sbzlv.png" class="responsive-img" />
+        </figure>
+        <figure data-color="#353D46, #2D343C">
+            <img src="http://i515.photobucket.com/albums/t355/Zson718/silverM_zpsi7gwlnbg.png" class="responsive-img" />
+        </figure>
+    </div>
+    <div class="car-nav">
+        <a class="waves-effect waves-light btn car z active" href="#">370Z</a>
+        <a class="waves-effect waves-light btn car m" href="#">Maxima</a>
+    </div>
+    <div class="bg-color"></div>
+    <script>
+        (function (main) {
+    main(window.jQuery, window, document);
+}(function ($, w, d) {
+    function slider() {
+        var zSlide = $("#nissanZ");
+        var mSlide = $("#nissanM");
+
+        zSlide.slick({
+            arrows: false,
+            dots: true,
+            infinite: true,
+            speed: 600,
+            fade: true,
+            focusOnSelect: true,
+            customPaging: function (zSlide, i) {
+                var color = $(zSlide.$slides[i]).data('color').split(',')[1];
+                return '<a><svg width="100%" height="100%" viewBox="0 0 16 16"><rect width="16px" height="16px" stroke="' + color + '"></rect></svg><span style="background:' + color + '"></span></a>';
+            }
+        }).on('beforeChange', function (event, slick, currentSlide, nextSlide) {
+            colors = $('figure', zSlide).eq(nextSlide).data('color').split(',');
+            color1 = colors[0];
+            color2 = colors[1];
+            bgChange(color1, color2);
+        });
+
+        mSlide.slick({
+            arrows: false,
+            dots: true,
+            infinite: true,
+            speed: 600,
+            fade: true,
+            focusOnSelect: true,
+            customPaging: function (mSlide, i) {
+                var color = $(mSlide.$slides[i]).data('color').split(',')[1];
+                return '<a><svg width="100%" height="100%" viewBox="0 0 16 16"><rect width="16px" height="16px" stroke="' + color + '"></rect></svg><span style="background:' + color + '"></span></a>';
+            }
+        }).on('beforeChange', function (event, slick, currentSlide, nextSlide) {
+            colors = $('figure', mSlide).eq(nextSlide).data('color').split(',');
+            color1 = colors[0];
+            color2 = colors[1];
+            bgChange(color1, color2);
+        });
+    };
+
+    function bgColor(c1, c2) {
+        return {
+            background: '-moz-linear-gradient(0, ' + c1 + ' 50.1%, ' + c2 + ' 50%)',
+            background: '-webkit-linear-gradient(0, ' + c1 + ' 50.1%, ' + c2 + ' 50%)',
+            background: 'linear-gradient(0, ' + c1 + ' 50.1%, ' + c2 + ' 50%)'
+        }
+    };
+
+    function bgChange(c1, c2) {
+        var bg = $(".bg-color");
+        var btn = $(".btn-large");
+        bg.css(bgColor(c1, c2)).fadeIn(700, function () {
+            $("body").css(bgColor(c1, c2));
+            bg.hide();
+        });
+        btn.css({ background: c2 });
+    };
+
+    function carChange() {
+        var car = $(".car"),
+            zInfo = $(".nissanZ-info"),
+            mInfo = $(".nissanM-info"),
+            zSlide = $("#nissanZ"),
+            mSlide = $("#nissanM");
+        
+        car.on("click", toggleChange);
+
+        function toggleChange(e) {
+            e.preventDefault();
+
+            car.not(this).removeClass('active');
+            $(this).addClass('active');
+            
+            if ($(this).hasClass('m')) {
+                zInfo.removeClass('active');
+                zSlide.removeClass('active');
+                mInfo.addClass('active');
+                mSlide.addClass('active');
+                colors(mSlide);
+            } else {
+                mInfo.removeClass('active');
+                mSlide.removeClass('active');
+                zInfo.addClass('active');
+                zSlide.addClass('active');
+                colors(zSlide);
+            }
+        };
+
+        function colors(slide) {
+            var colors = $('figure', slide).data('color').split(','),
+            color1 = colors[0],
+            color2 = colors[1];
+
+            slide.slick("slickGoTo", 0);
+            bgChange(color1, color2);
+        };
+    };
+
+    function init() {
+        slider();
+        carChange();
+    };
+
+    $(function () {
+        init();
+    });
+
+}));
+    </script>
+</body>
+</html>
