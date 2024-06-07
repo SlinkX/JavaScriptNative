@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+  margin: 0;
+  padding: 0;
+}
+
+css-doodle {
+  min-width: 380px;
+}
+
+section {
+  display: 100%;
+  height: 100vh;
+  min-height: 500px;
+  display: grid;
+  place-items: center;
+  background: var(--bg, #000);
+}
+    </style>
+</head>
+<body>
+    <!-- https://yuanchuan.dev/daily-sketch-4 -->
+
+<section style="--bg: #400140">
+    <css-doodle #1 click-to-update><style>
+      @grid: 1x21 / 60vmin auto 1 / #091608;
+      @gap: calc(50%/@I);
+      background-blend-mode: multiply;
+      background-size: 110% 100%;
+      background-image:
+        @doodle(
+          background: #fff;
+          filter: @svg-filter(.8);
+          opacity: .6;
+        ),
+        linear-gradient(
+          90deg,
+          @p(#14ff2e, #f452ea) @rn(±100%, 5, 2),
+          #091608, @P
+        );
+    </style></css-doodle>
+  </section>
+  
+  <section style="--bg: #290629">
+    <css-doodle #2 click-to-update><style>
+      @grid: 1x8 / 60vmin auto 1 / #400140;
+      --offset: @rn(1%, 8%, 2, 2);
+      rotate: @pn.mirror.m2(180deg, 0);
+      background-color: @pn(#4C3B4B, #586954);
+      background-image: @doodle(
+        @grid: @p(4, 5)x1 / 100% ~ @p(--offset);
+        @size: 50% 100%;
+        border-radius: 100px;
+        box-shadow: -1em 0 .5em #40024011,
+          1em 0 .5em #72ec6d11;
+        position: absolute;
+        translate: calc(@i(-1) * @r(16%, 18%));
+        background: linear-gradient(
+          to @pn(right, left, @m5(right)),
+          #72ec6d, #40063f
+        );
+      );
+    </style></css-doodle>
+  </section>
+  
+  <section style="--bg: #A0522D">
+    <css-doodle #3 click-to-update><style>
+      @grid: 24 / 60vmin auto 1 / #e5f1ff;
+      @size: 100% calc(100%/@Y*@y);
+      background: #a0522d;
+      rotate: @rn(0, 360deg, .8);
+      margin: auto;
+    </style></css-doodle>
+  </section>
+  
+  
+  <section style="--bg: #FEE6FF">
+    <css-doodle #4><style>
+      @grid: 24 / 60vmin auto 1 / #2D712B;
+      background: #FEE6FF;
+      margin: auto;
+      @size: 100% calc(100%/@Y*@y);
+      rotate: calc(90deg - @dy/@dx * 45deg);
+      @match(
+        (x >= y && x <= (Y-y + 1)) ||
+        (x <= y && x >= (Y-y + 1))
+      ) {
+        rotate: calc(@dx/@dy * 45deg);
+      }
+    </style></css-doodle>
+  </section>
+  
+  
+  <section style="--bg: #E8C7B6">
+    <css-doodle #5><style>
+      @grid: 1x2 / 60vmin auto 1 / #e8c7b6;
+      rotate: @pn(180deg, none);
+      background: @doodle400x200(
+        @grid: 39x1 / 150% 100%;
+        border-radius: 50%;
+        @size: auto 100% 1;
+        translate: -70%;
+        box-shadow: inset calc(@i(%13) * 1.2px)
+          0 0 #0800fd;
+      );
+    </style></css-doodle>
+  </section>
+  
+  <section style="--bg: #000000">
+    <css-doodle #6><style>
+      :doodle {
+        @grid: 1 / 60vmin auto 1 / #50da4e;
+        background-image: @doodle(
+          @grid: 1x27 / 100% +.9;
+          @gap: calc(60%/@I);
+          background: linear-gradient(-90deg, #fff, #fff0 75%);
+        );
+      }
+      background:
+        @doodle(
+          filter: @svg-filter(.8);
+          opacity: .6;
+          mask: linear-gradient(-90deg, #fff0, #fff);
+        ),
+        linear-gradient(90deg, @m2(#fff), 30%, @m5(#000));
+  
+      mask-size: 100% 100%;
+      mask-image: @shaders(
+        texture_0 {
+          @grid: 1x27 / 100% +.9;
+          @gap: calc(60%/@I);
+          background: linear-gradient(-90deg, @m2(#fff), #fff0);
+        }
+        fragment {
+          void main() {
+            vec2 ur = u_resolution;
+            vec2 c = vec2(.5, .5);
+            vec2 p = gl_FragCoord.xy / ur.xy - c;
+            float r = length(p);
+            float len = length(p * vec2(ur.x / ur.y, 1.));
+            float t = atan(p.y, p.x)
+              + 1.57 * smoothstep(.4, 0., len);
+            vec2 coords = c + vec2(r*cos(t), r*sin(t));
+            FragColor = texture(texture_0, coords);
+          }
+        }
+      );
+    </style></css-doodle>
+  </section>
+  
+  <section style="--bg: #FE7600">
+    <css-doodle #7><style>
+      @grid: 2x1 / 60vmin auto 1 / #fe7600;
+      transform: rotate(@pn(0, .5turn));
+      @content: @Svg(
+        viewBox: 0 -13 26 26;
+        fill: none;
+        stroke: #0205ad;
+        rect*24 {
+          transform: rotate(45);
+          stroke-width: @n(*.062);
+          width, height: @n(*3);
+          x, y: -@n(*1.5);
+        }
+      );
+    </style></css-doodle>
+  </section>
+  
+  <section style="--bg: #8A2BE2">
+  <css-doodle #8><style>
+    @grid: 2x1 / 60vmin auto 1 / #7BF07A;
+    transform: rotate(@pn(0, .5turn));
+    @content: @Svg(
+      viewBox: 0 -13 26 26;
+      fill: none;
+      stroke: #8A2BE2;
+      rect*24 {
+        transform: rotate(45) translate(18.5, -18.5);
+        stroke-width: @n(*.062);
+        width, height: @n(*3);
+        x, y: -@n(*1.5);
+      }
+    );
+  </style></css-doodle> 
+  </section>
+  
+  <section style="--bg: #FFE0DB">
+    <css-doodle #9><style>
+      @grid: 1 / 60vmin auto 1 / #ffe0db;
+      @content: @Svg(
+        viewBox: 0 0 45 45 padding -12.5;
+        fill: none;
+        stroke: #0800fe;
+        path*45 {
+          stroke-width: @abs(.5 - 1/@N*@n);
+          d: M 10 @n
+             Q 22.5
+               @calc(@n + (45 - @n*2)/1.85)
+               35 @n
+        }
+      );
+    </style></css-doodle>
+  </section>
+  
+  <section style="--bg: #343322">
+    <css-doodle #10><style>
+      @grid: 1x2 / 60vmin auto 1 / #343321;
+      rotate: @pn(0, 180deg);
+      background: @doodle400(
+        @grid: 25x1;
+        background: #e5f1ff;
+        width: calc(100% - 100%/@I1*@i);
+      );
+    </style></css-doodle> 
+  </section>
+  
+  <section style="--bg: #FEF63A">
+    <css-doodle #11 click-to-update>
+      <style>
+        @grid: 21x1 / 60vmin auto 1 / #38004C + 1.25 ~ -20% 20%;
+        @place: center;
+        @size: calc(40px * @i - 16px);
+  
+        z-index: @I(-@i);
+        rotate: @r(360deg);
+        border: 4px solid #090C27;
+        border-radius: 50%;
+        transition: @r(.5, 1s);
+        background: conic-gradient(
+          #f91c8e, #f4947e, #d6d348,
+          #aea6e8, #38004c, #38004c
+        );
+  
+        :after {
+          content: '';
+          position: absolute;
+          top: 0;
+          @size: 16px;
+          border-radius: 50%;
+          background: radial-gradient(
+            farthest-side at 20% 20%,
+            #fff, #F9208E
+          )
+        }
+  
+        @nth(1) {
+          background: #090C27;
+          :after { content: none; }
+        }
+      </style>
+    </css-doodle>
+  </section>
+  
+  <section style="--bg: #0ff">
+    <css-doodle #12 click-to-update>
+      <style>
+        @grid: 1 / 60vmin auto 1 / #000 +3;
+        background:
+          @doodle400(
+            @grid: 50x1;
+            @place: center;
+            @size: 50%;
+            border: 6px solid #0ff;
+            transform:
+              rotateY(calc(175deg/@I*@dx));
+          ),
+          @doodle400(
+            @grid: 1x50;
+            @place: center;
+            @size: 50%;
+            border: 6px solid #0ff;
+            transform:
+              rotateX(calc(175deg/@I*@dy));
+          );
+      </style>
+    </css-doodle>
+  </section>
+  
+  
+  <section style="--bg: #0800ff">
+    <css-doodle #13> 
+      <style>
+        @grid: 6x1 / 60vmin auto 1 / #ffe7c2;
+        @place: @pn(@m4(center), 50% 0, 50% 100%);
+        @size: @pn(100%, 74%, 52%, 30%, 100%, 100%);
+        mix-blend-mode: @pn(@m4(unset), @m2(difference));
+        border-radius: 50%;
+        background: @pn(
+          linear-gradient(-90deg, #fee754, #ffe7a7),
+          linear-gradient(145deg, #0a1293 10%, #fff0 85%),
+          linear-gradient(100deg, #ab0a7b, #fff0 85%),
+          radial-gradient(circle at 30% 70%, #53b42d 18%, #fff0 80%),
+          linear-gradient(90deg, #e44100, #fff0),
+          linear-gradient(-90deg, #e44100, #fff0)
+        );  
+      </style>
+    </css-doodle>
+  </section>
+  
+  
+  <css-doodle class="footer"><style>
+    --c: #fff; 
+    :doodle {
+      @grid: 1x22 / 100% auto 0 / #0800ff;
+      border-bottom: 107px solid @p(--c);
+    }
+    height: calc(@i * 1px);
+    margin-bottom: 1px;
+    background: @p;
+  </style></css-doodle> 
+</body>
+</html>
