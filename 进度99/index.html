@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        @import url(https://fonts.googleapis.com/css?family=Ubuntu+Mono:700);
+
+progress {
+ appearance: none;
+ position: relative;
+ overflow: hidden;
+ width: 1.5em;
+ height: 1em;
+ padding: 0;
+ border: none;
+ font-family: "Ubuntu Mono", sans-serif;
+ font-size: 120px;
+ transition: height .4s;
+}
+
+progress.hidden {
+  height: 0;
+  transition-delay: .4s;
+}
+
+progress::before {
+  content: attr(value);
+  position: absolute;
+  top:0; left: 0; right: 0; bottom: 0;
+  text-align: center;
+  font-size: 1.5em;
+  line-height: .62em;
+  color: hsla(0,0%,100%,.2);
+  background: linear-gradient( 
+      hsla(0,0%,100%,.6),
+      hsla(0,0%,100%,.0) 70% ) 
+      no-repeat center;
+  background-position: inherit;
+  -webkit-background-clip: text;
+  background-clip: text;
+}
+
+
+progress::-webkit-progress-bar,
+progress::-webkit-progress-value {
+ background: transparent;
+}
+
+/* ------------------------------ */
+
+body {
+ display: flex;
+ align-items: center;
+ justify-content: center;
+ box-sizing: border-box;
+ padding: 50px;
+ background: radial-gradient( 
+    hsl(30,80%,80%), 
+    hsl(210,50%,70%) ) 
+    no-repeat center;
+}
+
+html,
+body {
+ height: 100%; 
+}
+
+    </style>
+</head>
+<body>
+    <progress max="99"></progress>
+    <script>
+        var value = 0;
+var pos = 0;
+var progressHidden = false;
+var delay = 40;
+var progressEl = $('progress');
+
+// set interval
+var timer = setInterval(progress, 100);
+
+function progress() {
+  
+  // run counter
+  value++;
+  if (value < 99) {
+    progressEl.val(value);
+    pos = 1 - (value/100);
+  } else if(value < (delay + 100) ) {
+    progressEl.val(99);
+    pos = 0;
+  } else {
+    value = 0;
+  }
+  
+  // update background
+  progressEl.css('background-position', '0 '+ pos +'em');
+  
+  // show/hide progress
+  if(!progressHidden && value >= 100) {
+    progressEl.addClass("hidden");
+    progressHidden = true;
+    
+  } else if(progressHidden && value < 100) {
+    progressEl.val(0);
+    progressEl.removeClass("hidden");
+    progressHidden = false;
+  }
+  
+}
+    </script>
+</body>
+</html>
