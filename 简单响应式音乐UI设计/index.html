@@ -1,0 +1,1323 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style lang="scss">
+        :root {
+  --blue-bubble: #bbe6f3;
+  --small-b-bubble: #bae5f2;
+  --pink-bubble: #ebc7e5;
+  --font-color: #063064;
+}
+
+* {
+  box-sizing: border-box;
+  &:focus {
+    outline: none;
+  }
+}
+
+html,
+body {
+  width: 100%;
+  height: 100%;
+}
+
+body {
+  background-color: #f4f4f4;
+}
+
+.container {
+  background-color: #f3fcfd;
+  width: 800px;
+  height: 600px;
+  margin: 60px auto;
+  position: relative;
+  overflow: hidden;
+  border-radius: 6px;
+  -webkit-box-shadow: 1px 2px 29px 2px rgba(220, 244, 250, 1);
+  -moz-box-shadow: 1px 2px 29px 2px rgba(220, 244, 250, 1);
+  box-shadow: 1px 2px 29px 2px rgba(220, 244, 250, 1);
+}
+
+.bubble {
+  position: absolute;
+  border-radius: 50%;
+}
+
+.pink-bubble {
+  width: 460px;
+  height: 460px;
+  right: -160px;
+  top: -110px;
+  background-color: var(--pink-bubble);
+}
+
+.blue-bubble {
+  width: 520px;
+  height: 520px;
+  left: -30px;
+  top: 345px;
+  background-color: var(--blue-bubble);
+}
+
+.small-b-bubble {
+  width: 50px;
+  height: 50px;
+  right: 40px;
+  bottom: 85px;
+  background-color: var(--small-b-bubble);
+}
+
+.small-p-bubble {
+  width: 105px;
+  height: 105px;
+  left: -45px;
+  top: 140px;
+  background-color: var(--pink-bubble);
+}
+
+.app-ui {
+  background-color: #fff;
+  width: 235px;
+  height: 500px;
+  position: absolute;
+  left: 140px;
+  top: 35px;
+  border-radius: 30px;
+  box-shadow: 2px 14px 40px -20px rgba(0, 0, 0, 0.2);
+}
+.left-ui {
+  overflow: hidden;
+}
+
+.right-ui {
+  left: 435px;
+  top: 60px;
+  box-shadow: -6px 14px 40px -20px rgba(0, 0, 0, 0.2);
+  background-color: #bbe6f3;
+}
+
+.inside-right {
+  left: 0;
+  top: 70px;
+  height: 430px;
+}
+
+.header {
+  font-family: "Fjalla One", sans-serif;
+  color: var(--font-color);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 235px;
+  padding: 27px 27px 21px 27px;
+  font-size: 22px;
+}
+
+.menu-line {
+  border: 1px solid var(--font-color);
+  width: 25px;
+  border-radius: 50px;
+  &:before {
+    content: "";
+    position: absolute;
+    top: 45px;
+    left: 197px;
+    border: 0.05em solid;
+    width: 8px;
+    border-radius: 50px;
+  }
+  &:after {
+    content: "";
+    position: absolute;
+    top: 45px;
+    left: 190px;
+    border: 0.05em solid;
+    width: 3px;
+    border-radius: 50px;
+  }
+}
+
+.left-menu-bar {
+  position: relative;
+  font-family: "Roboto", sans-serif;
+  color: var(--font-color);
+  left: -5px;
+}
+.ur-playlist {
+  font-size: 11px;
+  font-weight: 500;
+  transform: rotate(270deg);
+  position: absolute;
+  left: 2px;
+  top: 40px;
+  cursor: pointer;
+}
+
+.playlist-icon {
+  width: 11px;
+  position: absolute;
+  left: 28px;
+  top: -6px;
+  cursor: pointer;
+}
+
+.like-recent {
+  position: absolute;
+  top: 110px;
+}
+
+.recent {
+  left: 18px;
+  top: 90px;
+}
+
+.recent-detail {
+  width: 4px;
+  height: 4px;
+  background-color: var(--font-color);
+  position: absolute;
+  top: 95px;
+  left: 15px;
+  border-radius: 50%;
+}
+.like {
+  left: 25px;
+  top: 140px;
+  color: #aeb8cc;
+  &:hover {
+    color: var(--font-color);
+  }
+}
+
+.album-img {
+  position: relative;
+  background-image: url("https://images.unsplash.com/photo-1535392432937-a27c36ec07b5?ixlib=rb-1.2.1&auto=format&fit=crop&w=934&q=80");
+  width: 130px;
+  height: 165px;
+  background-repeat: no-repeat;
+  background-size: cover;
+  border-radius: 20px;
+  margin-left: 58px;
+  box-shadow: -10px 10px 30px -20px rgba(0, 0, 0, 0.5);
+  cursor: pointer;
+  &:hover {
+    transform: scale(1.02);
+}
+}
+
+.relax {
+  position: absolute;
+  bottom: 15px;
+  left: 20px;
+  color: #fff;
+  font-family: "Roboto", sans-serif;
+  font-size: 15px;
+  font-weight: 500;
+}
+
+.btn {
+  background-color: #ffffff;
+  position: absolute;
+  width: 27px;
+  height: 27px;
+  right: 10px;
+  bottom: 10px;
+  border-radius: 9px;
+  transition: all 100ms cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  box-shadow: 0px 1px 2px rgba(255, 255, 255, 1),
+    0px 2px 1px rgba(0, 0, 0, 0.15);
+  cursor: pointer;
+  border: none;
+  &:after {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 15px;
+    z-index: 2;
+  }
+  &:active {
+    box-shadow: 0 5px 50px rgba(0, 0, 0, 0.02);
+    &:after {
+      box-shadow: inset 0px 2px 3px rgb(255, 255, 255),
+        inset 0px 2px 0px rgba(0, 0, 0, 0.1);
+    }
+  }
+  &.active {
+    &.play-pause {
+      .icon {
+        &.pause {
+          opacity: 1;
+          transform: translate(-50%, -50%);
+        }
+        &.play {
+          opacity: 0;
+        }
+      }
+    }
+  }
+}
+
+.play {
+  width: 13px;
+  position: absolute;
+  top: 7px;
+  left: 8px;
+  svg {
+    stroke-width: 5;
+  }
+}
+
+.pause {
+  width: 12px;
+  opacity: 0;
+  position: absolute;
+  left: 14px;
+  top: 15px;
+}
+
+.flowers-img {
+  background-image: url("https://images.unsplash.com/photo-1490823670292-6699d9edbb7d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=933&q=80");
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 135px;
+  width: 120px;
+  position: absolute;
+  right: -88px;
+  top: 90px;
+  border-radius: 20px;
+  transform: rotate(180deg);
+  box-shadow: -10px 10px 30px -20px rgba(0, 0, 0, 0.5);
+  &:hover {
+    cursor: pointer;
+    -webkit-transform: rotate(180deg) scale(1.03);
+}
+}
+
+.music-list {
+  cursor: pointer;
+  margin-left: 50px;
+  margin-top: 20px;
+}
+
+.song {
+  display: flex;
+  margin-bottom: 10px;
+  align-items: center;
+  &:hover {
+    transform: scale(1.02);
+    box-shadow: -8px 10px 3px -11px rgba(0, 0, 0, 0.4);
+   }
+}
+
+.song-img > img {
+  background-repeat: no-repeat;
+  background-size: cover;
+  width: 30px;
+  height: 30px;
+  border-radius: 10px;
+  margin-right: 10px;
+}
+
+.song-name {
+  font-family: "Roboto", sans-serif;
+  color: var(--font-color);
+  font-weight: 500;
+  font-size: 10px;
+}
+
+.song-detail {
+  display: flex;
+  flex-direction: column;
+}
+
+.artist {
+  font-family: "Roboto", sans-serif;
+  color: #d0d2e5;
+  font-weight: 400;
+  font-size: 9px;
+  margin-top: 4px;
+}
+
+.nav svg {
+  width: 17px;
+}
+
+.nav {
+  position: absolute;
+  bottom: 0;
+  color: #c5c7da;
+  left: 0;
+  width: 100%;
+  background-color: #fff;
+  border-radius: 20px 20px 0 0;
+  height: 52px;
+}
+
+.nav-first {
+  width: 100%;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  height: 52px;
+}
+
+.player-bg {
+  position: absolute;
+  top: 394px;
+  left: 0;
+  background-color: #bae6f2;
+  height: 80px;
+  width: 100%;
+  border-radius: 25px 25px 0 0;
+}
+
+.player-info {
+  position: absolute;
+  top: 394px;
+  left: 0;
+}
+
+.player-cover img {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  object-fit: cover;
+  object-position: center;
+  margin: 10px 0 10px 25px;
+  border: 2px solid #fff;
+  box-shadow: 0px 15px 30px -6px rgba(0, 0, 0, 0.5);
+}
+
+.pointer {
+  position: absolute;
+  top: 27px;
+  width: 9px;
+  height: 9px;
+  margin: -6px 0 0 37px;
+  background-color: #a5c8e3;
+  border-radius: 50%;
+  box-shadow: inset 0 0 0 1.7px #fff;
+}
+
+.player-info .song-detail {
+  margin: -42px 0 0 65px;
+}
+
+.play-artist {
+  color: #6590ad;
+  margin-top: 5px;
+  font-size: 8px;
+}
+
+.player-info svg {
+  width: 12px;
+  position: absolute;
+  right: -50px;
+  top: 22px;
+}
+
+.player-bg .btn {
+  bottom: 40px;
+  width: 24px;
+  height: 23px;
+  right: 25px;
+}
+
+.small-play {
+  width: 10px;
+  top: 5px;
+  left: 8px;
+}
+
+.small-pause {
+  width: 10px;
+  left: 12px;
+  top: 13px;
+}
+
+@media only screen and (max-width: 768px) {
+  .container {
+    transform: scale(0.8);
+    right: 60px;
+    margin-top: -40px;
+  }
+}
+
+@media only screen and (max-width: 480px) {
+  .container {
+    transform: scale(0.6);
+    right: 200px;
+  }
+}
+
+.play-action {
+  display: flex;
+  margin-top: 40px;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.dot {
+  border-radius: 50%;
+  width: 3px;
+  height: 3px;
+  background-color: #043165;
+  margin-right: 5px;
+}
+
+.what-play {
+  font-family: "Roboto", sans-serif;
+  color: var(--font-color);
+  font-weight: 500;
+  font-size: 10px;
+}
+
+.double-dot {
+  display: flex;
+  margin-right: 15px;
+}
+
+.line {
+  width: 20px;
+  height: 2px;
+  margin-left: 20px;
+  border-radius: 10px;
+  background-color: #043165;
+}
+
+.other-line {
+  position: absolute;
+  width: 10px;
+  height: 2px;
+  top: 44px;
+  left: 19px;
+  border-radius: 5px;
+  background-color: #043165;
+  transform: rotate(-30deg);
+}
+
+.half-arrow {
+  margin-top: 2px;
+}
+
+.bigPlay img {
+  width: 160px;
+  height: 160px;
+  border-radius: 50%;
+  border: 3px solid #fff;
+  position: relative;
+  left: 37px;
+  top: 30px;
+  object-fit: cover;
+  object-position: top right;
+  animation: rotateImg 3s linear 0s infinite forwards;
+  animation-play-state: paused;
+}
+
+.bigPlay img.active {
+ animation-play-state: running;
+}
+
+@keyframes rotateImg
+{
+    0%{ transform: rotateZ(0); }
+    100%{ transform: rotateZ(360deg); }
+}
+
+.bigPlay {
+  position: absolute;
+  & .btn {
+    top: 90px;
+    left: 96px;
+    width: 44px;
+    height: 44px;
+    border-radius: 18px;
+  }
+}
+
+.icon.play.bigger-play {
+  width: 22px;
+  top: 11px;
+  left: 13px;
+}
+
+.icon.pause.bigger-pause {
+  width: 20px;
+  left: 22px;
+  top: 23px;
+}
+
+.right-detail {
+  margin: 50px 0;
+  text-align: center;
+}
+
+.right-song {
+  font-size: 20px;
+  font-family: "Fjalla One", sans-serif;
+}
+
+.right-artist {
+  font-size: 12px;
+  color:#aeb8cc;
+}
+
+
+.lines {
+  border-left: 2px solid var(--font-color);
+  margin-left: -55px;
+  height: 5px;
+  transition: all .1s ease;
+  &.grey {
+    border-left: 2px solid #e8e9f4;
+  }
+}
+
+.line-wrapper {
+  margin-top: -20px;
+  margin-left: 62px;
+}
+
+.lines:nth-child(1) {
+  margin-left: -40px;
+  margin-top: 60px;
+}
+
+.lines:nth-child(2) {
+  margin-left: -35px;
+  margin-top: -12px;
+  height: 18px;
+}
+
+.lines:nth-child(3) {
+  margin-left: -30px;
+  margin-top: -26px;
+  height: 36px;
+}
+
+.lines:nth-child(4) {
+  margin-left: -25px;
+  margin-top: -40px;
+  height: 48px;
+}
+
+.lines:nth-child(5) {
+  margin-left: -20px;
+  margin-top: -43px;
+  height: 33px;
+}
+
+.lines:nth-child(6) {
+  margin-left: -15px;
+  margin-top: -30px;
+  height: 25px;
+}
+
+.lines:nth-child(7) {
+  margin-left: -10px;
+  margin-top: -32px;
+  height: 40px;
+}
+
+.lines:nth-child(8) {
+  margin-left: -5px;
+  margin-top: -40px;
+  height: 48px;
+}
+
+.lines:nth-child(9) {
+  margin-left: 0;
+  margin-top: -43px;
+  height: 33px;
+}
+
+.lines:nth-child(10) {
+  margin-left: 5px;
+  margin-top: -30px;
+  height: 25px;
+}
+
+.lines:nth-child(11) {
+  margin-left: 10px;
+  margin-top: -32px;
+  height: 40px;
+}
+
+.lines:nth-child(12) {
+  margin-left: 15px;
+  margin-top: -37px;
+  height: 33px;
+}
+
+.lines:nth-child(13) {
+  margin-left: 20px;
+  margin-top: -30px;
+  height: 25px;
+}
+
+.lines:nth-child(14) {
+  margin-left: 25px;
+  margin-top: -32px;
+  height: 40px;
+}
+
+.lines:nth-child(15) {
+  margin-left: 30px;
+  margin-top: -40px;
+  height: 48px;
+}
+
+.lines:nth-child(16) {
+  margin-left: 35px;
+  margin-top: -42px;
+  height: 35px;
+}
+
+.lines:nth-child(17) {
+  margin-left: 40px;
+  margin-top: -33px;
+  height: 25px;
+}
+
+.lines:nth-child(18) {
+  margin-left: 45px;
+  margin-top: -22px;
+  height: 20px;
+}
+
+.lines:nth-child(19) {
+  margin-left: 50px;
+  margin-top: -18px;
+  height: 16px;
+}
+
+.lines:nth-child(20) {
+  margin-left: 55px;
+  margin-top: -19px;
+  height: 21px;
+}
+
+.lines:nth-child(21) {
+  margin-left: 60px;
+  margin-top: -27px;
+  height: 32px;
+}
+
+.lines:nth-child(22) {
+  margin-left: 65px;
+  margin-top: -30px;
+  height: 34px;
+}
+
+.lines:nth-child(23) {
+  margin-left: 70px;
+  margin-top: -38px;
+  height: 48px;
+}
+
+.lines:nth-child(24) {
+  margin-left: 75px;
+  margin-top: -44px;
+  height: 33px;
+}
+
+.lines:nth-child(25) {
+  margin-left: 80px;
+  margin-top: -35px;
+  height: 40px;
+}
+
+.lines:nth-child(26) {
+  margin-left: 85px;
+  margin-top: -35px;
+  height: 34px;
+}
+
+.lines:nth-child(27) {
+  margin-left: 90px;
+  margin-top: -42px;
+  height: 48px;
+}
+
+.lines:nth-child(28) {
+  margin-left: 95px;
+  margin-top: -44px;
+  height: 33px;
+}
+
+.lines:nth-child(29) {
+  margin-left: 100px;
+  margin-top: -35px;
+  height: 40px;
+}
+
+.lines:nth-child(30) {
+  margin-left: 105px;
+  margin-top: -35px;
+  height: 40px;
+}
+
+.lines:nth-child(31) {
+  margin-left: 110px;
+  margin-top: -45px;
+  height: 40px;
+}
+
+.lines:nth-child(32) {
+  margin-left: 115px;
+  margin-top: -38px;
+  height: 48px;
+}
+
+.lines:nth-child(33) {
+  margin-left: 120px;
+  margin-top: -44px;
+  height: 33px;
+}
+
+.lines:nth-child(34) {
+  margin-left: 125px;
+  margin-top: -35px;
+  height: 40px;
+}
+
+.lines:nth-child(35) {
+  margin-left: 130px;
+  margin-top: -36px;
+  height: 30px;
+}
+
+.lines:nth-child(36) {
+  margin-left: 135px;
+  margin-top: -25px;
+  height: 22px;
+}
+
+.lines:nth-child(37) {
+  margin-left: 140px;
+  margin-top: -25px;
+  height: 30px;
+}
+
+.lines:nth-child(38) {
+  margin-left: 145px;
+  margin-top: -39px;
+  height: 48px;
+}
+
+.lines:nth-child(39) {
+  margin-left: 150px;
+  margin-top: -44px;
+  height: 33px;
+}
+
+.lines:nth-child(40) {
+  margin-left: 155px;
+  margin-top: -36px;
+  height: 41px;
+}
+
+.lines:nth-child(41) {
+  margin-left: 160px;
+  margin-top: -44px;
+  height: 47px;
+}
+
+.lines:nth-child(42) {
+  margin-left: 165px;
+  margin-top: -44px;
+  height: 40px;
+}
+
+.lines:nth-child(43) {
+  margin-left: 170px;
+  margin-top: -34px;
+  height: 30px;
+}
+
+.heart {
+  width: 18px;
+  cursor: pointer;
+  :hover {
+   fill: #E52121; 
+  }
+  &:hover {
+    transform: scale(1.2); 
+  }
+}
+
+.addTo{
+  width: 16px;
+  cursor: pointer;
+}
+
+.menu {
+  width: 16px;
+  cursor: pointer;
+}
+
+.left-bar-wrapper {
+  display: flex;
+  justify-content: space-evenly;
+  margin-top: 35px;
+}
+
+.blue-heart:hover {
+  fill: #063064;
+  cursor: pointer;
+  transform: scale(1.2);
+}
+
+.second svg {
+ width: 11px;
+ transform: rotate(-45deg);
+ margin: 0 4px 0 4px;
+}
+
+.second {
+  margin: 20px 60px 0 90px;
+  display: flex;
+  align-items: center;
+  font-size: 9px;
+  font-weight: 500;
+  font-family: "Roboto", sans-serif;
+  color: #c9cade;
+  & .listened {
+    color: var(--font-color);
+  }
+}
+
+.grey-detail {
+  background-color: #eff3f8;
+  width: 205px;
+  height: 90px;
+  border-radius: 50%;
+  margin-top: -100px;
+  margin-left: 13px;
+}
+
+.grey-detail-sec {
+  background-color: #dae3f0;
+  width: 176px;
+  height: 130px;
+  border-radius: 50%;
+  margin-top: -110px;
+  margin-left: 29px;
+}
+
+    </style>
+</head>
+<body>
+    <link
+  href="https://fonts.googleapis.com/css?family=Roboto:400,500,700&display=swap"
+  rel="stylesheet"
+/>
+<link
+  href="https://fonts.googleapis.com/css?family=Fjalla+One&display=swap"
+  rel="stylesheet"
+/>
+<div class="container">
+  <div class="bubble pink-bubble"></div>
+  <div class="bubble blue-bubble"></div>
+  <div class="bubble small-p-bubble"></div>
+  <div class="bubble small-b-bubble"></div>
+  <div class="wrapper">
+    <div class="app-ui left-ui">
+      <div class="header">
+        <div class="discover">Discover</div>
+        <div class="menu-line"></div>
+      </div>
+      <div class="left-menu-bar">
+        <div class="playlist">
+          <div class="playlist-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 29 29">
+              <g
+                fill="#FFF"
+                fill-rule="evenodd"
+                stroke="#10335C"
+                stroke-width="3"
+              >
+                <rect width="21" height="21" x="7" y="7" rx="5" />
+                <rect width="21" height="21" x="1" y="1" rx="5" />
+              </g>
+            </svg>
+          </div>
+          <div class="ur-playlist">Your playlist</div>
+        </div>
+        <div class="like-recent">
+          <div class="ur-playlist recent">Recent</div>
+          <div class="recent-detail"></div>
+          <div class="ur-playlist like">Like</div>
+        </div>
+      </div>
+      <div class="album-img">
+        <div class="relax">Relax</div>
+        <button class="btn play-pause">
+          <div class="icon-container">
+            <div class="icon play">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 308.838 308.838"
+              >
+                <path
+                  fill="#063064"
+                  d="M269.394 139.638c-.4-.8-.8-1.2-1.2-1.6-.8-1.2-1.6-2-2.8-3.2-1.2-1.2-2.8-2.4-4-3.2l-91.6-63.2-92-63.6c-6-4.4-13.6-5.6-20.4-4.4s-13.2 5.2-17.2 11.2c-1.6 2.4-2.8 4.8-3.6 7.2-.8 2-1.2 4-1.2 6.4v256.4c0 7.6 3.2 14.4 8 19.2 4.4 4.8 11.2 8 18.8 8 3.2 0 6.4-.4 9.2-1.6 2.8-.8 5.2-2.4 7.6-4.4l90.8-62.8 91.2-63.2c.4-.4 1.2-.8 1.6-1.2 5.6-4.4 9.2-10.4 10.4-16.8 1.2-6.4 0-13.6-3.6-19.2zm-20 20.4l-92 63.6-90.4 62.4c-.4 0-.8.4-.8.4-.4.4-1.2.8-2 1.2-.8.4-1.2.4-2 .4-1.6 0-3.2-.8-4.4-1.6-1.2-1.2-1.6-2.8-1.6-4.4v-127.6h-.4v-126-1.6c0-.4 0-.8.4-1.2 0-.4.4-.8.4-1.2.4-.4.4-.4.4-.8.8-1.2 2.4-2 3.6-2 1.6-.4 2.8 0 4.4.8.4.4.8.4 1.2.8l91.2 63.2 91.6 63.2c.4.4.8.4.8.8.4.4.4.8.8.8.8 1.6 1.2 3.2 1.2 4.8-.4 1.6-1.2 3.2-2.4 4z"
+                  class="active-path"
+                  data-old_color="#000000"
+                  data-original="#000000"
+                />
+              </svg>
+            </div>
+          </div>
+          <div class="icon-container">
+            <div class="icon pause">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 493.528 493.528"
+              >
+                <path
+                  fill="#063064"
+                  d="M178.064 0L166.04.248c-14.876 0-27.236 12.112-27.236 26.992v439.664c0 14.876 13.396 26.624 28.272 26.624h.084l10.976-.072c14.892 0 26.22-11.92 26.22-26.808V26.996C204.352 12.116 193.028 0 178.064 0zM328.584 0l-12.092.248c-14.88 0-27.3 12.112-27.3 26.992v439.664c0 14.876 13.708 26.624 28.58 26.624h.084l10.816-.072c14.88 0 26.052-11.92 26.052-26.808V26.996C354.72 12.116 343.548 0 328.584 0z"
+                  class="active-path"
+                  data-old_color="#000000"
+                  data-original="#000000"
+                />
+              </svg>
+            </div>
+          </div>
+        </button>
+      </div>
+      <div class="flowers-img"></div>
+      <div class="music-list">
+        <div class="song">
+          <div class="song-img">
+            <img
+              src="https://images.unsplash.com/photo-1574281183650-14db8f28c259?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=934&q=80"
+            />
+          </div>
+          <div class="song-detail">
+            <div class="song-name">Sunset</div>
+            <div class="artist">The xx</div>
+          </div>
+        </div>
+        <div class="song">
+          <div class="song-img">
+            <img
+              src="https://images.unsplash.com/photo-1496324839965-d6281225d8eb?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=3300&q=80"
+            />
+          </div>
+          <div class="song-detail">
+            <div class="song-name">The pursuit of happiness</div>
+            <div class="artist">Beyries</div>
+          </div>
+        </div>
+        <div class="song">
+          <div class="song-img">
+            <img
+              src="https://images.unsplash.com/photo-1506079619863-0bf287d459e8?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60"
+            />
+          </div>
+          <div class="song-detail">
+            <div class="song-name">Run</div>
+            <div class="artist">Daughter</div>
+          </div>
+        </div>
+      </div>
+      <div class="player-bg">
+        <button class="btn play-pause">
+          <div class="icon-container">
+            <div class="icon play small-play">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 308.838 308.838"
+              >
+                <path
+                  fill="#063064"
+                  d="M269.394 139.638c-.4-.8-.8-1.2-1.2-1.6-.8-1.2-1.6-2-2.8-3.2-1.2-1.2-2.8-2.4-4-3.2l-91.6-63.2-92-63.6c-6-4.4-13.6-5.6-20.4-4.4s-13.2 5.2-17.2 11.2c-1.6 2.4-2.8 4.8-3.6 7.2-.8 2-1.2 4-1.2 6.4v256.4c0 7.6 3.2 14.4 8 19.2 4.4 4.8 11.2 8 18.8 8 3.2 0 6.4-.4 9.2-1.6 2.8-.8 5.2-2.4 7.6-4.4l90.8-62.8 91.2-63.2c.4-.4 1.2-.8 1.6-1.2 5.6-4.4 9.2-10.4 10.4-16.8 1.2-6.4 0-13.6-3.6-19.2zm-20 20.4l-92 63.6-90.4 62.4c-.4 0-.8.4-.8.4-.4.4-1.2.8-2 1.2-.8.4-1.2.4-2 .4-1.6 0-3.2-.8-4.4-1.6-1.2-1.2-1.6-2.8-1.6-4.4v-127.6h-.4v-126-1.6c0-.4 0-.8.4-1.2 0-.4.4-.8.4-1.2.4-.4.4-.4.4-.8.8-1.2 2.4-2 3.6-2 1.6-.4 2.8 0 4.4.8.4.4.8.4 1.2.8l91.2 63.2 91.6 63.2c.4.4.8.4.8.8.4.4.4.8.8.8.8 1.6 1.2 3.2 1.2 4.8-.4 1.6-1.2 3.2-2.4 4z"
+                  class="active-path"
+                  data-old_color="#000000"
+                  data-original="#000000"
+                />
+              </svg>
+            </div>
+          </div>
+          <div class="icon-container">
+            <div class="icon pause small-pause">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 493.528 493.528"
+              >
+                <path
+                  fill="#063064"
+                  d="M178.064 0L166.04.248c-14.876 0-27.236 12.112-27.236 26.992v439.664c0 14.876 13.396 26.624 28.272 26.624h.084l10.976-.072c14.892 0 26.22-11.92 26.22-26.808V26.996C204.352 12.116 193.028 0 178.064 0zM328.584 0l-12.092.248c-14.88 0-27.3 12.112-27.3 26.992v439.664c0 14.876 13.708 26.624 28.58 26.624h.084l10.816-.072c14.88 0 26.052-11.92 26.052-26.808V26.996C354.72 12.116 343.548 0 328.584 0z"
+                  class="active-path"
+                  data-old_color="#000000"
+                  data-original="#000000"
+                />
+              </svg>
+            </div>
+          </div>
+        </button>
+      </div>
+      <div class="player-info">
+        <div class="player-cover">
+          <img
+            src="https://images.unsplash.com/photo-1521133573892-e44906baee46?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=934&q=80"
+          />
+          <div class="pointer"></div>
+        </div>
+        <div class="song-detail">
+          <div class="song-name">Tearing Me up</div>
+          <div class="artist play-artist">Bob Moses</div>
+        </div>
+        <svg
+          fill="none"
+          stroke="#063064"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+          class="blue-heart"
+          viewBox="0 0 24 24"
+        >
+          <path
+            d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"
+          />
+        </svg>
+      </div>
+      <div class="nav">
+        <div class="nav-first">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            stroke="currentColor"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            class="feather feather-home"
+            viewBox="0 0 24 24"
+          >
+            <path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z" />
+          </svg>
+          <svg
+            fill="none"
+            stroke="currentColor"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            class="css-i6dzq1"
+            viewBox="0 0 24 24"
+          >
+            <circle cx="11" cy="11" r="8" />
+            <path d="M21 21l-4.35-4.35" />
+          </svg>
+          <svg
+            style="width: 15px; height: 15px;"
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 29 29"
+          >
+            <g
+              fill="#FFF"
+              fill-rule="evenodd"
+              stroke="currentColor"
+              stroke-width="3"
+            >
+              <rect width="21" height="21" x="7" y="7" rx="5" />
+              <rect width="21" height="21" x="1" y="1" rx="5" />
+            </g>
+          </svg>
+          <svg
+            fill="none"
+            stroke="currentColor"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            class="css-i6dzq1"
+            viewBox="0 0 24 24"
+          >
+            <path
+              d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"
+            />
+          </svg>
+        </div>
+      </div>
+    </div>
+    <div class="app-ui right-ui">
+      <div class="play-action">
+        <div class="half-arrow">
+          <div class="line">
+            <div class="other-line"></div>
+          </div>
+        </div>
+        <div class="what-play">Now playing</div>
+        <div class="double-dot">
+          <div class="dot"></div>
+          <div class="dot"></div>
+        </div>
+      </div>
+      <div class="app-ui inside-right">
+        <div class="bigPlay">
+          <img src="https://images.unsplash.com/photo-1521133573892-e44906baee46?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=934&q=80" />
+          <div class="grey-detail"></div>
+          <div class="grey-detail-sec"></div>
+          <button class="btn play-pause">
+            <div class="icon-container">
+              <div class="icon play bigger-play">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 308.838 308.838"
+                >
+                  <path
+                    fill="#063064"
+                    d="M269.394 139.638c-.4-.8-.8-1.2-1.2-1.6-.8-1.2-1.6-2-2.8-3.2-1.2-1.2-2.8-2.4-4-3.2l-91.6-63.2-92-63.6c-6-4.4-13.6-5.6-20.4-4.4s-13.2 5.2-17.2 11.2c-1.6 2.4-2.8 4.8-3.6 7.2-.8 2-1.2 4-1.2 6.4v256.4c0 7.6 3.2 14.4 8 19.2 4.4 4.8 11.2 8 18.8 8 3.2 0 6.4-.4 9.2-1.6 2.8-.8 5.2-2.4 7.6-4.4l90.8-62.8 91.2-63.2c.4-.4 1.2-.8 1.6-1.2 5.6-4.4 9.2-10.4 10.4-16.8 1.2-6.4 0-13.6-3.6-19.2zm-20 20.4l-92 63.6-90.4 62.4c-.4 0-.8.4-.8.4-.4.4-1.2.8-2 1.2-.8.4-1.2.4-2 .4-1.6 0-3.2-.8-4.4-1.6-1.2-1.2-1.6-2.8-1.6-4.4v-127.6h-.4v-126-1.6c0-.4 0-.8.4-1.2 0-.4.4-.8.4-1.2.4-.4.4-.4.4-.8.8-1.2 2.4-2 3.6-2 1.6-.4 2.8 0 4.4.8.4.4.8.4 1.2.8l91.2 63.2 91.6 63.2c.4.4.8.4.8.8.4.4.4.8.8.8.8 1.6 1.2 3.2 1.2 4.8-.4 1.6-1.2 3.2-2.4 4z"
+                    class="active-path"
+                    data-old_color="#000000"
+                    data-original="#000000"
+                  />
+                </svg>
+              </div>
+            </div>
+            <div class="icon-container">
+              <div class="icon pause bigger-pause">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 493.528 493.528"
+                >
+                  <path
+                    fill="#063064"
+                    d="M178.064 0L166.04.248c-14.876 0-27.236 12.112-27.236 26.992v439.664c0 14.876 13.396 26.624 28.272 26.624h.084l10.976-.072c14.892 0 26.22-11.92 26.22-26.808V26.996C204.352 12.116 193.028 0 178.064 0zM328.584 0l-12.092.248c-14.88 0-27.3 12.112-27.3 26.992v439.664c0 14.876 13.708 26.624 28.58 26.624h.084l10.816-.072c14.88 0 26.052-11.92 26.052-26.808V26.996C354.72 12.116 343.548 0 328.584 0z"
+                    class="active-path"
+                    data-old_color="#000000"
+                    data-original="#000000"
+                  />
+                </svg>
+              </div>
+            </div>
+          </button>
+          <div class="song-detail right-detail">
+          <div class="song-name right-song">Tearing Me Up</div>
+          <div class="artist play-artist right-artist">Bob Moses</div>
+       
+        </div>
+          <div class="line-wrapper">
+        <div class="lines grey"></div>
+        <div class="lines grey"></div>
+        <div class="lines grey"></div>
+        <div class="lines grey"></div>
+        <div class="lines grey"></div>
+        <div class="lines grey"></div>
+        <div class="lines grey"></div>
+        <div class="lines grey"></div>
+        <div class="lines grey"></div>
+        <div class="lines grey"></div>
+        <div class="lines grey"></div>
+        <div class="lines grey"></div>
+        <div class="lines grey"></div>
+        <div class="lines grey"></div>
+        <div class="lines grey"></div>
+        <div class="lines grey"></div>
+        <div class="lines grey"></div>
+        <div class="lines grey"></div>
+        <div class="lines grey"></div>
+        <div class="lines grey"></div>
+        <div class="lines grey"></div>
+        <div class="lines grey"></div>
+        <div class="lines grey"></div>
+        <div class="lines grey"></div>
+        <div class="lines grey"></div>
+        <div class="lines grey"></div>
+        <div class="lines grey"></div>
+        <div class="lines grey"></div>
+        <div class="lines grey"></div>
+        <div class="lines grey"></div>
+        <div class="lines grey"></div>
+        <div class="lines grey"></div>
+        <div class="lines grey"></div>
+        <div class="lines grey"></div>
+        <div class="lines grey"></div>
+        <div class="lines grey"></div>
+        <div class="lines grey"></div>
+        <div class="lines grey"></div>
+        <div class="lines grey"></div>
+        <div class="lines grey"></div>
+        <div class="lines grey"></div>
+        <div class="lines grey"></div>
+        <div class="lines grey"></div>
+        <div class="lines grey"></div>
+       </div>
+          <div class="second">
+            <div class="listened">0:39</div>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 477.88 477.88">
+  <path fill="#063064" d="M468.46 1.8a17.06 17.06 0 00-15.3 0L9.44 223.69a17.07 17.07 0 004.58 32.05l176.1 32.03 32.04 176.11a17.07 17.07 0 0032.05 4.58L476.07 24.7a17.07 17.07 0 00-7.61-22.9z" class="active-path" data-old_color="#000000" data-original="#000000"/>
+</svg>
+            <div class="listen">6:28</div>
+          </div>
+       <div class="left-bar-wrapper">
+         <svg class="addTo" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000">
+  <path fill="#063064" d="M934 822H794v140c0 15.5-12.5 28-28 28s-28-12.5-28-28V822H598c-15.5 0-28-12.5-28-28s12.5-28 28-28h140V626c0-15.5 12.5-28 28-28s28 12.5 28 28v140h140c15.5 0 28 12.5 28 28s-12.5 28-28 28zM738 122c0-30.9-25.1-56-56-56H150c-30.9 0-56 25.1-56 56v756c0 30.9 25.1 56 56 56h364v56H122c-46.4 0-84-37.6-84-84V94c0-46.4 37.6-84 84-84h588c46.4 0 84 37.6 84 84v364h-56V122z"/>
+</svg>
+         <svg class="menu" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000">
+  <path d="M977.8 524.5H22.3c-6.8 0-12.3-5.5-12.3-12.3v-24.5c0-6.7 5.5-12.3 12.3-12.3h955.5c6.8 0 12.3 5.5 12.3 12.3v24.5c-.1 6.8-5.6 12.3-12.3 12.3zm-49.1-294H757.2c-6.8 0-12.3-5.5-12.3-12.2v-24.5c0-6.8 5.5-12.3 12.3-12.3h171.5c6.8 0 12.3 5.5 12.3 12.3v24.5c0 6.7-5.5 12.2-12.3 12.2zm-294 0H71.3c-6.8 0-12.3-5.5-12.3-12.2v-24.5c0-6.8 5.5-12.3 12.3-12.3h563.5c6.8 0 12.3 5.5 12.3 12.3v24.5c-.1 6.7-5.6 12.2-12.4 12.2zm-563.4 539h171.5c6.8 0 12.2 5.5 12.2 12.2v24.5c0 6.8-5.5 12.3-12.2 12.3H71.3c-6.8 0-12.3-5.5-12.3-12.3v-24.5c0-6.7 5.5-12.2 12.3-12.2zm293.9 0h563.5c6.8 0 12.3 5.5 12.3 12.2v24.5c0 6.8-5.5 12.3-12.3 12.3H365.2c-6.8 0-12.3-5.5-12.3-12.3v-24.5c.1-6.7 5.6-12.2 12.3-12.2z"/>
+</svg>
+          <svg class="heart" xmlns="http://www.w3.org/2000/svg" viewBox="0 -28 512 512">
+  <path fill="#EBC7E5" d="M471.383 44.578C444.879 15.832 408.512 0 368.973 0c-29.555 0-56.621 9.344-80.45 27.77C276.5 37.07 265.605 48.45 256 61.73c-9.602-13.277-20.5-24.66-32.527-33.96C199.648 9.344 172.582 0 143.027 0c-39.539 0-75.91 15.832-102.414 44.578C14.426 72.988 0 111.801 0 153.871c0 43.3 16.137 82.938 50.781 124.742 30.992 37.395 75.535 75.356 127.117 119.313 17.614 15.012 37.579 32.027 58.309 50.152A30.023 30.023 0 00256 455.516c7.285 0 14.316-2.641 19.785-7.43 20.73-18.129 40.707-35.152 58.328-50.172 51.575-43.95 96.117-81.906 127.11-119.305C495.867 236.81 512 197.172 512 153.867c0-42.066-14.426-80.879-40.617-109.289zm0 0" class="active-path" data-old_color="#000000" data-original="#000000"/>
+</svg>
+        </div>
+        </div>  
+      </div>
+    </div>
+  </div>
+  <div></div>
+</div>
+
+<audio style="display: none;" controls id="audio">
+  <source src="https://file-examples.com/wp-content/uploads/2017/11/file_example_MP3_700KB.mp3" type="audio/ogg">
+Your browser does not support the audio element.
+</audio>
+
+<script>
+    console.clear();
+const buttons = Array.from(document.querySelectorAll("button"));
+
+buttons.forEach(btn => {
+	btn.addEventListener("click", () => {
+		btn.classList.toggle("active");
+	});
+});
+
+$('.btn').click( function() {
+    $(".bigPlay img").toggleClass("active");
+} );
+
+const audio = document.querySelector('#audio');
+let isPlay = false;
+
+const allCibik = document.querySelectorAll('.lines.grey');
+let index = 0;
+let animation;
+
+const bigButton = document.querySelector('.bigPlay');
+bigButton.addEventListener('click', () => {
+  if (!isPlay) {
+    isPlay = true;
+      audio.play();
+      animation = setInterval(() => {
+    allCibik[index].classList.remove('grey');
+    index = index + 1;
+  }, 1000);
+  } else {
+    isPlay = false;
+      audio.pause();
+    clearInterval(animation);
+  }
+ 
+});
+</script>
+</body>
+</html>
