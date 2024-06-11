@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        html, body {
+  height: 100%;
+}
+body {
+  background-image: linear-gradient( 115deg, transparent 50%, #FF5138 50%, #FF5138 58%, #FF7246 58%), linear-gradient( 115deg, transparent 0%, transparent 40%, rgba(black, 0.27) 58%, transparent 58%);
+  background-repeat: no-repeat;
+}
+#pokemon-list {
+  height: 100%;
+  width: 40%;
+  position: fixed;
+  right: 0;
+  top: 0;
+  overflow-y: auto;
+  margin: 0;
+}
+.pokemon {
+  display: flex;
+  align-items: center;
+  text-align: center;
+  font-family: sans-serif;
+  height: 2rem;
+  position: relative;
+  margin: 2rem 0;
+  .pokemon-number {
+    padding: 0.4rem 3rem;
+    border-top-left-radius: 3rem;
+    border-bottom-left-radius: 3rem;
+    position: relative;
+    z-index: 2;
+  }
+  .pokemon-name {
+    width: 10rem;
+    text-align: left;
+    display: inline-block;
+    padding: 0.4rem 0 0.4rem 1.4rem;
+    border-top-right-radius: 3rem;
+    border-bottom-right-radius: 3rem;
+    position: relative;
+    &::first-letter {
+      text-transform: uppercase;
+    }
+  }
+  img {
+    width: 35px;
+    vertical-align: bottom;
+    position: absolute;
+    left: 0.3rem;
+    bottom: 0.2rem;
+  }
+  svg {
+    width: 1.25rem;
+    height: 1.25rem;
+    position: absolute;
+    right: 0.3rem;
+    top: 50%;
+    margin-top: -0.625rem;
+    path {
+      fill: black
+    }
+  }
+  &:focus {
+    outline: 0;
+  }
+  &:hover, &:focus {
+    cursor: pointer;
+    .pokemon-number {
+      color: white;
+      background-color: #FF4F14;
+      box-shadow: 0 3px 5px 0 rgba(black, 0.3);
+      &::after {
+        content: '';
+        display: block;
+        position: absolute;
+        top: 0;
+        right: -1.5rem;
+        height: 100%;
+        width: 1.5rem;
+        background-image: linear-gradient(125deg, #FF4F14 0%, #FF4F14 50%, transparent 50%);
+      }
+    }
+    .pokemon-name {
+      background-color: black;
+      color: white;
+      box-shadow: 0 3px 5px 0 rgba(black, 0.3);
+      svg path {
+        fill: white;
+      }
+    }
+    &:before {
+      content: '>';
+      font-weight: 900;
+      text-shadow: -1px -1px 0 #FFF, 1px -1px 0 #FFF, -1px 1px 0 #FFF, 1px 1px 0 #FFF;
+      z-index: 3;
+      font-size: 2.5rem;
+      left: -1.3rem;
+      top: -0.65rem;
+      position: absolute;
+    }
+  }
+}
+
+#pokeball-template {
+  display: none;
+}
+    </style>
+</head>
+<body>
+    <svg xmlns="http://www.w3.org/2000/svg"
+     width="11.3778in" height="11.3778in"
+     id="pokeball-template"
+     viewBox="0 0 1024 1024">
+  <path stroke="none"
+        d="M 512.00,96.80
+           C 304.28,96.94 132.17,249.33 101.24,448.41
+             101.24,448.41 312.51,448.80 312.51,448.80
+             339.50,364.37 418.60,303.25 512.00,303.20
+             605.25,303.31 684.24,364.33 711.33,448.61
+             711.33,448.61 922.53,448.80 922.53,448.80
+             891.82,249.60 719.75,97.06 512.00,96.80
+             512.00,96.80 512.00,96.80 512.00,96.80 Z
+           M 512.00,376.80
+           C 436.89,376.80 376.00,437.69 376.00,512.80
+             376.00,587.91 436.89,648.80 512.00,648.80
+             512.00,648.80 512.00,648.80 512.00,648.80
+             587.11,648.80 648.00,587.91 648.00,512.80
+             648.00,512.80 648.00,512.80 648.00,512.80
+             648.00,437.69 587.11,376.80 512.00,376.80
+             512.00,376.80 512.00,376.80 512.00,376.80
+             512.00,376.80 512.00,376.80 512.00,376.80 Z
+           M 101.47,576.80
+           C 132.18,776.00 304.25,928.54 512.00,928.80
+             719.72,928.66 891.83,776.27 922.76,577.19
+             922.76,577.19 711.49,576.80 711.49,576.80
+             684.50,661.23 605.40,722.35 512.00,722.40
+             418.75,722.29 339.76,661.27 312.67,576.99
+             312.67,576.99 101.47,576.80 101.47,576.80
+             101.47,576.80 101.47,576.80 101.47,576.80 Z" />
+</svg>
+<div id=""></div>
+<ul id="pokemon-list"></ul>
+
+<script>
+    function apiCall(endpoint){
+  return fetch(`https://pokeapi.co/api/v2/${ endpoint }`).then(response => {
+    return response.json();
+  })
+  .then(data => {
+    return data;
+  });
+}
+
+function drawImageActualSize(canvas, ctx, img) {
+  // Use the intrinsic size of image in CSS pixels for the canvas element
+  canvas.width = 100;
+  canvas.height = 100;
+
+  // To use the custom size we'll have to specify the scale parameters 
+  // using the element's width and height properties - lets draw one 
+  // on top in the corner:
+  ctx.drawImage(img, 0, 0, 100, 100);
+  return canvas;
+  }
+
+function drawImgToCanvas(url, elm){
+  const imgCanv = document.createElement('canvas');
+  const ctx = imgCanv.getContext('2d');
+  const image = new Image(100, 100);
+   image.crossOrigin="anonymous";
+image.onload = function(imgElm){
+  const newImg = drawImageActualSize(imgCanv, ctx, imgElm.path[0]);
+  const trimmedImg = trimCanvas(newImg);
+  elm.src = trimmedImg.toDataURL();
+}; // Draw when image has loaded
+
+// Load an image of intrinsic size 300x227 in CSS pixels
+image.src = url;
+};
+
+function trimCanvas(c) {
+    var ctx = c.getContext('2d'),
+        copy = document.createElement('canvas').getContext('2d'),
+        pixels = ctx.getImageData(0, 0, c.width, c.height),
+        l = pixels.data.length,
+        i,
+        bound = {
+            top: null,
+            left: null,
+            right: null,
+            bottom: null
+        },
+        x, y;
+    
+    // Iterate over every pixel to find the highest
+    // and where it ends on every axis ()
+    for (i = 0; i < l; i += 4) {
+        if (pixels.data[i + 3] !== 0) {
+            x = (i / 4) % c.width;
+            y = ~~((i / 4) / c.width);
+
+            if (bound.top === null) {
+                bound.top = y;
+            }
+
+            if (bound.left === null) {
+                bound.left = x;
+            } else if (x < bound.left) {
+                bound.left = x;
+            }
+
+            if (bound.right === null) {
+                bound.right = x;
+            } else if (bound.right < x) {
+                bound.right = x;
+            }
+
+            if (bound.bottom === null) {
+                bound.bottom = y;
+            } else if (bound.bottom < y) {
+                bound.bottom = y;
+            }
+        }
+    }
+    
+    // Calculate the height and width of the content
+    var trimHeight = bound.bottom - bound.top,
+        trimWidth = bound.right - bound.left,
+        trimmed = ctx.getImageData(bound.left, bound.top, trimWidth, trimHeight);
+
+    copy.canvas.width = trimWidth;
+    copy.canvas.height = trimHeight;
+    copy.putImageData(trimmed, 0, 0);
+
+    // Return trimmed canvas
+    return copy.canvas;
+}
+
+const createListItem = async function (id){
+  const pokemon = await fetch(`https://pokeapi.co/api/v2/pokemon/${ id }`).then(response => {
+    return response.json();
+  })
+  .then(data => {
+    return data;
+  });
+  const listItemElm = document.createElement('li');
+  listItemElm.className = 'pokemon';
+  listItemElm.tabIndex = '0';
+  const pokemonNumber = document.createElement('span');
+  pokemonNumber.className = 'pokemon-number';
+  const pokemonThumb = document.createElement('img');
+   drawImgToCanvas(pokemon.sprites.front_default, pokemonThumb);
+  pokemonThumb.alt = `${pokemon.name} thumbnail image. `;
+  pokemonNumber.innerText = `N.º ${pokemon.id}`;
+   pokemonNumber.prepend(pokemonThumb);
+  const pokemonName = document.createElement('span');
+  pokemonName.className = 'pokemon-name';
+  pokemonName.innerText = pokemon.name;
+  const pokeball = document.getElementById('pokeball-template').cloneNode(true);
+  pokeball.id = '';
+  pokeball.className = 'pokeball';
+  pokemonName.appendChild(pokeball);
+  listItemElm.appendChild(pokemonNumber);
+  listItemElm.appendChild(pokemonName);
+  document.getElementById('pokemon-list').appendChild(listItemElm);
+}
+
+window.onload = async function(){
+  const pokedexApiCall = await apiCall('pokedex/2');
+  const pokedex = pokedexApiCall.pokemon_entries;
+  for(var pokemon of pokedex){
+    createListItem(pokemon.entry_number);
+  }
+}
+</script>
+</body>
+</html>
