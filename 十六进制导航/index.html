@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        @import 'https://fonts.googleapis.com/css?family=News+Cycle';
+html, body {
+  padding: 0;
+  margin: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+@keyframes growlist {
+  0% {
+    max-height: 0;
+    opacity: 0;
+  }
+  20% {
+    max-height: 0%;
+    opacity: 0;
+  }
+  21% {
+    max-height: 0%;
+    opacity: 1;
+  }
+  100% {
+    max-height: 500px;
+    opacity: 1;
+  }
+}
+.background {
+  position: fixed;
+  height: 100%;
+  width: 100%;
+  margin-top: -1%;
+  margin-left: -1%;
+  background-size: cover;
+  z-index: -1;
+  img {
+    position: absolute;
+    top: -5%;
+    left: -5%;
+    width: 110%;
+    -webkit-filter: blur(8px);
+    -moz-filter: blur(8px);
+    -o-filter: blur(8px);
+    -ms-filter: blur(8px);
+    filter: blur(8px);
+    &:after {
+      content: '';
+      position: absolute;
+      display: block;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(yellow, 0.3);
+      mix-blend-mode: multiply;
+    }
+  }
+}
+.links {
+  position: relative;
+  margin: 1em 1em;
+  ul{
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    &.sub-nav {
+      display: none;
+      max-height: 0;
+      overflow: hidden;
+      border: 2px solid white;
+      float: left;
+      width: 175px;
+      margin-top: -47px;
+      opacity: 0;
+      animation: growlist 0.5s linear 0s forwards;
+      transition: all 0.25s ease-in-out;
+      li {
+        position: relative;
+        padding: 7px 10px;
+        white-space: nowrap;
+        &:not(:last-child) {
+          border-bottom: 2px solid white;
+        }
+        a {
+          float: none;
+        }
+      }
+    }
+    li {
+      position: absolute;
+      &#about, &#work {
+        left: 4.5em;
+      }
+      &#about {
+        top: 2.8em;
+      }
+      &#contact {
+        top: 5.5em;
+      }
+      &#work {
+        top: 8.3em;
+      }
+      &.hexagon.dropdown > a:after {
+        content: '';
+        display: block;
+        height: 2px;
+        width: 0;
+        background: white;
+        position: absolute;
+        transition: all 0.1s ease-in-out;
+        top: 50%;
+        margin-top: -3px;
+        left: 100%;
+      }
+      a {
+        float: left;
+        text-decoration: none;
+        color: white;
+        font-family: 'News Cycle', sans-serif;
+        text-transform: uppercase;
+        font-size: 0.8em;
+        letter-spacing: 0.1em;
+        position: relative;
+        svg {
+          stroke: white;
+          stroke-width: 1em;
+          width: 6.5em;
+          height: 6.5em;
+          fill: transparent;
+          transition: all 0.1s ease-in-out;
+        }
+        span {
+          position: absolute;
+          display: inline-block;
+          top:0.5em;
+          left:0.25em;
+          padding: 2em 0;
+          width: 6em;
+          height: 1.5em;
+          text-align: center;
+        }
+      }
+      &.dropdown:nth-child(odd){
+        &.active a:after{
+          width: 17em;
+        }
+        .sub-nav {
+          margin-left: 10.5em;
+        }
+      }
+      &.dropdown:nth-child(even){
+        &.active a:after{
+          width: 203px;
+        }
+        .sub-nav {
+          margin-left: 107px;
+        }
+      }
+      &.active {
+        svg {
+          fill: white;
+        }
+        span {
+          display: inline-block;
+          background: url(http://sun-surfer.com/photos/2013/03/Cobblestone-Street-Alsace-France.jpg);
+          -webkit-text-fill-color: transparent;
+          -webkit-background-clip: text;
+        }
+        .sub-nav {
+          display: inline-block;
+        }
+      }
+    }
+  }
+}
+    </style>
+</head>
+<body>
+    <div id="scene">
+        <div class="background layer" data-depth="0.20">
+          <img src="http://sun-surfer.com/photos/2013/03/Cobblestone-Street-Alsace-France.jpg"/>
+        </div>
+        <div class="links layer" data-depth="0.80">
+          <ul>
+            <li class="hexagon" id="home">
+              <a href="#">
+                <svg version="1.1" viewBox="0 0 600 516.8">
+                  <polygon points="150.7,516.8 1.5,258.4 150.7,0 449,0 598.2,258.4 449,516.8 "/>
+                </svg>
+                <span>Home</span>
+              </a>
+            </li>
+            <li class="hexagon dropdown" id="about">
+              <a href="#">
+                <svg version="1.1" viewBox="0 0 600 516.8">
+                  <polygon points="150.7,516.8 1.5,258.4 150.7,0 449,0 598.2,258.4 449,516.8 "/>
+                </svg>
+                <span>About</span>
+              </a>
+              <ul class="sub-nav">
+                  <li>
+                    <a href="#">The Artist</a>
+                  </li>
+                  <li>
+                    <a href="#">The Work</a>
+                  </li>
+                </ul>
+            </li>
+            <li class="hexagon dropdown" id="contact">
+              <a href="#">
+                <svg version="1.1" viewBox="0 0 600 516.8">
+                  <polygon points="150.7,516.8 1.5,258.4 150.7,0 449,0 598.2,258.4 449,516.8 "/>
+                </svg>
+                <span>Contact</span>
+              </a>
+              <ul class="sub-nav">
+                <li>
+                  <a href="#">E-mail</a>
+                </li>
+                <li>
+                  <a href="#">Facebook</a>
+                </li>
+                <li>
+                  <a href="#">Twitter</a>
+                </li>
+                <li>
+                  <a href="#">Dribbble</a>
+                </li>
+                <li>
+                  <a href="#">Codepen</a>
+                </li>
+              </ul>
+            </li>
+            <li class="hexagon dropdown" id="work">
+              <a href="#">
+                <svg version="1.1" viewBox="0 0 600 516.8">
+                  <polygon points="150.7,516.8 1.5,258.4 150.7,0 449,0 598.2,258.4 449,516.8 "/>
+                </svg>
+        
+                <span>Work</span>
+              </a>
+              <ul class="sub-nav">
+                <li>
+                  <a href="#">Print</a>
+                </li>
+                <li>
+                  <a href="#">Design</a>
+                </li>
+                <li>
+                  <a href="#">Code</a>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+        </div>
+        <script>
+            window.onload = function(){
+  var nav_links = document.querySelectorAll('.hexagon.dropdown');
+  for(var i = 0; i<nav_links.length; i++){
+    nav_links[i].addEventListener('mousedown', function(e){
+      var all_nav_links = document.querySelectorAll('.hexagon.dropdown');
+      var elem = e.target.parentNode.parentNode;
+      if(!elem.className.match(/active/gi)){
+        for(var j = 0; j<all_nav_links.length; j++){
+        if (all_nav_links[j].className.match(/active/gi)){
+          all_nav_links[j].className = all_nav_links[j].className.replace(/ active/gi, '')
+        }
+      }
+        elem.className += ' active';
+      } else {
+        elem.className = elem.className.replace(/ active/, '');
+      }
+    });
+  }
+  var scene = document.getElementById('scene');
+  var parallax = new Parallax(scene);
+}
+        </script>
+</body>
+</html>
