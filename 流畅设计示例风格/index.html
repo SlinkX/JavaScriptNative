@@ -1,0 +1,746 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        $pink: #FC50A9;
+$plum: #251D2F;
+$dkplum: rgba(#131228, 0.7);
+$dogs: (
+  "https://hips.hearstapps.com/ghk.h-cdn.co/assets/cm/15/11/54ffe5266025c-dog1.jpg?crop=1xw:1.0xh;center,top&resize=480:*",
+  "https://img.memecdn.com/this-just-in-i-don-amp-039-t-know-what-i-amp-039-m-doing_o_6176573.jpg",
+  "http://www.dumpaday.com/wp-content/uploads/2013/05/i-have-no-idea-what-Im-doing-meme-8.jpg",
+  "http://www.dumpaday.com/wp-content/uploads/2013/05/i-have-no-idea-what-Im-doing-meme-20.jpg",
+  "https://i.kym-cdn.com/photos/images/original/000/234/739/fa5.jpg",
+  "http://www.dumpaday.com/wp-content/uploads/2013/05/i-have-no-idea-what-Im-doing-meme-25.jpg",
+  "https://i.kym-cdn.com/photos/images/facebook/000/665/819/b7b.jpg"
+);
+$art: (
+  "https://www.splendidbeast.com/wp-content/uploads/2017/10/Pearl-Earring-Dog-Painting-974.jpg",
+  "https://images.fineartamerica.com/images-medium-large-5/kelpie-oakey-alicia-vannoy-call.jpg",
+  "https://img.etsystatic.com/il/a6eade/1345784228/il_570xN.1345784228_kj7k.jpg?version=0",
+  "https://www.splendidbeast.com/wp-content/uploads/2017/10/Dino-Dog-Painting-Splendid-Beast.jpg",
+  "https://www.artbrokerage.com/art/rodrigue/_images/rodrigue_107707_51139911399.jpg",
+  "http://1.bp.blogspot.com/-Lpz-0NBD0Vw/Ut2dK0jyXUI/AAAAAAAADaQ/qyVXfKA4f4I/s1600/14016+-+S+-+Sea+Dean+-+Pink+Doggie+Homage+to+Jeff+Koons+-+Acrylic+-+4+x+4+-+$65.jpg",
+  "http://www.horseandman.com/wp-content/uploads/2017/05/Screen-Shot-2017-05-27-at-6.28.42-PM.png",
+  "https://images.fineartamerica.com/images/artworkimages/mediumlarge/1/colorful-dog-paw-print-by-sharon-cummings-sharon-cummings.jpg"
+);
+
+input[type="radio"], input[type="checkbox"] {
+  display: none;
+}
+* {
+  font-family: system-ui;
+  box-sizing: border-box;
+}
+html, body {
+  margin: 0;
+  height: 100%;
+}
+
+body {
+  background-image: url(https://data.whicdn.com/images/73292616/large.jpg);
+  background-size: cover;
+}
+
+#toggle-styleguide {
+  & + label {
+    position: absolute;
+    z-index: 2;
+    width: 18rem;
+    left: -17rem;
+    transition: 0.2s;
+    display: flex;
+    flex-wrap: wrap;
+    height: 100vh;
+    &:after {
+      $width: 2.85rem;
+      content: '>';
+      color: white;
+      display: block;
+      position: absolute;
+      width: $width;
+      height: $width;
+      text-align: center;
+      line-height: 2.65rem;
+      overflow: hidden;
+      border-top-right-radius: $width;
+      border-bottom-right-radius: $width;
+      top: 0;
+      right: -$width/2;
+      background-color: $pink;
+      font-size: 1.15rem;
+    }
+    &:hover {
+      left: 0;
+    }
+    #label-wrapper {
+      height: 100vh;
+      overflow: hidden;
+    }
+    p.button {
+      margin: 0;
+      color: white;
+      position: relative;
+      width: 100%;
+    }
+    #styleguide-wrapper {
+      max-height: 0;
+      overflow: hidden;
+      transition: 0.2s;
+      width: 100%;
+      height: 100%;
+      #styleguide-content {
+        overflow: auto;
+        height: 100%;
+      }
+      section {
+        padding: 1rem;
+        background-color: white;
+        border-bottom: 1px solid $pink;
+        transition: 0.2s;
+        &:last-of-type {
+          border-bottom: 0;
+          padding-bottom: 3rem;
+        }
+      }
+    }
+  }
+  &:checked {
+    & + label {
+      left: 0;
+      #styleguide-wrapper {
+        max-height: 100vh;
+      }
+    }
+    & ~ #window {
+      transform: translate3d(-37%, -50%, 0);
+      position: absolute;
+      #normal-content {
+        transition-delay: 0s;
+        opacity: 0;
+      }
+      #styleguide-example {
+        transition-delay: 0.3s;
+        opacity: 1;
+        display: flex;
+      }
+    }
+  }
+}
+nav {
+  label {
+    transition: 0.2s;
+    display: block;
+    padding: 0.5rem 8rem 0.5rem 1.75rem;
+    border-left: 7px solid transparent;
+    margin: 1rem 0;
+    &:hover {
+      cursor: pointer;
+      background-color: rgba(white, 0.05);
+    }
+  }
+}
+#window {
+  background-color: rgba($plum, 0.75);
+  backdrop-filter: blur(7px);
+  -webkit-backdrop-filter: blur(7px);
+  color: white;
+  position: relative;
+  height: 95vh;
+  width: 95vw;
+  max-width: 70rem;
+  left: 50%;
+  top: 50%;
+  transform: translate3d(-50%, -50%, 0);
+  overflow: hidden;
+  transition: 0.4s;
+  > * {
+    display: flex;
+    transition: 0.2s;
+    position: absolute;
+    top: 0;
+    left: 0;
+    transition-delay: 0.2s;
+    width: 100%;
+    height: 100%;
+    &#styleguide-example {
+      opacity: 0;
+      transition-delay: 0s;
+      display: none;
+    }
+  }
+  .nav-cont {
+    height: 100%;
+    .nav-contents {
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+      nav {
+        overflow: auto;
+      }
+    }
+  }
+}
+.profile-img {
+  $diameter: 7rem;
+  background-color: $pink;
+  padding-bottom: $diameter;
+  width: $diameter;
+  border-radius: 50%;
+  position: relative;
+  margin: 1rem 1rem 1rem (-$diameter/2);
+  display: block;
+  left: 50%;
+    &:not(#example-img) {
+      background-image: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/172299/Screen%20Shot%202018-07-17%20at%2011.03.52%20PM.png);
+      background-size: cover;
+      }
+}
+#content {
+  position: relative;
+  flex-grow: 2;
+  background-color: $dkplum;
+  > div {
+    transition: 0.3s;
+    position: absolute;
+    top: 0;
+    left: 100%;
+    opacity: 0;
+    overflow-y: auto;
+    height: 100%;
+    padding-bottom: 2rem;
+  }
+}
+
+@each $path in about, work, labs, contact {
+  #nav-#{$path}:checked {
+    & ~ #window {
+      label[for="nav-#{$path}"] {
+        border-left: 7px solid $pink;
+        color: $pink;
+      }
+      #content #content-#{$path} {
+        left: 0;
+        opacity: 1;
+        transition-delay: 0.3s;
+      }
+    }
+  }
+}
+h3 {
+  margin-top: 1rem;
+}
+#content {
+  padding: 1rem;
+  > * {
+    margin-left: 3%;
+    margin-right: 3%;
+  }
+  &-about, &-work, &-labs, &-contact {
+    width: 94%;
+  }
+}
+#content-about {
+  #my-name {
+    margin: 0;
+    &:after {
+      content: '.';
+      color: $pink;
+      font-size: 5rem;
+      line-height: 0;
+    }
+  }
+  #job-title {
+    color: $pink;
+    margin: 1rem 0;
+  }
+}
+
+#content-work, #content-labs {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  overflow: hidden;
+}
+#work-grid {
+  > div {
+    padding-top: 50%;
+    overflow: hidden;
+    opacity: 0;
+    &.fade-up {
+      padding-top: 0;
+      opacity: 1;
+    }
+    .img-cont {
+      width: 100%;
+      padding-bottom: 8rem;
+      background-size: cover;
+    }
+    p {
+      margin-bottom: 0;
+      &:last-child {
+        margin-bottom: 0.75rem;
+      }
+    }
+  }
+  @for $i from 1 through 18 {
+    > div:nth-child(#{$i}) {
+      &.fade-up {
+        transition: 0.4s all ease;
+        transition-delay: (0.1*$i) + 0.1s;
+      }
+      .img-cont {
+        background-image: url(#{nth($dogs, random(length($dogs)))});
+      }
+    }
+  }
+}
+
+#labs-grid {
+  .details {
+    background-color: #1E1B33;
+    padding: 1rem;
+  }
+  > div {
+    padding-top: 50%;
+    overflow: hidden;
+    opacity: 0;
+    &.fade-up {
+      padding-top: 0;
+      opacity: 1;
+    }
+    .img-cont {
+      width: 100%;
+      padding-bottom: 14rem;
+      background-size: cover;
+    }
+  }
+  @for $i from 1 through 8 {
+    > div:nth-child(#{$i}) {
+      &.fade-up {
+        transition: 0.4s all ease;
+        transition-delay: (0.1*$i) + 0.1s;
+      }
+      .img-cont {
+        background-image: url(#{nth($art,$i)});
+      }
+    }
+  }
+}
+a {
+  color: $pink;
+  text-decoration: none;
+  &:after {
+    content: '\00a0>';
+  }
+}
+
+#styleguide-example {
+  #example-content {
+    position: relative;
+    flex-grow: 2;
+    background-color: $dkplum;
+    padding: 0 2rem;
+    height: 100%;
+    overflow: auto;
+  }
+  label:first-of-type {
+    border-left-color: $pink;
+    color: $pink;
+  }
+  input[type="text"]:last-of-type {
+    outline: 2px solid $pink;
+    outline-offset: -2px;
+  }
+}
+
+
+// CODE AND PRE
+
+.code {
+  font-family: monospace;
+  color: $pink;
+  font-size: 1.15rem;
+}
+
+// TEXT INPUTS
+
+input[type="text"], textarea {
+  background-color: rgba($plum, 0.7);
+  border: 1px solid rgba(white, 0.3);
+  outline: 2px solid transparent;
+  transition: 0.2s;
+  padding: 0.75rem 1rem;
+  color: white;
+  &:focus {
+    outline: 2px solid $pink;
+  }
+}
+textarea {
+  resize: none;
+  width: 100%;
+}
+
+// GRID
+.grid {
+  display: grid;
+  grid-gap: 2rem;
+  grid-auto-rows: minmax(100%, auto);
+  overflow: auto;
+  padding-bottom: 2rem;
+}
+.grid-2col {
+  grid-template-columns: repeat(2, 1fr);
+}
+.grid-3col {
+  grid-template-columns: repeat(3, 1fr);
+}
+//  BUTTON
+button, .button {
+  background-color: $pink;
+  border: 0;
+  padding: 0.6rem 2rem;
+  color: white;
+}
+
+//  TITLE
+.title {
+  display: inline-block;
+  clear: both;
+  padding-bottom: 4px;
+  position: relative;
+  margin-bottom: 2.5rem;
+  border-bottom: 2px solid $pink;
+}
+//  FONT STYLES
+.font-exsmall {
+  font-size: 0.95rem;
+  letter-spacing: 0.3px;
+}
+.font-small {
+  font-size: 1.15rem;
+  letter-spacing: 0.3px;
+  line-height: 1.75rem;
+}
+.font-med {
+  font-size: 1.4rem;
+  letter-spacing: 1px;
+  font-weight: 300;
+}
+.font-lg {
+  font-size: 2rem;
+  letter-spacing: 1.5px;
+  font-weight: 300;
+}
+.font-exlg {
+  font-size: 3.5rem;
+  letter-spacing: 1.5px;
+  line-height: 3rem;
+}
+.font-demi-opacity {
+  color: rgba(white, 0.5);
+}
+    </style>
+</head>
+<body>
+    <!-- Inputs are outside to toggle everything -->
+<input type="checkbox" id="toggle-instructions">
+<input type="radio" id="nav-about" name="nav" checked>
+<input type="radio" id="nav-work" name="nav">
+<input type="radio" id="nav-labs" name="nav">
+<input type="radio" id="nav-contact" name="nav">
+<input type="checkbox" id="toggle-styleguide"/>
+<label for="toggle-styleguide">
+  <div id="label-wrapper">
+    <p class="button font-med">Show Style Guide</p>
+    <div id="styleguide-wrapper">
+      <div id="styleguide-content">
+        <section>
+          <strong class="font-small">Textarea / Text Inputs</strong>
+          <p class="font-exsmall">By default, textareas and text inputs are styled completely and should not have styles overwritten. They include branded focus and active states.</p>
+        </section>
+        <section>
+          <strong class="font-small">Buttons</strong>
+          <p class="font-exsmall">
+            Buttons use the accent color as a background color, designating a call-to-action. The class <span class="code">button</span> can also be used to apply the same styles to other elements.
+          </p>
+        </section>
+        <section>
+          <strong class="font-small">Grids</strong>
+          <p class="font-exsmall">
+            Grids should be used to organize content that contains visual components. To add grids, add the <span class="code">grid</span> along with the appropriate number of columns.
+          </p>
+          <p class="font-exsmall">
+            Currently, the design system only contains two different column options: 2 columns and 3 columns. To specify the amount of columns, apply the class <span class="code">grid-</span> plus the requested number of columns.
+          </p>
+        </section>
+        <section>
+          <strong class="font-small">Title</strong>
+          <p class="font-exsmall">
+            The <span class="code">title</span> class should only be used once per page. This style added an accent-colored bottom border to the element it is applied to.
+          </p>
+        </section>
+        <section>
+          <strong class="font-small">Font Sizes</strong>
+          <p class="font-exsmall">
+            There are five font sizes to choose from:
+          </p>
+          <ul>
+            <li class="font-exsmall"><strong>Extra-Small: </strong><span class="code">font-exsmall</span></li>
+            <li class="font-exsmall"><strong>Small: </strong><span class="code">font-small</span></li>
+            <li class="font-exsmall"><strong>Medium: </strong><span class="code">font-med</span></li>
+            <li class="font-exsmall"><strong>Large: </strong><span class="code">font-lg</span></li>
+            <li class="font-exsmall"><strong>Extra-Large: </strong><span class="code">font-exlg</span></li>
+          </ul>
+        </section>
+        <section>
+          <strong class="font-exsmall">Navigation</strong>
+          <p class="font-exsmall">Navigation links have three states: Normal, Hover, and Active</p>
+          <ul>
+            <li class="font-exsmall"><strong>Normal:</strong> The text is white or black, depending on the background color</li>
+            <li class="font-exsmall"><strong>Hover:</strong> The text color is the same as the normal color, with the background-color changing to the text color at 5% opacity.</li>
+            <li class="font-exsmall"><strong>Active:</strong> The text color becomes the accent color along with a border of 5px and matching accent fill on the left side of the link.</li>
+          </ul>
+        </section>
+      </div>
+    </div>
+  </div>
+</label>
+<div id="window">
+  <div id="normal-content">
+
+    <div class="nav-cont">
+      <div class="nav-contents">
+        <div class="profile-img"></div>
+        <nav>
+          <label for="nav-about" class="font-med">About</label>
+          <label for="nav-work" class="font-med">Work</label>
+          <label for="nav-labs" class="font-med">Labs</label>
+          <label for="nav-contact" class="font-med">Contact</label>
+        </nav>
+      </div>
+    </div>
+    <div id="content">
+      <div id="content-about">
+        <h3><span class="font-lg title">About</span></h3>
+        <div class="content">
+          <p id="my-name" class="font-exlg">Spot</p>
+          <p id="job-title" class="font-lg">Best Boy</p>
+          <div id="bio" class="font-exsmall font-demi-opacity">
+            <p> Currently doing my best at fighting crime and making sure my human knows that they are loved.</p>
+            <p>Also making sure to be h*ckin' good to get the best pets around, as a best boy should.</p>
+          </div>
+        </div>
+      </div>
+      <div id="content-work">
+        <h3><span class="font-lg title">Work</span></h3>
+        <div id="work-grid" class="grid grid-3col">
+          <div>
+            <div class="img-cont"></div>
+            <p class="font-small">Lorem, ipsum dolor.</p>
+          </div>
+          <div>
+            <div class="img-cont"></div>
+            <p class="font-small">Lorem, ipsum dolor.</p>
+          </div>
+          <div>
+            <div class="img-cont"></div>
+            <p class="font-small">Lorem, ipsum dolor.</p>
+          </div>
+          <div>
+            <div class="img-cont"></div>
+            <p class="font-small">Lorem, ipsum dolor.</p>
+          </div>
+          <div>
+            <div class="img-cont"></div>
+            <p class="font-small">Lorem, ipsum dolor.</p>
+          </div>
+          <div>
+            <div class="img-cont"></div>
+            <p class="font-small">Lorem, ipsum dolor.</p>
+          </div>
+          <div>
+            <div class="img-cont"></div>
+            <p class="font-small">Lorem, ipsum dolor.</p>
+          </div>
+          <div>
+            <div class="img-cont"></div>
+            <p class="font-small">Lorem, ipsum dolor.</p>
+          </div>
+          <div>
+            <div class="img-cont"></div>
+            <p class="font-small">Lorem, ipsum dolor.</p>
+          </div>
+          <div>
+            <div class="img-cont"></div>
+            <p class="font-small">Lorem, ipsum dolor.</p>
+          </div>
+          <div>
+            <div class="img-cont"></div>
+            <p class="font-small">Lorem, ipsum dolor.</p>
+          </div>
+          <div>
+            <div class="img-cont"></div>
+            <p class="font-small">Lorem, ipsum dolor.</p>
+          </div>
+          <div>
+            <div class="img-cont"></div>
+            <p class="font-small">Lorem, ipsum dolor.</p>
+          </div>
+          <div>
+            <div class="img-cont"></div>
+            <p class="font-small">Lorem, ipsum dolor.</p>
+          </div>
+          <div>
+            <div class="img-cont"></div>
+            <p class="font-small">Lorem, ipsum dolor.</p>
+          </div>
+          <div>
+            <div class="img-cont"></div>
+            <p class="font-small">Lorem, ipsum dolor.</p>
+          </div>
+          <div>
+            <div class="img-cont"></div>
+            <p class="font-small">Lorem, ipsum dolor.</p>
+          </div>
+          <div>
+            <div class="img-cont"></div>
+            <p class="font-small">Lorem, ipsum dolor.</p>
+          </div>
+        </div>
+      </div>
+      <div id="content-labs">
+        <h3><span class="font-lg title">Labs</span></h3>
+        <div id="labs-grid" class="grid grid-2col">
+          <div>
+            <div class="img-cont"></div>
+            <div class="details">
+              <p class="font-med">Project Name</p>
+              <p class="font-demi-opacity font-small">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Dicta, tempora.</p>
+              <p><a href="" class="font-exsmall">check now</a></p>
+            </div>
+          </div>
+          <div>
+            <div class="img-cont"></div>
+            <div class="details">
+              <p class="font-med">Project Name</p>
+              <p class="font-demi-opacity font-small">Lorem ipsum dolor sit amet consectetur adipisicing elit. Natus, eos.</p>
+              <p><a href="" class="font-exsmall">check now</a></p>
+            </div>
+          </div>
+          <div>
+            <div class="img-cont"></div>
+            <div class="details">
+              <p class="font-med">Project Name</p>
+              <p class="font-demi-opacity font-small">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Sed, quisquam.</p>
+              <p><a href="" class="font-exsmall">check now</a></p>
+            </div>
+          </div>
+          <div>
+            <div class="img-cont"></div>
+            <div class="details">
+              <p class="font-med">Project Name</p>
+              <p class="font-demi-opacity font-small">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Totam, labore?</p>
+              <p><a href="" class="font-exsmall">check now</a></p>
+            </div>
+          </div>
+          <div>
+            <div class="img-cont"></div>
+            <div class="details">
+              <p class="font-med">Project Name</p>
+              <p class="font-demi-opacity font-small">Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestias, minus!</p>
+              <p><a href="" class="font-exsmall">check now</a></p>
+            </div>
+          </div>
+          <div>
+            <div class="img-cont"></div>
+            <div class="details">
+              <p class="font-med">Project Name</p>
+              <p class="font-demi-opacity font-small">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias, dolorem.</p>
+              <p><a href="" class="font-exsmall">check now</a></p>
+            </div>
+          </div>
+          <div>
+            <div class="img-cont"></div>
+            <div class="details">
+              <p class="font-med">Project Name</p>
+              <p class="font-demi-opacity font-small">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium, exercitationem.</p>
+              <p><a href="" class="font-exsmall">check now</a></p>
+            </div>
+          </div>
+          <div>
+            <div class="img-cont"></div>
+            <div class="details">
+              <p class="font-med">Project Name</p>
+              <p class="font-demi-opacity font-small">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Necessitatibus, labore?</p>
+              <p><a href="" class="font-exsmall">check now</a></p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div id="content-contact">
+        <h3><span class="font-lg title">Contact</span></h3>
+        <h4 class="font-med">Project brief description</h4>
+        <textarea placeholder="Project Type, Target customer, timeline, estimate, etc" class="font-small"></textarea>
+        <h4 class="font-med">About You</h4>
+        <div id="contact-grid" class="grid grid-2col">
+          <input type="text" placeholder="Full Name" id="full-name" class="font-small">
+          <input type="text" placeholder="E-mail Address" id="email" class="font-small">
+          <input type="text" placeholder="Company Name" id="company" class="font-small">
+          <input type="text" placeholder="Position" id="position" class="font-small">
+        </div>
+        <button class="font-small">Request a Quote</button>
+      </div>
+    </div>
+  </div>
+  <div id="styleguide-example">
+    <div class="nav-cont">
+      <div class="nav-contents">
+        <div class="profile-img" id="example-img"></div>
+        <nav>
+          <label class="font-med">Example Active Link</label>
+          <label class="font-med">Example Normal Link 1</label>
+          <label class="font-med">Example Normal Link 2</label>
+          <label class="font-med">Example Normal Link 3</label>
+        </nav>
+      </div>
+    </div>
+    <div id="example-content">
+      <h3><span class="font-lg title">Example Header</span></h3>
+      <div class="content">
+        <p class="font-exlg">Sample Extra Large Text</p>
+        <p class="font-lg">Sample Large Text</p>
+        <p class="font-med">Sample Extra Medium Text</p>
+        <p class="font-small">Sample Small Text</p>
+        <p class="font-exsmall">Sample Extra Small Text</p>
+        <p class="font-med">Grid Example</p>
+        <div class="grid grid-2col">
+          <input type="text" class="font-small" placeholder="Empty text input example"/>
+          <button class="font-small">Button Example</button>
+          <input type="text" class="font-small" value="Text input example"/>
+          <button class="font-small">Button Example</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+    window.onload = function(){
+  ['work', 'labs'].forEach(function(nav_link){
+    document.getElementById('nav-'+nav_link).addEventListener('input', function(ev){
+      
+  const grid_elm = document.getElementById(nav_link + '-grid');
+    Array.prototype.forEach.call(grid_elm.children, function(child_elm){
+      child_elm.classList.remove('fade-up');
+      setTimeout(function() { child_elm.classList.add('fade-up') }, 300);
+    });
+  });
+  });
+}
+</script>
+</body>
+</html>
