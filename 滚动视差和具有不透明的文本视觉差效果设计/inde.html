@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /* google fonts */
+ @import url('https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,700i&subset=cyrillic,cyrillic-ext,greek,greek-ext,latin-ext,vietnamese');
+ html {
+     font-size: 62.5%;
+}
+ body {
+     background: royalblue;
+     height: 2500px;
+     -webkit-font-smoothing: antialiased;
+     text-rendering: optimizeLegibility;
+     -webkit-overflow-scrolling: touch;
+     margin: 0;
+     padding: 0;
+     border: 0;
+     outline: none;
+     font-size: 1.6rem;
+     font-family: 'Open Sans', sans-serif;
+     font-weight: 300;
+     letter-spacing: .025em;
+     line-height: 1.5294117647;
+}
+ #banner {
+     margin-bottom: 50px;
+     overflow: hidden;
+     width: 100%;
+     height: 650px;
+     position: relative;
+     z-index: -1;
+     clear: both;
+     background: transparent url(https://unsplash.it/800/800?image=822) center center no-repeat fixed;
+     -webkit-background-size: cover;
+     -moz-background-size: cover;
+     -o-background-size: cover;
+     background-size: cover;
+     filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='https://unsplash.it/800/800?image=822',sizingMethod='scale');
+     -ms-filter: "progid:DXImageTransform.Microsoft.AlphaImageLoader(src='https://unsplash.it/800/800?image=822',sizingMethod='scale')";
+}
+ .banner__overlay {
+     position: absolute;
+     top: 0;
+     left: 0;
+     right: 0;
+     bottom: 0;
+     width: 100%;
+     height: 100%;
+     background: #000;
+     opacity: .6;
+     z-index: 12;
+}
+ strong {
+     color: #fff;
+}
+ .wrap-center{
+     margin: 0 auto;
+     position: relative;
+     max-width: 73.231em;
+     z-index: 100;
+}
+ .banner-centered {
+     text-align: center;
+     position: absolute;
+     display: block;
+     max-width: 75.231em;
+     height: inherit;
+     overflow: hidden;
+     margin-top: 260px;
+}
+ .banner-centered h2 {
+     font-size: 2.5em;
+     line-height: 1.5;
+     text-transform: uppercase;
+     letter-spacing: 2px;
+     color: #fafafa;
+     font-weight: 100;
+     display: block;
+}
+
+    </style>
+</head>
+<body>
+    <div id="banner">
+        <div class="banner__overlay"></div>
+        <div class="wrap-center">
+            <div class="banner-centered" id="banner-text">
+                <h2>Hello <strong>We Are Company-Name</strong>, Glad To See You.</h2>
+            </div>
+        </div>
+    </div>
+
+
+    <script>
+
+(function($) {
+
+"use strict"
+
+$(function() {
+    function scrollBanner() {
+        $(document).scroll(function() {
+            var scrollPos = $(this).scrollTop();
+            $('#banner-text').css({
+                'top': (scrollPos / 2) + 'px',
+                'opacity': 1 - (scrollPos / 510)
+            });
+            $('#banner').css({
+                'background-position': 'center ' + (-scrollPos / 3) + 'px'
+            });
+        });
+    }
+    scrollBanner();
+
+});
+
+})(jQuery);
+    </script>
+</body>
+</html>
