@@ -1,0 +1,831 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style lang="scss">
+        /* CREDIT: https://dribbble.com/shots/3001561-Qplanning-App */
+
+@import url('https://fonts.googleapis.com/css?family=Roboto');
+
+
+html, body{
+  margin: 0;
+  background: #f1f1f1;
+  font-family: 'Roboto', sans-serif;
+}
+
+#container{
+    position: relative;
+    display: flex;
+    margin: auto;
+    height: auto;
+    justify-content: center;
+    flex-wrap: wrap;
+    
+  .mockup{
+    position: relative;
+    background: #f9f9f9;
+    margin: auto;
+    width: 310px;
+    height: 550px;
+    margin: 5vw;
+    overflow: hidden;
+    box-shadow: 0px 35px 100px -35px rgba(0,0,0,0.4);
+    
+    .bubble-menu{
+      position: absolute;
+      width: 43px;
+      height: 43px;
+      background: -webkit-linear-gradient(#ff66cc, #ff6666);
+      background: -o-linear-gradient(#ff66cc, #ff6666);
+      background: -moz-linear-gradient(#ff66cc, #ff6666);
+      background: linear-gradient(#ff66cc, #ff6666);
+      z-index: 500;
+      border-radius: 50%;
+      bottom: 20px;
+      right: 20px;
+      box-shadow: 0px 7px 15px 1px rgba(0,0,0,0.19);
+      text-align: center;  
+      cursor: pointer;
+      &:hover{
+        filter: brightness(85%);
+      }
+      .material-icons{
+        color: white;
+        line-height: 43px;
+        font-size: 17px;
+      }
+    } 
+    .top{
+      position: relative;
+      height: 75px;
+      width: 100%;
+      z-index: 50;
+      transition: height 0.3s;
+      box-shadow: 0px 15px 35px -15px rgba(102, 0, 204, 0.6);
+      background: -webkit-linear-gradient(left top, rgb(102, 102, 255), #a64dff);
+      background: -o-linear-gradient(bottom right, rgb(102, 102, 255), #a64dff);
+      background: -moz-linear-gradient(bottom right, rgb(102, 102, 255), #a64dff);
+      background: linear-gradient(to bottom right, rgb(102, 102, 255), #a64dff);
+      will-change: height;
+      margin-bottom: 20px;
+      overflow: hidden;
+      
+      .status{
+        position: relative;
+        display: inline-block;
+        width: 100%;
+        height: 20px;
+        overflow: hidden;
+        ul{
+          width: 100%;
+          list-style: none;
+          margin: 0;
+          padding: 0;
+          letter-spacing: -1em;
+          li{
+            display: inline-block;
+            position: relative;
+            width: 27%;
+            margin: 0;
+            padding: 5px 10px;
+            letter-spacing: normal;
+            text-align: center;
+            color: white;
+            font-size: 9px;
+
+            .alarm{
+              font-size: 12px;
+              padding-left: 4px;
+              position: absolute;
+            }
+            .data{
+              font-size: 12px;
+              position: absolute;
+              left: 16px;
+            }
+          }
+          .battery{
+             text-align: right;
+          }
+          .clock{
+             text-align: left;
+          }
+        }
+      }
+      .menu{
+        position: relative;
+        width: 100%;
+        height: 50px;
+        display: inline-block;
+        .selection{
+          display: flex;
+          width: 40%;
+          height: 100%;
+          position: absolute;
+          right: 0;
+          .liselect{
+            width: 33px;
+            height: 3px;
+            background: white;
+            position: absolute;
+            bottom: -1px;
+          }
+          ul{
+            list-style: none;
+            margin: 0;
+            padding-left: 20px;
+            li{
+              display: inline-block;
+              padding: 0px 10px;
+              margin: 0px 0px;
+              color: rgba(255,255,255,0.8);
+              cursor: pointer;
+              .material-icons{
+                line-height: 48px;
+                font-size: 20px;
+              }
+              &:hover{
+                background: rgba(255,255,255,0.08);
+                transition: all 0.3s;
+              }
+            }
+          }
+        }
+        .sotto-menu{
+          display: flex;
+          position: absolute;
+          width: 50%;
+          height: 100%;
+          .burger{
+            width: 50px;
+            height: 50px;
+            text-align: center;
+            cursor: pointer;
+            border-radius: 50%;
+            &:hover{
+              background: rgba(255,255,255,0.05);
+              transition: background 0.4s;
+            }
+            .material-icons{
+              line-height: 50px;
+              color: white;
+            }
+          }
+          .today-label{
+            &::after{
+              content:'Todays Plan';
+              display: block;
+              font-size: 15px;
+              padding: 1px 0px;
+              color: white;
+            }
+          }
+        }
+      }
+      .calendar{
+        width: 100%;
+        height: 100%;
+        display: block;
+        
+        .day{
+          width: 37%;
+          height: 100%;
+          display: inline-block;
+          float: left;
+          
+          .days-plan{
+            position: relative;
+            display: inline-table;
+            text-align: center;
+            width: 100%;padding-top: 10px;
+            .day-plan{
+              margin: 0;
+              padding: 0;
+              color: white;
+              font-size: 11px;
+            }
+          }
+          
+          .circle-cont{
+            position: relative;
+            margin: auto;
+            width: 72px;
+            height: 72px;
+            margin-top: 30%;
+            background:rgb(255, 102, 217);
+            border-radius: 50%;
+            text-align: center;
+            display: table;            
+            .circle-date{
+              color: rgba(255,255,255,0.8);
+              font-size: 12px;
+              font-weight: 500;
+              padding: 0;
+              margin: 0;
+              display: table-cell; vertical-align: middle;
+              span{
+                font-size: 32px;
+                font-weight: 300;
+                display: block;
+                color: white;
+              }
+            }
+          }
+        }
+        .month{
+          position: relative;
+          display: inline-block;
+          float: left;width: 63%;
+          padding-top: 10px;
+        }
+      }
+    }
+    .content-cont{
+      position: relative;
+      display: inline-block;
+      width: 100%;
+      height: calc(100% - 95px);
+      background: #f9f9f9;
+      .todays{
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        transition: width 0.3s;
+        .plan-card{
+          position: relative;
+          width: 90%;
+          height: 60px;
+          padding: 10px 0;
+          background: white;
+          border-radius: 5px;
+          margin: auto;
+          box-shadow: 0px 6px 8px 2px rgba(0,0,0,0.03);
+          margin-bottom: 17px;
+          overflow: hidden;
+          .card-info{
+            float: left;
+            width: 25%;
+            height: 100%;
+            border-right: 2px solid rgba(0,0,0,0.04);
+            text-align: center;
+            .date{
+              padding: 4px 0;
+              margin: 0;
+              font-size: 12px;
+              color: rgba(0,0,0,0.5);
+              font-weight: 600;
+              span{
+                display: block;
+                font-size: 9px;
+                padding-top: 6px;
+              }
+            }
+            .urgent{
+              font-size: 8px;
+              color: rgba(0,0,0,0.25);
+              font-weight: 600;
+              span{
+                font-size: 10px;
+                color: #ff6666;
+              }
+            }
+          }
+          .card-plans{
+            float: left;
+            width: 74%;
+            height: 100%;
+            
+            .map{
+              background: url("http://www.1st-comms.com/images/1st_communications_london_street_location_map_big.jpg");
+              background-size: 300%;
+              position: absolute;
+              top: 0;
+              width: 40%;
+              height: 100%;
+              right: 0;
+              .point{
+                position: absolute;
+                width: 10px;
+                height: 10px;
+                border-radius: 50%;
+                background: rgba(255, 77, 148, 0.8);
+                z-index: 50;
+                left: 50px;
+                bottom: 25px;
+                box-shadow: 0 0 20px 3px rgba(255, 77, 148, 0.8);
+                &:after{
+                  content: '';
+                  display: block;
+                  position: absolute;
+                  width: 35px;
+                  height: 35px;
+                  border: 1px solid rgba(255, 77, 148, 0.7);
+                  border-radius: 50%;
+                  left: -13px;
+                  top: -13px;
+                }
+              }
+              &:after{
+                content: '';
+                display: block;
+                position: absolute;
+                width: 100%;
+                height: 100%;
+                background: -webkit-radial-gradient(rgba(0,0,0,0), rgba(255,255,255,0.3),rgba(255,255,255,0.9),white 89%);
+                background: -o-radial-gradient(rgba(0,0,0,0), rgba(255,255,255,0.3),rgba(255,255,255,0.9),white 89%);
+                background: -moz-radial-gradient(rgba(0,0,0,0), rgba(255,255,255,0.3),rgba(255,255,255,0.9),white 89%);
+                background: radial-gradient(rgba(0,0,0,0), rgba(255,255,255,0.3),rgba(255,255,255,0.9),white 89%);
+              }
+            }
+            .todo{
+              margin: 0;
+              padding: 4px 10px;
+              font-size: 8px;
+              font-weight: 600;
+              color: rgba(0,0,0,0.4);
+              line-height: 13px;
+              span{
+                font-size: 10px;
+                display: block;
+                color: rgba(0,0,0,0.6);
+              }
+            }
+          }
+        }
+        .upcoming{
+          position: relative;
+          width: 90%;
+          height: auto;
+          background: white;
+          border-radius: 5px;
+          margin: auto;
+          box-shadow: 0px 6px 10px 2px rgba(0,0,0,0.03);
+          .up-title{
+            padding: 10px 15px;
+            margin: 0;
+            font-size: 12px;
+            color: rgba(0,0,0,0.5);
+            font-weight: 600;
+          }
+          .up-plan{
+            list-style: none;
+            margin: 0;
+            padding: 5px 15px;
+            li{
+              position: relative;
+              font-size: 10px;
+              padding: 8px 0px;
+              .roundhead{
+                width: 25px;
+                height: 25px;
+                float: left;
+                border-radius: 50%;
+                margin-right: 10px;
+                z-index: 100;
+                text-align: center;
+                i{
+                  line-height: 25px;
+                  color: white;
+                  font-size: 13px;
+                }
+              }
+              &:nth-child(1){
+                border-bottom: 1px solid rgba(0,0,0,0.1);
+                .roundhead{
+                    background: -webkit-linear-gradient(#ff9900, #ff5050);
+                    background: -o-linear-gradient(#ff9900, #ff5050);
+                    background: -moz-linear-gradient(#ff9900, #ff5050);
+                    background: linear-gradient(#ff9900, #ff5050);
+                    box-shadow: 0 2px 12px -3px #ff5050;
+                }
+              }
+              &:nth-child(2){
+                border-bottom: 1px solid rgba(0,0,0,0.1);
+                .roundhead{
+                    background: -webkit-linear-gradient(#ff66cc, #ff6666);
+                    background: -o-linear-gradient(#ff66cc, #ff6666);
+                    background: -moz-linear-gradient(#ff66cc, #ff6666);
+                    background: linear-gradient(#ff66cc, #ff6666);
+                    box-shadow: 0 2px 12px -3px #ff6666;
+                }
+              }
+              &:nth-child(3){
+                .roundhead{
+                    background: -webkit-linear-gradient(#33ccff, #0066ff);
+                    background: -o-linear-gradient(#33ccff, #0066ff);
+                    background: -moz-linear-gradient(#33ccff, #0066ff);
+                    background: linear-gradient(#33ccff, #0066ff);
+                    box-shadow: 0 2px 12px -3px #0066ff;
+                }
+              }
+              .secondo{
+                display: block;
+                font-size: 9px;
+                font-weight: 600;
+                color: rgba(0,0,0,0.2);
+              }
+              .up-date{
+                position: absolute;
+                right: 0;
+                top: 0;
+                padding: 7px 0;
+                margin: 0;
+                font-size: 10px;
+                font-weight: 600;
+                color: rgba(0,0,0,0.6);
+                text-align: center;
+                .up-priority{
+                  display: block;
+                  font-weight: 300;
+                  font-size: 8px;
+                  color: rgba(0,0,0,0.3);
+                }
+              }
+            }
+          }
+        }
+      }
+      .social{
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        margin-left: 100%;
+        background: #f9f9f9;
+        .social-card{
+          position: relative;
+          width: 90%;
+          height: 45px;
+          padding: 10px 0;
+          background: white;
+          border-radius: 5px;
+          margin: auto;
+          box-shadow: 0px 6px 8px 2px rgba(0,0,0,0.03);
+          margin-bottom: 15px;
+          overflow: hidden;
+          .material-icons{
+            position: absolute;
+            padding: 5px;
+            top: 0;
+            right: 0;
+            color: rgba(0,0,0,0.3);
+            font-size: 15px;
+            cursor: pointer;
+          }
+          .profimg{
+            position: relative;
+            width: 25%;
+            height: 100%;
+            float: left;
+             img{
+                position: absolute;
+                width: 40px;
+                border-radius: 50%;
+                margin: auto;
+                top: 0;
+                bottom: 0;
+                left: 0;
+                right: 0;
+                -webkit-filter: grayscale(30%) hue-rotate(10deg) brightness(115%) contrast(60%); 
+                filter: grayscale(30%) hue-rotate(20deg) brightness(115%) contrast(60%);
+              }
+          }
+          .social-cont{
+            position: relative;
+            width: 60%;
+            height: 100%;
+            float: left;
+            p{
+              font-size: 9px;
+              color: rgba(0,0,0,0.6);
+              margin: 0;
+              padding: 4px 0px;
+              .social-title{
+                font-size: 10px;
+                color: rgba(0,0,0,0.5);
+                font-weight: 600;
+                display: block;
+              }
+            }
+          }
+        }
+        .bottommenu{
+          width: 100%;
+          height: 50px;
+          background: white;
+          box-shadow: 0px -3px 7px rgba(0,0,0,0.06);
+          position: absolute;
+          bottom: 0;
+          ul{
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            width: 100%;
+            font-size: 0;
+            height: 50px;
+            li{
+              display: inline-block;
+              padding: 0;
+              margin: 0;
+              text-align: center;
+              width: 25%;
+              cursor: pointer;
+              &:hover{
+                background: rgba(0,0,0,0.02);
+              }
+              &:active{
+                background: rgba(0,0,0,0.1);
+              }
+              .material-icons{
+                line-height: 50px;
+                color: rgba(0,0,0,0.35);
+                font-size: 20px;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+
+// CALENDAR
+
+.weekdays {
+    margin: 0;
+    padding: 5px 0;
+}
+
+.weekdays li {
+    display: inline-block;
+    width: 11%;
+    color: white;
+    font-weight: 600;
+    text-align: center;
+    font-size:10px;
+}
+
+/* Days (1-31) */
+.days {
+    padding: 5px 0;
+    margin: 0; 
+}
+
+.days li {
+    color: #DDD;
+    list-style-type: none;
+    display: inline-block;
+    width: 11%;
+    text-align: center;
+    margin-bottom: 2px;
+    font-size:10px;
+}
+
+/* Highlight the "current" day */
+.days li .active {
+    padding: 5px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.17);
+    color: white !important
+}
+
+
+//EVENTS
+
+.nav__input{
+  z-index: -1000;
+  position: absolute;
+  left: 0;
+  top: 0;
+  opacity: 0;
+  pointer-events: none;
+}
+.rad{
+  z-index: -1000;
+  position: absolute;
+  left: 0;
+  top: 0;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.nav__input:checked ~ .mockup #tendina{
+  height: 240px;
+  transition: height 0.3s;
+}
+
+#rad1:checked ~ .mockup .selection .liselect{ 
+  left: 23px;
+  transition: left 0.3s;
+} 
+#rad2:checked ~ .mockup .selection .liselect{ 
+  left: 68px;
+  transition: left 0.3s;
+} 
+
+#rad2:checked ~ .mockup .bottommenu{
+  transform: scale(1);
+  transition: transform 0.12s ease-out 0.12s;
+} 
+
+#rad1:checked ~ .mockup .bottommenu{ 
+  transform: scale(0);
+  transition: transform 0s ease-out;
+}
+
+#rad2:checked ~ .mockup .content-cont{ 
+  margin-left: -100%;
+  transition: all 0.3s;
+}
+
+#rad1:checked ~ .mockup .content-cont{ 
+  margin-left: 0px;
+  transition: all 0.3s;
+}
+
+#rad2:checked ~ .mockup .bubble-menu{  
+  transform: scale(0);
+  transition: transform 0.2s ease-in;
+} 
+
+#rad1:checked ~ .mockup .bubble-menu{  
+  transform: scale(1);
+  transition: transform 0.2s ease-out;
+} 
+
+#rad2:checked ~ .mockup .map .point{  
+  transform: scale(0);
+} 
+
+#rad1:checked ~ .mockup .map .point{  
+  animation: bounce-in 0.4s ease-in-out 0.27s forwards;
+} 
+
+#rad2:checked ~ .mockup #tendina .today-label::after{  
+  content: 'Social Plan';
+} 
+
+#rad1:checked ~ .mockup #tendina .today-label::after{  
+  content: 'Todays Plan';
+} 
+
+@keyframes bounce-in{
+  70%{
+    transform: scale(1.6);
+  }
+  100%{
+    transform: scale(1);
+  }
+}
+    </style>
+</head>
+<body>
+    <div id="container">  
+        <input type="checkbox" class="nav__input" id="nav_input">
+        <input class="rad" id="rad2" type="radio" name="rad">
+        <input class="rad" id="rad1" type="radio" name="rad" checked>
+        <div class="mockup">
+          <div class="bubble-menu"><i class="material-icons">create</i></div>
+          <div class="top" id="tendina">
+            <div class="status">
+              <ul>
+                <li class="clock">4.30 pm <i class="material-icons alarm">alarm</i></li>
+                <li><i class="material-icons data">import_export</i> Telecom</li>
+                <li class="battery">80% &#9679; &#9679; &#9679; &#9679; &#9675;</li>
+              </ul>
+            </div>
+            <div class="menu">
+              <div class="sotto-menu">
+                <label class="burger" for="nav_input"><i class="material-icons">menu</i></label>
+                <p class="today-label"></p>
+              </div>
+              <div class="selection">
+                <div class="liselect"></div>
+                <ul>
+                   <label class="label1" for="rad1"><li class="active"><i class="material-icons">date_range</i></li></label>          
+                   <label class="label2" for="rad2"><li><i class="material-icons">question_answer</i></li></label>
+                </ul>
+              </div>
+            </div>
+            <div class="calendar">
+              <div class="day">
+                <div class="circle-cont"><p class="circle-date"><span>20</span>March</p></div>
+                <div class="days-plan"><p class="day-plan">4 plans today</p></div>
+              </div>
+              <div class="month">
+                <ul class="weekdays">
+                  <li>M</li>
+                  <li>T</li>
+                  <li>W</li>
+                  <li>T</li>
+                  <li>F</li>
+                  <li>S</li>
+                  <li>S</li>
+                </ul>
+                <ul class="days"> 
+                  <li>1</li>
+                  <li>2</li>
+                  <li>3</li>
+                  <li>4</li>
+                  <li>5</li>
+                  <li>6</li>
+                  <li>7</li>
+                  <li>8</li>
+                  <li>9</li>
+                  <li>10</li>
+                  <li>11</li>
+                  <li>12</li>
+                  <li>13</li>
+                  <li>14</li>
+                  <li>15</li>
+                  <li>16</li>
+                  <li>17</li>
+                  <li>18</li>
+                  <li>19</li>
+                  <li><span class="active">20</span></li>
+                  <li>21</li>
+                  <li>22</li>
+                  <li>23</li>
+                  <li>24</li>
+                  <li>25</li>
+                  <li>26</li>
+                  <li>27</li>
+                  <li>28</li>
+                  <li>29</li>
+                  <li>30</li>
+                  <li>31</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          
+          <div class="content-cont">
+            <div class="todays" id="todays">
+              <div class="plan-card">
+                <div class="card-info">
+                  <p class="date">TODAY <span>5:00 PM</span></p>
+                  <span class="urgent"><span> &#9679; </span>URGENT</span>
+                </div>
+                <div class="card-plans">
+                  <p class="todo">
+                    <span>Buy Grocery Items</span>
+                    5:00 - 6:00 pm <br>
+                    Walmart, CA <br>
+                    30 min drive
+                  </p>
+                  <div class="map"><span class="point"></span></div>
+                </div>
+              </div>
+              <div class="upcoming">
+                <p class="up-title">UPCOMING PLAN (3)</p>
+                <ul class="up-plan">
+                  <li><div class="roundhead"><i class="material-icons">group_add</i></div>Discuss with Adrian Begi<span class="secondo">Call Adrian at the right time</span><p class="up-date">6.00 pm <span class="up-priority"><span style="color: #3399ff;">&#9679; </span>MEDIUM</span></p></li>
+                  <li><span class="roundhead"><i class="material-icons">voice_chat</i></span>Video calling with Boss<span class="secondo">I hate but have to talk with my ceo</span><p class="up-date">6.00 pm <span class="up-priority"><span style="color: #ff5050;">&#9679; </span>URGENT</span></p></li></li>
+                  <li><span class="roundhead"><i class="fa fa-trophy" aria-hidden="true"></i></span>UEFA Champions League Final<span class="secondo">Real Madrid vs Juventus</span><p class="up-date">6.00 pm <span class="up-priority"><span style="color: #47d147;">&#9679; </span>LOW</span></p></li></li>
+                </ul>
+              </div>
+            </div>
+            <div class="social">
+              <div class="social-card">
+                <div class="profimg"><img src="https://randomuser.me/api/portraits/women/25.jpg"></div>
+                <div class="social-cont"><p><span class="social-title">Clara Rossie</span> Planning for new event at Vegas Club with buffet dinner on coming week.</p></div>
+                <i class="material-icons full">fullscreen</i>
+              </div>
+              <div class="social-card">
+                <div class="profimg"><img src="https://randomuser.me/api/portraits/men/71.jpg"></div>
+                <div class="social-cont"><p><span class="social-title">George Hamilton</span> We are planning to visit Hollywood city for have some fun...</p></div>
+                <i class="material-icons full">fullscreen</i>
+              </div>
+              <div class="social-card">
+                <div class="profimg"><img src="https://randomuser.me/api/portraits/women/91.jpg"></div>
+                <div class="social-cont"><p><span class="social-title">Lynn Morancie</span> Hey! I am organising a school fund for help poor buying winter clothes...</p></div>
+                <i class="material-icons full">fullscreen</i>
+              </div>
+              <div class="social-card">
+                <div class="profimg"><img src="https://randomuser.me/api/portraits/men/3.jpg"></div>
+                <div class="social-cont"><p><span class="social-title">Willaim Cohen</span> I am going to arrange a rock metal band party tomorrow. Let me know...</p></div>
+                <i class="material-icons full">fullscreen</i>
+              </div>
+              <div class="social-card">
+                <div class="profimg"><img src="https://randomuser.me/api/portraits/men/94.jpg"></div>
+                <div class="social-cont"><p><span class="social-title">Michael Patt</span> I am bored to see all above plans! Lets go to moon and have some adventure</p></div>
+                <i class="material-icons full">fullscreen</i>
+              </div>
+              <div class="bottommenu">
+                <ul>
+                  <li><i class="material-icons">event_available</i></li>
+                  <li><i class="material-icons">notifications_none</i></li>
+                  <li><i class="material-icons">people</i></li>
+                  <li><i class="material-icons">equalizer</i></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+</body>
+</html>
