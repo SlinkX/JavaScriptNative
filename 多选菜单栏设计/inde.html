@@ -1,0 +1,979 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style lang="scss">
+        *,
+*:after,
+*::before {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+html, body, .container, .scroller {
+	height: 100%;
+}
+
+.scroller {
+	overflow-y: scroll;
+}
+
+.scroller,
+.scroller-inner {
+	position: relative;
+}
+
+.container {
+	position: relative;
+	overflow: hidden;
+	background: #34495e;
+}
+
+.menu-trigger {
+	position: relative;
+	padding-left: 60px;
+	font-size: 0.9em;
+}
+
+.menu-trigger:before {
+	position: absolute;
+	top: 2px;
+	left: 0;
+	width: 40px;
+	height: 6px;
+	background: #fff;
+	box-shadow: 0 6px #34495e, 0 12px #fff, 0 18px #34495e, 0 24px #fff;
+	content: '';
+}
+
+.mp-pusher {
+	position: relative;
+	left: 0;
+	height: 100%;
+}
+
+.mp-menu {
+	position: absolute; /* we can't use fixed here :( */
+	top: 0;
+	left: 0;
+	z-index: 1;
+	width: 300px;
+	height: 100%;
+	-webkit-transform: translate3d(-100%, 0, 0);
+	-moz-transform: translate3d(-100%, 0, 0);
+	transform: translate3d(-100%, 0, 0);
+}
+
+.mp-level {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background: #336ca6;
+	-webkit-transform: translate3d(-100%, 0, 0);
+	-moz-transform: translate3d(-100%, 0, 0);
+	transform: translate3d(-100%, 0, 0);
+}
+
+/* overlays for pusher and for level that gets covered */
+.mp-pusher::after,
+.mp-level::after,
+.mp-level::before {
+	position: absolute;
+	top: 0;
+	right: 0;
+	width: 0;
+	height: 0;
+	content: '';
+	opacity: 0;
+}
+
+.mp-pusher::after,
+.mp-level::after {
+	background: rgba(0,0,0,0.3);
+	-webkit-transition: opacity 0.3s, width 0.1s 0.3s, height 0.1s 0.3s;
+	-moz-transition: opacity 0.3s, width 0.1s 0.3s, height 0.1s 0.3s;
+	transition: opacity 0.3s, width 0.1s 0.3s, height 0.1s 0.3s;
+}
+
+.mp-level::after {
+	z-index: -1;
+}
+
+.mp-pusher.mp-pushed::after,
+.mp-level.mp-level-overlay::after {
+	width: 100%;
+	height: 100%;
+	opacity: 1;
+	-webkit-transition: opacity 0.3s;
+	-moz-transition: opacity 0.3s;
+	transition: opacity 0.3s;
+}
+
+.mp-level.mp-level-overlay {
+	cursor: pointer;
+}
+
+.mp-level.mp-level-overlay.mp-level::before {
+	width: 100%;
+	height: 100%;
+	background: transparent;
+	opacity: 1;
+}
+
+.mp-pusher,
+.mp-level {
+	-webkit-transition: all 0.5s;
+	-moz-transition: all 0.5s;
+	transition: all 0.5s;
+}
+
+/* overlap */
+.mp-overlap .mp-level.mp-level-open {
+	box-shadow: 1px 0 2px rgba(0,0,0,0.2);
+	-webkit-transform: translate3d(-40px, 0, 0);
+	-moz-transform: translate3d(-40px, 0, 0);
+	transform: translate3d(-40px, 0, 0);
+}
+
+/* First level */
+.mp-menu > .mp-level,
+.mp-menu > .mp-level.mp-level-open,
+.mp-menu.mp-overlap > .mp-level,
+.mp-menu.mp-overlap > .mp-level.mp-level-open {
+	box-shadow: none;
+	-webkit-transform: translate3d(0, 0, 0);
+	-moz-transform: translate3d(0, 0, 0);
+	transform: translate3d(0, 0, 0);
+}
+
+/* cover */
+.mp-cover .mp-level.mp-level-open {
+	-webkit-transform: translate3d(0, 0, 0);
+	-moz-transform: translate3d(0, 0, 0);
+	transform: translate3d(0, 0, 0);
+}
+
+.mp-cover .mp-level.mp-level-open > ul > li > .mp-level:not(.mp-level-open) {
+	-webkit-transform: translate3d(-100%, 0, 0);
+	-moz-transform: translate3d(-100%, 0, 0);
+	transform: translate3d(-100%, 0, 0);
+}
+
+/* content style */
+.mp-menu ul {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
+.mp-menu h2 {
+	margin: 0;
+	padding: 1em;
+	color: rgba(0,0,0,0.4);
+	text-shadow: 0 0 1px rgba(0,0,0,0.1);
+	font-weight: 300;
+	font-size: 2em;
+}
+
+.mp-menu.mp-overlap h2::before {
+	position: absolute;
+	top: 0;
+	right: 0;
+	margin-right: 8px;
+	font-size: 75%;
+	line-height: 1.8;
+	opacity: 0;
+	-webkit-transition: opacity 0.3s, -webkit-transform 0.1s 0.3s;
+	-moz-transition: opacity 0.3s, -moz-transform 0.1s 0.3s;
+	transition: opacity 0.3s, transform 0.1s 0.3s;
+	-webkit-transform: translateX(-100%);
+	-moz-transform: translateX(-100%);
+	transform: translateX(-100%);
+}
+
+.mp-menu.mp-cover h2 {
+	text-transform: uppercase;
+	font-weight: 700;
+	letter-spacing: 1px;
+	font-size: 1em;
+}
+
+.mp-overlap .mp-level.mp-level-overlay > h2::before {
+	opacity: 1;
+	-webkit-transition: -webkit-transform 0.3s, opacity 0.3s;
+	-moz-transition: -moz-transform 0.3s, opacity 0.3s;
+	transition: transform 0.3s, opacity 0.3s;
+	-webkit-transform: translateX(0);
+	-moz-transform: translateX(0);
+	transform: translateX(0);
+}
+
+.mp-menu ul li > a {
+	display: block;
+	padding: 0.7em 1em 0.7em 1.8em;
+	outline: none;
+	box-shadow: inset 0 -1px rgba(0,0,0,0.2);
+	text-shadow: 0 0 1px rgba(255,255,255,0.1);
+	font-size: 1.4em;
+	-webkit-transition: background 0.3s, box-shadow 0.3s;
+	-moz-transition: background 0.3s, box-shadow 0.3s;
+	transition: background 0.3s, box-shadow 0.3s;
+}
+
+.mp-menu ul li::before {
+	position: absolute;
+	left: 10px;
+	z-index: -1;
+	color: rgba(0,0,0,0.2);
+	line-height: 3.5;
+}
+
+.mp-level > ul > li:first-child > a {
+	box-shadow: inset 0 -1px rgba(0,0,0,0.2), inset 0 1px rgba(0,0,0,0.2);
+}
+
+.mp-menu ul li a:hover,
+.mp-level > ul > li:first-child > a:hover {
+	background: rgba(0,0,0,0.2);
+	box-shadow: inset 0 -1px rgba(0,0,0,0);
+}
+
+.mp-menu .mp-level.mp-level-overlay > ul > li > a,
+.mp-level.mp-level-overlay > ul > li:first-child > a {
+	box-shadow: inset 0 -1px rgba(0,0,0,0);
+}
+
+.mp-back {
+	background: rgba(0,0,0,0.1);
+	outline: none;
+	color: #fff;
+	text-transform: uppercase;
+	letter-spacing: 1px;
+	font-weight: 700;
+	display: block;
+	font-size: 0.8em;
+	padding: 1em;
+	position: relative;
+	box-shadow: inset 0 1px rgba(0,0,0,0.1);
+	-webkit-transition: background 0.3s;
+	-moz-transition: background 0.3s;
+	transition: background 0.3s;
+}
+
+.mp-back::after {
+	font-family: 'linecons';
+	position: absolute;
+	content: "\e037";
+	right: 10px;
+	font-size: 1.3em;
+	color: rgba(0,0,0,0.3);
+}
+
+.mp-menu .mp-level.mp-level-overlay > .mp-back,
+.mp-menu .mp-level.mp-level-overlay > .mp-back::after {
+	background: transparent;
+	box-shadow: none;
+	color: transparent;
+}
+
+/* Fallback example for browsers that don't support 3D transforms (and no JS fallback) */
+/* We'll show the first level only */
+.no-csstransforms3d .mp-pusher,
+.no-js .mp-pusher {
+	padding-left: 300px;
+}
+
+.no-csstransforms3d .mp-menu .mp-level,
+.no-js .mp-menu .mp-level {
+	display: none;
+}
+
+.no-csstransforms3d .mp-menu > .mp-level,
+.no-js .mp-menu > .mp-level {
+	display: block;
+}
+
+body {
+	background: #34495e;
+	color: #fff;
+	font-weight: 300;
+	font-family: 'Lato', Calibri, Arial, sans-serif;
+}
+
+a {
+	text-decoration: none;
+	color: #f7f7f7;
+	outline: none;
+}
+
+a:hover, a:focus {
+	color: #fff;
+}
+
+/* Clearfix hack by Nicolas Gallagher: http://nicolasgallagher.com/micro-clearfix-hack/ */
+.clearfix:before,
+.clearfix:after {
+	display: table;
+	content: " ";
+}
+
+.clearfix:after {
+	clear: both;
+}
+
+.codrops-header,
+.codrops-top {
+	font-family: 'Lato', Arial, sans-serif;
+}
+
+.codrops-header {
+	margin: 0 auto;
+	padding: 2em;
+	background: rgba(0,0,0,0.01);
+	text-align: center;
+}
+
+.codrops-header h1 {
+	margin: 0;
+	font-weight: 300;
+	font-size: 2.625em;
+	line-height: 1.3;
+}
+
+.codrops-header span {
+	display: block;
+	padding: 0 0 0.6em 0.1em;
+	font-size: 60%;
+	opacity: 0.7;
+}
+
+/* To Navigation Style */
+.codrops-top {
+	width: 100%;
+	background: #91cfa1;
+	background: rgba(255, 255, 255, 0.1);
+	text-transform: uppercase;
+	font-size: 0.69em;
+	line-height: 2.2;
+}
+
+.codrops-top a {
+	display: inline-block;
+	padding: 0 1em;
+	color: #fff;
+	text-decoration: none;
+	letter-spacing: 0.1em;
+}
+
+.codrops-top a:hover {
+	background: rgba(255,255,255,0.95);
+	color: #333;
+}
+
+.codrops-top span.right {
+	float: right;
+}
+
+.codrops-top span.right a {
+	display: block;
+	float: left;
+}
+
+.codrops-icon:before {
+	margin: 0 4px;
+	text-transform: none;
+	font-weight: normal;
+	font-style: normal;
+	font-variant: normal;
+	font-family: 'codropsicons';
+	line-height: 1;
+	speak: none;
+	-webkit-font-smoothing: antialiased;
+}
+
+.codrops-icon-drop:before {
+	content: "\e001";
+}
+
+.codrops-icon-prev:before {
+	content: "\e004";
+}
+
+/* Demo Buttons Style */
+.codrops-demos {
+	padding-top: 1em;
+	font-size: 1.1em;
+}
+
+.codrops-demos a {
+	display: block;
+	float: left;
+	clear: both;
+	margin: 0.5em 0.5em 0.5em 1.9em;
+	padding: 1em 1.1em;
+	width: 280px;
+	outline: none;
+	color: #fff;
+	background: #336ca6;
+	text-align: center;
+	text-decoration: none;
+	font-weight: 700;
+}
+
+.codrops-demos a:hover,
+.codrops-demos a.current-demo,
+.codrops-demos a.current-demo:hover {
+	opacity: 0.6;
+}
+
+.content {
+	padding: 4em 2em;
+	max-width: 1200px;
+	margin: 0 auto;
+}
+
+.block {
+	float: left;
+	padding: 1em 3em;
+}
+
+.block-40 {
+	width: 40%;
+}
+
+.block-60 {
+	width: 60%;
+}
+
+.block p {
+	margin: 0;
+	padding: 0 1em 0.6em;
+	font-size: 1.8em;
+	line-height: 1.5;
+}
+
+@media screen and (max-width: 69em) {
+	.block {
+		float: none;
+		width: 100% !important;
+		padding: 1em;
+	}
+}
+
+@media screen and (max-width: 25em) {
+
+	body {
+		font-size: 80%;
+	}
+
+	.codrops-icon span {
+		display: none;
+	}
+
+}
+    </style>
+</head>
+<body>
+    <html>
+  <head>
+    
+  </head>
+  <body>
+    <div class="container">
+      <!-- Push Wrapper -->
+      <div class="mp-pusher" id="mp-pusher">
+        
+        <!-- mp-menu -->
+        <nav id="mp-menu" class="mp-menu mp-overlap">
+          <div class="mp-level" data-level="1">
+            <h2 class="icon icon-world">All Categories</h2>
+            <ul>
+              <li class="icon icon-arrow-left">
+                <a class="icon icon-display" href="#">Devices</a>
+                <div class="mp-level" data-level="2">
+                  <h2 class="icon icon-display">Devices</h2>
+                  <ul>
+                    <li class="icon icon-arrow-left">
+                      <a class="icon icon-phone" href="#">Mobile Phones</a>
+                      <div class="mp-level" data-level="3">
+                        <h2>Mobile Phones</h2>
+                        <ul>
+                          <li><a href="#">Super Smart Phone</a></li>
+                          <li><a href="#">Thin Magic Mobile</a></li>
+                          <li><a href="#">Performance Crusher</a></li>
+                          <li><a href="#">Futuristic Experience</a></li>
+                        </ul>
+                      </div>
+                    </li>
+                    <li class="icon icon-arrow-left">
+                      <a class="icon icon-tv" href="#">Televisions</a>
+                      <div class="mp-level" data-level="3">
+                        <h2>Televisions</h2>
+                        <ul>
+                          <li><a href="#">Flat Superscreen</a></li>
+                          <li><a href="#">Gigantic LED</a></li>
+                          <li><a href="#">Power Eater</a></li>
+                          <li><a href="#">3D Experience</a></li>
+                          <li><a href="#">Classic Comfort</a></li>
+                        </ul>
+                      </div>
+                    </li>
+                    <li class="icon icon-arrow-left">
+                      <a class="icon icon-camera" href="#">Cameras</a>
+                      <div class="mp-level" data-level="3">
+                        <h2>Cameras</h2>
+                        <ul>
+                          <li><a href="#">Smart Shot</a></li>
+                          <li><a href="#">Power Shooter</a></li>
+                          <li><a href="#">Easy Photo Maker</a></li>
+                          <li><a href="#">Super Pixel</a></li>
+                        </ul>
+                      </div>
+                    </li>
+                  </ul>
+                </div>
+              </li>
+              <li class="icon icon-arrow-left">
+                <a class="icon icon-news" href="#">Magazines</a>
+                <div class="mp-level" data-level="2">
+                  <h2 class="icon icon-news">Magazines</h2>
+                  <ul>
+                    <li><a href="#">National Geographic</a></li>
+                    <li><a href="#">Scientific American</a></li>
+                    <li><a href="#">The Spectator</a></li>
+                    <li><a href="#">The Rambler</a></li>
+                    <li><a href="#">Physics World</a></li>
+                    <li><a href="#">The New Scientist</a></li>
+                  </ul>
+                </div>
+              </li>
+              <li class="icon icon-arrow-left">
+                <a class="icon icon-shop" href="#">Store</a>
+                <div class="mp-level" data-level="2">
+                  <h2 class="icon icon-shop">Store</h2>
+                  <ul>
+                    <li class="icon icon-arrow-left">
+                      <a class="icon icon-t-shirt" href="#">Clothes</a>
+                      <div class="mp-level" data-level="3">
+                        <h2 class="icon icon-t-shirt">Clothes</h2>
+                        <ul>
+                          <li class="icon icon-arrow-left">
+                            <a class="icon icon-female" href="#">Women's Clothing</a>
+                            <div class="mp-level" data-level="4">
+                              <h2>Women's Clothing</h2>
+                              <ul>
+                                <li><a href="#">Tops</a></li>
+                                <li><a href="#">Dresses</a></li>
+                                <li><a href="#">Trousers</a></li>
+                                <li><a href="#">Shoes</a></li>
+                                <li><a href="#">Sale</a></li>
+                              </ul>
+                            </div>
+                          </li>
+                          <li class="icon icon-arrow-left">
+                            <a class="icon icon-male" href="#">Men's Clothing</a>
+                            <div class="mp-level" data-level="4">
+                              <h2>Men's Clothing</h2>
+                              <ul>
+                                <li><a href="#">Shirts</a></li>
+                                <li><a href="#">Trousers</a></li>
+                                <li><a href="#">Shoes</a></li>
+                                <li><a href="#">Sale</a></li>
+                              </ul>
+                            </div>
+                          </li>
+                        </ul>
+                      </div>
+                    </li>
+                    <li>
+                      <a class="icon icon-diamond" href="#">Jewelry</a>
+                    </li>
+                    <li>
+                      <a class="icon icon-music" href="#">Music</a>
+                    </li>
+                    <li>
+                      <a class="icon icon-food" href="#">Grocery</a>
+                    </li>
+                  </ul>
+                </div>
+              </li>
+              <li><a class="icon icon-photo" href="#">Collections</a></li>
+              <li><a class="icon icon-wallet" href="#">Credits</a></li>
+            </ul>
+          </div>
+        </nav>
+        <!-- /mp-menu -->
+        
+        <div class="scroller"><!-- this is for emulating position fixed of the nav -->
+          <div class="scroller-inner">
+            <!-- Top Navigation -->
+            <div class="codrops-top clearfix">
+              <a class="codrops-icon codrops-icon-prev" href="https://tympanus.net/Tutorials/CircularNavigation/"><span>Previous Demo</span></a>
+              <span class="right"><a class="codrops-icon codrops-icon-drop" href="https://tympanus.net/codrops/?p=16252"><span>Back to the Codrops Article</span></a></span>
+            </div>
+            <header class="codrops-header">
+              <h1>Multi-Level Push Menu <span>Off-screen navigation with multiple levels</span></h1>
+            </header>
+            <div class="content clearfix">
+              <div class="block block-40 clearfix">
+                <p><a href="#" id="trigger" class="menu-trigger">Open/Close Menu</a></p>
+                <nav class="codrops-demos">
+                  <a class="current-demo" href="index.html">Demo 1: Overlapping levels</a>
+                  <a href="index2.html">Demo 2: Covering levels</a>
+                  <a href="index3.html">Demo 3: Overlapping levels with back links</a>
+                </nav>
+              </div>
+              <div class="block block-60">
+                <p><strong>Demo 1:</strong> Overlapping levels</p>
+                <p>This menu will open by pushing the website content to the right. It has multi-level functionality, allowing endless nesting of navigation elements.</p>
+                <p>The next level can optionally overlap or cover the previous one.</p>
+              </div>
+              <div class="info">
+                <p>If you enjoyed this you might also like:</p>
+                <p><a href="https://goo.gl/JLJ4v5">Responsive Multi-Level Menu</a></p>
+                <p><a href="https://goo.gl/qjbq9Y">Google Nexus Website Menu</a></p>
+              </div>
+            </div>
+          </div><!-- /scroller-inner -->
+        </div><!-- /scroller -->
+        
+      </div><!-- /pusher -->
+    </div>
+    <script>
+			new mlPushMenu( document.getElementById( 'mp-menu' ), document.getElementById( 'trigger' ) );
+		</script>
+  </body>
+  <script>
+    /*!
+ * classie - class helper functions
+ * from bonzo https://github.com/ded/bonzo
+ * 
+ * classie.has( elem, 'my-class' ) -> true/false
+ * classie.add( elem, 'my-new-class' )
+ * classie.remove( elem, 'my-unwanted-class' )
+ * classie.toggle( elem, 'my-class' )
+ */
+
+/*jshint browser: true, strict: true, undef: true */
+/*global define: false */
+
+( function( window ) {
+
+'use strict';
+
+// class helper functions from bonzo https://github.com/ded/bonzo
+
+function classReg( className ) {
+  return new RegExp("(^|\\s+)" + className + "(\\s+|$)");
+}
+
+// classList support for class management
+// altho to be fair, the api sucks because it won't accept multiple classes at once
+var hasClass, addClass, removeClass;
+
+if ( 'classList' in document.documentElement ) {
+  hasClass = function( elem, c ) {
+    return elem.classList.contains( c );
+  };
+  addClass = function( elem, c ) {
+    elem.classList.add( c );
+  };
+  removeClass = function( elem, c ) {
+    elem.classList.remove( c );
+  };
+}
+else {
+  hasClass = function( elem, c ) {
+    return classReg( c ).test( elem.className );
+  };
+  addClass = function( elem, c ) {
+    if ( !hasClass( elem, c ) ) {
+      elem.className = elem.className + ' ' + c;
+    }
+  };
+  removeClass = function( elem, c ) {
+    elem.className = elem.className.replace( classReg( c ), ' ' );
+  };
+}
+
+function toggleClass( elem, c ) {
+  var fn = hasClass( elem, c ) ? removeClass : addClass;
+  fn( elem, c );
+}
+
+var classie = {
+  // full names
+  hasClass: hasClass,
+  addClass: addClass,
+  removeClass: removeClass,
+  toggleClass: toggleClass,
+  // short names
+  has: hasClass,
+  add: addClass,
+  remove: removeClass,
+  toggle: toggleClass
+};
+
+// transport
+if ( typeof define === 'function' && define.amd ) {
+  // AMD
+  define( classie );
+} else {
+  // browser global
+  window.classie = classie;
+}
+
+})( window );
+/**
+ * mlpushmenu.js v1.0.0
+ * http://www.codrops.com
+ *
+ * Licensed under the MIT license.
+ * https://www.opensource.org/licenses/mit-license.php
+ * 
+ * Copyright 2013, Codrops
+ * http://www.codrops.com
+ */
+;( function( window ) {
+
+	'use strict';
+
+	function extend( a, b ) {
+		for( var key in b ) { 
+			if( b.hasOwnProperty( key ) ) {
+				a[key] = b[key];
+			}
+		}
+		return a;
+	}
+
+	// taken from https://github.com/inuyaksa/jquery.nicescroll/blob/master/jquery.nicescroll.js
+	function hasParent( e, id ) {
+		if (!e) return false;
+		var el = e.target||e.srcElement||e||false;
+		while (el && el.id != id) {
+			el = el.parentNode||false;
+		}
+		return (el!==false);
+	}
+
+	// returns the depth of the element "e" relative to element with id=id
+	// for this calculation only parents with classname = waypoint are considered
+	function getLevelDepth( e, id, waypoint, cnt ) {
+		cnt = cnt || 0;
+		if ( e.id.indexOf( id ) >= 0 ) return cnt;
+		if( classie.has( e, waypoint ) ) {
+			++cnt;
+		}
+		return e.parentNode && getLevelDepth( e.parentNode, id, waypoint, cnt );
+	}
+
+	// http://coveroverflow.com/a/11381730/989439
+	function mobilecheck() {
+		var check = false;
+		(function(a){if(/(android|ipad|playbook|silk|bb\d+|meego).+mobile|avantgo|bada\/|blackberry|blazer|compal|elaine|fennec|hiptop|iemobile|ip(hone|od)|iris|kindle|lge |maemo|midp|mmp|netfront|opera m(ob|in)i|palm( os)?|phone|p(ixi|re)\/|plucker|pocket|psp|series(4|6)0|symbian|treo|up\.(browser|link)|vodafone|wap|windows (ce|phone)|xda|xiino/i.test(a)||/1207|6310|6590|3gso|4thp|50[1-6]i|770s|802s|a wa|abac|ac(er|oo|s\-)|ai(ko|rn)|al(av|ca|co)|amoi|an(ex|ny|yw)|aptu|ar(ch|go)|as(te|us)|attw|au(di|\-m|r |s )|avan|be(ck|ll|nq)|bi(lb|rd)|bl(ac|az)|br(e|v)w|bumb|bw\-(n|u)|c55\/|capi|ccwa|cdm\-|cell|chtm|cldc|cmd\-|co(mp|nd)|craw|da(it|ll|ng)|dbte|dc\-s|devi|dica|dmob|do(c|p)o|ds(12|\-d)|el(49|ai)|em(l2|ul)|er(ic|k0)|esl8|ez([4-7]0|os|wa|ze)|fetc|fly(\-|_)|g1 u|g560|gene|gf\-5|g\-mo|go(\.w|od)|gr(ad|un)|haie|hcit|hd\-(m|p|t)|hei\-|hi(pt|ta)|hp( i|ip)|hs\-c|ht(c(\-| |_|a|g|p|s|t)|tp)|hu(aw|tc)|i\-(20|go|ma)|i230|iac( |\-|\/)|ibro|idea|ig01|ikom|im1k|inno|ipaq|iris|ja(t|v)a|jbro|jemu|jigs|kddi|keji|kgt( |\/)|klon|kpt |kwc\-|kyo(c|k)|le(no|xi)|lg( g|\/(k|l|u)|50|54|\-[a-w])|libw|lynx|m1\-w|m3ga|m50\/|ma(te|ui|xo)|mc(01|21|ca)|m\-cr|me(rc|ri)|mi(o8|oa|ts)|mmef|mo(01|02|bi|de|do|t(\-| |o|v)|zz)|mt(50|p1|v )|mwbp|mywa|n10[0-2]|n20[2-3]|n30(0|2)|n50(0|2|5)|n7(0(0|1)|10)|ne((c|m)\-|on|tf|wf|wg|wt)|nok(6|i)|nzph|o2im|op(ti|wv)|oran|owg1|p800|pan(a|d|t)|pdxg|pg(13|\-([1-8]|c))|phil|pire|pl(ay|uc)|pn\-2|po(ck|rt|se)|prox|psio|pt\-g|qa\-a|qc(07|12|21|32|60|\-[2-7]|i\-)|qtek|r380|r600|raks|rim9|ro(ve|zo)|s55\/|sa(ge|ma|mm|ms|ny|va)|sc(01|h\-|oo|p\-)|sdk\/|se(c(\-|0|1)|47|mc|nd|ri)|sgh\-|shar|sie(\-|m)|sk\-0|sl(45|id)|sm(al|ar|b3|it|t5)|so(ft|ny)|sp(01|h\-|v\-|v )|sy(01|mb)|t2(18|50)|t6(00|10|18)|ta(gt|lk)|tcl\-|tdg\-|tel(i|m)|tim\-|t\-mo|to(pl|sh)|ts(70|m\-|m3|m5)|tx\-9|up(\.b|g1|si)|utst|v400|v750|veri|vi(rg|te)|vk(40|5[0-3]|\-v)|vm40|voda|vulc|vx(52|53|60|61|70|80|81|83|85|98)|w3c(\-| )|webc|whit|wi(g |nc|nw)|wmlb|wonu|x700|yas\-|your|zeto|zte\-/i.test(a.substr(0,4)))check = true})(navigator.userAgent||navigator.vendor||window.opera);
+		return check;
+	}
+
+	// returns the closest element to 'e' that has class "classname"
+	function closest( e, classname ) {
+		if( classie.has( e, classname ) ) {
+			return e;
+		}
+		return e.parentNode && closest( e.parentNode, classname );
+	}
+
+	function mlPushMenu( el, trigger, options ) {	
+		this.el = el;
+		this.trigger = trigger;
+		this.options = extend( this.defaults, options );
+		// support 3d transforms
+		this.support = Modernizr.csstransforms3d;
+		if( this.support ) {
+			this._init();
+		}
+	}
+
+	mlPushMenu.prototype = {
+		defaults : {
+			// overlap: there will be a gap between open levels
+			// cover: the open levels will be on top of any previous open level
+			type : 'overlap', // overlap || cover
+			// space between each overlaped level
+			levelSpacing : 40,
+			// classname for the element (if any) that when clicked closes the current level
+			backClass : 'mp-back'
+		},
+		_init : function() {
+			// if menu is open or not
+			this.open = false;
+			// level depth
+			this.level = 0;
+			// the moving wrapper
+			this.wrapper = document.getElementById( 'mp-pusher' );
+			// the mp-level elements
+			this.levels = Array.prototype.slice.call( this.el.querySelectorAll( 'div.mp-level' ) );
+			// save the depth of each of these mp-level elements
+			var self = this;
+			this.levels.forEach( function( el, i ) { el.setAttribute( 'data-level', getLevelDepth( el, self.el.id, 'mp-level' ) ); } );
+			// the menu items
+			this.menuItems = Array.prototype.slice.call( this.el.querySelectorAll( 'li' ) );
+			// if type == "cover" these will serve as hooks to move back to the previous level
+			this.levelBack = Array.prototype.slice.call( this.el.querySelectorAll( '.' + this.options.backClass ) );
+			// event type (if mobile use touch events)
+			this.eventtype = mobilecheck() ? 'touchstart' : 'click';
+			// add the class mp-overlap or mp-cover to the main element depending on options.type
+			classie.add( this.el, 'mp-' + this.options.type );
+			// initialize / bind the necessary events
+			this._initEvents();
+		},
+		_initEvents : function() {
+			var self = this;
+
+			// the menu should close if clicking somewhere on the body
+			var bodyClickFn = function( el ) {
+				self._resetMenu();
+				el.removeEventListener( self.eventtype, bodyClickFn );
+			};
+
+			// open (or close) the menu
+			this.trigger.addEventListener( this.eventtype, function( ev ) {
+				ev.stopPropagation();
+				ev.preventDefault();
+				if( self.open ) {
+					self._resetMenu();
+				}
+				else {
+					self._openMenu();
+					// the menu should close if clicking somewhere on the body (excluding clicks on the menu)
+					document.addEventListener( self.eventtype, function( ev ) {
+						if( self.open && !hasParent( ev.target, self.el.id ) ) {
+							bodyClickFn( this );
+						}
+					} );
+				}
+			} );
+
+			// opening a sub level menu
+			this.menuItems.forEach( function( el, i ) {
+				// check if it has a sub level
+				var subLevel = el.querySelector( 'div.mp-level' );
+				if( subLevel ) {
+					el.querySelector( 'a' ).addEventListener( self.eventtype, function( ev ) {
+						ev.preventDefault();
+						var level = closest( el, 'mp-level' ).getAttribute( 'data-level' );
+						if( self.level <= level ) {
+							ev.stopPropagation();
+							classie.add( closest( el, 'mp-level' ), 'mp-level-overlay' );
+							self._openMenu( subLevel );
+						}
+					} );
+				}
+			} );
+
+			// closing the sub levels :
+			// by clicking on the visible part of the level element
+			this.levels.forEach( function( el, i ) {
+				el.addEventListener( self.eventtype, function( ev ) {
+					ev.stopPropagation();
+					var level = el.getAttribute( 'data-level' );
+					if( self.level > level ) {
+						self.level = level;
+						self._closeMenu();
+					}
+				} );
+			} );
+
+			// by clicking on a specific element
+			this.levelBack.forEach( function( el, i ) {
+				el.addEventListener( self.eventtype, function( ev ) {
+					ev.preventDefault();
+					var level = closest( el, 'mp-level' ).getAttribute( 'data-level' );
+					if( self.level <= level ) {
+						ev.stopPropagation();
+						self.level = closest( el, 'mp-level' ).getAttribute( 'data-level' ) - 1;
+						self.level === 0 ? self._resetMenu() : self._closeMenu();
+					}
+				} );
+			} );	
+		},
+		_openMenu : function( subLevel ) {
+			// increment level depth
+			++this.level;
+
+			// move the main wrapper
+			var levelFactor = ( this.level - 1 ) * this.options.levelSpacing,
+				translateVal = this.options.type === 'overlap' ? this.el.offsetWidth + levelFactor : this.el.offsetWidth;
+
+			this._setTransform( 'translate3d(' + translateVal + 'px,0,0)' );
+
+			if( subLevel ) {
+				// reset transform for sublevel
+				this._setTransform( '', subLevel );
+				// need to reset the translate value for the level menus that have the same level depth and are not open
+				for( var i = 0, len = this.levels.length; i < len; ++i ) {
+					var levelEl = this.levels[i];
+					if( levelEl != subLevel && !classie.has( levelEl, 'mp-level-open' ) ) {
+						this._setTransform( 'translate3d(-100%,0,0) translate3d(' + -1*levelFactor + 'px,0,0)', levelEl );
+					}
+				}
+			}
+			// add class mp-pushed to main wrapper if opening the first time
+			if( this.level === 1 ) {
+				classie.add( this.wrapper, 'mp-pushed' );
+				this.open = true;
+			}
+			// add class mp-level-open to the opening level element
+			classie.add( subLevel || this.levels[0], 'mp-level-open' );
+		},
+		// close the menu
+		_resetMenu : function() {
+			this._setTransform('translate3d(0,0,0)');
+			this.level = 0;
+			// remove class mp-pushed from main wrapper
+			classie.remove( this.wrapper, 'mp-pushed' );
+			this._toggleLevels();
+			this.open = false;
+		},
+		// close sub menus
+		_closeMenu : function() {
+			var translateVal = this.options.type === 'overlap' ? this.el.offsetWidth + ( this.level - 1 ) * this.options.levelSpacing : this.el.offsetWidth;
+			this._setTransform( 'translate3d(' + translateVal + 'px,0,0)' );
+			this._toggleLevels();
+		},
+		// translate the el
+		_setTransform : function( val, el ) {
+			el = el || this.wrapper;
+			el.style.WebkitTransform = val;
+			el.style.MozTransform = val;
+			el.style.transform = val;
+		},
+		// removes classes mp-level-open from closing levels
+		_toggleLevels : function() {
+			for( var i = 0, len = this.levels.length; i < len; ++i ) {
+				var levelEl = this.levels[i];
+				if( levelEl.getAttribute( 'data-level' ) >= this.level + 1 ) {
+					classie.remove( levelEl, 'mp-level-open' );
+					classie.remove( levelEl, 'mp-level-overlay' );
+				}
+				else if( Number( levelEl.getAttribute( 'data-level' ) ) == this.level ) {
+					classie.remove( levelEl, 'mp-level-overlay' );
+				}
+			}
+		}
+	}
+
+	// add to global namespace
+	window.mlPushMenu = mlPushMenu;
+
+} )( window );
+  </script>
+</html>
+
+</body>
+</html>
