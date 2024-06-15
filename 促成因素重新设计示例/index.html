@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: Poppins;
+    transition-duration: 0.2s;
+}
+
+nav {
+    display: flex;
+    width: 100%;
+    height: 70px;
+    justify-content: space-between;
+}
+
+nav>div {
+    display: flex;
+    align-items: center;
+
+}
+
+.LeftGroup {
+    padding: 10px;
+}
+
+.CenterGroup {
+    gap: 1px;
+}
+
+.CenterGroup>li {
+    list-style-type: none;
+    padding: 10px;
+    text-transform: uppercase;
+    font-weight: 700;
+    display: flex;
+    cursor: pointer;
+    align-items: center;
+
+    justify-content: center;
+    position: relative;
+}
+
+.CenterGroup>li>a {
+    text-decoration: none;
+    color: rgb(57, 57, 58);
+}
+
+
+.CenterGroup>li:hover::after {
+    width: 100%;
+}
+
+.CenterGroup>li:hover a {
+    color: #F05D2F
+}
+
+.CenterGroup>li:after {
+    content: '';
+    width: 0%;
+    background-color: #F05D2F;
+    position: absolute;
+    height: 4px;
+    left: auto;
+    bottom: 0px;
+    transition-duration: 0.2s;
+    border-radius: 20px;
+
+}
+
+.CenterGroup>li.active:after {
+    background-color: #1387EE;
+    width: 100% !important;
+}
+
+.CenterGroup>li.active>a {
+    color: #1387EE !important
+}
+
+.RightGroup button {
+    margin: 0px 10px;
+    padding: 10px 25px;
+    border-radius: 20px;
+    border: none;
+    font-weight: 700;
+    font-size: 1rem;
+    background-color: #1387EE;
+    color: white;
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.swiper-container {
+    border-radius: 5px;
+    width: 70vw;
+    overflow: hidden;
+    height: fit-content;
+    height: fit-content;
+    font-size: 50px;
+    position: relative;
+    padding-bottom: 50px;
+    width: 100%;
+    font-family: sans-serif;
+}
+
+.swiper-slide {
+    width: auto;
+    height: fit-content;
+    display: flex;
+    height: auto;
+    border-radius: 5px;
+    overflow: hidden;
+    align-items: flex-start;
+    flex-direction: column;
+    padding: 0px;
+    font-family: Nunito;
+    background-color: white;
+
+}
+
+.swiper-slide img {
+    width: 100%;
+    height: 100%;
+}
+
+.swiper-pagination {
+    width: 100%;
+}
+
+.swiper-pagination-bullet {
+    background-color: white;
+    opacity: 1;
+    border: 1px solid #F05D2F;
+}
+
+.swiper-pagination-bullet-active {
+    background-color: #F05D2F;
+}
+
+.home-section {
+    display: grid;
+    grid-template-columns: 40% 60%;
+    height: auto;
+    place-items: center;
+    overflow: hidden;
+}
+
+.home-content {
+
+    padding: 180px 100px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+}
+
+.home-content h1 {
+    font-weight: 800;
+    font-size: 2.5rem;
+    padding: 15px 0px;
+    text-align: center;
+
+}
+
+.home-content p {
+    font-size: 1.3rem;
+    margin-bottom: 30px;
+}
+
+.features-section {
+    padding: 10px 380px;
+    display: grid;
+    grid-template-columns: 25% 25% 25% 25%;
+    place-items: center;
+}
+
+.features-section h1 {
+    font-size: 2rem;
+    grid-column: span 4;
+    padding-bottom: 20px;
+    text-align: center;
+}
+
+.features-section li {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    text-align: center;
+    padding: 30px;
+    transition-duration: 0.2s;
+    border: 1px solid white;
+    font-size: 1.2rem;
+    font-weight: 600;
+    border-radius: 10px;
+    gap: 15px;
+    overflow: hidden;
+    position: relative;
+}
+
+.features-section li:hover {
+    border: 1px solid hsl(14, 87%, 56%);
+    color: #F05D2F;
+}
+
+.mission-section {
+    padding: 10px 350px;
+}
+
+.mission-gallery {
+    gap: 10px;
+    display: grid;
+}
+
+.mission-gallery img {
+    width: 100%;
+    height: 100%;
+    ;
+    border-radius: 5px;
+}
+
+.row {
+    position: relative;
+    width: 100%;
+    height: 200px;
+    padding: 2rem 0;
+    overflow-x: hidden;
+    border-radius: 5px;
+}
+
+.scroll-element {
+    width: inherit;
+    height: inherit;
+    position: absolute;
+    left: 0%;
+    top: 0%;
+    display: flex;
+    align-items: center;
+    white-space: nowrap;
+    gap: 5px;
+    justify-content: space-around;
+}
+
+.scroll-element img {
+    width: calc(25% - 10px);
+}
+
+.primary {
+    animation: primary 20s linear infinite;
+}
+
+.secondary {
+    animation: secondary 20s linear infinite;
+}
+
+.reverse {
+    animation-direction: reverse !important;
+}
+
+@keyframes primary {
+    from {
+        left: 0%;
+    }
+
+    to {
+        left: -100%;
+    }
+}
+
+@keyframes secondary {
+    from {
+        left: 100%;
+    }
+
+    to {
+        left: 0%;
+    }
+}
+
+.mission-content{
+    display: grid;
+    place-items: center;
+    gap:10px;
+    padding:30px 0px;
+    font-size: 1.2rem;
+    text-align: center;
+}
+.mission-features{
+    display: flex;
+    gap:5px;
+}
+.mission-features>li{
+    list-style-type: none;
+    display: grid;
+    width:250px;
+    padding:10px;
+    text-align: center;
+    user-select: none;
+    place-items: center;
+}
+.mission-features>li>i{
+    font-size: 3rem;
+}
+.mission-section button{
+    padding:8px 20px;
+    font-size: 1.1rem;
+    border-radius: 5px;
+    border:2px solid #F05D2F;
+    color: #F05D2F;
+    font-weight: 600;
+    cursor: pointer;
+    align-items: center;
+
+    align-items: center;
+
+}
+
+.mission-content button i{
+    margin:0px 5px;
+    position: relative;
+    bottom:-2px;
+    text-align: center;
+    font-size: larger;
+}
+.mission-section button:hover{
+    background-color: #F05D2F;
+    color:white;
+}
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="LeftGroup"><img src="https://www.enablers.org/public/assets-app/img/logos/enablers-logo-with-slogan-new.webp" alt=""></div>
+        <div class="CenterGroup">
+            <li><a href="/about">About</a></li>
+            <li><a href="/services">Services</a></li>
+            <li><a href="/trainings">Trainings</a></li>
+            <li class="active"><a href="/female-wing">Female Wing</a></li>
+            <li><a href="/meetups">MeetUps</a></li>
+            <li><a href="/evs">EVS</a></li>
+            <li><a href="/worc">worc</a></li>
+            <li><a href="https://www.schoolofenablers.edu.pk">School of Enablers</a></li>
+            <li><a href="https://www.ecot.edu.pk">Enablers College</a></li>
+            <li><a href="/contact-us">Locations</a></li>
+        </div>
+        <div class="RightGroup">
+            <button><i class="fa-solid fa-headphones"></i> <span class="BtnTxt">Support</span></button>
+        </div>
+    </nav>
+    <main>
+        <section class="home-section">
+            <div class="home-content">
+                <h1>PAKISTAN’S LARGEST ECOMMERCE NETWORK</h1>
+                <p>Enablers is directing the people of Pakistan towards business growth, working on the biggest markets
+                    of the world, and becoming successful entrepreneurs.</p>
+                <img src="awards.webp" alt="">
+            </div>
+            <div class="home-slider swiper-container">
+                <div class="swiper-wrapper">
+
+                    <div class="swiper-slide"><img
+                            src="https://images.pexels.com/photos/612891/pexels-photo-612891.jpeg?auto=compress&cs=tinysrgb&w=600"
+                            alt=""></div>
+                                      <div class="swiper-slide"><img
+                            src="https://images.pexels.com/photos/612891/pexels-photo-612891.jpeg?auto=compress&cs=tinysrgb&w=600"
+                            alt=""></div>
+                                      <div class="swiper-slide"><img
+                            src="https://images.pexels.com/photos/612891/pexels-photo-612891.jpeg?auto=compress&cs=tinysrgb&w=600"
+                            alt=""></div>
+                    <div class="swiper-slide"><img
+                            src="https://images.pexels.com/photos/2105416/pexels-photo-2105416.jpeg?auto=compress&cs=tinysrgb&w=600"
+                            alt=""></div>
+                    <div class="swiper-slide"><img
+                            src="https://images.pexels.com/photos/316398/pexels-photo-316398.jpeg?auto=compress&cs=tinysrgb&w=600"
+                            alt=""></div>
+                </div>
+                <div class="swiper-pagination"></div>
+            </div>
+
+        </section>
+        <section class="features-section">
+            <h1>PAKISTAN'S LARGEST ECOMMERCE NETWORK</h1>
+
+            <li>
+                <img
+                    src="https://www.enablers.org/public/storage/uploads/admin/achievements-images//eaC66FQ00dDCyIkxISMMz6RE4fwG8HzwzRHoQQv8.png"><span
+                    class="feature-txt">TECH-BASED EDUCATION</span>
+            </li>
+            <li>
+                <img
+                    src="https://www.enablers.org/public/storage/uploads/admin/achievements-images//VwKpIqbSxERS6uC0kJks4JcW6dKO1J0ByHSxcGRr.png"><span
+                    class="feature-txt">ECOMMERCE SOCIAL GROUP</span>
+            </li>
+            <li>
+                <img
+                    src="https://www.enablers.org/public/storage/uploads/admin/achievements-images//eFYIpINu9Oo6qKLt0a92S1XgXCvpIGuRACCtdkv6.png"><span
+                    class="feature-txt">ECOMMERCE NETWORK</span>
+            </li>
+            <li>
+                <img
+                    src="https://www.enablers.org/public/storage/uploads/admin/achievements-images//Swm8Q9nSUaTSNnmF1aDNE4A3EHPZtdZgCKwyURao.png"><span
+                    class="feature-txt">OVER 200K STUDENTS</span>
+            </li>
+            <li>
+                <img
+                    src="https://www.enablers.org/public/storage/uploads/admin/achievements-images//k85J7tn8WjnaznI4sk8azD8CSSE5049Zmkob1l9C.png"><span
+                    class="feature-txt">EDUCATIONAL FRANCHISES</span>
+            </li>
+            <li> <img
+                    src="https://www.enablers.org/public/storage/uploads/admin/achievements-images//cKKfXBQ447CWawQo9qcGpkkRwSj4BPfWH8GQMQAt.png"><span
+                    class="feature-txt">PROFESSIONAL TEAM OF MENTORS</span></li>
+            <li> <img
+                    src="https://www.enablers.org/public/storage/uploads/admin/achievements-images//Ckss9fLbz77OYnhLGR2KDpaHsmd6kpG3hQumUztm.png"><span
+                    class="feature-txt">CO-WORKING SPACE</span></li>
+            <li> <img
+                    src="https://www.enablers.org/public/storage/uploads/admin/achievements-images//QxXHnWcELoMAqYw3vEqtOW2eZm1TCQp5PAHIAo7j.png"><span
+                    class="feature-txt">LARGEST VIDEO REPOSITORY</span></li>
+
+        </section>
+        <section class="mission-section">
+            <div class="mission-gallery">
+                <div class="row">
+                    <div class="scroll-element primary">
+                        <img src="https://images.pexels.com/photos/612891/pexels-photo-612891.jpeg?auto=compress&cs=tinysrgb&w=600" alt="">
+                        <img src="https://images.pexels.com/photos/612891/pexels-photo-612891.jpeg?auto=compress&cs=tinysrgb&w=600" alt="">
+                        <img src="https://images.pexels.com/photos/612891/pexels-photo-612891.jpeg?auto=compress&cs=tinysrgb&w=600" alt="">
+                        <img src="https://images.pexels.com/photos/612891/pexels-photo-612891.jpeg?auto=compress&cs=tinysrgb&w=600" alt="">
+                    </div>
+                    <div class="scroll-element secondary">
+                        <img src="https://images.pexels.com/photos/612891/pexels-photo-612891.jpeg?auto=compress&cs=tinysrgb&w=600" alt="">
+                        <img src="https://images.pexels.com/photos/612891/pexels-photo-612891.jpeg?auto=compress&cs=tinysrgb&w=600" alt="">
+                        <img src="https://images.pexels.com/photos/612891/pexels-photo-612891.jpeg?auto=compress&cs=tinysrgb&w=600" alt="">
+                        <img src="https://images.pexels.com/photos/612891/pexels-photo-612891.jpeg?auto=compress&cs=tinysrgb&w=600" alt="">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="scroll-element primary reverse">
+                        <img src="https://images.pexels.com/photos/612891/pexels-photo-612891.jpeg?auto=compress&cs=tinysrgb&w=600" alt="">
+   <img src="../Images/mission-img (2).jpg" alt="">
+                        <img src="https://images.pexels.com/photos/612891/pexels-photo-612891.jpeg?auto=compress&cs=tinysrgb&w=600" alt="">
+                        <img src="https://images.pexels.com/photos/612891/pexels-photo-612891.jpeg?auto=compress&cs=tinysrgb&w=600" alt="">
+                    </div>
+                    <div class="scroll-element secondary reverse">
+                        <img src="https://images.pexels.com/photos/612891/pexels-photo-612891.jpeg?auto=compress&cs=tinysrgb&w=600" alt="">
+                        <img src="https://images.pexels.com/photos/612891/pexels-photo-612891.jpeg?auto=compress&cs=tinysrgb&w=600" alt="">
+                        <img src="https://images.pexels.com/photos/612891/pexels-photo-612891.jpeg?auto=compress&cs=tinysrgb&w=600" alt="">
+                        <img src="https://images.pexels.com/photos/612891/pexels-photo-612891.jpeg?auto=compress&cs=tinysrgb&w=600" alt="">
+                    </div>
+                </div>
+
+            </div>
+            <div class="mission-content">
+                <h1>OUR MISSION</h1>
+                <p>
+                    Enablers is dedicated to enabling Pakistan as one of the largest eCommerce hubs in the world. Our
+                    team has exclusively devoted to helping the people of this country become entrepreneurs and work on
+                    international platforms. We aim to create 2 million employment opportunities.
+                </p>
+                <div class="mission-features">
+                    <li><i class="fa-solid fa-briefcase"></i>
+                        <h2>200,000</h2>
+                        <div class="feature-info">Pakistani Start-Ups</div>
+                    </li>
+                    <li><i class="fa-solid fa-cart-flatbed"></i>
+                        <h2>50 Million</h2>
+                        <div class="feature-info">Worldwide Exports</div>
+                    </li>
+                    <li><i class="fa-solid fa-city"></i>
+                        <h2>2 Million</h2>
+                        <div class="feature-info">Freelancers</div>
+                    </li>
+                </div>
+                <button>Find Out More<i class="fa-solid fa-chevron-right"></i></button>
+            </div>
+        </section>
+        <script>
+            const swiper = new Swiper('.home-slider', {
+    grabCursor: true,
+    centeredSlides: true,
+    slidesPerView: 2,
+    loop: true,
+    spaceBetween: 30,
+    effect: "coverflow",
+    coverflowEffect: {
+        rotate: 0,
+        depth: 800,
+        slideShadows: true,
+    },
+    pagination: {
+        el: '.swiper-pagination',
+        clickable: true
+    },
+    autoplay: { delay: 1000 }
+});
+        </script>
+</body>
+</html>
