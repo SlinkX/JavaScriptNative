@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style lang="scss">
+        body {
+	height: 100vh;
+	margin: 0;
+	display: grid;
+	place-items: center;
+	text-align: center;
+	background-color: #0f0f0f;
+	font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
+.leap-year-checker {
+	color: white;
+	display: flex;
+	flex-direction: column;
+	font-size: 4rem;
+	align-items: center;
+	gap: 2rem;
+	
+	label {
+		font-size: 3rem;
+	}
+	
+	label, output {
+		line-height: 1.6;
+	}
+}
+
+
+#checkYear {
+	color: goldenrod;
+	font: 10rem "Nabla", sans-serif;
+	min-width: 0;
+	background-color: transparent;
+	border: 1px solid rgba(255, 255, 255, 0.4);
+	text-align: center;
+	border: none;
+	outline: none;
+	padding: 0;
+}
+
+#checkYear:focus {
+	background-color: rgba(255, 255, 255, 0.1);
+}
+
+#checkYear:valid + output {
+	&::before {
+		content: 'Leap Year 🎉';
+		color: palegreen;
+	}
+}
+
+:is(#checkYear:invalid, #checkYear:placeholder-shown) + output {
+	&::before {
+		content: 'Not Leap Year';
+		color: salmon;
+	}
+}
+    </style>
+</head>
+<body>
+    <div class="leap-year-checker">
+        <label for="checkYear">Type a year:</label>
+        <input id="checkYear" value="2024" placeholder=" " maxlength="4" size="4" pattern="^((\d?\d?((0|^)[48]|[2468][048]|[13579][26])(00)?)|0+)$" />
+        <output></output>
+    </div>
+</body>
+</html>
