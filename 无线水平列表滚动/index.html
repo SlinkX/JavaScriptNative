@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        :root {
+	--dark: #252A2E;
+	--light: #F5F5F5;
+	--background: var(--light);
+	--text: var(--dark);
+	--border: var(--dark);
+}
+@media (prefers-color-scheme: dark) {
+	:root {
+		--background: var(--dark);
+		--text: var(--light);
+		--border: var(--light);
+	}
+}
+html {
+	box-sizing: border-box;
+}
+*, *:before, *:after {
+	box-sizing: inherit;
+}
+
+/*	BASIC STYLING FOR THE DEMO */
+body {
+	display: grid;
+	min-block-size: 100vh;
+	place-content: center;
+	background: var(--background);
+	color: var(--text);
+}
+
+/*	CURRENT MAX WIDTH IS JUST FOR DEMO PURPOSES */
+.tag-scrollers {
+	width: 100%;
+	max-width: 1200px;
+	overflow: hidden;
+}
+
+/*	POSSIBLY UPDATE COLORS IN THE GRADIENT
+		TO MATCH THE PROJECTS DESIGN SYSTEM
+*/
+.tag-scroller {
+	display: grid;
+	gap: 1.5rem;
+	mask: linear-gradient(90deg, #0000, var(--background) 15%, var(--background) 85%, #0000);
+}
+
+.tag-list {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+	display: flex;
+	flex-wrap: wrap;
+	/*	IF THE GAP IS CHANGED, DON'T FORGET TO CHANGE 
+			THE TRANSFORM VALUE IN THE SCROLL ANIMATION
+			AT THE END OF THE STYLING
+	*/
+	gap: 1.5rem;
+}
+
+/*	IF THE USERS PREFERS REDUCED MOTION
+		PRESENT THEM WITH A HOROZONTAL LIST
+		OF ALL ELEMENTS AND GIVE THEM THE
+		OPTION TO MANUALLY SCROLL BY SWIPING
+*/
+@media (prefers-reduced-motion) {
+	.tag-list {
+		flex-flow: row nowrap;
+		overflow: auto;
+		scrollbar-width: none;
+		scrollbar-color: transparent transparent;
+	}
+	.tag-list::-webkit-scrollbar-track {
+		background: transparent;
+	}
+	.tag-list::-webkit-scrollbar-thumb {
+		background: transparent;
+	}
+	.tag-list::-webkit-scrollbar {
+		display: none;
+		width: 0;
+		height: 0;
+	}
+}
+
+/*	BASIC STYLING OF THE LIST ITEMS
+		FOR DEMO PURPOSES. MOST PROPERTIES
+		SHOULD BE KEPT AS IS BUT PROBABLY
+		UPDATE THE VALUE FOR font-family
+		AND border
+*/
+.tag-list li {
+	font-family: system-ui;
+	font-size: 1.125rem;
+	line-height: 1;
+	padding: 0.625rem 1.375rem;
+	border: 2px solid var(--border);
+	border-radius: 10ch;
+	white-space: nowrap;
+}
+
+/*	THE DURATION IS SET FROM A CUSTOM PROPERTY
+		CALCULATED IN THE SCRIPT AS IT'S ONLY NEEDED
+		IF THE ANIMATION SHOULD RUN, WHICH IS ALSO
+		CHECKED BY THE SCRIPT
+
+		THE DIRECTION IS SET TO normal AS DEFULT
+		AND THEN SET TO reverse	FOR EVERY OTHER SCROLLER
+*/
+.tag-scroller.scrolling .tag-list {
+	width: max-content;
+	flex-wrap: nowrap;
+	animation: horizontal-scroll var(--duration) var(--direction, normal) linear infinite;
+}
+
+.tag-scroller.scrolling .tag-list:nth-child(even) {
+	--direction: reverse;
+}
+
+/* PAUSING THE ANIMATION ON HOVER */
+.tag-scroller:hover .tag-list {
+	animation-play-state: paused;
+}
+
+@keyframes horizontal-scroll {
+	to {
+		/*	0.75rem FOR HALF THE GAP
+				OF THE .tag-scroller
+		*/
+		transform: translateX(calc(-50% - .75rem));
+	}
+}
+    </style>
+</head>
+<body>
+    <div class="tag-scrollers">
+        <div class="tag-scroller">
+            <ul class="tag-list">
+                <li>SEO / SEM</li>
+                <li>Accessibility</li>
+                <li>Consumer Insights</li>
+                <li>Back-end</li>
+                <li>UI</li>
+                <li>CMS</li>
+                <li>UX</li>
+                <li>Market Research</li>
+                <li>Measurement Strategy</li>
+                <li>Data Architecture</li>
+                <li>Online / Digital</li>
+                <li>Web Analytics</li>
+                <li>Display</li>
+                <li>Brand Identity</li>
+                <li>Front-end</li>
+                <li>Product Design</li>
+                <li>Omnichannel Strategy</li>
+                <li>Offline / Print</li>
+                <li>Audio</li>
+                <li>Media Strategy</li>
+                <li>POS</li>
+                <li>SoMe</li>
+                <li>CRM</li>
+                <li>Motion Graphics</li>
+                <li>OOH / DOOH</li>
+                <li>Film Production</li>
+                <li>Campaign Development</li>
+                <li>Brand Strategy</li>
+            </ul>
+        </div>
+    </div>
+
+    <script>
+        /*	CHECK FOR PREFERED REDUCED MOTION
+		AND IF SO, DO NOT RUN ANY OF THE SCRIPTS
+		SPLITTING THE LIST ELEMENT INTO MULTIPLE
+		LISTS OR APPLYING THE SCROLL ANIMATION
+*/
+const mediaQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
+if (mediaQuery && !mediaQuery.matches) {
+	const tagScroller = document.querySelector(".tag-scroller");
+	const allTags = tagScroller.querySelectorAll("li");
+	
+	function createElement(tagName, className = "") {
+		const elem = document.createElement(tagName);
+		elem.className = className;
+		return elem;
+	}
+
+	function scrollersFrom(elements, numColumns = 2) {
+		const fragment = new DocumentFragment();
+		elements.forEach((element, i) => {
+			const column = i % numColumns;
+			const children = fragment.children;
+			if (!children[column]) fragment.appendChild(createElement("ul", "tag-list"));
+			children[column].appendChild(element);
+		});
+		return fragment;
+	}
+	
+	/*	SPLIT THE LIST ELEMENT INTO TWO LISTS
+			AND CALL THE ANIMATION
+	*/
+	const scrollers = scrollersFrom(allTags, 2);
+	tagScroller.innerHTML = "";
+	tagScroller.appendChild(scrollers);
+	addScrolling();
+
+	/*	ADD scrolling CLASS TO THE WRAPPER ELEMENT,
+			CLONE EACH LIST ITEM TO MAKE THE LIST LONG ENOUGH
+			FOR INFINITE SCROLL AND THEN CALCULATE THE DURATION
+			BASED ON WIDTH OF EACH SCROLLER TO MAKE THEM
+			MOVE AT THE SAME RATE OF SPEED
+			
+			DEPENDING ON THE WIDTH OF .tag-scrollers, THE NUMBER OF
+			LIST ITEMS AND THEIR INDIVIDUAL WIDTH, YOU MIGHT NEED
+			TO CLONE THEM TWO TIMES EACH TO BE SURE EACH .tag-scroller
+			WILL BE WIDE ENOUGH TO SUPPORT INFINITE SCROLL
+			
+			THIS COULD OF COURSE BE ADDED TO THE SCRIPT
+			BUT FOR OUR USE CASE, WE KNOW THE MINIMUM NUMBER OF
+			LIST ELEMENTS WILL BE ENOUGH FOR ONE CLONE EACH
+	*/
+	function addScrolling() {
+		tagScroller.classList.add("scrolling");
+		document.querySelectorAll(".tag-list").forEach((tagList) => {
+			const scrollContent = Array.from(tagList.children);
+			scrollContent.forEach((listItem) => {
+				const clonedItem = listItem.cloneNode(true);
+				clonedItem.setAttribute("aria-hidden", true);
+				tagList.appendChild(clonedItem);
+			});
+			tagList.style.setProperty("--duration", (tagList.clientWidth / 100) + "s");
+		});
+	}
+}
+    </script>
+</body>
+</html>
