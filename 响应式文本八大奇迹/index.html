@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /* Always best to test responsiveness with the font(s) you use in production as all fonts vary in size rendered and usually have their own specific "quirks" */
+
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap");
+
+/* Base font size calculation considering both viewport width (vw) and height (vh) */
+body {
+  font-size: calc(1vw + 1vh + 0.5vmin);
+}
+
+/* Adjust font size for viewports wider than 300px */
+@media (min-width: 300px) {
+  body {
+    font-size: calc(0.8rem + (1.2vw + 1.2vh + 0.5vmin) * ((100vw - 300px) / 700));
+  }
+}
+
+/* Adjust font size for viewports narrower than 1000px */
+@media (max-width: 1000px) {
+  body {
+    font-size: calc(0.8rem + (1.2vw + 1.2vh + 0.5vmin) * ((1000px - 100vw) / 700));
+  }
+}
+
+/* Ensure the font size stays within a readable range */
+body {
+  font-size: clamp(12px, calc(1vw + 1vh + 0.5vmin), 24px);
+}
+
+
+
+/* demo stuff below */
+html {
+  scroll-behavior: smooth;
+}
+
+h1,
+h2,
+h3 {
+  margin-top: 20px;
+}
+
+article {
+  padding-top:50px;
+  padding-bottom:300px;
+  width: 90%;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+    </style>
+</head>
+<body>
+    <article>
+
+        <h1>Responsive Text (Again)</h1>
+        <p>
+         In my endless quest for the elusive holy grail of responsive text, I've whipped up a CSS brew that's practically the eighth wonder of the digital world. By cleverly blending viewport width, height, and minimum values, this approach fixes the classic pitfalls of traditional responsive text methods. Gone are the days when your text looks splendid in width but ends up tragically squished in height. This method ensures your text remains a beacon of functionality and aesthetic brilliance, no matter what bizarre screen dimensions it encounters. 
+        </p>
+        <p>The Eighth Wonder of Responsive Text demo showcases how responsive text sizing can be achieved using CSS magic like <code>calc()</code> and <code>clamp()</code>, along with media queries.</p>
+          <p>NOTE: To simplify answering a question from someone - I converted this demo  to use root variables - making it easier for you to edit and tailor to your specific design choices. Additionally, I included more detailed explanations on how this approach works, ensuring that you can fully understand and customize the responsive text for any project. <a href="https://codepen.io/mark_sottek/pen/WNBdJde" target="_blank">View pen here.</a></p>
+          <h2>Thoughts</h2>
+          <p>  <audio controls src="https://assets.codepen.io/191814/Responsive+Text+One+Billion+Loves+cp.mp3"></audio></p>
+          <p>Responsive text is a fundamental principle in web design because it ensures that content remains readable and visually appealing across a wide range of devices and screen sizes. This adaptability is crucial in our multi-device world, where users might switch between smartphones, tablets, laptops, and desktops. Moreover, responsive text significantly enhances accessibility. For individuals with visual impairments or those who struggle with small text, such as myself as my vision worsens, having text that scales appropriately can make a world of difference. It ensures that everyone, regardless of their visual capabilities, can access and comprehend the information presented on a webpage, fostering a more inclusive digital environment. Designing readable text is also tied to other apriori requirements, such as maintaining adequate contrast with background colors and choosing appropriate font styles & weights. I have seen many sites that use elegantly "thin" fonts in the most beautiful shades of  grey; while aesthetically stunning, this text can be unreadable for many. Balancing beauty with functionality is essential to ensure that all users have a positive and accessible reading experience. Sometimes, you need to re-imagine the vision you have for your fabulous website designs to better accommodate both creative vision and literal eyesight.</p>
+        
+          
+            
+        <h2>How Eighth Wonder Text Works</h2>
+        
+        <p>The base font size is concocted using <code>calc(1vw + 1vh + 0.5vmin)</code>. This formula considers both viewport width (vw) and viewport height (vh), along with the smallest of the viewport dimensions (vmin). This creates a responsive font size that adjusts based on the viewport dimensions.</p>
+        
+        <h3>Media Queries</h3>
+        <p>To ensure the text size stays within the realm of readability, media queries come into play. The first media query adjusts the font size when the viewport width is at least 300px. The second media query kicks in when the viewport width is at most 1000px. These queries help craft a more flexible and responsive design.</p>
+        
+        <h3>Using <code>clamp()</code></h3>
+        <p>The <code>clamp()</code> function is the guardian ensuring the font size stays within a specific range. In this example, the font size is clamped between 12px and 24px, regardless of the viewport dimensions. This guarantees that the text remains legible on all devices.</p>
+        
+        <h2>Benefits</h2>
+        <ul>
+            <li>Keeps text always readable, so you won't need to squint or hit that ZOOM button.</li>
+            <li>Adapts to different screen sizes, saving you from endless browser window resizing.</li>
+            <li>Enhances user experience, making your site more beloved than morning coffee.</li>
+            <li>Prevents those hair-pulling moments when text shrinks to microscopic sizes on mobile.</li>
+        </ul>
+        
+        <h3>Example Usage</h3>
+        <ol>
+            <li>Include the CSS in your stylesheet</li>
+            <li>Apply the styles to your text elements</li>
+            <li>Sit back and enjoy the Eight Wonder of the World text sizing</li>
+        </ol>
+        
+        <p>By blending these CSS techniques, you can create a web page where text sizes itself perfectly for any device, like a digital Goldilocks. No more squinting or zooming—your text will always be just right, making it the true eighth wonder of the world. Anyway - think I'm getting closer.</p>
+        
+        </article>
+</body>
+</html>
