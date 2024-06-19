@@ -1,0 +1,474 @@
+<html>
+<head>
+</head>
+<style>
+    @font-face {
+  font-family: 'clearsans-light';
+  src: url('https://dl.dropboxusercontent.com/u/56609461/fonts/clearsans-light-webfont-webfont.eot');
+  src: url('https://dl.dropboxusercontent.com/u/56609461/fonts/clearsans-light-webfont-webfont.eot?#iefix') format("embedded-opentype"), url('https://dl.dropboxusercontent.com/u/56609461/fonts/clearsans-light-webfont-webfont.woff') format("woff"), url('https://dl.dropboxusercontent.com/u/56609461/fonts/clearsans-light-webfont-webfont.ttf') format("truetype"), url('https://dl.dropboxusercontent.com/u/56609461/fonts/clearsans-light-webfont-webfont.svg#_.regular') format("svg");
+  font-weight: normal;
+  font-style: normal;
+}
+
+$animationspeed: 2s;
+$h3speed: 2.25s;
+$pspeed: 2.5s;
+
+
+@mixin fadein($name, $time) {
+  -webkit-animation: $name $time;
+  animation: $name $time;
+  -moz-animation: $name $time;
+  -o-animation: $name $time;
+}
+
+@mixin movement($name, $time) {
+  -webkit-animation: $name $time;
+  -webkit-animation-timing-function: ease-out;
+  -moz-animation: $name $time;
+  -moz-animation-timing-function: ease-out;
+  -o-animation: $name $time;
+  -o-animation-timing-function: ease-out;
+  animation: $name $time;
+  animation-timing-function: ease-out;
+}
+
+@mixin keyframes($name, $startl, $startt, $endl, $endt) {
+  @-webkit-keyframes $name {
+    0%, 20% { left: $startl; top: $startt; }
+    100% {  left: $endl; top: $endt; }
+  }
+  @-moz-keyframes $name {
+    0%, 20% { left: $startl; top: $startt; }
+    100% {  left: $endl; top: $endt; }
+  }
+  @-o-keyframes $name {
+    0%, 20% { left: $startl; top: $startt; }
+    100% {  left: $endl; top: $endt; }
+  }
+  @keyframes $name {
+    0%, 20% { left: $startl; top: $startt; }
+    100% {  left: $endl; top: $endt; }
+  } 
+}
+
+@-webkit-keyframes reveal {
+  0%, 80% { opacity: 0; }
+  100% 	 { opacity: 1; }
+}
+
+@-o-keyframes reveal {
+  0%, 80% { opacity: 0; }
+  100% 	 { opacity: 1; }
+}
+
+@-moz-keyframes reveal {
+  0%, 80% { opacity: 0; }
+  100% 	 { opacity: 1; }
+}
+
+@keyframes reveal {
+  0%, 80% { opacity: 0; }
+  100% 	 { opacity: 1; }
+}
+
+body {
+  background: #5fa6e1;
+  padding: 0;
+  text-align: center;
+  font-family: 'clearsans-thin', sans-serif;
+  position: relative;
+  margin: 0;
+  height: 100%;
+  -webkit-font-smoothing: antialiased;
+}
+
+#outsidewraper {
+  position: relative;
+  height: 400px;
+  width: 1050px;
+  margin: 0px auto;
+}
+
+#hexwraper {
+  position: relative;
+  width: 1px;
+  height: 1px;
+  margin: 0 auto;
+  margin-top: 50%;
+  h1 {
+    z-index: 1;
+    position: absolute;
+    left: -105px;
+    top: -500px;
+    color: #F8F8F8;
+    margin-top: 100px;
+    margin-bottom: 5px;
+    font-size: 70px;
+    letter-spacing: -4px;
+    font-weight: 100;
+    font-family: 'clearsans-thin', sans-serif;
+    @include movement(moveh1, $animationspeed);
+  }
+}
+
+.hex {
+  z-index: 2;
+  position: absolute;
+  width: 140px;
+  height: 80px;
+}
+
+.hexagon {
+  position: absolute;
+  width: 140px;
+  height: 80px;
+  background: #F8F8F8;
+  overflow: visible;
+  &:before {
+    content: "";
+    position: absolute;
+    top: -35px;
+    left: 0;
+    width: 0;
+    height: 0;
+    border-left: 70px solid transparent;
+    border-right: 70px solid transparent;
+    border-bottom: 35px solid #F8F8F8;
+  }
+  &:after {
+    content: "";
+    position: absolute;
+    bottom: -35px;
+    left: 0;
+    width: 0;
+    height: 0;
+    border-left: 70px solid transparent;
+    border-right: 70px solid transparent;
+    border-top: 35px solid #F8F8F8;
+  }
+  img {
+    z-index: 9;
+    text-align: center;
+  }
+}
+
+.copy h3 {
+  z-index: 7;
+  position: relative;
+  color: #555254;
+  top: 100px;
+  text-align: center;
+  @include fadein(reveal, $h3speed);
+}
+
+.hex {
+  p {
+    z-index: 7;
+    position: absolute;
+    color: #F8F8F8;
+    top: 127px;
+    text-align: center;
+    @include fadein(reveal, $pspeed);
+  }
+  .copy {
+    position: absolute;
+    width: 245px;
+    left: -52px;
+  }
+}
+
+.hex1 {
+  left: -400px;
+  top: -250px;
+  @include movement(move, $animationspeed);
+}
+
+.hex2 {
+  left: -70px;
+  top: -250px;
+  @include movement(move2, $animationspeed);
+}
+
+.hex3 {
+  left: 260px;
+  top: -250px;
+  @include movement(move3);
+}
+
+.hex4 {
+  left: -235px;
+  top: 70px;
+  @include movement(move4);
+}
+
+.hex5 {
+  left: 95px;
+  top: 70px;
+  @include movement(move5);
+}
+
+@include keyframes(move, -210px, 0px, -400px, -250px);
+
+@include keyframes(move2, -70px, 0px, -70px, -250px);
+
+@include keyframes(move3, 70px, 0px, 260px, -250px);
+
+@include keyframes(move4, -140px, 110px, -235px, 70px);
+
+@include keyframes(move5, 0px, 110px, 95px, 70px);
+
+@include keyframes(moveh1, -90px, 0px, -105px, -500px);
+
+@media only screen and (max-width: 900px) {
+  #outsidewraper {
+    max-width: 800px;
+    min-height: 600px;
+    h1 {
+      z-index: 1;
+      position: absolute;
+      left: -105px;
+      top: -500px;
+      color: #F8F8F8;
+    }
+  } 
+  
+  #hexwraper h1 {
+	@include movement(moveh1);
+  }
+  
+  .hex1 {
+    left: -342px;
+    top: -250px;
+    @include movement(move02);
+  }
+  
+  .hex2 {
+    left: -70px;
+    top: -250px;
+    @include movement(move22);
+  }
+  .hex3 {
+    left: 202px;
+    top: -250px;
+    @include movement(move32);
+  }
+  
+  .hex4 {
+    left: -206px;
+    top: 70px;
+    @include movement(move42);
+  }
+  
+  .hex5 {
+    left: 66px;
+    top: 70px;
+    @include movement(move52);
+  }
+     
+  
+    .hex1 {
+      @include movement(move02);
+    }
+    .hex2 {
+      @include movement(move22);
+    }
+    .hex3 {
+      @include movement(move32);
+    }
+    .hex4 {
+      @include movement(move42);
+    }
+    .hex5 {
+      @include movement(move52);
+    }
+    .copy h3 {
+      @include fadein(reveal, $h3speed);
+    }
+    .hex p {
+      @include fadein(reveal, $pspeed);
+    }
+  
+   
+  @include keyframes(move02, -210px, 0px, -342px, -250px);
+  
+  @include keyframes(move22, -70px, 0px, -70px, -250px);
+  
+  @include keyframes(move32, 70px, 0px, 202px, -250px);
+  
+  @include keyframes(move42, -140px, 110px, -206px, 70px);
+  
+  @include keyframes(move52, 0px, 110px, 66px, 70px);
+  
+  @include keyframes(moveh1, -90px, 0px, -105px, -500px);
+ 
+  }
+
+@media only screen and (max-width: 800px) {
+  #outsidewraper {
+    position: relative;
+    max-width: 640px;
+    min-height: 500px;
+    margin: 13% auto;
+  }
+  
+  .hex1 {
+    left: -271px;
+    top: -250px;
+    @include movement(move03);
+  }
+  .hex2 {
+    left: -70px;
+    top: -250px;
+    @include movement(move23);
+  }
+  .hex3 {
+    left: 131px;
+    top: -250px;
+    @include movement(move33);
+  }
+  .hex4 {
+    left: -206px;
+    top: 70px;
+    @include movement(move43);
+  }
+  .hex5 {
+    left: 66px;
+    top: 70px;
+    @include movement(move53);
+  }
+  #hexwraper h1 {
+    left: 0;
+    top: -500px;
+  }
+  .hex .copy {
+    width: 190px;
+    left: -25px;
+    font-size: 13px;
+  }
+
+    .hex1 {
+      @include movement(move03);
+    }
+    .hex2 {
+      @include movement(move23);
+    }
+    .hex3 {
+      @include movement(move33);
+    }
+    .hex4 {
+      @include movement(move43);
+    }
+    .hex5 {
+      @include movement(move53);
+    }
+   
+    .copy h3 {
+      @include fadein(reveal, $h3speed);
+    }
+    
+    .hex p {
+      @include fadein(reveal, $pspeed);
+    }
+  
+  @include keyframes(move03, -210px, 0px, -271px, -250px);
+  
+  @include keyframes(move23, -70px, 0px, -70px, -250px);
+  
+  @include keyframes(move33, 70px, 0px, 131px, -250px);
+  
+  @include keyframes(move43, -140px, 110px, -206px, 70px);
+  
+  @include keyframes(move53, 0px, 110px, 66px, 70px);
+  
+  @include keyframes(moveh1, -90px, 0px, -90px, -500px);  
+}
+  
+</style>
+
+<body>
+	<section class="page4">
+		<div class="page_container" id="d">
+      <div id='outsidewraper'>
+			<div id='hexwraper'>
+				<h1>Process</h1>
+
+				<div class="hex1 hex">
+						<div class="hexagon"><img src="https://dl.dropboxusercontent.com/u/56609461/img/assess.png"></div>
+
+						<div class="copy">
+							<h3>Assess Need</h3>
+
+							<p>I always start with a strong understanding of
+							what your needs and goals are. Then craft a
+							solution that best fits those needs rather than
+							trying to Shoehorn your needs into a pre-built
+							solution.</p>
+						</div>
+					</div>
+
+					<div class="hex2 hex">
+						<div class='hexagon'><img src="https://dl.dropboxusercontent.com/u/56609461//img/design.png"></div>
+
+						<div class="copy">
+							<h3>Beautiful Design</h3>
+
+							<p>Design is pivotal since it‘s the first
+							impression users get. It‘s equally important to
+							understand how people use the internet and cater to
+							that.</p>
+						</div>
+					</div>
+				
+
+				
+					<div class="hex3 hex">
+						<div class='hexagon'><img src="https://dl.dropboxusercontent.com/u/56609461//img/user.png"></div>
+
+						<div class="copy">
+							<h3>User Centered</h3>
+
+							<p>1/4 of web traffic comes from smart phones or
+							tablets. And is expected to rise above 50% by 2015.
+							1/2 of searches for local products and services are
+							on mobile devices. I make sites that look great on
+							every browser, IS, and device.</p>
+						</div>
+					</div>
+
+					<div class="hex4 hex">
+						<div class='hexagon'><img src="https://dl.dropboxusercontent.com/u/56609461//img/analytics.png"></div>
+
+						<div class="copy">
+							<h3>Analytics</h3>
+
+							<p>I build all my sites with a strong foundation
+							for SEO. I can optimize your site for you, or
+							prepare it in advance</p>
+						</div>
+					</div>
+
+					<div class="hex5 hex">
+						<div class='hexagon'><img src="https://dl.dropboxusercontent.com/u/56609461//img/secure.png"></div>
+
+						<div class="copy">
+							<h3>Security</h3>
+
+							<p>I love finding solutions that are easy to keep
+							updated without having to get to technical. I give
+							you tools to fly, but am always just a call
+							away.</p>
+						</div>
+					</div>
+          </div>
+			</div>
+		</div>
+	</section>
+    <script>
+        It's broken right now. :(
+
+Check it out at
+
+http://josephcpaulson.com/#4.</script>
+</body>
+</html>
