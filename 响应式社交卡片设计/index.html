@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style lang="scss">
+        .hero {
+  background: #9deeee; /* Old browsers */
+  background: -moz-linear-gradient(top,  #9deeee 0%, #008c8c 100%); /* FF3.6-15 */
+  background: -webkit-linear-gradient(top,  #9deeee 0%,#008c8c 100%); /* Chrome10-25,Safari5.1-6 */
+  background: linear-gradient(to bottom,  #9deeee 0%,#008c8c 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#9deeee', endColorstr='#008c8c',GradientType=0 ); /* IE6-9 */
+  margin-top:-30px;
+  .hero-content {
+    margin:-10px auto 0;
+    max-width:1000px;
+    padding:50px 20px 170px;
+    h1 {
+      color:#000000;
+      font-family: 'Source Sans Pro', Arial, Sans-Serif;
+      font-size:26px;
+      font-weight:600;
+      text-align:center;
+      -webkit-font-smoothing: antialiased;
+    }
+    h2 {
+      color:#000000;
+      font-family: 'Source Sans Pro', Arial, Sans-Serif;
+      font-size:16px;
+      font-weight:200;
+      text-align:center;
+      -webkit-font-smoothing: antialiased;
+    }
+    .row {
+      margin-top:60px;
+      .social-img {
+        background-color:#f5f5f5;
+        border-color: #e5e5e5;
+        border-style: solid;
+        border-width: 0 1px 1px 0;
+        display:inline;
+        float:left;
+        margin:0 20px 80px;
+        width:29%;
+        overflow-wrap: break-word;
+        word-wrap: break-word;
+        word-break: break-word;
+        .social-content {
+          margin:10px;
+          img {
+            margin-bottom:10px;
+            height:auto;
+            width:100%;
+          }
+          p {
+            color: #505e67;
+            font-family: 'Source Sans Pro', Arial, Sans-Serif;
+            font-size: 18px;
+            font-weight: 400;
+            line-height: 1.5;
+            margin: 0 0 20px;
+            -webkit-font-smoothing: antialiased;
+          }
+        }
+        .share {
+          .fa {
+            color:#bababa;
+            font-size:20px;
+            padding-right:10px;
+            &.fa-twitter {
+              float:right;
+            }
+            &.fa-instagram {
+              float:right;
+            }
+            &:hover {
+              color:#F17E6F;
+            } 
+          }
+        }
+      }
+    }
+  }
+  
+  @media (max-width:990px) {
+    .hero-content .row .social-img {
+      width:44%;
+      &.hide-990 {display:none;} 
+    }
+  }
+  @media (max-width:750px) {
+    .hero-content {padding:70px 100px 220px;
+      .row .social-img {
+        margin:0 0 70px;
+        width:100%;
+        &.hide-750 {display:none;}
+        .social-content img {
+          max-height:inherit;
+        }
+      }
+    }
+  }
+  @media (max-width:575px) {
+    .hero-content {padding:70px 20px 200px;
+      h1 {font-size:20px;}
+    }
+  }
+}
+    </style>
+</head>
+<body>
+    <!-- Font Awesome used for social icons (twitter, linkedin, comment, like and retweet) -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css">
+
+<div class="hero">
+  <div class="hero-content">
+    <h1>Curate your own responsive social feed!</h1>
+    <h2>Beautiful social cards you can display yours or others posts, videos expand and images resize fluidly. Cards disappear depending on screen size.</h2>
+    <div class="row">
+      <div class="social-img hide-990">
+        <div class="social-content">
+          <img src="https://pbs.twimg.com/media/CrXJSJ_XYAApXBe.jpg" alt="Today Is Your Day - Start a Podcast">
+          <p>Launching this podcast was an absolute blast. Stop holding off on starting your passion projects! #TodayIsYourDay<br><br><br></p>
+          <div class="share">
+            <a href="https://twitter.com/tnrt/status/771744226623324160" target="_blank"><i class="fa fa-retweet" aria-hidden="true"></i></a>
+            <a href="https://twitter.com/tnrt/status/771744226623324160" target="_blank"><i class="fa fa-heart" aria-hidden="true"></i></a>
+            <a href="https://twitter.com/tnrt/status/771744226623324160" target="_blank"><i class="fa fa-twitter" aria-hidden="true"></i></a>
+          </div>
+        </div>
+      </div>
+      <div class="social-img">
+        <div class="social-content">
+          <script src="//fast.wistia.com/embed/medias/p743is4s8x.jsonp" async></script>
+          <script src="//fast.wistia.com/assets/external/E-v1.js" async></script>
+          <span class="wistia_embed wistia_async_p743is4s8x popover=true popoverContent=link" style="display:inline">
+            <a href="#"><img src="https://s13.postimg.org/707gm7qpz/video_still.png" alt="Click to play video! Today Is Your Day - Explore."></span></a>
+          <p>What did being laid up from surgery teach me? Make the most of every opportunity. Excited to do some camping and astrophotography in New Mexico this week. #TodayIsYourDay
+          </p>
+          <div class="share">
+            <a href="https://www.instagram.com/p/BJvcKsFhzfZ/?taken-by=richarscott" target="_blank"><i class="fa fa-comments" aria-hidden="true"></i></a>
+            <a href="https://www.instagram.com/p/BJvcKsFhzfZ/?taken-by=richarscott" target="_blank"><i class="fa fa-heart" aria-hidden="true"></i></a>
+            <a href="https://www.instagram.com/p/BJvcKsFhzfZ/?taken-by=richarscott" target="_blank"><i class="fa fa-instagram" aria-hidden="true"></i></a>
+          </div> 
+        </div>
+      </div>
+      <div class="social-img hide-750">
+        <div class="social-content">
+          <img src="https://pbs.twimg.com/media/CrRT4OQWAAAE-DZ.jpg" alt="Today Is Your Day - Publish a Book">
+          <p>
+            Sending my children’s book for Kickstarter approval today! One step closer to launch day. #TodayIsYourDay<br><br><br>
+          </p>
+          <div class="share">
+            <a href="https://twitter.com/dadsigner/status/771333664093462528" target="_blank"><i class="fa fa-retweet" aria-hidden="true"></i></a>
+            <a href="https://twitter.com/dadsigner/status/771333664093462528" target="_blank"><i class="fa fa-heart" aria-hidden="true"></i></a>
+            <a href="https://twitter.com/dadsigner/status/771333664093462528" target="_blank"><i class="fa fa-twitter" aria-hidden="true"></i></a>
+          </div> 
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+</html>
