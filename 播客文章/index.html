@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        @import url("https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Open+Sans:wght@300;400;600&display=swap");
+:root {
+  --font-primary: "Open Sans", sans-serif;
+  --font-heading: "DM Sans", sans-serif;
+  --size-base: 1.5rem;
+  --size-sm: 1.4rem;
+  --size-min: 1.1rem;
+  --size-mid: 1.5rem;
+  --size-large: 2.4rem;
+  --size-header: clamp(2.8rem, 0.6rem + 1.6vw, 3.2rem);
+  --color-primary: #363636;
+  --color-inverted: #ffffff;
+  --color-accent: #8f29e0;
+  --grey: #ebe9f5;
+  --grey-light: #faf9ff;
+}
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  position: relative;
+}
+html {
+  font-size: 10px;
+  font-family: var(--font-primary);
+  color: var(--color-primary);
+}
+body {
+  font-size: var(--size-base);
+  width: 90%;
+  max-width: 80rem;
+  margin: auto;
+  padding: 4rem 0 2rem 0;
+  display: flex;
+  flex-direction: column;
+  gap: 2.4rem;
+}
+
+h1 {
+  font-family: var(--font-heading);
+  font-size: var(--size-header);
+  line-height: 140%;
+}
+h2 {
+  font-family: var(--font-heading);
+  font-size: var(--size-large);
+  line-height: 180%;
+}
+p {
+  line-height: 200%;
+}
+p + p {
+  margin-top: 1.2rem;
+}
+.text--size-min {
+  font-size: var(--size-min);
+}
+.button {
+  padding: 0.4rem 1rem;
+  border: none;
+  background: var(--color-accent);
+  color: var(--color-inverted);
+  border-radius: 0.2rem;
+}
+.button--flat {
+  background: none;
+  border: none;
+  color: inherit;
+}
+figure {
+  padding: 0.8rem 0;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.4rem;
+}
+figcaption {
+  font-size: var(--size-min);
+}
+img {
+  display: block;
+  max-width: 100%;
+  max-height: 100%;
+}
+.input {
+  border: 0.1rem solid var(--grey);
+  height: 2.8rem;
+}
+.hidden--mobile{
+  display: none;
+}
+/**/
+header,
+.menu-items,
+.menu--all {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+.menu-items,
+.menu--all {
+  gap: 2rem;
+  list-style: none;
+  font-size: var(--size-base);
+}
+.menu--all {
+  display: none;
+}
+article {
+  display: flex;
+  flex-direction: column;
+  gap: 3.6rem;
+}
+.article-content {
+  display: flex;
+  flex-direction: column;
+}
+.wrapper-action {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 1.2rem;
+}
+.subscribe {
+  padding: 1.2rem 0;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+}
+footer {
+  width: 100%;
+  text-align: center;
+}
+/**/
+header * {
+  font-size: var(--font-heading);
+  font-weight: 700;
+  line-height: 160%;
+}
+.logo {
+  display: inline-block;
+  font-size: var(--size-mid);
+}
+figure.banner-img img {
+  width: 100%;
+  max-height: 60vh;
+  object-fit: cover;
+}
+section {
+  padding: 2rem 0;
+}
+.section--text{
+  margin-top: 1.6rem
+}
+.wrapper-action button{
+  font-size: 1.8rem;
+}
+.newsletter {
+  padding: 1.6rem;
+  background: var(--grey-light);
+  border-radius: 0.4rem;
+}
+/**/
+@media screen and (min-width: 48rem) {
+  .hidden--mobile{
+  display: block;
+}
+  .menu-hidden {
+    display: none;
+  }
+  .menu--all {
+    display: flex;
+  }
+  .article-content {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    grid-auto-flow: row dense;
+  }
+  .article-actions {
+    grid-column: 1 / 2;
+    position: relative;
+  }
+  .article-body {
+    grid-column: 2 / -1;
+  }
+  .wrapper-action {
+    width: 100%;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.2rem;
+    position: sticky;
+    top: 2rem;
+  }
+  .newsletter {
+    padding: 1.6rem 10%;
+  }
+  .subscribe {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    gap: 0;
+  }
+  .input {
+    flex-grow: 2;
+    border-radius: 0.2rem 0 0 0.2rem;
+  }
+  .button.button-subscribe {
+    border-radius: 0 0.2rem 0.2rem 0;
+  }
+}
+    </style>
+</head>
+<body>
+    const getElement = (parent, tagName) =>
+  parent.getElementsByTagName(tagName)[0].textContent;
+
+const getElements = (parent, tagName) => parent.getElementsByTagName(tagName);
+
+var app = new Vue({
+  el: "#app",
+  data: {
+    mousedown: false,
+    title: "",
+    lastUpdated: "",
+    link: "",
+    summary: "",
+    coverImage: "",
+    episodes: [],
+    currentlyPlaying: null,
+    currentTime: "0:00:00",
+    duration: "0:00:00",
+    icons: {
+      play: '<svg class="icon icon-play"><use xlink:href="#play"></use></svg>',
+      pause:
+        '<svg class="icon icon-pause"><use xlink:href="#pause"></use></svg>'
+    },
+    typeAhead: null,
+    searchResults: [],
+    currentSearch: false
+  },
+  methods: {
+    loadPodcast: function(feedUrl) {
+      this.resetSearch();
+      
+      fetch(new Request(`https://cors-anywhere.herokuapp.com/${feedUrl}`)).then(
+        results => {
+          // results returns XML. lets cast this to a string, then create
+          // a new DOM object out of it!
+          results.text().then(str => {
+            let responseDoc = new DOMParser().parseFromString(
+              str,
+              "application/xml"
+            );
+
+            this.title = getElement(responseDoc, "title");
+            this.lastUpdated = getElement(responseDoc, "pubDate");
+            this.link = getElement(responseDoc, "link");
+            this.summary = getElement(responseDoc, "itunes:summary");
+            this.coverImage = responseDoc
+              .getElementsByTagName("itunes:image")[0]
+              .getAttribute("href");
+            this.episodes = [];
+            Array.from(getElements(responseDoc, "item")).forEach(item => {
+              this.episodes.push({
+                title: getElement(item, "title"),
+                pubDate: getElement(item, "pubDate"),
+                description: getElement(item, "description"),
+                duration: getElement(item, "itunes:duration"),
+                audio: item
+                  .getElementsByTagName("enclosure")[0]
+                  .getAttribute("url")
+              });
+            });
+            
+            const lastUpdated = Date.parse(this.lastUpdated);
+            this.lastUpdated = `${lastUpdated}`;
+
+            console.log(this.episodes);
+          });
+        }
+      );
+    },
+    loadEpisode: function(event) {
+      const player = this.$refs.playerAudio;
+      const episode = this.episodes[event.target.dataset.index];
+      const button = this.$refs.playerButton;
+
+      this.currentlyPlaying = episode;
+      player.setAttribute("src", episode.audio);
+      this.togglePlay();
+      player.play();
+    },
+    resetSearch: function(e) {
+      // e.currentTarget.value = '';
+      // this.searchResults = [];
+    },
+    togglePlay: function() {
+      const player = this.$refs.playerAudio;
+      const method = player.paused ? "play" : "pause";
+      
+      player[method]();
+      this.updateButton();
+    },
+    updateButton: function() {
+      const player = this.$refs.playerAudio;
+      const button = this.$refs.playerButton;
+      const icon = player.paused ? this.icons.play : this.icons.pause;
+      
+      button.innerHTML = icon;
+    },
+    handleProgress: function() {
+      const player = this.$refs.playerAudio;
+      const progressBar = this.$refs.progressBar;
+      const percent = player.currentTime / player.duration * 100;
+
+      this.currentTime = this.formatTime(player.currentTime);
+      progressBar.style.flexBasis = `${percent}%`;
+    },
+    durationUpdate: function(e) {
+      this.duration = this.formatTime(e.currentTarget.duration);
+    },
+    formatTime: function(timeInSeconds) {
+      const hours = Math.floor((timeInSeconds / 3600) % 60);
+      let minutes = Math.floor((timeInSeconds / 60) % 60);
+      let seconds = Math.floor(timeInSeconds % 60);
+      
+      minutes = minutes.toString().length === 1 ? `0${minutes}` : minutes;
+      seconds = seconds.toString().length === 1 ? `0${seconds}` : seconds;
+      
+      return `${hours}:${minutes}:${seconds}`;
+    },
+    handleVolumeUpdate: function(e) {
+      const player = this.$refs.playerAudio;
+      player.volume = e.currentTarget.value;
+    },
+    scrubAudio: function(e) {
+      const player = this.$refs.playerAudio;
+      const progressBar = this.$refs.progressBar;
+      const progress = this.$refs.progress;
+      const scrubTime = e.offsetX / progress.offsetWidth * player.duration;
+
+      player.currentTime = scrubTime;
+    },
+    scrubVolume: function(e) {
+      const player = this.$refs.playerAudio;
+      const volumeBar = this.$refs.volumeBar;
+      const volume = this.$refs.volume;
+      const scrubTime = e.offsetX / volume.offsetWidth * 10000;
+
+      volumeBar.style.flexBasis = `${scrubTime / 100}%`;
+      player.volume = scrubTime / 10000;
+    },
+    skip: function(e) {
+      const player = this.$refs.playerAudio;
+      player.currentTime += parseFloat(e.currentTarget.dataset.skip);
+    },
+    search: function(e) {
+      const _that = this;
+      const chars = e.currentTarget.value.length;
+      console.log(chars);
+      this.searchResults = [];
+
+      // Search if we have more than 3 chars.
+      if (chars < 3) {
+        return;
+      }
+
+      if (this.currentSearch) {
+        this.currentSearch.abort();
+      }
+
+      this.currentSearch = _that.getJSON(
+        `https://itunes.apple.com/search?media=podcast&attribute=titleTerm&limit=15&term=${
+          e.currentTarget.value
+        }`,
+        function(response) {
+          for (var i = 0; i < response.results.length; i++) {
+            _that.searchResults.push({
+              trackName: response.results[i].trackName,
+              feedUrl: response.results[i].feedUrl
+            });
+          }
+
+          _that.currentSearch = false;
+        }
+      );
+    },
+    // Adapted from: http://youmightnotneedjquery.com/
+    getJSON: function(url, callback) {
+      const request = new XMLHttpRequest();
+      request.open('GET', url, true);
+
+      request.onload = function() {
+        if (this.status >= 200 && this.status < 400) {
+          callback(JSON.parse(this.response));
+        } else {
+          // We reached our target server, but it returned an error
+         console.error(this.statusText);
+        }
+      };
+
+      request.onerror = function() {
+        // There was a connection error of some sort
+        console.error(this.statusText);
+      };
+
+      request.send();
+    },
+  },
+  created: function() {
+    this.loadPodcast(`https://mbmbam.libsyn.com/rss`);
+  }
+});
+
+</body>
+</html>
