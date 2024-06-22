@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style lang="less">
+        .tooltip {
+    transform: translate(-50%, -200%);
+    display: none;
+    position: absolute;
+    color: #F0B015;
+    background-color: #000;
+    border: none;
+    border-radius: 4px;
+    padding: 15px 10px;
+    z-index: 10;
+    display: block;
+    width: 100%;
+    max-width: 200px;
+    top: 0;
+    left: 50%;
+    text-align: center;
+}
+
+.tooltip:after {
+    content: "";
+    display: block;
+    position: absolute;
+    border-color: rgba(0, 0, 0, 1) rgba(0, 0, 0, 0);
+    border-style: solid;
+    border-width: 15px 15px 0;
+    bottom: -13px;
+    left: 50%;
+    transform: translate(-50%, 0);
+    width: 0;
+}
+
+
+
+
+/* ----------------------- Display ------------------------ */
+
+* { box-sizing: border-box; }
+
+body {
+    font-family: "Quicksand", sans-serif;
+    text-align: center;
+    padding: 20px 50px 0;
+    background: #222;
+    color: #eee;
+    height: 100vh;
+}
+
+.wrapper {
+    margin: 100px auto;
+    display: -webkit-box;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-flex-flow: row wrap;
+    flex-flow: row wrap;
+    justify-content: space-around;
+    align-items: flex-start;
+/*     overflow: auto; */
+}
+
+.wrapper > * {
+    margin-bottom: 100px;
+    flex-shrink: 0;
+    max-width: 300px;
+}
+
+img {max-width: 300px;}
+
+hr {
+  max-width: 100px;
+  margin: 30px auto 0;
+  border-bottom: 1px solid #444;
+}
+
+h1 {
+    color: #F0B015;
+  font-size: 2em;
+}
+
+a {
+    color: #eee;
+}
+
+input {
+  text-align: left;
+}
+
+
+
+
+
+
+      
+
+    </style>
+</head>
+<body>
+    <h1>Moving Tooltips on anything.</h1> 
+<h2>Very light on the JS</h2>
+<hr>
+
+<div class="wrapper">
+      
+    <a href="" class="tooltipLink" data-tooltip="I am an HTML link!">I'm a hyperlink</a>
+ 
+    <p class="tooltipLink" data-tooltip="I am a P tag!"> <strong>A Paragraph</strong><br><br>space Anna Sale creates on the WNYC podcast Death, Sex, and Money. Her show is, in this moment, powerful; the empathy she extends to her guests feels real and deep; the conversations</p>
+
+    <input type="text" class="tooltipLink" data-tooltip="Type something, foo!" value="text input"></input>
+
+<button type="text" class="tooltipLink" data-tooltip="I am a Button!">Button</button>
+
+    <img class="tooltipLink" data-tooltip="You disgust me. Meh!" src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/30256/karate.jpg">
+     
+</div> 
+
+<script>
+     
+$('.tooltipLink').hover(function () {
+     var title = $(this).attr('data-tooltip');
+     $(this).data('tipText', title);
+     if(title == ''){}
+     else{
+        $('<p class="tooltip"></p>').fadeIn(200).text(title).appendTo('body');
+     }
+ }, function () {
+     $(this).attr('data-tooltip', $(this).data('tipText'));
+     $('.tooltip').fadeOut(200);
+ }).mousemove(function (e) {
+     var mousex = e.pageX;
+     var mousey = e.pageY;
+     $('.tooltip').css({
+         top: mousey,
+         left: mousex
+     })
+ });
+</script>
+</body>
+</html>
