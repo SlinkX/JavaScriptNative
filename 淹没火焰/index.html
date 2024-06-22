@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+  padding-left: 50px;
+  font-size: 20px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-column-gap: 30px;
+}
+
+h2 {
+  margin-bottom: 0.5rem;
+}
+
+i {
+  display: block;
+  margin-bottom: 3rem;
+}
+    </style>
+</head>
+<body>
+    <div>
+        <h2>Flood the Flames</h2>
+        <i>An Eggplant Community Jam Entry</i>
+      
+        <p>
+          Flood plants by clicking on them to stop the spread of flames. Save as many plants as possible!
+        </p>
+        <br/>
+      
+        <p>
+          This game was written in 498 characters for the <a href="https://itch.io/jam/eggplant-podcast-community-game-jam-3">Eggplant Show Community Jam #3</a> in April 2020. The theme of this jam was "Keeping it Short".
+        </p>
+        <p>
+          I decided to apply this theme to the source code of my entry in the spirit of <a href="https://itch.io/jam/tweettweetjam">TweetTweetJam</a>. Create a game that fits inside the length of two tweets (560 characters).
+        </p>
+        <p>
+          You can check out the <a href="https://rmkubik.itch.io/flood-the-flames">submission</a> on Itch.io.
+        </p>
+      </div>
+      <script>
+        d=document
+p=a=>{e=d.createElement('p');a.append(e);return e;}
+y=p(d.body)
+s=y.style
+s.display='grid'
+s.gridTemplate=`${'2em '.repeat(11)}/${'3em '.repeat(9)}`
+n='innerText'
+o='🌱';r='🔥'
+h=Array(99).fill(o)
+g=h.map(a=>p(y))
+m=a=>{h.map((v,i)=>g[i][n]=v);z[n]=h.reduce((e,v)=>v==o?e+1:e,0)}
+z=p(y)
+u=a=>h.map((e,i)=>e!=o?e:h[i+1]==r&&i%9!=8||h[i-1]==r&&i%9!=0||h[i+9]==r||h[i-9]==r?r:e)
+g.map((e,i)=>e.onclick=a=>{e[n]==o&&(h[i]='🌊');h=u();m()})
+q=a=>Math.random()*99|0
+h[q()]=r;h[q()]=r;h[q()]=r
+m()
+      </script>
+</body>
+</html>
