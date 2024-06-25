@@ -1,0 +1,526 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css?family=Ubuntu');
+
+body {
+  font-family: 'Ubuntu', sans-serif;
+  color: silver;
+  text-shadow: 2px 2px 5px rgba(14, 14, 14, 1);
+}
+
+#background-gradient {
+  /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#d8e0de+0,aebfbc+22,99afab+33,8ea6a2+50,829d98+67,4e5c5a+82,0e0e0e+100;Grey+3D */
+  background: rgb(216,224,222); /* Old browsers */
+  background: -moz-linear-gradient(top,  rgba(216,224,222,1) 0%, rgba(174,191,188,1) 22%, rgba(153,175,171,1) 33%, rgba(142,166,162,1) 50%, rgba(130,157,152,1) 67%, rgba(78,92,90,1) 82%, rgba(14,14,14,1) 100%); /* FF3.6-15 */
+  background: -webkit-linear-gradient(top,  rgba(216,224,222,1) 0%,rgba(174,191,188,1) 22%,rgba(153,175,171,1) 33%,rgba(142,166,162,1) 50%,rgba(130,157,152,1) 67%,rgba(78,92,90,1) 82%,rgba(14,14,14,1) 100%); /* Chrome10-25,Safari5.1-6 */
+  background: linear-gradient(to bottom,  rgba(216,224,222,1) 0%,rgba(174,191,188,1) 22%,rgba(153,175,171,1) 33%,rgba(142,166,162,1) 50%,rgba(130,157,152,1) 67%,rgba(78,92,90,1) 82%,rgba(14,14,14,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#d8e0de', endColorstr='#0e0e0e',GradientType=0 ); /* IE6-9 */
+}
+
+.jumbotron {
+  /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#b5bdc8+0,828c95+36,28343b+100;Grey+Black+3D */
+  background: rgb(181,189,200); /* Old browsers */
+  background: -moz-linear-gradient(top,  rgba(181,189,200,1) 0%, rgba(130,140,149,1) 36%, rgba(40,52,59,1) 100%); /* FF3.6-15 */
+  background: -webkit-linear-gradient(top,  rgba(181,189,200,1) 0%,rgba(130,140,149,1) 36%,rgba(40,52,59,1) 100%); /* Chrome10-25,Safari5.1-6 */
+  background: linear-gradient(to bottom,  rgba(181,189,200,1) 0%,rgba(130,140,149,1) 36%,rgba(40,52,59,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#b5bdc8', endColorstr='#28343b',GradientType=0 ); /* IE6-9 */
+  box-shadow: 0 4px 8px 0 rgba(14, 14, 14, 0.7), 0 6px 20px 0 rgba(14, 14, 14, 0.69);
+}
+
+img {
+  border-radius: 6px;
+  max-width: 100%;
+  height: auto;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  box-shadow: 0 4px 8px 0 rgba(14, 14, 14, 0.7), 0 6px 20px 0 rgba(14, 14, 14, 0.69);
+}
+
+.img-margin {
+  margin-top: 20px;
+}
+
+.well {
+  /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#eeeeee+0,cccccc+100;Gren+3D */
+  background: rgb(238,238,238); /* Old browsers */
+  background: -moz-linear-gradient(top,  rgba(238,238,238,1) 0%, rgba(204,204,204,1) 100%); /* FF3.6-15 */
+  background: -webkit-linear-gradient(top,  rgba(238,238,238,1) 0%,rgba(204,204,204,1) 100%); /* Chrome10-25,Safari5.1-6 */
+  background: linear-gradient(to bottom,  rgba(238,238,238,1) 0%,rgba(204,204,204,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#eeeeee', endColorstr='#cccccc',GradientType=0 ); /* IE6-9 */
+  box-shadow: 0 4px 8px 0 rgba(14, 14, 14, 0.7), 0 6px 20px 0 rgba(14, 14, 14, 0.69);
+}
+
+.text-well {
+  color: black;
+  text-shadow: none;
+  height: 500px;
+  margin-top: 20px;
+  margin-left: 20px;
+  margin-right: 20px;
+  overflow: auto;
+}
+
+.page-header {
+  border-color: black;
+}
+
+.credits {
+  margin-top: 30px;
+}
+
+.media-poster1 {
+  height: 170px;
+  margin-top: 20px;
+}
+
+.media-poster2 {
+  margin-top: 20px;
+  width: 125px;
+  height: 125px;
+}
+
+.media-title {
+  text-align: center;
+}
+
+.media-owner {
+  text-align: center;
+}
+
+a:link {
+  color: silver;
+}
+
+a:visited {
+  color: silver;
+}
+
+a:hover {
+  color: white;
+}
+
+.link-icon {
+  margin-right: 15px;
+  margin-bottom: 30px;
+  margin-left: 15px;
+}
+
+a#author:link {
+  color: #3366BB;
+}
+
+a#author:visited {
+  color: #3366BB;
+}
+
+a#author:hover {
+  color: white;
+  text-decoration: none;
+}
+
+/* For width 768px and larger: */
+@media only screen and (min-width: 768px) {
+  img {
+    height: 250px;
+  }
+  
+  .img-margin {
+    width: 90%;
+  }
+  
+  .text-well {
+    margin: auto;
+    height: 520px;
+  }
+  
+  .media-poster1 {
+    height: 230px;
+  }
+  
+  .media-poster2 {
+    width: 200px;
+    height: 200px;
+  }
+}
+
+/* For width 992px and larger: */
+@media only screen and (min-width: 992px) {
+  img {
+    height: 350px;
+  }
+  
+  .img-margin {
+    width: 100%;
+  }
+  
+  .text-well {
+    margin: auto;
+    height: 720px;
+  }
+}
+
+/* For width 1200px and larger: */
+@media only screen and (min-width: 1200px) {
+  img {
+    height: 400px;
+  }
+  
+  .img-margin {
+    width: 90%;
+  }
+  
+  .text-well {
+    margin: auto;
+    height: 820px;
+  }
+}
+    </style>
+</head>
+<body>
+    <div class="container-fluid" id="background-gradient">
+        <!-- START Header -->
+        <header class="jumbotron text-center">
+          <h1>Joey "CoCo" Diaz</h1>
+          <h3><em>Actor, Stand Up Comedian, and Podcaster</em></h3>
+          <h1>
+            <a href="http://joeydiaz.net/" target="_blank"><i class="fa fa-globe"></i></a>
+            <a href="https://en.wikipedia.org/wiki/Joey_Diaz" target="_blank"><i class="fa fa-wikipedia-w"></i></a>
+            <a href="http://www.imdb.com/name/nm0224995/" target="_blank"><i class="fa fa-imdb"></i></a>
+            <a href="http://thechurchofwhatshappeningnow.libsyn.com/" target="_blank"><i class="fa fa-rss"></i></a>
+            <div class="clearfix visible-xs-block"></div>
+            <a href="https://twitter.com/madflavor?ref_src=twsrc%5Egoogle%7Ctwcamp%5Eserp%7Ctwgr%5Eauthor" target="_blank"><i class="fa fa-twitter"></i></a>
+            <a href="https://www.facebook.com/joey.c.diaz" target="_blank"><i class="fa fa-facebook-official"></i></a>
+            <a href="https://www.instagram.com/madflavors_world/" target="_blank"><i class="fa fa-instagram"></i></a>
+            <a href="https://www.youtube.com/user/madflavorsworld" target="_blank"><i class="fa fa-youtube-play"></i></a>
+          </h1>
+        </header>
+        <!-- END Header -->
+        <!-- START Body -->
+        <div class="container-fluid">
+          <!-- START Summary -->
+          <div class="row">
+            <div class="col-sm-6">
+              <img src="https://s3.amazonaws.com/webassets.ticketmob.com/LS/images/ShowPosters/JoeyDiaz.JPG" alt="Joey Diaz headshot."/>
+              <img class="img-margin" src="http://1.images.comedycentral.com/images/ccstudios/video/tinh_s2_Joey_Diaz.jpg?quality=0.91&width=580&height=326&crop=true" alt="Another Joey Diaz headshot."/>
+            </div>
+            <div class="well col-sm-6 text-well">
+              <h3 class="text-center page-header"><i class="fa fa-user-circle-o"></i> Joey "CoCo" Diaz</h3>
+              <p>Joey "CoCo" Diaz (born February 19, 1963) is an American stand up comedian.</p>
+              <p>He was born in Cuba, and raised in North Bergen, New Jersey. He lost his father at age 3 and then his mother at age 15. Various families in North Bergen gave their assistance to Joey by offering their hospitality to him. Joey says a total of 20 Italian and Irish families attempted to assist him. He explains that their sense of humor greatly influenced his own career, which had its earliest beginnings as a student in North Bergen High School.</p>
+              <p>Joey's struggle as an a young man who lost his parents early in life led to him living a life of frequent criminal activity. He often comitted robberies and sold drugs. When the heat became too much, he left North Bergen for the University of Colorado at Boulder on June 1, 1985, but his academic life was interrupted when he was arrested for kidnapping and aggravated robbery, for which he served time in prison. His standup comedy career began in prison, where he gained popularity by improvising material in front of Thursday night Movie Night audiences after the projector malfunctioned.</p>
+              <p>After he was released from prison and frequenting open mics in Denver and Seattle, Joey eventually moved to Los Angeles, where he began performing in front of open mic audiences. After his career spread to other venues, he accepted an offer from a CBS talent scout to work on a television pilot. Although the series was not purchased, the visibility it gave him helped his career, garnering him appearances on the television show <em>Law & Order</em> and in films including <em>Spider-Man 2</em> and the 2004 film <em>Taxi</em>. His most visible role was in the 2005 film <em>The Longest Yard</em> and as a prison convict named Joey the Candy Bar Criminal, a part he played in four 2007 episodes of <em>My Name is Earl</em>, and which he obtained on the basis of his own past in prison.</p>
+              <p>He became a fan favorite on Joe Rogan's popular podcast <em>The Joe Rogan Experience</em>. Listeners really enjoyed listening to stories of his crazy childhood in North Bergen and all his drug-fueled misadventures.</p>
+              <p>In 2010 he began co-hosting <em>Beauty and Da Beast</em> with his friend and comedian Felicia Michaels. It ended in 2012 after releasing over one hundred episodes.
+              <p>Presently Joey Diaz is touring the USA doing standup comedy and hosting a podcast called <em>The Church of What’s Happening Now</em> which is regularly in the top rated podcasts on iTunes. He does so along his co-host Lee "The Flying Jew" Syatt. "The Church" has garnered enough of a listenership that they have packed comedy clubs during live staged recordings of the podcast.</p>
+              <blockquote class="blockquote-reverse">
+                <p>Yeah, he's something odd. There's never been anyone like him before. He's a force of nature. He's like a rare occurence.</p>
+                <footer>Joe Rogan in <cite>The Joe Rogan Experience #855</cite></footer>
+              </blockquote>
+            </div>
+          </div>
+          <!-- END Summary -->
+          <hr>
+          <!-- START Timeline -->
+          <div class="row">
+            <div class="col-sm-6">
+              <img src="https://pbs.twimg.com/media/BVsh5CWCUAE9zvH.jpg" alt="Joey Diaz's high school yearbook picture."/>
+              <img class="img-margin" src="https://i.ytimg.com/vi/vlTB4MChaYQ/maxresdefault.jpg" alt="Joey Diaz in The Longest Yard."/>
+            </div>
+            <div class="well col-sm-6 text-well">
+              <h3 class="page-header text-center"><i class="fa fa-th-list"></i> Timeline</h3>
+              <dl class="dl-horizontal">
+                <dt>Feb 19 1963</dt>
+                <dd>Born Jose Antonio Diaz in Havana, Cuba.</dd>
+                <dt>1960s</dt>
+                <dd>Moved to New York City with his mother. They eventually settle in North Bergen, New Jersey.</dd>
+                <dt>1978</dt>
+                <dd>Loses mother at age 15 and is taken in by various North Bergen families. </dd>
+                <dt>Jun 1 1985</dt>
+                <dd>After running into trouble due to his criminal activity, Joey decides to move to Boulder, Colorado to have a fresh start.</dd>
+                <dt>1980s</dt>
+                <dd>Joey gets arrested for kidnapping after trying to rob a drug drealer. He does some time in Colorado. It is in prison that he discovers his calling as a stand up comedian. He moves to Seattle, Washington to hone his craft in the Seattle comedy scene.</dd>
+                <dt>1996</dt>
+                <dd>Moves to Los Angeles, Caifornia to further pursue his career in entertainment. He begins to frequent the Comedy Store where he quickly gets passed as a paid regular by legendary comedy club owner Mitzi Shore. He also meets Joe Rogan who would become one of his greatest advocates.</dd>
+                <dt>1998</dt>
+                <dd>Lands first role in a major feature film. He plays a referee in the sports comedy <em>BASEketball</em>.</dd>
+                <dt>2005</dt>
+                <dd>Joey finally comes into the public eye after he works alongside Adam Sandler in the remake of 1974 film <em>The Longest Yard</em>.</dd>
+                <dt>Jun 15 2010</dt>
+                <dd>Makes first appearance on Joe Rogan's popular podcast <em>The Joe Rogan Experience</em>. Over many appearances, Joey manages to greatly expand his fanbase thanks to his off-the-cuff humor.</dd>
+                <dt>Aug 2010</dt>
+                <dd>Joey makes his first attempt at podcasting alongside comedian and friend Felicia Michaels. Together they hosted <em>Beauty and Da Beast</em> until the end of its run in 2012.</dd>
+                <dt>Apr 2011</dt>
+                <dd>Releases his first stand up comedy album <em>Live at the 3 Clubs in Hollywood</em>.</dd>
+                <dt>Sep 2 2012</dt>
+                <dd>First broadcast of his current podcast <em>The Church of What's Happening Now</em> alongside co-host and sidekick Lee "The Flying Jew" Syatt.</dd>
+                <dt>2013</dt>
+                <dd>Works alongside renowned actor Robert De Niro in <em>Grudge Match</em> in which he plays De Niro's coach.</dd>
+              </dl>
+              <blockquote class="blockquote-reverse">
+                <p>Take a chance. Columbus did.</p>
+                <footer>Joey "CoCo" Diaz</footer>
+              </blockquote>
+            </div>
+          </div>
+          <!-- END Timeline -->
+          <hr>
+          <!-- START Film -->
+          <h3 class="credits"><i class="fa fa-film"></i> Film</h3>
+          <div class="row">
+            <div class="col-xs-6 col-sm-4 col-md-3 col-lg-2">
+                <img class="media-poster1" src="https://images-na.ssl-images-amazon.com/images/M/MV5BMmZjZDg2ZjItYTVkNC00YWRmLThmZTMtNTYxNTI5MWM4NjU4XkEyXkFqcGdeQXVyMTQxNzMzNDI@._V1_SY1000_CR0,0,670,1000_AL_.jpg" alt="BASEketball movie poster.">
+                <h4 class="media-title">BASEketball (1998)</h4>
+                <h5 class="media-owner">Universal Pictures</h5>
+              </div>
+            <div class="col-xs-6 col-sm-4 col-md-3 col-lg-2">
+                <img class="media-poster1" src="https://images-na.ssl-images-amazon.com/images/M/MV5BNjkzOTAyNzkwOV5BMl5BanBnXkFtZTcwMTI4NDAzMQ@@._V1_.jpg" alt="American Gun movie poster.">
+                <h4 class="media-title">American Gun (2002)</h4>
+                <h5 class="media-owner">Miramax Films</h5>
+              </div>
+            <div class="clearfix visible-xs-block"></div>
+            <div class="col-xs-6 col-sm-4 col-md-3 col-lg-2">
+                <img class="media-poster1" src="https://images-na.ssl-images-amazon.com/images/M/MV5BMTc0OTYwMzQ5OF5BMl5BanBnXkFtZTYwMzQyMDg5._V1_.jpg" alt="Analyze That movie poster"/>
+                <h4 class="media-title">Analyze That (2002)</h4>
+                <h5 class="media-owner">Warner Bros. Pictures</h5>
+              </div>
+            <div class="clearfix visible-sm-block"></div>
+            <div class="col-xs-6 col-sm-4 col-md-3 col-lg-2">
+                <img class="media-poster1" src="https://images-na.ssl-images-amazon.com/images/M/MV5BMzY2ODk4NmUtOTVmNi00ZTdkLTlmOWYtMmE2OWVhNTU2OTVkXkEyXkFqcGdeQXVyMTQxNzMzNDI@._V1_SY1000_CR0,0,729,1000_AL_.jpg" alt="Spider-Man 2 movie poster."/>
+                <h4 class="media-title">Spider-Man 2 (2004)</h4>
+                <h5 class="media-owner">Columbia Pictures</h5>
+              </div>
+            <div class="clearfix visible-xs-block"></div>
+            <div class="clearfix visible-md-block"></div>
+            <div class="col-xs-6 col-sm-4 col-md-3 col-lg-2">
+                <img class="media-poster1" src="https://images-na.ssl-images-amazon.com/images/M/MV5BMTYwNTY2NTkzNV5BMl5BanBnXkFtZTYwMjE2ODA3._V1_.jpg" alt="Taxi movie poster."/>
+                <h4 class="media-title">Taxi (2004)</h4>
+                <h5 class="media-owner">20th Century Fox</h5>
+              </div>
+            <div class="col-xs-6 col-sm-4 col-md-3 col-lg-2">
+              <img class="media-poster1" src="https://images-na.ssl-images-amazon.com/images/M/MV5BMTUyOTA4OTg5OV5BMl5BanBnXkFtZTcwMTM4MjA0MQ@@._V1_.jpg" alt="Break a Leg movie poster."/>
+              <h4 class="media-title">Break a Leg (2005)</h4>
+              <h5 class="media-owner">MTI Home Video</h5>
+            </div>
+            <div class="clearfix visible-xs-block"></div>
+            <div class="clearfix visible-sm-block"></div>
+            <div class="clearfix visible-lg-block"></div>
+            <div class="col-xs-6 col-sm-4 col-md-3 col-lg-2">
+              <img class="media-poster1" src="https://images-na.ssl-images-amazon.com/images/M/MV5BMTc1NTQyNDk2NV5BMl5BanBnXkFtZTcwOTE2OTQzMw@@._V1_SY1000_CR0,0,675,1000_AL_.jpg" alt="The Longest Yard movie poster."/>
+              <h4 class="media-title">The Longest Yard (2005)</h4>
+              <h5 class="media-owner">Paramount Pictures</h5>
+            </div>
+            <div class="col-xs-6 col-sm-4 col-md-3 col-lg-2">
+              <img class="media-poster1" src="https://images-na.ssl-images-amazon.com/images/M/MV5BMjA5NTc0NjE2N15BMl5BanBnXkFtZTcwMDQwMzU1MQ@@._V1_.jpg" alt="Smiley Face movie poster."/>
+              <h4 class="media-title">Smiley Face (2007)</h4>
+              <h5 class="media-owner">First Look International</h5>
+            </div>
+            <div class="clearfix visible-xs-block"></div>
+            <div class="clearfix visible-md-block"></div>
+            <div class="col-xs-6 col-sm-4 col-md-3 col-lg-2">
+              <img class="media-poster1" src="https://images-na.ssl-images-amazon.com/images/M/MV5BMTgxMzc0MzYwNl5BMl5BanBnXkFtZTcwOTY3ODc4Mg@@._V1_.jpg" alt="Boiler Maker movie poster."/>
+              <h4 class="media-title">Boiler Maker (2008)</h4>
+              <h5 class="media-owner">Hannover House</h5>
+            </div>
+            <div class="clearfix visible-sm-block"></div>
+            <div class="col-xs-6 col-sm-4 col-md-3 col-lg-2">
+              <img class="media-poster1" src="https://images-na.ssl-images-amazon.com/images/M/MV5BMTc2MzI2NDYxNl5BMl5BanBnXkFtZTcwMDcyNzUyMw@@._V1_.jpg" alt="The Deported movie poster."/>
+              <h4 class="media-title">The Deported (2009)</h4>
+              <h5 class="media-owner">701 Productions</h5>
+            </div>
+            <div class="clearfix visible-xs-block"></div>
+            <div class="col-xs-6 col-sm-4 col-md-3 col-lg-2">
+              <img class="media-poster1" src="https://images-na.ssl-images-amazon.com/images/M/MV5BMjIzMjY4MTk2M15BMl5BanBnXkFtZTcwNzQ3ODg3NQ@@._V1_.jpg" alt="Bucky Larson: Born to Be a Star movie poster."/>
+              <h4 class="media-title">Bucky Larson: Born to Be a Star (2011)</h4>
+              <h5 class="media-owner">Columbia Pictures</h5>
+            </div>
+            <div class="col-xs-6 col-sm-4 col-md-3 col-lg-2">
+              <img class="media-poster1" src="https://images-na.ssl-images-amazon.com/images/M/MV5BMTY3NTkxMTgzNV5BMl5BanBnXkFtZTgwNjg0MzE2MDE@._V1_SY1000_CR0,0,674,1000_AL_.jpg" alt="Grudge Match movie poster."/>
+              <h4 class="media-title">Grudge Match (2013)</h4>
+              <h5 class="media-owner">Warner Bros. Pictures</h5>
+            </div>
+          </div>
+          <!-- END Film -->
+          <hr>
+          <!-- START Television -->
+          <h3 class="credits"><i class="fa fa-television"></i> Television</h3>
+          <div class="row">
+            <div class="col-xs-6 col-sm-4 col-md-3 col-lg-2">
+                <img class="media-poster1" src="https://static.justwatch.com/poster/538361/s592" alt="NYPD Blue poster.">
+                <h4 class="media-title">NYPD Blue (2002)</h4>
+                <h5 class="media-owner">ABC</h5>
+              </div>
+            <div class="col-xs-6 col-sm-4 col-md-3 col-lg-2">
+                <img class="media-poster1" src="https://fanart.tv/fanart/tv/72167/tvposter/cold-case-56a94f292ba39.jpg" alt="Cold Case poster.">
+                <h4 class="media-title">Cold Case (2004)</h4>
+                <h5 class="media-owner">CBS</h5>
+              </div>
+            <div class="clearfix visible-xs-block"></div>
+            <div class="col-xs-6 col-sm-4 col-md-3 col-lg-2">
+                <img class="media-poster1" src="http://www.impawards.com/tv/posters/law_and_order_special_victims_unit.jpg" alt="Law and Order: Special Victims Unit poster."/>
+                <h4 class="media-title">Law and Order: Special Victims Unit (2004)</h4>
+                <h5 class="media-owner">NBC</h5>
+              </div>
+            <div class="clearfix visible-sm-block"></div>
+            <div class="col-xs-6 col-sm-4 col-md-3 col-lg-2">
+                <img class="media-poster1" src="http://s3cf.recapguide.com/img/posters/How-I-Met-Your-Mother.jpg" alt="How I Met Your Mother poster."/>
+                <h4 class="media-title">How I Met Your Mother (2006)</h4>
+                <h5 class="media-owner">CBS</h5>
+              </div>
+            <div class="clearfix visible-xs-block"></div>
+            <div class="clearfix visible-md-block"></div>
+            <div class="col-xs-6 col-sm-4 col-md-3 col-lg-2">
+              <img class="media-poster1" src="http://cdn-static.sidereel.com/tv_shows/13061/giant_2x/75914-2.jpg" alt="Everybody Hates Chris poster."/>
+              <h4 class="media-title">Everybody Hates Chris (2006)</h4>
+              <h5 class="media-owner">The CW</h5>
+            </div>
+            <div class="col-xs-6 col-sm-4 col-md-3 col-lg-2">
+              <img class="media-poster1" src="https://images-na.ssl-images-amazon.com/images/M/MV5BMTc2MzQxNDIxMl5BMl5BanBnXkFtZTcwOTk1MDU1MQ@@._V1_.jpg" alt="My Name Is Earl poster."/>
+              <h4 class="media-title">My Name Is Earl (2007)</h4>
+              <h5 class="media-owner">NBC</h5>
+            </div>
+            <div class="clearfix visible-xs-block"></div>
+            <div class="clearfix visible-sm-block"></div>
+            <div class="clearfix visible-lg-block"></div>
+            <div class="col-xs-6 col-sm-4 col-md-3 col-lg-2">
+                <img class="media-poster1" src="https://images-na.ssl-images-amazon.com/images/M/MV5BMTU0MTQxOTgzMV5BMl5BanBnXkFtZTgwNTEyMzA2MDE@._V1_.jpg" alt="The Dog Who Saved Christmas poster."/>
+                <h4 class="media-title">The Dog Who Saved Christmas (2009)</h4>
+                <h5 class="media-owner">ABC Family</h5>
+              </div>
+            <div class="col-xs-6 col-sm-4 col-md-3 col-lg-2">
+              <img class="media-poster1" src="https://images-na.ssl-images-amazon.com/images/M/MV5BOTk2MDU4NTYxOF5BMl5BanBnXkFtZTgwOTA5NDA2MDE@._V1_.jpg" alt="The Dog Who Saved Christmas Vacation poster."/>
+              <h4 class="media-title">The Dog Who Saved Christmas Vacation (2010)</h4>
+              <h5 class="media-owner">ABC Family</h5>
+            </div>
+            <div class="clearfix visible-xs-block"></div>
+            <div class="clearfix visible-md-block"></div>
+            <div class="col-xs-6 col-sm-4 col-md-3 col-lg-2">
+              <img class="media-poster1" src="https://images-na.ssl-images-amazon.com/images/M/MV5BMTY2MTc2NzMwNl5BMl5BanBnXkFtZTgwNjY4ODAxMDE@._V1_.jpg" alt="Children's Hospital poster."/>
+              <h4 class="media-title">Children's Hospital (2012)</h4>
+              <h5 class="media-owner">Adult Swim</h5>
+            </div>
+            <div class="clearfix visible-sm-block"></div>
+            <div class="col-xs-6 col-sm-4 col-md-3 col-lg-2">
+              <img class="media-poster1" src="http://cdn-static.sidereel.com/tv_shows/57754/giant_2x/VSC_ThisIsNotH.jpg" alt="This Is Not Happening poster."/>
+              <h4 class="media-title">This Is Not Happening (2013 - 2016)</h4>
+              <h5 class="media-owner">Comedy Central</h5>
+            </div>
+            <div class="clearfix visible-xs-block"></div>
+            <div class="col-xs-6 col-sm-4 col-md-3 col-lg-2">
+              <img class="media-poster1" src="https://images-na.ssl-images-amazon.com/images/M/MV5BMTY3NzY2NDA2Ml5BMl5BanBnXkFtZTgwNDA5MzI2NzE@._V1_.jpg" alt="Brooklyn Nine-Nine poster."/>
+              <h4 class="media-title">Brooklyn Nine-Nine (2013)</h4>
+              <h5 class="media-owner">Fox</h5>
+            </div>
+            <div class="col-xs-6 col-sm-4 col-md-3 col-lg-2">
+              <img class="media-poster1" src="https://upload.wikimedia.org/wikipedia/en/9/94/Maron_IFC_Promotional_Poster.jpg" alt="Maron poster."/>
+              <h4 class="media-title">Maron (2014 - 2016)</h4>
+              <h5 class="media-owner">IFC</h5>
+            </div>
+          </div>
+          <!-- END Television -->
+          <hr>
+          <!-- START Comedy Albums -->
+          <h3 class="credits"><i class="fa fa-play-circle"></i> Comedy Albums</h3>
+          <div class="row">
+            <div class="col-xs-6 col-sm-4 col-md-3 col-lg-2">
+              <img class="media-poster2" src="http://i.slkimg.com/isv1/album/v55351e162ad68ff6/1417382/web/3/fill/5,0/600.jpg" alt="Live at the 3 Clubs in Hollywood poster.">
+              <h4 class="media-title">Live at the 3 Clubs in Hollywood (2011)</h4>
+            </div>
+            <div class="col-xs-6 col-sm-4 col-md-3 col-lg-2">
+              <img class="media-poster2" src="https://standupobserver.files.wordpress.com/2012/03/joey.png" alt="It's Either You or the Priest poster.">
+              <h4 class="media-title">It's Either You or the Priest (2012)</h4>
+            </div>
+            <div class="clearfix visible-xs-block"></div>
+            <div class="col-xs-6 col-sm-4 col-md-3 col-lg-2">
+              <img class="media-poster2" src="https://images-na.ssl-images-amazon.com/images/I/51jvwTHX6ZL._SS500.jpg" alt="The Blue Album poster."/>
+              <h4 class="media-title">The Blue Album (2013)</h4>
+            </div>
+            <div class="clearfix visible-sm-block"></div>
+            <div class="col-xs-6 col-sm-4 col-md-3 col-lg-2">
+              <img class="media-poster2" src="http://is2.mzstatic.com/image/thumb/Music4/v4/56/ca/a1/56caa1ed-c289-e514-6e33-a83d51b9cde7/source/600x600bb.jpg" alt="You Can't Eat Pussy With Asthma poster."/>
+              <h4 class="media-title">You Can't Eat Pussy With Asthma (2013)</h4>
+            </div>
+            <div class="clearfix visible-xs-block"></div>
+            <div class="clearfix visible-md-block"></div>
+            <div class="col-xs-6 col-sm-4 col-md-3 col-lg-2">
+              <img class="media-poster2" src="https://pbs.twimg.com/media/CV9hdEdUsAEa8Oa.jpg" alt="Savage Dad poster."/>
+              <h4 class="media-title">Savage Dad (2015)</h4>
+            </div>
+          </div>
+          <!-- END Comedy Albums -->
+          <hr>
+          <!-- START Podcasts -->
+          <h3 class="credits"><i class="fa fa-podcast"></i> Podcasts</h3>
+          <div class="row">
+            <div class="col-xs-6 col-sm-4 col-md-3 col-lg-2">
+              <img class="media-poster2" src="http://static.wixstatic.com/media/74201e69b21014d907dc885fddddda04.wix_mp" alt="Beauty and Da Beast poster"/>
+              <h4 class="media-title">Beauty and Da Beast (2010 - 2012)</h4>
+            </div>
+            <div class="col-xs-6 col-sm-4 col-md-3 col-lg-2">
+              <img class="media-poster2" src="http://static.libsyn.com/p/assets/0/9/2/b/092b6071107e1f7d/itunes.jpg" alt="The Church of What's Happening Now poster."/>
+              <h4 class="media-title">The Church of What's Happening Now (2012 - present)</h4>
+            </div>
+          </div>
+          <h4 class="credits">Has also made appearances on:</h4>
+          <div class="row">
+            <div class="col-xs-6 col-sm-4 col-md-3 col-lg-2">
+              <img class="media-poster2" src="http://prommanow.com/wp-content/uploads/2015/12/joe-rogan-ex.jpg" alt="The Joe Rogan Experience poster."/>
+              <h4 class="media-title">The Joe Rogan Experience</h4>
+            </div>
+            <div class="col-xs-6 col-sm-4 col-md-3 col-lg-2">
+              <img class="media-poster2" src="http://is4.mzstatic.com/image/thumb/Music62/v4/8d/e9/1e/8de91e9d-f9cb-fd7d-0c9f-706282d0fdb6/source/600x600bb.jpg" alt="Duncan Trussell Family Hour poster."/>
+              <h4 class="media-title">Duncan Trussell Family Hour</h4>
+            </div>
+            <div class="clearfix visible-xs-block"></div>
+            <div class="col-xs-6 col-sm-4 col-md-3 col-lg-2">
+              <img class="media-poster2" src="http://allthingscomedy.com/system/channels/album_covers/000/000/003/show/SkepticTank_cover4.jpg?1390768643" alt="Ari Shaffir's Skeptic Tank poster."/>
+              <h4 class="media-title">Ari Shaffir's Skeptic Tank</h4>
+            </div>
+            <div class="clearfix visible-sm-block"></div>
+            <div class="col-xs-6 col-sm-4 col-md-3 col-lg-2">
+              <img class="media-poster2" src="http://allthingscomedy.com/system/channels/album_covers/000/000/049/original/mza_751266917386891579.600x600-75.jpg" alt="Bertcast poster."/>
+              <h4 class="media-title">Bertcast</h4>
+            </div>
+            <div class="clearfix visible-xs-block"></div>
+            <div class="clearfix visible-md-block"></div>
+            <div class="col-xs-6 col-sm-4 col-md-3 col-lg-2">
+              <img class="media-poster2" src="http://static.libsyn.com/p/assets/c/a/2/0/ca20a50bab0ab60a/FitzDog-Podcast-Art300.jpg" alt="FitzDog Radio poster."/>
+              <h4 class="media-title">FitzDog Radio</h4>
+            </div>
+            <div class="col-xs-6 col-sm-4 col-md-3 col-lg-2">
+              <img class="media-poster2" src="https://yt3.ggpht.com/-xPMZ17T0KFU/AAAAAAAAAAI/AAAAAAAAAAA/ilxA4mlu9yo/s900-c-k-no-mo-rj-c0xffffff/photo.jpg" alt="WTF with Marc Maron poster."/>
+              <h4 class="media-title">WTF with Marc Maron</h4>
+            </div>
+          </div>
+          <!-- END Podcasts -->
+          <hr>
+          <!-- START Resources -->
+          <div class="text-center">
+            <h3 class="credits"><i class="fa fa-info-circle"></i> To learn more:</h3>
+            <div class="row">
+              <h1>
+                <a href="http://joeydiaz.net/" target="_blank"><i class="fa fa-globe link-icon"></i></a>
+                <a href="https://en.wikipedia.org/wiki/Joey_Diaz" target="_blank"><i class="fa fa-wikipedia-w link-icon"></i></a>
+                <a href="http://www.imdb.com/name/nm0224995/" target="_blank"><i class="fa fa-imdb link-icon"></i></a>
+                <div class="clearfix visible-xs-block"></div>
+                <a href="http://thechurchofwhatshappeningnow.libsyn.com/" target="_blank"><i class="fa fa-rss link-icon"></i></a>
+                <a href="https://twitter.com/madflavor?ref_src=twsrc%5Egoogle%7Ctwcamp%5Eserp%7Ctwgr%5Eauthor" target="_blank"><i class="fa fa-twitter link-icon"></i></a>
+                <a href="https://www.facebook.com/joey.c.diaz" target="_blank"><i class="fa fa-facebook-official link-icon"></i></a>
+                <div class="clearfix visible-xs-block"></div>
+                <a href="https://www.instagram.com/madflavors_world/" target="_blank"><i class="fa fa-instagram link-icon"></i></a>
+                <a href="https://www.youtube.com/user/madflavorsworld" target="_blank"><i class="fa fa-youtube-play link-icon"></i></a>
+              </h1>
+            </div>
+          </div>
+          <!-- END Resources -->
+        </div>
+        <!-- END Body -->
+        <footer class="text-center">Written and coded by <a id="author" href="https://codepen.io/balam90/" target="_blank">Stu Munoz</a>.</footer>
+      </div>
+</body>
+</html>
