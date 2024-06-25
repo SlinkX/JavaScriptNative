@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style lang="scss">
+        *{
+  font-family: 'Roboto', sans-serif;
+}
+
+@mixin bp($bp,
+  $min-max: min-width){
+    $em: $bp/16;
+    @media(#{$min-max}: #{$em}em){
+      @content;
+    }
+}
+
+$bg: #333;
+
+body{
+  margin-top: 50px;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  background-color: $bg;
+  color: white;
+}
+a{
+  color: white;
+  text-decoration: none;
+}
+.wrapper{
+  box-shadow: 0 4px 16px 3px rgba(0,0,0,0.35);
+  background-image: url(http://co0kie.github.io/codepen/ring-road/geran-de-klerk-210678-unsplash.jpg);
+  background-size: cover;
+  background-position: center;
+  max-width: 1200px;
+  width: 100%;
+  margin-right: 20px;
+  margin-left: 20px;
+  position: relative;
+}
+input{
+  display: none;
+}
+.ham{
+  margin: 30px;
+  position: relative;
+  border-bottom: 2px solid white;
+  height: 21px;
+  width: 35px;
+  display: inline-block;
+  cursor: pointer;
+  &::before,
+  &::after{
+    content: '';
+    background-color: white;
+    width: 35px;
+    height: 3px;
+    display: block;
+    position: absolute;
+    top: 0;
+  }
+  &::after{
+    top: 10px;
+  }
+}
+
+input:checked ~ label + .header{
+  transform: translateX(0);
+}
+
+input:checked + .overlay{
+  opacity: 1;
+}
+
+.overlay{
+  width: 190px;
+  background-color: rgba(0,0,0,0.84);
+  height: 100%;
+  position: absolute;
+  right: 0;
+  opacity: 0;
+}
+
+.header{
+  position: fixed;
+  top: 80px;
+  right: 70px;
+  transition: 200ms;
+  transform: translateX(400px);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-end;
+  
+  >.s,
+  >.nav{
+    list-style: none;
+    margin: 0 10px 0 0;
+    padding: 0;
+    text-align: right;
+  }
+  >.s{
+    margin-top: 40px;
+    padding-top: 40px;
+    border-top: 1px solid white;
+  }
+  .search{
+    background-color: white;
+    padding: 8px;
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    display: inline-block;
+    text-align: center;
+    line-height: 2;
+  }
+  .search>img{
+    width: 24px;
+    margin: 3px;
+  }
+  >.s>li+li,
+  >.nav>li+li{
+    margin-top: 20px;
+  }
+  >.s a,
+  >.nav a{
+    font-weight: 700;
+    position: relative;
+  }
+  >.nav a:hover::before,
+  >.nav .active::before{
+    content: '';
+    position: absolute;
+    width: 23px;
+    height: 3px;
+    left: -35px;
+    top: 8px;
+    background-color: white;
+  }
+}
+
+.logo{
+  border: 3px solid white;
+  border-radius: 50%;
+  height: 30px;
+  width: 30px;
+  display: block;
+  text-align: center;
+  padding: 9px;
+  line-height: 1.8;
+  font-size: 18px;
+  font-weight: 900;
+  margin-bottom: 20px;
+  &:hover{
+    background-color: white;
+    color: $bg;
+  }
+}
+
+.main{
+  margin: 30px;
+}
+
+.intro{
+  >h1{
+    font-size: 32px;
+  }
+  >p{
+    line-height: 1.7;
+  }
+}
+
+.status{
+  margin-top: 50px;
+  h5{
+    margin: 0;
+    font-size: 20px;
+  }
+  p{
+    margin-top: 8px;
+  }
+  >div{
+    +div{
+      margin-top: 50px;
+    }
+  }
+}
+
+.rec{
+  background-color: black;
+  padding: 20px 30px;
+  margin-top: 50px;
+  max-width: 230px;
+  display: flex;
+  flex-direction: column;
+  margin-left: auto;
+  margin-right: auto;
+  >h6{
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-bottom: 40px;
+  }
+  h5{
+    margin: 5px 0 0;
+    font-size: 20px;
+  }
+  p{
+    margin-top: 8px;
+  }
+  >div+div{
+    margin-top: 30px;
+  }
+  img{
+    width: 100%;
+    border-radius: 15px;
+  }
+}
+
+.scroll-down{
+  display: none;
+}
+
+@include bp(768){
+  .ham{
+    display: none;
+  }
+  .header{
+    position: static;
+    transform: translate(0);
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 90px;
+    margin-top: 30px;
+    margin-left: 20px;
+    margin-right: 20px;
+    >.logo{
+      margin-bottom: 0;
+    }
+    >.nav{
+      display: flex;
+      margin-left: 20px;
+      margin-right: auto;
+    }
+    >.s{
+      display: flex;
+      margin-top: 0;
+      padding-top: 0;
+      align-items: center;
+      border-top: 0;
+    }
+    >.s>li+li,
+    >.nav>li+li{
+      margin-top: 0;
+      margin-left: 20px;
+    }
+    >.nav a:hover::before,
+    >.nav .active::before{
+      content: '';
+      position: absolute;
+      width: 23px;
+      height: 3px;
+      left: 11px;
+      top: -12px;
+      background-color: white;
+    }
+  }
+  .overlay{
+    display: none;
+  }
+  .intro{
+    max-width: 310px;
+    >h1{
+      font-size: 52px;
+    }
+  }
+  .rec{
+    position: absolute;
+    bottom: 0;
+    right: 0;
+  }
+}
+@include bp(992){
+  
+  .header{
+    >.nav{
+      margin-left: 20px;
+    }
+  }
+  
+  .intro{
+    margin-left: 68px;
+    >h1{
+      font-size: 102px;
+      line-height: 1;
+      font-weight: 800;
+      margin-bottom: 40px;
+    }
+  }
+  
+  .rec{
+    padding: 30px;
+    >div+div{
+      margin-top: 10px;
+    }
+  }
+  .status{
+    margin-left: 68px;
+    display: flex;
+    >div+div{
+      margin-left: 20px;
+      margin-top: 0;
+    }
+  }
+  .scroll-down{
+    position: absolute;
+    transform: rotate(-90deg);
+    bottom: 110px;
+    left: -32px;
+    display: block;
+    >img{
+      position: fixed;
+      transform: rotate(90deg);
+      bottom: 9px;
+      left: -18px;
+    }
+    >p{
+      position: relative;
+      left: 40px;
+    }
+  }
+}
+
+@include bp(1200){
+  .header{
+    margin-bottom: 150px;
+    margin-left: 50px;
+    margin-top: 40px;
+    margin-right: 50px;
+    >.nav{
+      margin-left: 70px;
+      >li+li{
+        margin-left: 40px;
+      }
+    }
+    >.s{
+      >li+li{
+        margin-left: 40px;
+      }
+    }
+  }
+  .intro{
+    margin-left: 140px;
+    position: relative;
+    top: -70px;
+    >h1{
+      margin-top: 0;
+    }
+  }
+  .status{
+    margin-left: 140px;
+    >div+div{
+      margin-left: 50px;
+    }
+  }
+  .rec{
+    padding: 30px 70px;
+    >div+div{
+      margin-top: 30px;
+    }
+  }
+  .scroll-down{
+    bottom: 114px;
+    left: -2px;
+  }
+}
+    </style>
+</head>
+<body>
+    <div class="wrapper">
+        <input type="checkbox" id="m" name="m">
+        <div class="overlay"></div>
+        <label for="m" class="ham"></label>
+        
+        <header class="header">
+          <a href="#!" class="logo">ICE</a>
+          <ul class="nav">
+            <li><a href="#!">Home</a></li>
+            <li><a href="#!" class="active">Roads</a></li>
+            <li><a href="#!">Mountains</a></li>
+            <li><a href="#!">Hotsprings</a></li>
+          </ul>
+          <ul class="s">
+            <li><a href="#!">About us</a></li>
+            <li><a href="#!">Contact</a></li>
+            <li><a href="#!" class="search"><img src="http://co0kie.github.io/codepen/ring-road/iconfinder_icon-111-search_314478.png" alt=""></a></li>
+          </ul>
+        </header>
+        
+        <section class="main">
+          
+          <div class="intro">
+            <h1>RING ROAD</h1>
+            <p>the Ring Road is a national road in Iceland that runs around the island and connects most of the inhabited parts o the country. The total length of the road is 1,332 kilometres (828 mi).</p>
+          </div>
+          
+          <div class="status">
+            <div>
+              <h5>Sideseing on the route</h5>
+              <p>The Seljaalandsfosswaterfaaalls</p>
+            </div>
+            <div>
+              <h5>Completed</h5>
+              <p>Finished in 1974</p>
+            </div>
+            <div>
+              <h5>Total span of the road</h5>
+              <p>The road circles all of iceland</p>
+            </div>
+          </div>
+          
+          <div class="rec">
+            <h6>Recommendations</h6>
+            <div>
+              <h5>Warmth in the winter</h5>
+              <p>Visit a hotsprings and go swimming.</p>
+            </div>
+            <div>
+              <h5>Visit the capital</h5>
+              <p>Greater Reykjavik is really nice</p>
+            </div>
+            <div>
+              <img src="https://placeimg.com/640/480/any" alt="">
+              <h5>Random stuff</h5>
+              <p>The road circles all of iceland</p>
+            </div>
+          </div>
+          
+          <div class="scroll-down">
+            <p>Scrolldown to read more</p>
+            <img src="http://co0kie.github.io/codepen/ring-road/iconfinder_basics-04_296827.png" alt="">
+          </div>
+          
+        </section>
+        
+      </div>
+      
+      <a href="https://www.youtube.com/watch?v=0xQ4Pi7-a-o" target="_blank" title="Watch me speed code this" style="position: fixed; bottom: 10px; right: 10px"><img src="http://co0kie.github.io/codepen/youtube.png" alt=""></a>
+</body>
+</html>
