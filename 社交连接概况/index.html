@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        :root{
+  --green: hsl(75, 94%, 57%);
+  --gray: hsl(0, 0%, 20%);
+  --white: hsl(0, 0%, 100%);
+  --darkgrey: hsl(0, 0%, 12%);
+  --offblack: hsl(0, 0%, 8%);
+  
+  // size
+  --base: 16px;
+  --full: 95vh;
+  
+  // scale
+  --scale1: 10px;
+  --scale2: 20px;
+  --scale3: 30px;
+  --scale4: 40px;
+  --scale5: 50px;
+  
+  // font
+  --font: "Inter", sans-serif;
+}
+
+*{
+  box-sizing: border-box;
+}
+
+h3,h4,p,a{
+  color: var(--white);
+}
+ul{
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+body{
+  font-family: var(--font);
+  margin: 0;
+  padding: 0;
+  background: var(--offblack);
+  display: grid;
+  place-content: center;
+  height: var(--full);
+  font-size: var(--base);
+  main{
+    background: var(--darkgrey);
+    padding: var(--scale5)  var(--scale4)  var(--scale4);
+    border-radius: var(--scale1);
+    text-align: center;
+    width: 100%;
+  }
+  img{
+    border-radius: 50%;
+  }
+  h3{
+    font-size: calc(var(--scale2) + 2px);
+    margin-bottom: 0;
+  }
+  h4{
+    margin-top: var(--scale1);
+    color: var(--green);
+    font-size: calc(var(--base) - 2px);
+  }
+  p{
+    font-size: calc(var(--base) - 2px);;
+    margin-top: var(--scale4);
+  }
+  ul{
+    margin-top: var(--scale3);
+  }
+  li+li{
+    margin-top: calc(var(--scale1) + 5px);
+  }
+  a{
+    text-decoration: none;
+    transition: 200ms;
+    font-weight: 700;
+    font-size: calc(var(--base) - 2px);
+    background: var(--gray);
+    padding: var(--scale1);
+    border-radius: calc(var(--scale1) - 2px);
+    width: 100%;
+    display: block;
+    &:visited,
+    &:active{
+      text-decoration: none;
+    }
+    &:hover{
+      background: var(--green);
+      color: var(--darkgrey)
+    }
+  }
+}
+
+
+    </style>
+</head>
+<body>
+    <main>
+        <img src="https://picsum.photos/id/1/80/80" alt="">
+        <h3>Jessica Randall</h3>
+        <h4>Londong, United Kingdom</h4>
+        <p>"Frontend Developer and avid reader."</p>
+        <ul>
+          <li>
+            <a href="#!">Github</a>
+          </li>
+           <li>
+            <a href="#!">Frontend Mentor</a>
+          </li>
+           <li>
+            <a href="#!">LinkedIn</a>
+          </li>
+           <li>
+            <a href="#!">Twitter</a>
+          </li>
+          <li>
+            <a href="#!">Instagram</a>
+          </li>
+        </ul>
+      </main>
+</body>
+</html>
