@@ -1,0 +1,743 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style lang="scss">
+        $conditions: (
+  snow: lavender,
+  sun: tomato,
+  rain: royalblue,
+  cloudy: lightslategray,
+  wind: mediumseagreen,
+  night: darkslateblue,
+  clear: steelblue
+);
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Lato", sans-serif;
+}
+
+%display-flex {
+  display: flex;
+}
+
+.localweather {
+  @extend %display-flex;
+  width: 100%;
+  height: 100%;
+  min-height: 100vh;
+  background: currentColor;
+  transition: color 0.3s ease;
+  color: white;
+
+  @each $condition, $color in $conditions {
+    &--#{$condition} {
+      color: #{$color};
+    }
+  }
+
+  &__top {
+    background: #222;
+  }
+
+  &__icon {
+    font-size: 5em;
+    padding: 0.3em 0;
+    display: inherit;
+    .wi-sun {
+      animation: 20s infinite linear rotate;
+    }
+  }
+
+  &__temp {
+    padding: 0 0 0.1em 0;
+    font-size: 3em;
+    font-weight: 400;
+    line-height: 0.8em;
+    min-width: 2.7em; // equals 2 digits
+    color: #fff;
+
+    .icon {
+      margin: 0 -0.2em;
+    }
+  }
+
+  &__heading {
+    color: #fff;
+    opacity: 0.8;
+    flex-grow: 1;
+  }
+
+  &__conditions {
+    @extend %display-flex;
+    width: 100%;
+    justify-content: space-around;
+    align-content: center;
+    text-align: left;
+    color: #fff;
+  }
+
+  &__city {
+    font-size: 1em;
+    margin: 0;
+    font-weight: 300;
+    background: transparent;
+    background-size: contain;
+    border-width: 0 0 2px 0;
+    border-style: dotted;
+    border-color: royalblue;
+    appearance: none;
+    outline: none;
+    color: white;
+    transition: border-color 0.3s ease;
+
+    &::placeholder {
+      color: #fff;
+    }
+    &:hover {
+      border-color: mediumspringgreen;
+    }
+    &:focus {
+      border-color: mediumseagreen;
+    }
+  }
+
+  &__text {
+    margin: 0;
+    font-weight: 300;
+  }
+
+  &__form {
+    width: 100%;
+    text-align: center;
+  }
+
+  &__form {
+    width: 100%;
+  }
+
+  &__time {
+    @extend %display-flex;
+    justify-content: baseline;
+    color: #fff;
+    opacity: 0.8;
+    font-size: 1em;
+    font-style: italic;
+    text-align: right;
+    flex-shrink: 0;
+  }
+}
+
+.condition {
+  @extend %display-flex;
+  flex-flow: row nowrap;
+  align-content: center;
+  align-items: center;
+  height: 100%;
+  font-size: 0.8em;
+
+  &__icon {
+    font-size: 3em;
+    line-height: 1em;
+    &--small {
+      font-size: 2em;
+    }
+  }
+  &__value {
+    @extend %display-flex;
+    flex-flow: column nowrap;
+  }
+  &__label {
+    opacity: 0.4;
+  }
+  &--wind {
+    flex-basis: 10em;
+  }
+  &__wind-direction {
+    display: inline-flex;
+    will-change: transform;
+    transition: transform 0.3s ease;
+    transform-origin: center center;
+    width: 1em;
+    height: 1em;
+    margin: 0.3em;
+  }
+  &__sunrise {
+    text-transform: uppercase;
+  }
+}
+
+.forecast {
+  @extend %display-flex;
+  flex-flow: row wrap;
+  align-items: stretch;
+  width: 100%;
+  background: #efefef;
+  color: #222;
+
+  &__row {
+    @extend %display-flex;
+    flex: 1 100%;
+    flex-flow: row wrap;
+    justify-content: space-between;
+    padding: 0.4em 1em;
+    line-height: 2.2em;
+  }
+  &__col {
+    height: 2.2em;
+    &--2 {
+      @extend %display-flex;
+      align-items: center;
+      text-align: center;
+    }
+  }
+  &__icon {
+    font-size: 2.2em;
+    min-width: 2em;
+    padding: 0 0.4em;
+  }
+  &__temp {
+    min-width: 2.6em;
+    &--high {
+      font-weight: 700;
+    }
+  }
+  &__day {
+    min-width: 2.3em;
+  }
+}
+
+.layout {
+  &__container {
+    @extend %display-flex;
+    flex-flow: row wrap;
+    width: 500px;
+    margin: auto;
+    align-self: center;
+  }
+  &__row {
+    @extend %display-flex;
+    flex: 1 1 100%;
+    width: 100%;
+
+    &--alt {
+      flex-flow: row nowrap;
+      align-items: baseline;
+      padding: 0 1em;
+    }
+  }
+}
+
+.toggle {
+  display: inline-block;
+  font-size: 1.4em;
+
+  input {
+    display: none;
+  }
+
+  &__switch {
+    display: inline-block;
+    font-size: 1em;
+    width: 2.2em;
+    height: 1.2em;
+    padding: 0.1em;
+    margin: 0 0.2em;
+    border-radius: 0.6em;
+    background: rgba(0, 0, 0, 0.3);
+  }
+
+  &__label {
+    display: block;
+    font-size: 1em;
+    padding: 0.3em;
+    cursor: pointer;
+  }
+
+  &__handle {
+    display: block;
+    width: 1em;
+    height: 1em;
+    background: white;
+    border-radius: 50%;
+    will-change: margin-left;
+    transition: all 0.3s ease;
+  }
+  &:hover .toggle__handle {
+    background: springgreen;
+  }
+
+  &__input:checked + label {
+    .toggle__handle {
+      margin-left: 1em;
+    }
+    .toggle__text:first-child {
+      color: #222;
+    }
+    .toggle__text {
+      color: #fff;
+    }
+  }
+
+  &__text {
+    vertical-align: text-top;
+    transition: color 0.3s ease;
+    color: #222;
+    &:first-child {
+      color: #fff;
+    }
+  }
+}
+
+@keyframes rotate {
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.pac-container {
+  font-family: inherit;
+  &:after {
+    display: none;
+  }
+}
+
+::selection {
+  background: #47cf73;
+}
+
+.icon {
+  display: inline-block;
+  width: 1em;
+  height: 1em;
+  fill: currentColor;
+}
+
+.location {
+  @extend %display-flex;
+  width: 100%;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  &__text {
+    color: #000;
+    flex: 1;
+  }
+}
+
+    </style>
+</head>
+<body>
+    <!-- SVG icons -->
+[[[https://codepen.io/anneklapwijk/pen/jqogwa]]]
+
+<!-- React Component -->
+<div id="root"><div data-reactroot="" id="wrapper" class="localweather localweather--night"><div class="layout__container"><div class="layout__row layout__row--alt localweather__top"><div class="localweather__icon"><svg class="icon wi-cloudy"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#wi-cloudy"></use></svg></div><div class="localweather__item"><div class="localweather__temp"><!-- react-text: 55 -->6<!-- /react-text --><svg class="icon wi-Celsius"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#wi-Celsius"></use></svg></div></div><div class="localweather__heading"><h1 class="localweather__text">Mostly Cloudy</h1><input type="text" class="localweather__city" id="localweather__city" placeholder="Chicago" autocomplete="off"><!-- react-text: 14 -->, <!-- /react-text --><!-- react-text: 15 -->09:19 PM<!-- /react-text --></div></div><div class="layout__row localweather__top"><div class="localweather__conditions"><div class="condition condition--wind"><div class="condition__icon condition__icon--small"><div class="condition__wind-direction" title="direction: 20deg" style="transform: rotate(155deg);"><svg class="icon wi-compass"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#wi-compass"></use></svg></div></div><div class="condition__value"><span><!-- react-text: 56 -->18<!-- /react-text --><!-- react-text: 25 --> <!-- /react-text --><!-- react-text: 57 -->km/h<!-- /react-text --></span><span class="condition__label">wind</span></div></div><div class="condition condition--humidity"><div class="condition__icon"><svg class="icon wi-raindrop2"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#wi-raindrop2"></use></svg></div><div class="condition__value"><span><!-- react-text: 58 -->89<!-- /react-text --><!-- react-text: 33 --> %<!-- /react-text --></span><span class="condition__label">humidity</span></div></div><div class="condition condition--sunrise"><div class="condition__icon"><svg class="icon wi-sunrise"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#wi-sunrise"></use></svg></div><div class="condition__value"><span class="condition__sunrise">6:54 am</span><span class="condition__label">sunrise</span></div></div></div></div><div class="forecast"><div class="forecast__row"><div class="forecast__col forecast__col--2"><span class="forecast__day">Mon</span><div class="forecast__icon"><svg class="icon wi-windy3"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#wi-windy3"></use></svg></div><div class="forecast__temp forecast__temp--high"><!-- react-text: 66 -->8<!-- /react-text --><svg class="icon wi-Celsius"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#wi-Celsius"></use></svg></div><div class="forecast__temp forecast__temp--low"><!-- react-text: 70 -->3<!-- /react-text --><svg class="icon wi-Celsius"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#wi-Celsius"></use></svg></div></div><div class="forecast__col"><span class="forecast__text">Scattered Showers</span></div></div><div class="forecast__row"><div class="forecast__col forecast__col--2"><span class="forecast__day">Tue</span><div class="forecast__icon"><svg class="icon wi-cloudy"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#wi-cloudy"></use></svg></div><div class="forecast__temp forecast__temp--high"><!-- react-text: 82 -->6<!-- /react-text --><svg class="icon wi-Celsius"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#wi-Celsius"></use></svg></div><div class="forecast__temp forecast__temp--low"><!-- react-text: 86 -->0<!-- /react-text --><svg class="icon wi-Celsius"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#wi-Celsius"></use></svg></div></div><div class="forecast__col"><span class="forecast__text">Partly Cloudy</span></div></div><div class="forecast__row"><div class="forecast__col forecast__col--2"><span class="forecast__day">Wed</span><div class="forecast__icon"><svg class="icon wi-wind"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#wi-wind"></use></svg></div><div class="forecast__temp forecast__temp--high"><!-- react-text: 98 -->0<!-- /react-text --><svg class="icon wi-Celsius"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#wi-Celsius"></use></svg></div><div class="forecast__temp forecast__temp--low"><!-- react-text: 102 -->-2<!-- /react-text --><svg class="icon wi-Celsius"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#wi-Celsius"></use></svg></div></div><div class="forecast__col"><span class="forecast__text">Breezy</span></div></div><div class="forecast__row"><div class="forecast__col forecast__col--2"><span class="forecast__day">Thu</span><div class="forecast__icon"><svg class="icon wi-rainy2"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#wi-rainy2"></use></svg></div><div class="forecast__temp forecast__temp--high"><!-- react-text: 114 -->6<!-- /react-text --><svg class="icon wi-Celsius"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#wi-Celsius"></use></svg></div><div class="forecast__temp forecast__temp--low"><!-- react-text: 118 -->-1<!-- /react-text --><svg class="icon wi-Celsius"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#wi-Celsius"></use></svg></div></div><div class="forecast__col"><span class="forecast__text">Rain</span></div></div><div class="forecast__row"><div class="forecast__col forecast__col--2"><span class="forecast__day">Fri</span><div class="forecast__icon"><svg class="icon wi-wind"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#wi-wind"></use></svg></div><div class="forecast__temp forecast__temp--high"><!-- react-text: 130 -->16<!-- /react-text --><svg class="icon wi-Celsius"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#wi-Celsius"></use></svg></div><div class="forecast__temp forecast__temp--low"><!-- react-text: 134 -->5<!-- /react-text --><svg class="icon wi-Celsius"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#wi-Celsius"></use></svg></div></div><div class="forecast__col"><span class="forecast__text">Breezy</span></div></div></div><div class="localweather__form"><div class="localweather__toggle toggle"><input type="checkbox" class="toggle__input" id="toggle" value="1"><label class="toggle__label" for="toggle"><span class="toggle__text"><svg class="icon wi-Celsius"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#wi-Celsius"></use></svg></span><span class="toggle__switch"><span class="toggle__handle"></span></span><span class="toggle__text"><svg class="icon wi-Fahrenheit"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#wi-Fahrenheit"></use></svg></span></label></div></div></div></div></div>
+<script>
+    const { Component, useCallback, useState, useEffect } = React;
+
+const getInitialLocation = async () => {
+  // Try W3C Geolocation (Preferred)
+  if (!navigator.geolocation || window.location.protocol !== "https:") {
+    console.log("no geolocation");
+    return;
+  }
+
+  const options = {
+    enableHighAccuracy: true,
+    timeout: 5000,
+    maximumAge: 0
+  };
+
+  return new Promise((resolve, reject) =>
+    navigator.geolocation.getCurrentPosition(
+      ({ coords: { latitude, longitude } }) => {
+        resolve(`${latitude},${longitude}`); // e.g: `48.8567,2.3508`
+      },
+      (err) => {
+        console.warn(`ERROR(${err.code}): ${err.message}`);
+        reject(err);
+      },
+      options
+    )
+  );
+};
+
+const digits = (str) => Number(str.replace(/\D/g, ""));
+
+const Icon = ({ id }) => (
+  <svg className={"icon wi-" + id}>
+    <use xlinkHref={"#wi-" + id} />
+  </svg>
+);
+
+const ForecastRow = ({ unit, day, code, high, low, text }) => {
+  const units = unit === "c" ? "Celsius" : "Fahrenheit";
+
+  return (
+    <div className="forecast__row">
+      <div className="forecast__col forecast__col--2">
+        <span className="forecast__day">{day}</span>
+        <div className="forecast__icon">
+          <Icon id={conditionCodes[code]} />
+        </div>
+        <div className="forecast__temp forecast__temp--high">
+          {high(unit)}
+          <Icon id={units} />
+        </div>
+        <div className="forecast__temp forecast__temp--low">
+          {low(unit)}
+          <Icon id={units} />
+        </div>
+      </div>
+      <div className="forecast__col">
+        <span className="forecast__text">{text}</span>
+      </div>
+    </div>
+  );
+};
+
+const ForecastTable = ({ days, unit }) => (
+  <div className="forecast">
+    {days.map((day) => (
+      <ForecastRow {...day} key={day.date} unit={unit} />
+    ))}
+  </div>
+);
+
+const UnitsToggle = ({ onUnitChange }) => {
+  const handleToggle = (e) => onUnitChange(e.target.checked ? "f" : "c");
+
+  return (
+    <div className="localweather__form">
+      <div className="localweather__toggle toggle">
+        <input
+          type="checkbox"
+          className="toggle__input"
+          id="toggle"
+          defaultValue={1}
+          onChange={handleToggle}
+        />
+        <label className="toggle__label" htmlFor="toggle">
+          <span className="toggle__text">
+            <Icon id="Celsius" />
+          </span>
+          <span className="toggle__switch">
+            <span className="toggle__handle" />
+          </span>
+          <span className="toggle__text">
+            <Icon id="Fahrenheit" />
+          </span>
+        </label>
+      </div>
+    </div>
+  );
+};
+
+const Conditions = ({ wind, humidity, isNight, astronomy, unit }) => {
+  const windDirectionStyle = {
+    transform: `rotate(${Number(wind.direction) + 135}deg)`
+  };
+  const windDirectionTitle = `direction: ${wind.direction}deg`;
+
+  return (
+    <div className="layout__row localweather__top">
+      <div className="localweather__conditions">
+        <div className="condition condition--wind">
+          <div className="condition__icon condition__icon--small">
+            <div
+              className="condition__wind-direction"
+              style={windDirectionStyle}
+              title={windDirectionTitle}
+            >
+              <Icon id={"compass"} />
+            </div>
+          </div>
+          <div className="condition__value">
+            <span>{wind.speed(unit)}</span>
+            <span className="condition__label">wind</span>
+          </div>
+        </div>
+        <div className="condition condition--humidity">
+          <div className="condition__icon">
+            <Icon id={"raindrop2"} />
+          </div>
+          <div className="condition__value">
+            <span>{humidity} %</span>
+            <span className="condition__label">humidity</span>
+          </div>
+        </div>
+        <div className="condition condition--sunrise">
+          <div className="condition__icon">
+            <Icon id={"sunrise"} />
+          </div>
+          <div className="condition__value">
+            <span className="condition__sunrise">
+              {isNight ? astronomy.sunrise : astronomy.sunset}
+            </span>
+            <span className="condition__label">
+              {isNight ? "sunrise" : "sunset"}
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+const Location = ({ onChange, locationText, location }) => (
+  <div className="location">
+    <input
+      className="localweather__city location__input"
+      id="localweather__city"
+      type="text"
+      onChange={(event) => {
+        // @todo
+        event.preventDefault();
+        onChange(event.target.value);
+      }}
+      value={location}
+      placeholder={location}
+    />
+    <span className="location__text">{locationText}</span>
+  </div>
+);
+
+const CurrentWeather = ({
+  onChange,
+  temperature,
+  conditionText,
+  conditionCode,
+  unit,
+  time,
+  location,
+  locationText
+}) => {
+  return (
+    <div className="layout__row layout__row--alt localweather__top">
+      <div className="localweather__icon">
+        <Icon id={conditionCodes[conditionCode]} />
+      </div>
+      <div className="localweather__item">
+        <div className="localweather__temp">
+          {temperature(unit)}
+          <Icon id={unit === "c" ? "Celsius" : "Fahrenheit"} />
+        </div>
+      </div>
+      <div className="localweather__heading">
+        <h1 className="localweather__text">{conditionText}</h1>
+      </div>
+      <span className="localweather__time">{time}</span>
+    </div>
+  );
+};
+
+const getBackgroundByCondition = (code) => {
+  switch (code) {
+    case 1003: // partly cloudy
+    case 1006: // cloudy
+    case 1009: // overcast
+    case 1030: // mist
+      return "cloudy";
+    case 1000:
+      return "sun";
+    case 1063:
+    case 1150:
+    case 1153:
+    case 1168:
+    case 1171:
+    case 1180:
+    case 1183:
+    case 1186:
+    case 1189:
+    case 1192:
+    case 1195:
+    case 1198:
+    case 1261:
+    case 1264:
+    case 1273:
+    case 1276:
+    case 1237:
+    case 1240:
+    case 1243:
+    case 1246:
+    case 1201:
+    case 1198:
+      return "rain";
+    case 1207:
+    case 1066:
+    case 1204:
+    case 1210:
+    case 1213:
+    case 1216:
+    case 1219:
+    case 1222:
+    case 1225:
+    case 1249: // sleet
+    case 1252: // sleet
+    case 1255:
+    case 1258:
+    case 1279:
+    case 1282:
+      return "snow";
+    default:
+      return "clear";
+  }
+};
+
+const LocalWeather = () => {
+  const [locationQuery, setLocationQuery] = useState("");
+  const [locationText, setLocationText] = useState("");
+  const [unit, setUnit] = useState("c");
+  const [isNight, setIsNight] = useState(false);
+  const [currentWeather, setCurrentWeather] = useState({
+    temperature: () => "",
+    conditionText: "",
+    conditionCode: 0
+  });
+  const [conditions, setConditions] = useState({
+    wind: {
+      speed: () => "",
+      direction: 0
+    },
+    humidity: 0,
+    astronomy: { sunrise: "", sunset: "" }
+  });
+  const [time, setTime] = useState("");
+  const [forecast, setForecast] = useState([]);
+
+  const getWeather = useCallback(async () => {
+    const url = `https://api.weatherapi.com/v1/forecast.json?key=8b57b73b85104757b59222609220903&q=${locationQuery}&days=7&aqi=no&alerts=no`;
+
+    try {
+      const response = await fetch(url);
+
+      const data = await response.json();
+
+      console.dir(data);
+
+      const {
+        location: { localtime_epoch, tz_id, name, region },
+        current: {
+          wind_kph,
+          wind_mph,
+          wind_degree,
+          wind_dir,
+          temp_c,
+          temp_f,
+          condition,
+          humidity
+        },
+        forecast: { forecastday }
+      } = data;
+
+      const date = new Date(localtime_epoch * 1000);
+
+      const { sunrise, sunset } = forecastday[0].astro;
+
+      const time = new Intl.DateTimeFormat(navigator.language, {
+        hour: "numeric",
+        minute: "numeric",
+        timeZone: tz_id,
+        // timeZoneName: "short",
+        hour12: true
+      }).format(date);
+
+      setTime(time);
+      setLocationText(`${name}, ${region}`);
+
+      const isPm = Number(date.getHours()) >= 11;
+
+      setIsNight(
+        isPm ? digits(time) > digits(sunset) : digits(time) < digits(sunrise)
+      );
+
+      setCurrentWeather({
+        temperature: (unit) => (unit === "c" ? temp_c : temp_f),
+        conditionText: condition.text,
+        conditionCode: condition.code
+      });
+
+      setConditions({
+        wind: {
+          speed: (unit) =>
+            unit === "c"
+              ? `${wind_kph} Km/h ${wind_dir}`
+              : `${wind_mph} Mph ${wind_dir}`,
+          direction: wind_degree
+        },
+        humidity,
+        astronomy: { sunrise, sunset }
+      });
+
+      setForecast(
+        forecastday.map(({ date_epoch, day }) => ({
+          day: new Intl.DateTimeFormat(navigator.language).format(
+            new Date(date_epoch * 1000)
+          ),
+          code: day.condition.code,
+          high: (unit) => (unit === "c" ? day.maxtemp_c : day.maxtemp_f),
+          low: (unit) => (unit === "c" ? day.mintemp_c : day.mintemp_f),
+          text: day.condition.text
+        }))
+      );
+    } catch (error) {
+      console.log(error);
+    }
+  }, [locationQuery, unit]);
+
+  useEffect(() => {
+    (async () => {
+      const location = await getInitialLocation();
+      console.log(location);
+      setLocationQuery(location);
+    })();
+  }, []);
+
+  useEffect(() => {
+    if (!locationQuery) return;
+    getWeather();
+  }, [locationQuery]);
+
+  // @todo input autocomplete location
+  const className = `localweather localweather--${
+    isNight ? "night" : getBackgroundByCondition(currentWeather.conditionCode)
+  }`;
+
+  return (
+    <div id="wrapper" className={className}>
+      <div className="layout__container">
+        <CurrentWeather
+          onChange={setLocationQuery}
+          location={locationQuery}
+          locationText={locationText}
+          unit={unit}
+          time={time}
+          {...currentWeather}
+        />
+        <Conditions {...conditions} isNight={isNight} unit={unit} />
+        <ForecastTable days={forecast} unit={unit} />
+        <UnitsToggle onUnitChange={setUnit} />
+        <Location 
+          onChange={setLocationQuery}
+          // onCityChange={handleCityChange}
+          location={locationQuery}
+          locationText={locationText}
+          />
+      </div>
+    </div>
+  );
+};
+
+ReactDOM.render(<LocalWeather />, document.getElementById("root"));
+
+</script>
+</body>
+</html>
