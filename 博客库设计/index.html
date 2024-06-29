@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style lang="scss">
+    body {
+  margin: 0px;
+  background: #121212;
+}
+
+#appbar {
+  display: flex;
+  position: fixed;
+  top: 0;
+  z-index: 100;
+  align-items: center;
+  width: 100%;
+  height: 80px;
+  background: #212121;
+  box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.5);
+}
+
+.pageTitle {
+  margin-left: 5%;
+  margin-right: 5%;
+}
+
+#centerSearch {
+  width: 100%;
+  height: 50%;
+  border-radius: 0px;
+  margin-left: 0px;
+  margin-right: 2%;
+  color: white;
+  border: 0px;
+  background: #181818;
+}
+
+h1 {
+  margin-left:10px;
+}
+
+div, h1, li {
+  font-family: "Arial";
+  color: #FFFFFF;
+}
+
+#podgrid {
+  list-style: none;
+  padding-left: 0;
+  justify-content: space-evenly;
+  display: flex;
+  flex-wrap: wrap;
+  min-width: 200px;
+  margin-top: 110px;
+  margin-left: 20px;
+  margin-right: 20px;
+  gap: 20px;
+}
+
+.space-filler {
+  width: 150px;
+}
+
+.podcard {
+  text-align: center;
+  width: 150px;
+  height: 150px;
+  border-radius: 5%;
+  cursor: pointer;
+  background: #212121;
+  &.grow {
+    transition: all .1s ease-in-out;
+    &:hover {
+      transform: scale(1.1);
+    }
+    &:active {
+      opacity: 75%;
+    }
+  }
+}
+
+.podcard-image {
+  width: 100%;
+  height: 100%;
+}
+  </style>
+</head>
+<body>
+  <div id="appbar">
+    <h1 class="pageTitle">Podcasts</h1>
+    <input id="centerSearch" tabindex="1" type="text" placeholder="Search Podcasts"></input>
+  </div>
+  <ul id="podgrid">
+  </ul>
+
+  <script>
+    $(function() {
+  let podcasts = [
+    {"name": "My Brother, My Brother, and Me", "url": "https://image.simplecastcdn.com/images/9ba52d4c-4e8c-4203-a3de-be89969671f2/13b53677-6ef7-4079-a079-80814f584e14/3000x3000/mbmbam-cover-final.jpg"},
+    {"name": "99% Invisible", "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c3/99%25_Invisible_logo.svg/1200px-99%25_Invisible_logo.svg.png"},
+    {"name": "Serial", "url": "https://m.media-amazon.com/images/M/MV5BMDRhNmUyOTAtNzZkMS00ZWZmLTkwMGQtZTc1NjI1ODIwYjQwXkEyXkFqcGdeQXVyMTU3MzMwNQ@@._V1_.jpg"},
+    {"name": "TED Talks Daily", "url": "https://pi.tedcdn.com/r/pb-assets.tedcdn.com/system/baubles/files/000/005/187/original/TED_Talks_Podcast_Thumbnail_Audio_600px.png"},
+    {"name": "Wonderful!", "url": "https://maximumfun.org/wp-content/uploads/2019/08/wonderful-cover.png"},
+    {"name": "Stuff You Should Know", "url": "https://megaphone.imgix.net/podcasts/1e705dd4-2de6-11e8-b55d-9ba6ddb3f75e/image/uploads_2F1546996139536-0o3pw93d8mk-d5f1143c14a746754c55efb478c66988_2FSKSKLogo-FINAL-iHR-3000x3000.png"},
+    {"name": "The Empty Bowl", "url": "https://s3-us-west-2.amazonaws.com/anchor-generated-image-bank/production/podcast_uploaded_nologo400/1040969/1040969-1586986297578-d52a994bd2a01.jpg"}
+  ];
+  var container = $("#podgrid");
+  // Set to whatever you want, and that many podcasts will be rendered. Ideally this would just be podcasts.length.
+  var count = 100;
+  // Populate unordered list with a div for each podcast. It's a mess but it works for now. Possibly use a map in the future?
+  for (var i=0; i<count; i++) {
+    container.append("<li class='podcard grow' tabindex='" + (i+2) + "' title='"+ podcasts[i % podcasts.length].name +"'><img class='podcard-image' src='"+ podcasts[i % podcasts.length].url +"'></img></li>");
+  }
+  for (i = 0; i < 10; i++) {
+    container.append("<li class='space-filler'></li>")
+  }
+});
+  </script>
+</body>
+</html>
