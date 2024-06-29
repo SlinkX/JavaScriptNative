@@ -1,0 +1,723 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        :root {
+  /* Hoist scope navigation timeline to common parent */
+  /* We're putting this here so that any item on the page can use it */
+  timeline-scope: --trigger-view;
+}
+
+/* Set container as scrollport by using overflow */
+.article-header {
+  overflow: hidden;
+}
+
+.article-navigation {
+  /* Match to children's width */
+  width: max-content;
+
+  /* Create measuring element */
+  position: relative;
+  
+  &::after {
+    content: '';
+    display: block;
+    position: absolute;
+    inset-block-start: 0;
+    inset-inline-end: -10px;
+    width: 10px;
+    height: 100%;
+
+    background-color: black;
+    outline: 1px dotted white;
+   
+    /* Comment out to debug marker */
+    visibility: hidden;
+
+    /* Attach view-timeline */
+    view-timeline: --trigger-view inline;
+  }
+  
+  /* Change styling on expanded */
+  background-color: var(--color-nav-background);
+  animation-name: navigation-styling;
+  animation-timeline: --trigger-view;
+}
+
+/* When full contents are visible */
+@keyframes navigation-styling {
+  0%, 100% {
+    background-color: transparent;
+  }
+}
+
+.nav-list {
+  /* Lay the items out horizontally */
+  display: flex;
+  
+  /* Shrink the width of the nav and let the items wrap */
+  flex-wrap: wrap;
+  width: 0%;
+  
+  /* Prevent links from shrinking */
+  & a {
+    white-space: nowrap;
+  }
+  
+  /* For toggle menu */
+  min-height: 0;
+  opacity: 0;
+  visibility: hidden;
+
+  /* Expand navigation when marker is visible */
+  animation-name: expand-navigation;
+  animation-timeline: --trigger-view;
+}
+
+@keyframes expand-navigation {
+  0%, 100% {
+    width: 100%;
+    
+    /* Undo toggle styles even if menu is toggled */
+    opacity: 1;
+    padding: 0;
+    visibility: visible;
+  }
+}
+
+/* Hide toggle menu in expanded view */
+[for=toggle] {
+  animation: hide-toggle;
+  animation-timeline: --trigger-view;
+
+  display: flex;
+}
+
+@keyframes hide-toggle {
+  0%, 100% {
+    display: none;
+  }
+}
+
+/*
+  Animate height on toggle menu
+  https://chriscoyier.net/2022/12/21/things-css-could-still-use-heading-into-2023/#animate-to-auto 
+  This element isn't needed for the base effect
+  And is only included to create the smooth height transition
+*/
+.navigation-height-wrapper {
+  display: grid;
+  grid-template-rows: 0fr;
+  overflow: hidden;
+
+  /* Ensure menu is visible in expanded view */
+  animation: expand-toggle;
+  animation-timeline: --trigger-view;
+}
+
+@keyframes expand-toggle {
+  0%, 100% {
+    grid-template-rows: 1fr;
+  }
+}
+
+/* If menu is closed, hide opened label */
+.open-text {
+  display: none;
+}
+
+/* If menu is open */
+.article-header:has(.toggle-menu:checked) {
+  /* Show open label */
+  & .open-text {
+    display: block;
+  }
+
+  /* Hide close label */
+  & .close-text {
+    display: none;
+  }
+
+  /* Apply full-height to menu */
+  & .navigation-height-wrapper {
+    grid-template-rows: 1fr;
+  }
+
+  /* Style nav when open */
+  & .nav-list {
+    opacity: 1;
+    padding: var(--spacing);
+    visibility: visible;
+  }
+}
+
+/* Set transition only when toggle is focused to prevent
+  transition from applying when element swaps between layouts */
+.article-header:focus-within,
+.article-header:not(:focus-within):has(:hover) {
+  & .navigation-height-wrapper {
+    transition: grid-template-rows 0.25s ease-in-out;
+  }
+}
+
+/* Misc pen styling, feel free to ignore */
+.article-navigation {
+  display: inline-block;
+}
+
+.nav-list {
+  & li,
+  & a {
+    display: block;
+  }
+
+  & a {
+    padding: 0.5em 1em;
+  }
+}
+
+/* Text-wrap support disclaimer */
+.text-wrap-support span {
+  display: none;
+}
+
+@supports(text-wrap: balance) {
+  .text-wrap-support {
+    s, ins {
+      display: none;
+    }
+    
+    span {
+      display: inline;
+    }
+  }
+}
+
+/* 
+ * Demo styling 
+ */
+
+/* Text wrap demo */
+.wrap-element {
+  width: max-content;
+
+  & > * {
+    /* Because the percentage is absolute, if a word doesn't break at exactly 50%, 
+    it will cause a natural line-break, which we are trying to avoid. 
+    Adding 3ch (arbitrary magic number that should be tweaked based on 
+    font/content/etc) avoids this. No, this isn't a great solution. */
+    width: max(15ch, calc(50% + 3ch));
+    display: inline-block;
+  }
+
+  &.debug {
+    outline: var(--color-demo-border);
+
+    & > * {
+      background-color: var(--color-demo-background);
+      color: var(--color-demo-text);
+    }
+  }
+}
+
+/* Timeline range demo */
+.viewport-demo {
+  background-color: var(--color-demo-background-alt);
+  color: var(--color-demo-text-alt);
+  outline: var(--color-demo-border-alt);
+  margin-bottom: var(--spacing);
+  padding: var(--spacing);
+
+  /* Fixed width, so it goes out of view */
+  width: 600px;
+  animation-name: view-demo;
+  
+  & p {
+    margin-bottom: 0;
+  }
+  
+  /* Attach the marker and timeline */
+  position: relative;
+  animation-timeline: --scrollport;
+  timeline-scope: --scrollport;
+
+  /* 
+    Notice how this element 
+        (because it does not have an overflow parent)
+    Is hidden when the marker reaches the edge of the screen
+    Instead of when it overflows its parent (the section element) 
+  */
+  &::before {
+    content: '';
+    position: absolute;
+    inset-inline-end: 0;
+
+    background-color: var(--color-demo-marker);
+    outline: var(--border-demo-marker);
+    width: 10px;
+    height: 10px;    
+
+    view-timeline: --scrollport inline;
+  }
+}
+
+.viewport-demo-enter {
+  display: var(--enter-visibility, block);
+}
+
+.viewport-demo-contain {
+  display: var(--contain-visibility, none);
+}
+
+/* Instead of using multiple animations for each element,
+   we can change custom props on the parent element
+   and let the children inherit them */
+@keyframes view-demo {
+  0%, 100% {
+    --contain-visibility: block;
+    --enter-visibility: none;
+    
+    background-color: var(--color-demo-background);
+    color: var(--color-demo-text);
+    outline: var(--color-demo-border);
+  }
+}
+
+/* Remove any page-applied styling */
+.collapse-demo,
+.collapse-demo ul,
+.collapse-demo li,
+.collapse-demo a {
+  all: revert;
+}
+
+.collapse-demo {
+  background-color: var(--color-demo-background);
+  color: var(--color-demo-text);
+  outline: var(--color-demo-border);
+  margin-bottom: var(--spacing);
+  margin-left: 0.25em;
+  outline-offset: 0.25em;
+
+  width: max-content;
+  
+  & li::marker,
+  & a {
+    color: currentcolor;
+  }
+}
+
+.collapse-demo-2 {
+  & ul {
+    display: flex;
+    flex-wrap: wrap;
+    
+    /* Just for niceness */
+    padding: 0;
+    gap: 1em;
+    list-style: none;
+  }
+}
+
+.collapse-demo-3 {
+  & ul {
+    width: 0%;
+  }
+  
+  & a {
+    white-space: nowrap;
+  }
+}
+
+.collapse-demo-4 {
+  position: relative;
+  timeline-scope: --scrollport;
+
+  &::before {
+    content: '';
+    position: absolute;
+    inset-inline-end: 0;
+    
+    background-color: var(--color-demo-marker);
+    outline: var(--border-demo-marker);
+    width: 10px;
+    height: 10px;
+
+    view-timeline: --scrollport inline;
+  }
+}
+
+.collapse-demo-5 {
+  background-color: var(--color-demo-background-alt);
+  color: var(--color-demo-text-alt);
+  outline: var(--color-demo-border-alt);
+  
+  /* Add room for the outline */
+  margin-left: 0.5em;
+
+  animation-name: collapse-demo;
+  animation-timeline: --scrollport;
+}
+
+@keyframes collapse-demo {
+  0%, 100% {
+    background-color: var(--color-demo-background);
+    color: var(--color-demo-text);
+    outline: var(--color-demo-border);
+  }
+}
+
+.demo-wrapper-toggable-1 {
+  max-width: var(--demo-wrapper-toggable-width-1);
+  overflow: hidden;
+}
+
+:has(#toggle-container-1:checked) {
+  --demo-wrapper-toggable-width-1: 50%;
+}
+
+.collapse-demo-6 {
+  animation-name: collapse-demo-final;
+  padding-inline: 1em;
+  
+  &::before {
+    pointer-events: none;
+    visibility: hidden;
+  }
+  
+  & ul {
+    width: var(--navigation-width, 0%);
+  }
+}
+
+@keyframes collapse-demo-final {
+  0%, 100% {
+    background-color: var(--color-demo-background);
+    color: var(--color-demo-text);
+    outline: var(--color-demo-border);
+
+    --navigation-width: 100%;
+  }
+}
+
+.demo-wrapper-toggable-2 {
+  max-width: var(--demo-wrapper-toggable-width-2);
+  overflow: hidden;
+}
+
+:has(#toggle-container-2:checked) {
+  --demo-wrapper-toggable-width-2: 50%;
+}
+
+/* 
+  Page styling has been moved to other pens because it's a big ugly mess and unnecessary for the core idea explained here. Look at the included stylesheets if you really want to see it
+*/
+    </style>
+</head>
+<body>
+    <main>
+        <div class="support-warning scroll-warning container">
+          <p>💀 Your browser doesn't support scroll-animations. This demo will not work.</p>
+        </div>
+      
+        <div class="support-warning color-warning container">
+          <p>💀 Your browser doesn't support the color functions used in this demo. Don't worry. It probably looks better this way.</p>
+        </div>
+      
+        <label for="toggle-color-scheme">
+          <span class="visually-hidden">Toggle dark mode</span>
+          <input type="checkbox" role="switch" id="toggle-color-scheme" autocomplete="on" name="color-scheme" checked>
+        </label>
+      
+        <article>
+          <header class="article-header container">
+            <h1>CSS-only Auto-Collapsing Mobile Menu</h1>
+            <label for="toggle">
+              <input type="checkbox" role="button" id="toggle" class="toggle-menu">
+              <span class="open-text">Close Menu</span>
+              <span class="close-text">View Menu</span>
+            </label>
+      
+            <nav class="article-navigation">
+              <div class="navigation-height-wrapper">
+                <ul class="nav-list" id="menu">
+                  <li><a href="#issue">The Issue</a></li>
+                  <li><a href="#idea">An idea</a></li>
+                  <li><a href="#obstacle">An obstacle</a></li>
+                  <li><a href="#solution">A solution</a></li>
+                  <li><a href="#tracking">Tracking</a></li>
+                  <li><a href="#collapsing">Collapsing</a></li>
+                  <li><a href="#conclusion">Conclusion</a></li>
+                </ul>
+              </div>
+            </nav>
+          </header>
+      
+          <section>
+            <h2 id="issue">The Issue</h2>
+            <p>I have a gift for complicating things. For example, an issue I have on almost every website is knowing when to collapse a horizontal layout into a vertical one on small screens. The simple solution? Just resize the window until the layout looks too crowded, then add a media query. Done. This is not satisfying. After all, if we add or remove an item, we'll need to update the media query.</p>
+      
+            <p>Note that I'm not talking about wrapping the content into rows as with flexbox or grid. I'm talking about a sudden switch into a vertical layout, like when a row of links collapses into a column of links once they don't all fit on one line. Wrapping is exactly what we want to avoid.</p>
+      
+            <p>I need something like <a href="https://codepen.io/heydon/pen/ebQyYV" target="_top">Heydon Pickering's one-column switch</a>, but it needs to have an arbitrary amount of items, each item with a flexible width, and it needs to smartly collapse—not wrap—once it runs out of room. Like I said, complicated.</p>
+      
+            <p>Wrap detection is its own subgenre of developer grievances. The only real way to do this dynamically is via JavaScript, and using JavaScript to solve a CSS issue makes kittens cry.</p>
+          </section>
+          <section>
+      
+            <h2 id="idea">A terrible idea</h2>
+            <p>I realized as I was playing with <a href="https://developer.chrome.com/docs/css-ui/scroll-driven-animations" target="_top">CSS scroll animations</a> that they unlock a very powerful feature: knowing when an element is in-view. And consequently, the opposite: knowing when an element is pushed off-screen due to lack of space. I figured I could weaponize this.</p>
+      
+            <p class="disclaimer">💀 <strong>Please do not use this example on a real website.</strong> For one, scroll animations have very low browser support, and for another, the layout produced is fragile and has limited styling. This is simply an experiment in which I use the latest available toy to solve my oldest problem.</p>
+      
+            <p>So, can we use scroll animations to detect when an element <em>should</em> wrap—by preventing it from wrapping and tracking when it's off-screen—and then force the layout to change?</p>
+          </section>
+      
+          <section>
+            <h2 id="obstacle">An obstacle</h2>
+            <p>The first issue I see is one of circular logic. Once the layout collapses, the item will be back on-screen, which will un-collapse the layout, which will push the element off-screen, which will—</p>
+      
+            <p>So the goal is to track where the element <strong>should</strong> be while moving the element freely somewhere else. This seems like its own dead-end, except for the fact I've almost exclusively worked with my favorite type of designer: the one who doesn't know how to code.</p>
+          </section>
+          <section>
+            <h2 id="tangent">🌶️ Spicy Take: Designers should be terrible coders</h2>
+      
+            <p>A few years ago, before <code>text-wrap: balance</code> <span class="text-wrap-support"><span>(as seen above)</span><s>(as seen above)</s><ins>your browser does not support text-wrap: balance</ins></span>, the designers I worked with enjoyed making balanced headlines. That is, a headline that would wrap somewhere around the middle, so both lines were roughly the same length.</p>
+      
+            <p>This is easy to do in a static design program, but difficult with the fluid nature of the web. I could hard-code a line-break, but that might screw up wrapping on mobile. I could add a media query to remove the line-break, but depending on the complexity of the layout, fluid typography, and worse—the client having access to editing the content—it soon became too complicated. For that last reason, hard-coding a max-width was also out. If the client completely changed the text, I'd need to find a new max-width that correctly balanced the new text.</p>
+      
+            <p>I know everyone tells designers they should know at least a <em>little</em> code, so they can limit their designs to what's technically possible or not. I hope they don't follow this advice, otherwise <em>I</em> wouldn't have to figure out what's possible or not. Not to brag (can I?), but having been at this for nearly 20 years, my idea of what's possible is just a bit wider than that of a designer who learned a little CSS, just to help me out.</p>
+          </section>
+          <section>
+            <h2 id="solution">A solution</h2>
+      
+            <p>So here's what I ended up doing:</p>
+      
+            <p class="wrap-element"><span>This element should wrap to two, somewhat-even lines</span></p>
+      
+            <p>And by that, I mean I made a pen and forgot about it and never used it again because I found it mostly unfeasible and complained about how designers need to learn at least a <em>little</em> CSS, for gods' sake; we can guide but not control the line break unless you want to tell the client to manually add in line-break opportunities every time their SEO specialist has new copy: why do you do this to me.</p>
+      
+            <p>Anyway. By setting a wrapper element to <code>width: max-content</code>, we make it the absolute width of its child element. By setting the child element to <code>width: 50%</code>, we make it 50% of its parent element. In other words, half of its own size, regardless of what that size might be. It feels like <a href="https://codepen.io/giana/pen/GJMBEv" title="One of my first projects when I started learning JavaScript ten yeas ago; I've been avoiding it ever since" target="_top">dividing by zero</a>, but it works.</p>
+      
+            <p>What does this have to do with anything? Look again:</p>
+      
+            <figure class="wrap-element debug">
+              <p>This element should wrap to two, somewhat-even lines</p>
+            </figure>
+      
+            <p>The outline is the parent element; the background is the child element. Note how the outline is the full extent of what the child <em>should</em> be, <s>like me if my parents had studied early childhood development</s>. If you resize the window, you'll see how the parent element never changes <s>like my parents</s>, always as large as its child's original size, even as it gets pushed off the screen.</p>
+          </section>
+          <section>
+            <h2 id="tracking">Tracking</h2>
+      
+            <p>Great, we've got an element that doesn't wrap, even as it goes off-screen. Now what?</p>
+      
+            <p>We can use the <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/animation-timeline/view" target="_top">animation-timeline <code>view()</code> function</a> to keep track of an element's visibility as we scroll through the viewport: when it's entering, when it's fully contained, and when it's exiting. Normally, we track vertical scrolling, but by setting the view-axis to <code>inline</code>, we can track its horizontal positioning on the screen.</p>
+      
+            <h3 id="probably-bug">🐛 A bug or a feature?</h3>
+      
+            <p>MDN has this helpful note on the documentation page for <code>view()</code>:</p>
+      
+            <blockquote cite="https://developer.mozilla.org/en-US/docs/Web/CSS/animation-timeline/view#sect2">
+              <p>Note: If the indicated axis does not contain a scrollbar, then the animation timeline will be inactive (have zero progress).</p>
+            </blockquote>
+      
+            <p>Maybe I'm reading this wrong, but this makes me think that a page with <code>overflow: hidden</code> or... simply not enough content to generate scrollbars, should ignore any scroll animation. In practice, as of Chrome 121, this is not the case. In fact, <a href="https://codepen.io/giana/pen/WNmabVa" target="_top">moving an element around a scroll-less page</a> will trigger different states of the animation. Change the <code>--offset</code> prop in the provided pen and notice how the element changes color based purely on where it's located in the viewport.</p>
+      
+            <p>That in itself is hugely powerful, allowing you to style an element depending on where it appears on the screen.</p>
+      
+            <p>The animation is tied to the nearest <a href="https://developer.mozilla.org/en-US/docs/Glossary/Scroll_container" target="_top">scroll container</a>. I would have expected this to be any element with <code>overflow: scroll</code> or <code>overflow: auto</code> with overflowing content, but simply setting <code>overflow: hidden</code> triggers this behavior as well. Again, see the demo linked above.</p>
+      
+            <p>That means we can track the position of an element <em>inside</em> another element (that has <code>overflow: hidden | auto | scroll</code>) as well.</p>
+            
+            <p>Bug? Likely to be fixed? Will be gone tomorrow, and these two-thousand words I wrote would have been for nothing? Did I misunderstand <a href="https://drafts.csswg.org/scroll-animations/#view-timeline-progress" target="_top" title="oh god it's too late to understand what this means">the specification</a>? Life is short. Let's continue.</p>
+      
+            <h3>Bug or feature, it's hackable</h3>
+      
+            <p>So I'm saying we can keep track of an element's position across the scrollport, as well as the element's original width, even as its children have a different width.</p>
+            
+            <p>In other words, <strong>by positioning an element at some fixed point on the screen and attaching a scroll-animation to it, we can essentially use the animation as a media-query</strong>. Why do this? Because as of today, media-queries (and container queries) use hard-coded numbers. We can't allow the content width to determine the query, nor use <code>calc()</code> and custom props. As of today (2024-02-12).</p>
+      
+            <p>Initially, I had used a pseudo element to create a little marker element whose visibility I could track. Then, I realized I could do all of this by simply setting <code>animation-range: contain</code>, to contain the animation to when the element was fully in-view, with no overlap outside the viewport. This worked fine in limited circumstances, but the more I pushed it, the more unreliable it became. It got to the point where it wouldn't work unless I added both an overflow and a padding property, and my day isn't long enough to debug all this.</p>
+      
+            <p>So we're back to using a marker.</p>
+      
+            <p>Here, I've used a pseudo-element with <code>position: absolute</code> on a parent with <code>position: relative</code> (you know the drill) to attach it to the right edge of the content. Then, I attached a view-animation to this pseudo-element to effectively track when the edge of the element goes off-screen.</p>
+      
+            <figure class="viewport-demo">
+              <p class="viewport-demo-enter">The edge of the element is not in view</p>
+              <p class="viewport-demo-contain">The element is fully in view</p>
+            </figure>
+      
+            <p>We're using a named timeline on the pseudo element and hoisting it back up to the container element with <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/timeline-scope" target="_top">timeline-scope</a>, so an animation will trigger on the container element based on the view-status of the pseudo element.</p>
+      
+            <p>I promise it's more confusing to explain than it is to code. I said I had nearly twenty years of experience coding, whereas I learned to write documentation only last Tuesday.</p>
+      
+            <p>In essence, an animation will trigger on the parent based on whether or not the pseudo-element is inside the horizontal viewport.</p>
+      
+          </section>
+          <section>
+            <h2 id="collapsing">Collapsing</h2>
+      
+            <p>So, we have all the ingredients we need already:</p>
+      
+            <ul>
+              <li>An element holding the unwrapped width of its children</li>
+              <li>Wrapped children of flexible width</li>
+              <li>Rulesets that trigger only when an element is fully in view</li>
+              <li>A complete disregard for stability and robustness</li>
+            </ul>
+      
+            <p>Now, it's time to put them together into a novel culinary experiment. Fun fact, I'm not allowed to use the good pans.</p>
+      
+            <h3>🌯 Shrink-wrapping</h3>
+            <p>We first give the parent element a <code>width: max-content</code> to shrink-wrap it to the width of its children. In this case, our <code>&lt;nav&gt;</code> container which in turn holds a list of links.</p>
+      
+            <figure>
+              <nav class="collapse-demo collapse-demo-1">
+                <ul>
+                  <li><a href="#">A list of links</a></li>
+                  <li><a href="#">Or other items</a></li>
+                  <li><a href="#">Goes here</a></li>
+                  <li><a href="#">And one more</a></li>
+                  <li><a href="#">To force wrapping</a></li>
+                </ul>
+              </nav>
+            </figure>
+      
+            <h3>↔️ Expanding</h3>
+            <p>Then, we give this child (the <code>&lt;ul&gt;</code>) a <code>display: flex</code> to align the list items all in a line and <code>flex-wrap: wrap</code> to allow them to wrap when we're ready to collapse them into a column. Note that at this point, they won't wrap at all because <code>&lt;ul&gt;</code> will automatically expand to 100% width, which fills the parent element. The parent element being set to max-content will never be smaller than the list items.</p>
+      
+            <figure class="demo-wrapper">
+              <nav class="collapse-demo collapse-demo-2">
+                <ul>
+                  <li><a href="#">A list of links</a></li>
+                  <li><a href="#">Or other items</a></li>
+                  <li><a href="#">Goes here</a></li>
+                  <li><a href="#">And one more</a></li>
+                  <li><a href="#">To force wrapping</a></li>
+                </ul>
+              </nav>
+            </figure>
+      
+            <p>(The above demo has some minor styling applied, so you can see what's happening: added gap between items, removed list margin, and removed list styling.)</p>
+      
+            <p>Now, remember the whole overflow thing up in the caterpillar 🐛 section. You'll want to set <code>overflow: hidden</code> on whichever container element provides the maximum width to your element. This will probably be an existing container, wrapper, section, etc. This will also prevent horizontal scrollbars. You can also forego the overflow altogether and let it clip to the full width of the window. You're free, friend, make your own choices.</p>
+      
+            <p>If you need to prevent horizontal scrollbars on some element, but want the scrollable container to be some <em>other</em> element further up (or the viewport, as discussed), you can set <code>overflow-x: clip</code> to avoid creating a new scroll container.</p>
+      
+            <h3>⇲ Shrinking</h3>
+            <p>Now let's set <code>&lt;ul&gt;</code> to 0% width. Be sure there's no <code>overflow</code> property on this element. We want the children to spill out, otherwise we won't be able to see or interact with them. You'll notice now that the parent <code>&lt;nav&gt;</code> retains the original max width, <code>&lt;ul&gt;</code> has shrunk down to nothing, and the list items, forced to wrap due to the narrow width (non-existant, really) of its parent <code>&lt;ul&gt;</code>, are now all in a column.</p>
+      
+            <figure class="demo-wrapper">
+              <nav class="collapse-demo collapse-demo-2 collapse-demo-3">
+                <ul>
+                  <li><a href="#">A list of links</a></li>
+                  <li><a href="#">Or other items</a></li>
+                  <li><a href="#">Goes here</a></li>
+                  <li><a href="#">And one more</a></li>
+                  <li><a href="#">To force wrapping</a></li>
+                </ul>
+              </nav>
+            </figure>
+      
+            <p>I've also set <code>&lt;a&gt;</code> to <code>white-space: nowrap</code> to prevent the links being collapsed down to single-words. You can also set them to <code>width: max-content</code> (which requires them to be block-level elements, eg, have <code>display:block</code>).</p>
+      
+            <p>This is also a good place to remind you that this all works because of the unique properties of setting width to a percentage: the percentage is based on its parent container. If we set <code>flex-direction: column</code>, or set width to something like 12rem, or otherwise tried to create a traditional column of links, we would lose the original width that is being preserved in the parent.</p>
+      
+            <h3>🐾 Tracking</h3>
+      
+            <p>Now we add a little pseudo element to the right edge, and attach a <code>view-timeline: --timeline-name inline</code> to it. The <code>inline</code> tells it we want to watch the horizontal axis.</p>
+      
+            <p>With this named timeline attached, we can then trigger an animation on any element we want, as long as they share an ancestor. To do this, we add <code>timeline-scope: --timeline-name</code> to said ancestor (this can even be the :root element, allowing us to target anything on the page). Here I've added it the parent <code>&lt;nav&gt;</code>, so we can trigger changes on any of its children merely by attaching an animation to it.</p>
+      
+            <figure class="demo-wrapper">
+              <nav class="collapse-demo collapse-demo-2 collapse-demo-3 collapse-demo-4">
+                <ul>
+                  <li><a href="#">A list of links</a></li>
+                  <li><a href="#">Or other items</a></li>
+                  <li><a href="#">Goes here</a></li>
+                  <li><a href="#">And one more</a></li>
+                  <li><a href="#">To force wrapping</a></li>
+                </ul>
+              </nav>
+            </figure>
+      
+            <p>That little square is all that stands between us and a broken layout.</p>
+      
+            <h3>🦋 Animating</h3>
+            <p>Now we create the actual animation. One handy way to think about this is to style the element based on its collapsed view, aka, mobile-first. Then whatever we put inside the animation will essentially act as our media-query for large screens. You can attach an animation to any element you want to change.</p>
+      
+            <p>Because we don't actually want the animation to be scroll-<em>driven</em> (eg, animated or transitioned between two or more states), only scroll-<em>triggered</em> (a hard-cut between an on/off state), we can set the keyframe to <code>0%, 100%</code> to maintain the same values throughout the entire animation.</p>
+      
+            <figure class="demo-wrapper demo-wrapper-toggable demo-wrapper-toggable-1">
+              <nav class="collapse-demo collapse-demo-2 collapse-demo-3 collapse-demo-4 collapse-demo-5">
+                <ul>
+                  <li><a href="#">A list of links</a></li>
+                  <li><a href="#">Or other items</a></li>
+                  <li><a href="#">Goes here</a></li>
+                  <li><a href="#">And one more</a></li>
+                  <li><a href="#">To force wrapping</a></li>
+                </ul>
+              </nav>
+            </figure>
+      
+            <p>The colors and border-style of the above demo will change based on whether the marker is in-view or not. Here's a handy toggle to limit the container width and thus immitate a small viewport:</p>
+      
+            <p><label for="toggle-container-1"><input type="checkbox" id="toggle-container-1">Toggle container width to see style changes</label></p>
+      
+            <p>I've done this by setting the <code>animation-timeline</code> of the <code>&lt;nav&gt;</code> element to the named-timeline we created inside the marker, and then adding a standard <code>animation</code> property and associated <code>@keyframes</code>. Inside the <code>@keyframes</code> (0%, 100%, remember?), I changed the background, color, and outline properties.</p>
+            
+            <p>Check the CSS tab in this pen to see exactly how it's set.</p>
+      
+            <h3>↔️ Expanding again</h3>
+      
+            <p>We need to toggle <code>&lt;ul&gt;</code> between 0% width at its collapsed state to 100% width at its expanded state. By using CSS custom props, we can change the ruleset inside the animation on the parent element and all children elements will inherit it.</p>
+      
+            <p>Let's replace the <code>&lt;ul&gt;</code>'s width property with a CSS custom property with a fallback value: <code>width: var(--navigation-width, 0%)</code>. <code>&lt;ul&gt;</code> will now have a width of 0% unless it can find the prop <code>--navigation-width</code> somewhere.</p>
+      
+            <p>You know where this is going, right? We set <code>--navigation-width: 100%;</code> inside our keyframe.</p>
+      
+            <p>And here's that toggle again:</p>
+      
+            <p><label for="toggle-container-2"><input type="checkbox" id="toggle-container-2">Toggle container width to see layout changes</label></p>
+      
+            <figure class="demo-wrapper demo-wrapper demo-wrapper-toggable demo-wrapper-toggable-2">
+              <nav class="collapse-demo collapse-demo-2 collapse-demo-3 collapse-demo-4 collapse-demo-5 collapse-demo-6">
+                <ul>
+                  <li><a href="#">A list of links</a></li>
+                  <li><a href="#">Or other items</a></li>
+                  <li><a href="#">Goes here</a></li>
+                  <li><a href="#">And one more</a></li>
+                  <li><a href="#">To force wrapping</a></li>
+                </ul>
+              </nav>
+            </figure>
+      
+            <p>Alternatively, you can attach an animation directly onto the <code>&lt;ul&gt;</code>, as long as you remember to add the marker's named animation timeline. That way, you can change any properties directly on the <code>&lt;ul&gt;</code>. I'm using custom props here for simplicity, but check out the table of contents at the beginning of this pen and notice how many elements have different animations attached, all powered by the same named timeline.</p>
+      
+            <p>In this final demo, I've also hidden the marker with <code>visibility: hidden</code> because no one needs to see that, and <code>pointer-events: none</code> just for safety. Of course, you can remove the background color and make it smaller. These styles just makes it easier to debug, but in practice (and we're <em>not</em> using this in practice, are we?) the marker should be sized and positioned according to the exact moment we want the element to toggle.</p>
+          </section>
+      
+          <section>
+            <h2 id="conclusion">Conclusion</h2>
+      
+            <p>And there you go. That's a whole lot of circular reasoning and relying on experimental code to avoid writing a single line of JavaScript.</p>
+            
+            <p>See <a href="https://codepen.io/giana/pen/gOEQWpR/" target="_top">another demo</a> with a more comprehensive mobile menu and layout using zerio media queries, container queries, or JavaScript.</p>
+      
+            <p>This demo is also using the <a href="https://css-tricks.com/the-checkbox-hack/" target="_top">checkbox hack</a> extensively for the open/close menu state at the top of the page, for the demos, and for the light/dark mode switch. I don't believe this is great for accessibility, and a <a href="https://inclusive-components.design/menus-menu-buttons/" target="_top">more comprehensive solution</a> should be used, but this was a JS-free demo, and we're already doing everything wrong, so ¯\_(ツ)_/¯</p>
+          </section>
+      
+        </article>
+      </main>
+      
+      <footer>
+        <p>Made with 🤬 by Giana “I'm should make a blog” Blantin</p>
+      </footer>
+</body>
+</html>
