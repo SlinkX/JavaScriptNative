@@ -1,0 +1,715 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    /* SETUP and RESET */
+/* https://picsum.photos/ */
+/* https://source.unsplash.com/300x300/?forest */
+/* https://i.pravatar.cc/80?img=67 */
+
+:root {
+    /* FONT SIZES */
+    font-size: 62.5%;
+
+    --fs-h1-clamp: clamp(2.25rem, 1.0184rem + 2.683vw, 3rem);
+    --fs-h2-clamp: clamp(1.5rem, 0.8818rem + 2.0723vw, 2rem);
+    --fs-h3-clamp: clamp(1.25rem, 0.7607rem + 1.75vw, 1.75rem);
+    --fs-body-clamp: clamp(1.3rem, 0.6548rem + 1.2259vw, 1.6rem);
+    --fs-small-clamp: clamp(1rem, 0.4821rem + 0.7143vw, 1.3rem);
+
+
+    --ff-primary: 'PT Sans', system-ui;
+    --ff-secondary: 'Font Awesome 6 Pro';
+
+    --fs-h1: var(--fs-h1-clamp);
+    --fs-h2: var(--fs-h2-clamp);
+    --fs-h3: var(--fs-h3-clamp);
+    --fs-body: var(--fs-body-clamp);
+    --fs-small: var(--fs-small-clamp);
+
+    /* COLORS + BG-COLORS */
+    --clr-primary: ;
+    --clr-accent: oklch(76% 0.16 52);
+    --clr-accent-alpha: oklch(76% 0.16 52 / 10%);
+    --clr-accent-grade: linear-gradient(90deg, oklch(76% 0.16 52), oklch(70% 0.20 44));
+    --clr-neutral-100: oklch(100% 0 303);
+    --clr-neutral-900: oklch(0% 0 303);
+
+    --clr-bg-body: oklch(95% 0.01 248);
+    --clr-bg-card: var(--clr-neutral-100);
+
+    /* NUMERIC VALUES */
+    --default-transition-duration: 400ms;
+    --timing-bounce: cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+/* @media (prefers-color-scheme: dark) {
+    :root {
+        --clr-primary: #;
+        --clr-neutral-100: #FFF;
+        --clr-neutral-900: #000;
+    
+        --clr-bg-body: #;
+        --clr-bg-card: #;
+    }
+} */
+
+@media (prefers-reduced-motion: no-preference) {
+
+    *,
+    *:before,
+    *:after {
+        scroll-behavior: smooth;
+        transition-duration: 1ms;
+    }
+
+    ;
+}
+
+*,
+*:before,
+*:after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent;
+}
+
+
+img,
+svg {
+    display: block;
+    max-width: 100%;
+}
+
+a {
+    color: inherit;
+    font: inherit;
+    text-decoration: none;
+    display: inline-block;
+}
+
+li {
+    list-style: none;
+}
+
+input,
+textarea {
+    font-family: inherit;
+    font-size: inherit;
+    font-weight: inherit;
+    color: inherit;
+    background-color: transparent;
+    border: 1px solid rgba(0 0 0 / 0.7);
+    width: 100%;
+}
+
+input:is([type="checkbox"], [type="radio"]) {
+    width: initial;
+}
+
+/* REMOVE DEFAULT SPINNERS FROM NUMBER INPUTS */
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+/* ... and for Firefox */
+input[type="number"] {
+    -moz-appearance: textfield;
+}
+
+
+/* INPUT TYPE=SEARCH clear button */
+input[type="search"]::-ms-clear {
+    display: none;
+    width: 0;
+    height: 0;
+}
+
+input[type="search"]::-ms-reveal {
+    display: none;
+    width: 0;
+    height: 0;
+}
+
+input[type="search"]::-webkit-search-decoration,
+input[type="search"]::-webkit-search-cancel-button,
+input[type="search"]::-webkit-search-results-button,
+input[type="search"]::-webkit-search-results-decoration {
+    display: none;
+}
+
+input[type='file'] {
+    border-color: var(--clr-primary);
+    width: fit-content;
+}
+
+/* choose file button styles */
+input[type='file']::file-selector-button {
+    background-color: var(--clr-bg-body);
+    padding: 0.6em 1.2em;
+    border-radius: 0.25em;
+    font: inherit;
+    cursor: pointer;
+}
+
+button {
+    background-color: transparent;
+    color: inherit;
+    font: inherit;
+    border: none;
+    cursor: pointer;
+}
+
+::-webkit-scrollbar {
+    height: 4px;
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    background: var(--clr-accent);
+}
+
+::placeholder {
+    color: inherit;
+    opacity: 0.7;
+}
+
+::selection {
+    background-color: var(--clr-neutral-900);
+    color: var(--clr-neutral-100);
+}
+
+.visually-hidden {
+    clip: rect(0 0 0 0);
+    clip-path: inset(50%);
+    height: 1px;
+    overflow: hidden;
+    position: absolute;
+    white-space: nowrap;
+    width: 1px;
+}
+
+/* CLIP PROPERTIES  */
+/* background-clip: text;
+ color: transparent; 
+-webkit-background-clip: text;
+-webkit-text-fill-color: transparent; */
+
+
+/* GRID AND FLEX UTILITY CLASSES */
+.row {
+    display: flex;
+
+}
+
+.col {
+    display: flex;
+    flex-direction: column;
+}
+
+.grid {
+    display: grid;
+}
+
+.pc-cen {
+    place-content: center;
+}
+
+.pi-cen {
+    place-items: center;
+}
+
+.ai-st {
+    align-items: start;
+}
+
+.ai-cen {
+    align-items: center;
+}
+
+.ai-end {
+    align-items: end;
+}
+
+.ai-base {
+    align-items: baseline;
+}
+
+.jc-st {
+    justify-content: start;
+}
+
+.jc-cen {
+    justify-content: center;
+}
+
+.jc-end {
+    justify-content: end;
+}
+
+.jc-sb {
+    justify-content: space-between;
+}
+
+.jc-sa {
+    justify-content: space-around;
+}
+
+.jc-se {
+    justify-content: space-evenly;
+}
+
+.fw-wrap {
+    flex-wrap: wrap;
+}
+
+.gap-4 {
+    gap: 4em;
+}
+
+.gap-3 {
+    gap: 3em;
+}
+
+.gap-2 {
+    gap: 2em;
+}
+
+.gap-1 {
+    gap: 1em;
+}
+
+.gap-half {
+    gap: 0.5em;
+}
+
+.gap-quarter {
+    gap: 0.25em;
+}
+
+/* ELEMENT SELECTORS */
+
+body {
+    font-family: var(--ff-primary);
+    font-size: var(--fs-body);
+    font-weight: 400;
+    line-height: 1.4;
+    color: var(--clr-primary);
+    text-wrap: pretty;
+    margin: 0;
+    background: var(--clr-bg-body);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 1em;
+}
+
+h1 {
+    font-size: var(--fs-h1);
+    text-wrap: balance;
+    line-height: 1;
+    font-weight: 600;
+}
+
+h2 {
+    font-size: var(--fs-h2);
+    line-height: 1;
+    font-weight: 600;
+}
+
+h3 {
+    font-size: var(--fs-h3);
+    line-height: 1;
+    font-weight: 600;
+}
+
+
+/* TEXT UTILITIES */
+
+.xsmall {
+    font-size: var(--fs-small);
+}
+
+.small {
+    font-size: 0.85em;
+}
+
+.lg {
+    font-size: 1.1em;
+}
+
+.bold {
+    font-weight: 600;
+}
+
+.uppercase {
+    text-transform: uppercase;
+}
+
+.underline {
+    text-decoration: underline;
+}
+
+.desat {
+    opacity: 0.8;
+}
+
+.ls-1 {
+    letter-spacing: 1px;
+}
+
+.ff-serif {
+    font-family: 'Playfair Display', serif;
+}
+
+[btn-close] {
+    padding: 1em;
+    position: absolute;
+    top: 0;
+    right: 0;
+    /* dont forget to add position relative to parent! */
+}
+
+/* LAYOUT */
+
+.hide {
+    scale: 0;
+    transition: scale 300ms;
+}
+
+.container {
+    container-type: inline-size;
+}
+
+.wrap {
+    display: grid;
+    grid-template-areas: 
+        '  .    pod     pod     .        .       .    '
+        '  .    pod     pod     .     simple   simple'
+        'comp   comp     .      .     simple   simple'
+        'comp   comp  accent  accent   accent   .    '
+        '  .      .   accent  accent   accent   .    ';
+    gap: 2em;
+}
+
+.card {
+    background-color: var(--clr-bg-card);
+    padding: 1.5em;
+    border-radius: 0.5em;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px, var(--clr-accent-alpha) 0px 18px 36px -18px;
+
+    &:not(.card-wrap .card) {
+        padding: 2em;
+    }
+}
+
+/* PROJECT SPECIFIC STYLES */
+:is(h2, h3) {
+    font-family: 'Playfair Display', serif;
+}
+
+.profile {
+    display: grid;
+    grid-template-areas: 
+        'img title'
+        'img meta';
+    grid-column-gap: 0.25em;
+    justify-content: start;
+    
+    .img-wrap { grid-area: img; }
+    p.bold { grid-area: title; align-self: end;}
+    p:not(.bold) { grid-area: meta; }
+
+    .img-wrap {
+        border-radius: 50%;
+        overflow: clip;
+        inline-size: 5ch;
+        block-size: 5ch;
+        aspect-ratio: 1;
+
+        & img {
+            inline-size: 100%;
+            object-fit: cover;
+        }
+    }
+}
+
+.card-wrap {
+    grid-area: pod;
+
+    .card {
+        inline-size: min(100%, 40ch);
+
+        h3 {
+            margin-block: 0.2em 0.5em;
+        }
+    }
+
+    .card + .card {
+        margin-block-start: 0.5em;
+    }
+
+    .btn {
+        border-radius: 50%;
+        aspect-ratio: 1;
+        inline-size: 4ch;
+        transition: filter var(--default-transition-duration);
+
+        &:is(:hover, :focus-visible) {
+            filter: saturate(200%);
+        }
+
+        &:is(.btn-primary) {
+            background: var(--clr-accent-grade);
+            color: var(--clr-neutral-100);
+
+/*           svg {
+            fill: currentcolor;
+          } */
+        }
+
+        &:is(.btn-secondary) {
+            background: transparent;
+            box-shadow: 0 0 0 2px oklch(95% 0.0 0 / 90%);
+          
+/*           svg {
+            fill: url(#clr-accent-grade);
+          } */
+        }
+    }
+}
+
+.card[data-card=simple] {
+    grid-area: simple;
+    align-self: start;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 2em;
+
+
+    progress {
+        appearance: none;
+        -webkit-appearance: none;
+        -moz-appearance: initial;
+        background: transparent;
+        border: none;
+        border-radius: 4rem;
+        box-shadow: inset 0 0 0 1px #d6d7dd, inset 0 0 10px var(--clr-neutral-200, #ccc);
+        overflow: hidden;
+
+        block-size: 0.5em;
+        vertical-align: middle;
+    }
+
+    progress::-webkit-progress-bar {
+        background: var(--clr-bg-body);
+    }
+
+    progress::-webkit-progress-value {
+        background: var(--clr-accent-grade);
+        border-radius: 4rem;
+        /* box-shadow: inset 0 0 0 1px #d6d7dd, inset 0 0 10px var(--clr-neutral-200); */
+        will-change: all;
+    }
+
+    /* FOR FIREFOX */
+    progress::-moz-progress-bar {
+        -moz-appearance: initial;
+        background: var(--clr-accent-grade);
+        border-radius: 4rem;
+        border: 0;
+        box-shadow: inset 0 0 0 1px #d6d7dd, inset 0 0 10px var(--clr-neutral-200);
+    }
+}
+
+.card[data-card=complex] { 
+    grid-area: comp; 
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 2em;
+
+    & h2 {
+        /* margin-block-start: 0.5em; */
+    }
+
+    a.bold {
+        /* margin-block-start: 2em; */
+        font-weight: 500;
+        transition: text-decoration var(--default-transition-duration);
+
+        &:is(:hover, :focus-visible) {
+            text-decoration: underline;
+            text-underline-offset: 3px;
+            
+        }
+    }
+}
+
+.card[data-card=accent] {
+    grid-area: accent;
+    color: var(--clr-neutral-100);
+    background: var(--clr-accent-grade);
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 2em;
+}
+
+@media (max-width: 1000px) {
+    .wrap {
+        grid-template-areas:
+            'pod simple'
+            'pod accent'
+            'comp comp'
+        ;
+    }
+}
+
+@media (max-width: 450px) {
+    .wrap {
+        grid-template-areas:
+            'pod'
+            'simple'
+            'accent'
+            'comp'
+        ;
+    }
+
+    .card-wrap {
+        margin-inline: auto;
+    }
+}
+  </style>
+</head>
+<body>
+  <div id="root" class="wrap"></div>
+</body><script>
+  // thought this was a good challenge to use react components and figure out how to build it so there can be one card component with conditionals https://icodethis.com/_next/image?url=%2Fimages%2Fprojects%2Fblog_comps.png&w=2048&q=75
+
+import React from "https://esm.sh/react"
+import ReactDOM from "https://esm.sh/react-dom"
+
+const rootEl = document.getElementById('root')
+const root = ReactDOM.createRoot(rootEl);
+root.render(
+  <React.StrictMode>
+    <App />
+  </React.StrictMode>
+)
+
+function App() {
+  return(
+    <>
+      <PodWrap />
+      <Card cardType="simple">
+        <CardTitle title="The 8 Pillars of Application Performance" />
+        <Row gap="gap-1" justify="jc-sb" align="ai-cen">    
+          <p class="small desat">12 min read</p>
+          <div>
+            <progress min="0" max="100" value="35"></progress>
+          </div>      
+        </Row>
+      </Card>
+      
+      <Card cardType="accent">
+        <CardTitle title="The 8 Pillars of Application Performance" />
+        <Profile />
+      </Card>
+      
+      <Card cardType="complex">
+        <Profile />
+        <CardTitle title="Token-based Authentication with JMeter" />
+        <a href="javascript: void(0)" class="bold small">Start reading</a>
+      </Card>
+    </>
+  )
+}
+
+function PodWrap() {
+  return(
+    <div class="card-wrap">
+      
+      <PodCard title="Recap: Kubrick" time="2h ago" btnClass="btn-primary" isPrimary />
+
+      <PodCard title="How to create an npm package" time="Yesterday" btnClass="btn-secondary" isPrimary={false} />
+      
+    </div>
+  )
+}
+
+function PodCard({title, btnClass, time, isPrimary }) {
+  return(
+    <div className="card pod">
+      <p className="uppercase ls-1 small">Containers</p>
+      <h3>{title}</h3>
+      <div className="row ai-cen gap-half jc-sb">
+        <button className={`btn grid pi-cen ${btnClass}`} aria-label="Play button">
+          <svg width="24" viewBox="0 0 24 24" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round">
+            <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+            <path d="M6 4v16a1 1 0 0 0 1.524 .852l13 -8a1 1 0 0 0 0 -1.704l-13 -8a1 1 0 0 0 -1.524 .852z" stroke-width="0" fill={ isPrimary ? 'currentColor' : 'url(#clr-accent-grade)' }/>
+            <linearGradient id="clr-accent-grade" x1="0%" x2="100%" y1="0%" y2="0%" gradientUnits="userSpaceOnUse">
+              <stop offset="0" stop-color="oklch(76% 0.16 52)" />
+              <stop offset="100%" stop-color="oklch(70% 0.20 44)" />
+            </linearGradient>
+          </svg>
+
+        </button>
+        <p className="small desat">{time}</p>
+      </div>
+    </div>
+  )
+}
+
+function Profile() {
+  return (
+    <div className="profile">
+      <div className="img-wrap">
+        <img src="https://i.pravatar.cc/80?img=47" alt="" />
+      </div>
+      <p className="bold ff-serif small">Jessie Holmes</p>
+      <p className=' small'>29 Jul 2011 &middot; <a href="javascript: void(0)" className="underline">Solutions Architecture</a>
+      </p>
+    </div>
+  )
+}
+
+function Card({cardType, cardTitle, children}) {
+  return(
+    <div className='card' data-card={cardType}  >
+      {children}
+    </div>
+  )
+}
+
+function CardTitle( {title} ) {
+  return(
+    <h2>{title}</h2>
+  )
+}
+
+function Row(props) {
+  return(
+    <div className={`row ${props.gap} ${props.justify} ${props.align}`}>
+      {props.children}
+    </div>
+  )
+}
+</script>
+</html>
