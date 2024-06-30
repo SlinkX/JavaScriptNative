@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    @import url("https://fonts.googleapis.com/css?family=IBM+Plex+Sans:400");
+
+* {
+  box-sizing: border-box;
+}
+
+body,
+html {
+  height: 100%;
+  margin: 0;
+  background-color: #010101;
+  color: #d4d4d4;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  font-family: "IBM Plex Sans";
+  font-weight: 400;
+  font-size: 1.2rem;
+}
+
+h2 {
+  margin: 0;
+  line-height: 150%;
+  font-weight: normal;
+}
+
+p {
+  margin: 1.5rem 0 0 0;
+  line-height: 150%;
+}
+
+#resizable {
+  width: 500px;
+  height: 500px;
+  background-color: #1d1d1d;
+  border-radius: 20px;
+  position: relative;
+  padding: 3rem;
+  box-shadow: inset 0 2px 4px rgba(225,225,225, 0.1);
+}
+
+#resizable::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 20px;
+  height: 100%;
+  cursor: ew-resize;
+  border-radius: 0 20px 20px 0;
+}
+
+#resizable p {
+  flex: 1;
+
+  overflow: hidden;
+  word-wrap: break-word;
+  user-select: none;
+}
+
+#resizable:hover::after {
+  background-color: rgba(0,100,250,0.5);
+}
+
+  </style>
+</head>
+<body>
+  <div id="resizable">
+    <h2>Elastic Div</h2> <p>Inspired by the iPhone volume bar, this elastic div experiments a different way of showing resize limits to users. Just hold and drag the right side to see the effect for yourself. This effect is currently using GSAP, but you could also achieve it with pure JS.<p>
+   </div>
+   <script>
+    const resizable = document.getElementById("resizable");
+let startX, startWidth;
+
+document.addEventListener("mousedown", function (e) {
+  if (
+    e.target === resizable ||
+    e.target === resizable.querySelector(":after")
+  ) {
+    startX = e.clientX;
+    startWidth = resizable.offsetWidth;
+    document.body.classList.add("resizing");
+    document.documentElement.style.cursor = "ew-resize";
+    document.addEventListener("mousemove", resize);
+    document.addEventListener("mouseup", stopResize);
+  }
+});
+
+function resize(e) {
+  if (!document.body.classList.contains("resizing")) return;
+
+  const widthChange = e.clientX - startX;
+  const newWidth = Math.max(400, Math.min(900, startWidth + widthChange));
+  const adjustedHeight =
+    newWidth > 800
+      ? 500 - (newWidth - 800)
+      : newWidth < 500
+      ? 500 + (500 - newWidth)
+      : 500;
+
+  gsap.to(resizable, {
+    width: newWidth,
+    height: adjustedHeight,
+    duration: 0.1,
+    ease: "none"
+  });
+}
+
+function stopResize() {
+  document.removeEventListener("mousemove", resize);
+  document.removeEventListener("mouseup", stopResize);
+  document.body.classList.remove("resizing");
+  document.documentElement.style.cursor = "auto";
+
+  const finalWidth = resizable.offsetWidth;
+  const targetWidth =
+    finalWidth > 800 ? 800 : finalWidth < 500 ? 500 : finalWidth;
+
+  gsap.to(resizable, {
+    width: targetWidth,
+    height: 500,
+    duration: 0.5,
+    ease: "elastic.out(1, 0.3)"
+  });
+}
+
+   </script>
+</body>
+</html>
