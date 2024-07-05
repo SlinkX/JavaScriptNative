@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+	<style lang="scss">
+		// save these colors
+$pink: #bf4392;
+$brightBlue: #0e89c5;
+$darkBlue: #0e2c36;
+$gold: #e4c240;
+$darkMint: #1fb25b;
+
+
+html, body {
+	padding: 0;
+	margin: 0;
+	font-family: Arial, sans-serif;
+}
+hr {
+	border: none;
+	border-bottom: 2px solid #fff;
+	margin: 5rem 0;
+}
+li {
+	font-weight: 400;
+}
+header {
+	z-index: 0;
+	position: relative;
+	background-size: cover;
+	background-position: center;
+	background-color: #333;
+	background-image: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/220427/wallhaven-572087.jpg);
+	&:before {
+		content: '';
+		position: absolute;
+		top: 0;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		background-color: rgba(#000,0.4);
+		z-index: 0;
+	}
+	h1 {
+		font-size: 3rem;
+		text-align: center;
+		color: #fff;
+		padding: 14vh 0;
+		margin: 0;
+		font-family: inherit;
+		z-index: 1;
+		position: relative;
+	}
+}
+.intro {
+	background: $darkMint;
+	color: #fff;
+	margin: 3rem auto;
+	border: 2px solid $darkMint;
+	padding: 3rem;
+}
+// set the class for the nav bar
+$navBar: '.nav-bar';
+
+// #{$navBar} just outputs what is inside the quotes
+//
+// in this case it's just: .nav-bar
+//
+// this makes it easy to only update the class name in one place
+
+#{$navBar} {
+
+
+	/////// standard settings
+	$linkColor: #fff;
+	$linkHoverColor: $darkMint;
+	//$linkBG: transparent;
+	//$linkHoverBG: #fff;
+	$navBarAccentColor: $darkMint;
+	$navBarBG: rgba($darkBlue,1);
+
+	/////// sticky settings
+	$stickyNavBarBG: rgba(#fff, 0.95);
+	$stickyLinkColor: #333;
+	$stickyLinkHoverColor: $darkMint;
+	//$stickyLinkBG: transparent;
+	//$stickyLinkHoverBG: $pink;
+
+	// normal nav bar settings
+	position: relative;
+	z-index: 1;
+	top: 0;
+	left: 0;
+	right: 0;
+	display: flex;
+	align-items: center;
+	padding: 0.5rem 1rem;
+	margin: 0;
+	background: $navBarBG;
+	font-family: Arial, sans-serif;
+
+
+	////// vertically align everything to the middle of the navbar
+	* {
+		vertical-align: middle;
+	}
+	/////// default nav bar title styling
+	//
+	// .nav-bar__title {}
+	&__title {
+		margin: 0;
+		display: inline-block;
+		color: #fff;
+		padding: 0.5rem;
+		font: 2rem/1.25 Arial, sans-serif;
+		flex: 1;
+	}
+	/////// style the line next to the nav bar title
+	//
+	// .nav-bar__bar {}
+	&__icon {
+		max-width: 3rem;
+		margin-right: 0.5rem;
+		.fa {
+			font-size: 2rem;
+			line-height: 1;
+			color: $navBarAccentColor;
+		}
+	}
+
+	/////// list of links 
+	//
+	// .nav-bar__list {}
+	&__list {
+		margin: 0;
+		padding: 0;
+		color: $linkColor;
+		list-style: none;
+		font-weight: 600;
+		font-size: 0; // fix spaces between inline-block
+		text-align: right;
+		flex: 2;
+
+		li {
+			display: inline-block;
+			font-size: 1rem;
+			font-family: inherit;
+			color: $linkColor;
+			//background: $linkBG;
+
+			// hover settings for links
+			&:hover {
+				//background: $linkHoverBG;
+				a {
+					color: $linkColor;
+					&:before {
+						content: '';
+						position: absolute;
+						top: calc(50% + 0.75rem);
+						left: 1.5rem;
+						right: 1.5rem;
+						border: 1px solid $linkHoverColor;
+					}	
+				}
+			}
+			// first-child in the list
+			// hide the separator
+			&:first-child {
+				a:after { 
+					display: none;
+				}
+			}
+		}
+
+		// inherit all colors and styling from list item
+		// padding and line heights should start here though
+		// at the lowest child level ul -> li -> a
+		a {
+			display: block;
+			color: inherit;
+			font-size: inherit;
+			font-family: inherit;
+			padding: 0.5rem 1.5rem;
+			line-height: 1.5;
+			position: relative;
+			text-decoration: none;
+
+			&:hover {
+				color: inherit;
+				// add underline on hover
+
+			}
+
+			// add separator to the left side of the links
+			&:after {
+				content: '';
+				position: absolute; 
+				top: 0.5rem;
+				bottom: 0.5rem;
+				left: 0;
+				width: 0.125rem;
+				background: $navBarAccentColor;
+			}
+		}
+
+		// make the main nav bar action stand out as a button
+		&#{$navBar}__main-action {
+			a {
+				background: $navBarAccentColor;
+				color: #fff;
+				margin: 0 0.5rem;
+				border-radius: 0.25rem;
+				&:hover {
+					background: $linkHoverColor;
+					color: #fff;
+				}
+				&:before {
+					display: none;
+				}
+				&:after {
+					display: none;
+				}
+			}
+		}
+	}
+
+	/////// nav bar settings when it is stickied
+	//
+	// .nav-bar__stickied {}
+	@keyframes fadeIn {
+		0% {
+			opacity: 0;
+		}
+		100% {
+			opacity: 1;
+		}
+	}
+	&__stickied {
+		position: fixed;
+		background: $stickyNavBarBG;
+		padding: 0rem 1rem;
+	  transition: padding 200ms ease-in-out;
+		animation: fadeIn 300ms normal ease-in;
+		/////// style the nav bar title when the nav bar is stickied
+		//
+		// .nav-bar__stickied	.nav-bar__title {}
+		#{$navBar}__title {
+			color: #333;
+		}
+		/////// style the line next to the nav bar title
+		#{$navBar}__bar {
+			background-color: $navBarAccentColor;
+		}
+		#{$navBar}__list {
+			li {
+				color: $stickyLinkColor;
+				//background: $stickyLinkBG;
+
+				// hover settings for links
+				&:hover {
+					//background: $stickyLinkHoverBG;
+					a {
+						color: $stickyLinkColor;
+						&:before {
+							border-color: $stickyLinkHoverColor;
+						}
+					}
+				}
+				// last-child in the list
+				&:last-child {
+					a:after { 
+						display: none;
+					}
+				}
+			}
+			// make the main nav bar action stand out as a button
+			&#{$navBar}__main-action {
+				a {
+					background: $brightBlue;
+					color: #fff;
+					margin: 0 0.5rem;
+					border-radius: 0.25rem;
+
+					&:after {
+						display: none;
+					}
+				}
+				&:hover {
+					a {
+						background: $stickyLinkHoverColor;
+						color: #fff;
+					}
+				}
+			}
+		}
+	}
+}
+
+
+
+/////// add fluff for scrolling
+//
+.add-fluff {
+	background-color: $darkBlue;
+	color: #fff;
+	padding: 1rem 10vw;
+	min-height: 200vh;
+	font: 400 1.25rem/1.6 Arial, sans-serif;
+}
+	</style>
+</head>
+<body>
+	<nav class="nav-bar">
+		<span class="nav-bar__icon"><i class="fa fa-sticky-note" aria-hidden="true"></i></span>
+		<h1 class="nav-bar__title">Sticky nav bar</h1>
+		<ul class="nav-bar__list">
+			<li>
+				<a href="#">Menu item</a>
+			</li>
+			<li>
+				<a href="#">Menu item</a>
+			</li>
+			<li>
+				<a href="#">Menu item</a>
+			</li>
+			<li class="nav-bar__list nav-bar__main-action">
+				<a href="#">Menu item</a>
+			</li>
+		</ul>
+	</nav>
+	<header>
+		<h1>Building a basic "sticky" nav bar</h1>
+	</header>
+	<div class="add-fluff">
+		<div class="intro">
+			<p><em>This is a simple method for creating a sticky nav bar. Using this method assumes that the nav bar sits at the top of the page in its default state. Much of the CSS is extra "fluff" used to style the nav bar interactions and style a basic menu</em></p>
+			<p><strong>Note:</strong> The main components in the css that control the nav bar states are:</p>
+			<ul>
+				<li><strong>.nav-bar</strong>: default state</li>
+				<li><strong>.nav-bar__stickied:</strong> sticky state</li>
+			</ul>
+		</div>
+		<h2>Step One</h2>
+		<p><strong>Create structure:</strong> add elements for the nav bar and content</p>
+		<ul>
+			<li>Create nav bar element .nav-bar</li>
+			<li>Create content element .nav-bar + * (any element following the nav bar)</li>
+		</ul>
+		<h2>Step Two</h2>
+		<p><strong>Determine the strategy:</strong> Make the nav bar stick to the top of the window and change when content scrolls under it.</p>
+		<ul>
+			<li>Set default .nav-bar relative position</li>
+			<li>Add top margin to element following the nav bar when it switches to sticky so that the page doesn't shift when the navbar shifts from relative to fixed position.</li>
+			<li>Determine scroll distance needed to activate the "sticky" style.</li>
+			<li>Set sticky class when scroll distance is reached</li>
+			<li>Unset the class when the window is scrolled back to the top</li>
+			<li>Use the sticky class to change the visual style of the nav bar (default vs. sticky)</li>
+			<li>For the default nav bar style add a transition for all properties to make a smooth transition to and from the sticky state. {&nbsp;transition:&nbsp;all&nbsp;ease-in-out&nbsp;100ms;&nbsp;}</li>
+		</ul>
+		<h2>Step Three</h2>
+		<p><strong>Automate values:</strong> Automate the padding added to the element following the nav bar.</p>
+		<ul>
+			<li>Get the height of the nav bar and add it to a specified offset and set it to the top padding of the element following the nav bar</li>
+			<li>This needs to be done when the page loads and anytime the page is resized</li>
+		</ul>
+		<hr>
+		<p>
+			Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean laoreet tincidunt ultrices. Sed in est blandit, facilisis eros ut, facilisis tellus. Duis faucibus porttitor ullamcorper. Pellentesque tempor feugiat sollicitudin. Nullam suscipit sem sit amet vestibulum tincidunt. Quisque non pellentesque ligula. Maecenas posuere ultrices sapien eget elementum. Ut dignissim dignissim accumsan. Aenean molestie molestie nibh. Sed magna tellus, aliquet ac volutpat at, feugiat non quam. Aliquam auctor eu felis quis lacinia. Vivamus velit mi, ultricies at tortor vitae, aliquam dictum mauris.
+		</p>
+		<p>
+			Fusce id suscipit nulla. Nunc eu accumsan est. Pellentesque egestas augue sed condimentum auctor. Curabitur ut ligula nec leo dignissim suscipit non eget dui. Praesent id mattis turpis, ac fermentum augue. Suspendisse potenti. Nunc tortor ex, molestie facilisis porta ac, rhoncus vel sapien. Integer porttitor egestas felis convallis finibus.
+		</p>
+		<p>
+			Ut maximus, metus quis maximus sollicitudin, justo risus ultrices neque, imperdiet varius nisi massa non turpis. Sed porta, enim suscipit congue convallis, nisi enim interdum lacus, ut lobortis dui eros id sapien. Suspendisse ex leo, vehicula sed enim sit amet, cursus rhoncus dolor. Pellentesque ex est, aliquet et maximus viverra, imperdiet varius lacus. Pellentesque et sapien sapien. Fusce id nisi in nunc tincidunt rhoncus eget nec ex. Proin bibendum in nulla at imperdiet. Vivamus euismod imperdiet lacinia. Integer suscipit purus sit amet velit pellentesque, in elementum leo dapibus. Aliquam volutpat blandit nisl, et accumsan sapien tristique ut. In hac habitasse platea dictumst. Phasellus sollicitudin massa eu gravida consectetur. Donec semper dui libero, eget pulvinar mauris placerat vitae. Fusce vulputate semper nulla nec pharetra.
+		</p>
+		<p>
+			Vivamus et sollicitudin justo. Suspendisse vel suscipit tortor, id gravida justo. Suspendisse massa nibh, cursus elementum elementum vel, rutrum eu felis. Praesent dolor lectus, porttitor vitae tellus non, eleifend dignissim velit. Duis pellentesque sem vitae sem fringilla eleifend. Integer a lacinia nisl. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Fusce lacinia, mauris sed accumsan egestas, mauris ligula sollicitudin ligula, a finibus sem augue ut urna. Aenean odio lectus, tincidunt a tincidunt lobortis, vulputate et nisl. Aliquam erat volutpat.
+		</p>
+		<p>
+			Fusce molestie iaculis risus vel malesuada. Praesent vitae sem sem. Proin magna felis, rutrum at lobortis non, cursus a ligula. Suspendisse magna tellus, fringilla suscipit consectetur eu, porta vel nunc. Praesent posuere consequat lacus non placerat. Etiam lorem turpis, vulputate vehicula consectetur et, egestas a ipsum. Cras blandit commodo nisi, quis hendrerit ante luctus ut. Donec pharetra mauris erat, id tincidunt ante commodo et. Proin vestibulum est vitae eleifend dictum. Duis semper erat porttitor elit rhoncus, a semper lacus consectetur. In nec nisl et dolor varius hendrerit vitae et sem. Donec leo ipsum, pellentesque sed dolor eu, scelerisque aliquam nisl. Phasellus eleifend turpis eu nulla efficitur, sed imperdiet erat interdum. Morbi tellus sapien, ullamcorper a neque nec, ultrices cursus diam. Vestibulum vulputate lacus a luctus tincidunt. Vestibulum rhoncus, odio at semper tincidunt, orci purus laoreet ante, nec laoreet orci purus eu risus.
+		</p>
+	</div>
+</body>
+
+<script>
+		// define the nav bar element and its placeholder
+		var navBar = $('.nav-bar');
+
+// get the nav bar height
+var navBarHeight = navBar.outerHeight();
+
+// define space below navbar
+var contentOffset = 200;
+
+// set top padding on element immediately after the nav bar div
+// this will push the content down so that it is below the nav bar
+// padding-top: contentOffset + navBarHeight
+//navBar.next().css("paddingTop", contentOffset + navBarHeight);
+
+
+// do this function on the event: window scroll (aka when you use the scrollbar or mouse wheel)
+$(window).on('scroll',function(){	
+
+/////// get the distance the nav bar is from the top of the window
+// didn't end up using this variable for this method, but it can be useful
+// for other sticky nav bars that don't sit at the top of the screen
+var navBarPosition = navBar.offset().top;
+
+// add sticky class to navbar when the window has been scrolled this amount
+var stickyPosition = contentOffset;
+
+// get current scroll position
+var scrollPosition = $(window).scrollTop();
+
+// if the window is scrolled below the the value set for stickyPosition add the sticky class
+// else if the window is scrolled above the stickyPosition value remove the sticky class
+if(scrollPosition >= stickyPosition){
+	
+	navBarHeight = navBar.outerHeight();
+	// add space with margin to prevent page shift when navbar is stickied
+	navBar.next().css("marginTop", navBarHeight);
+	navBar.addClass('nav-bar__stickied');
+}else {
+	navBar.removeClass('nav-bar__stickied');
+	// remove the space when the navbar is no longer stickied
+	navBar.next().css("marginTop", 0);
+}
+});
+
+
+</script>
+</html>
