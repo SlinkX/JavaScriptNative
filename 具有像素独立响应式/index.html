@@ -1,0 +1,3769 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+	<style lang="scss">
+		/////////// framework ///////////
+
+
+//////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////
+
+// Grid Variables
+
+//////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////
+
+//// Set the Grid size
+//// Why use Twelve? It is a multiple of 2, 3, 4, 6
+//// Which means a whole number for half, third, and fourth width grids
+$gridsize: 12;
+
+
+//// Screen start and stop points
+$small_max: 36rem;
+$medium_min: 36.01rem;
+$medium_max: 60rem;
+$large_min: 60.01rem; // 16 * 60 = 960px
+$large_max: 80rem; // 16 * 105 = 1680px
+$xlarge_min: 80.01rem;
+$max_width: 80rem;
+
+$small_screen: '(max-width: #{$small_max})';
+$medium_screen: '(max-width: #{$medium_max}) and (min-width: #{$medium_min})';
+$medium_and_large_screen: '(min-width: #{$medium_min})';
+$large_screen: '(min-width: #{$large_min})';
+$xlarge_screen: '(min-width: #{$xlarge_min + 20rem})'; // add a little buffer
+
+$under_max_width: '(max-width: #{$max_width + 10rem})';
+$over_max_width: '(min-width: #{$max_width + 10rem})';
+
+// Horizontal and Vertical Spacing
+$content_spacing: 1rem; // vertical space between content items
+$column_spacing: 1rem; // space between columns or grid
+$paragraph_spacing: 1rem;
+
+
+
+
+//////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////
+
+// Color Variables
+
+//////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////
+
+///////////////// Colors
+
+// greens
+$bright_green: #7EBF3E; // slightly less saturated
+$bright_green: #73BD22; // more saturated
+
+$bright_green: #62BB46;
+$bright_green: #6abb37;
+$bright_green: #78BE20; // guidelines
+
+$mid_green: #349B2F;
+$mid_green: #509E2F; // guidelines
+
+
+$green: #1B673C;
+$green: #00863E;
+$green: #007A33; // guidelines
+
+// Golden Yellows
+$light_yellow: #FFEE8C;
+$yellow: #FFDE1A;
+
+$yellow: #fdda24; // guidelines
+$dark_yellow: #D39921;
+$dark_yellow: #daaa00; // guidelines
+$gold: $dark_yellow;
+
+// blues
+$light_blue: #bde6eb;
+$light_blue: #b1e4e3; // guidelines
+$bright_blue: #78dfe5;
+$bright_blue: #2dccd3; // guidelines
+$blue: #1d7798;
+$blue: #005f83; // guidelines
+$dark_blue: #24373C;
+$dark_blue: #1F373E;
+$dark_blue: #003b49; // guidelines
+
+// oranges
+$orange: #E67122;
+$orange: #e87722; // guidelines
+
+$brown: #50412E;
+$brown: #7d622e; // guidelines
+
+// grays
+$medium_gray: #576165;
+
+$gray: #3E4444;
+$gray: #63666a; // guidelines
+
+
+$light_gray: #A2AAAB; // bluer
+$light_gray: #b2b4b2; // guidelines
+
+$lighter_gray: #DCE3E4;
+
+
+
+// transparencies
+$faded_gray: rgba(0,0,0,0.10);
+$faded_lime_green: rgba($bright_green, 0.5);
+$faded_dark_yellow: rgba($dark_yellow, 0.5);
+
+
+
+//////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////
+
+// Font Settings
+
+//////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////
+// Font Definitions and metrics
+$heading_font: Verdana, Arial, Helvetica, sans-serif;
+$body_font: Verdana, Arial, Helvetica, sans-serif;
+$action_font: $body_font;
+$icon_font: 'FontAwesome';
+$tech_font: $body_font;
+
+
+// Font Adjustments
+$heading_font_weight: 600;
+$body_font_weight: 400;
+$action_font_weight: 400;
+
+$heading_transform: none;
+
+
+// Heading sizes and weights
+$h1_size: 3.5rem;
+$h2_size: 2.5rem;
+$h3_size: 2.33rem;
+$h4_size: 1.75rem;
+$h5_size: 1.5rem;
+$h6_size: 1.25rem;
+
+$h1_weight: $heading_font_weight;
+$h2_weight: $heading_font_weight;
+$h3_weight: $heading_font_weight;
+$h4_weight: $heading_font_weight;
+$h5_weight: $heading_font_weight;
+$h6_weight: $heading_font_weight;
+
+// Base Font Colors
+$body_font_color: $dark_blue;
+$heading_font_color: $blue;
+
+
+// Link colors
+$page_link_color: $blue;
+$page_link_hover_color: $orange;
+$page_link_visited_color: $orange;
+
+// placeholder for generic heading settings
+%heading_metrics {
+	font-family: $heading_font;
+	line-height: 1em;
+	text-transform: $heading_transform;
+	color: $heading_font_color;
+	letter-spacing: 0.05rem;
+	padding: 0;
+	margin: 1rem 0;
+}
+.no_margin {
+	margin-top: 0 !important;
+	margin-bottom: 0 !important;
+}
+////// font placeholders
+// %action_font: font used for button and menu text
+%action_font {
+	font: $action_font_weight 1em $action_font;
+}
+// %body_font: standard body font, inherits font size of element
+%body_font {
+	font: $body_font_weight 1em $body_font;
+}
+.lightest_weight {
+	font-weight: 100 !important;
+}
+.lighter_weight {
+	font-weight: 200 !important;
+}
+.normal_weight {
+	font-weight: 400 !important;
+}
+.light_weight {
+	font-weight: 300 !important;
+}
+.semi_bold {
+	font-weight: 500 !important;
+}
+.bold {
+	font-weight: 600 !important;
+}
+
+// font styles
+.serif {
+	font-family: $body_font;
+	text-transform: none;
+	font-weight: normal;
+	line-height: 1.33em;
+}
+.tech_font {
+	font-family: $tech_font;
+	text-transform: none;
+	font-weight: 500;
+	line-height: 1.33em;
+	letter-spacing: -0.033em;
+}
+
+
+
+//////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////
+
+// Element Metrics Control
+// Font metrics, extra padding, etc
+
+//////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////
+
+// reset related placeholders
+@mixin resets() {
+	/*
+	* {
+	text-rendering: optimizeLegibility;
+	text-rendering: geometricPrecision;
+}
+
+	body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,form,fieldset,input,textarea,p,blockquote,th,td {
+	padding: 0;
+	margin: 0;
+}
+	table {
+	//border-collapse: collapse;
+	//border-spacing: 0;
+}
+	fieldset,img {
+	border: 0;
+}
+	address,caption,cite,code,dfn,th,var {
+	font-weight: normal;
+	font-style: normal;
+}
+	ol,ul {
+	//list-style: none;
+}
+	caption,th {
+	text-align: left;
+}
+	h1,h2,h3,h4,h5,h6 {
+	font-weight: normal;
+	font-size: 100%;
+}
+	q:before,q:after {
+	content:'';
+}*/
+	abbr,acronym {
+		border: 0;
+	}
+}
+%font_reset {
+	font-size: 1rem;
+	line-height: 1rem;
+}
+////// default element types placeholders
+%inline_block {
+	display: inline-block !important;
+} .inline_block { @extend %inline_block; }
+%inline {
+	display: inline;
+} .inline { @extend %inline; }
+%block {
+	display: block;
+} .block {	@extend %block; }
+.clear {
+	clear: both;
+}
+// force element to fit container
+%stretch {
+	width: 100% !important;
+	height: auto !important;
+} .stretch { @extend %stretch; }
+// force element to shrink if it's smaller than the container
+%fit {
+	max-width: 100%;
+	height: auto !important;
+	max-width: -moz-max-content;
+} .fit { @extend %fit; }
+
+%separator {
+	@extend %block;
+	border: none;
+	border-bottom: 0.25rem solid $faded_gray;
+}
+// Keep text from being selected
+%no_selection {
+	-webkit-touch-callout: none;
+	-webkit-user-select: none;
+	-khtml-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+} .no_selection { @extend %no_selection; }
+%no_pointer_events {	pointer-events: none; } .no_pointer_events { @extend %no_pointer_events; }
+%border_box { box-sizing: border-box; } .border_box { @extend %border_box; }
+@include resets();
+//////// adjust specific elements
+
+@-moz-document url-prefix() {
+	/* Firefox doesn't respect max-width in certain situations */
+	img { width: 100%; max-width: -moz-max-content; }
+}
+html {
+	color: $gray;
+	padding: 0;
+	margin: 0;
+	//////////////////////////// Base Media Query Adjustments
+
+	// mobile only
+	@media #{$small_screen} {
+		font-size: 12px;
+	}
+	@media #{$medium_screen} {
+		// make the font (and elements) smaller for lower resolutions
+		// all sizing is based on the html rem font size
+		font-size: 13px;
+	}
+	@media #{$large_screen} {
+		// make the font (and elements) smaller for lower resolutions
+		// all sizing is based on the html rem font size
+		font-size: 14px;
+	}
+	@media #{$xlarge_screen} {
+		// make the base font size scale with the browser width
+		font-size: 0.875vw;
+	}
+}
+body {
+	font-family: $body_font;
+	font-weight: $body_font_weight;
+	line-height: 1em;
+	padding: 0;
+	margin: 0;
+}
+h1, h2, h3, h4, h5, h6 {
+	@extend %heading_metrics;
+	a {
+		color: inherit !important;
+		text-decoration: none;
+		font-weight: inherit;
+		&:hover {
+			text-decoration: underline;
+		}
+	}
+}
+a {
+	font-weight: 500;
+	color: $page_link_color;
+	&:hover {
+		color: $page_link_hover_color;
+	}
+}
+h1 { font-size: $h1_size; font-weight: $h1_weight; }
+h2 { font-size: $h2_size; font-weight: $h2_weight; }
+h3 { font-size: $h3_size; font-weight: $h3_weight; }
+h4 { font-size: $h4_size; font-weight: $h4_weight; }
+h5 { font-size: $h5_size; font-weight: $h5_weight; }
+h6 { font-size: $h6_size; font-weight: $h6_weight; }
+
+// reset these, margins are added in %content_item_formatting
+p {
+	//font-weight: $body_font_weight;
+	font-size:1rem;
+	line-height: 1.65rem;
+	margin: $paragraph_spacing 0;
+}
+ul, ol {
+	margin: 1rem 1.5rem;
+}
+li {
+	line-height: 1.33em;
+	padding: 0.25rem 0;
+	position: relative;
+}
+img {
+	max-width: 100%;
+	height: auto;
+}
+hr {
+	@extend %separator;
+	margin-top: $content_spacing;
+	margin-bottom: $content_spacing;
+}
+
+// max width of content container
+.max_width {
+	max-width: $max_width;
+	box-sizing: border-box;
+}
+
+
+
+
+
+
+
+////////////////// Color Backgrounds
+
+// Mixin: color text and links based on background color
+@mixin color_text($heading_color, $text_color, $link_color, $link_hover_color) {
+	h1, h2, h3, h4, h5, h6 {
+		color: $heading_color;
+	}
+	color: $text_color;
+	a {
+		color: $link_color;
+		&:hover {
+			color: $link_hover_color;
+		}
+	}
+	.page_heading {
+		.content {
+			&:before, &:after {
+				background: $link_hover_color !important;
+			}
+		}
+		&.sub {
+			&:after {
+				border-color: $link_hover_color !important;
+			}
+		}
+	}
+	.dashed {
+		border-color: $link_hover_color !important;
+	}
+}
+@mixin background_color($bg_color) {
+	background-color: $bg_color !important;
+	@include color_text($mid_green, $dark_blue, $blue, $orange);
+
+	&.full_width_section {
+		&:before, &:after {
+			background-color: $bg_color;
+		}
+	}
+	.page_heading {
+		.content {
+			background: $bg_color !important;
+		}
+	}
+
+	&_ignore_text {
+		background-color: $bg_color !important;
+		&.full_width_section {
+			&:before, &:after {
+				background-color: $bg_color;
+			}
+		}
+	}
+}
+.white_bg {
+	@include background_color( #fff);
+	@include color_text($green, $dark_blue, $blue, $orange);
+}
+.bright_green_bg {
+	@include background_color( $bright_green );
+	@include color_text($dark_blue, #fff, #fff, $green);
+}
+.mid_green_bg {
+	@include background_color( $mid_green );
+	@include color_text(#fff,#fff, #fff, $yellow);
+}
+.green_bg {
+	@include background_color( $green );
+	@include color_text($yellow, #fff, #fff, $yellow);
+}
+.light_blue_bg {
+	@include background_color( $light_blue );
+	@include color_text($dark_blue, $dark_blue, $green, #fff);
+}
+.bright_blue_bg {
+	@include background_color( $bright_blue );
+	@include color_text(#fff, $dark_blue, $green, #fff);
+}
+.dark_blue_bg {
+	@include background_color( $dark_blue );
+	@include color_text($bright_green, #fff, #fff, $bright_green);
+}
+.black_bg {
+	@include background_color( #000 );
+	@include color_text($bright_green, #fff, #fff, $bright_green);
+}
+.blue_bg {
+	@include background_color( $blue );
+	@include color_text($yellow, #fff, #fff, $yellow);
+}
+.orange_bg {
+	@include background_color( $orange );
+	@include color_text(#fff, #fff, $dark_blue, $yellow);
+}
+.gray_bg {
+	@include background_color( $gray );
+	@include color_text(#fff, $lighter_gray, $bright_green, #fff);
+}
+.yellow_bg {
+	@include background_color( $yellow );
+	@include color_text($dark_blue, $brown, $dark_blue, $orange);
+}
+.gold_bg {
+	@include background_color( $gold );
+	@include color_text(#fff, $dark_blue, $blue, $dark_blue);
+}
+.brown_bg {
+	@include background_color( $brown );
+	@include color_text($light_blue, #fff, $dark_blue, $orange);
+}
+.light_gray_bg {
+	@include background_color( $light_gray );
+	@include color_text($dark_blue, #fff, $orange, #fff);
+}
+.lighter_gray_bg {
+	@include background_color( $lighter_gray );
+	@include color_text($dark_blue, #333, $orange, $dark_blue);
+}
+
+// generate 10, 20, 30 to 100% opacity background colors
+$colors: (
+	bright_green: $bright_green,
+	mid_green: $mid_green,
+	green: $green,
+	dark_blue: $dark_blue,
+	blue: $blue,
+	bright_blue: $bright_blue,
+	light_blue: $light_blue,
+	yellow: $yellow,
+	gold: $gold,
+	orange: $orange,
+	brown: $brown,
+	gray: $gray,
+	light_gray: $light_gray,
+	lighter_gray: $lighter_gray
+);
+$dots_size:  1.6667rem;
+$dashed_size: 1.25rem;
+$grid_size: 1.667;
+$triangle_size: 1.667rem;;
+$ruled_size: auto;
+$ledger_size: auto;
+$patterns: (
+	dots: $dots_size,
+	triangle: $triangle_size,
+	ruled: $ruled_size,
+	grid: $grid_size,
+	ledger: $ledger_size,
+	dashed: $dashed_size
+);
+
+@each $color, $color_code in $colors {
+	@for $i from 1 through 11 {
+		.#{$color}_bg_#{$i}0 {
+			$opacity: $i/10;
+			background-color: rgba( $color_code, $opacity );
+		}
+	}
+	.text_#{$color} {
+		color: $color_code !important;
+		&_hover {
+			color: $color_code !important;
+		}
+	}
+}
+
+
+
+
+///////////////////////// Border classes
+.border {
+	$border_color: $light_gray;
+	$border_width: 0.5rem;
+	$thin_border_width: 0.125rem;
+	$medium_border_width: 0.25rem;
+	$thick_border_width: 0.5rem;
+	$border_style: solid;
+
+	border-width: $border_width;
+	border-color: $border_color;
+	border-style: $border_style;
+	@extend %border_box;
+
+	&_left {
+		border-left-width: $border_width;
+	}
+	&_right{
+		border-right-width: $border_width;
+	}
+	&_bottom {
+		border-bottom: $border_style;
+	}
+	&_top {
+		border-top: $border_style;
+	}
+	&_not_right {
+		border-right: none !important;
+	}
+	&_not_left {
+		border-left: none !important;
+	}
+	&_not_top {
+		border-top: none !important;
+	}
+	&_not_bottom {
+		border-bottom: none !important;
+	}
+	&_thin {
+		border-width: $thin_border_width;
+	}
+	&_medium {
+		border-width: $medium_border_width;
+	}
+	&_thick {
+		border-width: $thick_border_width;
+	}
+	&_dashed {
+		border-width: $thin_border_width;
+		border-style: dashed;
+	}
+	&_bright_green {
+		border-color: $bright_green;
+	}
+	&_mid_green {
+		border-color: $mid_green;
+	}
+	&_green {
+		border-color: $green;
+	}
+	&_dark_blue {
+		border-color: $dark_blue;
+	}
+	&_orange {
+		border-color: $orange;
+	}
+	&_blue {
+		border-color: $blue;
+	}
+	&_bright_blue {
+		border-color: $bright_blue;
+	}
+	&_gray {
+		border-color: $gray;
+	}
+	&_light_gray {
+		border-color: $light_gray;
+	}
+	&_lighter_gray {
+		border-color: $lighter_gray;
+	}
+}
+
+
+//////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////
+
+// Begin Framework Core Generation
+
+//////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////
+
+
+//// These screens will get classes made for their grid sizes
+//// such as .small_1, .medium_3, .push_1_large, etc.
+//// If you add to this, you need to define a slug if statement
+//// in the generateGrids() function
+
+$screens: (
+	$small_screen,
+	$medium_screen,
+	$large_screen
+);
+
+// Choose the grid size based on the number
+// used in the push/pull mixins
+@function getGridWidth($gridnumber, $gridsize) {
+	$width: 100%/$gridsize * ($gridnumber);
+	@return $width;
+}
+@mixin generateGrids($screens, $gridsize) {
+	// This function extends the columnRowProperties
+	// function to generate screen specific modifier classes
+	@each $screen in $screens {
+		@media #{$screen} {
+			@if $screen == $small_screen {
+				$slug: small;
+				@include columnRowProperties($slug, $gridsize);
+			}
+			@if $screen == $medium_screen {
+				$slug: medium;
+				@include columnRowProperties($slug, $gridsize);
+			}
+			@if $screen == $large_screen {
+				$slug: large;
+				@include columnRowProperties($slug, $gridsize);
+			}
+		}
+	}
+}
+
+@mixin columnRowProperties($slug, $gridsize) {
+	// These classes are used to modify columns and rows
+	//
+	// If this function is run with an empty slug, it will generate
+	// general classes that will always apply no matter the screen size.
+	//
+	// Otherwise: $slug can be small, medium, or large.
+	//
+	// If you add new classes: This mixin is only for row and column modifiers.
+
+	// if the slug contains a screen size, use it to make a class selector
+	@if $slug == '' {
+		@for $i from 1 through $gridsize {
+			$thisgrid: getGridWidth($i, $gridsize);
+			.always_#{$i} {
+				width: $thisgrid;
+			}
+			@for $j from 1 through 31 {	
+				.always_#{$i}_less_#{$j}rem {
+					width: calc(#{$thisgrid} - #{$j}rem);
+				}						
+			}
+		}
+		@for $j from 1 through 31 {	
+			.always_#{$j}rem {
+				width: #{$j}rem;
+			}				
+			.always_height_#{$j}rem {
+				height: #{$j}rem;
+			}					
+		}
+	}
+	@if $slug != '' {
+		@for $i from 1 through $gridsize {
+			$thisgrid: getGridWidth($i, $gridsize);
+			.#{$slug}_#{$i} {
+				width: $thisgrid;
+			}
+			@for $j from 1 through 31 {		
+				.#{$slug}_#{$i}_less_#{$j}rem {
+					width: calc(#{$thisgrid} - #{$j}rem);
+			}		
+			.#{$slug}_width_#{$j}rem {
+				width: #{$j}rem;
+			}
+			.#{$slug}_height_#{$j}rem {
+				width: #{$j}rem;
+			}		
+		}
+	}
+	$slug: _#{$slug};
+}
+// if the slug is empty, make general selectors
+
+@for $i from 1 through $gridsize {
+	$thisgrid: getGridWidth($i, $gridsize);
+
+	.push_#{$i}#{$slug} {
+		left: $thisgrid;
+	}
+	.pull_#{$i}#{$slug} {
+		left: -$thisgrid;
+	}
+	.push_#{$i}rem#{$slug} {
+		left: #{$i}rem;
+	}
+	.pull_#{$i}rem#{$slug} {
+		left: -#{$i}rem;
+	}
+
+}
+// center align
+.center#{$slug} {
+	display: block !important;
+	margin-left: auto !important;
+	margin-right: auto !important;
+	float: none !important;
+}
+.float_right#{$slug} {
+	float: right;
+	& + [class*="float_left"] {
+		clear: left;
+	}
+}
+.float_left#{$slug} {
+	float: left;
+	& + [class*="float_right"] {
+		clear: right;
+	}
+}
+// remove the vertical spacing
+.bumping#{$slug} {
+	margin-bottom: 0 !important;
+	&+.bumping#{$slug} {
+		margin-top: 0 !important;
+	}
+	/*.row:last-child > .column {
+	margin-bottom: 0 !important;
+}*/
+}
+// use this on a row to escape the padding of a parent column
+.escape_gutters {
+	margin-right: -$column_spacing;
+	margin-left: -$column_spacing;
+	&_left#{$slug}  {
+		margin-left: -$column_spacing;
+	}
+	&_right#{$slug}  {
+		margin-right: -$column_spacing;
+	}
+	@if #{$slug} != '' {
+		&#{$slug} {
+			margin-right: -$column_spacing;
+			margin-left: -$column_spacing;
+		}
+}
+}
+.add_gutters#{$slug} {
+	margin-left: $column_spacing;
+	margin-right: $column_spacing;
+}
+.text_center#{$slug} {
+	text-align: center !important;
+}
+.text_justify#{$slug} {
+	text-align: center !important;
+	&.row {
+		&:after {
+			content: '';
+			width: 100%;
+			display: inline-block;
+		}
+	}
+}
+.text_left#{$slug} {
+	text-align: left !important;
+}
+.text_right#{$slug} {
+	text-align: right !important;
+}
+.hide#{$slug} {
+	display: none !important;
+}
+}
+
+// Generate Column, Grid, and Their Modifying classes
+@include columnRowProperties('', $gridsize);
+@include generateGrids($screens, $gridsize);
+
+
+
+// Define what a row and column is and when to add padding or margin
+
+
+// include this to add the default formatting for a content_item
+// eg: margins, items inside, and standard element formatting
+%content_item_formatting {
+	visibility: visible;
+	margin-top: $content_spacing*2;
+	margin-bottom: $content_spacing*2;
+}
+.content_item {
+	@extend %content_item_formatting;
+}
+
+// row and column structures
+%row {
+	position: relative;
+	line-height: 0;
+	font-size: 0;
+}
+%column {
+	@extend %border_box;
+	@extend %inline_block;
+	vertical-align: top;
+	position: relative;
+	word-break: break-word;
+	@extend %font_reset;
+	// make sure the content fits the column
+	img {
+		@extend %block; // gets rid of pixels below image
+		@extend %fit;
+	}
+}
+%box {
+	padding: $column_spacing;
+}.box { @extend %box; }
+// add set padding to content
+%content_padding {
+	padding-left: $column_spacing;
+	padding-right: $column_spacing;
+	@media #{$medium_screen} {
+		padding-left: $column_spacing/1.5;
+		padding-right: $column_spacing/1.5;
+	}
+	@media #{$small_screen} {
+		padding-left: $column_spacing/1.5;
+		padding-right: $column_spacing/1.5;
+	}		
+}
+// add set margin to content
+%content_margin {
+	margin-left: $column_spacing;
+	margin-right: $column_spacing;
+	@media #{$medium_screen} {
+		margin-left: $column_spacing/1.5;
+		margin-right: $column_spacing/1.5;
+	}
+	@media #{$small_screen} {
+		margin-left: $column_spacing/1.5;
+		margin-right: $column_spacing/1.5;
+	}	
+}
+
+.row {
+	@extend %row;
+}
+.column {
+	@extend %column;
+}
+.content {
+	@extend %border_box;
+	@extend %block;
+}
+
+.content_padding {
+	&.row, & > .row {
+		& > .column > .content {
+			@extend %content_padding;
+		}
+	}
+	&.column {
+		> .content {
+			@extend %content_padding;
+		}
+	}
+}
+
+.content_margin {
+	&.row, & > .row {
+		& > .column > .content {
+			@extend %content_margin;
+		}
+	}
+	&.column {
+		> .content {
+			@extend %content_margin;
+		}
+	}
+}
+
+// Other Modifers that don't need screen specific settings
+.top_spacing {
+	margin-top: 3*$content_spacing !important;
+}
+.bottom_spacing {
+	margin-bottom: 3*$content_spacing !important;
+}
+.top_padding {
+	padding-top: 3*$content_spacing !important;
+}
+.bottom_padding {
+	padding-bottom: 3*$content_spacing !important;
+}
+.paragraph_spacing {
+	margin-top: $paragraph_spacing !important;
+	margin-bottom: $paragraph_spacing !important;
+	&_top {
+		margin-top: $paragraph_spacing !important;
+	}
+	&_bottom {
+		margin-bottom: $paragraph_spacing !important;
+	}
+	&_half {
+		margin-top: $paragraph_spacing/2 !important;
+		margin-bottom: $paragraph_spacing/2 !important;
+		&_top {
+			margin-top: $paragraph_spacing/2 !important;
+		}
+		&_bottom {
+			margin-bottom: $paragraph_spacing/2 !important;
+		}
+	}
+}
+.valign_top {
+	vertical-align: top;
+	& .column {
+		vertical-align: top;
+	}
+}
+.valign_middle {
+	vertical-align: middle;
+	& .column {
+		vertical-align: middle;
+	}
+}
+.valign_bottom {
+	vertical-align: bottom;
+	& .column {
+		vertical-align: bottom;
+	}
+}
+// Only show in these screens
+.large_only {
+	@media #{$medium_screen} {
+		display: none !important;
+	}
+	@media #{$small_screen} {
+		display: none !important;
+	}
+}
+.medium_only {
+	@media #{$large_screen} {
+		display: none !important;
+	}
+	@media #{$small_screen} {
+		display: none !important;
+	}
+}
+.small_only {
+	@media #{$large_screen} {
+		display: none !important;
+	}
+	@media #{$medium_screen} {
+		display: none !important;
+	}
+}
+
+
+// end grid framework core
+//////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////
+
+.dev_mode {
+	.column {
+		&:after {
+			content: '';
+			border: 1px dashed #eee;
+			position: absolute;
+			top: -1px;
+			left: -1px;
+			bottom: 0;
+			right: 0;
+		}
+
+	}
+}
+
+.bg {
+	&_cover {
+		background-size: cover;
+	}
+	&_center {
+		background-position: center;
+	}
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// add height to a column
+$bar_height: 1.5rem;
+.bar {
+	height: $bar_height;
+}
+.bar_2x {
+	height: $bar_height*2;
+}
+.half_bar {
+	height: $bar_height/2;
+}
+
+
+// overlay a row to it's parent column
+// useful if it contains an image or is a parallax column
+%overlay {
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	z-index: 1;
+}
+.overlay {
+	&_column {
+		@extend %overlay;
+		& > .column {
+			position: absolute;
+			top: 50%;
+			left: 0;
+			right: 0;
+			transform: translateY(-50%);
+			-webkit-transform: translateY(-50%);
+		}
+		&_bottom {
+			@extend %overlay;
+			top: auto;
+		}
+		&_middle {
+			@extend %overlay;
+			top: 50%;
+			transform: translateY(-50%);
+			-webkit-transform: translateY(-50%);
+			bottom: auto;
+		}
+		&_top {
+			@extend %overlay;
+			bottom: auto;
+		}
+		&_left {
+			@extend %overlay;
+			right: auto;
+		}
+		&_right {
+			@extend %overlay;
+			left: auto;
+		}
+	}
+	&_small_rel {
+		@media #{$small_screen} {
+			position: relative !important;
+			left: auto;
+			right: auto;
+			top: auto;
+			bottom: auto;
+			transform: none;
+			& > .column {
+				position: relative;
+				transform: none;
+			}
+		}
+	}
+	&_small_rel {
+		@media #{$small_screen} {
+			position: relative !important;
+			left: auto;
+			right: auto;
+			top: auto;
+			bottom: auto;
+			transform: none;
+			& > .column {
+				position: relative;
+				transform: none;
+			}
+		}
+	}
+}
+.content.valign_middle {
+	position: absolute;
+	top: 50%;
+	transform: translateY(-50%);
+	-webkit-transform: translateY(-50%); /* Safari */
+	left: 0;
+	right: 0;
+	display: block;
+}
+.content.valign_bottom {
+	position: absolute;
+	bottom: 0;
+	width: 100%;
+}
+
+// Caption text below an image
+.caption {
+	background-color: $dark_blue;
+	color: #fff !important;
+	padding: 0.5rem;
+	line-height: 1.334em;
+	font-size: 0.8375rem;
+	font-family: $tech_font;
+	font-weight: 500;
+	a {
+		color: inherit !important;
+	}
+}
+p + .caption {
+	margin-top: -1rem !important;
+}
+li a {
+	text-decoration: none;
+}
+
+//accordion boxes content item
+.accordion_item {
+	& + {
+		.accordion_item {
+			margin-top: -$content_spacing;
+		}
+	}
+}
+.accordion {
+	.expanding_box {
+		box-sizing: border-box;
+		overflow: hidden;
+		max-height: 0;
+		transition: max-height 300ms ease-in-out;
+		position: relative;
+		& > .content {
+			margin: 0 1rem;
+			padding: 0.01rem 1.5rem;
+		}
+	}
+	.toggle {
+		display: none;
+		&:checked {
+			&	~ .wrap .expanding_box {
+				max-height: 500rem;
+				transition: max-height 400ms ease-in-out;
+
+			}
+			& ~ label i {
+				color: $orange;
+				&:before {
+					content: '\f147' !important;
+				}
+			}
+			& ~ .wrap {
+				&:before, &:after {
+					opacity: 1;
+					transition: all 233ms ease-in-out;
+				}
+			}
+		}
+	}
+	label {
+		display: block;
+		padding: 0.5rem 0 0.5rem 0;
+		&:hover {
+			cursor: pointer;
+			i {
+				color: $mid_green !important;
+			}
+			h3 {
+				color: #000;
+			}
+		}
+		h3 {
+			display: inline-block;
+			width: calc(100% - 4rem);
+			margin: 0;
+			padding: 0.5rem;
+			line-height: 2rem;
+			vertical-align: middle;
+			color: #3C4F56;
+			font: 500 1.125rem $body_font;
+			text-transform: none;
+			border-bottoM: 0.11rem dashed $light_gray;
+
+			&:before, &:after {
+				//content: '[ ';
+				font-size: 1.5em;
+				color: $bright_green;
+				font-weight: 200;
+				line-height: 1rem;
+				vertical-align: middle;
+			}
+			&:after {
+				//content: ' ]';
+			}
+		}
+		i {
+			display: inline-block;
+			line-height: 2rem;
+			vertical-align: middle;
+			padding: 0 0.5rem;
+			font-size: 1.3334rem;
+			color: $orange;
+		}
+	}
+
+	.wrap {
+		position: relative;
+		&:before {
+			content: '';
+			background: #fff;
+			position: absolute;
+			bottom: 0rem;
+			width: 0.5rem;
+			left: 0.75rem;
+			border-bottom: 0.125rem solid $orange;
+			opacity: 0;
+			transition: opacity 133ms ease-out 233ms;
+		}
+		&:after {
+			opacity: 0;
+			content: '';
+			position: absolute;
+			top: -1rem;
+			left: 0.9375rem;
+			bottom: 0rem;
+			border-left: 0.125rem dashed $orange;
+			transition: opacity 133ms ease-out 233ms;
+		}
+	}
+}
+
+.calendar_item {
+	$color: $light_gray;
+	$hover_color: $orange;
+	> .content {
+		//border: 0.25rem solid $color;
+		margin-top: 1rem;
+		margin-bottom: 1rem;
+		.row {
+			padding: 0.25rem;
+		}
+	}
+	.date {
+		width: 5.5rem;
+		background: $color;
+		padding: 0.25rem;
+		color: $dark_blue;
+		.month {
+			font: 2rem $heading_font;
+			@extend %block;
+			text-transform: uppercase;
+		}
+		.day {
+			font: 500 4rem/0.85em $heading_font;
+			@extend %block;
+		}
+	}
+	.description {
+		width: calc(100% - 5.5rem);
+		.event_title {
+			font: 500 0.875rem/1.25em $body_font;
+			color: $dark_blue;
+			@extend %block;
+		}
+		.time {
+			font: 500 2rem/0.83em $heading_font;
+			margin-top: 0.25rem;
+			color: $gray;
+			@extend %block;
+		}
+	}
+	.row {
+		//background-color: #fff;
+	}
+	&:hover {
+		.date {
+			background: $hover_color;
+		}
+		.day, .month {
+
+			color: #fff;
+		}
+		> .content {
+			border-color: $hover_color
+		}
+	}
+	@mixin calendar_item_colors($border_color, $border_color_hover, $date_color, $date_color_hover, $date_bg, $date_bg_hover, $text_color, $text_color_hover, $text_bg, $text_bg_hover ) {
+
+		> .content {
+			border-color: $border_color;
+		}
+		.date {
+			background-color: $date_bg;
+			border-right-color: $border_color;
+			.month,
+			.day {
+				color: $date_color;
+			}
+		}
+		.description {
+			.event_title,
+			.time {
+				color: $text_color;
+			}
+		}
+		.row {
+			background-color: $text_bg;
+		}
+		&:hover {
+			.date {
+				background-color: $date_bg_hover;
+				border-right-color: $border_color_hover;
+			}
+			.day, .month {
+				color: $date_color_hover;
+			}
+			.description {
+				.event_title,
+				.time {
+					color: $text_color_hover;
+				}
+			}
+			.row {
+				background-color: $text_bg_hover;
+			}
+			> .content {
+				border-color: $border_color_hover;
+			}
+		}
+	}
+
+
+	.bright_green_bg &,
+	.bright_blue_bg &,
+	.yellow_bg &,
+	.white_bg &,
+	.blue_bg &,
+	.gray_bg &,
+	.light_gray_bg &,
+	.green_bg &,
+	.mid_green_bg &, {
+		@include calendar_item_colors(
+			$border_color: $dark_blue,
+			$border_color_hover: #fff,
+			$date_color: #fff,
+			$date_color_hover: $dark_blue,
+			$date_bg: transparent,
+			$date_bg_hover: transparent,
+			$text_color: #fff,
+			$text_color_hover: $dark_blue,
+			$text_bg: $dark_blue,
+			$text_bg_hover: #fff
+			);
+		.date {
+			border-right: 0.11rem dashed #fff;
+		}
+		&:hover {
+			.date {
+				border-right: 0.11rem dashed $bright_green;
+			}
+		}
+	}
+
+
+	.dark_blue_bg &, {
+		$box_color: rgba($light_blue, 0.185);
+		$box_hover_color: #fff;
+		@include calendar_item_colors(
+			$border_color: $box_color,
+			$border_color_hover: $box_hover_color,
+			$date_color: #fff,
+			$date_color_hover: $dark_blue,
+			$date_bg: transparent,
+			$date_bg_hover: transparent,
+			$text_color: #fff,
+			$text_color_hover: $dark_blue,
+			$text_bg: $box_color,
+			$text_bg_hover: $box_hover_color
+			);
+		.date {
+			border-right: 0.11rem dashed #fff;
+		}
+		&:hover {
+			.date {
+				border-right: 0.11rem dashed $bright_green;
+			}
+		}
+	}
+}
+.event_spotlight {
+	$bgcolor: $orange;
+	$bgcolor_hover: $dark_blue;
+	$hover_color: #fff;
+	$color: #fff;
+	height: 16.125rem;
+	margin-top: 1rem;
+	margin-bottom: 1rem;
+	img {
+		margin-bottom: 1rem;
+	}
+	.event_spotlight_bg {
+		background-size: cover;
+	}
+	.event_spotlight_inner {
+		background: rgba($dark_blue, 0.67);
+		padding: 1rem 0.5rem;
+	}
+
+	.event_details_button {
+		clear: both;
+	}
+	> .content {
+		border: 0.25rem solid $bgcolor;
+		padding: 0.25rem;
+		background: $bgcolor;
+		color: $color;
+	}
+	.title {
+		font: 500 1.75rem/1em $heading_font;
+		@extend %block;
+		text-transform: uppercase;
+		color: $color;
+	}
+	.date,
+	.time {
+		font: 300 1.5rem/1.25em $heading_font;
+		margin-bottom: 0.75rem;
+		@extend %inline_block;
+		text-transform: uppercase;
+		color: $color;
+	}
+	.date {
+		font-weight: 600;
+	}
+	&:hover {
+		> .content {
+			background: $bgcolor_hover;
+			border-color: $bgcolor_hover;
+			color: $hover_color;
+		}
+		.time,
+		.date,
+		.title {
+			color: $hover_color;
+		}
+	}
+}
+.circle_photos {
+	.text {
+		font-size: 0.875rem;
+		line-height: 1.5em;
+		color: $gray;
+		&:first-line {
+			font-weight: bold;
+		}
+	}
+
+}
+%photo {
+	margin: 1rem;
+	&.circle {
+		img {
+			@extend %overlay;
+			bottom: auto;
+			height: auto;
+			max-height: 100%;
+			max-width: none;
+			transform: translateX(-15%);
+		}
+		.column {
+			padding: 25%;
+			overflow: hidden;
+			border-radius: 50%;
+			@media #{$small_screen} {
+				padding: 17vw !important;
+			}
+
+		}
+		&.small {
+			.column {
+				padding: 25%;
+			}
+		}
+		.medium {
+			.column {
+				padding: 33%;
+			}
+		}
+		&.large {
+			.column {
+				padding: 50%;
+			}
+		}
+	}
+
+}
+.photo {
+	@extend %photo;
+
+
+}
+
+// social
+.inline_list {
+	font-size: 0;
+	margin: 0;
+	padding: 0;
+	li {
+		@extend %font_reset;
+		@extend %inline_block;
+		@extend %border_box;
+		position: relative;
+		vertical-align: middle;
+	}
+}
+
+
+
+.tiny {
+	font-size: 0.8375rem;
+	line-height: 1em;
+}
+.small {
+	font-size: 0.925rem;
+	line-height: 1.25rem;
+}
+.big {
+	font-size: 10vw;
+	line-height: 1em;
+	@media #{$small_screen} {
+		font-size: 12vw;
+	}
+	@media #{$over_max_width} {
+		font-size: 8rem;
+	}
+}
+.huge {
+	font-size: 11vw;
+	line-height: 1em;
+	@media #{$over_max_width} {
+		font-size: 10rem;
+	}
+}
+
+.clear {
+	clear: both;
+	&_left {
+		clear: left;
+	}
+	&_right {
+		clear: right;
+	}
+}
+
+// inline menus
+%default_menu_link {
+	a {
+		font-size: 0.875rem;
+		//line-height: 1.667em;
+		padding: 0.33rem 0.5rem;
+		text-decoration: none;
+		display: block;
+	}
+	&.pulse_border {
+		li a:hover, li:hover > a {
+			animation: pulse_border 1000ms linear infinite;
+		}
+	}
+}
+.default_menu_style {
+	@extend %default_menu_link;
+}
+
+ul.inline_menu {
+	font-size: 0;
+	line-height: 0;
+	margin: 0;
+	&.buttons {
+		margin-left: -0.25rem;
+		margin-right: -0.25rem;
+	}
+	li {
+		display: inline-block;
+		vertical-align: middle;
+		margin: 0.33rem 0.25rem;
+		&.menu_title a {
+			font-family: $heading_font;
+			font-size: 1.5rem;
+			font-weight: 500 !important;
+			//line-height: 1.667em;
+			//letter-spacing: 0.07rem;
+			padding: 0 0.334rem;
+			//text-transform: $heading_transform;
+		}
+		a {
+			display: block;
+			text-decoration: none;
+		}
+	}
+
+}
+
+// make a list with no dots or numbers
+.no_dots {
+	list-style: none !important;
+	margin-left: 0 !important;
+	margin-right: 0 !important;
+}
+
+// prevent horizontal scrolling on the body/html
+.overflow_wrap {
+	width: 100%;
+	overflow: hidden;
+}
+
+//float z-index issue fix
+[class*="float"] {
+	z-index: 10;
+	position: relative;
+}
+
+// t4 span styles
+.text_small {
+	font-size: 0.85rem;
+	line-height: 1rem;
+	margin: 0.5rem 0 !important;
+}
+.small {
+	font-size: 0.85em;
+}
+.medium {
+	font-size: 1em;
+}
+.large {
+	font-size: 1.25em;
+}
+.xlarge {
+	font-size: 1.5em;
+}
+.xxlarge {
+	font-size: 2em;
+}
+
+
+
+
+
+.code {
+	padding: 0.01rem 1rem;
+	background: #FFE9A6;
+	border: 1px dashed #CEAA3C;
+	font-family: 'Source Code Pro';
+}
+.gray_columns {
+	.content {
+		background: #efefef;
+		border: 1px solid #ccc;
+	}
+}
+
+	</style>
+</head>
+<body>
+	
+	<div class="white_bg content_spacing_vert max_width center clearfix">
+
+		<section class="content_item">
+			<div class="row">
+				<div class="large_12 text_center">
+					<span class="content">
+						<h1>* Framework</h1>
+					</span>
+				</div>
+			</div>
+		</section>
+
+		<section class="content_item">
+			<div class="row content_margin">
+				<div class="large_3 column valign_middle">
+					<span class="content">
+						<h4>Grid base, made with scaling, alignment, and mobile in mind</h4>
+						
+					</span>
+			</div>
+			<div class="large_9 column valign_middle">
+				<span class="content">
+					<p>
+						This is a CSS framework (with a touch of javascript for the dirty bits - none yet) based on the idea of a 12 column grid layout, infinite scalablity (high DPI), dynamic height vertical alignment, and responsive design. It also incorporates a column padding and margin as you'd expect from any layout or design program.
+					</p>
+				</span>
+			</div>
+			</div>
+		</section>
+
+
+	<!-- begin grid with padding -->
+
+	<section class="content_item">
+		<div class="row">
+			<div class="large_12 column text_center">
+				<span class="content">
+					<h1>How does it work?</h1>
+					<p>(in a general sense)</p>
+				</span>
+			</div>
+		</div>
+	</section>
+
+
+	<section class="content_item">
+		<div class="row content_margin">
+			<div class="large_6 column">
+				<span class="content">
+					<h4>Column or Row Variables</h4>
+					<p>Here's an overview of the changes you can make to a column or row</p>
+					<ul>
+						<li><strong>Grid Size:</strong> large_1, small_3, medium_4</li>
+						<li><strong>Screen size adjustments:</strong> large_only, large_hide, medium_only, medium_hide, small_only, small_hide</li>
+						<li><strong>Push or Pull:</strong> large_push_3, medium_pull_2, small_pull_1</li>
+						<li><strong>Content Padding:</strong> content_padding - add space to the inside of a column</li>
+						<li><strong>Content Margin:</strong> content_margin  - add space to the outside of a column</li>
+						<li><strong>Vertical alignment:</strong> valign_top, valign_middle, valign_bottom</li>
+						<li><strong>Text alignment:</strong> text_right, text_center, text_left</li>
+						<li><strong>Row Gutters</strong> add_gutters, remove_gutters</li>
+					</ul>
+				</span>
+			</div>
+			<div class="large_6 column">
+				<span class="content">
+					<h4>Overview</h4>
+					<p>The class examples can be applied to any column element or row.</p>
+					<p>Rows or their parent elements can be floated left or right <strong>(float_left or float_right)</strong> and given a grid width <strong>(always_1, small_2, medium_3, etc.)</strong>. Floating a row allows inline text to wrap around row sections.</p>
+					<p>Using the class <strong>add_gutters</strong> will add the padding to the left and right of each row, if you choose not to add content_margin spacing to the columns. You can see this below on rows without a <strong>content_margin</strong> class - the columns will be touching, but the sides will have padding from the edge of the page.</p>
+				</span>
+			</div>
+		</div>
+	</section>
+
+
+	<section class="content_item">
+		<div class="row content_margin">
+			<div class="large_6 column content_padding">
+				<span class="content">
+					<h4>Example Code</h4>
+					<div class="code">
+						<p>
+							&lt;section class=&quot;content_item&quot;&gt;<br>
+							&nbsp;&nbsp;&nbsp;&nbsp; &lt;div class=&quot;row&quot;&gt;<br>
+							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;div class=&quot;large_12 column text_center&quot;&gt;<br>
+							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;span class=&quot;content&quot;&gt;<br>
+							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;h1&gt;Grid layout&lt;/h1&gt;<br>
+							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;p&gt;With content padding&lt;/p&gt;<br>
+							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;/span&gt;<br>
+							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;/div&gt;<br>
+							&nbsp;&nbsp;&nbsp;&nbsp; &lt;/div&gt;<br>
+							&lt;/section&gt;
+						</p>
+					</div>
+				</span>
+			</div>
+			<div class="large_6 column">
+				<span class="content">
+					<h4>Explanation</h4>
+					<p>
+						Here is the code to generate a content item with a row and columns. Think of each "content item" as a chunk of content on the page. Each row contains columns. Each column is given a size and contains a piece of content.
+						Each piece of content can have a set padding or margin.
+					</p>
+					<p>
+						The column container gets most of the adjustment classes, but the row can also handle them, the effects will trickle down to the sub columns.
+					</p>
+					<p>
+						One unique feature of this framework is the ability to vertically align columns with adjacent columns - even when pushing or pulling them to rearrange the column order. Just apply the valign_top, valign_bottom, or valign_middle class to the column.
+					</p>
+				</span>
+			</div>		
+		</div>
+	</section>
+	<section class="content_item">
+		<div class="row content_margin">
+			<div class="large_12 column content_padding">
+				<span class="content">
+					<h4>Code specifics</h4>
+					<div class="code">
+						<p><span class="comment">// This is separate from the grid layout and allows for equal spacing or not (bumping class)<br></span>
+							&lt;section class=&quot;content_item bumping&quot;&gt;<br>
+							<span class="comment">&nbsp;&nbsp;&nbsp;&nbsp; // Defines a relative block element <br></span>
+							&nbsp;&nbsp;&nbsp;&nbsp; &lt;div class=&quot;row&quot;&gt;<br>
+							<span class="comment">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // Defines a relative inline-block element with a full 12 column width<br></span>
+							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;div class=&quot;large_12 column&quot;&gt;<br>
+							<span class="comment">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // Wraps the column content with a container to add margin or padding to<br></span>
+							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;span class=&quot;content&quot;&gt;<br>
+							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;h1&gt;Grid layout&lt;/h1&gt;<br>
+							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;p&gt;With content padding&lt;/p&gt;<br>
+							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;/span&gt;<br>
+							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;/div&gt;<br>
+							&nbsp;&nbsp;&nbsp;&nbsp; &lt;/div&gt;<br>
+							&lt;/section&gt; </p>
+					</div>
+				</span>
+			</div>
+		</div>
+	</section>
+
+	<section class="content_item">
+		<div class="row">
+			<div class="large_12 column text_center">
+				<span class="content">
+					<p><strong>(Just a note)</strong><br/>Normally columns do not have a background or border. This effect is achieved by the class <strong>gray_columns</strong> applied to the row element.</p>
+				</span>
+			</div>
+		</div>
+	</section>
+
+	<section class="content_item">
+		<div class="row">
+			<div class="large_12 column text_center">
+				<span class="content">
+					<h1>Grid layout</h1>
+					<p>With content padding</p>
+				</span>
+			</div>
+		</div>
+	</section>
+
+	<section class="content_item">
+		<div class="row content_padding gray_columns">
+			<div class="large_1 medium_3 small_6 column">
+				<span class="content">
+					<p class="large_only">Large 1 - 1</p>
+					<p class="medium_only">Medium 3 - 1</p>
+					<p class="small_only">Small 6 - 1</p>
+				</span>
+			</div>			
+			<div class="large_1 medium_3 small_6 column">
+				<span class="content">
+					<p class="large_only">Large 1 - 2</p>
+					<p class="medium_only">Medium 3 - 2</p>
+					<p class="small_only">Small 6 - 2</p>
+				</span>
+			</div>
+			<div class="large_1 medium_3 small_6 column">
+				<span class="content">
+					<p class="large_only">Large 1 - 3</p>
+					<p class="medium_only">Medium 3 - 3</p>
+					<p class="small_only">Small 6 - 3</p>
+				</span>
+			</div>
+			<div class="large_1 medium_3 small_6 column">
+
+				<span class="content">
+					<p class="large_only">Large 1 - 4</p>
+					<p class="medium_only">Medium 3 - 4</p>
+					<p class="small_only">Small 6 - 4</p>
+				</span>
+			</div>
+			<div class="large_1 medium_3 small_6 column">
+				<span class="content">
+					<p class="large_only">Large 1 - 5</p>
+					<p class="medium_only">Medium 3 - 5</p>
+					<p class="small_only">Small 6 - 5</p>
+				</span>
+			</div>		
+			<div class="large_1 medium_3 small_6 column">
+				<span class="content">
+					<p class="large_only">Large 1 - 6</p>
+					<p class="medium_only">Medium 3 - 6</p>
+					<p class="small_only">Small 6 - 6</p>
+				</span>
+			</div>		
+			<div class="large_1 medium_3 small_6 column">
+				<span class="content">
+					<p class="large_only">Large 1 - 7</p>
+					<p class="medium_only">Medium 3 - 7</p>
+					<p class="small_only">Small 6 - 7</p>
+				</span>
+			</div>		
+			<div class="large_1 medium_3 small_6 column">
+				<span class="content">
+					<p class="large_only">Large 1 - 8</p>
+					<p class="medium_only">Medium 3 - 8</p>
+					<p class="small_only">Small 6 - 8</p>
+				</span>
+			</div>	
+			<div class="large_1 medium_3 small_6 column">
+				<span class="content">
+					<p class="large_only">Large 1 - 9</p>
+					<p class="medium_only">Medium 3 - 9</p>
+					<p class="small_only">Small 6 - 9</p>
+				</span>
+			</div>	
+			<div class="large_1 medium_3 small_6 column">
+				<span class="content">
+					<p class="large_only">Large 1 - 10</p>
+					<p class="medium_only">Medium 3 - 10</p>
+					<p class="small_only">Small 6 - 10</p>
+				</span>
+			</div>	
+			<div class="large_1 medium_3 small_6 column">
+				<span class="content">
+					<p class="large_only">Large 1 - 11</p>
+					<p class="medium_only">Medium 3 - 11</p>
+					<p class="small_only">Small 6 - 11</p>
+				</span>
+			</div>
+			<div class="large_1 medium_3 small_6 column">
+				<span class="content">
+					<p class="large_only">Large 1 - 12</p>
+					<p class="medium_only">Medium 3 - 12</p>
+					<p class="small_only">Small 6 - 12</p>
+				</span>
+			</div>
+		</div>
+	</section>	
+
+	<section class="content_item">
+		<div class="row content_padding gray_columns">
+			<div class="large_2 column">
+				<span class="content">
+					<p>
+						Large 2 - 1
+					</p>
+				</span>
+			</div>			
+			<div class="large_2 column">
+				<span class="content">
+					<p>
+						Large 2 - 2
+					</p>
+				</span>
+			</div>
+			<div class="large_2 column">
+				<span class="content">
+					<p>
+						Large 2 - 3
+					</p>
+				</span>
+			</div>
+			<div class="large_2 column">
+				<span class="content">
+					<p>
+						Large 2 - 4
+					</p>
+				</span>
+			</div>
+			<div class="large_2 column">
+				<span class="content">
+					<p>
+						Large 2 - 5
+					</p>
+				</span>
+			</div>		
+			<div class="large_2 column">
+				<span class="content">
+					<p>
+						Large 2 - 6
+					</p>
+				</span>
+			</div>		
+		</div>
+	</section>	
+	<section class="content_item">
+		<div class="row content_padding gray_columns">
+			<div class="large_3 column">
+				<span class="content">
+					<p>
+						Large 3 - 1
+					</p>
+				</span>
+			</div>			
+			<div class="large_3 column">
+				<span class="content">
+					<p>
+						Large 3 - 2
+					</p>
+				</span>
+			</div>
+			<div class="large_3 column">
+				<span class="content">
+					<p>
+						Large 3 - 3
+					</p>
+				</span>
+			</div>
+			<div class="large_3 column">
+				<span class="content">
+					<p>
+						Large 3 - 4
+					</p>
+				</span>
+			</div>		
+		</div>
+	</section>	
+	<section class="content_item">
+		<div class="row content_padding gray_columns">
+			<div class="large_4 column">
+				<span class="content">
+					<p>
+						Large 4 - 1
+					</p>
+				</span>
+			</div>			
+			<div class="large_4 column">
+				<span class="content">
+					<p>
+						Large 4 - 2
+					</p>
+				</span>
+			</div>
+			<div class="large_4 column">
+				<span class="content">
+					<p>
+						Large 4 - 3
+					</p>
+				</span>
+			</div>		
+		</div>
+	</section>
+	<section class="content_item">
+		<div class="row content_padding gray_columns">
+			<div class="large_5 column">
+				<span class="content">
+					<p>
+						Large 5 - 1
+					</p>
+				</span>
+			</div>			
+			<div class="large_5 column">
+				<span class="content">
+					<p>
+						Large 5 - 2
+					</p>
+				</span>
+			</div>
+			<div class="large_2 column">
+				<span class="content">
+					<p>
+						Large 2 - 3
+					</p>
+				</span>
+			</div>		
+		</div>
+	</section>	
+	<section class="content_item">
+		<div class="row content_padding gray_columns">
+			<div class="large_6 column">
+				<span class="content">
+					<p>
+						Large 6 - 1
+					</p>
+				</span>
+			</div>			
+			<div class="large_6 column">
+				<span class="content">
+					<p>
+						Large 6 - 2
+					</p>
+				</span>
+			</div>	
+		</div>
+	</section>
+	<section class="content_item">
+		<div class="row content_padding gray_columns">
+			<div class="large_7 column">
+				<span class="content">
+					<p>
+						Large 7 - 1
+					</p>
+				</span>
+			</div>			
+			<div class="large_5 column">
+				<span class="content">
+					<p>
+						Large 5 - 2
+					</p>
+				</span>
+			</div>	
+		</div>
+	</section>		
+	<section class="content_item">
+		<div class="row content_padding gray_columns">
+			<div class="large_8 column">
+				<span class="content">
+					<p>
+						Large 8 - 1
+					</p>
+				</span>
+			</div>			
+			<div class="large_4 column">
+				<span class="content">
+					<p>
+						Large 4 - 2
+					</p>
+				</span>
+			</div>	
+		</div>
+	</section>	
+	<section class="content_item">
+		<div class="row content_padding gray_columns">
+			<div class="large_9 column">
+				<span class="content">
+					<p>
+						Large 9 - 1
+					</p>
+				</span>
+			</div>			
+			<div class="large_3 column">
+				<span class="content">
+					<p>
+						Large 3 - 2
+					</p>
+				</span>
+			</div>	
+		</div>
+	</section>	
+	<section class="content_item">
+		<div class="row content_padding gray_columns">
+			<div class="large_10 column">
+				<span class="content">
+					<p>
+						Large 10 - 1
+					</p>
+				</span>
+			</div>			
+			<div class="large_2 column">
+				<span class="content">
+					<p>
+						Large 2 - 2
+					</p>
+				</span>
+			</div>	
+		</div>
+	</section>	
+	<section class="content_item">
+		<div class="row content_padding gray_columns">
+			<div class="large_11 column">
+				<span class="content">
+					<p>
+						Large 11 - 1
+					</p>
+				</span>
+			</div>			
+			<div class="large_1 column">
+				<span class="content">
+					<p>
+						Large 1 - 2
+					</p>
+				</span>
+			</div>	
+		</div>
+	</section>		
+	<section class="content_item">
+		<div class="row content_padding gray_columns">
+			<div class="large_12 column">
+				<span class="content">
+					<p>
+						Large 12 - 1
+					</p>
+				</span>
+			</div>				
+		</div>
+	</section>	
+	<!--- end grid with padding -->
+
+
+
+
+	<!-- begin grid with margin -->
+	<section class="content_item">
+		<div class="row">
+			<div class="large_12 column text_center">
+				<span class="content">
+					<h1>Grid layout</h1>
+					<p>With content margin</p>
+				</span>
+			</div>
+		</div>
+	</section>
+	<section class="content_item">
+		<div class="row content_margin gray_columns">
+			<div class="large_1 medium_3 small_6 column">
+				<span class="content">
+					<p class="large_only">Large 1 - 1</p>
+					<p class="medium_only">Medium 3 - 1</p>
+					<p class="small_only">Small 6 - 1</p>
+				</span>
+			</div>			
+			<div class="large_1 medium_3 small_6 column">
+				<span class="content">
+					<p class="large_only">Large 1 - 2</p>
+					<p class="medium_only">Medium 3 - 2</p>
+					<p class="small_only">Small 6 - 2</p>
+				</span>
+			</div>
+			<div class="large_1 medium_3 small_6 column">
+				<span class="content">
+					<p class="large_only">Large 1 - 3</p>
+					<p class="medium_only">Medium 3 - 3</p>
+					<p class="small_only">Small 6 - 3</p>
+				</span>
+			</div>
+			<div class="large_1 medium_3 small_6 column">
+
+				<span class="content">
+					<p class="large_only">Large 1 - 4</p>
+					<p class="medium_only">Medium 3 - 4</p>
+					<p class="small_only">Small 6 - 4</p>
+				</span>
+			</div>
+			<div class="large_1 medium_3 small_6 column">
+				<span class="content">
+					<p class="large_only">Large 1 - 5</p>
+					<p class="medium_only">Medium 3 - 5</p>
+					<p class="small_only">Small 6 - 5</p>
+				</span>
+			</div>		
+			<div class="large_1 medium_3 small_6 column">
+				<span class="content">
+					<p class="large_only">Large 1 - 6</p>
+					<p class="medium_only">Medium 3 - 6</p>
+					<p class="small_only">Small 6 - 6/</p>
+				</span>
+			</div>		
+			<div class="large_1 medium_3 small_6 column">
+				<span class="content">
+					<p class="large_only">Large 1 - 7</p>
+					<p class="medium_only">Medium 3 - 7</p>
+					<p class="small_only">Small 6 - 7</p>
+				</span>
+			</div>		
+			<div class="large_1 medium_3 small_6 column">
+				<span class="content">
+					<p class="large_only">Large 1 - 8</p>
+					<p class="medium_only">Medium 3 - 8</p>
+					<p class="small_only">Small 6 - 8</p>
+				</span>
+			</div>	
+			<div class="large_1 medium_3 small_6 column">
+				<span class="content">
+					<p class="large_only">Large 1 - 9</p>
+					<p class="medium_only">Medium 3 - 9</p>
+					<p class="small_only">Small 6 - 9</p>
+				</span>
+			</div>	
+			<div class="large_1 medium_3 small_6 column">
+				<span class="content">
+					<p class="large_only">Large 1 - 10</p>
+					<p class="medium_only">Medium 3 - 10</p>
+					<p class="small_only">Small 6 - 10</p>
+				</span>
+			</div>	
+			<div class="large_1 medium_3 small_6 column">
+				<span class="content">
+					<p class="large_only">Large 1 - 11</p>
+					<p class="medium_only">Medium 3 - 11</p>
+					<p class="small_only">Small 6 - 11</p>
+				</span>
+			</div>
+			<div class="large_1 medium_3 small_6 column">
+				<span class="content">
+					<p class="large_only">Large 1 - 12</p>
+					<p class="medium_only">Medium 3 - 12</p>
+					<p class="small_only">Small 6 - 12</p>
+				</span>
+			</div>
+		</div>
+	</section>	
+
+	<section class="content_item">
+		<div class="row content_margin gray_columns">
+			<div class="large_2 column">
+				<span class="content">
+					<p>
+						Large 2 - 1
+					</p>
+				</span>
+			</div>			
+			<div class="large_2 column">
+				<span class="content">
+					<p>
+						Large 2 - 2
+					</p>
+				</span>
+			</div>
+			<div class="large_2 column">
+				<span class="content">
+					<p>
+						Large 2 - 3
+					</p>
+				</span>
+			</div>
+			<div class="large_2 column">
+				<span class="content">
+					<p>
+						Large 2 - 4
+					</p>
+				</span>
+			</div>
+			<div class="large_2 column">
+				<span class="content">
+					<p>
+						Large 2 - 5
+					</p>
+				</span>
+			</div>		
+			<div class="large_2 column">
+				<span class="content">
+					<p>
+						Large 2 - 6
+					</p>
+				</span>
+			</div>		
+		</div>
+	</section>	
+	<section class="content_item">
+		<div class="row content_margin gray_columns">
+			<div class="large_3 column">
+				<span class="content">
+					<p>
+						Large 3 - 1
+					</p>
+				</span>
+			</div>			
+			<div class="large_3 column">
+				<span class="content">
+					<p>
+						Large 3 - 2
+					</p>
+				</span>
+			</div>
+			<div class="large_3 column">
+				<span class="content">
+					<p>
+						Large 3 - 3
+					</p>
+				</span>
+			</div>
+			<div class="large_3 column">
+				<span class="content">
+					<p>
+						Large 3 - 4
+					</p>
+				</span>
+			</div>		
+		</div>
+	</section>	
+	<section class="content_item">
+		<div class="row content_margin gray_columns">
+			<div class="large_4 column">
+				<span class="content">
+					<p>
+						Large 4 - 1
+					</p>
+				</span>
+			</div>			
+			<div class="large_4 column">
+				<span class="content">
+					<p>
+						Large 4 - 2
+					</p>
+				</span>
+			</div>
+			<div class="large_4 column">
+				<span class="content">
+					<p>
+						Large 4 - 3
+					</p>
+				</span>
+			</div>		
+		</div>
+	</section>
+	<section class="content_item">
+		<div class="row content_margin gray_columns">
+			<div class="large_5 column">
+				<span class="content">
+					<p>
+						Large 5 - 1
+					</p>
+				</span>
+			</div>			
+			<div class="large_5 column">
+				<span class="content">
+					<p>
+						Large 5 - 2
+					</p>
+				</span>
+			</div>
+			<div class="large_2 column">
+				<span class="content">
+					<p>
+						Large 2 - 3
+					</p>
+				</span>
+			</div>		
+		</div>
+	</section>	
+	<section class="content_item">
+		<div class="row content_margin gray_columns">
+			<div class="large_6 column">
+				<span class="content">
+					<p>
+						Large 6 - 1
+					</p>
+				</span>
+			</div>			
+			<div class="large_6 column">
+				<span class="content">
+					<p>
+						Large 6 - 2
+					</p>
+				</span>
+			</div>	
+		</div>
+	</section>
+	<section class="content_item">
+		<div class="row content_margin gray_columns">
+			<div class="large_7 column">
+				<span class="content">
+					<p>
+						Large 7 - 1
+					</p>
+				</span>
+			</div>			
+			<div class="large_5 column">
+				<span class="content">
+					<p>
+						Large 5 - 2
+					</p>
+				</span>
+			</div>	
+		</div>
+	</section>		
+	<section class="content_item">
+		<div class="row content_margin gray_columns">
+			<div class="large_8 column">
+				<span class="content">
+					<p>
+						Large 8 - 1
+					</p>
+				</span>
+			</div>			
+			<div class="large_4 column">
+				<span class="content">
+					<p>
+						Large 4 - 2
+					</p>
+				</span>
+			</div>	
+		</div>
+	</section>	
+	<section class="content_item">
+		<div class="row content_margin gray_columns">
+			<div class="large_9 column">
+				<span class="content">
+					<p>
+						Large 9 - 1
+					</p>
+				</span>
+			</div>			
+			<div class="large_3 column">
+				<span class="content">
+					<p>
+						Large 3 - 2
+					</p>
+				</span>
+			</div>	
+		</div>
+	</section>	
+	<section class="content_item">
+		<div class="row content_margin gray_columns">
+			<div class="large_10 column">
+				<span class="content">
+					<p>
+						Large 10 - 1
+					</p>
+				</span>
+			</div>			
+			<div class="large_2 column">
+				<span class="content">
+					<p>
+						Large 2 - 2
+					</p>
+				</span>
+			</div>	
+		</div>
+	</section>	
+	<section class="content_item">
+		<div class="row content_margin gray_columns">
+			<div class="large_11 column">
+				<span class="content">
+					<p>
+						Large 11 - 1
+					</p>
+				</span>
+			</div>			
+			<div class="large_1 column">
+				<span class="content">
+					<p>
+						Large 1 - 2
+					</p>
+				</span>
+			</div>	
+		</div>
+	</section>		
+	<section class="content_item">
+		<div class="row content_margin gray_columns">
+			<div class="large_12 column">
+				<span class="content">
+					<p>
+						Large 12 - 1
+					</p>
+				</span>
+			</div>				
+		</div>
+	</section>	
+	<!--- end grid with margin -->
+
+
+
+	<!-- begin grid with margin and padding -->
+	<section class="content_item">
+		<div class="row">
+			<div class="large_12 column text_center">
+				<span class="content">
+					<h1>Grid layout</h1>
+					<p>With content padding and margin</p>
+				</span>
+			</div>
+		</div>
+	</section>
+	<section class="content_item">
+		<div class="row content_margin content_padding gray_columns">
+			<div class="large_1 medium_3 small_6 column">
+				<span class="content">
+					<p class="large_only">Large 1 - 1</p>
+					<p class="medium_only">Medium 3 - 1</p>
+					<p class="small_only">Small 6 - 1</p>
+				</span>
+			</div>			
+			<div class="large_1 medium_3 small_6 column">
+				<span class="content">
+					<p class="large_only">Large 1 - 2</p>
+					<p class="medium_only">Medium 3 - 2</p>
+					<p class="small_only">Small 6 - 2</p>
+				</span>
+			</div>
+			<div class="large_1 medium_3 small_6 column">
+				<span class="content">
+					<p class="large_only">Large 1 - 3</p>
+					<p class="medium_only">Medium 3 - 3</p>
+					<p class="small_only">Small 6 - 3</p>
+				</span>
+			</div>
+			<div class="large_1 medium_3 small_6 column">
+
+				<span class="content">
+					<p class="large_only">Large 1 - 4</p>
+					<p class="medium_only">Medium 3 - 4</p>
+					<p class="small_only">Small 6 - 4</p>
+				</span>
+			</div>
+			<div class="large_1 medium_3 small_6 column">
+				<span class="content">
+					<p class="large_only">Large 1 - 5</p>
+					<p class="medium_only">Medium 3 - 5</p>
+					<p class="small_only">Small 6 - 5</p>
+				</span>
+			</div>		
+			<div class="large_1 medium_3 small_6 column">
+				<span class="content">
+					<p class="large_only">Large 1 - 6</p>
+					<p class="medium_only">Medium 3 - 6</p>
+					<p class="small_only">Small 6 - 6/</p>
+				</span>
+			</div>		
+			<div class="large_1 medium_3 small_6 column">
+				<span class="content">
+					<p class="large_only">Large 1 - 7</p>
+					<p class="medium_only">Medium 3 - 7</p>
+					<p class="small_only">Small 6 - 7</p>
+				</span>
+			</div>		
+			<div class="large_1 medium_3 small_6 column">
+				<span class="content">
+					<p class="large_only">Large 1 - 8</p>
+					<p class="medium_only">Medium 3 - 8</p>
+					<p class="small_only">Small 6 - 8</p>
+				</span>
+			</div>	
+			<div class="large_1 medium_3 small_6 column">
+				<span class="content">
+					<p class="large_only">Large 1 - 9</p>
+					<p class="medium_only">Medium 3 - 9</p>
+					<p class="small_only">Small 6 - 9</p>
+				</span>
+			</div>	
+			<div class="large_1 medium_3 small_6 column">
+				<span class="content">
+					<p class="large_only">Large 1 - 10</p>
+					<p class="medium_only">Medium 3 - 10</p>
+					<p class="small_only">Small 6 - 10</p>
+				</span>
+			</div>	
+			<div class="large_1 medium_3 small_6 column">
+				<span class="content">
+					<p class="large_only">Large 1 - 11</p>
+					<p class="medium_only">Medium 3 - 11</p>
+					<p class="small_only">Small 6 - 11</p>
+				</span>
+			</div>
+			<div class="large_1 medium_3 small_6 column">
+				<span class="content">
+					<p class="large_only">Large 1 - 12</p>
+					<p class="medium_only">Medium 3 - 12</p>
+					<p class="small_only">Small 6 - 12</p>
+				</span>
+			</div>
+		</div>
+	</section>	
+
+	<section class="content_item">
+		<div class="row content_margin content_padding gray_columns">
+			<div class="large_2 column">
+				<span class="content">
+					<p>
+						Large 2 - 1
+					</p>
+				</span>
+			</div>			
+			<div class="large_2 column">
+				<span class="content">
+					<p>
+						Large 2 - 2
+					</p>
+				</span>
+			</div>
+			<div class="large_2 column">
+				<span class="content">
+					<p>
+						Large 2 - 3
+					</p>
+				</span>
+			</div>
+			<div class="large_2 column">
+				<span class="content">
+					<p>
+						Large 2 - 4
+					</p>
+				</span>
+			</div>
+			<div class="large_2 column">
+				<span class="content">
+					<p>
+						Large 2 - 5
+					</p>
+				</span>
+			</div>		
+			<div class="large_2 column">
+				<span class="content">
+					<p>
+						Large 2 - 6
+					</p>
+				</span>
+			</div>		
+		</div>
+	</section>	
+	<section class="content_item">
+		<div class="row content_margin content_padding gray_columns">
+			<div class="large_3 column">
+				<span class="content">
+					<p>
+						Large 3 - 1
+					</p>
+				</span>
+			</div>			
+			<div class="large_3 column">
+				<span class="content">
+					<p>
+						Large 3 - 2
+					</p>
+				</span>
+			</div>
+			<div class="large_3 column">
+				<span class="content">
+					<p>
+						Large 3 - 3
+					</p>
+				</span>
+			</div>
+			<div class="large_3 column">
+				<span class="content">
+					<p>
+						Large 3 - 4
+					</p>
+				</span>
+			</div>		
+		</div>
+	</section>	
+	<section class="content_item">
+		<div class="row content_margin content_padding gray_columns">
+			<div class="large_4 column">
+				<span class="content">
+					<p>
+						Large 4 - 1
+					</p>
+				</span>
+			</div>			
+			<div class="large_4 column">
+				<span class="content">
+					<p>
+						Large 4 - 2
+					</p>
+				</span>
+			</div>
+			<div class="large_4 column">
+				<span class="content">
+					<p>
+						Large 4 - 3
+					</p>
+				</span>
+			</div>		
+		</div>
+	</section>
+	<section class="content_item">
+		<div class="row content_margin content_padding gray_columns">
+			<div class="large_5 column">
+				<span class="content">
+					<p>
+						Large 5 - 1
+					</p>
+				</span>
+			</div>			
+			<div class="large_5 column">
+				<span class="content">
+					<p>
+						Large 5 - 2
+					</p>
+				</span>
+			</div>
+			<div class="large_2 column">
+				<span class="content">
+					<p>
+						Large 2 - 3
+					</p>
+				</span>
+			</div>		
+		</div>
+	</section>	
+	<section class="content_item">
+		<div class="row content_margin content_padding gray_columns">
+			<div class="large_6 column">
+				<span class="content">
+					<p>
+						Large 6 - 1
+					</p>
+				</span>
+			</div>			
+			<div class="large_6 column">
+				<span class="content">
+					<p>
+						Large 6 - 2
+					</p>
+				</span>
+			</div>	
+		</div>
+	</section>
+	<section class="content_item">
+		<div class="row content_margin content_padding gray_columns">
+			<div class="large_7 column">
+				<span class="content">
+					<p>
+						Large 7 - 1
+					</p>
+				</span>
+			</div>			
+			<div class="large_5 column">
+				<span class="content">
+					<p>
+						Large 5 - 2
+					</p>
+				</span>
+			</div>	
+		</div>
+	</section>		
+	<section class="content_item">
+		<div class="row content_margin content_padding gray_columns">
+			<div class="large_8 column">
+				<span class="content">
+					<p>
+						Large 8 - 1
+					</p>
+				</span>
+			</div>			
+			<div class="large_4 column">
+				<span class="content">
+					<p>
+						Large 4 - 2
+					</p>
+				</span>
+			</div>	
+		</div>
+	</section>	
+	<section class="content_item">
+		<div class="row content_margin content_padding gray_columns">
+			<div class="large_9 column">
+				<span class="content">
+					<p>
+						Large 9 - 1
+					</p>
+				</span>
+			</div>			
+			<div class="large_3 column">
+				<span class="content">
+					<p>
+						Large 3 - 2
+					</p>
+				</span>
+			</div>	
+		</div>
+	</section>	
+	<section class="content_item">
+		<div class="row content_margin content_padding gray_columns">
+			<div class="large_10 column">
+				<span class="content">
+					<p>
+						Large 10 - 1
+					</p>
+				</span>
+			</div>			
+			<div class="large_2 column">
+				<span class="content">
+					<p>
+						Large 2 - 2
+					</p>
+				</span>
+			</div>	
+		</div>
+	</section>	
+	<section class="content_item">
+		<div class="row content_margin content_padding gray_columns">
+			<div class="large_11 column">
+				<span class="content">
+					<p>
+						Large 11 - 1
+					</p>
+				</span>
+			</div>			
+			<div class="large_1 column">
+				<span class="content">
+					<p>
+						Large 1 - 2
+					</p>
+				</span>
+			</div>	
+		</div>
+	</section>		
+	<section class="content_item">
+		<div class="row content_margin content_padding gray_columns">
+			<div class="large_12 column">
+				<span class="content">
+					<p>
+						Large 12 - 1
+					</p>
+				</span>
+			</div>				
+		</div>
+	</section>	
+	<!--- end grid with margin and padding -->
+
+
+	<section class="content_item">
+		<div class="row">
+			<div class="large_12 column text_center">
+				<span class="content">
+					<h1>Grid layout</h1>
+					<p>With no content padding or margin</p>
+				</span>
+			</div>
+		</div>
+	</section>
+	<!-- begin grid with no padding no margin -->
+	<section class="content_item">
+		<div class="row gray_columns">
+			<div class="large_1 column">
+				<span class="content">
+					<p>Large 1 - 1
+					</p>
+				</span>
+			</div>			
+			<div class="large_1 column">
+				<span class="content">
+					<p>Large 1 - 2
+					</p>
+				</span>
+			</div>
+			<div class="large_1 column">
+				<span class="content">
+					<p>Large 1 - 3</p>
+				</span>
+			</div>
+			<div class="large_1 column">
+
+				<span class="content">
+					<p>Large 1 - 4</p>
+				</span>
+			</div>
+			<div class="large_1 column">
+				<span class="content">
+					<p>Large 1 - 5</p>
+				</span>
+			</div>		
+			<div class="large_1 column">
+				<span class="content">
+					<p>Large 1 - 6</p>
+				</span>
+			</div>		
+			<div class="large_1 column">
+				<span class="content">
+					<p>Large 1 - 7</p>
+				</span>
+			</div>		
+			<div class="large_1 column">
+				<span class="content">
+					<p>Large 1 - 8</p>
+				</span>
+			</div>	
+			<div class="large_1 column">
+				<span class="content">
+					<p>
+						Large 1 - 9
+					</p>
+				</span>
+			</div>	
+			<div class="large_1 column">
+				<span class="content">
+					<p>Large 1 - 10</p>
+				</span>
+			</div>	
+			<div class="large_1 column">
+				<span class="content">
+					<p>Large 1 - 11</p>
+				</span>
+			</div>
+			<div class="large_1 column">
+				<span class="content">
+					<p>Large 1 - 12</p>
+				</span>
+			</div>
+		</div>
+	</section>	
+
+
+	<section class="content_item">
+		<div class="row gray_columns">
+			<div class="large_2 column">
+				<span class="content">
+					<p>
+						Large 2 - 1
+					</p>
+				</span>
+			</div>			
+			<div class="large_2 column">
+				<span class="content">
+					<p>
+						Large 2 - 2
+					</p>
+				</span>
+			</div>
+			<div class="large_2 column">
+				<span class="content">
+					<p>
+						Large 2 - 3
+					</p>
+				</span>
+			</div>
+			<div class="large_2 column">
+				<span class="content">
+					<p>
+						Large 2 - 4
+					</p>
+				</span>
+			</div>
+			<div class="large_2 column">
+				<span class="content">
+					<p>
+						Large 2 - 5
+					</p>
+				</span>
+			</div>		
+			<div class="large_2 column">
+				<span class="content">
+					<p>
+						Large 2 - 6
+					</p>
+				</span>
+			</div>		
+		</div>
+	</section>	
+	<section class="content_item">
+		<div class="row gray_columns">
+			<div class="large_3 column">
+				<span class="content">
+					<p>
+						Large 3 - 1
+					</p>
+				</span>
+			</div>			
+			<div class="large_3 column">
+				<span class="content">
+					<p>
+						Large 3 - 2
+					</p>
+				</span>
+			</div>
+			<div class="large_3 column">
+				<span class="content">
+					<p>
+						Large 3 - 3
+					</p>
+				</span>
+			</div>
+			<div class="large_3 column">
+				<span class="content">
+					<p>
+						Large 3 - 4
+					</p>
+				</span>
+			</div>		
+		</div>
+	</section>	
+	<section class="content_item">
+		<div class="row gray_columns">
+			<div class="large_4 column">
+				<span class="content">
+					<p>
+						Large 4 - 1
+					</p>
+				</span>
+			</div>			
+			<div class="large_4 column">
+				<span class="content">
+					<p>
+						Large 4 - 2
+					</p>
+				</span>
+			</div>
+			<div class="large_4 column">
+				<span class="content">
+					<p>
+						Large 4 - 3
+					</p>
+				</span>
+			</div>		
+		</div>
+	</section>
+	<section class="content_item">
+		<div class="row gray_columns">
+			<div class="large_5 column">
+				<span class="content">
+					<p>
+						Large 5 - 1
+					</p>
+				</span>
+			</div>			
+			<div class="large_5 column">
+				<span class="content">
+					<p>
+						Large 5 - 2
+					</p>
+				</span>
+			</div>
+			<div class="large_2 column">
+				<span class="content">
+					<p>
+						Large 2 - 3
+					</p>
+				</span>
+			</div>		
+		</div>
+	</section>	
+	<section class="content_item">
+		<div class="row gray_columns">
+			<div class="large_6 column">
+				<span class="content">
+					<p>
+						Large 6 - 1
+					</p>
+				</span>
+			</div>			
+			<div class="large_6 column">
+				<span class="content">
+					<p>
+						Large 6 - 2
+					</p>
+				</span>
+			</div>	
+		</div>
+	</section>
+	<section class="content_item">
+		<div class="row gray_columns">
+			<div class="large_7 column">
+				<span class="content">
+					<p>
+						Large 7 - 1
+					</p>
+				</span>
+			</div>			
+			<div class="large_5 column">
+				<span class="content">
+					<p>
+						Large 5 - 2
+					</p>
+				</span>
+			</div>	
+		</div>
+	</section>		
+	<section class="content_item">
+		<div class="row gray_columns">
+			<div class="large_8 column">
+				<span class="content">
+					<p>
+						Large 8 - 1
+					</p>
+				</span>
+			</div>			
+			<div class="large_4 column">
+				<span class="content">
+					<p>
+						Large 4 - 2
+					</p>
+				</span>
+			</div>	
+		</div>
+	</section>	
+	<section class="content_item">
+		<div class="row gray_columns">
+			<div class="large_9 column">
+				<span class="content">
+					<p>
+						Large 9 - 1
+					</p>
+				</span>
+			</div>			
+			<div class="large_3 column">
+				<span class="content">
+					<p>
+						Large 3 - 2
+					</p>
+				</span>
+			</div>	
+		</div>
+	</section>	
+	<section class="content_item">
+		<div class="row gray_columns">
+			<div class="large_10 column">
+				<span class="content">
+					<p>
+						Large 10 - 1
+					</p>
+				</span>
+			</div>			
+			<div class="large_2 column">
+				<span class="content">
+					<p>
+						Large 2 - 2
+					</p>
+				</span>
+			</div>	
+		</div>
+	</section>	
+	<section class="content_item">
+		<div class="row gray_columns">
+			<div class="large_11 column">
+				<span class="content">
+					<p>
+						Large 11 - 1
+					</p>
+				</span>
+			</div>			
+			<div class="large_1 column">
+				<span class="content">
+					<p>
+						Large 1 - 2
+					</p>
+				</span>
+			</div>	
+		</div>
+	</section>		
+	<section class="content_item">
+		<div class="row content gray_columns">
+			<div class="large_12 column">
+				<span class="content">
+					<p>
+						Large 12 - 1
+					</p>
+				</span>
+			</div>				
+		</div>
+	</section>	
+	<!--- end grid with no padding -->
+
+
+	<!-- add column spacing to the ends -->
+	<section class="content_item">
+		<div class="row">
+			<div class="large_12 column text_center">
+				<span class="content">
+					<h1>Grid layout</h1>
+					<p>Add gutter spacing to a row or escape the column padding/margin containing the row</p>
+					<p>Use the class add_gutters to add gutter spacing to a row</p>
+					<p>Use the class escape_gutters to escape the column margins containing the row</p>
+
+				</span>
+			</div>
+		</div>
+	</section>
+	<section class="content_item">
+		<div class="row content_padding add_gutters gray_columns">
+			<div class="large_7 column">
+				<span class="content">
+					<p>
+						Large 7 - 1
+					</p>
+				</span>
+			</div>			
+			<div class="large_5 column">
+				<span class="content">
+					<p>
+						Large 5 - 2
+					</p>
+				</span>
+			</div>	
+		</div>
+	</section>		
+	<section class="content_item">
+		<div class="row content_padding add_gutters gray_columns">
+			<div class="large_8 column">
+				<span class="content">
+					<p>
+						Large 8 - 1
+					</p>
+				</span>
+			</div>			
+			<div class="large_4 column">
+				<span class="content">
+					<p>
+						Large 4 - 2
+					</p>
+				</span>
+			</div>	
+		</div>
+	</section>	
+
+	<section class="content_item">
+		<div class="row content_padding content_margin escape_gutters gray_columns">
+			<div class="large_7 column">
+				<span class="content">
+					<p>
+						Large 7 - 1
+					</p>
+				</span>
+			</div>			
+			<div class="large_5 column">
+				<span class="content">
+					<p>
+						Large 5 - 2
+					</p>
+				</span>
+			</div>	
+		</div>
+	</section>		
+	<section class="content_item">
+		<div class="row content_padding content_margin add_gutters gray_columns">
+			<div class="large_8 column">
+				<span class="content">
+					<p>
+						Large 8 - 1
+					</p>
+				</span>
+			</div>			
+			<div class="large_4 column">
+				<span class="content">
+					<p>
+						Large 4 - 2
+					</p>
+				</span>
+			</div>	
+		</div>
+	</section>	
+	<!--- end add end spacing to columns without padding -->
+
+	<section class="content_item">
+		<div class="row">
+			<div class="large_12 column text_center">
+				<span class="content">
+					<h1>Float testing</h1>
+					<p>With grids too</p>
+				</span>
+			</div>
+		</div>
+	</section>
+
+	<section class="content_item large_6 float_left bumping">
+		<div class="row content_margin gray_columns">
+			<div class="large_6 column">
+				<span class="content">
+					<p>Large 6 - 1</p>
+				</span>
+			</div>			
+			<div class="large_6 column">
+				<span class="content">
+					<p>Large 6 - 2</p>
+				</span>
+			</div>	
+		</div>
+	</section>
+	<section class="content_item large_6 float_right">
+		<div class="row content_margin gray_columns">
+			<div class="large_6 column">
+				<span class="content">
+					<p>Large 6 - 1</p>
+				</span>
+			</div>			
+			<div class="large_6 column">
+				<span class="content">
+					<p>Large 6 - 2</p>
+				</span>
+			</div>	
+		</div>
+	</section>
+	<section class="content_item large_6 float_right bumping">
+		<div class="row content_margin gray_columns">
+			<div class="large_6 column">
+				<span class="content">
+					<p>Large 6 - 1</p>
+				</span>
+			</div>			
+			<div class="large_6 column">
+				<span class="content">
+					<p>Large 6 - 2</p>
+				</span>
+			</div>	
+		</div>
+	</section>
+	<section class="content_margin wrapping content_item">
+
+			<p>Nulla id mi libero. Nulla scelerisque accumsan felis, eu ultricies tortor lobortis et. Suspendisse consequat nunc id nibh vehicula gravida. Integer posuere a neque vitae volutpat. Nulla pretium nibh sed mauris tincidunt fermentum. Sed nec cursus magna. Morbi at porttitor arcu, quis blandit tellus. Cras id ex lectus. Sed quis volutpat nulla, vel finibus odio. Suspendisse bibendum felis est, ultricies placerat nibh volutpat et. Mauris ultricies molestie iaculis. Duis lacinia tellus lectus, at faucibus metus volutpat eget. Maecenas convallis sit amet nisi a scelerisque. Quisque bibendum tellus et porttitor sollicitudin. Nunc dictum auctor ipsum at tincidunt.</p>
+
+	</section>
+
+	<div style="width:100%; clear: both;">
+		<hr>
+	</div>
+
+
+	<section class="content_item">
+		<div class="row content_margin gray_columns">
+			<div class="large_6 column">
+				<span class="content">
+					<p>Large 6 - 1</p>
+				</span>
+			</div>		
+			<div class="large_6 column">
+				<span class="content">
+					<p>Large 6 - 1</p>
+				</span>
+			</div>
+		</div>
+	</section>
+
+	<section class="content_item large_6 float_left">
+		<div class="row content_margin gray_columns">
+			<div class="large_4 column">
+				<span class="content">
+					<p>Large 4 - 1</p>
+				</span>
+			</div>		
+			<div class="large_4 column">
+				<span class="content">
+					<p>Large 4 - 1</p>
+				</span>
+			</div>
+			<div class="large_4 column">
+				<span class="content">
+					<p>Large 4 - 1</p>
+				</span>
+			</div>
+		</div>
+	</section>
+	<section class="content_margin wrapping content_item">
+
+			<p>Nulla id mi libero. Nulla scelerisque accumsan felis, eu ultricies tortor lobortis et. Suspendisse consequat nunc id nibh vehicula gravida. Integer posuere a neque vitae volutpat. Nulla pretium nibh sed mauris tincidunt fermentum. Sed nec cursus magna. Morbi at porttitor arcu, quis blandit tellus. Cras id ex lectus. Sed quis volutpat nulla, vel finibus odio. Suspendisse bibendum felis est, ultricies placerat nibh volutpat et. Mauris ultricies molestie iaculis. Duis lacinia tellus lectus, at faucibus metus volutpat eget. Maecenas convallis sit amet nisi a scelerisque. Quisque bibendum tellus et porttitor sollicitudin. Nunc dictum auctor ipsum at tincidunt.</p>
+	
+	</section>	
+
+
+	<section class="content_item">
+		<div class="row">
+			<div class="large_12 column text_center">
+				<span class="content">
+					<h1>Image testing</h1>
+					<p>they fit to the columns</p>
+				</span>
+			</div>
+		</div>
+	</section>
+	<section class="content_item">
+		<div class="row content_margin gray_columns">
+			<div class="large_4 column">
+				<span class="content">
+					<img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/220427/orangefreeze2_test.jpg" />
+					<p>Large 4 - 1</p>
+				</span>
+			</div>		
+			<div class="large_4 column">
+				<span class="content">
+					<img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/220427/orangefreeze2_test.jpg" />
+					<p>Large 4 - 1</p>
+				</span>
+			</div>
+			<div class="large_4 column">
+				<span class="content">
+					<img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/220427/orangefreeze2_test.jpg" />
+					<p>Large 4 - 1</p>
+				</span>
+			</div>
+		</div>
+	</section>
+
+
+	<div style="width:100%; clear: both;">
+		<hr>
+	</div>
+
+	<section class="content_item">
+		<div class="row content_margin gray_columns">
+			<div class="large_7 column">
+				<span class="content">
+					<p>Large 7 - 1</p>
+				</span>
+			</div>		
+			<div class="large_5 column">
+				<span class="content">
+					<p>Large 5 - 1</p>
+				</span>
+			</div>
+		</div>
+	</section>
+
+	<section class="content_item large_7 bumping float_left">
+		<div class="row content_margin gray_columns">
+			<div class="large_4 column">
+				<span class="content">
+					<p>Large 4 - 1</p>
+				</span>
+			</div>		
+			<div class="large_4 column">
+				<span class="content">
+					<p>Large 4 - 1</p>
+				</span>
+			</div>
+			<div class="large_4 column">
+				<span class="content">
+					<p>Large 4 - 1</p>
+				</span>
+			</div>
+		</div>
+	</section>
+	<section class="content_margin wrapping content_item">
+
+			<p>Nulla id mi libero. Nulla scelerisque accumsan felis, eu ultricies tortor lobortis et. Suspendisse consequat nunc id nibh vehicula gravida. Integer posuere a neque vitae volutpat. Nulla pretium nibh sed mauris tincidunt fermentum. Sed nec cursus magna. Morbi at porttitor arcu, quis blandit tellus. Cras id ex lectus. Sed quis volutpat nulla, vel finibus odio. Suspendisse bibendum felis est, ultricies placerat nibh volutpat et. Mauris ultricies molestie iaculis. Duis lacinia tellus lectus, at faucibus metus volutpat eget. Maecenas convallis sit amet nisi a scelerisque. Quisque bibendum tellus et porttitor sollicitudin. Nunc dictum auctor ipsum at tincidunt.</p>
+	
+	</section>
+	<section class="content_item">
+		<div class="row">
+			<div class="large_12 column text_center">
+				<span class="content">
+					<h1>Alignment Testing</h1>
+					<p>Top, middle, or bottom</p>
+				</span>
+			</div>
+		</div>
+	</section>
+	<section class="content_item">
+		<div class="row gray_columns">
+			<div class="large_4 medium_6 column valign_middle text_center">
+				<span class="content">
+					<p>Large 4 - 1</p>
+					<p>Vertical alignment testing</p>
+					<p>This is aligned middle</p>
+				</span>
+			</div>			
+			<div class="large_4 medium_6 column valign_middle text_center">
+				<span class="content">
+					<p>Large 4 - 2</p>
+					<p>This is aligned middle</p>
+				</span>
+			</div>
+			<div class="large_4 medium_12 valign_bottom column text_center">
+				<span class="content">
+					<p>Large 4 - 3</p>
+					<p>This is aligned bottom</p>
+				</span>
+			</div>		
+		</div>
+	</section>
+
+
+
+
+
+	<section class="content_item">
+		<div class="row">
+			<div class="large_12 column text_center">
+				<span class="content">
+					<h1>Push and pull testing</h1>
+					<p>shows off vertical alignment too</p>
+				</span>
+			</div>
+		</div>
+	</section>
+	<section class="content_item">
+		<div class="row add_gutters gray_columns">
+			<div class="large_4  push_4_large valign_middle column text_center">
+				<span class="content">
+					<p>Large 4 - 1</p>
+					<p>First column</p>
+					<p>Push 4</p>
+					<p>Vertical alignment testing</p>
+					<p>This is aligned middle</p>
+				</span>
+			</div>
+			<div class="large_4 pull_4_large valign_middle column text_center">
+				<span class="content">
+					<p>Large 4 - 2</p>
+					<p>Second column</p>
+					<p>Pull 4</p>
+					<p>This is aligned middle</p>
+				</span>
+			</div>	
+			<div class="large_4 valign_bottom column text_center">
+				<span class="content">
+					<p>Large 4 - 3</p>
+					<p>Third column</p>
+					<p>Push None</p>
+					<p>This is aligned bottom</p>
+				</span>
+			</div>	
+		</div>
+	</section>
+
+
+	<section class="content_item">
+		<div class="row gray_columns">
+			<div class="large_4 medium_4 small_4 medium_push_4 valign_middle column text_center">
+				<span class="content">
+					<p>Large 4 - 1</p>
+					<p>First column</p>
+					<p>Push 4</p>
+					<p>Vertical alignment testing</p>
+					<p>This is aligned middle</p>
+				</span>
+			</div>
+			<div class="large_4 medium_4 small_4 push_4 valign_middle column text_center">
+				<span class="content">
+					<p>Large 4 - 2</p>
+					<p>Second column</p>
+					<p>Pull 8</p>
+					<p>This is aligned middle</p>
+				</span>
+			</div>	
+			<div class="large_4 medium_4 small_4 pull_4_large column text_center valign_bottom">
+				<span class="content">
+					<p>Large 4 - 3</p>
+					<p>Third column</p>
+					<p>Push 4</p>
+					<p>This is aligned bottom</p>
+				</span>
+			</div>	
+		</div>
+	</section>
+
+	<section class="content_item">
+		<div class="row">
+			<div class="large_12 column text_center">
+				<span class="content">
+					<h1>Inception testing</h1>
+					<p>Grids within grids</p>
+				</span>
+			</div>
+		</div>
+	</section>
+	<section class="content_item">
+		<div class="row content_margin">
+			<div class="large_6 medium_12 column">			
+				<div class="row gray_columns">
+					<div class="large_4 medium_4 text_center column">
+						<span class="content">
+							<p>Group 1</p>
+							<p>Column 1</p>
+						</span>
+					</div>
+
+					<div class="large_4 medium_4 text_center column">
+						<span class="content">
+							<p>Group 1</p>
+							<p>Column 2</p>
+						</span>
+					</div>
+
+					<div class="large_4 medium_4 text_center column">
+						<span class="content">
+							<p>Group 1</p>
+							<p>Column 3</p>
+						</span>
+					</div>
+				</div>
+
+			</div>
+
+			<div class="large_6 medium_12 column">			
+				<div class="row gray_columns">
+					<div class="large_4 medium_4 text_center column">
+						<span class="content">
+							<p>Group 2</p>
+							<p>Column 1</p>
+						</span>
+					</div>
+
+					<div class="large_4 medium_4 text_center column">
+						<span class="content">
+							<p>Group 2</p>
+							<p>Column 2</p>
+						</span>
+					</div>
+
+					<div class="large_4 medium_4 text_center column">
+						<span class="content">
+							<p>Group 2</p>
+							<p>Column 3</p>
+						</span>
+					</div>
+				</div>
+
+			</div>
+		</div>
+	</section>
+
+
+	</div>
+
+</body>
+</html>
