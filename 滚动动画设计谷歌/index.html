@@ -1,0 +1,121 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    /*
+## 9th Dec 2023
+Create by Gambhir Sharma
+
+-> Inspiration: https://deepmind.google/technologies/gemini/#build-with-gemini
+-> help: DesignCourse YT video
+*/
+* {
+  --bg-black: #060606;
+  --txt-grey: #5b636c;
+
+  --scrollbarBG: #111;
+  --thumbBG: #5b636c;
+
+  --scroll-height: 600vh;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body::-webkit-scrollbar {
+  width: 11px;
+}
+body {
+  scrollbar-width: thin;
+  scrollbar-color: var(--thumbBG) var(--scrollbarBG);
+}
+body::-webkit-scrollbar-track {
+  background: var(--scrollbarBG);
+}
+body::-webkit-scrollbar-thumb {
+  background-color: var(--thumbBG);
+  border-radius: 6px;
+  border: 3px solid var(--scrollbarBG);
+}
+body {
+  background-color: var(--bg-black);
+  height: var(--scroll-height);
+  width: 100%;
+  &:after {
+    bottom: 5vmin;
+    left: 50%;
+    transform: translate(-50%, 0);
+    position: fixed;
+    content: "Scroll down";
+    color: var(--txt-grey);
+    font-family: arial;
+    font-size: 3.3vmin;
+    font-weight: 500;
+  }
+}
+svg {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  left: 0%;
+  width: 100%;
+  position: fixed;
+}
+img {
+  left: 0;
+  position: fixed;
+  width: 100%;
+  top: 50%;
+  transform: translate(0, -50%);
+}
+
+  </style>
+</head>
+<body>
+  <img src="https://deepmind.google/technologies/gemini/static/images/StartBuilding_001_BG.png" alt="backdrop" />
+<svg width="3000" height="1000" viewBox="0 0 3000 1000" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <mask id="mask0_4_22" style="mask-type: luminance" maskUnits="userSpaceOnUse" x="0" y="0" width="3000" height="1000">
+    <path d="M3000 0H0V1000H3000V0Z" fill="white" />
+  </mask>
+  <g mask="url(#mask0_4_22)">
+    <path d="M0 810L373.92 804.77C534.926 791.176 670.626 753.45 786 650.342C890.616 556.77 939.979 526.042 1024 521.919C1088.61 519.56 1105.93 505.522 1139.67 490.804C1173.82 475.839 1208.1 475.418 1243.67 502.917C1309.94 554.147 1328.04 521.433 1376 485.332C1423.87 449.314 1449 475.057 1500 511.193C1551.13 547.44 1582.47 520.098 1628 485.41C1675.46 449.252 1695.77 477.06 1740 505.366C1804.27 546.491 1831.96 504.603 1874.75 493.499C1917.54 482.394 1923.99 492.533 1974.17 511.359C2024.35 530.184 2127.77 529.815 2256 654.756C2299.96 697.076 2344 728.074 2395.11 750.758C2442.57 770.339 2564.1 809.5 2670.5 809.5C2776.9 809.5 2935.17 809.5 3001 809.5" stroke="#FFB7C5" stroke-width="6" stroke-linecap="round" />
+    <path d="M0 656.5L418 649C565.47 640.078 680.098 619.804 786 573.904C909.137 520.571 959.54 522.145 1024 514.217C1082.99 506.966 1095.71 482.722 1139.79 485.72C1183.83 488.146 1219.68 533.778 1260 524.95C1297.84 517.66 1330.16 465.701 1376 469.72C1419.56 472.627 1452.5 531.797 1500 528.76C1547.5 525.723 1580.6 459.923 1628 470.639C1672.79 479.906 1698.66 526.749 1740 527.081C1784.78 528.123 1819.44 473.901 1874.42 483.879C1916.78 490.343 1935.77 507.399 1974 511.405C2023.9 516.185 2114.48 509.493 2256 576.108C2357.51 623.748 2460.22 643.526 2650.96 651.362H2999" stroke="#FFDDB7" stroke-width="6" stroke-linecap="round" />
+    <path d="M0 501C125.296 500.978 695.68 499.966 786 499.934C883.844 499.896 974.673 488.045 1024 499.813C1066.18 510.186 1093.71 521.336 1139.84 504.181C1188.84 485.402 1216.88 461.632 1260 490.836C1298.42 517.045 1330.5 548.48 1376 519.118C1422.8 487.46 1453.22 453.5 1500 482.708C1546.78 511.916 1578.62 552.98 1628 515.961C1673.69 481.3 1698.26 459.308 1740 479.463C1781.74 499.617 1813.07 534.134 1874.25 510.171C1925.62 490.972 1946.2 485.427 1974.96 491.762C2055.4 509.399 2127.86 499.819 2255.76 499.937C2411.06 500.079 2560 499.987 3000 499.987" stroke="#B1C5FF" stroke-width="6" stroke-linecap="round" />
+    <path d="M3000 343.959C2560 343.959 2405.66 354.383 2256 425.411C2114.67 492.706 2022.37 484.199 1974.04 491.755C1931.3 498.594 1916.77 515.117 1874.59 514.832C1826.47 514.951 1787.66 458.536 1740 477.81C1694.76 496.581 1667.56 538.5 1628 530.048C1587.17 521.118 1546.46 456.718 1500 473.77C1453.54 490.822 1421.11 541.2 1376 529.876C1334.42 519.958 1301.82 457.916 1251.77 477.212C1207.73 492.653 1182.33 522.908 1139.71 515.527C1098.31 508.26 1088.37 493.711 1024 487.588C949.331 481.01 909.956 481.365 786 427.598C714.158 396.408 636.886 376.856 549.296 364.598C522.531 358.732 440.9 346.8 328.5 346C216.1 345.2 63 345.667 0.5 346" stroke="#4FABFF" stroke-width="6" stroke-linecap="round" />
+    <path d="M3000 188C2560 188 2408.9 200.665 2256 344.932C2136.09 459.721 2024.97 477.016 1974.25 491.495C1923.61 505.945 1919.9 518.594 1874.75 498.312C1829.6 478.03 1800.64 462.579 1740 509.475C1698.15 541.836 1673.69 538.168 1628 498.46C1584.03 460.231 1557.41 456.014 1500 504.034C1448.99 546.68 1417.28 534.881 1376 498.194C1330.08 457.399 1306.99 463.373 1260 499.344C1215.35 533.525 1189.36 531.698 1139.75 502.315C1110.37 484.93 1085.91 477.651 1023.99 482.06C962.06 486.47 891.63 444.132 786 349.242C741.384 309.19 692.884 279.012 640.838 256.29C602.225 236.527 481.8 196 309 192C136.2 188 32 190.333 1.5 192" stroke="#076EFF" stroke-width="6" stroke-linecap="round" />
+  </g>
+</svg>
+<script>
+  let paths = document.querySelectorAll("path");
+
+fillSvgPaths();
+
+document.addEventListener("scroll", fillSvgPaths);
+
+function fillSvgPaths() {
+  let scrollPercentage =
+    (document.documentElement.scrollTop + document.body.scrollTop) /
+    (document.documentElement.scrollHeight -
+      document.documentElement.clientHeight);
+
+  for (var i = 0; i < paths.length; i++) {
+    let path = paths[i];
+
+    let pathLength = path.getTotalLength();
+
+    path.style.strokeDasharray = pathLength;
+    path.style.strokeDashoffset = pathLength;
+
+    let drawLength = pathLength * scrollPercentage;
+
+    path.style.strokeDashoffset = pathLength - drawLength;
+  }
+}
+
+</script>
+</body>
+</html>
