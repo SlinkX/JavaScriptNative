@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    *,
+:root {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+
+  --radius: 20vmin;
+  --span-dist: 20vmin;
+
+  --white: #fff;
+  --black: #000;
+  --background: #ec775f;
+  --dark-pri: #382314;
+}
+*::after,
+*::before {
+  position: absolute;
+  display: flex;
+}
+body {
+  height: 80vh;
+  width: 80vw;
+  background: var(--background);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow-y: hidden;
+}
+
+span {
+  margin: 0;
+  padding: 0;
+  display: block;
+  position: absolute;
+  width: var(--span-dist);
+  height: var(--span-dist);
+}
+span:nth-child(1) {
+  transform: translate(-25vmin, 0px);
+  animation: spin 2.5s ease forwards infinite;
+}
+span:nth-child(2) {
+  transform: translate(25vmin, 0px);
+  animation: anti-spin 2.5s ease forwards infinite;
+}
+i {
+  display: block;
+  position: absolute;
+  width: var(--radius);
+  height: var(--radius);
+  border-radius: 50%;
+}
+.left {
+  transform: translate(10vmin, 0px);
+  background: var(--dark-pri);
+}
+.right {
+  transform: translate(-10vmin, 0px);
+  border: 4px solid var(--white);
+}
+/* animations */
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+@keyframes anti-spin {
+  0% {
+    transform: rotate(360deg);
+  }
+  100% {
+    transform: rotate(0deg);
+  }
+}
+
+  </style>
+</head>
+<body>
+  <div>
+    <span>
+      <i class="left"></i>
+  
+    </span>
+    <span>
+      <i class="right"></i>
+    </span>
+  </div>
+</body>
+</html>
