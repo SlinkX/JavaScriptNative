@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+	<style>
+		@import url("https://fonts.googleapis.com/css2?family=Barlow:ital,wght@0,100;0,300;0,700;0,900;1,300&family=Do+Hyeon&display=swap");
+:root {
+  font-family: "Barlow", sans-serif;
+  --body-bg: #fff8dc;
+  --shadow: cornsilk;
+  --header-fnt: "Do Hyeon", sans-serif;
+  --other-fnt: "Do Hyeonf", sans-serif;
+}
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+body {
+  min-height: 100vh;
+  min-width: 100vw;
+  background: var(--body-bg);
+  color: #000;
+}
+
+h1 {
+  font-family: var(--header-fnt);
+  font-weight: 300;
+  font-size: clamp(4rem, 6vw, 6rem);
+  letter-spacing: 0.3rem;
+  /* filter: drop-shadow( 0 0 2px #000a); 
+            text-shadow: 0 0 3px #0003;*/
+  color: black;
+  /* background: radial-gradient(ellipse at top left, #000a, #000f); */
+}
+.links a {
+  text-decoration: none;
+  color: cadetblue;
+  display: inline-block;
+  position: relative;
+}
+.links a::after {
+  content: "";
+  background: hsla(348, 83%, 47%, 0.7);
+  position: absolute;
+  top: 98%;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  border-radius: 3px;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 500ms ease-in-out;
+}
+.links a:hover::after {
+  transform: scaleX(1);
+  transform-origin: right;
+}
+/*.taginfo::first-letter */
+.dropcap {
+  float: left;
+  font-size: 2.2rem;
+  width: 1.5em;
+  height: 1.5em;
+  border: 1px solid hsla(348, 83%, 47%, 0.7);
+  margin-right: 6rem;
+  box-shadow: 1px 1px 3px 1px hsl(348deg 83% 47% / 30%);
+  text-shadow: 0px 0px #18b28e, 1px 1px #18b28e, 2px 2px #18b28e,
+    3px 3px #18b28e, 4px 4px #18b28e, 5px 5px #18b28e, 6px 6px #18b28e,
+    7px 7px #18b28e, 8px 8px #18b28e, 9px 9px #18b28e, 10px 10px #18b28e,
+    11px 11px #18b28e, 12px 12px #18b28e, 13px 13px #18b28e, 14px 14px #18b28e,
+    15px 15px #18b28e, 16px 16px #18b28e, 17px 17px #18b28e, 18px 18px #18b28e,
+    19px 19px #18b28e, 20px 20px #18b28e, 21px 21px #18b28e;
+  background: #21e1b4;
+  color: white;
+  border-radius: 50%;
+  shape-outside: ellipse(3rem 3rem at 10% 10%);
+  overflow: hidden;
+  text-align: center;
+  vertical-align: middle;
+  font-weight: 900;
+}
+
+div,
+aside,
+footer,
+header {
+  padding: 1rem;
+}
+aside {
+  border-top: 0.5rem solid rgba(220, 20, 60, 0.3);
+
+  font-size: 0.8rem;
+}
+aside::after {
+  background: #0003;
+  border: 1px solid crimson;
+  padding: 1rem;
+  display: block;
+  margin-top: 1rem;
+  font-size: 0.9rem;
+  content: "This page uses css-grid for layout, this is a fallback if grids are not supported. This is also used for the mobile view";
+}
+.line {
+  /* background: hsla(348, 83%, 47%, 0.7);
+            color: var(--body-bg); */
+  line-height: 1.5;
+  font-size: 0.7rem;
+  padding: 0.2rem;
+  text-align: center;
+}
+.callout {
+  font-family: var(--other-fnt);
+  font-size: clamp(1rem, 5vw, 2rem);
+  color: crimson;
+  padding-bottom: 0;
+}
+.tagline {
+  font-weight: 700;
+  color: #3339;
+  padding: 0 1rem;
+}
+.taginfo {
+  color: cadetblue;
+  padding-bottom: 4rem;
+  font-weight: 300;
+}
+.info {
+  font-size: 0.9rem;
+}
+.divider {
+  background: crimson;
+  height: 0.5rem;
+}
+
+/* -- display as grid ------------------ */
+@supports (display: grid) {
+  body {
+    display: grid;
+    place-items: center;
+  }
+
+  .container {
+    display: grid;
+    grid-template-rows: auto 0.1fr 0.1fr auto 1fr 1fr 0.1fr 0.1fr 0.1fr auto;
+    min-height: 100vh;
+  }
+  footer {
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+  }
+  .dropcap {
+    display: grid;
+    place-items: center;
+  }
+  @media (min-width: 620px) {
+    div,
+    aside,
+    footer,
+    header,
+    .taginfo {
+      padding: unset;
+    }
+    header {
+      position: relative;
+      display: grid;
+      place-items: end;
+    }
+    header h1 {
+      line-height: 0.8;
+      text-align: right;
+    }
+    footer {
+      width: max-content;
+    }
+    .callout {
+      writing-mode: vertical-lr;
+      display: flex;
+      width: 100%;
+      position: relative;
+    }
+    .tagline {
+      align-self: flex-end;
+    }
+    .taginfo {
+      border-top: 0.5rem solid #000a;
+      border-bottom: 0.5rem solid #000a;
+      padding: 1rem;
+      margin-bottom: -0.5rem;
+    }
+    h2 {
+      font-weight: 500;
+      align-self: flex-end;
+    }
+    aside::after {
+      visibility: hidden;
+      height: 0;
+      padding: 0;
+      margin: 0;
+    }
+    .links {
+      align-self: flex-end;
+      justify-self: right;
+    }
+    .info {
+      padding: 1rem;
+      border-top: 0.5rem solid #000a;
+      border-bottom: 0.5rem solid #000a;
+      background-image: linear-gradient(#d7d6d6 1px, transparent 1px),
+        linear-gradient(to right, #d7d6d6 1px, #fff8dc 1px);
+      background-size: 20px 20px;
+    }
+    .line {
+      align-self: center;
+    }
+    .divider {
+      align-self: flex-end;
+    }
+    /* fun with animations */
+    .callout::after,
+    header::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+    }
+    header::after {
+      background-image: radial-gradient(
+        ellipse at top left,
+        rgba(220, 20, 60, 0.9),
+        rgb(220, 20, 60)
+      );
+      transform: scaleX(0);
+      transform-origin: right;
+      transition: transform 250ms ease-in-out;
+      box-shadow: 0px 2px 2px #0005;
+    }
+    .callout::after {
+      background: 1% 0px / 100%
+          linear-gradient(to right, #fff8dc 40%, #0004 42%, transparent 42%),
+        radial-gradient(circle at top, #bffaf070, #fff 20%, #fff9 90%),
+        radial-gradient(ellipse at bottom right, #0003, transparent 20%);
+      transform: scaleY(0);
+      transition: transform 150ms ease-in 250ms;
+      transform-origin: bottom;
+    }
+    header {
+      z-index: 1;
+    }
+    header h1 {
+      transition: 150ms ease-in-out 100ms;
+    }
+    .container:hover h1 {
+      color: var(--body-bg);
+      filter: drop-shadow(-2px 3px 3px #0005);
+    }
+    .container:hover header::after {
+      transform: scaleX(1);
+      transform-origin: left;
+    }
+    .container:hover .callout::after {
+      transform: scaleY(1);
+      transform-origin: top;
+    }
+    /* -- lay it out -- */
+    .container {
+      grid-template-rows: auto 0.5fr 0.1fr 1fr 1fr 1fr 0.1fr;
+      min-height: unset;
+      width: min(800px, 100% - 1rem);
+      height: max-content;
+      grid-template-columns: 1fr 0.1fr 1fr 1fr 3fr;
+    }
+    .links {
+      grid-column: 5;
+      grid-row: 1;
+    }
+    header {
+      grid-column: 1 / 5;
+      grid-row: 1;
+    }
+
+    .callout {
+      grid-column: 4;
+      grid-row: 2 / 7;
+    }
+    .taginfo {
+      grid-column: 5;
+      grid-row: 5;
+    }
+    .tagline {
+      grid-row: 4;
+      grid-column: 5;
+    }
+    aside {
+      grid-row: 5;
+      grid-column: 1 / 3;
+      padding: 1rem;
+    }
+    footer {
+      grid-row: 6;
+      grid-column: 5;
+    }
+    .line {
+      grid-row: 1 / 7;
+      grid-column: 2;
+
+      width: min-content;
+      opacity: 0.5;
+    }
+    .info {
+      grid-row: 6 / 8;
+      grid-column: 1 / 4;
+    }
+    .divider {
+      grid-row: 7;
+      grid-column: 4 / 6;
+    }
+  }
+  @media (min-width: 890px) {
+    .container {
+      transform: rotate(-10deg);
+    }
+  }
+}
+	</style>
+</head>
+<body>
+	<div class="container">
+		<header>
+		  <h1>Fun With Grids</h1>
+		</header>
+		<div class="callout">
+		  <h2>What is going on here</h2>
+		</div>
+		<div class="tagline">
+		  <p>Think outside contained boxes</p>
+		</div>
+		<div class="taginfo">
+		  <p>
+			<span class="dropcap">A</span><!-- will be redundant when we can get a selector to select first word/character -->
+			<span>
+			  responsive play with grids, and fallback to a simpler layout if grids are not supported.
+			</span>
+		  </p>
+		</div>
+		<aside>
+		  <p>this page is a play on grid layout, having some fun with grids, and to think outside a rectangle</p>
+		</aside>
+		<div class="info">hover over, touch, resize, look at the code, #keywords: min-content, max-content, fr</div>
+		<div class="links">
+		  <a href="https://www.linkedin.com/in/ghaste" target="_blank" class="linkedin">linkedin</a>
+		</div>
+		<div class="line">0 1 1 0 0 0 0 1 || 0 1 1 0 0 1 1 1
+		  <!-- what am I saying -->
+		</div>
+		<b class="divider"></b>
+		<footer>have fun with code&trade;</footer>
+	  </div>
+</body>
+</html>
