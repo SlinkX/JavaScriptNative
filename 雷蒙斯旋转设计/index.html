@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+	<style lang="scss">
+		@import url("https://fonts.googleapis.com/css2?family=Lato:wght@700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap");
+
+* {
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+}
+
+html,
+body {
+	width: 100%;
+	height: 100%;
+}
+
+body {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+	color: #b4cbd1;
+	background: #F5FBEF;
+}
+
+.card {
+	min-width: 716px;
+	height: 1008px;
+	position: relative;
+	display: flex;
+	flex-direction: column-reverse;
+	cursor: pointer;
+
+	svg {
+		position: absolute;
+		left: 0;
+		top: 0;
+	}
+
+	.content {
+		position: relative;
+		height: 25%;
+		padding: 0 3rem 0 2rem;
+		h1 {
+			font-size: 5.4rem;
+			margin-bottom: 2.8rem;
+			font-family: "Lato";
+			font-weight: 700;
+
+			.word {
+				display: flex;
+				perspective: 50px;
+				.char {
+					transform-style: preserve-3d;
+					display: inline-block;
+				}
+			}
+		}
+		.sub-text {
+			display: flex;
+			justify-content: space-between;
+			.text {
+				display: block;
+				overflow: hidden;
+
+				.innerText {
+					display: inline-block;
+					font-size: 0.95rem;
+					font-family: "Poppins";
+					font-weight: 500;
+				}
+			}
+		}
+	}
+}
+
+.support {
+	position: absolute;
+	right: 10px;
+	bottom: 10px;
+	padding: 10px;
+	display: flex;
+	a {
+		margin: 0 10px;
+		color: #333333;
+		font-size: 1.8rem;
+		backface-visibility: hidden;
+		transition: all 150ms ease;
+		&:hover {
+			transform: scale(1.1);
+		}
+	}
+}
+
+	</style>
+</head>
+<body>
+	<div class="card">
+		<svg class="svg-main" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 189.44166 266.70001" height="1008" width="716">
+			<defs>
+				<mask id="circle-mask" maskUnits="userSpaceOnUse">
+					<circle r="94.720833" cy="94.72084" cx="94.720833" fill="#fff" />
+				</mask>
+				<mask id="rect-mask-top" maskUnits="userSpaceOnUse">
+					<rect x="0" y="0" width="189.44167" height="94.720833" fill="#fff" />
+				</mask>
+				<mask id="rect-mask-bottom" maskUnits="userSpaceOnUse">
+					<rect x="0" y="94.720856" height="94.720833" width="189.44167" fill="#fff" />
+				</mask>
+			</defs>
+
+			<rect x="0" y="0" height="266.70001" width="189.44167" style="fill: #010005" />
+
+			<g id="circle-group" data-svg-origin="94.72084 94.72084">
+				<g id="circle-mask-group" mask="url(#circle-mask)" data-svg-origin="94.72084 94.72084">
+					<g id="white-stripes-mask-group" style="fill: #b4cbd1" mask="url(#rect-mask-top)">
+						<g id="white-stripes-group">
+							<rect x="-20" y="-2" width="230" height="6" />
+							<rect x="-20" y="8" width="230" height="6" />
+							<rect x="-20" y="18" width="230" height="6" />
+							<rect x="-20" y="28" width="230" height="6" />
+							<rect x="-20" y="38" width="230" height="6" />
+							<rect x="-20" y="48" width="230" height="6" />
+							<rect x="-20" y="58" width="230" height="6" />
+							<rect x="-20" y="68" width="230" height="6" />
+							<rect x="-20" y="78" width="230" height="6" />
+							<rect x="-20" y="88" width="230" height="6" />
+							<rect x="-20" y="98" width="230" height="6" />
+							<rect x="-20" y="108" width="230" height="6" />
+						</g>
+					</g>
+
+					<g id="yellow-stripes-mask-group" style="fill: #efaf07" mask="url(#rect-mask-bottom)">
+						<g id="yellow-stripes-group">
+							<rect x="-20" y="78" width="230" height="6" />
+							<rect x="-20" y="88" width="230" height="6" />
+							<rect x="-20" y="98" width="230" height="6" />
+							<rect x="-20" y="108" width="230" height="6" />
+							<rect x="-20" y="118" width="230" height="6" />
+							<rect x="-20" y="128" width="230" height="6" />
+							<rect x="-20" y="138" width="230" height="6" />
+							<rect x="-20" y="148" width="230" height="6" />
+							<rect x="-20" y="158" width="230" height="6" />
+							<rect x="-20" y="168" width="230" height="6" />
+							<rect x="-20" y="178" width="230" height="6" />
+							<rect x="-20" y="188" width="230" height="6" />
+						</g>
+					</g>
+				</g>
+			</g>
+		</svg>
+
+		<div class="content">
+			<h1 class="heading" data-splitting>ramones</h1>
+			<div class="sub-text">
+				<p class="guests">
+					<span class="text"><span class="innerText">with special guests</span></span>
+					<span class="text"><span class="innerText">the vandals</span></span>
+					<span class="text"><span class="innerText">and screaming sirens</span></span>
+				</p>
+				<p class="date">
+					<span class="text"><span class="innerText">friday</span></span>
+					<span class="text"><span class="innerText">september 19 1986</span></span>
+					<span class="text"><span class="innerText">no age limit</span></span>
+				</p>
+				<p class="location">
+					<span class="text"><span class="innerText">fender's ballroom</span></span>
+					<span class="text"><span class="innerText">521 east first street</span></span>
+					<span class="text"><span class="innerText">long beach, ca</span></span>
+				</p>
+			</div>
+		</div>
+	</div>
+
+	<div class="support">
+		<a href="https://twitter.com/DevLoop01" target="_blank"><i class="fab fa-twitter-square"></i></a>
+		<a href="https://dribbble.com/devloop01" target="_blank"><i class="fab fa-dribbble"></i></a>
+	</div>
+	<script>
+		console.clear();
+
+Splitting();
+
+const card = document.querySelector(".card");
+
+const masterTl = gsap.timeline({ delay: 1 });
+
+function stripeAnimation() {
+	const STRIPE_SCALE_DEFAULTS = {
+		duration: 6,
+		scale: 0,
+		transformOrigin: "center center",
+		ease: "expo.out"
+	};
+	const STRIPE_SCALE_Y_DEFAULTS = {
+		duration: 1.5,
+		scaleY: 0.2,
+		transformOrigin: "center center",
+		yoyo: true,
+		repeat: -1,
+		repeatDelay: 1,
+		stagger: 0.15,
+		ease: "ease"
+	};
+
+	const STRIPE_MOVE_DEFAULTS = {
+		duration:
+			STRIPE_SCALE_Y_DEFAULTS.duration * 10 +
+			gsap.utils.toArray("#white-stripes-group rect").length *
+				STRIPE_SCALE_Y_DEFAULTS.stagger,
+		repeat: -1,
+		ease: "none"
+	};
+
+	const stripeTl = gsap.timeline();
+	stripeTl.addLabel("START", 0);
+	stripeTl
+		.from(
+			"#circle-mask-group",
+			{
+				duration: 4,
+				rotate: -60,
+				ease: "expo.out"
+			},
+			"START"
+		)
+		.to(
+			"#circle-group",
+			{
+				duration: 40,
+				rotate: 360,
+				repeat: -1,
+				ease: "none"
+			},
+			"START"
+		)
+		.from(
+			"#white-stripes-group rect",
+			{ ...STRIPE_SCALE_DEFAULTS, stagger: { each: 0.08, from: "start" } },
+			"START"
+		)
+		.from(
+			"#yellow-stripes-group rect",
+			{ ...STRIPE_SCALE_DEFAULTS, stagger: { each: 0.08, from: "end" } },
+			"START"
+		)
+		.to(
+			"#white-stripes-group",
+			{ ...STRIPE_MOVE_DEFAULTS, y: -6 * 3.35 },
+			"START+=3"
+		)
+		.to(
+			"#yellow-stripes-group",
+			{ ...STRIPE_MOVE_DEFAULTS, y: 6 * 3.35 },
+			"START+=3"
+		)
+		.to(
+			"#white-stripes-group rect",
+			{
+				...STRIPE_SCALE_Y_DEFAULTS,
+				stagger: { each: STRIPE_SCALE_Y_DEFAULTS.stagger, from: "start" }
+			},
+			"START+=" + STRIPE_SCALE_DEFAULTS.duration * 1.25
+		)
+		.to(
+			"#yellow-stripes-group rect",
+			{
+				...STRIPE_SCALE_Y_DEFAULTS,
+				stagger: { each: STRIPE_SCALE_Y_DEFAULTS.stagger, from: "end" }
+			},
+			"START+=" + STRIPE_SCALE_DEFAULTS.duration * 1.25
+		);
+
+	return stripeTl;
+}
+
+function textAnimation() {
+	const textTl = gsap.timeline({ delay: 1 });
+
+	textTl
+		.from(".heading .char", {
+			duration: 3,
+			opacity: 0,
+			rotateX: -30,
+			transformOrigin: "center center -300px",
+			opacity: 0,
+			stagger: 0.1,
+			ease: "elastic.out(1.15, 0.85)"
+		})
+		.from(
+			".sub-text .text .innerText",
+			{
+				delay: 0.25,
+				duration: 0.65,
+				yPercent: 200,
+				stagger: 0.12,
+				ease: "ease.out"
+			},
+			0
+		);
+
+	return textTl;
+}
+
+// this function is taken from pete's pen - https://codepen.io/petebarr/pen/ExPbZXz
+
+function resize() {
+	let vh = window.innerHeight;
+	let sh = card.offsetHeight;
+	let scaleFactor = vh / sh;
+	if (scaleFactor < 1) {
+		gsap.set(card, { scale: scaleFactor });
+	} else {
+		gsap.set(card, { scale: 1 });
+	}
+}
+
+function init() {
+	resize();
+	masterTl
+		.set(card, {
+			autoAlpha: 1
+		})
+		.add(stripeAnimation(), 0)
+		.add(textAnimation(), 0);
+
+	card.addEventListener("click", () => {
+		masterTl.restart();
+	});
+	window.addEventListener("resize", resize);
+}
+
+init();
+
+	</script>
+</body>
+</html>
