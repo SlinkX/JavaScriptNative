@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+	<style lang="scss">
+		@import url("https://fonts.googleapis.com/css2?family=Krona+One&display=swap");
+
+* {
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+}
+
+body {
+	width: 100%;
+	height: 100vh;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	background: #000;
+}
+
+.scene {
+	perspective: 600px;
+	display: flex;
+	flex-direction: column;
+}
+
+.cube {
+	width: 240px;
+	height: 60px;
+	position: relative;
+	transform-style: preserve-3d;
+}
+
+.cube__face {
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	backface-visibility: hidden;
+	font-family: "Krona One";
+	font-size: 3rem;
+}
+
+.cube__face--front,
+.cube__face--right {
+	background: var(--bg);
+	background-size: 400% 200%;
+	background-position: 100% 50%;
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+}
+
+.cube__face--front {
+	transform: rotateY(0deg) translateZ(120px);
+	--bg: linear-gradient(-75deg, white 20%, black 50%);
+}
+.cube__face--right {
+	transform: rotateY(90deg) translateZ(120px);
+	--bg: linear-gradient(-75deg, black 20%, white 50%);
+}
+
+
+.support{
+	position: absolute;
+	right: 10px;
+	bottom: 10px;
+	padding: 10px;
+	display: flex;
+	a{
+		margin: 0 10px;
+		color: #fff;
+		font-size: 1.8rem;
+		backface-visibility: hidden;
+		transition: all 150ms ease;
+		&:hover{
+			transform: scale(1.1);
+		}
+	}
+
+}
+	</style>
+</head>
+<body>
+	<div class="scene">
+		<div class="cube">
+			<div class="cube__face cube__face--front">TURN</div>
+			<div class="cube__face cube__face--right">TURN</div>
+		</div>
+		<div class="cube">
+			<div class="cube__face cube__face--front">TURN</div>
+			<div class="cube__face cube__face--right">TURN</div>
+		</div>
+		<div class="cube">
+			<div class="cube__face cube__face--front">TURN</div>
+			<div class="cube__face cube__face--right">TURN</div>
+		</div>
+		<div class="cube">
+			<div class="cube__face cube__face--front">TURN</div>
+			<div class="cube__face cube__face--right">TURN</div>
+		</div>
+		<div class="cube">
+			<div class="cube__face cube__face--front">TURN</div>
+			<div class="cube__face cube__face--right">TURN</div>
+		</div>
+	</div>
+
+<div class="support">
+<a href="https://twitter.com/DevLoop01" target="_blank"><i class="fab fa-twitter-square"></i></a>
+<a href="https://dribbble.com/devloop01" target="_blank"><i class="fab fa-dribbble"></i></a>
+</div>
+
+<script>
+	console.clear()
+
+const { gsap } = window
+
+const tl = gsap.timeline({
+	defaults: {
+		ease: "expo.inOut",
+		stagger: 0.12,
+		duration: 2,
+	},
+	repeat: -1,
+})
+
+tl.to(".cube", { rotateY: -90 }, 0)
+tl.to(".cube .cube__face--front", { skewX: 30 }, 0)
+tl.from(".cube .cube__face--right", { skewX: 30 }, 0.15)
+tl.to(".cube .cube__face--front", { backgroundPosition: "0% 50%" }, 0)
+tl.to(".cube .cube__face--right", { backgroundPosition: "0% 50%" }, 0.15)
+
+</script>
+</body>
+</html>
