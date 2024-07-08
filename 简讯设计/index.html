@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style  lang="scss">
+    body {
+  margin: 0;
+}
+
+td, p {
+  font-size: 16px;
+  color: #878787;
+  font-family: 'Lucida Grande', 'Lucida Sans Unicode', Verdana, sans-serif;
+  strong {
+    color: black;
+  }
+}
+ul {
+  margin: 0 0 10px 25px;
+  padding: 0;
+}
+li {
+  margin: 0 0 3px 0;
+  strong {
+    color: black;
+  }
+}
+img {
+  max-width: 100%;
+}
+blockquote {
+  margin: 10px;
+  font-style: italic;
+}
+h1, h2 {
+  color: black;
+}
+h1 {
+  font-size: 25px;
+  line-height: 1.4;
+}
+h2 {
+  font-size: 24px;
+}
+
+a {
+  color: #2F82DE;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.entire-page {
+  background: #ccc;
+  width: 100%;
+  padding: 20px 0;
+  font-family: 'Lucida Grande', 'Lucida Sans Unicode', Verdana, sans-serif;
+  line-height: 1.5;
+}
+
+.email-body {
+  max-width: 600px;
+  min-width: 320px;
+  margin: 0 auto;
+  background: white;
+  border-collapse: collapse;
+}
+
+.email-header {
+  background: black; 
+  padding: 30px;
+}
+
+.news-section {
+  padding: 20px 30px;
+}
+
+.img-wrap {
+  text-align: center;
+  background: #eee;
+  padding: 5px;
+  img {
+    display: block;
+    margin: 0 auto;
+  }
+  &.white {
+    background: white;
+    padding: 20px;
+  }
+}
+
+pre {
+  white-space: pre-wrap;
+  background: #222;
+  color: #eee;
+  padding: 15px;
+}
+code {
+  font-family: consolas, Menlo, Monaco, monospace;
+}
+
+.pens-table {
+  td {
+    vertical-align: top;
+  }
+  td:nth-child(1) {
+    width: 33%;
+  }
+  td:nth-child(2) {
+    padding-left: 20px;
+    padding-bottom: 30px;
+  }
+}
+
+.footer {
+  background: #eee;
+  padding: 10px;
+  font-size: 10px;
+  text-align: center;
+}
+  </style>
+</head>
+<body>
+  <table class="entire-page">
+
+    <tr>
+  
+      <td>
+  
+        <table class="email-body">
+  
+          <tr>
+            <td class="email-header">
+              <a href="https://codepen.io">
+                <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/t-1/email-news-header.png" alt="CodePen News">
+              </a>
+            </td>
+          </tr> <!-- header -->
+  
+          <tr>
+  
+            <td class="news-section">
+  
+              <h2>Live View Now Better</h2>
+              
+              <p><a href="https://blog.codepen.io/documentation/pro-features/live-view/">Live View</a> is a PRO feature that shows you a preview of your code in unlimited other browsers/devices. It changes as you code. <strong>It just got an upgrade:</strong> it now syncs scrolling and other events.</p>
+              
+              <img src="https://blog.codepen.io/wp-content/uploads/2016/03/live-view.gif" alt="" style="border: 5px solid #3D3D3F;">
+  
+            </td>
+  
+          </tr> <!-- feature -->
+  
+          <tr>
+  
+            <td class="news-section">
+  
+              <h2>Pens We Love</h2>
+                          
+              <table class="pens-table">
+                <tr>
+                  <td><img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/t-1/Mar16-chucknorris.png" alt="" /></td>
+                  <td>When Chuck Norris does a pushup, he isn't lifting himself up, <a href="https://codepen.io/kevinjannis/pen/bpezow">he's pushing the Earth down</a>.</td>
+                </tr>
+                <tr>
+                  <td><img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/t-1/Mar16-pi.png" alt="" /></td>
+                  <td>Lots of great pens <a href="https://codepen.io/pens/picks/">out there</a> celebrating Pi Day, including <a href="https://codepen.io/enxaneta/pen/LNRzoo">this one</a>. Here's a <a href="https://blog.codepen.io/2016/03/15/ccc-pi-day-challenge/">little roundup</a>.</td>
+                </tr>
+                <tr>
+                  <td><img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/t-1/Mar16-pricingtables.png" alt="" /></td>
+                  <td>There is a lot of code art on CodePen, but there is just as much practical UI exploration, like these lovely <a href="https://codepen.io/xhepigerta/pen/oxxQaw">pricing tables</a>. If practical is your thing, you might enjoy <a href="https://blog.codepen.io/2016/03/11/dailyui/">Daily UI</a> or our <a href="https://codepen.io/patterns/">Design Patterns</a> collections</td>
+                </tr>
+                <tr>
+                  <td><img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/t-1/Mar16-mars.jpg" alt="" /></td>
+                  <td>Watch the header <a href="https://codepen.io/EliFitch/pen/MyygVP">blurjiggle in</a>. We just made that word up.</td>
+                </tr>
+              </table>
+              
+            </td>
+            
+          </tr> <!-- pens -->
+  
+          <tr>
+  
+            <td class="news-section">
+  
+              <h2>Find a New Job</h2>
+              
+              <p>The <a href="https://codepen.io/jobs">Job Board</a> is full of <em>really good</em> jobs in Front End Web Design and Developer. Places like the <b>New York Times, Microsoft, Science Magazine, Amazon Web Services, Twitch, GIPHY, Vimeo...</b> (wow, right).</p>
+              
+            </td>
+  
+          </tr> <!-- jobs -->
+          
+          <tr>
+  
+            <td class="news-section">
+  
+              <h2>Take a Tour of the Editor</h2>
+              
+              <p><em>Who knows,</em> <a href="codepen.io/pen/tour/welcome/start">you might learn something</a>.</p>
+  
+            </td>
+  
+          </tr> <!-- feature -->
+          
+          <tr>
+  
+            <td class="news-section">
+              
+              <h2>Upcoming Meetups</h2>
+              
+              <p><a href="https://blog.codepen.io/meetups/">CodePen Meetups</a> coming up soon:</p>
+              
+              <ul>
+                <li>March 28 - <a href="https://nvite.com/CodePenMKE/fb3f">Milwaukee, Wisconsin</a></li>
+                <li>April 6 - <a href="https://nvite.com/CodepenSF/c66b">San Francisco, California</a></li>
+                <li>April 7 - <a href="https://nvite.com/CodePenDublin/d771">Dublin, Ireland</a></li>
+                <li>April 14 - <a href="https://nvite.com/CodePenOttawa/fd7e">Ottawa, Canada</a></li>
+              </ul>
+              
+            </td>
+            
+          </tr> <!-- meetups -->
+          
+          <tr>
+  
+            <td class="news-section">
+  
+              <h2>More Great Stuff</h2>
+                          
+              <table class="pens-table">
+                <tr>
+                  <td><img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/t-1/Mar16-deeprings.png" alt="" /></td>
+                  <td>Something so elegant about <a href="https://codepen.io/mknadler/pen/dMXEKB">grayscale design</a>. This probably would have been nice to work on with a <a href="https://blog.codepen.io/2016/02/03/perfer-dark-text-light-background-theme-editor-ui-will-lighten/">Light UI and Light Syntax Highlighting Theme</a>.</td>
+                </tr>
+                <tr>
+                  <td><img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/t-1/Mar16-hopper.gif" alt="" /></td>
+                  <td>Why not add <a href="https://codepen.io/chrisgannon/pen/xVOjZq">a little delight to common actions</a>, hey? That one inspired <a href="https://codepen.io/pyrografix/pen/bpePBa">this one</a>, equally fun.</td>
+                </tr>
+                <tr>
+                  <td><img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/t-1/Mar16-audiokeyboard.png" alt="" /></td>
+                  <td><a href="https://codepen.io/desandro/pen/jWKQbv">Web audio keyboard</a> that has inspired some <a href="https://twitter.com/desandro/status/701890458146963456">cool experimentation</a>.</td>
+                </tr>
+                <tr>
+                  <td><img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/t-1/Mar16-tweenmonster.png" alt="" /></td>
+                  <td>Learn Greensock through this <a href="https://codepen.io/sdras/pen/Wramvo">little monster duder</a>.</td>
+                </tr>
+              </table>
+              
+            </td>
+            
+          </tr>
+          
+          <tr>
+  
+            <td class="news-section">
+  
+              <h2>Improvements for days</h2>
+              
+              <ul>
+                <li>You can now <a href="https://blog.codepen.io/2016/03/02/now-you-can-log-in-with-twitter-facebook-or-github/">log in with Twitter or Facebook</a> now, in addition to GitHub or "regular style". You can also <a href="https://blog.codepen.io/2016/03/07/social-avatar-uploading/">change your avatar</a> by grabbing from any of those services.</li>
+                <li>You can <a href="https://blog.codepen.io/2016/02/17/new-inline-pen-title-editing/">edit Pen titles</a> right where you see them in the Editor or Details View now.</li>
+                <li>Preprocessor add-ons are now <a href="https://blog.codepen.io/2016/02/08/now-easier-find-add-preprocessor-add-ons/">easier to find and work with</a>.</li>
+                <li>The console now <a href="https://blog.codepen.io/2016/02/15/sass-debug-and-warn-output-to-the-console/">supports Sass output</a> and <a href="https://blog.codepen.io/2016/02/10/command-to-clear-the-console/">the clear() command</a>.</li>
+                <li>We designed our own <a href="https://blog.codepen.io/2016/02/04/new-default-avatars/">default avatar</a>, rather than using the default Gravatar one.</li>
+                <li><a href="https://blog.codepen.io/2016/02/11/jsx-properly-highlighted/">JSX</a> is now properly syntax highlighted.</li>
+                <li>We added <a href="https://blog.codepen.io/2016/02/21/five-brand-new-themes/">five brand new</a> syntax highlighting themes and <a href="https://blog.codepen.io/2016/02/18/new-typeface-operator/">Operator Mono</a> as a new font choice.</li>
+              </ul>
+              
+              <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/t-1/Mar16-themes.gif" alt="" />
+              
+            </td>
+            
+          </td> <!-- features -->
+  
+          <tr>
+  
+            <td class="news-section">
+  
+              <h2>Until next time,</h2>
+              
+              <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/t-1/team-codepen.png" alt="" style="max-width: 300px;" />
+              
+              <p>Want more behind-the-scenes CodePen action? That's what <a href="https://itunes.apple.com/us/podcast/codepen-radio/id824437159">CodePen Radio</a> is all about. Recent episodes include how <a href="https://blog.codepen.io/2016/02/23/078-com/">we aquired codepen.com</a> and how we're using <a href="https://blog.codepen.io/2016/03/08/080-spot-instances/">spot instances</a> at Amazon now.</p>
+              
+            </td>
+  
+          </tr> <!-- until next time -->
+  
+          <tr>
+            <td class="footer">
+              You're receiving this email because you are a member of CodePen. You can <a href="*|UNSUB:https://codepen.io/admin/unsubscribed|*">instantly opt out</a> any time.
+            </td>
+          </tr>
+  
+        </table>
+  
+      </td>
+  
+    </tr>
+  
+  </table>
+</body>
+</html>
