@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    
+
+body {
+  background-color: #f9f9f9;
+  margin-top: 2em;
+}
+
+.youtube {
+  width: 1280px;
+  margin: auto;
+  font-family: "Roboto", "Noto", sans-serif;
+  font-size: 14px;
+  line-height: 22px;
+}
+
+.ribbon {
+  display: inline;
+  background-color: rgb(204, 0, 0);
+  border-radius: 2px;
+  padding: 4px 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.007px;
+  color: white;
+}
+
+
+a {
+  font-weight: 500;
+  color: #292929;
+  text-decoration: none;
+}
+
+.page {
+  display: flex;
+  flex-direction: column;
+}
+
+.heading {
+  display: flex;
+  flex-direction: column;
+}
+
+.navigation--main {
+  display: flex;
+}
+
+.navigation--main > .links {
+  flex-grow: 1;
+}
+
+.logo {
+  align-self: center;
+  width: 19%;
+}
+
+.logo > span {
+  font-size: 3em;
+}
+
+.links--list {
+  display: flex;
+  justify-content: space-evenly;
+  font-size: 1.15em;
+}
+
+.links--quote {
+  padding-bottom: 0.75em;
+  margin-top: -0.35em;
+  font-size: 12px;
+  font-weight: 300;
+  padding-left: 1em;
+}
+
+.links--account > a {
+  margin: 0 1em;
+}
+.links--account > a:last-of-type {
+  margin-right: 0;
+}
+
+.navigation--user {
+  display: flex;
+  justify-content: center;
+  padding-left: 3em;
+  padding-top: 1em;
+}
+
+.navigation--user > * {
+  margin: 0 2%;
+}
+
+.navigation--search {
+  display: flex;
+  justify-content: center;
+  padding: 3em;
+  padding-left: 6em;
+  padding-bottom: 4em;
+}
+
+
+
+.search-box > input {
+  width: 39.3em;
+  border: 1px solid rgb(204,204,204);
+  border-right: 0; 
+  vertical-align: bottom;
+  box-shadow: rgb(238, 238, 238) 0px 1px 2px 0px inset;
+  height: 32px;
+}
+
+.search-button {
+  background-color: rgb(248, 248, 248);
+  border-bottom-right-radius: 2px;
+  border-top-right-radius: 2px;
+  border: 1px solid rgb(204,204,204);
+  border-left: 0;
+  height: 36px;
+  color: #666;
+  font-weight: 600;
+}
+
+.magnifying-glass-icon {
+  display: inline;
+  position: relative;
+}
+.magnifying-glass-icon:before {
+  background-color: green;
+  width: 1em;
+  height: 1em;
+  border: 0.1em solid black; 
+}
+
+.content {
+  display: flex;
+}
+
+.left {
+  flex-grow: 1;
+}
+
+.right {
+  width: 66%;
+  margin-left: 1em;
+}
+
+.right > .one {
+  background-color: red;
+  text-align: center;
+  border-radius: 2px;
+  border: 1px solid #EE0000;
+  padding: 1em;
+}
+
+.right > .one > a {
+  color: white !important;
+}
+
+.right > .two {
+  text-align: center;
+  padding: 1em;
+  margin-top: 1em;
+  margin-botom: 1em;
+  background-color: white;
+  border: 1px solid #e5e5e5;
+  border-radius: 2px;
+}
+
+.right > .two > img {
+  width: 100%;
+}
+
+.explanation {
+  display: flex;
+}
+
+.explanation > * {
+  padding: 1em;
+  margin-right: 1em;
+  margin-bottom: 1em;
+  background-color: white;
+  border: 1px solid #e5e5e5;
+  border-radius: 2px;
+}
+
+.explanation > * > h2 {
+  margin-top: 0;
+}
+
+.videos {
+  display: flex;
+  flex-direction: column;
+}
+
+
+.videos > .heading {
+  padding-bottom: 1em;
+  display: flex;
+  flex-direction: row;
+  align-items: baseline;
+}
+
+.videos > .heading > .title {
+  flex-grow: 1;
+}
+
+.heading > .more-videos {
+  font-size: 1.25em;
+}
+
+.video {
+  display: flex;
+  margin-bottom: 1.5em
+}
+
+
+.video > .image > img {
+  width: 360px;
+  height: 202px;
+}
+
+.video > .desc {
+  padding-left: 2em;
+  border: 1px solid #e5e5e5;
+  background-color: white;
+  border-radius: 2px;
+  padding: 1em;
+  margin-left: 1.5em;
+  flex-grow: 1;
+}
+
+.right > .three {
+  padding-left: 0.5em;
+}
+  </style>
+</head>
+<body>
+  <div class="youtube page">
+    <div class="heading">
+      <div class="navigation--main">
+        <div class="logo"><img src="https://www.gstatic.com/youtube/img/branding/youtubelogo/svg/youtubelogo.svg"/></div>
+        <div class="links">
+          <div class="links--quote">Upload, tag, and share your videos worldwide!</div>
+          <div class="links--list">
+            <a href="#">Home</a>
+            <a href="#"><span class="ribbon">Watch</span> Videos</a>
+            <a href="#"><div class="ribbon">Upload</div> Videos</a>
+            <a href="#"><div class="ribbon">Invite</div> Friends</a>
+          </div>
+        </div>
+        <div class="links--account"><a href="#">Sign Up</a><a href="#">Login</a><a href="#">Help</a></div>
+      </div>
+      <div class="navigation--user">
+        <a href="#">My Videos</a>
+        <a href="#">My Favorites</a>
+        <a href="#">My Friends</a>
+        <a href="#">My Messages</a>
+        <a href="#">My Profile</a>
+      </div>
+      <div class="navigation--search">
+        <div class="search-box">
+          <input type="text" /><button class="search-button">Search Videos</button>
+        </div>
+      </div>
+    </div>
+    <div class="content">
+      <div class="left">
+        <div class="explanation">
+          <div>
+            <h2>Watch</h2>
+            <p>Instantly find 1000's of fast streaming videos.</p>
+          </div>
+          <div>
+            <h2>Upload</h2>
+            <p>Quickly upload and tag videos in almost any video format.</p>
+          </div>
+          <div>
+            <h2>Share</h2>
+            <p>Easily share your videos with family, friends, or co-workers.</p>
+          </div>
+        </div>
+        <div class="videos">
+          <div class="heading">
+            <h1 class="title">Today's Featured Videos</h1>
+            <div class="more-videos">
+             <a href="#" >See More Videos</a>
+            </div>
+          </div>
+          <div class="video">
+            <div class="image"><img src="https://i.ytimg.com/vi/4KmOVhv_bsU/hq720.jpg?sqp=-oaymwEZCOgCEMoBSFXyq4qpAwsIARUAAIhCGAFwAQ==&rs=AOn4CLBlrrOyyKFU6HXFl6ixR2yEmXgq6w" /></div>
+            <div class="desc">
+              <h2>Dune Tossing</h2>
+              <p>Jumping off dunes in Death Valley Neveda during the summer. It was atleast 120 degrees out.<br/>www.ppixel.com</p>
+              <p>Tags // <a href="#">dune</a> : <a href="#">tossing</a> : <a href="#">death</a> : <a href="#">valley</a> : <a href="#">neveda</a> : <a href="#">summer</a> : <a href="#">desert</a> : <a href="#">jumping</a> : <a href="#">sand</a> : <a href="#">ppixel</a> : </p>
+              <p>Added 2 hours ago by <a href="#">ppixel</a></p>
+              <p>Runtime: 00:58 | Views: 49 | Comments: 0</p>
+            </div>
+          </div>
+          <div class="video">
+            <div class="image"><img src="https://i.ytimg.com/vi/khMzXxZvryw/hq720.jpg?sqp=-oaymwEZCOgCEMoBSFXyq4qpAwsIARUAAIhCGAFwAQ==&rs=AOn4CLBugakDej7zg8M1ErcWwOXn0_q0wQ" /></div>
+            <div class="desc">
+              <h2>Night Traffic Hip Hop Jazz</h2>
+              <p>Enjoy this wonderful BGM music while studying, sleeping, or whatever your heart desires...</p>
+              <p>Tags // <a href="#">bgm</a> : <a href="#">music</a> : <a href="#">hiphop</a> : <a href="#">jazz</a> : <a href="#">relaxation</a> : <a href="#">the-cat-is-not-real</a> :
+              <p>Added 19 days ago by <a href="#">BGMMusic</a></p>
+              <p>Runtime: 1:30:21 | Views: 409,032 | Comments: 120</p>
+            </div>
+          </div>
+          <div class="video">
+            <div class="image"><img src="https://i.ytimg.com/vi/0if71HOyVjY/hq720.jpg?sqp=-oaymwEZCOgCEMoBSFXyq4qpAwsIARUAAIhCGAFwAQ==&rs=AOn4CLBLGWbYGkuKH33TZj6RqBwlSz38qA" /></div>
+            <div class="desc">
+              <h2>GOTO 2018: Functional Programming in 40 Minutes</h2>
+              <p>This presentation was recorded at GOTO Berlin 2018. #gotocon #gotober
+  http://gotober.com
+  
+  Russ Olsen - Author of Getting Clojure and Eloquent Ruby, VP at Cognitect
+              
+                <a href="#">Read More...</a></p>
+              <p>Tags // <a href="#">programming</a> : <a href="#">goto2018</a> : <a href="#">funtional</a> : <a href="#">lambda</a> :
+              <p>Added 5 months ago by <a href="#">GOTO Conferences</a></p>
+              <p>Runtime: 1:12:47 | Views: 4,321 | Comments: 4</p>
+            </div>
+          </div>
+          <div class="video">
+            <div class="image"><img src="https://i.ytimg.com/vi/dEv99vxKjVI/hq720.jpg?sqp=-oaymwEZCNAFEJQDSFXyq4qpAwsIARUAAIhCGAFwAQ==&rs=AOn4CLAr7wxwbE2SJ-I1jdhtfCssC1k0YA" /></div>
+            <div class="desc">
+              <h2>Elon Musk: Telsa Autopilot | Artificial Intelligence (AI)...</h2>
+              <p>Elon Musk is the CEO of Tesla, SpaceX, Neuralink, and a co-founder of several other companies. This conversation is part of the Artificial Intelligence podcast. The series includes leading researchers in academia and industry, including CEO's and CTO's of automotive, robotics, AI, and technology <a href="#">Read More...</a></p>
+              <p>Tags // <a href="#">physics</a> : <a href="#">ai</a> : <a href="#">computer science</a> : <a href="#">elon musk</a> : <a href="#">tesla</a> : <a href="#">spacex</a> : <a href="#">selfdriving</a> : <a href="#">futurism</a> :
+              <p>Added 3 days ago by <a href="#">LexFridman</a></p>
+              <p>Runtime: 43:54 | Views: 34,532 | Comments: 67</p>
+            </div>
+          </div>
+          
+        </div>      
+      </div>
+      <div class="right">
+        <div class="one"><a href="#">Sign up for your <strong>free</strong> account!</a></div>
+        <div class="two">
+          <h2>August Video Contest!</h2><img src="https://i.ytimg.com/vi/nDXVnL9pUik/hqdefault.jpg?sqp=-oaymwEZCPYBEIoBSFXyq4qpAwsIARUAAIhCGAFwAQ==&rs=AOn4CLBpDNQhTa3mw3Z5IuOxAz8Pnr7ung" height="202"/><h3><a href="#">Can <strong>you</strong> dance?</a></h3>
+          <p>Inspired by <a href="#">Matt Harding</a><br/>YouTube is proud to present our first monthly video contest.<br/><br/><a href="#">Join the contest now!</a></p>
+        </div>
+        <div class="three">
+          <h3>Recent tags:</h3>
+          <a href="#">Summer</a> : <a href="#">live</a> : <a href="#">sonichedgehegg</a> : <a href="#">sing</a> : <a href="#">fortnite</a> : <a href="#">tromp</a> : <a href="#">hotdogs</a> : <a href="#">winter</a> : <a href="#">Art</a> : <a href="#">BobRoss</a> : <a href="#">shawndayson</a> : <a href="#">cartwheel</a> : <a href="#">9xbackflip</a> : <a href="#">flyingcar</a> : <a href="#">howtobasic</a> : <a href="#">magic</a> : <a href="#">free</a> : <a href="#">makemoney</a> : <a href="#">abadeabadie</a> : <a href="#">tornado</a> : <a href="#">guitar</a> : <a href="#">gardening</a> : <a href="#">latesttech</a> : <a href="#">bestsinger</a> : <a href="#">marinatrench</a> : <a href="#">blackholes</a> : <a href="#">lava</a> : <a href="#">selfdriving car</a> :
+          <br/>
+          <br/>
+          <h2><a href="#">See More Tags</a></h2>
+        </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <p style="font-size: 0.5em;">hi, keep a legendary game alive, consider playing unreal tournament 2004! :) https://discord.gg/kxAKeZ</p>
+</body>
+</html>
