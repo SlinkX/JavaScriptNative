@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+	<style lang="scss">
+		// Imports
+@import url('https://fonts.googleapis.com/css?family=Ubuntu:300,400,400i,700&display=swap');
+
+// Variables
+$primaryFont: 'Ubuntu', sans-serif;
+$primaryColor: #3f3233;
+$primaryColorLighten: lighten($primaryColor, 20);
+$primaryColorLightest: lighten($primaryColor, 45);
+
+$gradientLight: linear-gradient(-45deg, $primaryColorLightest, #fff);
+
+$gradientDark: linear-gradient(-45deg, $primaryColorLighten, $primaryColor);
+
+// $uniqueGradient: linear-gradient(5deg, #f3e9ea 0%, $primaryColorLightest 49.9%, $primaryColorLighten 50%, $primaryColor 100%);
+
+$uniqueGradient: linear-gradient(185deg, #f3e9ea 0%, $primaryColorLightest 49.9%, $primaryColorLighten 50%, $primaryColor 100%);
+
+*, *:before, *:after {
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 1em;
+  scroll-behavior: smooth;
+}
+
+:root {
+  --layoutWidth: 560px;
+  
+  --primaryColor: #{$primaryColor};
+  --primaryColorLighten: #{$primaryColorLighten};
+  --primaryColorLightest: #{$primaryColorLightest};
+  
+  [data-theme="light"] {
+    // --bgColor: #{$gradientLight};
+    --bgColor: #{$uniqueGradient};
+    --bgPosition: 0 0vh;
+    
+    --textColor: #444;
+    --headerColor: var(--primaryColor);
+    --navBarBg: linear-gradient(170deg, var(--primaryColorLighten), transparent);
+    --navBarBgMobile: linear-gradient(-35deg, var(--primaryColor), var(--primaryColorLighten));
+    --searchBg: #FFF;
+    
+    --buttonBackgroundColor: #FFF;
+    --buttonBackgroundHoverColor: #{$primaryColor};
+    --buttonColor: #{$primaryColor};
+    --buttonHoverColor: #FFF;
+    
+    --postBg: #FFF;
+    --postTimeColor: #999;
+    --postTitleColor: #333;
+    --postTextColor: #666;
+    --postMediaBorderColor: var(--primaryColor);
+    
+    // --postBg: var(--primaryColor);
+    // --postTimeColor: var(--primaryColorLightest);
+    // --postTitleColor: #FFF;
+    // --postTextColor: #FFF;
+    // --postMediaBorderColor: var(--primaryColorLightest);
+  }
+  
+  [data-theme="dark"] {
+    // --bgColor: #{$gradientDark};
+    --bgColor: #{$uniqueGradient};
+    --bgPosition: 0 -120vh;
+    
+    --textColor: #FFF;
+    --headerColor: #FFF;
+    --navBarBg: linear-gradient(170deg, var(--primaryColorLightest), transparent);
+    --navBarBgMobile: linear-gradient(-35deg, var(--primaryColorLightest), var(--primaryColorLighten));
+    --searchBg: var(--primaryColorLightest);
+    
+    --buttonBackgroundColor: var(--primaryColor);
+    --buttonBackgroundHoverColor: #FFF;
+    --buttonColor: #FFF;
+    --buttonHoverColor: var(--primaryColor);
+    
+    --postBg: var(--primaryColor);
+    --postTimeColor: var(--primaryColorLightest);
+    --postTitleColor: #FFF;
+    --postTextColor: #FFF;
+    --postMediaBorderColor: var(--primaryColorLightest);
+  }
+}
+
+body {
+  background: var(--bgColor);
+  background-size: 100vw 220vh;
+  background-position: var(--bgPosition);
+  background-attachment: fixed;
+  color: var(--textColor);
+  
+  transition: background 1s cubic-bezier(.65,0,.35,1);
+}
+
+.appWrapper {
+  font-family: $primaryFont;
+  min-height: 100vh;
+  width: 100%;
+  padding: 0 20px;
+}
+
+.appHeader {
+  max-width: var(--layoutWidth);
+  margin: 0 auto;
+  padding: 5rem 0;
+  color: var(--headerColor);
+  text-align: center;
+  
+  transition: color 0.5s ease-in-out;
+  
+  @media (max-width: 600px) {
+    padding: 3.5rem 0;
+  }
+  
+  .title {
+    font-size: 1.8rem;
+    margin-bottom: 0.4rem;
+    font-weight: bold;
+  }
+  
+  .subtitle {
+    font-size: 1rem;
+  }
+}
+
+.appNav {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 56px;
+  position: sticky;
+  top: 0;
+  margin: 0 -20px;
+  padding: 10px 20px;
+  background: var(--navBarBg);
+  z-index: 10;
+  // box-shadow: 0 15px 15px -10px rgba(0, 0, 0, 0.1);
+  
+  @media (max-width: 600px) {
+    top: unset;
+    bottom: 0;
+    position: fixed;
+    width: 100vw;
+    
+    background: var(--navBarBgMobile);
+  }
+  
+  .navWrapper {
+    flex: 1 1 100%;
+    max-width: var(--layoutWidth);
+    display: flex;
+    
+    @media (max-width: 600px) {
+      justify-content: flex-end;
+    }
+    
+    .searchBar {
+      margin-left: auto;
+      position: relative;
+      
+      .searchInput {
+        display: inline-flex;
+        border: 0;
+        border-radius: 100px;
+        // padding: 0 45px 0 10px;
+        padding: 0 10px;
+        line-height: 0;
+        height: 35px;
+        box-sizing: border-box;
+        font-family: $primaryFont;
+        font-size: 1rem;
+        width: auto;
+        max-width: 160px;
+        
+        background-color: var(--searchBg);
+        
+        transition: background-color 0.5s ease-in-out;
+      }
+      
+      .navButton {
+        position: absolute;
+        top: 2.5px;
+        right: 2.5px;
+        border-radius: 100px;
+        font-size: 0.8rem;
+        min-height: 30px;
+        width: 30px;
+        
+        display: none;
+      }
+    }
+  }
+
+  .navButton {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 35px;
+    padding: 0 10px;
+    border-radius: 100px;
+    background-color: var(--buttonBackgroundColor);
+    color: var(--buttonColor);
+    cursor: pointer;
+    text-decoration: none;
+
+    transition: color 0.3s ease-in-out, background-color 0.3s ease-in-out;
+
+    &:not(:last-child) {
+      margin-right: 10px;
+    }
+
+    &:hover {
+      background-color: var(--buttonBackgroundHoverColor);
+      color: var(--buttonHoverColor);
+    }
+    
+    &.alignRight {
+      margin-left: auto;
+      
+      @media (max-width: 600px) {
+        margin-left: 0;
+      }
+    }
+  }
+}
+
+.appContent {
+  max-width: var(--layoutWidth);
+  margin: 0 auto 1rem;
+  
+  .postsList {
+    padding: 0 0 60px;
+    position: relative;
+    
+    .loading {
+      text-align: center;
+      padding: 40px 0;
+      font-size: 1.2rem;
+    }
+    
+    .post {
+      padding: 15px;
+      background: var(--postBg);
+      box-shadow: 0 12px 10px -10px rgba($primaryColor, 0.9);
+      border-radius: 5px;
+      
+      transition: color 0.5s ease-in-out, background 0.5s ease-in-out;
+      
+      &:not(:last-child) {
+        margin-bottom: 20px;
+      }
+      
+      .postHeader {
+        display: flex;
+        align-items: stretch;
+        
+        .postUserImg {
+          flex: 0 0 50px;
+          width: 50px;
+          height: 50px;
+          overflow: hidden;
+          margin-right: 15px;
+          border-radius: 100px;
+          
+          .userImg {
+            width: 100%;
+            display: block;
+          }
+        }
+        
+        .postHeaderContent {
+          flex: 1 1 auto;
+          display: flex;
+          justify-content: center;
+          flex-direction: column;
+          
+          .headerMetadata {
+            margin-bottom: 0.2rem;
+            font-size: 0.9rem;
+            color: var(--postTimeColor);
+            
+            transition: color 0.5s ease-in-out;
+            
+            .userName {font-weight: bold;}
+            .postTime {font-weight: 100;}
+          }
+          
+          .postTitle {
+            font-size: 1rem;
+            line-height: 1.2rem;
+            color: var(--postTitleColor);
+            font-weight: bold;
+            
+            transition: color 0.5s ease-in-out;
+          }
+        }
+      }
+      
+      .postContent {
+        margin-top: 10px;
+        line-height: 1.5rem;
+        color: var(--postTextColor);
+        
+        transition: color 0.5s ease-in-out;
+        
+        b {
+          font-weight: bold;
+        }
+        
+        hr { border: 1px solid #ddd; }
+        
+        img {
+          display: block;
+          width: 100%;
+          border-radius: 5px;
+          margin: 10px 0 0;
+        }
+      }
+      
+      .postEmbed {
+        display: flex;
+        margin-top: 15px;
+        border-radius: 10px;
+        overflow: hidden;
+        border: 1px solid var(--postMediaBorderColor);
+        
+        iframe {
+          width: 100%;
+        }
+      }
+    }
+  }
+}
+	</style>
+</head>
+<body data-theme="dark">
+	<main class="appWrapper" id="app">
+	  <nav class="appNav">
+		<div class="navWrapper">
+		  <a v-on:click.prevent="filterBy('')" class="navButton">☕</a>
+		  <a v-on:click.prevent="filterBy('entry')" class="navButton">Posts</a>
+		  <a v-on:click.prevent="filterBy('podcast')" class="navButton">Podcast</a>
+		  <a v-on:click.prevent="darkmode = !darkmode" class="navButton alignRight">💡</a>
+  <!--         <div class="searchBar">
+			<input type="search" class="searchInput" v-model="searchParams.searchTerm" v-on:search="searchByFirebase" placeholder="Buscar..." incremental="true" autosave="search" results="3">
+			<a href="#" v-on:click.prevent="search" class="navButton">🔍</a> -->
+		  </div>
+		</div>
+	  </nav>
+	  
+	  <header class="appHeader">
+		<h1 class="title">@AndreusCafe</h1>
+		<h2 class="subtitle">The pseudo-blog</h2>
+	  </header>
+	  
+	  
+	  <section class="appContent">
+		<div class="postsList">
+  
+		  <div class="loading" v-if="loading">Cargando posts...</div>
+		  <blog-post
+			v-for="post in posts"
+			v-bind:post="post"
+		  ></blog-post>
+		</div>
+	  </section>
+	</main>
+  
+	<script type="text/x-template" id="postTemplate">
+	  <article class="post">
+		<header class="postHeader">
+		  <div class="postUserImg">
+			<img :src="post.user.imgUrl" alt="Usuario" class="userImg">
+		  </div>
+		  <div class="postHeaderContent">
+			<div class="headerMetadata">
+			  <span class="userName">{{ post.user.name }},</span>
+			  <time class="postTime">{{ app.timeAgo(post.date) }}</time>
+			</div>
+			<h2 class="postTitle">{{ post.title }}</h2>
+		  </div>
+		</header>
+  
+		<div class="postContent" v-if="!!post.body.content" v-html="post.body.content"></div>
+  
+		<div class="postEmbed" v-if="!!post.body.embed" v-html="post.body.embed"></div>
+	  </article>
+	</script>
+
+
+	<script>
+		var firebaseConfig = {
+  apiKey: "AIzaSyAbVMip1NQSbEkN4L_S6oaZoQPgryU2Rfg",
+  authDomain: "the-pseudo-blog.firebaseapp.com",
+  databaseURL: "https://the-pseudo-blog.firebaseio.com",
+  projectId: "the-pseudo-blog",
+  storageBucket: "the-pseudo-blog.appspot.com",
+  messagingSenderId: "975321409992",
+  appId: "1:975321409992:web:664965fe0bd93af0"
+};
+// Initialize Firebase
+firebase.initializeApp(firebaseConfig);
+var database = firebase.firestore();
+
+// Setting moment locale
+moment.locale('es');
+
+// Setting darkmode by user preference
+const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+document.body.dataset.theme = prefersDark ? 'dark' : 'light';
+
+Vue.component('blog-post', {
+  props: ['post'],
+  template: '#postTemplate'
+})
+
+// New Vue instance!
+let app = new Vue({
+  el: "#app",
+  data: {
+    darkmode: prefersDark,
+    loading: true,
+    searchParams: {
+      searchTerm: '',
+      type: ''
+    },
+    posts: []
+  },
+  methods: {
+    getPosts: function (searchParams) {
+      var vm = this;
+      // let postsRef = database.collection("posts").orderBy('date', 'desc');
+      let postsRef = database.collection("posts");
+      
+      if (searchParams && searchParams.type) {
+        postsRef = postsRef.where('type', '==', searchParams.type);
+      }
+      
+      if (searchParams && searchParams.searchTerm) {
+        postsRef = postsRef.where('title', '>=', searchParams.searchTerm).where('title', '<=', searchParams.searchTerm + '\uf8ff')
+      }
+      
+      let callback = (querySnapshot) => {
+        this.loading = false;
+        
+        let postsList = [];
+        console.log(querySnapshot);
+        
+        querySnapshot.docs.forEach((doc) => {
+          let postData = doc.data();
+          postData.date = postData.date ? postData.date.toDate() : new Date();
+          
+          console.log(postData);
+          
+          postsList.push(postData);
+        });
+        
+        // Ordered by date; recent first.
+        vm.posts = postsList.sort((a, b) => { return b.date - a.date });
+      };
+      
+      postsRef.onSnapshot(callback);
+    },
+    
+    timeAgo: function (date) {
+      return moment(date).calendar()
+    },
+    
+    searchByFirebase: function () {
+      console.log(this.searchParams.searchTerm);
+      
+      this.getPosts(this.searchParams);
+    },
+    
+    filterBy: function (type) {
+      if (this.searchParams.type == type) {
+        // this.searchParams.type = '';
+        return false;
+      } else {
+        this.searchParams.type = type;
+      }
+      
+      this.getPosts(this.searchParams);
+    }
+  },
+  mounted: function () {
+    this.getPosts();
+  },
+  watch: {
+    'darkmode': function () {
+      document.body.dataset.theme = this.darkmode ? 'dark' : 'light';
+    }
+  }
+});
+
+search = function () {
+  alert('búsqueda');
+}
+	</script>
+  </body>
+</html>
