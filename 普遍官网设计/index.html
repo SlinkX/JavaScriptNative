@@ -1,0 +1,1317 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+
+    <!-- font-awesome cdn -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" />
+    <!-- animate -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.css" integrity="sha512-phGxLIsvHFArdI7IyLjv14dchvbVkEDaH95efvAae/y2exeWBQCQDpNFbOTdV1p4/pIa/XtbuDCnfhDEIXhvGQ==" crossorigin="anonymous" />
+    <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+  />
+
+    <title>koway </title>
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+        body{}
+
+.btn{}
+a{
+    text-decoration: none;
+}
+img{
+    max-width: 100%;
+}
+.btn, button, .btn:hover, .btn:focus, button:hover,button:focus{
+    outline: none !important;
+}
+.button-all{
+    color: #fff;
+    background-color: #0071dc;
+    padding: 18px 50px;
+    font-size: 15px;
+    text-transform: uppercase;
+    margin-top: 20px;
+    transition: .5s;
+
+    position: relative;
+    z-index: 1;
+}
+.button-all::before{
+    content: "";
+    position: absolute;
+    width: 0;
+    height: 100%;
+    background: #0071dc;
+    z-index: -1;
+    left: auto;
+    top: 0;
+    right: 0;
+    border-radius: 8px;
+    transition: .5s;
+}
+.button-all:hover::before{
+    width: 100%;
+    background-color: #003373;
+    color: #fff;
+    left: 0;
+}
+.button-all span{
+    display: inline-block;
+    position: relative;
+    left: 5px;
+    transition: .5s;
+}
+.button-all:hover span{
+    transform: translate(10px);
+}
+.slider-content a{
+    display: inline-block;
+}
+.slider-content a:hover{
+    color: #fff;
+}
+
+/* header-section */
+.header-section{}
+.header-logo{}
+.header-logo a{}
+.header-logo a img{}
+.header-manu{
+    z-index: 1;
+}
+.header-manu ul{
+    list-style: none;
+    width: 650px;
+}
+.header-manu ul li{
+    display: inline-block;
+    margin-left: 10px;
+}
+.header-manu ul li a{
+    display: block;
+    padding-left: 10px;
+    color: #000;
+    font-size: 15px;
+    text-transform: capitalize;
+    padding-left: 20px;
+    transition: .5s;
+}
+.header-manu ul li:hover > a{
+    color: blue;
+}
+/* header-manu drobdown */
+.header-manu ul li{
+    position: relative;
+    
+}
+.header-manu ul li ul{
+    position: absolute;
+    content: "";
+    top: 50px;
+    left: 0;
+    width: 200px;
+    border-top: 3px solid blue;
+    background-color: #fff;
+    box-shadow: 0px 0px 2px 2px #0034734b;
+    transition: .6s;
+    transform: translateY(20px);
+    
+}
+.header-manu ul li ul{
+    opacity: 0;
+    visibility: hidden;
+}
+.header-manu ul li:hover ul{
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0px);
+}
+.header-manu ul li ul li{
+    display: block;
+    margin-top: 5px;
+    margin-right: 20px;
+    padding: 5px 0px;
+    
+}
+.header-manu ul li ul li a{
+    display: block;
+    padding-left: 0px;
+    font-size: 14px;
+    font-weight: 600;
+}
+.header-manu .btn-almary{
+    display: block;
+    padding:15px 50px;
+    background-color: #fff;
+    color: #003373;
+    border-radius: 10px;
+    transition: .5s;
+}
+
+.header-manu .btn-almary:hover{
+    background-color: rgb(13, 13, 70);
+    color: #fff;
+    border-radius: 10px;
+    
+}
+.btn-almary span{
+    display: inline-block;
+    position: relative;
+    left: 10px;
+    transition: .5s;
+}
+.btn-almary:hover span{
+    transform: translate(10px);
+}
+/* slider-section */
+.slider-section{}
+.slider-img{
+    /* position: relative; */
+}
+.slider-img{
+    position: absolute;
+    content: "";
+    left: 610px;
+    top: 0;
+    width: 100%;
+    z-index: -1;
+}
+.slider-img img{}
+.slider-sub-img{
+    position: absolute;
+    content: "";
+    top: 200px;
+    left: 0px;
+    width: 55%;
+    height: 40%;
+}
+.slider-sub-img img{
+    /* width: 600px;
+    height: 400px;
+    max-width: 100%; */
+}
+.slider-content{
+    margin-top: 200px;
+}
+.slider-content h1{
+    font-size: 60px;
+    font-weight: 600;
+}
+.slider-content p{
+    color: #606060;
+    width: 40%;
+    line-height: 30px;
+}
+.slider-content a{}
+
+/* service-section */
+.service-section{
+    margin-top: 250px;
+}
+.service-header{}
+.service-header h4{}
+.service-header h1{
+    font-weight: 700;
+    font-size: 50px;
+    padding-top: 20px;
+}
+
+.service-item{
+    background-color: #f4f7fa;
+    padding: 50px 20px;
+    font-size: 22px;
+
+    transition: .5s;
+}
+.service-item:hover{
+    transform: translateY(15px);
+}
+.service-item:hover span{
+    color: rgb(243, 7, 7);
+
+}
+.service-item span{
+    transform: translate(1);
+}
+.service-item span:hover{
+    transform: translate(1 .5);
+}
+.service-item small {
+    display: block;
+    width: 100px;
+    height: 100px;
+    margin: auto;
+    font-size: 60px;
+    line-height: 100px;
+    background-color: #feb100;
+    padding: 20px 10px;
+    border-radius: 50%;
+    color: #fff;
+    box-shadow: 0px 10px 60px 0px rgba(211, 78, 78, 0.27);
+}
+.service-item h3{
+    padding: 20px 10px;
+    font-weight: 600;
+}
+.service-item p{
+    padding: 0px 10px;
+    color: #606060;
+    line-height: 30px;
+}
+.service-item span{
+    margin-top: 10px;
+}
+
+/* about-section */
+.about-section{
+    margin-top: 100px;
+}
+.about-laptop{
+    margin-top: 70px;
+}
+.about-laptop img{
+    animation: tariq 2s infinite;
+    animation-duration: alternate;
+}
+@keyframes tariq{
+    0%{
+        transform: translateY(0);
+    }
+    50%{
+        transform: translateY(10px);
+    }
+    100%{
+        transform: translateY(0);
+    }
+}
+
+.about-laptop-content{
+    padding-left: 10px;
+}
+.about-laptop-content h4{
+    padding: 10px 0px;
+    color: #0041f3;
+}
+.about-laptop-content h2{
+    font-size: 50px;
+    font-weight: 700;
+    padding: 10px 0px;
+}
+.about-laptop-content p{
+    color: #676767;
+    padding: 10px 0px;
+}
+
+.about-laptop-list{
+    position: relative;
+    margin-top: 20px;
+}
+.about-laptop-list span{
+    position: absolute;
+    content: "";
+    display: block;
+    top: 0;
+    left: 0;
+    width: 70px;
+    height: 70px;
+    margin: auto;
+    background-color: #f4f7fa;
+    font-size: 30px;
+    padding: 18px 0px;
+    line-height: 70px;
+    text-align: center;
+    border-radius: 50%;
+    color: #4c56eb;
+    margin-top: 15px;
+    transition: .5s;
+}
+.about-laptop-list:hover span{
+    background-color: #4c56eb;
+    color: #fff;
+}
+.about-laptop-content .about-laptop-list h3{
+    margin-left: 100px;
+    padding-left: 20px;
+    font-size: 22px;
+    font-weight: 600;
+    padding-top: 20px;
+    line-height: 15px;
+}
+.about-laptop-content .about-laptop-list p{
+    margin-left: 100px;
+    padding-left: 20px;
+}
+/* prising-table-section */
+.prising-table-section{
+    margin-top: 100px;
+    background-color: #f4f7fa;
+    padding: 100px 0px;
+}
+.prising-table{
+    padding: 20px;
+}
+.prising-table img{
+    padding: 10px 0px;
+}
+.prising-table h2{
+    font-weight: 600;
+    font-size: 40px;
+    margin-top: 10px;
+}
+.prising-table p{
+    color: #3f94e4;
+    font-weight: 500;
+}
+
+/* customar-section */
+.customar-section{
+    padding: 100px 0px;
+    background-color: #161c2d;
+}
+.customar-section .about-new-site{
+    margin-top: 0px;
+}
+.customar-section .about-new-content h4{
+    color: #fff;
+}
+.customar-section .about-new-content h2{
+    color: #fff;
+}
+.customar-section .about-new-content p{
+    color: #ddd;
+}
+/* reviw-section */
+.review-section{
+    background-color: #f4f7fa;
+    padding: 100px;
+}
+
+.slider{
+    
+
+}
+.slider-content-local{
+    background-color: #fff;
+    box-shadow: 0px 0px 5px 5px rgba(228, 227, 225, 0.897);
+    margin-left: 30px;
+    border-radius: 10px;
+    padding: 50px 40px;
+    width: 40%;
+
+    position: relative;
+    z-index: 1;
+    
+}
+.slider-content-local p {
+    line-height: 25px;
+    margin-top: 20px;
+    font-weight: 510;
+}
+.slider-content-local small{
+    position: absolute;
+    content: "";
+    top: 30px;
+    left: 220px;
+    width: 40px;
+    height: 40px;
+    color: #ddd;
+    font-size: 140px;
+    z-index: -1;
+    
+}
+.slider-content-item{}
+.slider-content-item .slider-item-one{
+    position: relative;
+}
+.slider-item-one img{}
+.slider-content-item .slider-item-one span{
+    position: absolute;
+    content: "";
+    top: -20px;
+    left: -10px;
+    width: 40px;
+    height: 40px;
+    background-color: #4c56eb;
+    line-height: 60px;
+    text-align: center;
+    margin: auto;
+    color: #fff;
+    border-radius: 50%;
+}
+.slider-item-tow{
+    margin-left: 15px;
+}
+.slider-item-tow h2{}
+.slider-item-tow h6{}
+
+
+
+
+.corsul-btn{
+    color: #fff;
+    background-color: #e1e1f5;
+    width: 50px;
+    height: 50px;
+    margin: auto;
+    text-align: center;
+    border-radius: 50%;
+    border: 1px solid #ddd;
+    transition: .5s;
+}
+.corsul-btn:hover{
+    background-color: rgb(51, 51, 247);
+    border: none;
+}
+
+/* populer-section */
+.populer-section{
+    margin-top: 100px;
+}
+.populer-content{
+    margin-top: 150px;
+}
+.populer-content h5{
+    color: #3176f5;
+    font-weight: 600;
+}
+.populer-content h1{
+    width: 50%;
+    font-weight: 600;
+    font-size: 50px;
+    padding: 20px 0px;
+}
+.populer-content p{
+    padding: 10px 0px;
+    color: #606760;
+    line-height: 30px;
+}
+.populer-content span{
+    color: #7a7a7a;
+}
+.populer-item{
+    transition: .5s;
+    position: relative;
+    
+}
+.populer-item p{
+    transform: rotate(90deg);
+    font-size: 22px;
+}
+.populer-item p{
+    position: absolute;
+    content: "";
+    top: 0;
+    left: 170px;
+    width: 110px;
+    height: 40px;
+    background-color: #ffc221;
+    transform: rotate(270deg);
+}
+.custom-swich{
+    position: relative;
+    bottom: 25px;
+    font-size: 28px;
+}
+.populer-item:hover  .btn-border{
+    border: 2px solid #f4f7fa;
+    background-color: #0041f3;
+    color: #f4f7fa;
+}
+
+.populer-item-one{
+    border-bottom: 1px solid #ddd;
+    padding: 20px 0px;
+}
+
+.populer-item-one .btn-border{
+    background-color: #edf5fd;
+    color: #111;
+    padding: 5px 20px;
+}
+.populer-one-hover{
+    transition: .5s;
+}
+.populer-one-hover:hover{
+    background-color: #0071dc;
+    color: #edf5fd;
+}
+.populer-one-hover:hover .populer-btn{
+    background-color: #0071dc;
+    color: #fff;
+    
+}
+.populer-item-two{
+    margin-top: 10px;
+}
+.populer-item-two{}
+.populer-item-two .btn-border{
+    border: 2px solid #edf5fd;
+    padding: 10px 20px;
+    color: #111;
+    text-align: center;
+    width: 100%;
+    margin: auto;
+    background-color: #edf5fd;
+    text-transform: uppercase;
+    transition: .6s;
+
+}
+.populer-item-two .btn-border:hover{
+    border:2px solid #edf5fd;
+    background-color: #1c82e2;
+    color: #edf5fd;
+}
+.btn-border I{
+    transition: .5S;
+}
+.btn-border:hover i{
+    transform: translateX(10px);
+}
+.populer-item-two{
+}
+.populer-item-two ul{
+    list-style: none;
+    padding-left: 0px;
+}
+.populer-item-two ul li{
+    margin-top: 20px;
+    padding-left: 40px;
+
+    position: relative;
+}
+.populer-item-two ul li span{
+    position: absolute;
+    content: "";
+    top: 5px;
+    left: 10px;
+    width: 100%;
+    height: 100%;
+    font-weight: 400;
+    
+}
+/*  */
+.aply-section{
+    margin-top: 100px;
+    background: url(https://www.devsnews.com/template/koway/koway/assets/img/bg/subscribe-02.jpg) no-repeat center center;
+    background-size: cover;
+    
+}
+.aply-now{
+    padding: 100px 0px;
+}
+.aply-now h5 {
+    color: #fff;
+}
+.aply-now h1 {
+    color: #fff;
+    font-weight: 700;
+    font-size: 50px;
+}
+.apply-email{
+    padding: 10px 20px;
+    position: relative;
+}
+.btn-aply {
+    position: absolute;
+    top: -4px;
+    left: 497px;
+}
+
+.footer-top{
+    border-bottom: 1px solid #ddd;
+    padding: 100px;
+}
+.footer-top img{
+    max-width: 100%;
+}
+.footer-top p{
+    color: #686868;
+    margin-top: 50px;
+}
+.footer-top span{
+    display: block;
+    color: #686868;
+}
+
+.footer-socail{
+    margin-top: 50px;
+    
+}
+.footer-socail ul {
+    list-style: none;
+    padding-left: 0px;
+}
+.footer-socail ul li{
+    display: inline-block;
+}
+.footer-socail ul li span{
+    display: inline-block;
+    margin-right: 10px;
+}
+
+
+.list-items{}
+.list-items ul{
+    list-style: none;
+    padding-left: 0px;
+}
+.list-items ul li{
+    margin-top: 10px;
+    font-size: 15px;
+}
+
+.list-items ul li span{
+    display: inline-block;
+    transition: .5s;
+    font-size:16px;
+
+}
+.list-items ul li span:hover{
+    color: blue;
+}
+.list-items ul li span i{
+    visibility: hidden;
+    opacity: 0;
+    transition: .8s;
+    margin-right: -10px;
+}
+.list-items ul li span:hover i{
+    visibility: visible;
+    opacity: 1;
+    margin-right: 10px;
+}
+.list-heading{}
+.list-heading h3{
+    font-size: 20px;
+}
+
+.myself{}
+.my-self-pic{
+    width: 60px;
+    height: auto;
+    margin-top: 20px;
+    position: relative;
+}
+.my-self-pic span i{
+    margin-top: 20px;
+}
+.my-self-pic span{
+    display:block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    color: #fff;
+    height: 100%;
+    width: 100%;
+    background-color: #2684c280;
+    text-align: center;
+    margin: auto;
+    line-height: 100%;
+    visibility: hidden;
+    opacity: 0;
+    transform: scale(0);
+    transition: .5s;
+
+}
+.my-self-pic:hover span{
+    visibility: visible;
+    opacity: 1;
+    transform: scale(1);
+
+}
+
+.my-self-pic img{
+    max-width: 100%;
+}
+
+/* footer-bottom */
+.footer-bottom{
+    padding: 30px 0px;
+}
+
+
+
+
+
+    </style>
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-light pt-3">
+        <div class="container">
+          <a class="navbar-brand" href="#">
+            <img src="https://www.devsnews.com/template/koway/koway/assets/img/logo/header_logo_06.png" alt="">
+          </a>
+
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+
+            <div class="collapse navbar-collapse header-manu m-auto justify-content-end"         id="navbarSupportedContent">
+
+                <ul class="navbar-nav">
+                    <li><a href="#">home <span><i class="fas fa-chevron-down"></i></span></a>
+                      <ul>
+                        <li><a href="#">Web Application</a></li>
+                        <li><a href="#">Digital Marketing</a></li>
+                        <li><a href="#">Desktop Software</a></li>
+                        <li><a href="#">Team Management</a></li>
+                        <li><a href="#">Software</a></li>
+                        <li><a href="#">Sass Subscription</a></li>
+                      </ul>
+                    </li>
+                    <li><a href="#">about</a></li>
+                    <li><a href="#">service </a></li>
+                    <li><a href="#">news <span><i class="fas fa-chevron-down"></i></span></a>
+                      <ul>
+                        <li><a href="#">Blog Grid</a></li>
+                        <li><a href="#">Blog standard</a></li>
+                        <li><a href="#">Blog standard</a></li>
+                      </ul>
+                    </li>
+                    <li><a href="#">paseges <span><i class="fas fa-chevron-down"></i></span></a>
+                      <ul>
+                        <li><a href="#">Career</a></li>
+                        <li><a href="#">Pricing</a></li>
+                        <li><a href="#">Job Details</a></li>
+                        <li><a href="#">Team Details</a></li>
+                      </ul></li>
+                    <li><a href="#">contact</a></li>
+                </ul>
+
+                <a href="#" class="btn btn-almary">Free Trail <span><i class="fas fa-chevron-right"></i></span></a>
+            </div>
+        </div>
+    </nav>
+
+    <section class="slider-section">
+        <div class="slider-img">
+            <img src="https://www.devsnews.com/template/koway/koway/assets/img/shape/16.png" alt="">
+            <div class="slider-sub-img">
+                <img src="https://www.devsnews.com/template/koway/koway/assets/img/slider/slider6.png" alt="">
+            </div>
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="slider-content">
+                        <h1 class="w-50">Get better saas solutions</h1>
+                        <p class="mt-3">Sed ut perspiciatis unde omnis iste natus voluptatem accusantium doloremque laudantium</p>
+                        <a href="#" class="btn button-all">discover more <span><i class="fas fa-chevron-right"></i></span></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- service-section -->
+    <section class="service-section">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-3"></div>
+          <div class="col-lg-6">
+            <div class="service-header text-center">
+              <h4>What We Do</h4>
+              <h1>Awesome solutions for saas management</h1>
+            </div>
+          </div>
+          <div class="col-lg-3"></div>
+        </div>
+        <div class="row">
+          <div class="col-lg-3">
+            <div class="service-item text-center">
+              <small>
+                <i class="fas fa-volleyball-ball"></i>
+              </small>
+              <h3>Project manage</h3>
+              <p>Quis autem vel eum iure reprehen derit quiea voluptate</p>
+              <span><i class="fas fa-long-arrow-alt-right"></i></span>
+            </div>
+          </div>
+          <div class="col-lg-3">
+            <div class="service-item text-center">
+              <small class="bg-primary">
+                <i class="fas fa-recycle"></i>
+              </small>
+              <h3>Time tracking</h3>
+              <p>Quis autem vel eum iure reprehen derit quiea voluptate</p>
+              <span><i class="fas fa-long-arrow-alt-right"></i></span>
+            </div>
+          </div>
+          <div class="col-lg-3">
+            <div class="service-item text-center">
+              <small class="bg-danger">
+                <i class="fas fa-mobile-alt"></i>
+              </small>
+              <h3>Beautiful mobile app</h3>
+              <p>Quis autem vel eum iure reprehen derit quiea voluptate</p>
+              <span><i class="fas fa-long-arrow-alt-right"></i></span>
+            </div>
+          </div>
+          <div class="col-lg-3">
+            <div class="service-item text-center">
+              <small class="bg-success">
+                <i class="fas fa-laptop-code"></i>
+              </small>
+              <h3>Responsive design</h3>
+              <p>Quis autem vel eum iure reprehen derit quiea voluptate</p>
+              <span><i class="fas fa-long-arrow-alt-right"></i></span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- about-section -->
+    <section class="about-section">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-6">
+            <div class="about-laptop">
+              <img src="https://www.devsnews.com/template/koway/koway/assets/img/feature/07.png" alt="">
+            </div>
+          </div>
+          <div class="col-lg-6">
+            <div class="about-laptop-content">
+              <h4>Management & Analysis</h4>
+              <h2>Solutions for every single problems</h2>
+              <p>Sed ut perspiciatis unde omnis iste natus voluptatem accusantium doloremque laudantium</p>
+              <div class="about-laptop-list">
+                <span><i class="fas fa-layer-group"></i></span>
+                <h3>Multiple managers</h3>
+                <p>Quis autem vel eum reprehenderit</p>
+              </div>
+              <div class="about-laptop-list">
+                <span><i class="far fa-gem"></i></span>
+                <h3>Easy to customizations</h3>
+                <p>Quis autem eum repreh enderites </p>
+              </div>
+              <a href="#" class="btn button-all">learn more<span><i class="fas fa-chevron-right"></i></span></a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- prising-table-section -->
+    <section class="prising-table-section">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-3">
+            <div class="prising-table text-center">
+              <img src="https://www.devsnews.com/template/koway/koway/assets/img/icon/14.png" alt="">
+              <h2>3504</h2>
+              <p>Project Compalte</p>
+            </div>
+          </div>
+          <div class="col-lg-3">
+            <div class="prising-table text-center">
+              <img src="https://www.devsnews.com/template/koway/koway/assets/img/icon/15.png" alt="">
+              <h2>8567</h2>
+              <p>Global clients/p>
+            </div>
+          </div>
+          <div class="col-lg-3">
+            <div class="prising-table text-center">
+              <img src="https://www.devsnews.com/template/koway/koway/assets/img/icon/16.png" alt="">
+              <h2>7850</h2>
+              <p>Awards winning</p>
+            </div>
+          </div>
+          <div class="col-lg-3">
+            <div class="prising-table text-center">
+              <img src="https://www.devsnews.com/template/koway/koway/assets/img/icon/17.png" alt="">
+              <h2>5634</h2>
+              <p>Design & brandinge</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- customar-section -->
+    <section class="customar-section">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-6">
+            <div class="animated animate__slideInUp delay-2s about-laptop-content about-new-content">
+              <h4>Use & Customizat</h4>
+              <h2>Getting better way to saas uses</h2>
+              <p>Sed ut perspiciatis unde omnis natus error voluptatem accusantium doloremque laudantium totam rem aperiam eaque quae ab illo inventore veritatis</p>
+              
+              <a href="#" class="btn button-all">learn more<span><i class="fas fa-chevron-right"></i></span></a>
+            </div>
+          </div>
+          <div class="col-lg-6">
+            <div class="animate__slideInRight about-laptop about-new-site">
+              <img src="https://www.devsnews.com/template/koway/koway/assets/img/bg/09.png" alt="">
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- reviw-section -->
+    <section class="review-section">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-3"></div>
+          <div class="col-lg-6">
+            <div class="revio-content text-center">
+              <h6>Customer Reviews</h6>
+            <h1>2356+ customer say about our support</h1>
+            </div>
+          </div>
+          <div class="col-lg-3"></div>
+        </div>
+        <div class="row">
+          <div class="col-xxl-12">
+            <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
+              <div class="carousel-inner">
+                <div class="carousel-item active">
+                  <div class="slider d-flex justify-content-center">
+                    <div class="slider-content-local">
+                      <div class="slider-content-item d-flex">
+                        <div class="slider-item-one">
+                          <img src="https://www.devsnews.com/template/koway/koway/assets/img/testimonial/03.png" alt="">
+                          <span><i class="fas fa-quote-right"></i></span>
+                        </div>
+                        <div class="slider-item-tow">
+                          <h4>David Warner</h4>
+                          <h6 class="text-primary">Web Developer</h6>
+                        </div>
+                      </div>
+                      <p>On the other hand denounrighte indigna tion and disliks men who are beguiled dem pleasure momentc blinded </p>
+                      <small><i class="fas fa-quote-left"></i></small>
+                    </div>
+                    <div class="slider-content-local">
+                      <div class="slider-content-item d-flex">
+                        <div class="slider-item-one">
+                          <img src="https://www.devsnews.com/template/koway/koway/assets/img/testimonial/03.png" alt="">
+                          <span><i class="fas fa-quote-right"></i></span>
+                        </div>
+                        <div class="slider-item-tow">
+                          <h4>David Warner</h4>
+                          <h6 class="text-primary">Web Developer</h6>
+                        </div>
+                      </div>
+                      <p>On the other hand denounrighte indigna tion and disliks men who are beguiled dem pleasure momentc blinded </p>
+                      <small><i class="fas fa-quote-left"></i></small>
+                    </div>
+                  </div>
+                </div>
+                <div class="carousel-item">
+                  <div class="slider d-flex justify-content-center">
+                    <div class="slider-content-local">
+                      <div class="slider-content-item d-flex">
+                        <div class="slider-item-one">
+                          <img src="https://www.devsnews.com/template/koway/koway/assets/img/testimonial/03.png" alt="">
+                          <span><i class="fas fa-quote-right"></i></span>
+                        </div>
+                        <div class="slider-item-tow">
+                          <h4>David Warner</h4>
+                          <h6 class="text-primary">Web Developer</h6>
+                        </div>
+                      </div>
+                      <p>On the other hand denounrighte indigna tion and disliks men who are beguiled dem pleasure momentc blinded </p>
+                      <small><i class="fas fa-quote-left"></i></small>
+                    </div>
+                    <div class="slider-content-local">
+                      <div class="slider-content-item d-flex">
+                        <div class="slider-item-one">
+                          <img src="https://www.devsnews.com/template/koway/koway/assets/img/testimonial/03.png" alt="">
+                          <span><i class="fas fa-quote-right"></i></span>
+                        </div>
+                        <div class="slider-item-tow">
+                          <h4>David Warner</h4>
+                          <h6 class="text-primary">Web Developer</h6>
+                        </div>
+                      </div>
+                      <p>On the other hand denounrighte indigna tion and disliks men who are beguiled dem pleasure momentc blinded </p>
+                      <small><i class="fas fa-quote-left"></i></small>
+                    </div>
+                  </div>
+                </div>
+                <div class="carousel-item">
+                  <div class="slider d-flex justify-content-center">
+                    <div class="slider-content-local">
+                      <div class="slider-content-item d-flex">
+                        <div class="slider-item-one">
+                          <img src="https://www.devsnews.com/template/koway/koway/assets/img/testimonial/03.png" alt="">
+                          <span><i class="fas fa-quote-right"></i></span>
+                        </div>
+                        <div class="slider-item-tow">
+                          <h4>David Warner</h4>
+                          <h6 class="text-primary">Web Developer</h6>
+                        </div>
+                      </div>
+                      <p>On the other hand denounrighte indigna tion and disliks men who are beguiled dem pleasure momentc blinded </p>
+                      <small><i class="fas fa-quote-left"></i></small>
+                    </div>
+                    <div class="slider-content-local">
+                      <div class="slider-content-item d-flex">
+                        <div class="slider-item-one">
+                          <img src="https://www.devsnews.com/template/koway/koway/assets/img/testimonial/03.png" alt="">
+                          <span><i class="fas fa-quote-right"></i></span>
+                        </div>
+                        <div class="slider-item-tow">
+                          <h4>David Warner</h4>
+                          <h6 class="text-primary">Web Developer</h6>
+                        </div>
+                      </div>
+                      <p>On the other hand denounrighte indigna tion and disliks men who are beguiled dem pleasure momentc blinded </p>
+                      <small><i class="fas fa-quote-left"></i></small>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <button class="carousel-control-prev corsul-btn" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon text-dark" aria-hidden="true"></span>
+                <span class="visually-hidden text-dark">Previous</span>
+              </button>
+              <button class="carousel-control-next corsul-btn"  type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+                <span class="carousel-control-next-icon text-dark" aria-hidden="true"></span>
+                <span class="visually-hidden text-dark">Next</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+    </section>
+
+    <!-- populer-plun-section -->
+    <section class="populer-section">
+      <div class="container">
+        <div class="row">
+        <div class="col-lg-6">
+          <div class="populer-content">
+            <h5>Our Pricing Plan</h5>
+            <h1>Provide Awesome pricing plan</h1>
+            <p class="w-75">Sed ut perspiciatis unde omnis iste natus voluptatem accusantium doloremque laudantium</p>
+            <span class="me-2">Select for monthly</span>
+            <div class="form-check form-switch d-inline-block custom-swich">
+              <input class="form-check-input" type="checkbox" id="flexSwitchCheckChecked" checked>
+              <label class="form-check-label" for="flexSwitchCheckChecked"></label>
+            </div>
+            <span>yearly</span>
+          </div>
+        </div>
+        <div class="col-lg-6">
+          <div class="row">
+            <div class="col-lg-6">
+              <div class="populer-item border p-4 text-center populer-one-hover">
+                <div class="populer-item-one">
+                  <h2>Popular plan</h2>
+                  <h1><sup>$</sup> 19.87</h1>
+                  <a href="#" class="btn populer-btn">Save upto 100%</a>
+                </div>
+                <div class="populer-item-two text-start">
+                  <ul>
+                    <li><span><i class="fas fa-check"></i></span>Limited Acess Library</li>
+                    <li><span><i class="fas fa-check"></i></span> Commercia License</li>
+                    <li><span><i class="fas fa-check"></i></span> Hotline Support 24/7</li>
+                    <li><span><i class="fas fa-check"></i></span> 100+ HTML UI Elements</li>
+                    <li><span><i class="fas fa-check"></i></span>  WooCommerce Builder</li>
+                  </ul>
+                  <a href="#" class="btn btn-border">try this package <i class="fas fa-chevron-right"></i></a>
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-6">
+              <div class="populer-item border bg-primary p-4 text-white text-center">
+                <p>popular</p>
+                <div class="populer-item-one">
+                  <h2>Popular plan</h2>
+                  <h1><sup>$</sup> 99.87</h1>
+                  <a href="#" class="btn populer-btn">Save upto 100%</a>
+                </div>
+                
+                <div class="populer-item-two text-start">
+                  <ul>
+                    <li><span><i class="fas fa-check"></i></span>Limited Acess Library</li>
+                    <li><span><i class="fas fa-check"></i></span> Commercia License</li>
+                    <li><span><i class="fas fa-check"></i></span> Hotline Support 24/7</li>
+                    <li><span><i class="fas fa-check"></i></span> 100+ HTML UI Elements</li>
+                    <li><span><i class="fas fa-check"></i></span>  WooCommerce Builder</li>
+                  </ul>
+                  <a href="#" class="btn btn-border">try this package <i class="fas fa-chevron-right"></i></a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        </div>
+      </div>
+    </section>
+    
+    <!-- aply-section -->
+    <section class="aply-section">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-2"></div>
+          <div class="col-lg-8">
+            <div class="aply-now text-center">
+              <h5>Newsletter Subscriptions</h5>
+              <h1>Get more update to subscribe our newsletters</h1>
+              <div class="apply-email mt-4">
+                <form action="#">
+                  <div class="mb-3">
+                    <input type="email" class="form-control p-4" id="exampleFormControlInput1" placeholder="https://www.devsnews.com/template/koway/koway/contact.html">
+                  </div>
+                  <div class="btn-aply">
+                    <a href="#" class="btn button-all">subscrib now</a>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-2"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- footer-section -->
+    <section class="footer-section">
+      <div class="container">
+        <div class="footer-top">
+          <div class="row">
+            <div class="col-lg-3">
+              <img src="https://www.devsnews.com/template/koway/koway/assets/img/logo/header_logo_06.png" alt="">
+              <p>Sed perspiciatis unde <br>
+                omnis </p>
+              <span>nats error sit volup</span>
+              <div class="footer-socail">
+                <ul>
+                  <li><span><i class="fab fa-facebook text-primary"></i></span></li>
+                  <li><span><i class="fab fa-youtube text-info"></i></span></li>
+                  <li><span><i class="fab fa-instagram text-danger"></i></span></li>
+                  <li><span><i class="fab fa-linkedin text-success"></i></span></li>
+                </ul>
+              </div>
+            </div>
+            <div class="col-lg-2">
+              <div class="list-check">
+                <div class="list-heading">
+                  <h3>Quick Links</h3>
+                  <div class="list-items">
+                    <ul>
+                      <li><span><i class="fas fa-chevron-right"></i>Our services</span></li>
+                      <li><span><i class="fas fa-chevron-right"></i>Casestudy</span></li>
+                      <li><span><i class="fas fa-chevron-right"></i>Team member</span></li>
+                      <li><span><i class="fas fa-chevron-right"></i>Latest news</span></li>
+                      <li><span><i class="fas fa-chevron-right"></i>Digital marketing</span></li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-2">
+              <div class="list-check">
+                <div class="list-heading">
+                  <h3>Community</h3>
+                  <div class="list-items">
+                    <ul>
+                      <li><span><i class="fas fa-chevron-right"></i>Join our team</span></li>
+                      <li><span><i class="fas fa-chevron-right"></i>Saas solutions</span></li>
+                      <li><span><i class="fas fa-chevron-right"></i>Annual conference</span></li>
+                      <li><span><i class="fas fa-chevron-right"></i>Download software</span></li>
+                      <li><span><i class="fas fa-chevron-right"></i>FAQ</span></li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-2">
+              <div class="list-check">
+                <div class="list-heading">
+                  <h3>Company</h3>
+                  <div class="list-items">
+                    <ul>
+                      <li><span><i class="fas fa-chevron-right"></i>Company history</span></li>
+                      <li><span><i class="fas fa-chevron-right"></i>Build a career</span></li>
+                      <li><span><i class="fas fa-chevron-right"></i>Awards winning</span></li>
+                      <li><span><i class="fas fa-chevron-right"></i>Seeting & privacy</span></li>
+                      <li><span><i class="fas fa-chevron-right"></i>Company golas</span></li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-3">
+              <div class="row">
+                <div class="myself">
+                  <h4>Instagram</h4>
+                </div>
+                <div class="col-lg-4">
+                  <div class="my-self-pic">
+                    <img src="https://i.ibb.co/TMd7K88/insta-01.jpg" alt="">
+                    <span><i class="fab fa-instagram"></i></span>
+                  </div>
+                </div>
+                <div class="col-lg-4">
+                  <div class="my-self-pic">
+                    <img src="https://i.ibb.co/nMB3f03/insta-02.jpg" alt="">
+                    <span><i class="fab fa-instagram"></i></span>
+                  </div>
+                </div>
+                <div class="col-lg-4">
+                  <div class="my-self-pic">
+                    <img src="https://i.ibb.co/0DvvvpW/insta-03.jpg" alt="">
+                    <span><i class="fab fa-instagram"></i></span>
+                  </div>
+                </div>
+                <div class="col-lg-4">
+                  <div class="my-self-pic">
+                    <img src="https://i.ibb.co/zn47tJD/insta-04.jpg" alt="">
+                    <span><i class="fab fa-instagram"></i></span>
+                  </div>
+                </div>
+                <div class="col-lg-4">
+                  <div class="my-self-pic">
+                    <img src="https://i.ibb.co/Nn10rcF/insta-05.jpg" alt="">
+                    <span><i class="fab fa-instagram "></i></span>
+                  </div>
+                </div>
+                <div class="col-lg-4">
+                  <div class="my-self-pic">
+                    <img src="https://i.ibb.co/wcz9hfR/insta-06.jpg" alt="">
+                    <span><i class="fab fa-instagram"></i></span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <div class="row">
+            <div class="col-lg-12">
+              <div class="footer-end text-center">
+                <p>&copy;2021 all right reserved by tariqul islam</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Optional JavaScript; choose one of the two! -->
+
+    <!-- Option 1: Bootstrap Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js" integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous"></script>
+
+    <!-- Option 2: Separate Popper and Bootstrap JS -->
+    <!--
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.6.0/dist/umd/popper.min.js" integrity="sha384-KsvD1yqQ1/1+IA7gi3P0tyJcT3vR+NdBTt13hSJ2lnve8agRGXTTyNaBYmCR/Nwi" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.min.js" integrity="sha384-nsg8ua9HAw1y0W1btsyWgBklPnCUAFLuTMS2G72MMONqmOymq585AcH49TLBQObG" crossorigin="anonymous"></script>
+    -->
+  </body>
+</html>
+
+<!-- .btn, button, .btn:hover, .btn:focus, button:hover,button:focus{
+  outline: none !important;
+} -->
