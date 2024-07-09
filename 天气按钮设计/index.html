@@ -1,0 +1,634 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style lang="scss">
+    * {
+	border: 0;
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+}
+:root {
+	--hue: 223;
+	--bg: hsl(var(--hue),90%,90%);
+	--fg: hsl(var(--hue),90%,10%);
+	--primary: hsl(var(--hue),90%,50%);
+	--anim-dur: 0.4s;
+	--trans-dur: 0.3s;
+	--ease-in-out: cubic-bezier(0.67,0,0.33,1);
+	--ease-out: cubic-bezier(0.33,1,0.67,1);
+	font-size: calc(14px + (30 - 14) * (100vw - 280px) / (3840 - 280));
+}
+body,
+button {
+	color: var(--fg);
+	font: 1em/1.5 -apple-system, BlinkMacSystemFont, "Helvetica Neue", Helvetica, sans-serif;
+}
+body {
+	background: url("https://assets.codepen.io/416221/beach_landscape.jpg") center / cover, var(--bg);
+	height: 100vh;
+}
+main {
+	$mainBlur: 8px;
+	backdrop-filter: blur($mainBlur);
+	-webkit-backdrop-filter: blur($mainBlur);
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	gap: 0.75em;
+	padding: 1.5em 0;
+	width: 100%;
+	height: min-content;
+	min-height: 100%;
+}
+.widget {
+	$widgetBlur: 16px;
+	background-color: hsla(var(--hue),90%,10%,0.35);
+	backdrop-filter: blur($widgetBlur);
+	-webkit-backdrop-filter: blur($widgetBlur);
+	border-radius: 1.75em;
+	color: hsl(0,0%,100%);
+	flex-shrink: 0;
+	position: relative;
+	width: 18em;
+	min-height: 4.5em;
+
+	&__btn,
+	&__details {
+		padding: 1em;
+		padding-inline-start: 1.25em;
+	}
+	&__btn {
+		background-color: hsla(var(--hue),90%,10%,0);
+		border-radius: 1.75em;
+		box-shadow: 0 0 0 0.125em hsla(var(--hue),90%,90%,0) inset;
+		color: currentColor;
+		cursor: pointer;
+		display: flex;
+		align-items: center;
+		outline: transparent;
+		position: relative;
+		width: 100%;
+		transition:
+			background-color var(--trans-dur) var(--ease-in-out),
+			box-shadow calc(var(--trans-dur) / 2) var(--ease-in-out);
+		-webkit-tap-highlight-color: transparent;
+
+		&:focus-visible {
+			box-shadow: 0 0 0 0.125em hsla(var(--hue),90%,90%,1) inset;
+		}
+		&:hover {
+			background-color: hsla(var(--hue),90%,10%,0.1);
+		}
+		&::marker,
+		&::-webkit-details-marker {
+			display: none;
+		}
+	}
+	&__bull {
+		margin: 0 0.5em;
+	}
+	&__detail {
+		display: block;
+
+		&-icon {
+			display: block;
+			width: 1em;
+			height: 1em;
+		}
+		&-name {
+			font-size: 0.75em;
+			opacity: 0.8;
+		}
+		&-value {
+			display: flex;
+			align-items: center;
+			gap: 0.5em;
+		}
+	}
+	&__details {
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+		grid-gap: 1em;
+		padding-inline-end: 6em;
+		position: relative;
+	}
+	&__temp {
+		font-size: 3em;
+		line-height: 1;
+
+		sup {
+			display: inline-block;
+			font-size: 0.833rem;
+			line-height: 1;
+			transform: translateY(-66.7%);
+		}
+		[dir="rtl"] & {
+			right: auto;
+			left: 1rem;
+		}
+	}
+	&__top,
+	&__weather {
+		display: flex;
+	}
+	&__top {
+		flex: 1;
+		flex-direction: column;
+		margin-inline-end: 0.5em;
+	}
+	&__weather {
+		font-size: 0.75em;
+		line-height: 1;
+		opacity: 0.8;
+		text-transform: capitalize;
+
+		&-symbol {
+			display: block;
+			margin-bottom: 1em;
+			pointer-events: none;
+			position: absolute;
+			right: 1rem;
+			bottom: 100%;
+			width: 3em;
+			height: 3em;
+
+			[dir="rtl"] & {
+				right: auto;
+				left: 1rem;
+			}
+		}
+	}
+	&[open] &__btn {
+		border-radius: 1.75em 1.75em 0 0;
+	}
+	&.collapsing,
+	&.expanding {
+		overflow: hidden;
+	}
+	&.collapsing &__temp {
+		animation: widget-slide-up var(--anim-dur) var(--ease-out);
+	}
+	&.collapsing &__detail,
+	&.collapsing &__weather-symbol {
+		animation: widget-fade-out var(--anim-dur) var(--ease-out);
+	}
+	&[open] &__temp {
+		transform: translateY(9rem);
+	}
+	&.expanding &__temp {
+		animation: widget-slide-down var(--anim-dur) var(--ease-out);
+	}
+	&.expanding &__detail,
+	&.expanding &__weather-symbol {
+		animation: widget-fade-slide-in var(--anim-dur) var(--ease-out);
+	}
+	&.expanding &__detail {
+		@for $d from 2 through 4 {
+			&:nth-of-type(#{$d}) {
+				animation-delay: calc(var(--anim-dur) * #{(0.1 * ($d - 1))});
+			}
+		}
+	}
+}
+/* Animations */
+@keyframes widget-fade-out {
+	from {
+		opacity: 1;
+	}
+	to {
+		opacity: 0;
+	}
+}
+@keyframes widget-fade-slide-in {
+	from,
+	50% {
+		opacity: 0;
+		transform: translateY(50%);
+	}
+	to {
+		opacity: 1;
+		transform: translateY(0);
+	}
+}
+@keyframes widget-slide-down {
+	from {
+		transform: translateY(0);
+	}
+	to {
+		transform: translateY(9rem);
+	}
+}
+@keyframes widget-slide-up {
+	from {
+		transform: translateY(9rem);
+	}
+	to {
+		transform: translateY(0);
+	}
+}
+  </style>
+</head>
+<body>
+  <svg display="none">
+    <symbol id="wind" viewBox="0 0 16 16">
+      <g fill="none" stroke="hsl(0,0%,100%)" stroke-linecap="round" stroke-width="2">
+        <polyline points="2 3,10 3" />
+        <polyline points="6 8,14 8" />
+        <polyline points="2 13,10 13" />
+      </g>
+    </symbol>
+    <symbol id="visibility" viewBox="0 0 16 16">
+      <g fill="none" stroke="hsl(0,0%,100%)" stroke-width="2">
+        <ellipse cx="8" cy="8" rx="7" ry="4" />
+        <circle cx="8" cy="8" r="2" />
+      </g>
+    </symbol>
+    <symbol id="air-quality" viewBox="0 0 16 16">
+      <g fill="hsl(0,0%,100%)">
+        <circle cx="4" cy="11" r="2" />
+        <circle cx="8" cy="5" r="2" />
+        <circle cx="12" cy="11" r="2" />
+      </g>
+    </symbol>
+    <symbol id="humidity" viewBox="0 0 16 16">
+      <g fill="none" stroke="hsl(0,0%,100%)" stroke-linecap="round" stroke-linejoin="round" stroke-width="2">
+        <path d="M 1 3 C 6 7, 10 0, 15 4" transform="translate(0,-1)" />
+        <path d="M 1 3 C 6 7, 10 0, 15 4" transform="translate(0,3)" />
+        <path d="M 1 3 C 3 5, 6 4, 8 3" transform="translate(0,7)" />
+        <path d="M 4 1 C -3 8, 11 8, 4 1" transform="translate(8,8)" />
+      </g>
+    </symbol>
+    <symbol id="sunny" viewBox="0 0 48 48">
+      <g stroke="hsl(53,90%,50%)" stroke-linecap="round" stroke-width="4">
+        <polyline points="24 24,24 21" transform="rotate(0,24,24) translate(0,-18)" />
+        <polyline points="24 24,24 21" transform="rotate(45,24,24) translate(0,-18)" />
+        <polyline points="24 24,24 21" transform="rotate(90,24,24) translate(0,-18)" />
+        <polyline points="24 24,24 21" transform="rotate(135,24,24) translate(0,-18)" />
+        <polyline points="24 24,24 21" transform="rotate(180,24,24) translate(0,-18)" />
+        <polyline points="24 24,24 21" transform="rotate(225,24,24) translate(0,-18)" />
+        <polyline points="24 24,24 21" transform="rotate(270,24,24) translate(0,-18)" />
+        <polyline points="24 24,24 21" transform="rotate(315,24,24) translate(0,-18)" />
+      </g>
+      <circle cx="24" cy="24" r="12" fill="hsl(53,90%,50%)" />
+    </symbol>
+    <symbol id="cloudy" viewBox="0 0 48 48">
+      <g fill="hsl(0,0%,100%)" transform="translate(0,6)">
+        <rect x="0" y="12" width="48" height="20" rx="10" ry="10" />
+        <circle cx="28" cy="14" r="14" />
+        <circle cx="14" cy="10" r="6" />
+      </g>
+    </symbol>
+  </svg>
+  <main>
+    <details id="widget1" class="widget" open>
+      <summary class="widget__btn">
+        <span class="widget__top">
+          <span data-stat="city">-</span>
+          <small class="widget__weather">
+            <span data-stat="kind">-</span>
+            <span class="widget__bull">&bull;</span>
+            <time data-stat="time">-</time>
+          </small>
+        </span>
+        <div class="widget__temp">
+          <span data-stat="temperature">-</span><sup>&deg;<span data-stat="temperature_scale">-</span></sup>
+        </div>
+      </summary>
+      <div class="widget__details">
+        <svg class="widget__weather-symbol" width="16px" height="16px" aria-hidden="true">
+          <use href="#" data-symbol />
+        </svg>
+        <span class="widget__detail">
+          <small class="widget__detail-name">Wind</small>
+          <br>
+          <span class="widget__detail-value">
+            <svg class="widget__detail-icon" width="16px" height="16px" aria-hidden="true">
+              <use href="#wind" />
+            </svg>
+            <span data-stat="wind">-</span>
+          </span>
+        </span>
+        <span class="widget__detail">
+          <small class="widget__detail-name">Visibility</small>
+          <br>
+          <span class="widget__detail-value">
+            <svg class="widget__detail-icon" width="16px" height="16px" aria-hidden="true">
+              <use href="#visibility" />
+            </svg>
+            <span data-stat="visibility">-</span>
+          </span>
+        </span>
+        <span class="widget__detail">
+          <small class="widget__detail-name">Air Quality</small>
+          <br>
+          <span class="widget__detail-value">
+            <svg class="widget__detail-icon" width="16px" height="16px" aria-hidden="true">
+              <use href="#air-quality" />
+            </svg>
+            <span data-stat="air_quality">-</span>
+          </span>
+        </span>
+        <span class="widget__detail">
+          <small class="widget__detail-name">Humidity</small>
+          <br>
+          <span class="widget__detail-value">
+            <svg class="widget__detail-icon" width="16px" height="16px" aria-hidden="true">
+              <use href="#humidity" />
+            </svg>
+            <span data-stat="humidity">-</span>
+          </span>
+        </span>
+      </div>
+    </details>
+    <details id="widget2" class="widget">
+      <summary class="widget__btn">
+        <span class="widget__top">
+          <span data-stat="city">-</span>
+          <small class="widget__weather">
+            <span data-stat="kind">-</span>
+            <span class="widget__bull">&bull;</span>
+            <time data-stat="time">-</time>
+          </small>
+        </span>
+        <div class="widget__temp">
+          <span data-stat="temperature">-</span><sup>&deg;<span data-stat="temperature_scale">-</span></sup>
+        </div>
+      </summary>
+      <div class="widget__details">
+        <svg class="widget__weather-symbol" width="16px" height="16px" aria-hidden="true">
+          <use href="#" data-symbol />
+        </svg>
+        <span class="widget__detail">
+          <small class="widget__detail-name">Wind</small>
+          <br>
+          <span class="widget__detail-value">
+            <svg class="widget__detail-icon" width="16px" height="16px" aria-hidden="true">
+              <use href="#wind" />
+            </svg>
+            <span data-stat="wind">-</span>
+          </span>
+        </span>
+        <span class="widget__detail">
+          <small class="widget__detail-name">Visibility</small>
+          <br>
+          <span class="widget__detail-value">
+            <svg class="widget__detail-icon" width="16px" height="16px" aria-hidden="true">
+              <use href="#visibility" />
+            </svg>
+            <span data-stat="visibility">-</span>
+          </span>
+        </span>
+        <span class="widget__detail">
+          <small class="widget__detail-name">Air Quality</small>
+          <br>
+          <span class="widget__detail-value">
+            <svg class="widget__detail-icon" width="16px" height="16px" aria-hidden="true">
+              <use href="#air-quality" />
+            </svg>
+            <span data-stat="air_quality">-</span>
+          </span>
+        </span>
+        <span class="widget__detail">
+          <small class="widget__detail-name">Humidity</small>
+          <br>
+          <span class="widget__detail-value">
+            <svg class="widget__detail-icon" width="16px" height="16px" aria-hidden="true">
+              <use href="#humidity" />
+            </svg>
+            <span data-stat="humidity">-</span>
+          </span>
+        </span>
+      </div>
+    </details>
+
+  </main>
+  <script>
+    window.addEventListener("DOMContentLoaded",() => {
+	const widget1 = new WeatherWidget("#widget1", {
+		city: "Harrisburg",
+		kind: "sunny",
+		time: new Date(2024,5,21,11,15),
+		temperature: 88,
+		temperature_scale: "F",
+		wind: 5,
+		wind_unit: "mph",
+		visibility: 22,
+		visibility_unit: "mi",
+		air_quality: 54,
+		humidity: 59
+	});
+	const widget2 = new WeatherWidget("#widget2", {
+		city: "Seattle",
+		kind: "cloudy",
+		time: new Date(2024,5,21,8,15),
+		temperature: 70,
+		temperature_scale: "F",
+		wind: 6,
+		wind_unit: "mph",
+		visibility: 23,
+		visibility_unit: "mi",
+		air_quality: 41,
+		humidity: 47
+	});
+});
+
+class WeatherWidget {
+	/** `<details>` used for this widget */
+	el: HTMLDetailsElement | null;
+	/** `<summary>` of the `<details>` */
+	summary: HTMLElement | null | undefined;
+	/** Content element succeeding the `<summary>` */
+	content: HTMLElement | null | undefined;
+	/** Element is collapsing */
+	isCollapsing = false;
+	/** Element is expanding */
+	isExpanding = false;
+	/** Animation object */
+	animation?: Animation | null;
+	/** Animation duration and easing */
+	animParams: AnimParams = {
+		duration: 400,
+		easing: "cubic-bezier(0.33,1,0.67,1)"
+	};
+	/** Actions to run after expanding the item. */
+	animActionsExpand: AnimActions = {
+		onfinish: this.onAnimationFinish.bind(this,true),
+		oncancel: () => { this.isExpanding = false; }
+	};
+	/** Actions to run after collapsing the item. */
+	animActionsCollapse: AnimActions = {
+		onfinish: this.onAnimationFinish.bind(this,false),
+		oncancel: () => { this.isCollapsing = false; }
+	};
+	/** This widget is expanded to show weather details. */
+	detailsOpen = true;
+	/** Weather data used by this widget */
+	weather?: Weather;
+	/** Language used for time formatting */
+	lang = "en-US";
+	/**
+	 * @param el CSS selector the widget
+	 * @param data Weather data
+	 */
+	constructor(el: string, data?: Weather) {
+		this.el = document.querySelector(el);
+		this.weather = data;
+		this.displayWeather();
+		this.summary = this.el?.querySelector("summary");
+		this.summary?.addEventListener("click", this.toggle.bind(this));
+		this.content = this.summary?.nextElementSibling as HTMLElement;
+	}
+	/** Display the weather data in the UI. */
+	displayWeather(): void {
+		if (!this.weather) return;
+
+		const weatherProps = Object.keys(this.weather).filter(key => key.indexOf("_unit") < 0);
+
+		weatherProps.forEach(prop => {
+			const propEl = this.el?.querySelector(`[data-stat=${prop}]`) as HTMLElement;
+			
+			if (!propEl) return;
+
+			let value = this.weather?.[prop as WeatherKey];
+			let unit = "";
+
+			if (prop == "kind") {
+				// SVG symbol for the kind of weather
+				const kindSymbol = this.el?.querySelector("[data-symbol]");
+				kindSymbol?.setAttribute("href",`#${value}`);
+
+			} else if (prop === "time") {
+				// `datetime` attribute
+				const valueAsDate = value as Date;
+				const hourRaw = valueAsDate.getHours();
+				let hour = hourRaw < 10 ? `0${hourRaw}` : `${hourRaw}`;
+				const minute = `${valueAsDate.getMinutes()}`;
+
+				propEl.setAttribute("datetime",`${hour}:${minute}`);
+				// display the hour and minute
+				const format = new Intl.DateTimeFormat(this.lang, {
+					hour: "numeric",
+					minute: "2-digit",
+				});
+				value = format.format(value as Date);
+
+			} else if (prop === "wind") {
+				unit = "mph";
+			} else if (prop === "visibility") {
+				unit = "mi";
+			}
+			if (unit !== "") {
+				// attach the unit if applicable
+				value += ` ${unit}`;
+			}
+			propEl.innerText = `${value}`;
+		});
+	}
+	/**
+	 * Open or close the widget.
+	 * @param e Click event whose default behavior should be prevented
+	 */
+	toggle(e?: Event) {
+		e?.preventDefault();
+		this.el?.classList.remove("collapsing","expanding");
+
+		if (this.isCollapsing || !this.el?.open) {
+			this.open();
+		} else if (this.isExpanding || this.el?.open) {
+			this.collapse();
+		}
+	}
+	/** Open the item and run the animation for expanding. */
+	open(): void {
+		if (this.el) {
+			this.el.style.height = `${this.el.offsetHeight}px`;
+			this.el.open = true;
+
+			this.expand();
+		}
+	}
+	/** Expansion animation */
+	expand(): void {
+		this.el?.classList.add("expanding");
+		this.isExpanding = true;
+
+		const startHeight = this.el?.offsetHeight || 0;
+		const summaryHeight = this.summary?.offsetHeight || 0;
+		const contentHeight = this.content?.offsetHeight || 0;
+		const endHeight = summaryHeight + contentHeight;
+		
+		this.animation?.cancel();
+		this.animation = this.el?.animate(
+			{ height: [`${startHeight}px`, `${endHeight}px`] },
+			this.animParams
+		);
+		if (this.animation) {
+			this.animation.onfinish = this.animActionsExpand.onfinish;
+			this.animation.oncancel = this.animActionsExpand.oncancel;
+		}
+	}
+	/** Close the item and run the animation for collapsing. */
+	collapse(): void {
+		this.el?.classList.add("collapsing");
+		this.isCollapsing = true;
+
+		const startHeight = this.el?.offsetHeight || 0;
+		const endHeight = this.summary?.offsetHeight || 0;
+
+		this.animation?.cancel();
+		this.animation = this.el?.animate(
+			{ height: [`${startHeight}px`, `${endHeight}px`] },
+			this.animParams
+		);
+		if (this.animation) {
+			this.animation.onfinish = this.animActionsCollapse.onfinish;
+			this.animation.oncancel = this.animActionsCollapse.oncancel;
+		}
+	}
+	/** Actions to run when the animation is finished */
+	onAnimationFinish(open: boolean): void {
+		if (this.el) {
+			this.el.open = open;
+
+			if (this.animation) {
+				this.animation = null;
+			}
+			this.isCollapsing = false;
+			this.isExpanding = false;
+			this.el.style.height = "";
+			this.el.classList.remove("collapsing","expanding");
+		}
+	}
+}
+
+interface Weather {
+	city: string,
+	kind: string,
+	time: Date,
+	temperature: number,
+	temperature_scale: string,
+	wind: number,
+	wind_unit: string,
+	visibility: number,
+	visibility_unit: string,
+	air_quality: number,
+	humidity: number
+}
+type WeatherKey = keyof Weather;
+
+type AnimActions = {
+	onfinish: () => void,
+	oncancel: () => void
+}
+type AnimParams = {
+	duration: number,
+	easing: string
+}
+  </script>
+</body>
+</html>
