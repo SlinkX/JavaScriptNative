@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    * {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  align-items: center;
+  display: flex;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica,
+    Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  font-size: 15px;
+  justify-content: center;
+  height: 100vh;
+  overflow: hidden;
+  text-align: center;
+}
+
+main {
+  max-width: 600px;
+  width: 90vw;
+}
+
+main * + * {
+  margin-top: 1rem;
+}
+
+.gallery {
+  display: flex;
+  flex-direction: column;
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 400px;
+}
+
+.thumbnails {
+  display: flex;
+  gap: 2rem;
+  justify-content: center;
+}
+
+button {
+  background: none;
+  border: none;
+  display: block;
+  margin: 0;
+  padding: 0.25rem;
+}
+
+button.selected {
+  background: #ff87d4;
+}
+
+img {
+  display: block;
+}
+
+  </style>
+</head>
+<body>
+  <div id="app"></div>
+</body>
+</html>
+<script>
+  const photoArray = [
+  { publicId: "mediajams/tokyo", alt: "Jason on a train platform in Tokyo" },
+  {
+    publicId: "mediajams/react-india",
+    alt: "Jason talking to someone at React India"
+  },
+  { publicId: "mediajams/puppies", alt: "Jason holding two puppies" },
+  {
+    publicId: "mediajams/barcelona",
+    alt: "Jason walking along an alley in Barcelona"
+  }
+];
+
+function getImageUrl({ cloudName, publicId, transformations }) {
+  return `https://res.cloudinary.com/${cloudName}/image/upload/${transformations}/${publicId}.jpg`;
+}
+
+function Image({ cloudName, publicId, alt }) {
+  const imageSource = getImageUrl({
+    cloudName,
+    publicId,
+    transformations: "q_auto,f_auto,c_fill,g_face,w_400,ar_1"
+  });
+
+  return <img src={imageSource} alt={alt} />;
+}
+
+function Thumb({ cloudName, publicId, alt }) {
+  const imageSource = getImageUrl({
+    cloudName,
+    publicId,
+    transformations: "q_auto,f_auto,c_thumb,g_face,w_50,ar_1"
+  });
+
+  // add the full URL to a standard HTML5 video element
+  return <img src={imageSource} alt={alt} />;
+}
+
+// create an App component to display the overall page
+function App() {
+  const [selected, setSelected] = React.useState(photoArray[0]);
+
+  return (
+    <main>
+      <h1>Photo Gallery With Automatic Thumbnails Using React & Cloudinary</h1>
+      <div className="gallery">
+        <Image
+          cloudName="jlengstorf"
+          publicId={selected.publicId}
+          alt={selected.alt}
+        />
+        <nav className="thumbnails">
+          {photoArray.map((photo) => (
+            <button
+              onClick={() => setSelected(photo)}
+              className={selected.publicId === photo.publicId ? "selected" : ""}
+            >
+              <Thumb
+                cloudName="jlengstorf"
+                publicId={photo.publicId}
+                alt={photo.alt}
+              />
+            </button>
+          ))}
+        </nav>
+      </div>
+    </main>
+  );
+}
+
+// Add the React component to the page
+ReactDOM.render(<App />, document.querySelector("#app"));
+
+</script>
