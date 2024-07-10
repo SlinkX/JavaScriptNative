@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<style>
+  body {
+  display: flex;
+  gap: 1rem;
+/*   grid-template-columns: 1fr 300px; */
+}
+
+main,
+aside {
+  flex: 1;
+  container: layout / size;
+  height: 100vh;
+}
+
+main {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(2, minmax(200px, 1fr));
+    overflow-y: scroll;
+}
+
+aside {
+  background: lightblue;
+  max-width: 300px;
+}
+
+.card-wrapper {
+  container: component card / inline-size;
+}
+
+.card {
+  border: 1px solid lightgrey;
+  padding: .5rem;
+  
+  & img {
+    aspect-ratio: 1;
+    width: 100%;
+  }
+  
+  & h2 {
+    font-size: clamp(1.25rem, 1rem + 3cqw, 2.5rem);
+  }
+  
+  @container layout (min-width: 600px) {
+    background: red;
+  }
+  
+  @container card (min-width: 500px) {
+    display: grid;
+    gap: 1rem;
+    grid-template:
+       "image header" auto 
+       "image text" 1fr 
+       / minmax(150px, 300px) 1fr;
+    
+    & img {
+      grid-area: image;
+    }
+    
+    & :is(h2, p) {
+      margin: 0;
+    }
+  }
+}
+
+</style>
+<body>
+  <main>
+
+    <div class="card-wrapper">
+      <div class="card">
+        <img src="https://images.unsplash.com/photo-1589881133595-a3c085cb731d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=300&h=300&q=80" alt="" />
+        <h2>Truffaut thundercats hammock blog</h2>
+        <p>I'm baby twee copper mug tofu celiac portland stumptown, tousled godard blog. Art party gluten-free cupping, kombucha typewriter mukbang street art. VHS neutral milk hotel gorpcore banjo. Fixie vegan typewriter air plant edison bulb activated charcoal blackbird spyplane blue bottle bicycle rights.</p>
+      </div>
+    </div>
+  
+    <div class="card-wrapper">
+      <div class="card">
+        <img src="https://images.unsplash.com/photo-1589881133595-a3c085cb731d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=300&h=300&q=80" alt="" />
+        <h2>Truffaut thundercats hammock blog</h2>
+        <p>I'm baby twee copper mug tofu celiac portland stumptown, tousled godard blog. Art party gluten-free cupping, kombucha typewriter mukbang street art. VHS neutral milk hotel gorpcore banjo. Fixie vegan typewriter air plant edison bulb activated charcoal blackbird spyplane blue bottle bicycle rights.</p>
+      </div>
+    </div>
+  
+    <div class="card-wrapper">
+      <div class="card">
+        <img src="https://images.unsplash.com/photo-1589881133595-a3c085cb731d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=300&h=300&q=80" alt="" />
+        <h2>Truffaut thundercats hammock blog</h2>
+        <p>I'm baby twee copper mug tofu celiac portland stumptown, tousled godard blog. Art party gluten-free cupping, kombucha typewriter mukbang street art. VHS neutral milk hotel gorpcore banjo. Fixie vegan typewriter air plant edison bulb activated charcoal blackbird spyplane blue bottle bicycle rights.</p>
+      </div>
+    </div>
+  
+    <div class="card-wrapper">
+      <div class="card">
+        <img src="https://images.unsplash.com/photo-1589881133595-a3c085cb731d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=300&h=300&q=80" alt="" />
+        <h2>Truffaut thundercats hammock blog</h2>
+        <p>I'm baby twee copper mug tofu celiac portland stumptown, tousled godard blog. Art party gluten-free cupping, kombucha typewriter mukbang street art. VHS neutral milk hotel gorpcore banjo. Fixie vegan typewriter air plant edison bulb activated charcoal blackbird spyplane blue bottle bicycle rights.</p>
+      </div>
+    </div>
+  
+    <div class="card-wrapper">
+      <div class="card">
+        <img src="https://images.unsplash.com/photo-1589881133595-a3c085cb731d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=300&h=300&q=80" alt="" />
+        <h2>Truffaut thundercats hammock blog</h2>
+        <p>I'm baby twee copper mug tofu celiac portland stumptown, tousled godard blog. Art party gluten-free cupping, kombucha typewriter mukbang street art. VHS neutral milk hotel gorpcore banjo. Fixie vegan typewriter air plant edison bulb activated charcoal blackbird spyplane blue bottle bicycle rights.</p>
+      </div>
+    </div>
+  
+    <div class="card-wrapper">
+      <div class="card">
+        <img src="https://images.unsplash.com/photo-1589881133595-a3c085cb731d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=300&h=300&q=80" alt="" />
+        <h2>Truffaut thundercats hammock blog</h2>
+        <p>I'm baby twee copper mug tofu celiac portland stumptown, tousled godard blog. Art party gluten-free cupping, kombucha typewriter mukbang street art. VHS neutral milk hotel gorpcore banjo. Fixie vegan typewriter air plant edison bulb activated charcoal blackbird spyplane blue bottle bicycle rights.</p>
+      </div>
+    </div>
+  </main>
+  
+  <aside>
+  
+    <div class="card">
+      <img src="https://images.unsplash.com/photo-1589881133595-a3c085cb731d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=300&h=300&q=80" alt="" />
+      <h2>Truffaut thundercats hammock blog</h2>
+      <p>I'm baby twee copper mug tofu celiac portland stumptown, tousled godard blog. Art party gluten-free cupping, kombucha typewriter mukbang street art. VHS neutral milk hotel gorpcore banjo. Fixie vegan typewriter air plant edison bulb activated charcoal blackbird spyplane blue bottle bicycle rights.</p>
+    </div>
+  </aside>
+</body>
+</html>
