@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:ital,wght@0,400..900;1,400..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
+body{
+	font-size: 17px;
+	line-height: 30px;
+	font-weight: 400;
+	-moz-osx-font-smoothing: grayscale;
+	word-break: break-word;
+	-webkit-font-smoothing: antialiased;
+	font-family: "Schibsted Grotesk", sans-serif;
+	margin: 0;
+	overflow-x: hidden;
+	    background: #eee;
+}
+  /* Reset default margin and padding */
+  body, div {
+    margin: 0;
+    padding: 0;
+  }
+
+  /* Optional: Set box-sizing to border-box for all elements */
+  *, *::before, *::after {
+    box-sizing: border-box;
+  }
+*{
+	box-sizing: border-box;
+}
+section.creative-slider {
+    padding-top: 20px;
+    padding-bottom: 20px;
+    background: #eee;
+}
+.slider-heading {
+    text-align: center;
+    margin: 0;
+    padding: 0px 10px;
+    margin-bottom: 20px;
+}
+.slider-heading p{
+    margin-bottom: 0px;
+    color: #d51f0f;
+    font-weight: 700;
+    padding: 0px 0px;
+}
+.slider-heading h1{
+	    margin: 0px;
+    color: #383632;
+    font-weight: 700;
+    text-transform: uppercase;
+    line-height: normal;
+    margin-top: 0;
+    font-family: "Bebas Neue", sans-serif;
+    letter-spacing: 1px;
+    font-size: 46px;
+}
+.creative-slider .slider-row{
+    margin-left: -15vw;
+    margin-right: -15vw;
+    overflow: hidden;
+}
+.creative-slider .swiper {
+    width: 100%;
+    mask-image: linear-gradient(to right, transparent 0, #000 20%, #000 80%, transparent 100%);
+    -webkit-mask-image: linear-gradient(to right, transparent 0, #000 30%, #000 70%, transparent 100%);
+}
+
+.creative-slider .swiper-slide {
+	text-align: center;
+}
+.product-box .product-box--inner{
+	-webkitt-display:flex;
+	display: flex;
+    overflow: hidden;
+    border-radius: 6px;
+    -webkit-transition: all .5s cubic-bezier(.5,1,.89,1);
+    transition: all .5s cubic-bezier(.5,1,.89,1);
+    will-change: transform;
+}
+.product-box .product-box--inner img{
+	width: 100%;
+	-webkit-transition: all .5s cubic-bezier(.5,1,.89,1);
+    transition: all .5s cubic-bezier(.5,1,.89,1);
+    will-change: transform;
+}
+.product-box:hover img{
+	-webkit-transform: scale(1.1);
+    transform: scale(1.1);
+    -webkit-transition: all .5s cubic-bezier(61, 10, 88, 10);
+    transition: all .5s cubic-bezier(61, 10, 88, 10);
+}
+.product-box:hover .product-overlay{
+	opacity: 0.8;
+} 
+.product-box:hover .price-box{
+opacity: 1;
+margin-top: 0px;
+}
+.product-box--inner .product-overlay {
+    -webkit-transition: all .5s cubic-bezier(.5,1,.89,1);
+    transition: all .5s cubic-bezier(.61,1,.88,1);
+    z-index: 1;
+    background: #383632;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    opacity: 0;
+}
+.product-box--inner .price-box{
+    background: #fff;
+    z-index: 9;
+    height: 130px;
+    width: 130px;
+    color: #d51f0f;
+    line-height: normal;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    left: 50%;
+    top: 50%;
+    position: absolute;
+    -webkit-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    font-size: 24px;
+    line-height: 28px;
+    font-weight: bold;
+    text-transform: uppercase;
+    opacity: 0;
+    -webkit-box-shadow: 0 0 30px rgba(0, 0, 0, .08);
+    box-shadow: 0 0 30px rgba(0, 0, 0, .08);
+    -webkit-transition: all .5s cubic-bezier(.5,1,.89,1);
+    transition: all .5s cubic-bezier(.5,1,.89,1);
+    will-change: transform;
+    margin-top: 15px;
+}
+.product-details{
+	margin-top: 20px;
+}
+.product-details h2 {
+    margin-bottom: 0px;
+    margin-top: 0;
+    font-size: 24px;
+    font-style: normal;
+    letter-spacing: 0.5px;
+    line-height: normal;
+}
+.product-details span.tag-name{
+	    font-size: 14px;
+    font-weight: 500;
+    line-height: normal;
+    font-style: normal;
+    padding:0px 5px;
+}
+/* ======== Sticky Footer ========= */
+  .sticky-footer{
+       position: fixed;
+    width: 100%;
+        background: #333;
+    z-index: 999;
+    bottom: 0;
+  }
+.sticky-footer .footer-row{
+      display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 10px;
+    padding-right: 15px;
+}
+.creditd a {
+    color: #fff;
+    text-decoration: none;
+    font-weight: bold;
+        font-size: 16px;
+}
+.social ul{
+      display: flex;
+    list-style-type: none;
+    margin: 0;
+    padding: 0px;
+    column-gap: 10px;
+    align-items: center;
+}
+.social ul li a{
+     display: flex;
+    background: #fff;
+    height: 30px;
+    width: 30px;
+    border-radius: 4px;
+    align-items: center;
+    justify-content: center;
+}
+.social ul li a img{
+       max-width: 20px;
+}
+    </style>
+</head>
+<body>
+    <section class="creative-slider">
+		<div class="slider-inner">
+			<div class="slider-heading">
+				<p>Swiper Slider</p>
+				<h1>Creative Slider For Products</h1>
+			</div>
+			<div class="slider-row">				
+				<div class="swiper creativeSwiper magic-cursor">
+					<div class="swiper-wrapper">
+						<div class="swiper-slide">
+							<div class="product-box">
+								<div class="product-box--inner">
+									<img src="https://imgpanda.com/upload/ib/5DfZw3yMIQ.jpg" alt="Chicken breast burger">
+									<div class="product-overlay"></div>
+									<span class="price-box">Just $35.00</span>
+								</div>							
+								<div class="product-details">
+									<h2>Chicken breast burger</h2>
+									<div class="product-tags">
+										<span class="tag-name">Chicken Burger</span>
+										<span class="tag-div">◍</span>
+										<span class="tag-name">Fast Food</span>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="swiper-slide">
+							<div class="product-box">
+								<div class="product-box--inner">
+									<img src="https://imgpanda.com/upload/ib/y8kpt4pdBk.jpg" alt="Boiled Rice With Chicken">
+									<div class="product-overlay"></div>
+									<span class="price-box">Just $25.00</span>
+								</div>							
+								<div class="product-details">
+									<h2> Boiled Rice With Chicken</h2>
+									<div class="product-tags">
+										<span class="tag-name">Boiled Rice</span>
+										<span class="tag-div">◍</span>
+										<span class="tag-name">Fast Food</span>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="swiper-slide">
+							<div class="swiper-slide">
+								<div class="product-box">
+									<div class="product-box--inner">
+										<img src="https://imgpanda.com/upload/ib/m2bG9yWFQ2.jpg" alt="Medium Spicy Chips">
+										<div class="product-overlay"></div>
+										<span class="price-box">Just $35.00</span>
+									</div>
+									<div class="product-details">
+									<h2>Medium Spicy Chips</h2>
+									<div class="product-tags">
+										<span class="tag-name">Chips</span>
+										<span class="tag-div">◍</span>
+										<span class="tag-name">Fast Food</span>
+									</div>
+								</div>
+								</div>
+							</div>
+						</div>
+						<div class="swiper-slide">
+							<div class="swiper-slide">
+								<div class="product-box">
+									<div class="product-box--inner">
+										<img src="https://imgpanda.com/upload/ib/UtabpFwXuW.jpg" alt="Appeteaser blatter">
+										<div class="product-overlay"></div>
+										<span class="price-box">Just $35.00</span>
+									</div>
+									<div class="product-details">
+									<h2>Appeteaser blatter</h2>
+									<div class="product-tags">
+										<span class="tag-name">Appeteaser</span>
+										<span class="tag-div">◍</span>
+										<span class="tag-name">Fast Food</span>
+									</div>
+								</div>
+								</div>
+							</div>
+						</div>
+						<div class="swiper-slide">
+							<div class="swiper-slide">
+								<div class="product-box">
+									<div class="product-box--inner">
+										<img src="https://imgpanda.com/upload/ib/e1Sw5DfCqQ.jpg" alt="Appeteaser blatter">
+										<div class="product-overlay"></div>
+										<span class="price-box">Just $35.00</span>
+									</div>
+									<div class="product-details">
+									<h2>Appeteaser blatter</h2>
+									<div class="product-tags">
+										<span class="tag-name">Appeteaser</span>
+										<span class="tag-div">◍</span>
+										<span class="tag-name">Fast Food</span>
+									</div>
+								</div>
+								</div>
+							</div>
+						</div>
+						<div class="swiper-slide">
+							<div class="product-box">
+								<div class="product-box--inner">
+									<img src="https://imgpanda.com/upload/ib/5DfZw3yMIQ.jpg" alt="Chicken breast burger">
+									<div class="product-overlay"></div>
+									<span class="price-box">Just $35.00</span>
+								</div>							
+								<div class="product-details">
+									<h2>Chicken breast burger</h2>
+									<div class="product-tags">
+										<span class="tag-name">Chicken Burger</span>
+										<span class="tag-div">◍</span>
+										<span class="tag-name">Fast Food</span>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="swiper-slide">
+							<div class="product-box">
+								<div class="product-box--inner">
+									<img src="https://imgpanda.com/upload/ib/y8kpt4pdBk.jpg" alt="Boiled Rice With Chicken">
+									<div class="product-overlay"></div>
+									<span class="price-box">Just $25.00</span>
+								</div>							
+								<div class="product-details">
+									<h2> Boiled Rice With Chicken</h2>
+									<div class="product-tags">
+										<span class="tag-name">Boiled Rice</span>
+										<span class="tag-div">◍</span>
+										<span class="tag-name">Fast Food</span>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="swiper-slide">
+							<div class="swiper-slide">
+								<div class="product-box">
+									<div class="product-box--inner">
+										<img src="https://imgpanda.com/upload/ib/m2bG9yWFQ2.jpg" alt="Medium Spicy Chips">
+										<div class="product-overlay"></div>
+										<span class="price-box">Just $35.00</span>
+									</div>
+									<div class="product-details">
+									<h2>Medium Spicy Chips</h2>
+									<div class="product-tags">
+										<span class="tag-name">Chips</span>
+										<span class="tag-div">◍</span>
+										<span class="tag-name">Fast Food</span>
+									</div>
+								</div>
+								</div>
+							</div>
+						</div>
+						<div class="swiper-slide">
+							<div class="swiper-slide">
+								<div class="product-box">
+									<div class="product-box--inner">
+										<img src="https://imgpanda.com/upload/ib/UtabpFwXuW.jpg" alt="Appeteaser blatter">
+										<div class="product-overlay"></div>
+										<span class="price-box">Just $35.00</span>
+									</div>
+									<div class="product-details">
+									<h2>Appeteaser blatter</h2>
+									<div class="product-tags">
+										<span class="tag-name">Appeteaser</span>
+										<span class="tag-div">◍</span>
+										<span class="tag-name">Fast Food</span>
+									</div>
+								</div>
+								</div>
+							</div>
+						</div>
+						<div class="swiper-slide">
+							<div class="swiper-slide">
+								<div class="product-box">
+									<div class="product-box--inner">
+										<img src="https://imgpanda.com/upload/ib/e1Sw5DfCqQ.jpg" alt="Appeteaser blatter">
+										<div class="product-overlay"></div>
+										<span class="price-box">Just $35.00</span>
+									</div>
+									<div class="product-details">
+									<h2>Appeteaser blatter</h2>
+									<div class="product-tags">
+										<span class="tag-name">Appeteaser</span>
+										<span class="tag-div">◍</span>
+										<span class="tag-name">Fast Food</span>
+									</div>
+								</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+<!-- Stick Footer -->
+<footer class="sticky-footer">
+  <div class="container">
+  <div class="footer-row">
+    <div class="creditd"><a href="https://www.fiverr.com/creativesalahu/customize-or-fix-your-wordpress-website-errors-and-bugs" title="Contact on Fiverr">Want to integrate this design into a WordPress website?</a></div>
+  <div class="social">
+    <ul>
+      <li>
+        <a href="https://www.fiverr.com/aliali44" title="Fiverr"><img src="https://img.icons8.com/?size=100&id=ngc6JsBomclm&format=png&color=000000" alt="Contact on Fiverr"></a></li>
+      <li>
+    <a href="https://www.upwork.com/freelancers/~018d2497192b640611" title="Upwork">
+      <img src="https://img.icons8.com/?size=100&id=whwDjQbvJcmB&format=png&color=000000" alt="Contact on Upwork">
+    </a>
+    </li>
+      <li><a href="https://www.linkedin.com/in/salahudeen-447a961b1/" title="LinkedIn"><img src="https://img.icons8.com/?size=100&id=xuvGCOXi8Wyg&format=png&color=000000" alt="Contact on LinkedIn"></a></li>
+    </ul>
+  </div>
+  </div>
+    </div>
+</footer>
+</body>
+
+<script>
+    $(document).ready(function() {
+  var swiper = new Swiper(".creativeSwiper", {
+      watchSlidesProgress: true,
+      slidesPerView: 5,
+      slidesPerView: 1,
+      spaceBetween: 30,
+      loop: true,
+      autoplay: {
+        delay: 2500,
+        disableOnInteraction: false
+      },
+       pagination: {
+        el: '.slider-four-slide-pagination-1',
+        clickable: true
+      },
+      keyboard: {
+        enabled: true,
+        onlyInViewport: true
+      },
+      breakpoints: {
+        1200: {
+          slidesPerView: 5
+        },
+        992: {
+          slidesPerView: 3
+        },
+        768: {
+          slidesPerView: 3
+        },
+        576: {
+          slidesPerView: 2
+        }
+      },
+      effect: 'slide'
+    });
+});
+</script>
+</html>
