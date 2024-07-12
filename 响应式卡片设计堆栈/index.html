@@ -1,0 +1,655 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    body {
+  padding: 0 12px;
+  font-family: Poppins;
+}
+
+.hr-line {
+  border-top: 1px solid transparent;
+  background: linear-gradient(white, white) padding-box,
+    linear-gradient(90deg, White, DimGrey, White) border-box;
+}
+
+/* CSS and JS-based Card Stack */
+
+.stack-container {
+  width: clamp(280px, 100%, 520px);
+  margin: 0 auto;
+}
+
+.stack {
+  width: 100%;
+  border-radius: 25px;
+  outline: 8px solid Black;
+  background: radial-gradient(#575757, black);
+  z-index: 1;
+}
+
+.card {
+  width: 100%;
+  padding: 20px;
+  z-index: 2;
+  color: WhiteSmoke;
+  border-radius: 25px;
+  outline: 8px solid Black;
+  background: radial-gradient(#575757, black);
+}
+
+.profile {
+  width: 65px;
+  height: 65px;
+  border-radius: 50%;
+}
+
+.card-1 {
+  border: 2px solid HotPink;
+}
+
+.card-2 {
+  border: 2px solid Orange;
+}
+
+.card-3 {
+  border: 2px solid DodgerBlue;
+}
+
+.hotpink {
+  color: Hotpink;
+  border-color: HotPink;
+}
+
+.orange {
+  color: Orange;
+  border-color: Orange;
+}
+
+.blue {
+  color: DodgerBlue;
+  border-color: DidgerBlue;
+}
+
+.badge {
+  padding: 6px 20px 6px 20px;
+}
+
+hr {
+  border-width: 3px;
+}
+
+.thin {
+  font-weight: 200 !important;
+  background-color: transparent;
+  border-width: 1px;
+  border-style: solid;
+}
+
+.tabs {
+  position: relative;
+  padding-top: 20px;
+  left: -25px;
+  flex-direction: column;
+}
+
+.tab-button {
+  position: relative;
+  width: 60px;
+  height: 40px;
+  left: 0;
+  top: 0;
+  border: 0px solid DimGrey;
+  border-radius: 0px 20px 20px 0px;
+  transition: all 0.3s ease;
+}
+
+.tabs .tab-button:nth-child(1) {
+  background-color: HotPink;
+  box-shadow: 0px -4px 8px #e60073 inset;
+}
+
+.tabs .tab-button:nth-child(2) {
+  background-color: Orange;
+  box-shadow: 0px -4px 8px #995400 inset;
+}
+
+.tabs .tab-button:nth-child(3) {
+  background-color: DodgerBlue;
+  box-shadow: 0px -4px 8px #0059b3 inset;
+}
+
+.visible {
+  display: block;
+}
+
+.hidden {
+  display: none;
+}
+
+.fade-effect {
+  animation: fade 0.4s ease-in;
+}
+
+.x-offset {
+  left: 20px;
+  box-shadow: none !important;
+}
+
+.y-offset {
+  top: -20px;
+  box-shadow: none !important;
+}
+
+@keyframes fade {
+  from {
+    opacity: 0%;
+  }
+  to {
+    opacity: 100%;
+  }
+}
+
+/* Media querry to move the tab buttons to the top and reduce card padding on smaller screens */
+
+@media screen and (max-width: 520px) {
+  .stack-container {
+    flex-direction: column;
+  }
+  .stack {
+    order: 2;
+  }
+  .tabs {
+    order: 1;
+    padding-top: 0;
+    top: 12px;
+    flex-direction: row;
+    left: -10px;
+    justify-content: flex-end;
+  }
+  .tabs > * {
+    transform: rotate(-90deg);
+  }
+  .tabs .tab-button:nth-child(1) {
+    left: 30px;
+  }
+  .tabs .tab-button:nth-child(2) {
+    left: 10px;
+  }
+  .tabs .tab-button:nth-child(3) {
+    left: -10px;
+  }
+}
+
+@media screen and (max-width: 320px) {
+  .card {
+    padding: 10px;
+  }
+}
+
+@media screen and (max-width: 380px) {
+  .card-title {
+    flex-direction: column;
+  }
+}
+
+/* Swiper.JS-based Card Stack */
+
+dotlottie-player {
+  width: 80px;
+  height: 80px;
+  opacity: 0.8;
+  margin: 0 auto;
+  -webkit-transform: scaleX(-1);
+  transform: scaleX(-1);
+}
+
+.swiper-cards .swiper-slide {
+  overflow: visible;
+}
+
+.swiper {
+  width: clamp(280px, 100%, 460px);
+}
+
+.swiper-slide {
+  background: #fff;
+  border-radius: 25px;
+  position: relative;
+  z-index: 1;
+  filter: invert(30%);
+  &.swiper-slide-active {
+    filter: invert(0%);
+    box-shadow: 0px 20px 12px DimGrey;
+  }
+}
+
+/* WebAwesome Carusel Card Stack */
+
+wa-carousel-item {
+  padding: 8px !important;
+}
+
+wa-carousel {
+  --slide-gap: 1.5rem;
+  --aspect-ratio: auto !important;
+  width: clamp(300px, 100%, 500px) !important;
+  margin: 0 auto;
+}
+ 
+  </style>
+</head>
+<body onload="setTabs()" onresize="changeTabs()">
+  <h4 class="fw-bold text-center mt-5"><i class="fa-solid fa-layer-group me-3"></i>Responsive Card Stacks</h4>
+  <div class="hr-line mt-4 mb-5"></div>
+
+  <!-- CSS and JS based Card Stack -->
+
+  <p class="fw-bold text-center mb-5">CSS and JS</p>
+  <div class="stack-container d-flex mb-5" id="stackContainer">
+    <div class="stack" id="stack">
+      <!-- Card 1 -->
+      <div class="card card-1 visible fade-effect" id="cardOne" role="tabpanel" aria-labelledby="Fundamentals of Physics">
+        <div class="card-body">
+          <div class="d-flex card-title">
+            <h3 class="fw-bold hotpink me-3">Fundamentals of Physics</h3>
+            <img class="profile m-2" src="https://assets.codepen.io/9400490/Albert.jpg" alt="Profile picture">
+          </div>
+          <h6 class="card-subtitle mb-3 fw-light hotpink">with Albert Einstein</h6>
+          <hr class="hotpink">
+          <p class="card-text">Physics governs our everyday lives and is involved in a number of activities we perform and things we use in our daily life. Physics is often considered as an immersive yet challenging subject. It is one of the most fundamental scientific disciplines. The main goal of physics is to explain how things move in space and time. This course provides a thorough introduction to the principles and methods of physics for students who have good preparation in physics and mathematics. We will explore the fundamental aspects of physics in a very interactive format. We will understand the nature and scope of the subject, differenmt types of Force and Motion, Energy and Power, Gravitation, Heat, Waves, Sound waves, Light, the Theory of Relativity and many more.</p>
+          <hr class="hotpink">
+          <div class="tags d-flex flex-wrap">
+            <h6>
+              <span class="badge rounded-pill thin me-3 hotpink"><i class="fa-solid fa-atom fa-md p-1 pe-2" aria-hidden="true"></i>Science</span>
+            </h6>
+            <h6>
+              <span class="badge rounded-pill thin me-3 hotpink"><i class="fa-solid fa-gauge-high fa-md p-1 pe-2" aria-hidden="true"></i>Advanced</span>
+            </h6>
+            <h6>
+              <span class="badge rounded-pill thin hotpink"><i class="fa-solid fa-award fa-md p-1 pe-2" aria-hidden="true"></i>Certified</span>
+            </h6>
+          </div>
+        </div>
+      </div>
+      <!-- Card 2 -->
+      <div class="card card-2 hidden fade-effect" id="cardTwo" role="tabpanel" aria-labelledby="Introduction to Classical Literature">
+        <div class="card-body">
+          <div class="d-flex card-title">
+            <h3 class="fw-bold orange me-3">Introduction to Classical Literature</h3>
+            <img class="profile m-2" src="https://assets.codepen.io/9400490/Charles.jpg" alt="Profile picture">
+          </div>
+          <h6 class="card-subtitle mb-4 fw-light orange">with Charles Dickens</h6>
+          <hr class="orange">
+          <p class="card-text">From Homer to Troy, explore classic literature and culture depicting the classical age. This course examines literary works within their historic and social context and within the context of universal values and concerns of the human experience. The focus is on those authors of great works who have been a continuing influence on literature and culture. It offers students a wide-ranging grounding in classical literature as a basis for the further study of Western literature within a comparative framework. Major works of ancient Greek and Roman literature are studied in order to enable students to appreciate literary engagement with the classical world as well as some of the major genres of Western literature: tragedy, comedy and the epic.</p>
+          <hr class="orange">
+          <div class="tags d-flex flex-wrap">
+            <h6>
+              <span class="badge rounded-pill thin me-3 orange"><i class="fa-solid fa-book fa-md p-1 pe-2" aria-hidden="true"></i>Literature</span>
+            </h6>
+            <h6>
+              <span class="badge rounded-pill thin me-3 orange"><i class="fa-solid fa-gauge-high fa-md p-1 pe-2" aria-hidden="true"></i>Beginner</span>
+            </h6>
+            <h6>
+              <span class="badge rounded-pill thin orange"><i class="fa-solid fa-award fa-md p-1 pe-2" aria-hidden="true"></i>Certified</span>
+            </h6>
+          </div>
+        </div>
+      </div>
+      <!-- Card 3 -->
+      <div class="card card-3 hidden fade-effect" id="cardThree" role="tabpanel" aria-labelledby="Introduction to Political Science">
+        <div class="card-body">
+          <div class="d-flex card-title">
+            <h3 class="fw-bold blue me-3">Introduction to Political Science</h3>
+            <img class="profile m-2" src="https://assets.codepen.io/9400490/Martin.jpg" alt="Profile picture">
+          </div>
+          <h6 class="card-subtitle mb-4 fw-light blue">with Martin Luther King</h6>
+          <hr class="blue">
+          <p class="card-text">Do you want to know more about political behaviour, understand the practice of public relations or begin your career in politics? Before you know it, you could be well on the way to becoming a successful political scientist. Political science focuses on the theory and practices of governing bodies as well as the analysis of political processes. As an academic discipline, it encompasses the study of different systems of government, election processes, political parties, political ideology, historical analysis, changes in power, public policy, international relations, key social science concepts, and much more. With the breadth of focus areas in political science, aspiring professionals can hone in on a job role that best aligns with their interests.</p>
+          <hr class="blue">
+          <div class="tags d-flex flex-wrap">
+            <h6>
+              <span class="badge rounded-pill thin me-3 blue"><i class="fa-solid fa-landmark-dome fa-md p-1 pe-2" aria-hidden="true"></i>Politics</span>
+            </h6>
+            <h6>
+              <span class="badge rounded-pill thin me-3 blue"><i class="fa-solid fa-gauge-high fa-md p-1 pe-2" aria-hidden="true"></i>Intermediate</span>
+            </h6>
+            <h6>
+              <span class="badge rounded-pill thin blue"><i class="fa-solid fa-award fa-md p-1 pe-2" aria-hidden="true"></i>Certified</span>
+            </h6>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="tabs d-flex" id="tabs" role="tablist">
+      <button class="tab-button" role="tab" id="tabBtn1" aria-label="Click to show Card 1" aria-expanded="true" aria-controls="cardOne"></button>
+      <button class="tab-button" role="tab" id="tabBtn2" aria-label="Click to show Card 2" aria-expanded="false" aria-controls="cardTwo"></button>
+      <button class="tab-button" role="tab" id="tabBtn3" aria-label="Click to show Card 3" aria-expanded="false" aria-controls="cardThree"></button>
+    </div>
+  </div>
+  <div class="hr-line mt-4 mb-5"></div>
+
+  <!-- SwiperJS based Card Stack -->
+
+  <p class="fw-bold text-center">SwiperJS</p>
+  <dotlottie-player class="mb-3" src="https://assets.codepen.io/9400490/swipe-cursor.lottie" background="transparent" loop="" direction="1" autoplay=""></dotlottie-player>
+  <div class="swiper mySwiper">
+    <div class="swiper-wrapper">
+      <!-- Slide 1 -->
+      <div class="swiper-slide mb-4">
+        <div class="card card-1" role="tabpanel" aria-labelledby="Fundamentals of Physics">
+          <div class="card-body">
+            <div class="d-flex card-title">
+              <h2 class="fw-bold hotpink me-3">Fundamentals of Physics</h2>
+              <img class="profile m-2" src="https://assets.codepen.io/9400490/Albert.jpg" alt="Profile picture">
+            </div>
+            <h6 class="card-subtitle mb-3 fw-light hotpink">with Albert Einstein</h6>
+            <hr class="hotpink">
+            <p class="card-text">Physics governs our everyday lives and is involved in a number of activities we perform and things we use in our daily life. Physics is often considered as an immersive yet challenging subject. It is one of the most fundamental scientific disciplines. The main goal of physics is to explain how things move in space and time. This course provides a thorough introduction to the principles and methods of physics for students who have good preparation in physics and mathematics. We will explore the fundamental aspects of physics in a very interactive format. We will understand the nature and scope of the subject, different types of Force and motion, Energy and Power, Gravitation, Heat, Waves, Sound waves, Light, the Theory of Relativity and many more.</p>
+            <hr class="hotpink">
+            <div class="tags d-flex flex-wrap">
+              <h6>
+                <span class="badge rounded-pill thin me-3 hotpink"><i class="fa-solid fa-atom fa-md p-1 pe-2" aria-hidden="true"></i>Science</span>
+              </h6>
+              <h6>
+                <span class="badge rounded-pill thin me-3 hotpink"><i class="fa-solid fa-gauge-high fa-md p-1 pe-2" aria-hidden="true"></i>Advanced</span>
+              </h6>
+              <h6>
+                <span class="badge rounded-pill thin hotpink"><i class="fa-solid fa-award fa-md p-1 pe-2" aria-hidden="true"></i>Certified</span>
+              </h6>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Slide 2 -->
+      <div class="swiper-slide">
+        <div class="card card-2" role="tabpanel" aria-labelledby="Introduction to Classical Literature">
+          <div class="card-body">
+            <div class="d-flex card-title">
+              <h3 class="fw-bold orange me-3">Introduction to Classical Literature</h3>
+              <img class="profile m-2" src="https://assets.codepen.io/9400490/Charles.jpg" alt="Profile picture">
+            </div>
+            <h6 class="card-subtitle mb-4 fw-light orange">with Charles Dickens</h6>
+            <hr class="orange">
+            <p class="card-text">From Homer to Troy, explore classic literature and culture depicting the classical age. This course examines literary works within their historic and social context and within the context of universal values and concerns of the human experience. The focus is on those authors of great works who have been a continuing influence on literature and culture. It offers students a wide-ranging grounding in classical literature as a basis for the further study of Western literature within a comparative framework. Major works of ancient Greek and Roman literature are studied in order to enable students to appreciate literary engagement with the classical world as well as some of the major genres of Western literature: tragedy, comedy and the epic.</p>
+            <hr class="orange">
+            <div class="tags d-flex flex-wrap">
+              <h6>
+                <span class="badge rounded-pill thin me-3 orange"><i class="fa-solid fa-book fa-md p-1 pe-2" aria-hidden="true"></i>Literature</span>
+              </h6>
+              <h6>
+                <span class="badge rounded-pill thin me-3 orange"><i class="fa-solid fa-gauge-high fa-md p-1 pe-2" aria-hidden="true"></i>Beginner</span>
+              </h6>
+              <h6>
+                <span class="badge rounded-pill thin orange"><i class="fa-solid fa-award fa-md p-1 pe-2" aria-hidden="true"></i>Certified</span>
+              </h6>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Slide 3 -->
+      <div class="swiper-slide">
+        <div class="card card-3" role="tabpanel" aria-labelledby="Introduction to Political Science">
+          <div class="card-body">
+            <div class="d-flex card-title">
+              <h2 class="fw-bold blue me-3">Introduction to Political Science</h2>
+              <img class="profile m-2" src="https://assets.codepen.io/9400490/Martin.jpg" alt="Profile picture">
+            </div>
+            <h6 class="card-subtitle mb-4 fw-light blue">with Martin Luther King</h6>
+            <hr class="blue">
+            <p class="card-text">Do you want to know more about political behaviour, understand the practice of public relations or begin your career in politics? Before you know it, you could be well on the way to becoming a successful political scientist. Political science focuses on the theory and practices of governing bodies as well as the analysis of political processes. As an academic discipline, it encompasses the study of different systems of government, election processes, political parties, political ideology, historical analysis, changes in power, public policy, international relations, key social science concepts, and much more. With the breadth of focus areas in political science, aspiring professionals can hone in on a job role that best aligns with their interests.</p>
+            <hr class="blue">
+            <div class="tags d-flex flex-wrap">
+              <h6>
+                <span class="badge rounded-pill thin me-3 blue"><i class="fa-solid fa-landmark-dome fa-md p-1 pe-2" aria-hidden="true"></i>Politics</span>
+              </h6>
+              <h6>
+                <span class="badge rounded-pill thin me-3 blue"><i class="fa-solid fa-gauge-high fa-md p-1 pe-2" aria-hidden="true"></i>Advanced</span>
+              </h6>
+              <h6>
+                <span class="badge rounded-pill thin blue"><i class="fa-solid fa-award fa-md p-1 pe-2" aria-hidden="true"></i>Certified</span>
+              </h6>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="hr-line mt-4 mb-5"></div>
+
+  <!-- WebAwesome Carousel -->
+
+  <p class="fw-bold text-center mb-2">WebAwesome (Experimental)</p>
+  <dotlottie-player class="mb-3" src="https://assets.codepen.io/9400490/swipe-cursor.lottie" background="transparent" loop="" direction="1" autoplay=""></dotlottie-player>
+  <wa-carousel pagination mouse-dragging loop>
+    <wa-carousel-item>
+      <!-- Card 1 -->
+      <div class="card card-1" role="tabpanel" aria-labelledby="Fundamentals of Physics">
+        <div class="card-body">
+          <div class="d-flex card-title">
+            <h2 class="fw-bold hotpink me-3">Fundamentals of Physics</h2>
+            <img class="profile m-2" src="https://assets.codepen.io/9400490/Albert.jpg" alt="Profile picture">
+          </div>
+          <h6 class="card-subtitle mb-3 fw-light hotpink">with Albert Einstein</h6>
+          <hr class="hotpink">
+          <p class="card-text">Physics governs our everyday lives and is involved in a number of activities we perform and things we use in our daily life. Physics is often considered as an immersive yet challenging subject. It is one of the most fundamental scientific disciplines. The main goal of physics is to explain how things move in space and time. This course provides a thorough introduction to the principles and methods of physics for students who have good preparation in physics and mathematics. We will explore the fundamental aspects of physics in a very interactive format. We will understand the nature and scope of the subject, different types of Force and motion, Energy and Power, Gravitation, Heat, Waves, Sound waves, Light, the Theory of Relativity and many more.</p>
+          <hr class="hotpink">
+          <div class="tags d-flex flex-wrap">
+            <h6>
+              <span class="badge rounded-pill thin me-3 hotpink"><i class="fa-solid fa-atom fa-md p-1 pe-2" aria-hidden="true"></i>Science</span>
+            </h6>
+            <h6>
+              <span class="badge rounded-pill thin me-3 hotpink"><i class="fa-solid fa-gauge-high fa-md p-1 pe-2" aria-hidden="true"></i>Advanced</span>
+            </h6>
+            <h6>
+              <span class="badge rounded-pill thin hotpink"><i class="fa-solid fa-award fa-md p-1 pe-2" aria-hidden="true"></i>Certified</span>
+            </h6>
+          </div>
+        </div>
+      </div>
+    </wa-carousel-item>
+    <wa-carousel-item>
+      <!-- Card 2 -->
+      <div class="card card-2" role="tabpanel" aria-labelledby="Introduction to Classical Literature">
+        <div class="card-body">
+          <div class="d-flex card-title">
+            <h3 class="fw-bold orange me-3">Introduction to Classical Literature</h3>
+            <img class="profile m-2" src="https://assets.codepen.io/9400490/Charles.jpg" alt="Profile picture">
+          </div>
+          <h6 class="card-subtitle mb-4 fw-light orange">with Charles Dickens</h6>
+          <hr class="orange">
+          <p class="card-text">From Homer to Troy, explore classic literature and culture depicting the classical age. This course examines literary works within their historic and social context and within the context of universal values and concerns of the human experience. The focus is on those authors of great works who have been a continuing influence on literature and culture. It offers students a wide-ranging grounding in classical literature as a basis for the further study of Western literature within a comparative framework. Major works of ancient Greek and Roman literature are studied in order to enable students to appreciate literary engagement with the classical world as well as some of the major genres of Western literature: tragedy, comedy and the epic.</p>
+          <hr class="orange">
+          <div class="tags d-flex flex-wrap">
+            <h6>
+              <span class="badge rounded-pill thin me-3 orange"><i class="fa-solid fa-book fa-md p-1 pe-2" aria-hidden="true"></i>Literature</span>
+            </h6>
+            <h6>
+              <span class="badge rounded-pill thin me-3 orange"><i class="fa-solid fa-gauge-high fa-md p-1 pe-2" aria-hidden="true"></i>Beginner</span>
+            </h6>
+            <h6>
+              <span class="badge rounded-pill thin orange"><i class="fa-solid fa-award fa-md p-1 pe-2" aria-hidden="true"></i>Certified</span>
+            </h6>
+          </div>
+        </div>
+      </div>
+    </wa-carousel-item>
+    <wa-carousel-item>
+      <!-- Card 3 -->
+      <div class="card card-3" role="tabpanel" aria-labelledby="Introduction to Political Science">
+        <div class="card-body">
+          <div class="d-flex card-title">
+            <h2 class="fw-bold blue me-3">Introduction to Political Science</h2>
+            <img class="profile m-2" src="https://assets.codepen.io/9400490/Martin.jpg" alt="Profile picture">
+          </div>
+          <h6 class="card-subtitle mb-4 fw-light blue">with Martin Luther King</h6>
+          <hr class="blue">
+          <p class="card-text">Do you want to know more about political behaviour, understand the practice of public relations or begin your career in politics? Before you know it, you could be well on the way to becoming a successful political scientist. Political science focuses on the theory and practices of governing bodies as well as the analysis of political processes. As an academic discipline, it encompasses the study of different systems of government, election processes, political parties, political ideology, historical analysis, changes in power, public policy, international relations, key social science concepts, and much more. With the breadth of focus areas in political science, aspiring professionals can hone in on a job role that best aligns with their interests.</p>
+          <hr class="blue">
+          <div class="tags d-flex flex-wrap">
+            <h6>
+              <span class="badge rounded-pill thin me-3 blue"><i class="fa-solid fa-landmark-dome fa-md p-1 pe-2" aria-hidden="true"></i>Politics</span>
+            </h6>
+            <h6>
+              <span class="badge rounded-pill thin me-3 blue"><i class="fa-solid fa-gauge-high fa-md p-1 pe-2" aria-hidden="true"></i>Advanced</span>
+            </h6>
+            <h6>
+              <span class="badge rounded-pill thin blue"><i class="fa-solid fa-award fa-md p-1 pe-2" aria-hidden="true"></i>Certified</span>
+            </h6>
+          </div>
+        </div>
+      </div>
+    </wa-carousel-item>
+  </wa-carousel>
+
+  <div class="hr-line mt-5 mb-3"></div>
+  <p class="footer fs-6 fw-bold text-center text-muted">Powered by:</p>
+  <p class="text-center mb-5">
+    <a title="Bootstrap" aria-label="More information about Bootstrap" href="https://getbootstrap.com" target="_blank"><img src="https://assets.codepen.io/9400490/Bootstrap.svg" alt="Bootstrap" width="30" height="30"></a>
+    <a title="WebAwesome" aria-label="More information about WebAwesome" href="https://swiperjs.com" target="_blank"><img src="https://assets.codepen.io/9400490/webwesome.svg" alt="WebAwesome" width="30" height="30"></a>
+    <a title="Fontawesome" aria-label="More information about Fontawesome" href="https://fontawesome.com" target="_blank"><img src="https://assets.codepen.io/9400490/Fontawesome.svg" alt="FontAwesome" width="30" height="30"></a>
+    <a title="SwiperJS" aria-label="More information about SwiperJS" href="https://swiperjs.com" target="_blank"><img src="https://assets.codepen.io/9400490/swiper.svg" alt="SwiperJS" width="30" height="30"></a>
+  </p>
+  <script>
+    /* CSS and JS-based Card Stack */
+
+function setTabs() {
+  const buttonOne = document.getElementById("tabBtn1");
+  const width = window.innerWidth;
+
+  if (width <= "520") {
+    buttonOne.classList.add("y-offset");
+  } else {
+    buttonOne.classList.add("x-offset");
+  }
+}
+
+function changeTabs() {
+  const tabs = document.querySelectorAll(".tab-button");
+  const width = window.innerWidth;
+
+  if (width <= "520") {
+    for (let i = 0; i < tabs.length; i++) {
+      if (tabs[i].classList.contains("x-offset")) {
+        tabs[i].classList.replace("x-offset", "y-offset");
+      }
+    }
+  } else {
+    for (let i = 0; i < tabs.length; i++) {
+      if (tabs[i].classList.contains("y-offset")) {
+        tabs[i].classList.replace("y-offset", "x-offset");
+      }
+    }
+  }
+}
+
+const tabOne = document.getElementById("tabBtn1");
+const tabTwo = document.getElementById("tabBtn2");
+const tabThree = document.getElementById("tabBtn3");
+
+tabOne.addEventListener("click", function () {
+  const tabs = document.querySelectorAll(".tab-button");
+  const cards = document.querySelectorAll(".card");
+  const element = event.currentTarget;
+  const width = window.innerWidth;
+
+  if (width <= "520") {
+    for (let i = 0; i < tabs.length; i++) {
+      if (tabs[i].classList.contains("y-offset")) {
+        tabs[i].classList.remove("y-offset");
+        element.classList.add("y-offset");
+      }
+    }
+  } else {
+    for (let i = 0; i < tabs.length; i++) {
+      if (tabs[i].classList.contains("x-offset")) {
+        tabs[i].classList.remove("x-offset");
+        element.classList.add("x-offset");
+      }
+    }
+  }
+  for (let i = 0; i < cards.length; i++) {
+    if (cards[i].classList.contains("visible")) {
+      cards[i].classList.replace("visible", "hidden");
+      tabs[i].setAttribute("aria-expanded", "false");
+      cards[0].classList.replace("hidden", "visible");
+      element.setAttribute("aria-expanded", "true");
+    }
+  }
+});
+
+tabTwo.addEventListener("click", function () {
+  const tabs = document.querySelectorAll(".tab-button");
+  const cards = document.querySelectorAll(".card");
+  const element = event.currentTarget;
+  const width = window.innerWidth;
+
+  if (width <= "520") {
+    for (let i = 0; i < tabs.length; i++) {
+      if (tabs[i].classList.contains("y-offset")) {
+        tabs[i].classList.remove("y-offset");
+        element.classList.add("y-offset");
+      }
+    }
+  } else {
+    for (let i = 0; i < tabs.length; i++) {
+      if (tabs[i].classList.contains("x-offset")) {
+        tabs[i].classList.remove("x-offset");
+        element.classList.add("x-offset");
+      }
+    }
+  }
+  for (let i = 0; i < cards.length; i++) {
+    if (cards[i].classList.contains("visible")) {
+      cards[i].classList.replace("visible", "hidden");
+      tabs[i].setAttribute("aria-expanded", "false");
+      cards[1].classList.replace("hidden", "visible");
+      element.setAttribute("aria-expanded", "true");
+    }
+  }
+});
+
+tabThree.addEventListener("click", function () {
+  const tabs = document.querySelectorAll(".tab-button");
+  const cards = document.querySelectorAll(".card");
+  const element = event.currentTarget;
+  const width = window.innerWidth;
+
+  if (width <= "520") {
+    for (let i = 0; i < tabs.length; i++) {
+      if (tabs[i].classList.contains("y-offset")) {
+        tabs[i].classList.remove("y-offset");
+        element.classList.add("y-offset");
+      }
+    }
+  } else {
+    for (let i = 0; i < tabs.length; i++) {
+      if (tabs[i].classList.contains("x-offset")) {
+        tabs[i].classList.remove("x-offset");
+        element.classList.add("x-offset");
+      }
+    }
+  }
+  for (let i = 0; i < cards.length; i++) {
+    if (cards[i].classList.contains("visible")) {
+      cards[i].classList.replace("visible", "hidden");
+      tabs[i].setAttribute("aria-expanded", "false");
+      cards[2].classList.replace("hidden", "visible");
+      element.setAttribute("aria-expanded", "true");
+    }
+  }
+});
+
+/* Swiper.JS-based Card Stack */
+
+var swiper = new Swiper(".mySwiper", {
+  effect: "cards",
+  grabCursor: true
+});
+
+  </script>
+</body>
+</html>
