@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    body {
+  font-family: Poppins;
+  padding: 0 20px;
+}
+
+.hr-line {
+  border-top: 1px solid transparent;
+  background: linear-gradient(white, white) padding-box,
+    linear-gradient(90deg, White, DimGrey, White) border-box;
+}
+
+p {
+  font-weight: 200;
+}
+
+a {
+  text-decoration: none;
+}
+
+/* Simple loader indicating status while 3d model is loading */
+
+.loader-dark {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  top: 0;
+  left: 0;
+  background-color: transparent;
+  border: 4px dashed DimGrey;
+  border-radius: 10%;
+  font-size: 24px;
+  font-weight: bold;
+  color: DimGrey;
+  text-align: center;
+  transform: scale(0.95);
+}
+
+.spinner-dark {
+  font-size: 2.5rem;
+  --indicator-color: DimGrey;
+  --track-width: 4px;
+}
+
+.webgl {
+  position: relative;
+  transition: all;
+  cursor: grab;
+}
+
+.responsive {
+  width: 100% !important;
+  height: 100% !important;
+}
+
+.animate {
+  animation: animate 3s ease-in-out;
+}
+
+@keyframes animate {
+  from {
+    transform: scale(0);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 100%;
+  }
+}
+
+/* --- Accordion 1 CSS --- */
+
+.accordion {
+  min-width: 280px;
+  max-width: 820px;
+  margin: 0 auto;
+  --bs-accordion-border-width: 0px;
+}
+
+.model {
+  border-radius: 20px;
+  background-image: linear-gradient(
+      rgba(245, 245, 245, 1),
+      rgba(245, 245, 245, 0),
+      rgba(245, 245, 245, 1)
+    ),
+    url("https://assets.codepen.io/9400490/background-3.svg");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  box-shadow: 0px 0px 80px WhiteSmoke inset;
+}
+
+.model-info {
+  background-color: WhiteSmoke;
+  padding: 40px;
+  border-radius: 20px;
+}
+
+button p {
+  width: 100%;
+  text-align: center !important;
+}
+
+.ac-btn {
+  background-color: Whitesmoke !important;
+  border-radius: 50px !important;
+}
+
+.ac-btn:not(.collapsed) {
+  background-color: LightSkyBlue !important;
+  color: White !important;
+}
+
+.ac-btn:not(.collapsed):after {
+  filter: invert(100%) brightness(200%);
+}
+
+.legend-top {
+  width: 100%;
+  border-bottom: 1px solid DimGrey;
+}
+
+.legend-btm {
+  width: 100%;
+  border-top: 1px solid DimGrey;
+}
+
+.custom-badge {
+  background-color: none;
+  border-style: solid;
+  border-width: 1px;
+  width: 32px;
+  height: 32px;
+  border-radius: 40px;
+  padding: 3px;
+}
+
+@media screen and (max-width: 383px) {
+  .legend-btm {
+    flex-direction: column;
+    align-items: flex-start !important;
+  }
+  .legend-item {
+    margin: 0 25%;
+  }
+}
+
+/* --- Accordion 2 CSS --- */
+
+.model-2 {
+  border-radius: 20px;
+  background-image: linear-gradient(
+      rgba(245, 245, 245, 0.8),
+      rgba(245, 245, 245, 0.4),
+      rgba(245, 245, 245, 0),
+      rgba(245, 245, 245, 0),
+      rgba(245, 245, 245, 0.4),
+      rgba(245, 245, 245, 0.8)
+    ),
+    url("https://assets.codepen.io/9400490/background-4.svg");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  box-shadow: 0px 0px 140px WhiteSmoke inset;
+}
+
+#webgl-6 {
+  filter: drop-shadow(0px 20px 15px MediumAquaMarine);
+}
+
+  </style>
+</head>
+<body>
+  <h4 class="fw-bold text-center"><i class="fa-brands fa-unity fa-lg mt-5 me-3"></i>3D Model Accordion</h4>
+<div class="hr-line mt-5 mb-5"></div>
+
+<!-- Accordion 1 -->
+<div class="accordion mt-5">
+  <div class="accordion-item">
+    <h2 class="accordion-header">
+      <button class="accordion-button ac-btn mb-2" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseOne" aria-expanded="true" aria-controls="panelsStayOpen-collapseOne">
+        <p class="m-0 p-0 fw-bolder fs-5"><i class="fa-solid fa-eye fa-md me-3"></i>Human Eye</p>
+      </button>
+    </h2>
+    <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse show">
+      <div class="accordion-body m-0 p-0">
+        <div class="model d-flex flex-column justify-content-center align-items-around m-0 p-0 mb-2">
+          <div class="legend-top p-4 text-center d-flex flex-wrap justify-content-center align-items-center">
+            <div class="d-flex align-items-center me-5">
+              <i class="fa-solid fa-up-down-left-right me-2"></i>
+              <p class="fw-bolder m-0">Rotate</p>
+            </div>
+            <div class="d-flex align-items-center">
+              <i class="fa-solid fa-magnifying-glass me-2"></i>
+              <p class="fw-bolder m-0">Zoom</p>
+            </div>
+          </div>
+          <div class="position-relative">
+            <canvas class="webgl responsive animate d-flex" id="webgl-5" width="800" height="650"></canvas>
+            <button id="loader-5" class="loader-dark" aria-hidden="true">
+              <i class="fa fa-spinner fa-spin fa-2xl mb-4"></i>
+              <p class="fw-bold m-0">Loading...</p>
+            </button>
+          </div>
+          <div class="legend-btm p-4 text-center d-flex flex-wrap justify-content-around align-items-center gap-2">
+            <div class="d-flex legend-item align-items-baseline me-3">
+              <p class="custom-badge fw-bolder m-0 me-2">1</p>
+              <p class="fw-bolder m-0">Muscle</p>
+            </div>
+            <div class="d-flex legend-item align-items-baseline me-3">
+              <p class="custom-badge fw-bolder m-0 me-2">2</p>
+              <p class="fw-bolder m-0">Lens</p>
+            </div>
+            <div class="d-flex legend-item align-items-baseline me-3">
+              <p class="custom-badge fw-bolder m-0 me-2">3</p>
+              <p class="fw-bolder m-0">Retina</p>
+            </div>
+            <div class="d-flex legend-item align-items-baseline me-3">
+              <p class="custom-badge fw-bolder m-0 me-2">4</p>
+              <p class="fw-bolder m-0">Optic Nerve</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="accordion-item">
+    <h2 class="accordion-header">
+      <button class="accordion-button ac-btn mb-2 collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseTwo" aria-expanded="false" aria-controls="panelsStayOpen-collapseTwo">
+        <p class="m-0 p-0 fw-bolder fs-5">How do we See?</p>
+      </button>
+    </h2>
+    <div id="panelsStayOpen-collapseTwo" class="accordion-collapse collapse">
+      <div class="accordion-body model-info">
+        <p class="fw-light">The eye can be considered as a living optical device. It is approximately spherical in shape, with its outer layers, such as the outermost, white part of the eye and one of its inner layers keeping the eye essentially light tight except on the eye's optic axis. The optical components consist of a first lens that accounts for most of the optical power of the eye and accomplishes most of the focusing of light from the outside world; then an aperture in a diaphragm (the iris—the coloured part of the eye) that controls the amount of light entering the interior of the eye; then another lens that accomplishes the remaining focusing of light into images; and finally a light-sensitive part of the eye (the retina), where the images fall and are processed. The retina makes a connection to the brain via the optic nerve.
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Accordion 2 -->
+<div class="hr-line mt-5 mb-5"></div>
+<div class="accordion mt-5">
+  <div class="accordion-item">
+    <h2 class="accordion-header">
+      <button class="accordion-button ac-btn mb-2" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseThree" aria-expanded="true" aria-controls="panelsStayOpen-collapseThree">
+        <p class="m-0 p-0 fw-bolder fs-5"><i class="fa-solid fa-bacteria fa-lg me-3"></i>Bacterial Cell</p>
+      </button>
+    </h2>
+    <div id="panelsStayOpen-collapseThree" class="accordion-collapse collapse show">
+      <div class="accordion-body m-0 p-0">
+        <div class="model-2 d-flex flex-column justify-content-center align-items-around m-0 p-0 mb-2">
+          <div class="legend-top p-4 text-center d-flex flex-wrap justify-content-center align-items-center">
+            <div class="d-flex align-items-center me-5">
+              <i class="fa-solid fa-up-down-left-right me-2"></i>
+              <p class="fw-bolder m-0">Rotate</p>
+            </div>
+            <div class="d-flex align-items-center">
+              <i class="fa-solid fa-magnifying-glass me-2"></i>
+              <p class="fw-bolder m-0">Zoom</p>
+            </div>
+          </div>
+          <div class="position-relative">
+            <canvas class="webgl responsive animate d-flex" id="webgl-6" width="800" height="650"></canvas>
+            <button id="loader-6" class="loader-dark" aria-hidden="true">
+              <i class="fa fa-spinner fa-spin fa-2xl mb-4"></i>
+              <p class="fw-bold m-0" style="font-size: 18px;">Loading...</p>
+            </button>
+          </div>
+          <div class="legend-btm p-4 text-center d-flex flex-wrap justify-content-around align-items-center gap-2">
+            <div class="d-flex legend-item align-items-center me-3">
+              <p class="custom-badge fw-bolder m-0 me-2">1</p>
+              <p class="fw-bolder m-0">Flagellum</p>
+            </div>
+            <div class="d-flex legend-item align-items-baseline me-3">
+              <p class="custom-badge fw-bolder m-0 me-2">2</p>
+              <p class="fw-bolder m-0">Pilli</p>
+            </div>
+            <div class="d-flex legend-item align-items-baseline me-3">
+              <p class="custom-badge fw-bolder m-0 me-2">3</p>
+              <p class="fw-bolder m-0">Plasmid</p>
+            </div>
+            <div class="d-flex legend-item align-items-baseline me-3">
+              <p class="custom-badge fw-bolder m-0 me-2">4</p>
+              <p class="fw-bolder m-0">Chromosome</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="accordion-item">
+    <h2 class="accordion-header">
+      <button class="accordion-button ac-btn mb-2 collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseFour" aria-expanded="false" aria-controls="panelsStayOpen-collapseFour">
+        <p class="m-0 p-0 fw-bolder fs-5">Bacterial Infections</p>
+      </button>
+    </h2>
+    <div id="panelsStayOpen-collapseFour" class="accordion-collapse collapse">
+      <div class="accordion-body model-info">
+        <p class="fw-light">Bacteria are ubiquitous. They play an important role in maintaining the environment in which we live. Only a small percentage of the world's bacteria cause infection and disease. These bacterial infections have a large impact on public health. As a general rule, bacterial infections are easier to treat than viral infections, since the armamentarium of antimicrobial agents with activity against bacteria is more extensive.<br><br>Bacteria are prokaryotic organisms that carry their genetic information in a double-stranded circular molecule of DNA. Some species also contain small circular plasmids of additional DNA. The cell cytoplasm contains ribosomes and there is both a cell membrane and, in all species except Mycoplasma, a complex cell wall. External to the cell wall, some bacteria have capsules, flagella, or pili.<br><br>The external environment is usually the setting in which the bacterial agent and the host interact and the infection is acquired. Bacteria can be transmitted to humans through air, water, food, or living vectors. The macro- or microenvironments can also be thought of as playing a role in the spread of bacteria. Certain settings such as hospitals and prisons harbour specific types of organisms. Some bacteria are endemic in certain geographic regions and rare or non-existent in others.
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="hr-line mt-5"></div>
+<div class="footer mt-5 mb-5">
+  <p class="fs-6 fw-bold text-center text-muted">Powered by:</p>
+  <p class="text-center">
+    <a title="Bootstrap" aria-label="More information about Bootstrap" href="https://getbootstrap.com" target="_blank"><img src="https://assets.codepen.io/9400490/Bootstrap.svg" alt="Bootstrap" width="30" height="30">
+    </a>
+    <a title="Fontawesome" aria-label="More information about Fontawesome" href="https://fontawesome.com" target="_blank"><img src="https://assets.codepen.io/9400490/Fontawesome.svg" alt="FontAwesome" width="30" height="30">
+    </a>
+    <a title="Three JS" aria-label="More information about Three JS" href="https://threejs.org" target="_blank"><img src="https://assets.codepen.io/9400490/Three.svg" alt="Three JS" width="30" height="30">
+    </a>
+  </p>
+</div>
+<script>
+  import * as THREE from "https://esm.sh/three";
+import { OrbitControls } from "https://esm.sh/three/addons/controls/OrbitControls.js";
+import { TrackballControls } from "https://esm.sh/three/addons/controls/TrackballControls.js";
+import { RGBELoader } from "https://esm.sh/three/addons/loaders/RGBELoader.js";
+import { GLTFLoader } from "https://esm.sh/three/addons/loaders/GLTFLoader.js";
+import { DRACOLoader } from "https://esm.sh/three/addons/loaders/DRACOLoader.js";
+
+//-----------------------Human Eye----------------------------
+
+const loading5 = document.getElementById("loader-5");
+const canvas5 = document.getElementById("webgl-5");
+const scene5 = new THREE.Scene();
+const textureLoader5 = new THREE.TextureLoader();
+const sizes5 = {
+  width: canvas5.width,
+  height: canvas5.height
+};
+
+let model5;
+const clock5 = new THREE.Clock();
+
+// Base camera
+
+const camera5 = new THREE.PerspectiveCamera(
+  4.5,
+  sizes5.width / sizes5.height,
+  0.1,
+  100
+);
+camera5.position.set(30, -15, 10);
+scene5.add(camera5);
+
+// Light
+
+const ambient1e = new THREE.AmbientLight(0xffffff);
+ambient1e.intensity = 0.2;
+scene5.add(ambient1e);
+
+const light2e = new THREE.HemisphereLight(0xffffff, 0x000000, 1.5);
+scene5.add(light2e);
+
+const light3e = new THREE.DirectionalLight("#FFFFFF", 2);
+scene5.add(light3e);
+light3e.position.set(4, 4, 4);
+
+// Controls
+
+const controls5 = new OrbitControls(camera5, canvas5);
+controls5.enableDamping = true;
+controls5.enableZoom = false;
+controls5.zoomSpeed = 0.25;
+controls5.enablePan = false;
+controls5.minDistance = 2.5;
+controls5.maxDistance = 5;
+controls5.minPolarAngle = Math.PI / 10;
+controls5.maxPolarAngle = Math.PI / 1.6;
+
+const controls5b = new TrackballControls(camera5, canvas5);
+controls5b.noRotate = true;
+controls5b.noPan = true;
+controls5b.noZoom = false;
+controls5b.zoomSpeed = 1;
+
+// Loader
+
+const loader5 = new GLTFLoader();
+const dracoLoader1 = new DRACOLoader();
+
+dracoLoader1.setDecoderPath("https://www.gstatic.com/draco/v1/decoders/");
+loader5.setDRACOLoader(dracoLoader1);
+
+loader5.load("https://assets.codepen.io/9400490/human-eye.glb", (gltf) => {
+  model5 = gltf.scene;
+  scene5.add(model5);
+  loading5.style.display = "none";
+});
+
+const loader5b = new RGBELoader();
+loader5b.load(
+  "https://assets.codepen.io/9400490/indoor-1.hdr",
+  function (texture) {
+    texture.mapping = THREE.EquirectangularReflectionMapping;
+    scene5.environment = texture;
+  }
+);
+
+// Renderer
+
+const renderer5 = new THREE.WebGLRenderer({
+  canvas: canvas5,
+  antialias: true,
+  alpha: true
+});
+
+renderer5.setSize(sizes5.width, sizes5.height);
+renderer5.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+renderer5.toneMapping = THREE.ACESFilmicToneMapping;
+renderer5.outputColorSpace = THREE.SRGBColorSpace;
+renderer5.toneMappingExposure = 0.8;
+
+// Animation Loop
+
+const tick5 = () => {
+  const delta5 = clock5.getDelta();
+  if (model5) model5.rotation.y += 0.2 * delta5;
+  controls5.update();
+  const target = controls5.target;
+  controls5b.target.set(target.z, target.y, target.z);
+  controls5b.update();
+  renderer5.render(scene5, camera5);
+  window.requestAnimationFrame(tick5);
+};
+
+tick5();
+
+//-----------------------Bacterium----------------------------
+
+let model6;
+let mixer6;
+const clock6 = new THREE.Clock();
+
+const loading6 = document.getElementById("loader-6");
+const canvas6 = document.getElementById("webgl-6");
+const scene6 = new THREE.Scene();
+const textureLoader6 = new THREE.TextureLoader();
+const sizes6 = {
+  width: canvas6.width,
+  height: canvas6.height
+};
+
+// Base camera
+
+const camera6 = new THREE.PerspectiveCamera(
+  12,
+  sizes6.width / sizes6.height,
+  0.1,
+  100
+);
+camera6.position.set(30, 30, 10);
+scene6.add(camera6);
+
+// Light
+
+const ambient1f = new THREE.AmbientLight(0xffffff);
+ambient1f.intensity = 0.5;
+scene6.add(ambient1f);
+
+const light1f = new THREE.HemisphereLight(0xf2e400, 0x00321f, 0.5);
+scene6.add(light1f);
+
+// Controls
+
+const controls6 = new OrbitControls(camera6, canvas6);
+controls6.enableDamping = true;
+controls6.enableZoom = false;
+controls6.enablePan = false;
+controls6.minDistance = 1.5;
+controls6.maxDistance = 5;
+controls6.minPolarAngle = Math.PI / 10;
+controls6.maxPolarAngle = Math.PI / 1.2;
+
+const controls6b = new TrackballControls(camera6, canvas6);
+controls6b.noRotate = true;
+controls6b.noPan = true;
+controls6b.noZoom = false;
+controls6b.zoomSpeed = 1;
+
+// Renderer
+
+const renderer6 = new THREE.WebGLRenderer({
+  canvas: canvas6,
+  antialias: true,
+  alpha: true
+});
+
+renderer6.setSize(sizes6.width, sizes6.height);
+renderer6.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+renderer6.toneMapping = THREE.ACESFilmicToneMapping;
+renderer6.toneMappingExposure = 1;
+renderer6.outputColorSpace = THREE.SRGBColorSpace;
+
+// Loader + animation
+
+const loader6 = new GLTFLoader();
+const dracoLoader2 = new DRACOLoader();
+
+dracoLoader2.setDecoderPath("https://www.gstatic.com/draco/v1/decoders/");
+loader6.setDRACOLoader(dracoLoader2);
+
+loader6.load("https://assets.codepen.io/9400490/bacterium.glb", (gltf) => {
+  model6 = gltf.scene;
+  scene6.add(model6);
+  loading6.style.display = "none";
+  mixer6 = new THREE.AnimationMixer(model6);
+  mixer6.clipAction(gltf.animations[0]).play();
+});
+
+const loader6b = new RGBELoader();
+loader6b.load(
+  "https://assets.codepen.io/9400490/indoor-1.hdr",
+  function (texture) {
+    texture.mapping = THREE.EquirectangularReflectionMapping;
+    scene6.environment = texture;
+  }
+);
+
+// Animation Loop
+
+const tick6 = () => {
+  const delta6 = clock6.getDelta();
+  if (mixer6) mixer6.update(delta6);
+  if (model6) model6.rotation.y += 0.2 * delta6;
+  controls6.update();
+  const target = controls6.target;
+  controls6b.target.set(target.z, target.y, target.z);
+  controls6b.update();
+  renderer6.render(scene6, camera6);
+  window.requestAnimationFrame(tick6);
+};
+
+tick6();
+
+</script>
+</body>
+</html>
