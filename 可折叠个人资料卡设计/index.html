@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    body {
+  padding: 2em 2em;
+  font-family: Poppins;
+}
+
+h4 {
+  color: #454646;
+  & sl-icon {
+    position: relative;
+    top: 5px;
+  }
+}
+
+.hr-line {
+  border-top: 1px solid transparent;
+  background: linear-gradient(white, white) padding-box,
+    linear-gradient(90deg, White, DimGrey, White) border-box;
+}
+
+.card {
+  width: 280px;
+  border: 0px solid white !important;
+  border-radius: 0 !important;
+  box-shadow: 0px 2px 12px 2px LightGrey;
+}
+
+.image-container {
+  width: 280px;
+  height: 280px;
+  transition: all 0.8s;
+}
+
+.profile-1 {
+  background: url("https://assets.codepen.io/9400490/profile_1_square.jpg") 50%
+    50% no-repeat;
+  background-size: 300px;
+  filter: brightness(80%) saturate(0) sepia(40%);
+}
+
+.card:hover .profile-1 {
+  background: url("https://assets.codepen.io/9400490/profile_1_square.jpg") 40%
+    20% no-repeat;
+  background-size: 500px;
+  filter: brightness(100%) saturate(100%) sepia(0%);
+}
+
+.profile-2 {
+  background: url("https://assets.codepen.io/9400490/profile_2_square.jpg") 50%
+    50% no-repeat;
+  background-size: 300px;
+  filter: brightness(80%) saturate(0) sepia(40%);
+}
+
+.card:hover .profile-2 {
+  background: url("https://assets.codepen.io/9400490/profile_2_square.jpg") 60%
+    20% no-repeat;
+  background-size: 500px;
+  filter: brightness(100%) saturate(100%) sepia(0%);
+}
+
+.card-body {
+  border-top: 5px solid white;
+  box-shadow: 0px 15px 10px -10px inset LightGrey;
+  padding: 0 !important;
+}
+
+.card-title {
+  margin-bottom: 0;
+  border-bottom: 1px solid Lightgrey;
+}
+
+.accordion-button {
+  background-color: DodgerBlue !important;
+  color: white !important;
+  border-radius: 0 !important;
+  border-bottom: 1px solid LightGrey;
+  box-shadow: none !important;
+}
+
+.accordion-button.collapsed {
+  background-color: #efefef !important;
+  color: #454646 !important;
+}
+
+.accordion-button:not(.collapsed):after {
+  filter: invert(100%) brightness(200%);
+}
+
+.accordion-button:focus {
+  outline: 1px solid DeepSkyBlue !important;
+  border: none !important;
+}
+
+.accordion-item {
+  border: none;
+}
+
+.accordion-collapse {
+  border-bottom: 1px solid LightGrey;
+  border-radius: 0 !important;
+}
+
+.card-footer {
+  border-bottom: 5px solid white;
+  border-top: none;
+  box-shadow: 0px -15px 18px -15px inset LightGrey;
+}
+
+.icon-link {
+  height: 40px;
+  width: 40px;
+  background-color: transparent;
+  border: 1px solid DimGrey;
+  border-radius: 50%;
+  padding: 12px;
+  margin: 5px;
+  transition: transform 0.2s ease-in-out;
+  text-decoration: none;
+  & sl-icon {
+    color: DimGrey;
+    transition: color 0.2s;
+  }
+  &:hover {
+    border: 1px solid DodgerBlue;
+    transform: scale(1.2);
+    &:hover sl-icon {
+      color: DodgerBlue;
+    }
+  }
+}
+
+  </style>
+</head>
+  <body>
+    <h4 class="fw-bold text-center">
+      <sl-icon class="fs-2 me-3" name="person-vcard-fill"></sl-icon>Instructor Profiles
+    </h4>
+    <div class="hr-line mt-4 mb-5"></div>
+    <div class="d-flex flex-wrap flex-row gap-5 justify-content-evenly align-items-baseline">
+      <div class="card">
+        <div class="image-container profile-1"></div>
+        <div class="card-body">
+          <h5 class="card-title fw-bold p-3 text-center">Prof. Hawking</h5>
+          <div class="accordion" id="alwaysOpen-1">
+            <div class="accordion-item">
+              <h2 class="accordion-header">
+                <button class="accordion-button collapsed fw-bold" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                  About
+                </button>
+              </h2>
+              <div id="collapseOne" class="accordion-collapse collapse">
+                <div class="accordion-body">
+                  <p class="fw-light p-2">Once a student wanted to know what happened before the Big Bang but I couldn't explain, because there was no Time!
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div class="accordion-item">
+              <h2 class="accordion-header">
+                <button class="accordion-button collapsed fw-bold" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                  Office Hours
+                </button>
+              </h2>
+              <div id="collapseTwo" class="accordion-collapse collapse">
+                <div class="accordion-body">
+                  <p class="text-center p-1">
+                    <sl-icon class="pe-3" name="clock"></sl-icon>Mon - Fri: 3-4pm
+                  </p>
+                  <p class="text-center p-1">
+                    <sl-icon class="pe-3" name="geo-alt"></sl-icon>SB 405c
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="card-footer">
+            <p class="icons text-center m-2">
+              <a class="icon-link" title="Twitter" aria-label="Twitter" href="#">
+                <sl-icon name="twitter"></sl-icon>
+              </a>
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="image-container profile-2"></div>
+        <div class="card-body">
+          <h5 class="card-title fw-bold p-3 text-center">Prof. Fermi</h5>
+          <div class="accordion" id="alwaysOpen-2">
+            <div class="accordion-item">
+              <h2 class="accordion-header">
+                <button class="accordion-button collapsed fw-bold" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="true" aria-controls="collapseThree">
+                  About
+                </button>
+              </h2>
+              <div id="collapseThree" class="accordion-collapse collapse">
+                <div class="accordion-body">
+                  <p class="fw-light p-2">My students often ask me why I don't trust atoms. I say it's becasue they make up everything!
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div class="accordion-item">
+              <h2 class="accordion-header">
+                <button class="accordion-button collapsed fw-bold" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                  Office Hours
+                </button>
+              </h2>
+              <div id="collapseFour" class="accordion-collapse collapse">
+                <div class="accordion-body">
+                  <p class="text-center p-1">
+                    <sl-icon class="pe-3" name="clock"></sl-icon>Mon - Fri: 3-4pm
+                  </p>
+                  <p class="text-center p-1">
+                    <sl-icon class="pe-3" name="geo-alt"></sl-icon>SB 505b
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="card-footer">
+            <p class="icons text-center m-2">
+              <a class="icon-link" title="Twitter" aria-label="Twitter" href="#">
+                <sl-icon name="twitter"></sl-icon>
+              </a>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="hr-line mt-5 mb-4"></div>
+    <p class="footer fs-6 fw-bold text-center text-muted">Powered by:</p>
+    <p class="text-center">
+      <a title="Bootstrap" aria-label="More information about Bootstrap" href="https://getbootstrap.com" target="_blank"><img src="https://assets.codepen.io/9400490/Bootstrap.svg" alt="Bootstrap" width="30" height="30"></a>
+      <a title="Shoelace" aria-label="More information about Shoelace" href="https://shoelace.style/components/icon" target="_blank"><img src="https://assets.codepen.io/9400490/Shoelace.svg" alt="FontAwesome" width="30" height="30"></a>
+      <a title="Freepik" aria-label="More information about Freepik" href="https://www.freepik.com" target="_blank"><img src="https://assets.codepen.io/9400490/Freepik.svg" alt="Freepik" width="30" height="30"></a>
+    </p>
+  </body>
+</html>
