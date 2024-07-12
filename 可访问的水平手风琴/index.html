@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+	<style>
+		body {
+  font-family: Poppins;
+  margin: 40px 20px;
+}
+
+h3 {
+  font-weight: 600;
+}
+
+h4 {
+  color: #454646 !important;
+}
+
+h4 sl-icon {
+  position: relative;
+  top: 3px;
+}
+
+.hr-line {
+  border-top: 1px solid transparent;
+  background: linear-gradient(white, white) padding-box,
+    linear-gradient(90deg, White, DimGrey, White) border-box;
+}
+
+a {
+  text-decoration: none;
+}
+
+.custom-container {
+  min-width: 480px;
+  max-width: 860px;
+  min-height: 440px;
+  border: 1px solid DimGrey;
+  margin: auto;
+}
+
+.section {
+  min-width: 340px;
+  cursor: pointer;
+  transition: all 0.4s ease-in-out;
+}
+
+.main-text {
+  max-height: 440px;
+  overflow: hidden;
+  font-weight: 200;
+  font-size: 18px;
+  cursor: text;
+  color: DimGrey;
+  margin: 0px 25px 25px 25px;
+  display: none;
+}
+
+.button-thin {
+  width: 40px;
+  height: 40px;
+  margin: 0;
+  padding: 0;
+  border: 1px solid LightGrey;
+  border-radius: 50%;
+  background-color: transparent;
+  & sl-icon {
+    position: relative;
+    top: 3px;
+    left: 1px;
+  }
+}
+
+.section-1 {
+  border-right: 1px solid DimGrey;
+  background-color: Orange;
+  & h3 {
+    color: Orange;
+  }
+  & button {
+    color: Orange;
+    border-color: Orange;
+  }
+}
+
+.section-2 {
+  border-right: 1px solid DimGrey;
+  background-color: Hotpink;
+  & h3 {
+    color: HotPink;
+  }
+  & button {
+    color: HotPink;
+    border-color: HotPink;
+  }
+}
+
+.section-3 {
+  background-color: DodgerBlue;
+  & h3 {
+    color: DodgerBlue;
+  }
+  & button {
+    color: DodgerBlue;
+    border-color: DodgerBlue;
+  }
+}
+
+.grow {
+  flex: 5;
+  background-color: white;
+  & h3 {
+    padding: 20px 0px 20px 20px;
+  }
+  & button {
+    margin: 20px 20px 0px 20px;
+    transform: rotate(180deg);
+  }
+  & div {
+    justify-content: end;
+  }
+}
+
+.shrink {
+  min-width: 65px;
+  flex: 0.1;
+  & h3 {
+    color: WhiteSmoke;
+    transform-origin: 20% 100%;
+    writing-mode: vertical-rl;
+    margin: 20px 0px 15px 15px;
+  }
+  & button {
+    color: WhiteSmoke;
+    border: 1px solid WhiteSmoke;
+    margin: 20px 0px 0px 10px;
+  }
+}
+
+@keyframes slide {
+  from {
+    transform: translateY(-120px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0px);
+    opacity: 100%;
+  }
+}
+
+.show {
+  display: block;
+}
+
+.hide {
+  display: none;
+}
+
+.animate {
+  animation: slide 0.4s ease;
+}
+
+.shadow-dark {
+  box-shadow: -12px 0px 20px -15px DimGrey inset;
+}
+
+.shadow-blue {
+  box-shadow: -12px 0px 20px -15px #0a3a69 inset;
+}
+
+.shadow-pink {
+  box-shadow: -12px 0px 20px -15px #50213b inset;
+}
+
+.shadow-orange {
+  box-shadow: -12px 0px 20px -15px #63410b inset;
+}
+
+	</style>
+</head>
+<body>
+	<h4 class="fw-bold text-center">
+	  <sl-icon name="caret-right-square-fill" aria-hidden="true" library="default" class="pe-3"></sl-icon>Horizontal Accordion
+	</h4>
+	<div class="hr-line mt-4 mb-4"></div>
+	<h4 class="fw-bold text-center mt-5 mb-5">Learn Anything in 3 steps</h4>
+	<div class="custom-container d-flex flex-row align-items-stretch">
+	  <div class="section section-1 grow shadow-dark" id="section-1" role="tabpanel" aria-labelledby="Preview">
+		<div class="d-flex flex-row">
+		  <button onclick="check_section_1()" role="tab" class="button-thin" aria-label="Click to expand Section 1" aria-expanded="true" aria-controls="text-1">
+			<sl-icon name="chevron-right" aria-hidden="true" library="default"></sl-icon>
+		  </button>
+		</div>
+		<h3>Preview</h3>
+		<p id="text-1" class="main-text show">Preview your text and other study materials before class to develop a big picture of what you’ll be covering. Skim through the chapters, noting all headings, subheadings, bold words, graphs, pictures and summaries. Once you’ve developed a big picture, it will be much easier to remember and learn the details. Also, attending a class or a lecture with this basic understanding of the material makes it feel less overwhelming and creates opportunities to formulate any questions during class.</p>
+	  </div>
+	  <div class="section section-2 shrink shadow-pink" id="section-2" role="tabpanel" aria-labelledby="Study">
+		<div class="d-flex flex-row">
+		  <button onclick="check_section_2()" role="tab" class="button-thin" aria-label="Click to expand Section 2" aria-expanded="false" aria-controls="text-2">
+			<sl-icon name="chevron-right" aria-hidden="true" library="default"></sl-icon>
+		  </button>
+		</div>
+		<h3>Study</h3>
+		<p id="text-2" class="main-text hide animate">To reinforce the new material you learned during class, and to make sure you thoroughly understand the subject matter being taught. Take about 30-50 minutes to interact with material ‐ organize material, draw concept maps, summarize information, review your notes, read your textbook, work problems, or even form a study group. As you study, ask yourself ‘how’, ‘why’ and ‘what if’ questions. Don’t forget, repetition is the key, set yourself realistic goals and don't forget to take breaks!
+		</p>
+	  </div>
+	  <div class="section section-3 shrink shadow-blue" id="section-3" role="tabpanel" aria-labelledby="Revise">
+		<div class="d-flex flex-row">
+		  <button onclick="check_section_3()" role="tab" class="button-thin" aria-label="Click to expand Section 3" aria-expanded="false" aria-controls="text-3">
+			<sl-icon name="chevron-right" aria-hidden="true" library="default"></sl-icon>
+		  </button>
+		</div>
+		<h3>Revise</h3>
+		<p id="text-3" class="main-text hide animate">Reflect and evaluate your mastery and understanding of the material you learned and studied. Ask yourself, “Is the information I’m studying making sense?”, “Am I confident with the new material?”, “Do I understand the material well enough that I can teach it to someone else?” Assessing your studying from time to time is an essential aspect of learning and gives you an opportunity to reflect and improve. Finally, always look for opportunities to advance the knowledge you just learned.</p>
+	  </div>
+	</div>
+	<div class="hr-line mt-5 mb-4"></div>
+	<p class="footer fs-6 fw-bold text-center text-muted">Powered by:</p>
+	<p class="text-center">
+	  <a title="Bootstrap" aria-label="More information about Bootstrap" href="https://getbootstrap.com" target="_blank">
+		<img src="https://assets.codepen.io/9400490/Bootstrap.svg" alt="Bootstrap" width="30" height="30">
+	  </a>
+	  <a title="Shoelace" aria-label="More information about Shoelace" href="https://shoelace.style/components/icon" target="_blank">
+		<img src="https://assets.codepen.io/9400490/Shoelace.svg" alt="Shoelace" width="30" height="30">
+	  </a>
+	</p>
+	<script>
+		const divOne = document.getElementById("section-1");
+divOne.addEventListener("click", check_section_1);
+
+const divTwo = document.getElementById("section-2");
+divTwo.addEventListener("click", check_section_2);
+
+const divThree = document.getElementById("section-3");
+divThree.addEventListener("click", check_section_3);
+
+function check_section_1() {
+  let sectionOne = document.getElementById("section-1");
+  let sectionTwo = document.getElementById("section-2");
+  let sectionThree = document.getElementById("section-3");
+  let textOne = document.getElementById("text-1");
+  let textTwo = document.getElementById("text-2");
+  let textThree = document.getElementById("text-3");
+
+  if (sectionOne.classList.contains("shrink")) {
+    sectionOne.classList.replace("shrink", "grow");
+    sectionOne.classList.replace("shadow-orange", "shadow-dark");
+    sectionOne.setAttribute("aria-expanded", "true");
+    sectionTwo.classList.replace("grow", "shrink");
+    sectionTwo.classList.replace("shadow-dark", "shadow-pink");
+    sectionTwo.setAttribute("aria-expanded", "false");
+    sectionThree.classList.replace("grow", "shrink");
+    sectionThree.classList.replace("shadow-dark", "shadow-blue");
+    sectionThree.setAttribute("aria-expanded", "false");
+    textOne.classList.replace("hide", "animate");
+    textTwo.classList.remove("show");
+    textThree.classList.replace("show", "hide");
+    setTimeout(() => {
+      document.getElementById("text-1").classList.add("show");
+    }, 300);
+    textOne.classList.add("animate");
+  }
+}
+
+function check_section_2() {
+  let sectionOne = document.getElementById("section-1");
+  let sectionTwo = document.getElementById("section-2");
+  let sectionThree = document.getElementById("section-3");
+  let textOne = document.getElementById("text-1");
+  let textTwo = document.getElementById("text-2");
+  let textThree = document.getElementById("text-3");
+
+  if (sectionTwo.classList.contains("shrink")) {
+    sectionTwo.classList.replace("shrink", "grow");
+    sectionTwo.classList.replace("shadow-pink", "shadow-dark");
+    sectionTwo.setAttribute("aria-expanded", "true");
+    sectionOne.classList.replace("grow", "shrink");
+    sectionOne.classList.replace("shadow-dark", "shadow-orange");
+    sectionOne.setAttribute("aria-expanded", "false");
+    sectionThree.classList.replace("grow", "shrink");
+    sectionThree.classList.replace("shadow-dark", "shadow-blue");
+    sectionThree.setAttribute("aria-expanded", "false");
+    textOne.classList.replace("show", "hide");
+    textTwo.classList.remove("hide");
+    textThree.classList.replace("show", "hide");
+    setTimeout(() => {
+      document.getElementById("text-2").classList.add("show");
+    }, 300);
+  }
+}
+
+function check_section_3() {
+  let sectionOne = document.getElementById("section-1");
+  let sectionTwo = document.getElementById("section-2");
+  let sectionThree = document.getElementById("section-3");
+  let textOne = document.getElementById("text-1");
+  let textTwo = document.getElementById("text-2");
+  let textThree = document.getElementById("text-3");
+
+  if (sectionThree.classList.contains("shrink")) {
+    sectionThree.classList.replace("shrink", "grow");
+    sectionThree.classList.remove("shadow-blue");
+    sectionThree.setAttribute("aria-expanded", "true");
+    sectionOne.classList.replace("shadow-dark", "shadow-orange");
+    sectionOne.classList.replace("grow", "shrink");
+    sectionOne.setAttribute("aria-expanded", "false");
+    sectionTwo.classList.replace("grow", "shrink");
+    sectionTwo.classList.replace("shadow-dark", "shadow-pink");
+    sectionTwo.setAttribute("aria-expanded", "false");
+    textOne.classList.replace("show", "hide");
+    textTwo.classList.replace("show", "hide");
+    textThree.classList.remove("hide");
+    setTimeout(() => {
+      document.getElementById("text-3").classList.add("show");
+    }, 300);
+  }
+}
+
+	</script>
+  </body>
+</html>
