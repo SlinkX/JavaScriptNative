@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    *,
+*::after,
+*::before {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+:root {
+    --base-bg: hsl(202, 12%, 87%);
+    --accent-color: hsl(203, 98%, 50%);
+    --header-color: #f6fdfe;
+    --text-color: hsl(207, 17%, 34%);
+    --text-accent-color: hsl(203, 97%, 9%);
+    --hover-color: #dce5e9;
+    --border-color: #042734;
+    --shadow-1: #495057;
+    --shadow-2: #adb5bd;
+}
+body {
+    display: grid;
+    place-content: center;
+    min-block-size: 100vh;
+    font-family: system-ui;
+    background-color: var(--base-bg);
+}
+.app {
+    --header: 7rem;
+    inline-size: 320px;
+    block-size: 600px;
+    overflow: hidden;
+    display: grid;
+    grid: "header" var(--header) "main" 1fr;
+    border-radius: 2rem;
+    outline: medium solid var(--border-color);
+    margin: 2em;
+    box-shadow: var(--shadow-1) 0px 50px 100px -20px,
+        var(--shadow-2) 0px 30px 60px -30px;
+}
+header {
+    --navigation: 3rem;
+    grid-area: header;
+    box-shadow: 0 3px 5px -1px #0004;
+    background-color: var(--header-color);
+    z-index: 2;
+    display: grid;
+    grid-template-rows: 1fr 1fr;
+}
+nav {
+    grid-row: -1;
+    block-size: var(--navigation);
+    padding-inline: 0.5rem;
+    display: flex;
+    gap: 0.125rem;
+}
+.tab-button {
+    flex-grow: 1;
+    align-self: center;
+    padding-block: 0.625rem;
+    border: 1px solid #0000;
+    background: 0;
+    color: var(--text-color);
+    position: relative;
+    overflow: hidden;
+}
+.tab-button::after {
+    content: attr(data-target);
+    font: 700 1rem system-ui;
+    text-transform: capitalize;
+}
+.tab-button.active::after {
+    animation: text-underline-animation 300ms linear forwards;
+}
+nav:has(:focus-visible) .tab-button.active::after {
+    animation: unset;
+}
+@keyframes text-underline-animation {
+    0% {
+        text-underline-offset: 1rem;
+        text-decoration: 0px underline transparent;
+    }
+    50% {
+        text-underline-offset: 0.875rem;
+        text-decoration: 0px underline transparent;
+    }
+    100% {
+        text-underline-offset: 0.5rem;
+        text-decoration: 3px underline;
+    }
+}
+.active.tab-button {
+    color: var(--accent-color);
+}
+.tab-button:not(.active):hover {
+    background-color: var(--hover-color);
+    color: var(--text-accent-color);
+}
+.tab-button:active {
+    scale: 0.93;
+}
+.tab-button:focus-visible {
+    outline: 2px solid var(--header-color);
+    outline-offset: -4px;
+    background-color: var(--accent-color);
+    color: var(--header-color);
+}
+main {
+    grid-area: main;
+    block-size: 100%;
+    overflow: hidden;
+    gap: 0.5rem;
+    display: flex;
+    background-color: var(--shadow-2);
+    /* scrollbar-width: none; */
+}
+::-webkit-scrollbar {
+    /* width: 0; */
+    /* height: 0; */
+}
+article {
+    flex: 0 0 100%;
+}
+.content {
+    block-size: 100%;
+}
+.content > img {
+    display: block;
+    inline-size: 100%;
+    block-size: 100%;
+    object-fit: cover;
+}
+@supports (animation-timeline: view()) {
+    article {
+        animation: linear animate-in-and-out;
+        animation-timeline: view(inline);
+    }
+    @keyframes animate-in-and-out {
+        entry 0%,
+        exit 100% {
+            opacity: 0;
+            transform: scale(0);
+        }
+        entry 100%,
+        exit 0% {
+            opacity: 1;
+            transform: scale(100%);
+        }
+    }
+}
+
+  </style>
+</head>
+<body>
+  <div class="app">
+    <header class="header">
+        <nav>
+            <button class="tab-button active" data-target="tab1"></button>
+            <button class="tab-button" data-target="tab2"></button>
+            <button class="tab-button" data-target="tab3"></button>
+            <button class="tab-button" data-target="tab4"></button>
+        </nav>
+    </header>
+    <main>
+        <article id="tab1">
+            <div class="content"> <img src="https://cdn.pixabay.com/photo/2017/07/05/19/21/art-2475718_640.jpg" alt=""> </div>
+        </article>
+        <article id="tab2">
+            <div class="content"> <img src="https://cdn.pixabay.com/photo/2016/03/25/01/15/abstract-1278000_1280.jpg" alt=""> </div>
+        </article>
+        <article id="tab3">
+            <div class="content"> <img src="https://cdn.pixabay.com/photo/2015/11/18/16/09/water-1049401_1280.jpg" alt=""> </div>
+        </article>
+        <article id="tab4">
+            <div class="content"> <img src="https://cdn.pixabay.com/photo/2016/03/25/01/18/abstract-1278013_1280.jpg" alt=""> </div>
+        </article>
+    </main>
+</div>
+
+<script>
+  const app = () => {
+    const navigation = document.querySelector("nav");
+    const buttons = Array.from(navigation.querySelectorAll("button"));
+    const container = document.querySelector("main");
+
+    const handleNavigationClick = (e) => {
+        const clickedButton = e.target;
+        if (clickedButton.nodeName === "BUTTON") {
+            setActive(clickedButton);
+        }
+    };
+
+    const handleNavigationKeydown = (e) => {
+        const focusedButton = document.activeElement;
+        if (focusedButton.nodeName === "BUTTON") {
+            const currentIndex = buttons.indexOf(focusedButton);
+            const isFirstOrLast = e.key === "Home" || e.key === "End";
+            const isArrowKey = e.key === "ArrowRight" || e.key === "ArrowLeft";
+            if (isFirstOrLast) {
+                setActive(buttons[e.key === "Home" ? 0 : buttons.length - 1]);
+            } else if (isArrowKey) {
+                const newIndex = calculateNewIndex(e.key, currentIndex);
+                setActive(buttons[newIndex]);
+            }
+        }
+    };
+
+    const calculateNewIndex = (key, currentIndex) => {
+        const offset = key === "ArrowRight" ? 1 : -1;
+        return (currentIndex + offset + buttons.length) % buttons.length;
+    };
+
+    const setActive = (newActiveButton) => {
+        buttons.forEach((button) => button.classList.remove("active"));
+        newActiveButton.classList.add("active");
+        newActiveButton.focus();
+        scrollToTarget(newActiveButton);
+    };
+
+    const scrollToTarget = (button) => {
+        const targetId = button.dataset.target;
+        const targetElement = targetId
+            ? document.querySelector(`#${targetId}`)
+            : null;
+        if (targetElement) {
+            const containerOffset = container.getBoundingClientRect().left;
+            const targetOffset = targetElement.getBoundingClientRect().left;
+            container.scrollTo({
+                left: targetOffset - containerOffset + container.scrollLeft,
+                behavior: "smooth"
+            });
+        }
+    };
+
+    navigation.addEventListener("click", handleNavigationClick);
+    navigation.addEventListener("keydown", handleNavigationKeydown);
+};
+
+app();
+
+</script>
+</body>
+</html>

@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Puzzle Piece Background Grid</title>
+  <link rel="stylesheet" href="styles.css">
+  <style>body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    background-color: #f0f0f0;
+  }
+  
+  .grid-container {
+    display: grid;
+    grid-template-columns: repeat(10, 50px); /* 10 columns with 50px width each */
+    grid-template-rows: repeat(10, 50px); /* 10 rows with 50px height each */
+    gap: 50px; /* Gap between the grid items */
+    transition-duration: 2s;
+  }
+  
+  .grid-container:hover {
+    gap: 0px; /* Gap between the grid items */
+  }
+  
+  .grid-container .puzzle-piece {
+    //border-radius: 50%;
+  }
+  .grid-container .puzzle-piece:nth-child(6n) {
+    transform: rotate(360deg);
+    translate: 100px 0;
+  }
+  .grid-container .puzzle-piece:nth-child(6n + 1) {
+    transform: rotate(-90deg);
+    translate: 0px -100px;
+  }
+  .grid-container .puzzle-piece:nth-child(6n + 2) {
+    transform: rotate(180deg);
+    translate: 0px 100px;
+  }
+  .grid-container .puzzle-piece:nth-child(6n + 3) {
+    transform: rotate(270deg);
+    translate: -100px 0;
+  }
+  .grid-container .puzzle-piece:nth-child(6n + 4) {
+    transform: rotate(90deg);
+    translate: 100px 0px;
+  }
+  .grid-container .puzzle-piece:nth-child(6n + 5) {
+    transform: rotate(-180deg);
+    translate: -100px 0;
+  }
+  
+  .grid-container:hover .puzzle-piece{
+    transform: rotate(0deg);
+    translate: 0 0;
+    border-radius: 0%;
+  }
+  
+  .puzzle-piece {
+    width: 50px;
+    height: 50px;
+    background-image: url("https://justicebibleapp.w3spaces.com/fromthepages2.jpg");
+    background-size: 500px 500px; /* Adjust to the total grid size */
+    border: 0px solid #000;
+    transition-duration: 2s;
+  }
+  </style>
+</head>
+
+<body>
+  <div class="grid-container">
+    <div class="puzzle-piece" style="background-position: 0px 0px;"></div>
+    <div class="puzzle-piece" style="background-position: -50px 0px;"></div>
+    <div class="puzzle-piece" style="background-position: -100px 0px;"></div>
+    <div class="puzzle-piece" style="background-position: -150px 0px;"></div>
+    <div class="puzzle-piece" style="background-position: -200px 0px;"></div>
+    <div class="puzzle-piece" style="background-position: -250px 0px;"></div>
+    <div class="puzzle-piece" style="background-position: -300px 0px;"></div>
+    <div class="puzzle-piece" style="background-position: -350px 0px;"></div>
+    <div class="puzzle-piece" style="background-position: -400px 0px;"></div>
+    <div class="puzzle-piece" style="background-position: -450px 0px;"></div>
+    <div class="puzzle-piece" style="background-position: 0px -50px;"></div>
+    <div class="puzzle-piece" style="background-position: -50px -50px;"></div>
+    <div class="puzzle-piece" style="background-position: -100px -50px;"></div>
+    <div class="puzzle-piece" style="background-position: -150px -50px;"></div>
+    <div class="puzzle-piece" style="background-position: -200px -50px;"></div>
+    <div class="puzzle-piece" style="background-position: -250px -50px;"></div>
+    <div class="puzzle-piece" style="background-position: -300px -50px;"></div>
+    <div class="puzzle-piece" style="background-position: -350px -50px;"></div>
+    <div class="puzzle-piece" style="background-position: -400px -50px;"></div>
+    <div class="puzzle-piece" style="background-position: -450px -50px;"></div>
+    <div class="puzzle-piece" style="background-position: 0px -100px;"></div>
+    <div class="puzzle-piece" style="background-position: -50px -100px;"></div>
+    <div class="puzzle-piece" style="background-position: -100px -100px;"></div>
+    <div class="puzzle-piece" style="background-position: -150px -100px;"></div>
+    <div class="puzzle-piece" style="background-position: -200px -100px;"></div>
+    <div class="puzzle-piece" style="background-position: -250px -100px;"></div>
+    <div class="puzzle-piece" style="background-position: -300px -100px;"></div>
+    <div class="puzzle-piece" style="background-position: -350px -100px;"></div>
+    <div class="puzzle-piece" style="background-position: -400px -100px;"></div>
+    <div class="puzzle-piece" style="background-position: -450px -100px;"></div>
+    <div class="puzzle-piece" style="background-position: 0px -150px;"></div>
+    <div class="puzzle-piece" style="background-position: -50px -150px;"></div>
+    <div class="puzzle-piece" style="background-position: -100px -150px;"></div>
+    <div class="puzzle-piece" style="background-position: -150px -150px;"></div>
+    <div class="puzzle-piece" style="background-position: -200px -150px;"></div>
+    <div class="puzzle-piece" style="background-position: -250px -150px;"></div>
+    <div class="puzzle-piece" style="background-position: -300px -150px;"></div>
+    <div class="puzzle-piece" style="background-position: -350px -150px;"></div>
+    <div class="puzzle-piece" style="background-position: -400px -150px;"></div>
+    <div class="puzzle-piece" style="background-position: -450px -150px;"></div>
+    <div class="puzzle-piece" style="background-position: 0px -200px;"></div>
+    <div class="puzzle-piece" style="background-position: -50px -200px;"></div>
+    <div class="puzzle-piece" style="background-position: -100px -200px;"></div>
+    <div class="puzzle-piece" style="background-position: -150px -200px;"></div>
+    <div class="puzzle-piece" style="background-position: -200px -200px;"></div>
+    <div class="puzzle-piece" style="background-position: -250px -200px;"></div>
+    <div class="puzzle-piece" style="background-position: -300px -200px;"></div>
+    <div class="puzzle-piece" style="background-position: -350px -200px;"></div>
+    <div class="puzzle-piece" style="background-position: -400px -200px;"></div>
+    <div class="puzzle-piece" style="background-position: -450px -200px;"></div>
+    <div class="puzzle-piece" style="background-position: 0px -250px;"></div>
+    <div class="puzzle-piece" style="background-position: -50px -250px;"></div>
+    <div class="puzzle-piece" style="background-position: -100px -250px;"></div>
+    <div class="puzzle-piece" style="background-position: -150px -250px;"></div>
+    <div class="puzzle-piece" style="background-position: -200px -250px;"></div>
+    <div class="puzzle-piece" style="background-position: -250px -250px;"></div>
+    <div class="puzzle-piece" style="background-position: -300px -250px;"></div>
+    <div class="puzzle-piece" style="background-position: -350px -250px;"></div>
+    <div class="puzzle-piece" style="background-position: -400px -250px;"></div>
+    <div class="puzzle-piece" style="background-position: -450px -250px;"></div>
+    <div class="puzzle-piece" style="background-position: 0px -300px;"></div>
+    <div class="puzzle-piece" style="background-position: -50px -300px;"></div>
+    <div class="puzzle-piece" style="background-position: -100px -300px;"></div>
+    <div class="puzzle-piece" style="background-position: -150px -300px;"></div>
+    <div class="puzzle-piece" style="background-position: -200px -300px;"></div>
+    <div class="puzzle-piece" style="background-position: -250px -300px;"></div>
+    <div class="puzzle-piece" style="background-position: -300px -300px;"></div>
+    <div class="puzzle-piece" style="background-position: -350px -300px;"></div>
+    <div class="puzzle-piece" style="background-position: -400px -300px;"></div>
+    <div class="puzzle-piece" style="background-position: -450px -300px;"></div>
+    <div class="puzzle-piece" style="background-position: 0px -350px;"></div>
+    <div class="puzzle-piece" style="background-position: -50px -350px;"></div>
+    <div class="puzzle-piece" style="background-position: -100px -350px;"></div>
+    <div class="puzzle-piece" style="background-position: -150px -350px;"></div>
+    <div class="puzzle-piece" style="background-position: -200px -350px;"></div>
+    <div class="puzzle-piece" style="background-position: -250px -350px;"></div>
+    <div class="puzzle-piece" style="background-position: -300px -350px;"></div>
+    <div class="puzzle-piece" style="background-position: -350px -350px;"></div>
+    <div class="puzzle-piece" style="background-position: -400px -350px;"></div>
+    <div class="puzzle-piece" style="background-position: -450px -350px;"></div>
+    <div class="puzzle-piece" style="background-position: 0px -400px;"></div>
+    <div class="puzzle-piece" style="background-position: -50px -400px;"></div>
+    <div class="puzzle-piece" style="background-position: -100px -400px;"></div>
+    <div class="puzzle-piece" style="background-position: -150px -400px;"></div>
+    <div class="puzzle-piece" style="background-position: -200px -400px;"></div>
+    <div class="puzzle-piece" style="background-position: -250px -400px;"></div>
+    <div class="puzzle-piece" style="background-position: -300px -400px;"></div>
+    <div class="puzzle-piece" style="background-position: -350px -400px;"></div>
+    <div class="puzzle-piece" style="background-position: -400px -400px;"></div>
+    <div class="puzzle-piece" style="background-position: -450px -400px;"></div>
+    <div class="puzzle-piece" style="background-position: 0px -450px;"></div>
+    <div class="puzzle-piece" style="background-position: -50px -450px;"></div>
+    <div class="puzzle-piece" style="background-position: -100px -450px;"></div>
+    <div class="puzzle-piece" style="background-position: -150px -450px;"></div>
+    <div class="puzzle-piece" style="background-position: -200px -450px;"></div>
+    <div class="puzzle-piece" style="background-position: -250px -450px;"></div>
+    <div class="puzzle-piece" style="background-position: -300px -450px;"></div>
+    <div class="puzzle-piece" style="background-position: -350px -450px;"></div>
+    <div class="puzzle-piece" style="background-position: -400px -450px;"></div>
+    <div class="puzzle-piece" style="background-position: -450px -450px;"></div>
+  </div>
+  <script src="script.js"></script>
+</body>
+
+</html>
