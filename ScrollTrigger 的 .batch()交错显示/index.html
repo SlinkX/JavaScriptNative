@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    body {
+  background: #0e100f;
+}
+.container {
+  --min: 25ch;
+  --gap: 1rem;
+  margin-bottom: 3rem;
+  display: grid;
+  grid-gap: var(--gap);
+  /* min() with 100% prevents overflow
+  in extra narrow spaces */
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, var(--min)), 1fr));
+}
+
+.card {
+  background: #0ae448;
+  height: 300px;
+  opacity: 0;
+  border-radius: 10px;
+}
+
+button {
+  position: fixed;
+  bottom: 2rem;
+  left: 50%;
+  transform: translateX(-50%)
+}
+
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="card"></div>
+    <div class="card"></div>
+    <div class="card"></div>
+    <div class="card"></div>
+    <div class="card"></div>
+    <div class="card"></div>
+    <div class="card"></div>
+    <div class="card"></div>
+    <div class="card"></div>
+    <div class="card"></div>
+    <div class="card"></div>
+    <div class="card"></div>
+    <div class="card"></div>
+    <div class="card"></div>
+    <div class="card"></div>
+    <div class="card"></div>
+    <div class="card"></div>
+    <div class="card"></div>
+    <div class="card"></div>
+    <div class="card"></div>
+      <div class="card"></div>
+    <div class="card"></div>
+    <div class="card"></div>
+    <div class="card"></div>
+    <div class="card"></div>
+    <div class="card"></div>
+    <div class="card"></div>
+    <div class="card"></div>
+    <div class="card"></div>
+    <div class="card"></div>
+    <div class="card"></div>
+    <div class="card"></div>
+    <div class="card"></div>
+    <div class="card"></div>
+    <div class="card"></div>
+    <div class="card"></div>
+    <div class="card"></div>
+    <div class="card"></div>
+    <div class="card"></div>
+    <div class="card"></div>
+  
+  </div>
+  
+  <button class="button">add more</button>
+</body>
+
+<script>
+  // https://greensock.com/docs/v3/Plugins/ScrollTrigger/static.batch()
+let batch;
+function addBatch() {
+  batch = ScrollTrigger.batch(".card", {
+    // interval: 0.1, // time window (in seconds) for batching to occur.
+    // batchMax: 3,   // maximum batch size (targets)
+    onEnter: (batch) =>
+      gsap.to(batch, { autoAlpha: 1, stagger: 0.1 }),
+    // also onLeave, onEnterBack, and onLeaveBack
+    // also most normal ScrollTrigger values like start, end, etc.,
+    markers: true
+  });
+}
+addBatch();
+
+document.querySelector("button").addEventListener("click", (e) => {
+  const cont = document.querySelector(".container");
+  for (let i = 0; i < 30; i++) {
+    const newDiv = document.createElement("div");
+    newDiv.classList.add("card");
+    cont.appendChild(newDiv);
+  }
+  batch.forEach((st) => st.kill());
+  addBatch();
+});
+
+</script>
+</html>
