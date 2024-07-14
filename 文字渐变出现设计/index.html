@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    h2{
+  font-size: 4.5rem;
+  line-height: 1.2em;
+}
+
+.overflow-hidden{
+  overflow: hidden;
+  display: inline-block;
+  vertical-align: top;
+/*   https://stackoverflow.com/questions/22421782/css-overflow-hidden-increases-height-of-container */
+}
+  </style>
+</head>
+<body>
+  <h2 class="u-h0 text-center lg:text-center">
+    Share information about your brand with your customers.
+  </h2>
+
+
+  <script>
+    let wrapLine = new SplitText("h2", {
+  type: "lines",
+  linesClass: "overflow-hidden line--++"
+});
+
+let wrapLetter = new SplitText("h2", {
+  type: "words, chars",
+  wordsClass: "overflow-hidden word--++",
+  charsClass: "overflow-hidden"
+});
+let splitInstance = new SplitText("h2", {
+  type: "chars",
+  lineThreshold: 0.0,
+  charsClass: "letter--++"
+});
+let targets = splitInstance.chars;
+
+gsap.from(targets, {
+  x: -100,
+  opacity: 0,
+  duration: 2,
+  stagger: 0.1,
+  ease: "power2.out"
+});
+
+  </script>
+</body>
+</html>
