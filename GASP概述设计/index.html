@@ -1,0 +1,584 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    body {
+  background-color:#1d1d1d;
+}
+
+#overview {
+  padding: 15px;
+  font-weight: 300;
+  background-color: #1d1d1d;
+  font-family: "Signika Negative", sans-serif;
+  color: #999;
+  margin: 0px;
+  font-size: 18px;
+  max-width: 830px;
+  line-height: normal;
+  border-radius: 14px;
+  margin: 0 auto;
+}
+
+#overview strong {
+  color: #ccc;
+  font-weight: 400;
+}
+
+#overview p {
+  font-size: 18px;
+  line-height: normal;
+  color: #999;
+}
+
+#overview h1,
+#overview h2,
+#overview h3 {
+  margin: 10px 0 10px 0;
+  color: #f3f2ef;
+  font-weight: 400;
+  text-shadow: none;
+}
+
+#overview h2 {
+  font-size: 27px;
+  line-height: normal;
+  padding: 0;
+}
+
+#overview h1 {
+  font-size: 50px;
+  font-weight: 300;
+  line-height: 50px;
+}
+
+#overview a {
+  color: #88ce02;
+  text-decoration: none;
+  font-weight: 400;
+}
+
+#overview a:hover {
+  text-decoration: underline;
+}
+
+#overview h2 a.name {
+  color: white;
+}
+
+#overview a.name {
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 300;
+  color: #bbb;
+}
+
+#overview h2.section-header {
+  font-size: 44px;
+  margin-top: 35px;
+  font-weight: 300;
+}
+
+#overview button,
+#overview .ease-visualizer-btn {
+  display: inline-block;
+  outline: none;
+  border: none;
+  background: #555;
+  background-image: -webkit-linear-gradient(top, #606060, #444);
+  background-image: -moz-linear-gradient(top, #606060, #444);
+  background-image: -ms-linear-gradient(top, #606060, #444);
+  background-image: -o-linear-gradient(top, #606060, #444);
+  background-image: linear-gradient(to bottom, #606060, #444);
+  text-decoration: none;
+  -webkit-border-radius: 4;
+  -moz-border-radius: 4;
+  border-radius: 4px;
+  font-family: "Signika Negative", sans-serif;
+  text-transform: uppercase;
+  font-weight: 600;
+  cursor: pointer;
+  font-size: 13px;
+  line-height: 18px;
+  margin: 2px 1px 2px 20px;
+  padding: 3px 10px;
+  float: right;
+  color: black;
+}
+
+#overview button:hover {
+  background: #88ce02;
+  text-decoration: none;
+}
+
+#overview #overview-header {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+#overview .tools {
+  margin: 20px auto 0 auto;
+}
+
+#overview .tools .block {
+  max-width: 350px;
+  /* min-width: 310px; */
+  display: inline-block;
+  margin-right: 18px;
+  margin-left: 18px;
+  vertical-align: top;
+  width: auto;
+}
+
+#overview .core .block {
+  margin-right: 2px;
+  margin-left: 2px;
+}
+
+#overview .tools h2 i {
+  font-weight: 300;
+  font-size: 18px;
+  color: #999;
+}
+
+#overview .core {
+  border-radius: 10px;
+  padding: 16px 16px 6px 16px;
+  border: 2px solid #88ce02;
+  max-width: 420px;
+  display: inline-block;
+  margin-bottom: 0;
+  line-height: normal;
+}
+
+@media (max-width: 1225px) {
+  #overview .core {
+    display: block;
+    margin: 0 auto;
+  }
+}
+
+#overview .core-header {
+  margin: -16px -16px 6px -16px;
+  padding: 7px 4px 7px 8px;
+  text-transform: uppercase;
+  text-align: center;
+  font-size: 21px;
+  letter-spacing: 2px;
+  font-weight: 600;
+  background-color: #88ce02;
+  border-radius: 8px 8px 0 0;
+  color: black;
+}
+
+#overview .tools div.secondary-block {
+  max-width: auto;
+  /*min-width: 380px; */
+}
+
+#overview .secondary-block .version {
+  height: 48px;
+  line-height: 48px;
+  color: #777;
+  font-weight: 300;
+  text-align: right;
+  margin-right: 51px;
+}
+
+#overview .secondary-header {
+  position: relative;
+  overflow: visible;
+  margin-top: 48px;
+  margin-bottom: 16px;
+}
+
+#overview h2 a:hover,
+#overview h2 a {
+  color: white;
+}
+
+#overview .secondary-header div {
+  display: inline-block;
+  float: right;
+  width: 50px;
+  height: 50px;
+  margin: -15px 0 0 0;
+  background-size: contain;
+}
+
+#overview .secondary-header .simply {
+  background-image: url(https://greensock.com/_img/bullet-simply.png);
+}
+
+#overview .secondary-header .shockingly {
+  background-image: url(https://greensock.com/_img/bullet-shockingly.png);
+}
+
+#overview .secondary-header .business {
+  background-image: url(https://greensock.com/_img/bullet-business.png);
+}
+
+#overview .secondary-block li .checks {
+  background-repeat: repeat-x;
+  background-image: url(https://greensock.com/_img/check.svg);
+  background-position: 0;
+  width: 150px;
+  height: 25px;
+  display: inline-block;
+  float: right;
+}
+
+#overview .secondary-block li.standalone .checks {
+  background-image: none;
+  width: 51px;
+}
+
+#overview .secondary-block li.shockingly .checks {
+  width: 100px;
+  margin-left: 50px;
+}
+
+#overview .secondary-block li.business .checks {
+  width: 50px;
+  margin-left: 100px;
+}
+
+#overview .tools .block ul {
+  margin-top: 2px;
+  padding-left: 2px;
+  margin-left: 0;
+  margin-bottom: 12px;
+}
+
+#overview .tools .block li {
+  list-style-type: none;
+  padding-left: 34px;
+  margin-left: 0;
+  font-style: italic;
+  font-weight: 300;
+  margin-bottom: 4px;
+}
+
+#overview .club-list li,
+#overview .faq-list li {
+  margin-bottom: 12px;
+}
+
+#overview .try {
+  float: none;
+  display: block;
+  width: calc(100% - 35px);
+  margin-left: 35px;
+  font-size: 15px;
+  padding: 5px 10px;
+}
+
+#overview .try strong {
+  color: black;
+}
+
+#overview .ease-btn {
+  padding: 6px 10px;
+}
+
+#overview .ease-btn-svg {
+  width: 25px;
+  height: 25px;
+  vertical-align: middle;
+}
+
+#overview .ease-icon {
+  width: 24px;
+  height: 24px;
+  margin: -1px 6px 2px 1px;
+  vertical-align: middle;
+}
+
+#overview .ease-path,
+#overview .ease-border {
+  fill: none;
+  stroke: black;
+}
+
+#overview .ease-visualizer-btn {
+  float: none;
+  font-size: 15px;
+  padding-left: 6px;
+  margin: 8px 0;
+  padding-top: 6px;
+}
+  </style>
+</head>
+<body>
+  <div id="overview">
+    <div id="overview-header"><img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/16327/logo-man.svg" width="100" style="vertical-align: middle; margin-right: 16px;">
+  
+      <h1>GSAP 3 Overview</h1>
+    </div>
+  
+    <p>This chart shows which parts of <a href="https://greensock.com">GSAP</a> are included inside of GSAP&#39;s core, which reside on the public <a href="https://cdnjs.com/libraries/gsap">CDN</a>, and which are for <a href="/club/">Club GreenSock</a> members only. All tools are linked to their <a href="https://greensock.com/docs/">docs</a> for convenience.</p>
+  
+    <div class="tools">
+      <div class="core">
+  
+        <h2 class="core-header">Included in GSAP&#39;s core</h2>
+        <div class="block">
+  
+          <h2>Core Tools</h2>
+  
+          <ul>
+            <li><a class="name" href="https://greensock.com/docs/v3/GSAP">GSAP</a>
+              <button data-link="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.0.2/gsap.min.js">CDN</button>
+              <br>(including <a href="https://greensock.com/docs/v3/GSAP/Tween">Tween</a> and <a href="/docs/v3/GSAP/Timeline">Timeline</a>)
+  
+            </li>
+          </ul>
+  
+          <h2><a class="name" href="https://greensock.com/docs/v3/GSAP/CorePlugins/">Plugins</a></h2>
+  
+          <ul>
+            <li><a class="name" href="https://greensock.com/docs/v3/GSAP/CorePlugins/AttrPlugin">attr</a></li>
+            <li><a class="name" href="https://greensock.com/docs/v3/GSAP/CorePlugins/CSSPlugin">css</a></li>
+            <li><a class="name" href="https://greensock.com/docs/v3/GSAP/CorePlugins/EndArrayPlugin">endArray</a></li>
+            <li><a class="name" href="https://greensock.com/docs/v3/GSAP/CorePlugins/ModifiersPlugin">modifiers</a></li>
+            <li><a class="name" href="https://greensock.com/docs/v3/GSAP/CorePlugins/SnapPlugin">snap</a></li>
+          </ul>
+  
+          <h2><a class="name" href="https://greensock.com/docs/v3/Eases">Eases</a>
+            <!--<a alt="Ease Visualizer" href="/ease-visualizer" title="Ease Visualizer">
+         <button class="ease-btn">
+          <svg class="ease-btn-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 25.67 25.67">
+           <path class="ease-path" stroke-width="1.5" d="M.48,25.12c1.74-3.57,4.28-12.6,8.8-10.7s4.75,1.43,6.5-1.11S19.89,1.19,25.2.55"></path>
+           <path class="ease-border" stroke-width="1" d="M24.67,1V24.67H1V1H24.67m1-1H0V25.67H25.67V0Z"></path>
+          </svg>
+         </button>
+        </a>-->
+          </h2>
+  
+          <ul>
+            <li><a class="name" href="https://greensock.com/docs/v3/Eases">&quot;linear&quot;</a> (a.k.a. &quot;none&quot; or &quot;power0&quot;)</li>
+            <li><a class="name" href="https://greensock.com/docs/v3/Eases">&quot;power1&quot;</a> (a.k.a. &quot;quad&quot;)</li>
+            <li><a class="name" href="https://greensock.com/docs/v3/Eases">&quot;power2&quot;</a> (a.k.a. &quot;cubic&quot;)</li>
+            <li><a class="name" href="https://greensock.com/docs/v3/Eases">&quot;power3&quot;</a> (a.k.a. &quot;quart&quot;)</li>
+            <li><a class="name" href="https://greensock.com/docs/v3/Eases">&quot;power4&quot;</a> (a.k.a. &quot;strong&quot; or &quot;quint&quot;)</li>
+            <li><a class="name" href="https://greensock.com/docs/v3/Eases">&quot;back&quot;</a></li>
+            <li><a class="name" href="https://greensock.com/docs/v3/Eases">&quot;bounce&quot;</a></li>
+            <li><a class="name" href="https://greensock.com/docs/v3/Eases">&quot;circ&quot;</a></li>
+            <li><a class="name" href="https://greensock.com/docs/v3/Eases">&quot;elastic&quot;</a></li>
+            <li><a class="name" href="https://greensock.com/docs/v3/Eases">&quot;expo&quot;</a></li>
+            <li><a class="name" href="https://greensock.com/docs/v3/Eases">&quot;sine&quot;</a></li>
+            <li><a class="name" href="https://greensock.com/docs/v3/Eases/SteppedEase">&quot;steps(n)&quot;</a></li>
+          </ul>
+  
+          <h2><a class="name" href="https://greensock.com/docs/v3/GSAP/UtilityMethods/">Utility Methods</a></h2>
+  
+          <ul>
+            <li><a class="name" href="https://greensock.com/docs/v3/GSAP/UtilityMethods/checkPrefix()">checkPrefix()</a></li>
+            <li><a class="name" href="https://greensock.com/docs/v3/GSAP/UtilityMethods/clamp()">clamp()</a></li>
+            <li><a class="name" href="https://greensock.com/docs/v3/GSAP/UtilityMethods/distribute()">distribute()</a></li>
+            <li><a class="name" href="https://greensock.com/docs/v3/GSAP/UtilityMethods/getUnit()">getUnit()</a></li>
+            <li><a class="name" href="https://greensock.com/docs/v3/GSAP/UtilityMethods/interpolate()">interpolate()</a></li>
+            <li><a class="name" href="https://greensock.com/docs/v3/GSAP/UtilityMethods/mapRange()">mapRange()</a></li>
+            <li><a class="name" href="https://greensock.com/docs/v3/GSAP/UtilityMethods/normalize()">normalize()</a></li>
+            <li><a class="name" href="https://greensock.com/docs/v3/GSAP/UtilityMethods/pipe()">pipe()</a></li>
+            <li><a class="name" href="https://greensock.com/docs/v3/GSAP/UtilityMethods/random()">random()</a></li>
+            <li><a class="name" href="https://greensock.com/docs/v3/GSAP/UtilityMethods/selector()">selector()</a></li>
+            <li><a class="name" href="https://greensock.com/docs/v3/GSAP/UtilityMethods/shuffle()">shuffle()</a></li>
+            <li><a class="name" href="https://greensock.com/docs/v3/GSAP/UtilityMethods/snap()">snap()</a></li>
+            <li><a class="name" href="https://greensock.com/docs/v3/GSAP/UtilityMethods/splitColor()">splitColor()</a></li>
+            <li><a class="name" href="https://greensock.com/docs/v3/GSAP/UtilityMethods/toArray()">toArray()</a></li>
+            <li><a class="name" href="https://greensock.com/docs/v3/GSAP/UtilityMethods/unitize()">unitize()</a></li>
+            <li><a class="name" href="https://greensock.com/docs/v3/GSAP/UtilityMethods/wrap()">wrap()</a></li>
+            <li><a class="name" href="https://greensock.com/docs/v3/GSAP/UtilityMethods/wrapYoyo()">wrapYoyo()</a></li>
+          </ul>
+        </div>
+      </div>
+  
+  
+      <!-- PLUGINS -->
+      <div class="block secondary-block">
+        <div class="version">Latest version: 3.0.4</div>
+  
+        <h2><a class="name" href="https://greensock.com/docs/v3/Plugins">Extra Plugins</a></h2>
+  
+        <ul>
+  
+            <li class="standalone"><a class="name" href="/docs/v3/Plugins/Draggable">Draggable</a><span class="checks"></span>
+              <button data-link="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.0.2/Draggable.min.js">CDN</button>
+            </li>
+            <li class="standalone"><a class="name" href="/docs/v3/Plugins/EaselPlugin">Easel</a><span class="checks"></span>
+              <button data-link="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.0.2/EaselPlugin.min.js">CDN</button>
+            </li>
+            <li class="standalone"><a class="name" href="/docs/v3/Plugins/Flip">Flip</a><span class="checks"></span>
+              <button data-link="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.0.2/Flip.min.js">CDN</button>
+            </li>
+  
+            <li class="standalone"><a class="name" href="/docs/v3/Plugins/MotionPathPlugin">MotionPath</a><span class="checks"></span>
+              <button data-link="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.0.2/MotionPathPlugin.min.js">CDN</button>
+            </li>
+  
+  
+            <li class="standalone"><a class="name" href="/docs/v3/Plugins/Observer">Observer</a><span class="checks"></span>
+              <button data-link="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.0.2/Observer.min.js">CDN</button>
+            </li>
+            <li class="standalone"><a class="name" href="/docs/v3/Plugins/PixiPlugin">Pixi</a><span class="checks"></span>
+              <button data-link="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.0.2/PixiPlugin.min.js">CDN</button>
+            </li>
+  
+            <li class="standalone"><a class="name" href="/docs/v3/Plugins/ScrollToPlugin">ScrollTo</a><span class="checks"></span>
+              <button data-link="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.0.2/ScrollToPlugin.min.js">CDN</button>
+            </li>
+            <li class="standalone"><a class="name" href="/docs/v3/Plugins/ScrollTrigger">ScrollTrigger</a><span class="checks"></span>
+              <button data-link="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.0.2/ScrollTrigger.min.js">CDN</button>
+            </li>
+            <li class="standalone"><a class="name" href="/docs/v3/Plugins/TextPlugin">Text</a><span class="checks"></span>
+              <button data-link="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.0.2/TextPlugin.min.js">CDN</button>
+            </li>
+          </ul>
+  
+        <h2>Extra Eases</h2>
+  
+        <ul>
+          <li><a class="name" href="https://greensock.com/docs/v3/Eases/RoughEase">&quot;rough()&quot;</a></li>
+          <li><a class="name" href="https://greensock.com/docs/v3/Eases/SlowMo">&quot;slow()&quot;</a></li>
+          <li><a class="name" href="https://greensock.com/docs/v3/Eases/ExpoScaleEase">&quot;expoScale()&quot;</a></li>
+  
+          <li class="standalone"><a class="name" href="https://greensock.com/docs/v3/Easing/CustomEase">CustomEase</a>
+            <button data-link="https://s3-us-west-2.amazonaws.com/s.cdpn.io/16327/CustomEase3.min.js">CODEPEN</button>
+            <br>Requires GreenSock account (free)</li>
+        </ul>
+  
+  
+        <div class="secondary-header">
+          <a href="https://greensock.com/club" title="Business Green">
+            <div class="business">
+              <br>
+            </div>
+          </a>
+          <a href="https://greensock.com/club" title="Shockingly Green">
+            <div class="shockingly">
+              <br>
+            </div>
+          </a>
+          <a href="https://greensock.com/club" title="Simply Green">
+            <div class="simply">
+              <br>
+            </div>
+          </a>
+  
+          <h2><a href="https://greensock.com/club">Club&nbsp;GreenSock</a></h2>
+        </div>
+  
+        <ul class="club-bonuses">
+          <li class="simply"><a class="name" href="https://greensock.com/docs/v3/Plugins/DrawSVGPlugin">DrawSVG</a><span class="checks" data-link="https://s3-us-west-2.amazonaws.com/s.cdpn.io/16327/DrawSVGPlugin3.min.js"></span></li>
+          <li class="simply"><a class="name" href="https://greensock.com/docs/v3/Plugins/Physics2DPlugin">Physics2D</a><span class="checks" data-link="https://s3-us-west-2.amazonaws.com/s.cdpn.io/16327/Physics2DPlugin3.min.js"></span></li>
+          <li class="simply"><a class="name" href="https://greensock.com/docs/v3/Plugins/PhysicsPropsPlugin">PhysicsProps</a><span class="checks" data-link="https://s3-us-west-2.amazonaws.com/s.cdpn.io/16327/PhysicsPropsPlugin3.min.js"></span></li>
+          <li class="simply"><a class="name" href="https://greensock.com/docs/v3/Plugins/ScrambleTextPlugin">ScrambleText</a><span class="checks" data-link="https://s3-us-west-2.amazonaws.com/s.cdpn.io/16327/ScrambleTextPlugin3.min.js"></span></li>
+          <li class="simply"><a class="name" href="https://greensock.com/docs/v3/Eases/CustomBounce">CustomBounce</a><span class="checks" data-link="https://s3-us-west-2.amazonaws.com/s.cdpn.io/16327/CustomBounce3.min.js"></span>
+            <br>Requires CustomEase</li>
+          <li class="simply"><a class="name" href="https://greensock.com/docs/v3/Eases/CustomWiggle">CustomWiggle</a><span class="checks" data-link="https://s3-us-west-2.amazonaws.com/s.cdpn.io/16327/CustomWiggle3.min.js"></span>
+            <br>Requires CustomEase</li>
+          <li class="shockingly"><a class="name" href="https://greensock.com/docs/v3/Plugins/GSDevToolsPlugin">GSDevTools</a><span class="checks" data-link="https://s3-us-west-2.amazonaws.com/s.cdpn.io/16327/GSDevTools3.min.js"></span></li>
+          <li class="shockingly"><a class="name" href="https://greensock.com/docs/v3/Plugins/InertiaPlugin">Inertia</a><span class="checks" data-link="https://s3-us-west-2.amazonaws.com/s.cdpn.io/16327/InertiaPlugin.min.js"></span></li>
+          <li class="shockingly"><a class="name" href="https://greensock.com/docs/v3/Plugins/MorphSVGPlugin">MorphSVG</a><span class="checks" data-link="https://s3-us-west-2.amazonaws.com/s.cdpn.io/16327/MorphSVGPlugin3.min.js"></span></li>
+          <li class="shockingly"><a class="name" href="https://greensock.com/docs/v3/Plugins/MotionPathHelper">MotionPathHelper</a><span class="checks" data-link="https://s3-us-west-2.amazonaws.com/s.cdpn.io/16327/MotionPathHelper.min.js"></span></li>
+          <li class="shockingly"><a class="name" href="https://greensock.com/docs/v3/Plugins/ScrollSmoother">ScrollSmoother</a><span class="checks" data-link="https://s3-us-west-2.amazonaws.com/s.cdpn.io/16327/ScrollSmoother.min.js"></span></li>
+          <li class="shockingly"><a class="name" href="https://greensock.com/docs/v3/Plugins/SplitTextPlugin">SplitText</a><span class="checks" data-link="https://s3-us-west-2.amazonaws.com/s.cdpn.io/16327/SplitText3.min.js"></span></li>
+          <li class="business"><a class="name" href="https://greensock.com/licensing">Commercial license</a><span class="checks"></span></li>
+        </ul>
+  
+        <a href="https://codepen.io/GreenSock/full/OPqpRJ/">
+          <button class="try">Try <strong>FREE</strong> on CodePen</button>
+        </a>
+  
+      </div>
+    </div>
+  </div>
+
+  <script>
+    var version = "3.12.5",
+    buttons = document.querySelectorAll(".tools button"),
+    i, btn, link;
+
+//update all the version strings...
+for (i = 0; i < buttons.length; i++)
+{
+  btn = buttons[i];
+  link = btn.getAttribute("data-link");
+  if (link)
+  {
+    btn.setAttribute("data-link", link.split("/3.0.2/").join("/" + version + "/"));
+  }
+}
+document.querySelector(".tools .version").innerHTML = "Latest version: " + version;
+
+//just for copy-to-clipboard functionality (add data-link attribute to any element)
+(function()
+ {
+  document.body.addEventListener('click', copy, true);
+  var copyElement = document.createElement("textarea"),
+      confirmation = document.createElement("div"),
+      tl, t, doc;
+  copyElement.style.display = "none";
+  document.body.appendChild(copyElement);
+
+  confirmation.style.cssText = "position: absolute; top:0; left:0; background-color: rgba(0,0,0,0.7); color:#ddd; padding:4px 8px; z-index:100; border-radius:3px; pointer-events:none; visibility:hidden;";
+  confirmation.innerHTML = "Copied to clipboard";
+  document.body.appendChild(confirmation);
+
+  doc = ((t = document.documentElement) || (t = document.body.parentNode)) && typeof t.scrollLeft == 'number' ? t : document.body;
+
+  function copy(e)
+  {
+    var c = e.target.dataset.link,
+        rect, x, y;
+    copyElement.value = c;
+    if (c && copyElement.select)
+    {
+      copyElement.style.display = "block";
+      copyElement.select();
+      try
+      {
+        document.execCommand('copy');
+        copyElement.blur();
+        rect = e.target.getBoundingClientRect();
+        x = Math.max(0, rect.left + (rect.width / 2) + doc.scrollLeft);
+        y = Math.max(0, rect.top + doc.scrollTop - 3);
+        if (tl)
+        {
+          tl.kill();
+        }
+        tl = new TimelineLite();
+        tl.set(confirmation,
+               {
+          autoAlpha: 0,
+          x: x - confirmation.offsetWidth / 2,
+          y: y - confirmation.offsetHeight + 25
+        })
+          .to(confirmation, 0.15,
+              {
+          y: "-=25",
+          autoAlpha: 1
+        })
+          .to(confirmation, 0.4,
+              {
+          y: "-=35",
+          autoAlpha: 0,
+          ease: Power1.easeIn
+        }, "+=0.8");
+      }
+      catch (err)
+      {
+        alert('please press Ctrl/Cmd+C to copy');
+      }
+      copyElement.style.display = "none";
+    }
+  }
+})();
+  </script>
+</body>
+</html>
