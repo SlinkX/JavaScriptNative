@@ -1,0 +1,1200 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1">
+    <title></title>
+    <!--Author Ruslan Lashkov-->
+    <link
+        href="https://fusion-universal-assets-production.s3.amazonaws.com/file-host/5af42070-0533-49eb-9822-934eebf32cb7--1399798036194765884-/3733/style_template_collection_for_fuse_.css"
+        rel="stylesheet" />
+    <style type="text/css">
+        * {
+            margin: 0;
+        }
+
+        *,
+        *:before,
+        *:after {
+            -moz-box-sizing: border-box;
+            -webkit-box-sizing: border-box;
+            box-sizing: border-box;
+        }
+
+        :focus,
+        :active {
+            outline: none;
+        }
+
+        a:focus,
+        a:active {
+            outline: none;
+        }
+
+        nav,
+        footer,
+        aside {
+            display: block;
+        }
+
+        input,
+        button,
+        textarea {
+            font-family: inherit;
+        }
+
+        input::-ms-clear {
+            display: none;
+        }
+
+        button {
+            cursor: pointer;
+        }
+
+        button::-moz-focus-inner {
+            padding: 0;
+            border: 0;
+        }
+
+        a,
+        a:visited {
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: none;
+        }
+
+        img {
+            vertical-align: top;
+        }
+
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6 {
+            font-size: inherit;
+            font-weight: inherit;
+        }
+
+        html,
+        body {
+            -moz-box-sizing: border-box;
+            -webkit-box-sizing: border-box;
+            box-sizing: border-box;
+            font-size: 16px;
+            line-height: 1.2;
+            outline: none;
+            font-family: "Arial", "Mier B", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+            margin: 0;
+        }
+
+        html {
+            overflow-y: auto;
+            scroll-behavior: smooth;
+        }
+
+        * {
+            box-sizing: border-box;
+            scrollbar-width: thin;
+            scrollbar-color: rgba(152, 148, 153, 0.8) transparent;
+        }
+
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background-color: rgba(152, 148, 153, 0.8);
+            border-radius: 16px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background-color: rgba(132, 128, 133, 0.8);
+            /* A slightly darker shade when hovering for better UX */
+        }
+
+        img {
+            outline: none;
+            width: 100%;
+        }
+
+        a img {
+            outline: none;
+        }
+
+        body {
+            position: relative;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        p,
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6,
+        li,
+        a,
+        th,
+        td {
+            font-family: "Arial", "Mier B", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+            font-size: 1rem;
+            line-height: 1.2;
+            letter-spacing: normal;
+            font-style: normal;
+        }
+
+        h1 {
+            font-style: normal;
+            font-weight: 400;
+            font-size: 3.125rem;
+            line-height: 1.1;
+            /*text-transform: uppercase;*/
+            color: #443F37;
+            margin-bottom: 2.25rem;
+        }
+
+        h2 {
+            font-style: normal;
+            font-weight: 400;
+            line-height: 1.1;
+            text-transform: uppercase;
+            color: #443F37;
+            margin-bottom: 2.25rem;
+            text-align: center;
+            text-transform: unset;
+            font-size: 1.875rem;
+        }
+
+        h3 {
+            color: #671A3D;
+            font-size: 1.5rem;
+            margin-bottom: 1.25rem;
+            line-height: 1.2;
+            font-weight: 700;
+            text-transform: none;
+            font-style: normal;
+            text-decoration: none;
+            margin-top: 0;
+            letter-spacing: normal;
+        }
+
+        h4 {
+            color: #671A3D;
+            font-size: 1.5rem;
+            line-height: 150%;
+            margin-bottom: 1.25rem;
+        }
+
+        p {
+            font-size: 1.125rem;
+            color: var(--black);
+            line-height: 1.4;
+            font-weight: 400;
+            text-transform: none;
+            font-style: normal;
+            text-decoration: none;
+            letter-spacing: normal;
+            margin-bottom: 10px;
+        }
+
+        :root {
+            --neutral-dark: #887F6E;
+            --heavy-concrete-20: #E7E5E2;
+            --red: #d2051e;
+            --orange: #f39c12;
+            --light-color: #888;
+            --light-bg: #eee;
+            --steel-100: #524F53;
+            --black: #292729;
+            --white: #fff;
+            --border: .1rem solid rgba(0, 0, 0, .2);
+            --border-radius: 3px;
+        }
+
+        a {
+            font-size: 1.125rem;
+            color: var(--black);
+            line-height: 1.4;
+            font-weight: 400;
+            text-transform: none;
+            font-style: normal;
+            text-decoration: underline;
+            letter-spacing: normal;
+            margin-bottom: 10px;
+            -moz-transition: all 0.2s ease-out;
+            -o-transition: all 0.2s ease-out;
+            -webkit-transition: all 0.2s ease-out;
+            transition: 0.2s ease-out;
+
+        }
+
+        .community-body {
+            width: 100%;
+            height: 595px;
+            overflow-y: auto;
+        }
+
+        .community-body-padding-top {
+            padding-top: 50px;
+        }
+
+        .community-body-padding-right {
+            padding-right: 55px;
+        }
+
+        .community-body-padding-right-learning {
+            padding-right: 40px;
+        }
+
+        .community-body-padding-bottom {
+            padding-bottom: 0px;
+        }
+
+        .community-body-padding-left {
+            padding-left: 55px;
+        }
+
+        .community-body-padding-left-learning {
+            padding-left: 40px;
+        }
+
+        .fuse_article_content {
+            max-width: 1500px;
+            margin: 0 auto;
+        }
+
+
+        .fa_flex,
+        .fa_flex_container {
+            column-gap: 2rem;
+        }
+
+
+        /*---------------------------------------------*/
+        /*Учебные планы*/
+        /*---------------------------------------------*/
+        .learningplanid {
+            padding-left: 15px;
+            padding-right: 15px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 20px;
+        }
+
+        /*Блок Учебного плана*/
+        .b-learning-plan-general {
+            text-decoration: none;
+            display: block;
+            height: 200px;
+            padding: 35px 25px;
+            filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+            background-color: var(--white);
+            transition: width 0.15s ease-in-out, background-color 0.15s ease-in-out;
+        }
+
+        .b-learning-plan-general:hover {
+            background-color: #EFEBE5;
+        }
+
+        /*ID Учебного плана скрываем*/
+        .learning_plan-id,
+        .learning_plans-items-progress {
+            display: none;
+        }
+
+        /*Заголовок Учебного плана*/
+        .learning_plans-title-text {
+            position: relative;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            font-style: normal;
+            font-weight: 400;
+            font-size: 1.25rem;
+            line-height: 1.2;
+            color: #000;
+        }
+
+        .learning_plans-title-text::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: -2px;
+            width: 0%;
+            height: 1px;
+            background-color: #665F53;
+            transition: width 0.3s ease-in-out;
+        }
+
+        .b-learning-plan-general:hover .learning_plans-title-text {
+            color: #665F53;
+        }
+
+        .b-learning-plan-general:hover .learning_plans-title-text::before {
+            width: 100%;
+        }
+
+        /*Прогресс Учебного плана*/
+        .b-progress-bar {
+            position: absolute;
+            background: #D9D9D9;
+            color: var(--white);
+            font-weight: 700;
+            border-radius: var(--border-radius);
+            height: 37px;
+            bottom: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 88%;
+        }
+
+        .b-progress-bar-value {
+            height: 100%;
+            border-radius: var(--border-radius);
+            background-color: var(--steel-100);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .learning_plans-title {
+            display: flex;
+            align-items: center;
+        }
+
+        /*картинка для УП*/
+        .learning_plans-title-img img {
+            width: 60px;
+            margin-right: 25px;
+        }
+
+        @media (min-width: 500px) {
+
+            .learning-plan-content {
+                max-height: 466px;
+                padding-right: 0px;
+                padding-bottom: 46px;
+                overflow-y: auto;
+            }
+
+            .learning-plan-content.scrollable {
+                padding-right: 20px;
+            }
+
+        }
+
+        /*---------------------------------------------*/
+        /* КОНЕЦ Учебные планы*/
+        /*---------------------------------------------*/
+
+        /*Кнопка Начать*/
+        .fuse_article_button {
+            margin-top: 50px;
+        }
+
+        .fuse_article_button_start {
+            padding: 10px 50px;
+            background-color: var(--neutral-dark);
+            box-shadow: 4px 13px 16px rgba(136, 127, 110, 0.4);
+            border-radius: var(--border-radius);
+            font-weight: 400;
+            font-size: 30px;
+            line-height: 35px;
+            display: flex;
+            align-items: center;
+            color: #FFFFFF;
+            text-decoration: none;
+        }
+
+        .fuse_article_button_start:hover {
+            box-shadow: 4px 13px 16px rgba(136, 127, 110, 0);
+            background-color: var(--steel-100);
+        }
+
+        /*Конец кнопка Начать*/
+
+        @media screen and (max-width: 46.875em) {
+            .community-body-padding-top {
+                padding-top: 50px;
+            }
+
+            .community-body-padding-right {
+                padding-right: 15px;
+            }
+
+            .community-body-padding-right-learning {
+                padding-right: 15px;
+            }
+
+            .community-body-padding-bottom {
+                padding-bottom: 50px;
+            }
+
+            .community-body-padding-left {
+                padding-left: 15px;
+            }
+
+            .community-body-padding-left-learning {
+                padding-left: 15px;
+            }
+
+            .community-body-background-image img {
+                display: none;
+            }
+
+        }
+
+        .community-body-background-image {
+            position: relative;
+
+        }
+
+        .community-body-background-image img {
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 50%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /*Стрелка вниз ↓*/
+        .header__arrow {
+            margin-left: -30px;
+            position: absolute;
+            top: -30px;
+            left: 50%;
+            display: flex;
+            opacity: 0.8;
+        }
+
+        .header__arrow a {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background-color: var(--neutral-dark);
+            font-weight: 700;
+            font-size: 35px;
+            color: var(--white);
+            z-index: 9;
+            text-decoration: none;
+        }
+
+        .header__arrow a:hover {
+            background-color: var(--steel-100);
+        }
+
+        .header__arrow svg {
+            width: 20px;
+            margin-top: 25px;
+            transition: transform 0.2s ease-out;
+        }
+
+        .header__arrow:hover svg {
+            transform: translateY(5px);
+        }
+
+        /*Конец Стрелка вниз ↓*/
+
+
+        /*Диаграмма*/
+        .learning-plan-wrapper {
+            position: absolute;
+            top: 25px;
+            right: 4%;
+            z-index: 1;
+        }
+
+        #container {
+            position: relative;
+            width: 200px;
+            height: 200px;
+            color: transparent;
+        }
+
+        .container-circle {
+            position: absolute;
+            display: flex;
+            justify-content: center;
+            width: 160px;
+            height: 160px;
+            border-radius: 50%;
+            top: 60%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: -1;
+            background-color: rgba(255, 255, 255, 0.85);
+            padding-top: 82px;
+        }
+
+        .container-circle p {
+            border-top: 1px solid #989499;
+            padding-top: 5px;
+            font-size: 12px;
+            font-weight: 700;
+            line-height: 1.2;
+        }
+
+        .wrapper {
+            width: 200px;
+            height: 200px;
+            text-align: center;
+            position: relative;
+        }
+
+        .text {
+            font-size: 1px;
+            line-height: 1;
+            text-align: center;
+            text-transform: capitalize;
+
+        }
+
+        /*Конец Диаграмме*/
+        .round_image_with_links {
+            width: 100%;
+            justify-content: center;
+        }
+
+        .round_image_with_links {
+            -moz-box-sizing: border-box;
+            -webkit-box-sizing: border-box;
+            box-sizing: border-box;
+            display: -webkit-flex;
+            display: -moz-flex;
+            display: -ms-flex;
+            display: -o-flex;
+            display: flex;
+            justify-content: center;
+            row-gap: 5.375rem;
+            column-gap: 7rem;
+            flex-wrap: wrap;
+        }
+
+        span.round_image_with_link_block_img {
+            width: 12.5rem;
+            height: 12.5rem;
+            margin-bottom: 15px
+        }
+
+        span.round_image_with_link_block_img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: -webkit-flex;
+            display: -moz-flex;
+            display: -ms-flex;
+            display: -o-flex;
+            display: flex;
+            border-radius: 50%;
+        }
+
+        .round_image_with_links_content {
+            width: 14.6875rem;
+            text-align: center;
+            position: relative;
+            display: flex;
+            align-items: center;
+            flex-direction: column;
+        }
+
+        .round_image_with_links-button {
+            position: absolute;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            top: 105%;
+            left: 50%;
+            transform: translateX(-50%);
+            text-align: center;
+        }
+
+        .round_image_with_links-button a {
+            background-color: transparent;
+            border: 1px solid var(--steel-100);
+            padding: 9px 50px;
+            color: var(--steel-100);
+            font-weight: 700;
+            border-radius: 3px;
+        }
+
+        .round_image_with_links-button a:hover {
+            background-color: var(--steel-100);
+            color: var(--white);
+            text-decoration: none;
+        }
+
+        .fuse_article_parent-button {
+            display: flex;
+            column-gap: 40px;
+            margin-top: 30px;
+        }
+
+        a.fuse_article_button_social,
+        a.fuse_article_button_social-google-play {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            column-gap: 15px;
+            background-color: transparent;
+            border: 1px solid var(--steel-100);
+            padding: 4px 40px 0px;
+            color: var(--steel-100);
+            font-weight: 700;
+            border-radius: 3px;
+            text-decoration: none;
+        }
+
+        a.fuse_article_button_social::before {
+            content: url("data:image/svg+xml;charset=utf-8,<svg fill='%23524F53' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 176.19 191.97' ><path d='m151.92,65.09c-3.58,3.25-7.17,6.13-10.31,9.44-9.01,9.53-11,21.17-9.35,33.67,1.94,14.64,10.18,24.81,23.07,31.46,1.58.81,2.13,1.52,1.46,3.43-5.27,14.78-13.46,27.81-23.73,39.54-8.74,9.98-19.47,11.03-31.31,6.38-6.68-2.63-13.43-5.77-20.78-4.66-5.75.87-11.34,2.87-16.98,4.42-2.97.82-5.88,1.84-8.86,2.63-5.83,1.55-11.03-.15-15.86-3.37-6.54-4.35-11.22-10.49-15.72-16.73-11.58-16.06-18.88-33.93-21.72-53.51-2.1-14.44-1.6-28.7,4.73-42.23,6.67-14.27,17.3-23.94,32.78-27.89,9.8-2.5,18.96-.04,28.01,3.45,2.42.93,4.83,1.86,7.24,2.82,3.92,1.56,7.74,1.22,11.64-.28,8.08-3.11,16.1-6.52,24.86-7.28,14.29-1.24,33.15,5.25,40.83,18.72Z'/><path d='m117.31,0c2.89,20.9-17.12,46.63-38.05,44.12C75.97,26.09,92.62,2,117.31,0Z'/></svg>");
+            display: inline-block;
+            width: 25px;
+            margin-bottom: 0px;
+            /*margin-right: 25px;*/
+        }
+
+        a.fuse_article_button_social:hover,
+        a.fuse_article_button_social-google-play:hover {
+            background-color: var(--steel-100);
+            border: 1px solid var(--steel-100);
+            color: var(--white);
+        }
+
+        a.fuse_article_button_social-google-play::before {
+            content: url("data:image/svg+xml;charset=utf-8,<svg viewBox='0 0 22 24' fill='%23524F53' xmlns='http://www.w3.org/2000/svg'><path d='M13.011 12.0309C11.5215 13.5284 10.0442 15.0147 8.56693 16.5009C6.14446 18.9383 3.71708 21.3706 1.30686 23.8192C1.05922 24.0704 0.908428 24.0453 0.673046 23.8405C0.183892 23.4159 0 22.8719 0.00122595 22.2387C0.00122595 19.3491 0.00122595 16.4595 0.00122595 13.5711C0.00122595 9.65135 0.00367785 5.7328 0 1.813C0 1.10442 0.213315 0.511421 0.795641 0.088032C0.946433 -0.0212702 1.05064 -0.0438845 1.20266 0.10939C5.11711 4.05306 9.0377 7.99171 12.9571 11.9329C12.973 11.9492 12.9804 11.9756 13.011 12.0321V12.0309Z'/><path d='M3.96472 0.697266C8.24329 3.17227 12.5231 5.64853 16.7722 8.1072C15.8724 9.06831 14.9799 10.0219 14.058 11.0069C10.6547 7.56823 7.28092 4.15976 3.9071 0.752545C3.92672 0.7337 3.94511 0.716111 3.96472 0.697266Z'/><path d='M14.0445 13.0345C14.9517 14.0132 15.8417 14.9731 16.7379 15.9405C12.5304 18.3753 8.24205 20.8553 3.95367 23.3353C3.93896 23.314 3.92548 23.2926 3.91077 23.2713C7.2809 19.8666 10.6498 16.4631 14.0445 13.0345Z' /><path d='M15.1747 12.0899C15.6492 11.5635 16.0942 11.0483 16.5625 10.5571C17.0247 10.0722 17.504 9.60481 17.9932 9.14875C18.0704 9.07714 18.2666 9.04573 18.3549 9.09473C19.1811 9.55707 20.0025 10.0269 20.8104 10.5232C21.8893 11.184 21.8549 12.9417 20.7602 13.5724C19.9719 14.0271 19.1836 14.4832 18.3867 14.9204C18.2899 14.9732 18.0864 14.9732 18.0177 14.9053C17.0652 13.9832 16.1273 13.0447 15.187 12.11C15.1625 12.0861 15.1502 12.0497 15.1747 12.0911V12.0899Z'/></svg>");
+            display: inline-block;
+            width: 25px;
+            margin-bottom: 0;
+            /*margin-right: 25px;*/
+        }
+
+        a.fuse_article_button_social:hover::before,
+        a.fuse_article_button_social-google-play:hover::before {
+            filter: brightness(0) invert(1);
+        }
+
+        .community-body-flex {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            /*flex-direction: column;*/
+        }
+
+        .fuse_article_content-subheader {
+            text-align: center;
+            margin-bottom: 3.75rem;
+        }
+
+        @media (max-width: 500px) {
+            .learning-plan-wrapper {
+                display: none;
+            }
+
+            h1 {
+                font-size: 2rem;
+            }
+
+            h3 {
+                font-size: 20px;
+            }
+
+            .fuse_article_button {
+                margin-top: 20px;
+            }
+
+            .b-learning-plan-general {
+                margin-bottom: 30px;
+            }
+
+            .learningplanid {
+                display: block;
+                padding: 15px;
+            }
+
+            .round_image_with_link_block_img {
+                display: none;
+            }
+
+            .round_image_with_links_content {
+                width: 100%;
+                padding-left: 15px;
+                padding-right: 15px;
+            }
+
+            .round_image_with_links {
+                row-gap: 4rem;
+                column-gap: 5.375rem;
+            }
+
+            .fuse_article_content-subheader,
+            .fuse_article_content-subheader-V2 {
+                margin-bottom: 20px;
+                text-align: center;
+            }
+
+            .fuse_article_parent-button {
+                display: flex;
+                column-gap: 0px;
+                row-gap: 0rem;
+                margin-top: 0;
+                flex-direction: column;
+            }
+
+            .fa_block_img {
+                display: none;
+            }
+        }
+         .no_assigned_curricula {
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            max-height: 351px;
+            margin-top: 40px;
+        }
+
+        .no_assigned_curricula img {
+            height: 100%;
+        }
+
+        .no_assigned_curricula p {
+            position: absolute;
+            margin-bottom: 0;
+        }
+    </style>
+</head>
+
+<body>
+    <!--Start diagram-->
+    <div class="learning-plan-wrapper">
+        <div class="wrapper">
+            <div id="container">
+            </div>
+            <div class="text"></div>
+            <div class="container-circle">
+                <!--<p>Прогресс<br>обучения</p>-->
+                <p>Assigned
+                    <br>Plans
+                    <br>Completed
+                </p>
+            </div>
+        </div>
+    </div>
+    <!--FINISH diagram-->
+
+    <!-- START Heading-->
+    <div class="community-body community-body-background-image "
+        style="height: 530px; margin-top: 65px; background-color: var(--white); ">
+        <img src="https://fusion-universal-assets-production.s3.amazonaws.com/file-host/5af42070-0533-49eb-9822-934eebf32cb7--1399798036194765884-/28/win_community_img_01.jpg"
+            alt="img">
+        <div class="fuse_article_content ">
+            <div class="fa_flex">
+                <div
+                    class="fa_flex_with_image_no_borders community-body-padding-left fa_container_padding_right fa_container_padding_bottom">
+                    <div class="fa_flex_with_image_no_borders_text_left ">
+                        <h1 style="margin-top: 50px;">Start your<br>integration journey</h1>
+                        <h3>%{first_name}, Hello!</h3>
+                        <p>The team of the Training Department has prepared a Navigator for you, which will help you successfully integrate into the Hilti team. Follow the link and follow the instructions. </p>
+                        <p>Do you have any questions? Write to <a href="mailto:ru-res040@hilti.com" target="_blank">HNA Team
+                                Training</a>.</p>
+                    </div>
+                    <span class="fuse_article_button" id="learning-plan">
+                        <a class="fuse_article_button_start display-block" href="/contents/1672870/scorm_course"
+                            target="_blank">Begin</a>
+                    </span>
+
+                </div>
+                <div class="fa_flex_with_image_no_borders">
+                    <div class="fa_flex_with_image_no_borders_img_right">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- FINISH Heading -->
+
+    <div class="community-body" style="height: 585px; background-color: #F5F5F5; position: relative; ">
+        <!--<div class="header__arrow">
+            <a href="#learning-plan"><svg viewBox="0 0 17 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path fill-rule="evenodd" clip-rule="evenodd"
+                        d="M0.000947952 2.82897L2.82895 -3.43323e-05L8.48595 5.65697L14.1429 -3.43323e-05L16.9709 2.82897L8.48595 11.314L-5.34058e-05 2.82897H0.000947952Z"
+                        fill="white" />
+                </svg></a>
+        </div>-->
+        <!--START Image on the right with text; no wrapping-->
+        <div
+            class="learning-plan-1 fuse_article_content community-body-padding-top community-body-padding-right-learning community-body-padding-bottom community-body-padding-left-learning">
+            <h2>Your introduction to the company</h2>
+            <div class="community_grid_container">
+                <div class="learning-plan-content">
+                    <div class="l-container">
+                        <div class="l-user-learning-plans">
+                            <div class="learningplanid">
+                                <div class="no_assigned_curricula">
+                                    <img src="https://fusion-universal-assets-production.s3.amazonaws.com/file-host/5af42070-0533-49eb-9822-934eebf32cb7--1399798036194765884-/28/no_assigned_curricula_1.svg"
+                                        alt="">
+                                    <p>content<br>loading</p>
+                                </div>
+                            </div>
+                            <script src="https://code.jquery.com/jquery-3.4.1.min.js"
+                                integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+                                crossorigin="anonymous"></script>
+                            <script>
+                                const token = $('meta[name="auth-token"]', parent.document).attr('content');
+                                //const apiUrl = `https://hilti.fuseuniversal.com/api/v4.4/communities/14119/learning_plans?all=true&auth_token=mEuwuwbyx3eqidHDENve`;
+                                const defaultImgUrl = 'https://fusion-universal-assets-production.s3.amazonaws.com/file-host/5af42070-0533-49eb-9822-934eebf32cb7--1399798036194765884-/28/win_learning-plan.svg'; // Изображение по умолчанию
+                                $(document).ready(function () {
+                                    const titleById = {
+                                        // ID Учебного плана и Новый заголовок для каждого учебного плана
+                                        '22461': 'Навыки<br>продаж',
+                                        '23388': 'Управление<br>строительными проектами',
+                                        '29094': 'Портфолио<br>для ознакомления',
+                                        '30557': 'Трейдовые<br>применения',
+                                        '38709': 'Анкерная<br>техника',
+                                        '38875': 'Монтажные<br>системы',
+                                        '38876': 'Фасадные<br>системы',
+                                        '38879': 'Кабеленесущие<br>системы',
+                                        '38881': 'Сервис<br>и услуги',
+                                        '38883': 'Правила<br>безопасности',
+                                        '39301': 'Добро пожаловать<br>в Hilti',
+                                        '39693': 'Применение:<br>Кабеленесущие системы',
+                                        '40125': 'Применение:<br>Baseplate',
+                                        '40839': 'Применение:<br>Монтажные системы',
+                                        '40146': 'Применение:<br>HVAC and Piping',
+                                        '40890': '[BD] Системное<br>развитие клиентов',
+                                        '40747': '[TE] Базовые навыки<br>работы в Revit',
+                                        '40745': '[TE] Портфолио<br>Oglaend System',
+                                        '40744': '[TE] Саморезы',
+                                        '40701': '[TE] Портфолио<br>монтажных систем',
+                                        '40680': '[TE] Анкерная<br>техника',
+                                        '40679': '[TE] Коррозия',
+                                        '40397': '[FPM] Фасадные<br>системы',
+                                    };
+                                    //Создаем объект для хранения URL - адресов изображений
+                                    //const imageUrls = {
+                                    //    image1: 'https://fusion-universal-assets-production.s3.amazonaws.com/file-host/5af42070-0533-49eb-9822-934eebf32cb7--1399798036194765884-/28/win_icon_engr_fastener.svg',
+                                    //    image2: 'https://fusion-universal-assets-production.s3.amazonaws.com/file-host/5af42070-0533-49eb-9822-934eebf32cb7--1399798036194765884-/28/win_icon_engr_cable_cleat_trefoil.svg',
+                                    //    // ... другие URL ...
+                                    //};
+                                    //const imgUrlById = {
+                                    //    '22461': imageUrls.image1,
+                                    //    '29094': imageUrls.image1,
+                                    //    '23388': imageUrls.image2,
+                                    //    // ... другие ID ...
+                                    //};
+                                    const imgUrlById = {
+                                        // ID Учебного плана и URL изображений для каждого учебного плана
+                                        '22461': 'https://fusion-universal-assets-production.s3.amazonaws.com/file-host/5af42070-0533-49eb-9822-934eebf32cb7--1399798036194765884-/28/win_sss.svg',
+                                        '23388': 'https://fusion-universal-assets-production.s3.amazonaws.com/file-host/5af42070-0533-49eb-9822-934eebf32cb7--1399798036194765884-/28/win_icon_hilti_jobsite.svg',
+                                        '29094': 'https://fusion-universal-assets-production.s3.amazonaws.com/file-host/5af42070-0533-49eb-9822-934eebf32cb7--1399798036194765884-/28/win_icon_briefcase.svg',
+                                        '30557': 'https://fusion-universal-assets-production.s3.amazonaws.com/file-host/5af42070-0533-49eb-9822-934eebf32cb7--1399798036194765884-/28/win_icon_hilti_work_safety.svg',
+                                        '38709': 'https://fusion-universal-assets-production.s3.amazonaws.com/file-host/5af42070-0533-49eb-9822-934eebf32cb7--1399798036194765884-/28/win_icon_engr_fastener.svg',
+                                        '38875': 'https://fusion-universal-assets-production.s3.amazonaws.com/file-host/5af42070-0533-49eb-9822-934eebf32cb7--1399798036194765884-/28/win_icon_engr_typical_support.svg',
+                                        '40839': 'https://fusion-universal-assets-production.s3.amazonaws.com/file-host/5af42070-0533-49eb-9822-934eebf32cb7--1399798036194765884-/28/win_icon_engr_typical_support.svg',
+                                        '38876': 'https://fusion-universal-assets-production.s3.amazonaws.com/file-host/5af42070-0533-49eb-9822-934eebf32cb7--1399798036194765884-/28/win_icon_facade.svg',
+                                        '38879': 'https://fusion-universal-assets-production.s3.amazonaws.com/file-host/5af42070-0533-49eb-9822-934eebf32cb7--1399798036194765884-/28/win_icon_engr_cable_cleat_trefoil.svg',
+                                        '38881': 'https://fusion-universal-assets-production.s3.amazonaws.com/file-host/5af42070-0533-49eb-9822-934eebf32cb7--1399798036194765884-/28/win_icon_service.svg',
+                                        '38883': 'https://fusion-universal-assets-production.s3.amazonaws.com/file-host/5af42070-0533-49eb-9822-934eebf32cb7--1399798036194765884-/28/win_icon_workplace-safety.svg',
+                                        '39301': 'https://fusion-universal-assets-production.s3.amazonaws.com/file-host/5af42070-0533-49eb-9822-934eebf32cb7--1399798036194765884-/28/win_learning-plan.svg',
+                                        '39693': 'https://fusion-universal-assets-production.s3.amazonaws.com/file-host/5af42070-0533-49eb-9822-934eebf32cb7--1399798036194765884-/28/win_icon_engr_cable_cleat_trefoil.svg',
+                                        '38709': 'https://fusion-universal-assets-production.s3.amazonaws.com/file-host/5af42070-0533-49eb-9822-934eebf32cb7--1399798036194765884-/28/win_icon_engr_fastener.svg',
+                                        '40890': 'https://fusion-universal-assets-production.s3.amazonaws.com/file-host/5af42070-0533-49eb-9822-934eebf32cb7--1399798036194765884-/28/folder_shared.svg',
+                                        '40747': 'https://fusion-universal-assets-production.s3.amazonaws.com/file-host/5af42070-0533-49eb-9822-934eebf32cb7--1399798036194765884-/28/revit_1d1xkr6hpa2c.svg',
+                                        '40745': 'https://fusion-universal-assets-production.s3.amazonaws.com/file-host/5af42070-0533-49eb-9822-934eebf32cb7--1399798036194765884-/28/win_icon_engr_cable_cleat_trefoil.svg',
+                                        '40744': 'https://fusion-universal-assets-production.s3.amazonaws.com/file-host/5af42070-0533-49eb-9822-934eebf32cb7--1399798036194765884-/28/win_icon_samorez.svg',
+                                        '40701': 'https://fusion-universal-assets-production.s3.amazonaws.com/file-host/5af42070-0533-49eb-9822-934eebf32cb7--1399798036194765884-/28/win_icon_engr_typical_support.svg',
+                                        '40680': 'https://fusion-universal-assets-production.s3.amazonaws.com/file-host/5af42070-0533-49eb-9822-934eebf32cb7--1399798036194765884-/28/win_icon_engr_fastener.svg',
+                                        '40125': 'https://fusion-universal-assets-production.s3.amazonaws.com/file-host/5af42070-0533-49eb-9822-934eebf32cb7--1399798036194765884-/28/engr_fixed_support.svg',
+                                        '40679': 'https://fusion-universal-assets-production.s3.amazonaws.com/file-host/5af42070-0533-49eb-9822-934eebf32cb7--1399798036194765884-/28/win_icon_corrosion.svg',
+                                        '40397': 'https://fusion-universal-assets-production.s3.amazonaws.com/file-host/5af42070-0533-49eb-9822-934eebf32cb7--1399798036194765884-/28/win_icon_facade.svg',
+                                        '40146': 'https://fusion-universal-assets-production.s3.amazonaws.com/file-host/5af42070-0533-49eb-9822-934eebf32cb7--1399798036194765884-/28/win_icon_water.svg',
+                                    };
+                                    $.ajax({
+                                        url: `https://hilti.fuseuniversal.com/api/v4.4/communities/14119/learning_plans?all=true&auth_token=${token}`,
+                                        //url: `https://hilti.fuseuniversal.com/api/v4.4/communities/14119/learning_plans?all=true&auth_token=mEuwuwbyx3eqidHDENve`,
+                                        type: 'GET',
+                                        success: function (result) {
+                                            const learningPlans = result.learning_plans;
+                                            let totalProgress = 0;
+                                            let totalItems = 0;
+
+                                            for (let i = 0; i < learningPlans.length; i++) {
+                                                const learningPlan = learningPlans[i];
+                                                const id = learningPlan.id;
+                                                let title = learningPlan.title;
+                                                if (titleById[id]) {
+                                                    title = titleById[id];
+                                                }
+                                                const items = learningPlan.items;
+                                                let progressSum = 0;
+                                                let progressMax = 0;
+
+                                                for (let j = 0; j < items.length; j++) {
+                                                    const item = items[j];
+                                                    const progress = item.progress.split(' / ');
+
+                                                    if (item.progress.includes("Complete") || item.progress.includes("Завершен")) {
+                                                        progressSum += 1;
+                                                        progressMax += 1;
+                                                    } else if (item.progress.includes("Incomplete") || item.progress.includes("Незавершен")) {
+                                                        // do nothing, leave progressSum and progressMax as they are
+                                                    } else {
+                                                        progressSum += parseInt(progress[0]);
+                                                        progressMax += parseInt(progress[1]);
+                                                    }
+                                                }
+
+                                                totalProgress += progressSum;
+                                                totalItems += progressMax;
+
+                                                const progressPercent = Math.round(progressSum / progressMax * 100);
+                                                const imgUrl = imgUrlById[id] ? imgUrlById[id] : defaultImgUrl;
+
+                                                const learningPlanHTML = `
+                                                    <a class="b-learning-plan-general" href="https://hilti.fuseuniversal.com/learning/plans/${id}" target="_blank">
+                                                        <div class="learning_plan-id">${id}</div>
+                                                        <div class="learning_plans-title">
+                                                            <span class="learning_plans-title-img"><img src="${imgUrl}" alt="img"></span>
+                                                            <span class="learning_plans-title-text">${title}</span>
+                                                        </div>
+                                                        <div class="learning_plans-items-progress">${progressSum} / ${progressMax} = ${progressPercent}%</div>
+                                                     <div class="b-progress-bar">
+                                                            <div class="b-progress-bar-value" style="width: ${progressPercent}%">${progressPercent}%</div>
+                                                        </div>
+                                                 </a>
+                                             `;
+                                                $('.learningplanid').append(learningPlanHTML);
+                                                $('.learningplanid').find(`.learning_plan-id:contains('${id}')`).siblings('.learning_plans-title').find('.learning_plans-title-text').html(title);
+
+                                            }
+                                            const overallPercentage = totalProgress / totalItems * 100;
+
+                                            const script = document.createElement('script');
+                                            script.src = 'https://rawgit.com/kimmobrunfeldt/progressbar.js/1.0.0/dist/progressbar.js';
+                                            document.head.appendChild(script);
+
+                                            script.onload = function () {
+                                                const container = document.querySelector('#container');
+                                                container.innerHTML = `${overallPercentage.toFixed(2)}%`;
+
+                                                const circle = new ProgressBar.Circle(container, {
+                                                    color: '#443F37',
+                                                    strokeWidth: 20,
+                                                    trailWidth: 10,
+                                                    easing: 'easeInOut',
+                                                    duration: 1000,
+                                                    text: {
+                                                        autoStyleContainer: false
+                                                    },
+                                                    from: {
+                                                        color: '#887F6E',
+                                                        width: 10
+                                                    },
+                                                    to: {
+                                                        color: '#887F6E',
+                                                        width: 10
+                                                    },
+                                                    step(state, circle) {
+                                                        circle.path.setAttribute('stroke', state.color);
+                                                        circle.path.setAttribute('stroke-width', state.width);
+                                                        const value = Math.round(circle.value() * 100);
+                                                        if (value >= 0 && value <= 100) {
+                                                            circle.setText(`${value}%`);
+                                                        }
+                                                    }
+                                                });
+
+                                                function refreshCircle(percentage, from = 0) {
+                                                    circle.text.style.fontFamily = '"Arial", Helvetica, sans-serif';
+                                                    circle.text.style.fontSize = '2.75rem';
+                                                    circle.text.style.top = '48%';
+                                                    const progress = from / 100;
+                                                    circle.set(progress);
+                                                    circle.animate(percentage);
+                                                }
+                                                refreshCircle(overallPercentage / 100, 0);
+                                            }
+                                            // Проверка на наличие учебных планов и управление видимостью блока no_assigned_curricula
+                                            const numLearningPlans = $('.learningplanid .b-learning-plan-general').length;
+                                            if (numLearningPlans > 0) {
+                                                $('.no_assigned_curricula').hide();
+                                            } else {
+                                                $('.no_assigned_curricula').show();
+                                            }
+                                            adjustOrder(); // Вызов функции для корректировки порядка блоков
+                                            adjustProgressBars();  // Вызываем функцию для корректировки блоков прогресса после того, как контент был добавлен на страницу
+
+                                        },
+                                        error: function (error) {
+                                            console.log(error);
+                                        }
+                                    });
+                                    //Последовательность Учебных планов
+                                    function adjustOrder() {
+                                        const orderById = [
+                                            '39301', //Знакомство с компанией
+                                            '38709', //Анкерная техника
+                                            '40680', //[TE] Анкерная техника
+                                            '40125', //Основы применений Baseplate
+                                            '38875', //Монтажные системы
+                                            '40701', //[TE] Портфолио монтажных систем
+                                            '40839', //[TE] Применения монтажных систем
+                                            '38876', //Фасадные системы
+                                            '40397', //[FPM] Фасадные системы
+                                            '38879', //Кабеленесущие системы
+                                            '39693', //Основы применений Кабеленесущих систем
+                                            '40745', //[TE] Портфолио Oglaend System
+                                        ];
+                                        const container = $('.learningplanid');
+                                        for (let i = orderById.length - 1; i >= 0; i--) {
+                                            let element = container.find(`.learning_plan-id:contains('${orderById[i]}')`).parent();
+                                            container.prepend(element);
+                                        }
+                                    }
+                                    function adjustProgressBars() {
+                                        var progressBars = document.querySelectorAll('.b-progress-bar');
+                                        for (var i = 0; i < progressBars.length; i++) {
+                                            var progressBar = progressBars[i];
+                                            var progressBarValue = progressBar.querySelector('.b-progress-bar-value');
+                                            var progressWidth = progressBarValue.style.width;
+                                            if (progressWidth === '0%') {
+                                                progressBarValue.style.position = 'absolute';
+                                                progressBarValue.style.left = '50%';
+                                                progressBarValue.style.transform = 'translateX(-50%)';
+                                                progressBarValue.style.color = '#292729';
+                                            }
+                                        }
+                                    }
+
+                                });
+
+                            </script>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <!-- FINISH Image on the right with text; no wrapping-->
+    <div class="community-body " style="height: 595px; background-color: #fff; padding-top: 40px;">
+        <!-- START Set of round shaped pictures-->
+        <div class="fuse_article_content">
+            <h2 class="fuse_article_content-subheader">Твоя команда поддержки</h2>
+            <div>
+                <div class="round_image_with_links">
+                    <!-- START tab 1-->
+                    <div class="round_image_with_links_content">
+                        <div class="round_image_with_link_block" href="#" target="_blank">
+                            <span class="round_image_with_link_block_img">
+                                <img src="https://fusion-universal-assets-production.s3.amazonaws.com/file-host/5af42070-0533-49eb-9822-934eebf32cb7--1399798036194765884-/28/Foto_Sergei_Teams.jpg"
+                                    alt="img">
+                            </span>
+                        </div>
+                        <p><strong>Сергей Гаврилов</strong></p>
+                        <p>Расскажу с чего начнется твой интеграционный путь</p>
+                        <div class="round_image_with_links-button">
+                            <a href="mailto:gavrkse@hilti.com" target="_blank">Написать</a>
+                        </div>
+                    </div>
+                    <!-- FINISH tab 1-->
+                    <!-- START tab 2-->
+                    <div class="round_image_with_links_content">
+                        <div class="round_image_with_link_block" href="#" target="_blank">
+                            <span class="round_image_with_link_block_img">
+                                <img src="https://hilti.fuseuniversal.com/media/W1siZiIsIjIwMTgvMTIvMTgvMTIvMTgvMTEvODc3NTUzNDgtNWJjMy00MDY3LTg0NDktMTVkYjQyNjkzMjFhL05pa29sYXktMS5wbmciXSxbInAiLCJ0aHVtYiIsIjIwMHgyMDAjIl1d?sha=4c0396bc8d55c58e"
+                                    alt="img">
+                            </span>
+                        </div>
+                        <p><strong>Николай Кирдянов</strong></p>
+                        <p>Проведу для тебя онлайн и очные тренинги</p>
+                        <div class="round_image_with_links-button">
+                            <a href="mailto:kirdnik@hilti.com" target="_blank">Написать</a>
+                        </div>
+                    </div>
+                    <!-- FINISH tab 2-->
+                    <!-- START tab 3-->
+                    <div class="round_image_with_links_content">
+                        <div class="round_image_with_link_block" href="#" target="_blank">
+                            <span class="round_image_with_link_block_img">
+                                <img src="https://hilti.fuseuniversal.com/media/W1siZiIsIjIwMjIvMTAvMjgvMTIvMjMvMjQvNGJhNzJiOWQtNjFiNi00ZjdhLTg1YjktYjAwY2FiNGIwMTZjL9GE0L7RgtC60LAyLmpwZyJdLFsicCIsInRodW1iIiwiMjAweDIwMCMiXV0?sha=1f186fb7399119ea"
+                                    alt="img">
+                            </span>
+                        </div>
+                        <p><strong>Руслан Лашков</strong></p>
+                        <p>Предоставлю тебе доступы к учебным планам и проведу тестирование</p>
+                        <div class="round_image_with_links-button">
+                            <a href="mailto:lashrus@hilti.com" target="_blank">Begin</a>
+                        </div>
+                    </div>
+                    <!-- FINISH tab 3-->
+                </div>
+            </div>
+        </div>
+        <!-- FINISH Set of round shaped pictures-->
+
+    </div>
+
+
+    <div class="community-body community-body-flex community-body-padding-top community-body-padding-bottom community-body-padding-right community-body-padding-left"
+        style="height: 595px; background-color: #F5F5F5; ">
+        <!-- START Image on the left with text; no wrapping-->
+        <div class="fuse_article_content">
+            <div class="fa_flex_container">
+                <div class="fa_flex_box_50">
+                    <div class="fa_block_img">
+                        <img style="height: 450px;"
+                            src="https://fusion-universal-assets-production.s3.amazonaws.com/file-host/5af42070-0533-49eb-9822-934eebf32cb7--1399798036194765884-/28/icon_welcome_hilti_mob_WIN.svg"
+                            alt="img">
+                    </div>
+                </div>
+                <div class="fa_flex_box_50">
+                    <div class="fa_flex_block_text">
+                        <h1 class="fuse_article_content-subheader-V2">Учись где угодно,<br>когда угодно</h1>
+                        <p>Хочешь учиться, когда тебе удобно?</p>
+                        <p>Скачай приложение Fuse на свой мобильный телефон и получай доступ к нашим обучающим курсам
+                            где угодно, когда угодно. Теперь обучение будет всегда под рукой и ты сможешь легко
+                            продолжать изучение новых материалов в любое время!</p>
+                    </div>
+                    <div class="fuse_article_parent-button">
+                        <!-- START Button; red color-->
+                        <span class="fuse_article_button">
+                            <a class="fuse_article_button_social  display-block"
+                                href="https://apps.apple.com/us/app/fuse-next-gen-learning/id1312789362?mt=8"
+                                target="_blank">
+                                App Store</a>
+                        </span>
+                        <!-- FINISH Button; red color-->
+                        <!-- START Button; red color-->
+                        <span class="fuse_article_button">
+                            <a class="fuse_article_button_social-google-play  display-block"
+                                href="https://play.google.com/store/apps/details?id=com.fuseuniversal.fuse"
+                                target="_blank">
+                                Google Pay</a>
+                        </span>
+                        <!-- FINISH Button; red color-->
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--FINISH Image on the left with text; no wrapping-->
+    </div>
+
+</body>
+
+</html>
