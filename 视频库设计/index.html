@@ -1,0 +1,2205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *, *::after, *::before {
+  box-sizing: border-box;
+}
+
+* {
+  font: inherit;
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+body {
+  background-color: hsl(0, 0%, 100%);
+  font-family: system-ui, sans-serif;
+  color: hsl(230, 7%, 23%);
+  font-size: 1rem;
+}
+
+h1, h2, h3, h4 {
+  line-height: 1.2;
+  color: hsl(230, 13%, 9%);
+  font-weight: 700;
+}
+
+h1 {
+  font-size: 2.0736rem;
+}
+
+h2 {
+  font-size: 1.728rem;
+}
+
+h3 {
+  font-size: 1.25rem;
+}
+
+h4 {
+  font-size: 1.2rem;
+}
+
+ol, ul, menu {
+  list-style: none;
+}
+
+button, input, textarea, select {
+  background-color: transparent;
+  border-radius: 0;
+  color: inherit;
+  line-height: inherit;
+  appearance: none;
+}
+
+textarea {
+  resize: vertical;
+  overflow: auto;
+  vertical-align: top;
+}
+
+a {
+  color: hsl(250, 84%, 54%);
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+img, video, svg {
+  display: block;
+  max-width: 100%;
+}
+
+@media (min-width: 64rem) {
+  body {
+    font-size: 1.25rem;
+  }
+
+  h1 {
+    font-size: 3.051rem;
+  }
+
+  h2 {
+    font-size: 2.44rem;
+  }
+
+  h3 {
+    font-size: 1.75rem;
+  }
+
+  h4 {
+    font-size: 1.5625rem;
+  }
+}
+
+/* variables */
+:root {
+  /* colors */
+  --vu0-color-primary-hsl: 250, 84%, 54%;
+  --vu0-color-contrast-low-hsl: 240, 4%, 65%;
+  --vu0-color-contrast-high-hsl: 230, 7%, 23%;
+  --vu0-color-contrast-higher-hsl: 230, 13%, 9%;
+  --vu0-color-bg-hsl: 0, 0%, 100%;
+  --vu0-color-black-hsl: 230, 13%, 9%;
+  --vu0-color-white-hsl: 0, 0%, 100%;
+
+  /* spacing */
+  --vu0-space-4xs: 0.125rem;
+  --vu0-space-sm: 0.75rem;
+  --vu0-space-md: 1.25rem;
+  --vu0-space-xl: 3.25rem;
+  --vu0-space-2xl: 5.25rem;
+
+  /* typography */
+  --vu0-text-base: 1rem;
+  --vu0-text-sm: 0.833rem;
+}
+
+@media(min-width: 64rem){
+  :root {
+    /* spacing */
+    --vu0-space-4xs: 0.1875rem;
+    --vu0-space-sm: 1.125rem;
+    --vu0-space-md: 2rem;
+    --vu0-space-xl: 5.125rem;
+    --vu0-space-2xl: 8.25rem;
+
+    /* typography */
+    --vu0-text-base: 1.25rem;
+    --vu0-text-sm: 1rem;
+  }
+}
+
+/* icons */
+.vu0-icon {
+  height: var(--vu0-size, 1em);
+  width: var(--vu0-size, 1em);
+  display: inline-block;
+  color: inherit;
+  fill: currentColor;
+  line-height: 1;
+  flex-shrink: 0;
+  max-width: initial;
+}
+
+.vu0-icon--sm {
+  --vu0-size: 24px;
+}
+
+.vu0-icon--lg {
+  --vu0-size: 48px;
+}
+
+.vu0-icon--is-spinning {
+  animation: vu0-icon-spin 1s infinite linear;
+}
+
+@keyframes vu0-icon-spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/* component */
+.video-gallery {
+  position: relative;
+  z-index: 1;
+  padding: var(--vu0-space-2xl) 0;
+}
+
+.video-gallery__container {
+  width: calc(100% - 2*var(--vu0-space-md));
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 32rem;
+  margin-top: -104px;
+}
+
+@media(min-width: 48rem) {
+  .video-gallery__container {
+    max-width: 48rem;
+  }
+}
+
+@media(min-width: 64rem) {
+  .video-gallery__container {
+    max-width: 64rem;
+  }
+}
+
+@media(min-width: 80rem) {
+  .video-gallery__container {
+    max-width: 80rem;
+  }
+}
+
+.video-gallery__title {
+  margin-bottom: var(--vu0-space-xl);
+  text-align: center;
+}
+
+.video-gallery__grid {
+  display: grid;
+  gap: var(--vu0-space-md);
+}
+
+@media(min-width: 48rem) {
+  .video-gallery__grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media(min-width: 64rem) {
+  .video-gallery__grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.video-card__modal-control {
+  display: block;
+  color: inherit;
+  text-decoration: none;
+  position: relative;
+  margin-bottom: var(--vu0-space-sm);
+}
+
+.video-card__modal-control:hover .video-card__preview {
+  -webkit-filter: contrast(110%);
+          filter: contrast(110%);
+  box-shadow: 0 0.9px 1.5px hsla(var(--vu0-color-black-hsl), 0.03),0 3.1px 5.5px hsla(var(--vu0-color-black-hsl), 0.08),0 14px 25px hsla(var(--vu0-color-black-hsl), 0.12);
+}
+
+.video-card__modal-control:hover .video-card__play-btn::before {
+  -webkit-transform: scale(1.2);
+          transform: scale(1.2);
+}
+
+.video-card__preview {
+  display: block;
+  width: 100%;
+  aspect-ratio: 4/3;
+  -o-object-fit: cover;
+     object-fit: cover;
+  border-radius: 0.75em;
+  box-shadow: 0 0.3px 0.4px hsla(var(--vu0-color-black-hsl), 0.025),0 0.9px 1.5px hsla(var(--vu0-color-black-hsl), 0.05), 0 3.5px 6px hsla(var(--vu0-color-black-hsl), 0.1);
+  transition: box-shadow 0.3s, -webkit-filter 0.3s;
+  transition: filter 0.3s, box-shadow 0.3s;
+  transition: filter 0.3s, box-shadow 0.3s, -webkit-filter 0.3s;
+}
+
+.video-card__play-btn {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: hsl(var(--vu0-color-white-hsl));
+}
+
+.video-card__play-btn .vu0-icon {
+  position: relative;
+  z-index: 1;
+}
+
+.video-card__play-btn::before {
+  content: "";
+  position: absolute;
+  width: 60px;
+  height: 60px;
+  top: calc(50% - 30px);
+  left: calc(50% - 30px);
+  background-color: hsla(var(--vu0-color-black-hsl), 0.8);
+  border-radius: 50%;
+  transition: -webkit-transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+  transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+  transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), -webkit-transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.video-card__title {
+  font-size: var(--vu0-text-base);
+  margin-bottom: var(--vu0-space-4xs);
+
+ 
+}
+
+.video-card__duration {
+  font-size: var(--vu0-text-sm);
+  color: hsl(var(--vu0-color-contrast-low-hsl));
+}
+
+/* utility classes */
+:where(.vu0-media-wrapper-16\:9) {
+  position: relative;
+  height: 0;
+}
+
+.vu0-media-wrapper-16\:9 {
+  padding-bottom: 56.25%;
+}
+
+.vu0-media-wrapper-16\:9 > * {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.vu0-media-wrapper-16\:9 > *:not(iframe) {
+  object-fit: cover;
+}
+
+.vu0-sr-only {
+  position: absolute;
+  clip: rect(1px, 1px, 1px, 1px);
+  clip-path: inset(50%);
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  padding: 0;
+  border: 0;
+  white-space: nowrap;
+}
+
+.vu0-shadow-md {
+  box-shadow:0 0.9px 1.5px hsla(var(--vu0-color-black-hsl), 0.03),0 3.1px 5.5px hsla(var(--vu0-color-black-hsl), 0.08),0 14px 25px hsla(var(--vu0-color-black-hsl), 0.12);
+}
+
+.vu0-overflow-auto {
+  overflow: auto;
+}
+
+.vu0-max-height-100\% {
+  max-height: 100%;
+}
+
+.vu0-max-width-md {
+  max-width: 64rem;
+}
+
+.vu0-width-100\% {
+  width: 100%;
+}
+
+.vu0-padding-x-md {
+  padding-left: var(--vu0-space-md);
+  padding-right: var(--vu0-space-md);
+}
+
+.vu0-flex-center {
+  justify-content: center;
+  align-items: center;
+}
+
+.vu0-flex {
+  display: flex;
+}
+
+.vu0-bg-black {
+  --vu0-bg-o: 1;
+  background-color: hsla(var(--vu0-color-black-hsl), var(--vu0-bg-o, 1));
+}
+
+.vu0-color-bg {
+  --vu0-color-o: 1;
+  color: hsla(var(--vu0-color-bg-hsl), var(--vu0-color-o, 1));
+}
+
+.vu0-bg-opacity-90\% {
+  --vu0-bg-o: 0.9;
+}
+
+
+/* -------------------------------- 
+
+File#: _1_modal-window
+Title: Modal Window
+Descr: A modal dialog used to display critical information
+Usage: codyhouse.co/license
+
+-------------------------------- */
+/* reset */
+*, *::after, *::before {
+  box-sizing: border-box;
+}
+
+* {
+  font: inherit;
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+body {
+  background-color: hsl(0, 0%, 100%);
+  font-family: system-ui, sans-serif;
+  color: hsl(230, 7%, 23%);
+  font-size: 1rem;
+}
+
+h1, h2, h3, h4 {
+  line-height: 1.2;
+  color: hsl(230, 13%, 9%);
+  font-weight: 700;
+}
+
+h1 {
+  font-size: 2.0736rem;
+}
+
+h2 {
+  font-size: 1.728rem;
+}
+
+h3 {
+  font-size: 1.25rem;
+}
+
+h4 {
+  font-size: 1.2rem;
+}
+
+ol, ul, menu {
+  list-style: none;
+}
+
+button, input, textarea, select {
+  background-color: transparent;
+  border-radius: 0;
+  color: inherit;
+  line-height: inherit;
+  appearance: none;
+}
+
+textarea {
+  resize: vertical;
+  overflow: auto;
+  vertical-align: top;
+}
+
+a {
+  color: hsl(250, 84%, 54%);
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+img, video, svg {
+  display: block;
+  max-width: 100%;
+}
+
+@media (min-width: 64rem) {
+  body {
+    font-size: 1.25rem;
+  }
+
+  h1 {
+    font-size: 3.051rem;
+  }
+
+    h2 {
+    font-size: 2.44rem;
+  }
+
+    h3 {
+    font-size: 1.75rem;
+  }
+
+    h4 {
+    font-size: 1.5625rem;
+  }
+}
+
+/* variables */
+:root {
+  /* colors */
+  --mc4-color-primary-hsl: 250, 84%, 54%;
+  --mc4-color-bg-hsl: 0, 0%, 100%;
+  --mc4-color-contrast-high-hsl: 230, 7%, 23%;
+  --mc4-color-contrast-higher-hsl: 230, 13%, 9%;
+  --mc4-color-contrast-lower-hsl: 240, 4%, 85%;
+  --mc4-color-bg-light-hsl: 0, 0%, 100%;
+  --mc4-color-bg-lighter-hsl: 0, 0%, 100%;
+  --mc4-color-black-hsl: 230, 13%, 9%;
+  --mc4-color-white-hsl: 0, 0%, 100%;
+  --mc4-color-bg-dark-hsl: 240, 4%, 95%;
+  --mc4-color-primary-darker-hsl: 250, 84%, 38%;
+  --mc4-color-primary-light-hsl: 250, 84%, 60%;
+  --mc4-color-accent-hsl: 342, 89%, 48%;
+
+  /* spacing */
+  --mc4-space-xs: 0.5rem;
+  --mc4-space-sm: 0.75rem;
+  --mc4-space-md: 1.25rem;
+  --mc4-space-2xs: 0.375rem;
+
+  /* typography */
+  --mc4-text-lg: 2.55rem;
+  --mc4-text-md: 2.0rem;
+  --mc4-text-sm: 0.833rem;
+}
+
+
+@media(min-width: 1082px){
+   :root {
+  --mc4-text-md: 0.59rem;
+}
+}
+
+@media(min-width: 761px){
+  :root {
+    /* spacing */
+    --mc4-space-xs: 0.75rem;
+    --mc4-space-sm: 1.125rem;
+    --mc4-space-md: 2rem;
+    --mc4-space-2xs: 0.5625rem;
+
+    /* typography */
+    --mc4-text-lg: 3.75rem;
+    --mc4-text-md: 1.4625rem;
+    --mc4-text-sm: 1rem;
+  }
+
+} 
+
+
+@media(min-width: 761px){
+    .overlay-text {
+    margin-left: 24rem;
+        position: absolute;
+  top: 16%; 
+ 
+  transform: translate(-80%, -50%); 
+  color: #000; 
+  padding: 15px 20px 35px 35px; 
+  }
+}
+
+/* buttons */
+.mc4-btn {
+  position: relative;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1em;
+  white-space: nowrap;
+  text-decoration: none;
+  background: hsl(var(--mc4-color-bg-dark-hsl));
+  color: hsl(var(--mc4-color-contrast-higher-hsl));
+  cursor: pointer;
+  text-decoration: none;
+  line-height: 1.2;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  transition: all 0.2s ease;
+  will-change: transform;
+  padding: var(--mc4-space-2xs) var(--mc4-space-sm);
+  border-radius: 0.25em;
+}
+
+.mc4-btn:focus-visible {
+  box-shadow: 0px 0px 0px 2px hsl(var(--mc4-color-bg-hsl)), 0px 0px 0px 4px hsla(var(--mc4-color-contrast-higher-hsl), 0.15);
+  outline: none;
+}
+
+.mc4-btn:active {
+  transform: translateY(2px);
+}
+
+.mc4-btn--primary {
+  background: hsl(var(--mc4-color-primary-hsl));
+  color: hsl(var(--mc4-color-white-hsl));
+  box-shadow: inset 0px 1px 0px hsla(var(--mc4-color-white-hsl), 0.15), 0px 1px 3px hsla(var(--mc4-color-primary-darker-hsl), 0.25), 0px 2px 6px hsla(var(--mc4-color-primary-darker-hsl), 0.1), 0px 6px 10px -2px hsla(var(--mc4-color-primary-darker-hsl), 0.25);
+}
+
+.mc4-btn--primary:hover {
+  background: hsl(var(--mc4-color-primary-light-hsl));
+  box-shadow: inset 0px 1px 0px hsla(var(--mc4-color-white-hsl), 0.15), 0px 1px 2px hsla(var(--mc4-color-primary-darker-hsl), 0.25), 0px 1px 4px hsla(var(--mc4-color-primary-darker-hsl), 0.1), 0px 3px 6px -2px hsla(var(--mc4-color-primary-darker-hsl), 0.25);
+}
+
+.mc4-btn--primary:focus {
+  box-shadow: inset 0px 1px 0px hsla(var(--mc4-color-white-hsl), 0.15), 0px 1px 2px hsla(var(--mc4-color-primary-darker-hsl), 0.25), 0px 1px 4px hsla(var(--mc4-color-primary-darker-hsl), 0.1), 0px 3px 6px -2px hsla(var(--mc4-color-primary-darker-hsl), 0.25), 0px 0px 0px 2px hsl(var(--mc4-color-bg-hsl)), 0px 0px 0px 4px hsl(var(--mc4-color-primary-hsl));
+}
+
+.mc4-btn--subtle {
+  background: hsl(var(--mc4-color-bg-lighter-hsl));
+  color: hsl(var(--mc4-color-contrast-higher-hsl));
+  box-shadow: inset 0px 1px 0px hsla(var(--mc4-color-white-hsl), 0.1), 0px 0px 0px 1px hsla(var(--mc4-color-black-hsl), 0.02), 0px 1px 3px -1px hsla(var(--mc4-color-black-hsl), 0.2), 0 0.3px 0.4px rgba(0, 0, 0, 0.025),0 0.9px 1.5px rgba(0, 0, 0, 0.05), 0 3.5px 6px rgba(0, 0, 0, 0.1);
+}
+
+.mc4-btn--subtle:hover {
+  background: hsl(var(--mc4-color-bg-light-hsl));
+  box-shadow: inset 0px 1px 0px hsla(var(--mc4-color-white-hsl), 0.1), 0px 0px 0px 1px hsla(var(--mc4-color-black-hsl), 0.02), 0px 1px 3px -1px hsla(var(--mc4-color-black-hsl), 0.2), 0 0.1px 0.3px rgba(0, 0, 0, 0.06),0 1px 2px rgba(0, 0, 0, 0.12);
+}
+
+.mc4-btn--subtle:focus {
+  box-shadow: inset 0px 1px 0px hsla(var(--mc4-color-white-hsl), 0.1), 0px 0px 0px 1px hsla(var(--mc4-color-black-hsl), 0.02), 0px 1px 3px -1px hsla(var(--mc4-color-black-hsl), 0.2), 0 0.1px 0.3px rgba(0, 0, 0, 0.06),0 1px 2px rgba(0, 0, 0, 0.12), 0px 0px 0px 2px hsl(var(--mc4-color-bg-hsl)), 0px 0px 0px 4px hsl(var(--mc4-color-contrast-high-hsl));
+}
+
+/* icons */
+.mc4-icon {
+  height: var(--mc4-size, 1em);
+  width: var(--mc4-size, 1em);
+  display: inline-block;
+  color: inherit;
+  fill: currentColor;
+  line-height: 1;
+  flex-shrink: 0;
+  max-width: initial;
+}
+
+.mc4-icon--xs {
+  --mc4-size: 16px;
+}
+
+.mc4-icon--sm {
+  --mc4-size: 24px;
+}
+
+/* component */
+.modal {
+  position: fixed;
+  z-index: 15;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+  opacity: 0;
+  visibility: hidden;
+}
+.modal:not(.modal--is-visible) {
+  pointer-events: none;
+  background-color: transparent;
+}
+
+.modal--is-visible {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* close button */
+.modal__close-btn {
+  display: flex;
+  flex-shrink: 0;
+  border-radius: 50%;
+  transition: 0.2s;
+}
+.modal__close-btn svg {
+  display: block;
+  margin: auto;
+}
+
+.modal__close-btn--outer {
+  /* close button - outside the modal__content */
+  width: 48px;
+  height: 48px;
+  position: fixed;
+  top: var(--mc4-space-sm);
+  right: var(--mc4-space-sm);
+  z-index: 10;
+  background-color: hsla(var(--mc4-color-black-hsl), 0.9);
+  transition: 0.2s;
+}
+.modal__close-btn--outer svg {
+  color: hsl(var(--mc4-color-white-hsl));
+  /* icon color */
+  transition: -webkit-transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+  transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+  transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), -webkit-transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+.modal__close-btn--outer:hover {
+  background-color: hsla(var(--mc4-color-black-hsl), 1);
+}
+.modal__close-btn--outer:hover svg {
+  -webkit-transform: scale(1.1);
+          transform: scale(1.1);
+}
+
+.modal__close-btn--inner {
+  /* close button - inside the modal__content */
+  --mc4-size: 32px;
+  width: var(--mc4-size);
+  height: var(--mc4-size);
+  background-color: hsl(var(--mc4-color-bg-light-hsl));
+  box-shadow: inset 0 0 0.5px 1px hsla(0, 0%, 100%, 0.075), 0 0.3px 0.4px rgba(0, 0, 0, 0.025),0 0.9px 1.5px rgba(0, 0, 0, 0.05), 0 3.5px 6px rgba(0, 0, 0, 0.1);
+  transition: 0.2s;
+}
+.modal__close-btn--inner svg {
+  color: inherit;
+  /* icon color */
+}
+.modal__close-btn--inner:hover {
+  background-color: hsl(var(--mc4-color-bg-lighter-hsl));
+  box-shadow: inset 0 0 0.5px 1px hsla(0, 0%, 100%, 0.075), 0 0.9px 1.5px rgba(0, 0, 0, 0.03),0 3.1px 5.5px rgba(0, 0, 0, 0.08),0 14px 25px rgba(0, 0, 0, 0.12);
+}
+
+/* animations */
+:root {
+  --modal-transition-duration: 0.2s;
+  /* fallback (i.e., unless specified differently in the variations 👇) */
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .modal--animate-fade {
+    --modal-transition-duration: 0.2s;
+    transition: opacity var(--modal-transition-duration), background-color var(--modal-transition-duration), visibility 0s var(--modal-transition-duration);
+  }
+  .modal--animate-fade.modal--is-visible {
+    transition: opacity var(--modal-transition-duration), background-color var(--modal-transition-duration), visibility 0s;
+  }
+
+  .modal--animate-scale,
+.modal--animate-translate-up,
+.modal--animate-translate-down,
+.modal--animate-translate-right,
+.modal--animate-translate-left {
+    --modal-transition-duration: 0.2s;
+    transition: opacity var(--modal-transition-duration), background-color var(--modal-transition-duration), visibility 0s var(--modal-transition-duration);
+  }
+  .modal--animate-scale .modal__content,
+.modal--animate-translate-up .modal__content,
+.modal--animate-translate-down .modal__content,
+.modal--animate-translate-right .modal__content,
+.modal--animate-translate-left .modal__content {
+    will-change: transform;
+    transition: -webkit-transform var(--modal-transition-duration) cubic-bezier(0.215, 0.61, 0.355, 1);
+    transition: transform var(--modal-transition-duration) cubic-bezier(0.215, 0.61, 0.355, 1);
+    transition: transform var(--modal-transition-duration) cubic-bezier(0.215, 0.61, 0.355, 1), -webkit-transform var(--modal-transition-duration) cubic-bezier(0.215, 0.61, 0.355, 1);
+  }
+  .modal--animate-scale.modal--is-visible,
+.modal--animate-translate-up.modal--is-visible,
+.modal--animate-translate-down.modal--is-visible,
+.modal--animate-translate-right.modal--is-visible,
+.modal--animate-translate-left.modal--is-visible {
+    transition: opacity var(--modal-transition-duration), background-color var(--modal-transition-duration), visibility 0s;
+  }
+  .modal--animate-scale.modal--is-visible .modal__content,
+.modal--animate-translate-up.modal--is-visible .modal__content,
+.modal--animate-translate-down.modal--is-visible .modal__content,
+.modal--animate-translate-right.modal--is-visible .modal__content,
+.modal--animate-translate-left.modal--is-visible .modal__content {
+    -webkit-transform: scale(1);
+            transform: scale(1);
+    /* reset all transformations */
+  }
+
+  .modal--animate-slide-up,
+.modal--animate-slide-down,
+.modal--animate-slide-right,
+.modal--animate-slide-left {
+    --modal-transition-duration: 0.3s;
+    transition: opacity 0s var(--modal-transition-duration), background-color var(--modal-transition-duration), visibility 0s var(--modal-transition-duration);
+  }
+  .modal--animate-slide-up .modal__content,
+.modal--animate-slide-down .modal__content,
+.modal--animate-slide-right .modal__content,
+.modal--animate-slide-left .modal__content {
+    will-change: transform;
+    transition: -webkit-transform var(--modal-transition-duration) cubic-bezier(0.215, 0.61, 0.355, 1);
+    transition: transform var(--modal-transition-duration) cubic-bezier(0.215, 0.61, 0.355, 1);
+    transition: transform var(--modal-transition-duration) cubic-bezier(0.215, 0.61, 0.355, 1), -webkit-transform var(--modal-transition-duration) cubic-bezier(0.215, 0.61, 0.355, 1);
+  }
+  .modal--animate-slide-up.modal--is-visible,
+.modal--animate-slide-down.modal--is-visible,
+.modal--animate-slide-right.modal--is-visible,
+.modal--animate-slide-left.modal--is-visible {
+    transition: background-color var(--modal-transition-duration), visibility 0s;
+  }
+  .modal--animate-slide-up.modal--is-visible .modal__content,
+.modal--animate-slide-down.modal--is-visible .modal__content,
+.modal--animate-slide-right.modal--is-visible .modal__content,
+.modal--animate-slide-left.modal--is-visible .modal__content {
+    -webkit-transform: scale(1);
+            transform: scale(1);
+    /* reset all transformations */
+  }
+
+  /* scale */
+  .modal--animate-scale .modal__content {
+    -webkit-transform: scale(0.95);
+            transform: scale(0.95);
+  }
+
+  /* translate */
+  .modal--animate-translate-up .modal__content {
+    -webkit-transform: translateY(40px);
+            transform: translateY(40px);
+  }
+
+  .modal--animate-translate-down .modal__content {
+    -webkit-transform: translateY(-40px);
+            transform: translateY(-40px);
+  }
+
+  .modal--animate-translate-right .modal__content {
+    -webkit-transform: translateX(-40px);
+            transform: translateX(-40px);
+  }
+
+  .modal--animate-translate-left .modal__content {
+    -webkit-transform: translateX(40px);
+            transform: translateX(40px);
+  }
+
+  /* slide */
+  .modal--animate-slide-up .modal__content {
+    -webkit-transform: translateY(100%);
+            transform: translateY(100%);
+  }
+
+  .modal--animate-slide-down .modal__content {
+    -webkit-transform: translateY(-100%);
+            transform: translateY(-100%);
+  }
+
+  .modal--animate-slide-right .modal__content {
+    -webkit-transform: translateX(-100%);
+            transform: translateX(-100%);
+  }
+
+  .modal--animate-slide-left .modal__content {
+    -webkit-transform: translateX(100%);
+            transform: translateX(100%);
+  }
+}
+/* load content - optional */
+.modal--is-loading .modal__content {
+  visibility: hidden;
+}
+.modal--is-loading .modal__loader {
+  display: flex;
+}
+
+.modal__loader {
+  /* loader icon */
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  justify-content: center;
+  align-items: center;
+  display: none;
+  pointer-events: none;
+}
+
+/* --image */
+.modal-img-btn {
+  position: relative;
+  cursor: pointer;
+}
+.modal-img-btn::after {
+  content: "";
+  position: absolute;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: hsla(var(--mc4-color-black-hsl), 0);
+  transition: background 0.2s;
+}
+.modal-img-btn:hover::after {
+  background-color: hsla(var(--mc4-color-black-hsl), 0.7);
+}
+.modal-img-btn:hover .modal-img-btn__icon-wrapper {
+  opacity: 1;
+}
+
+.modal-img-btn__icon-wrapper {
+  position: absolute;
+  z-index: 2;
+  top: calc(50% - 24px);
+  left: calc(50% - 24px);
+  width: 48px;
+  height: 48px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background-color: hsla(var(--mc4-color-black-hsl), 0.7);
+  opacity: 0;
+  transition: opacity 0.2s;
+}
+.modal-img-btn__icon-wrapper .mc4-icon {
+  color: hsl(var(--mc4-color-white-hsl));
+}
+
+/* utility classes */
+.mc4-max-width-100\% {
+  max-width: 150rem;
+}
+
+.mc4-max-height-100\% {
+  max-height: 100%;
+}
+
+.mc4-shadow-md {
+  box-shadow:0 0.9px 1.5px rgba(0, 0, 0, 0.03),0 3.1px 5.5px rgba(0, 0, 0, 0.08),0 14px 25px rgba(0, 0, 0, 0.12);
+}
+
+.mc4-radius-md {
+  border-radius: 0.25em;
+}
+
+.mc4-block {
+  display: block;
+}
+
+.mc4-pointer-events-none {
+  pointer-events: none;
+}
+
+.mc4-flex-center {
+  justify-content: center;
+  align-items: center;
+}
+
+.mc4-flex {
+  display: flex;
+}
+
+.mc4-height-100\% {
+  height: 100%;
+}
+
+.mc4-width-100\% {
+  width: 100%;
+}
+
+.mc4-padding-md {
+  padding: var(--mc4-space-md);
+}
+
+.mc4-bg-black {
+  --mc4-bg-o: 1;
+  background-color: hsla(var(--mc4-color-black-hsl), var(--mc4-bg-o, 1));
+}
+
+.mc4-width-3xl {
+  width: 8rem;
+}
+
+.mc4-overflow-hidden {
+  overflow: hidden;
+}
+
+.mc4-text-lg {
+  font-size: var(--mc4-text-lg);
+}
+
+.mc4-text-component :where(h1, h2, h3, h4) {
+  line-height: var(--mc4-heading-line-height, 1.2);
+  margin-top: calc(var(--mc4-space-md) * var(--mc4-space-multiplier, 1));
+  margin-bottom: calc(var(--mc4-space-sm) * var(--mc4-space-multiplier, 1));
+}
+
+.mc4-text-component :where(p, blockquote, ul li, ol li) {
+  line-height: var(--mc4-body-line-height, 1.4);
+}
+
+.mc4-text-component :where(ul, ol, p, blockquote, .mc4-text-component__block) {
+  margin-bottom: calc(var(--mc4-space-sm) * var(--mc4-space-multiplier, 1));
+}
+
+.mc4-text-component :where(ul, ol) {
+  padding-left: 1.25em;
+}
+
+.mc4-text-component ul :where(ul, ol), .mc4-text-component ol :where(ul, ol) {
+  padding-left: 1em;
+  margin-bottom: 0;
+}
+
+.mc4-text-component ul {
+  list-style-type: disc;
+}
+
+.mc4-text-component ol {
+  list-style-type: decimal;
+}
+
+.mc4-text-component img {
+  display: block;
+  margin: 0 auto;
+}
+
+.mc4-text-component figcaption {
+  margin-top: calc(var(--mc4-space-xs) * var(--mc4-space-multiplier, 1));
+  font-size: var(--mc4-text-sm);
+  text-align: center;}
+
+.mc4-text-component em {
+  font-style: italic;
+}
+
+.mc4-text-component strong {
+  font-weight: bold;
+}
+
+.mc4-text-component s {
+  text-decoration: line-through;
+}
+
+.mc4-text-component u {
+  text-decoration: underline;
+}
+
+.mc4-text-component mark {
+  background-color: hsla(var(--mc4-color-accent-hsl), 0.2);
+  color: inherit;
+}
+
+.mc4-text-component blockquote {
+  padding-left: 1em;
+  border-left: 4px solid hsl(var(--mc4-color-contrast-lower-hsl));
+  font-style: italic;
+}
+
+.mc4-text-component hr {
+  margin: calc(var(--mc4-space-md) * var(--mc4-space-multiplier, 1)) auto;
+  background: hsl(var(--mc4-color-contrast-lower-hsl));
+  height: 1px;
+}
+
+.mc4-text-component > *:first-child {
+  margin-top: 0;
+}
+
+.mc4-text-component > *:last-child {
+  margin-bottom: 0;
+}
+
+.mc4-text-component.mc4-line-height-xs {
+  --mc4-heading-line-height: 1;
+  --mc4-body-line-height: 1.1;
+}
+
+.mc4-text-component.mc4-line-height-sm {
+  --mc4-heading-line-height: 1.1;
+  --mc4-body-line-height: 1.2;
+}
+
+.mc4-text-component.mc4-line-height-md {
+  --mc4-heading-line-height: 1.15;
+  --mc4-body-line-height: 1.4;
+}
+
+.mc4-text-component.mc4-line-height-lg {
+  --mc4-heading-line-height: 1.22;
+  --mc4-body-line-height: 1.58;
+}
+
+.mc4-text-component.mc4-line-height-xl {
+  --mc4-heading-line-height: 1.3;
+  --mc4-body-line-height: 1.72;
+}
+
+.mc4-top-0 {
+  top: 0;
+}
+
+.mc4-position-sticky {
+  position: sticky;
+}
+
+.mc4-float-right {
+  float: right;
+}
+
+:where(.mc4-inner-glow) {
+  position: relative;
+}
+
+.mc4-inner-glow::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: inherit;
+  pointer-events: none;
+  box-shadow: inset 0 0 0.5px 1px hsla(0, 0%, 100%, 0.075);
+}
+
+.mc4-bg {
+  --mc4-bg-o: 1;
+  background-color: hsla(var(--mc4-color-bg-hsl), var(--mc4-bg-o, 1));
+}
+
+.mc4-overflow-auto {
+  overflow: auto;
+}
+
+.mc4-max-width-sm {
+  max-width: 48rem;
+}
+
+@media not all and (min-width: 64rem) {
+  .mc4-display\@md {
+    display:none !important;
+  }
+}
+
+.mc4-gap-xs {
+  gap: var(--mc4-space-xs);
+}
+
+.mc4-justify-end {
+  justify-content: flex-end;
+}
+
+.mc4-padding-x-md {
+  padding-left: var(--mc4-space-md);
+  padding-right: var(--mc4-space-md);
+}
+
+.mc4-padding-y-sm {
+  padding-top: var(--mc4-space-sm);
+  padding-bottom: var(--mc4-space-sm);
+}
+
+.mc4-text-md {
+  font-size: var(--mc4-text-md);
+}
+
+.mc4-text-truncate {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.mc4-justify-between {
+  justify-content: space-between;
+}
+
+.mc4-items-center {
+  align-items: center;
+}
+
+.mc4-bg-contrast-lower {
+  --mc4-bg-o: 1;
+  background-color: hsla(var(--mc4-color-contrast-lower-hsl), var(--mc4-bg-o, 1));
+}
+
+.mc4-max-width-xs {
+  max-width: 38rem;
+}
+
+.mc4-flex-shrink-0 {
+  flex-shrink: 0;
+}
+
+:where(.mc4-inner-glow-top) {
+  position: relative;
+}
+
+.mc4-inner-glow-top::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: inherit;
+  pointer-events: none;
+  box-shadow: var(inset 0 1px 0.5px hsla(0, 0%, 100%, 0.075));
+}
+
+.mc4-momentum-scrolling {
+  -webkit-overflow-scrolling: touch;
+}
+
+.mc4-flex-grow {
+  flex-grow: 1;
+}
+
+.mc4-flex-column {
+  flex-direction: column;
+}
+
+.mc4-bg-opacity-90\% {
+  --mc4-bg-o: 0.9;
+}
+
+.mc4-bg-opacity-50\% {
+  --mc4-bg-o: 0.5;
+}
+
+@media(min-width: 64rem){
+  .mc4-hide\@md {
+    display: none !important;
+  }
+}
+
+/* -------------------------------- 
+
+File#: _2_modal-video
+Title: Modal Video
+Descr: A modal window used to display a responsive video
+Usage: codyhouse.co/license
+
+-------------------------------- */
+/* reset */
+*, *::after, *::before {
+  box-sizing: border-box;
+}
+
+* {
+  font: inherit;
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+body {
+  background-color: hsl(0, 0%, 100%);
+  font-family: system-ui, sans-serif;
+  color: hsl(230, 7%, 23%);
+  font-size: 1rem;
+}
+
+h1, h2, h3, h4 {
+  line-height: 1.2;
+  color: hsl(230, 13%, 9%);
+  font-weight: 700;
+}
+
+h1 {
+  font-size: 2.0736rem;
+}
+
+h2 {
+  font-size: 1.728rem;
+}
+
+h3 {
+  font-size: 1.25rem;
+}
+
+h4 {
+  font-size: 1.2rem;
+}
+
+ol, ul, menu {
+  list-style: none;
+}
+
+button, input, textarea, select {
+  background-color: transparent;
+  border-radius: 0;
+  color: inherit;
+  line-height: inherit;
+  appearance: none;
+}
+
+textarea {
+  resize: vertical;
+  overflow: auto;
+  vertical-align: top;
+}
+
+a {
+  color: hsl(250, 84%, 54%);
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+img, video, svg {
+  display: block;
+  max-width: 100%;
+}
+
+@media (min-width: 64rem) {
+  body {
+    font-size: 1.25rem;
+  }
+
+  h1 {
+    font-size: 3.051rem;
+  }
+
+    h2 {
+    font-size: 2.44rem;
+  }
+
+    h3 {
+    font-size: 1.75rem;
+  }
+
+    h4 {
+    font-size: 1.5625rem;
+  }
+}
+
+/* variables */
+:root {
+  /* colors */
+  --md3-color-primary-hsl: 250, 84%, 54%;
+  --md3-color-bg-hsl: 0, 0%, 100%;
+  --md3-color-contrast-high-hsl: 230, 7%, 23%;
+  --md3-color-contrast-higher-hsl: 230, 13%, 9%;
+  --md3-color-black-hsl: 230, 13%, 9%;
+  --md3-color-bg-dark-hsl: 240, 4%, 95%;
+  --md3-color-white-hsl: 0, 0%, 100%;
+  --md3-color-primary-darker-hsl: 250, 84%, 38%;
+  --md3-color-primary-light-hsl: 250, 84%, 60%;
+
+  /* spacing */
+  --md3-space-md: 1.25rem;
+  --md3-space-sm: 0.75rem;
+  --md3-space-2xs: 0.375rem;
+}
+
+@media(min-width: 64rem){
+  :root {
+    /* spacing */
+    --md3-space-md: 2rem;
+    --md3-space-sm: 1.125rem;
+    --md3-space-2xs: 0.5625rem;
+  }
+}
+
+/* buttons */
+.md3-btn {
+  position: relative;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1em;
+  white-space: nowrap;
+  text-decoration: none;
+  background: hsl(var(--md3-color-bg-dark-hsl));
+  color: hsl(var(--md3-color-contrast-higher-hsl));
+  cursor: pointer;
+  text-decoration: none;
+  line-height: 1.2;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  transition: all 0.2s ease;
+  will-change: transform;
+  padding: var(--md3-space-2xs) var(--md3-space-sm);
+  border-radius: 0.25em;
+}
+
+.md3-btn:focus-visible {
+  box-shadow: 0px 0px 0px 2px hsl(var(--md3-color-bg-hsl)), 0px 0px 0px 4px hsla(var(--md3-color-contrast-higher-hsl), 0.15);
+  outline: none;
+}
+
+.md3-btn:active {
+  transform: translateY(2px);
+}
+
+.md3-btn--primary {
+  background: hsl(var(--md3-color-primary-hsl));
+  color: hsl(var(--md3-color-white-hsl));
+  box-shadow: inset 0px 1px 0px hsla(var(--md3-color-white-hsl), 0.15), 0px 1px 3px hsla(var(--md3-color-primary-darker-hsl), 0.25), 0px 2px 6px hsla(var(--md3-color-primary-darker-hsl), 0.1), 0px 6px 10px -2px hsla(var(--md3-color-primary-darker-hsl), 0.25);
+}
+
+.md3-btn--primary:hover {
+  background: hsl(var(--md3-color-primary-light-hsl));
+  box-shadow: inset 0px 1px 0px hsla(var(--md3-color-white-hsl), 0.15), 0px 1px 2px hsla(var(--md3-color-primary-darker-hsl), 0.25), 0px 1px 4px hsla(var(--md3-color-primary-darker-hsl), 0.1), 0px 3px 6px -2px hsla(var(--md3-color-primary-darker-hsl), 0.25);
+}
+
+.md3-btn--primary:focus {
+  box-shadow: inset 0px 1px 0px hsla(var(--md3-color-white-hsl), 0.15), 0px 1px 2px hsla(var(--md3-color-primary-darker-hsl), 0.25), 0px 1px 4px hsla(var(--md3-color-primary-darker-hsl), 0.1), 0px 3px 6px -2px hsla(var(--md3-color-primary-darker-hsl), 0.25), 0px 0px 0px 2px hsl(var(--md3-color-bg-hsl)), 0px 0px 0px 4px hsl(var(--md3-color-primary-hsl));
+}
+
+/* icons */
+.md3-icon {
+  height: var(--md3-size, 1em);
+  width: var(--md3-size, 1em);
+  display: inline-block;
+  color: inherit;
+  fill: currentColor;
+  line-height: 1;
+  flex-shrink: 0;
+  max-width: initial;
+}
+
+.md3-icon--sm {
+  --md3-size: 24px;
+}
+
+.md3-icon--lg {
+  --md3-size: 48px;
+}
+
+.md3-icon--is-spinning {
+  animation: md3-icon-spin 1s infinite linear;
+}
+
+@keyframes md3-icon-spin {
+  0% {
+  transform: rotate(0deg);
+}
+  100% {
+  transform: rotate(360deg);
+}
+}
+
+/* component */
+
+
+/* utility classes */
+.md3-color-bg {
+  --md3-color-o: 1;
+  color: hsla(var(--md3-color-bg-hsl), var(--md3-color-o, 1));
+}
+
+:where(.md3-media-wrapper-16\:9) {
+  position: relative;
+  height: 0;
+}
+
+.md3-media-wrapper-16\:9 {
+  padding-bottom: 56.25%;
+}
+
+.md3-media-wrapper-16\:9 > * {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.md3-media-wrapper-16\:9 > *:not(iframe) {
+  object-fit: cover;
+}
+
+.md3-sr-only {
+  position: absolute;
+  clip: rect(1px, 1px, 1px, 1px);
+  clip-path: inset(50%);
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  padding: 0;
+  border: 0;
+  white-space: nowrap;
+}
+
+.md3-shadow-md {
+  box-shadow:0 0.9px 1.5px rgba(0, 0, 0, 0.03),0 3.1px 5.5px rgba(0, 0, 0, 0.08),0 14px 25px rgba(0, 0, 0, 0.12);
+}
+
+.md3-overflow-auto {
+  overflow: auto;
+}
+
+.md3-max-height-100\% {
+  max-height: 100%;
+}
+
+.md3-max-width-md {
+  max-width: 64rem;
+}
+
+.md3-width-100\% {
+  width: 100%;
+}
+
+.md3-padding-x-md {
+  padding-left: var(--md3-space-md);
+  padding-right: var(--md3-space-md);
+}
+
+.md3-bg-black {
+  --md3-bg-o: 1;
+  background-color: hsla(var(--md3-color-black-hsl), var(--md3-bg-o, 1));
+}
+
+.md3-flex-center {
+  justify-content: center;
+  align-items: center;
+}
+
+.md3-flex {
+  display: flex;
+}
+
+.md3-bg-opacity-90\% {
+  --md3-bg-o: 0.9;
+}
+
+
+
+.overlay-text {
+  position: absolute;
+  top: 16%; 
+ 
+  transform: translate(-50%, -50%); 
+  color: #D2051e; 
+  padding: 15px -10px 25px 25px; 
+  margin-left: 120px;
+  font-size: var(--mc4-text-md);
+  text-align: left;
+  font-weight: 400;
+  
+}
+
+.overlay-text1 {
+  position: absolute;
+  top: 25.7%; 
+  transform: translate(-50%, -50%); 
+  color: #671C3E; 
+  padding: 0px 0px 25px 20px; 
+  margin-left: 20px;
+  font-size: 12px; 
+  text-align: left;
+  font-weight: 600;
+    font-size: var(--vu0-text-base);
+  margin-bottom: var(--vu0-space-4xs);
+}
+
+.overlay-text1 {
+  position: absolute;
+  top: 25.7%; 
+  left: 32%; 
+  transform: translate(-50%, -50%); 
+  color: #671C3E; 
+  padding: 0px 0px; 
+  font-size: 15px; 
+  text-align: left;
+  font-weight: 600;
+  
+
+}
+
+.overlay-text2 {
+  position: absolute;
+  top: 33%; 
+  left: 9%; 
+  transform: translate(-50%, -50%); 
+  color: #671C3E; 
+  padding: 0px 0px; 
+  font-size: 13px; 
+  text-align: left;
+  font-weight: 600;
+  font-size: var(--vu0-text-sm);
+  
+}
+    </style>
+</head>
+<body>
+    <p><meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1"></p>
+<title></title>
+
+
+<style>
+/* CSS Document */
+/*Обнуление*/
+*{margin: 0;}
+*,*:before,*:after{-moz-box-sizing: border-box;-webkit-box-sizing: border-box;box-sizing: border-box;}
+:focus,:active{outline: none;}
+a:focus,a:active{outline: none;}
+nav,footer,aside{display: block;}
+input,button,textarea{font-family:inherit;}
+input::-ms-clear{display: none;}
+button{cursor: pointer;}
+button::-moz-focus-inner{padding:0;border:0;}
+a,a:visited{text-decoration: none;}
+a:hover{text-decoration: none;}
+/*ul li{list-style: none;}*/
+img{vertical-align: top;}
+h1,h2,h3,h4,h5,h6{font-size:inherit;font-weight: inherit;}
+html,body{height:100%;width:100%;-ms-text-size-adjust:100%;-moz-text-size-adjust:100%;-webkit-text-size-adjust:100%;-moz-box-sizing: border-box;-webkit-box-sizing: border-box;box-sizing: border-box;font-size: 16px;line-height: 1.2;outline: none;font-family: "Arial", "Mier B", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"; margin: 0;}
+html {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    overflow: -moz-scrollbars-vertical; 
+    overflow-y: scroll;
+    scroll-behavior: smooth;
+}
+* {
+    -moz-box-sizing: border-box;-webkit-box-sizing: border-box;box-sizing: border-box;
+  }
+  * {
+    scrollbar-width: thin;
+    scrollbar-color: rgba(152, 148, 153, 0.8) rgba(255, 255, 255, 0);
+    /*            cursor: pointer;*/
+}
+
+::-webkit-scrollbar {
+    height: 6px;
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0);
+    /*          -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.8); */
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: rgba(152, 148, 153, 0.8);
+    border-radius: 16px;
+    -webkit-box-shadow: inset 0 0 1px rgba(0, 0, 0, 0.3);
+}
+body {
+    max-width: 1250px;
+    
+    /*margin: 0 auto;*/
+}
+img{
+    width: 100%;
+    outline: none;
+}
+a img {
+    outline: none;
+}
+tbody td, tbody th {
+  padding: 15px;
+}
+.display-block {
+    display: block;
+}
+</style>
+
+<link href="https://fusion-universal-assets-production.s3.amazonaws.com/file-host/5af42070-0533-49eb-9822-934eebf32cb7--1399798036194765884-/3733/style_template_collection_for_fuse_.css" rel="stylesheet" />
+<link href="https://fusion-universal-assets-production.s3.amazonaws.com/file-host/5af42070-0533-49eb-9822-934eebf32cb7--1399798036194765884-/3733/text_style_template_collection_for_fuse.css" rel="stylesheet" />
+<link href="https://fusion-universal-assets-production.s3.amazonaws.com/file-host/5af42070-0533-49eb-9822-934eebf32cb7--1399798036194765884-/3733/menu_style_template_collection_for_fuse.css" rel="stylesheet" />
+<link href="https://fusion-universal-assets-production.s3.amazonaws.com/file-host/5af42070-0533-49eb-9822-934eebf32cb7--1399798036194765884-/3733/video_style_template_collection_for_fuse.css" rel="stylesheet" />
+<link href="https://fusion-universal-assets-production.s3.amazonaws.com/file-host/5af42070-0533-49eb-9822-934eebf32cb7--1399798036194765884-/3733/interactive_elements_style_template_collection_for_fuse.css" rel="stylesheet" />
+<link crossorigin="anonymous" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/fontawesome.min.css" integrity="sha384-zIaWifL2YFF1qaDiAo0JFgsmasocJ/rqu7LKYH8CoBEXqGbb9eO+Xi3s6fQhgFWM" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+<style type="text/css">body {
+            scrollbar-width: none;
+        }
+
+        body::-webkit-scrollbar {
+            display: none;
+        }
+.fuse_article_content {
+    padding-top: 0.9375rem;
+    padding-bottom: 0.9375rem;
+  }
+ .fuse_article_button {
+            display: flex;
+            justify-content: end;
+            padding-right: 15px;
+        }
+
+        .fuse_article_button_red {
+            background-color: #665F53;
+            text-align: right;
+            border-radius: 3px;
+        }
+</style>
+<!-- Copy the HTML code from the template and paste it here --><!-- START Full width picture-->
+<div class="fuse_article_content" id="up00">
+<div class="fa_container">
+<div class="fa_block_img"><img alt="img" src="https://fusion-universal-assets-production.s3.amazonaws.com/file-host/5af42070-0533-49eb-9822-934eebf32cb7--1399798036194765884-/8/GetToKnowYourEMT-Header.png" />&nbsp;</div>
+</div>
+</div>
+<!-- FINISH Full width picture -->
+
+
+<section class="video-gallery">
+  <div class="video-gallery__container">
+    
+    <ul class="video-gallery__grid">
+      <li>
+        <div class="video-card">
+          <a href="#0" class="video-card__modal-control" aria-controls="modal-video-1" data-url="https://www.kaltura.com/p/1858191/sp/185819100/embedIframeJs/uiconf_id/44394581/partner_id/1858191?iframeembed=true&playerId=obj_KalturaPlayer&entry_id=1_lndvc8a4" role="button">
+            <img class="video-card__preview" src="https://fusion-universal-assets-production.s3.amazonaws.com/file-host/5af42070-0533-49eb-9822-934eebf32cb7--1399798036194765884-/8/EMT-AlisonBraman.JPG" alt="Image description">
+
+            <div class="video-card__play-btn" aria-hidden="true">
+              <svg class="vu0-icon vu0-icon--sm" viewBox="0 0 24 24">
+                <g fill="currentColor">
+                  <path d="M20.555,11.168l-15-10c-0.307-0.204-0.702-0.224-1.026-0.05C4.203,1.292,4,1.631,4,2v20 c0,0.369,0.203,0.708,0.528,0.882C4.676,22.961,4.838,23,5,23c0.194,0,0.388-0.057,0.555-0.168l15-10C20.833,12.646,21,12.334,21,12 S20.833,11.354,20.555,11.168z"></path>
+                </g>
+              </svg>
+            </div>
+          </a>
+
+ 
+        </div>
+      </li>
+
+      <li>
+        <div class="video-card">
+          <a href="#0" class="video-card__modal-control" aria-controls="modal-video-1"  data-url="https://www.kaltura.com/p/1858191/sp/185819100/embedIframeJs/uiconf_id/44394581/partner_id/1858191?iframeembed=true&playerId=obj_KalturaPlayer&entry_id=1_a7q0shra" role="button">
+            <img class="video-card__preview" src="https://fusion-universal-assets-production.s3.amazonaws.com/file-host/5af42070-0533-49eb-9822-934eebf32cb7--1399798036194765884-/8/EMT-Anurag-Sharma.JPG" alt="Image description">
+
+            <div class="video-card__play-btn" aria-hidden="true">
+              <svg class="vu0-icon vu0-icon--sm" viewBox="0 0 24 24">
+                <g fill="currentColor">
+                  <path d="M20.555,11.168l-15-10c-0.307-0.204-0.702-0.224-1.026-0.05C4.203,1.292,4,1.631,4,2v20 c0,0.369,0.203,0.708,0.528,0.882C4.676,22.961,4.838,23,5,23c0.194,0,0.388-0.057,0.555-0.168l15-10C20.833,12.646,21,12.334,21,12 S20.833,11.354,20.555,11.168z"></path>
+                </g>
+              </svg>
+            </div>
+          </a>
+
+    
+        </div>
+      </li>
+
+      <li>
+        <div class="video-card">
+          <a href="#0" class="video-card__modal-control" aria-controls="modal-video-1" data-url="https://cdnapisec.kaltura.com/html5/html5lib/v2.101/mwEmbedFrame.php/p/1858191/uiconf_id/44394581/entry_id/1_g6rdxp87?wid=_1858191&iframeembed=true&playerId=obj_KalturaPlayer&entry_id=1_g6rdxp87" role="button">
+            <img class="video-card__preview" src="https://fusion-universal-assets-production.s3.amazonaws.com/file-host/5af42070-0533-49eb-9822-934eebf32cb7--1399798036194765884-/8/EMT-Dan-Wade.JPG" alt="Image description">
+
+            <div class="video-card__play-btn" aria-hidden="true">
+              <svg class="vu0-icon vu0-icon--sm" viewBox="0 0 24 24">
+                <g fill="currentColor">
+                  <path d="M20.555,11.168l-15-10c-0.307-0.204-0.702-0.224-1.026-0.05C4.203,1.292,4,1.631,4,2v20 c0,0.369,0.203,0.708,0.528,0.882C4.676,22.961,4.838,23,5,23c0.194,0,0.388-0.057,0.555-0.168l15-10C20.833,12.646,21,12.334,21,12 S20.833,11.354,20.555,11.168z"></path>
+                </g>
+              </svg>
+            </div>
+          </a>
+
+ 
+        </div>
+      </li>
+
+      <li>
+        <div class="video-card">
+          <a href="#0" class="video-card__modal-control" aria-controls="modal-video-1" data-url="https://www.kaltura.com/p/1858191/sp/185819100/embedIframeJs/uiconf_id/44394581/partner_id/1858191?iframeembed=true&playerId=obj_KalturaPlayer&entry_id=1_yzvg7o1z" role="button">
+            <img class="video-card__preview" src="https://fusion-universal-assets-production.s3.amazonaws.com/file-host/5af42070-0533-49eb-9822-934eebf32cb7--1399798036194765884-/8/EMT-Guy-Bader.JPG" alt="Image description">
+
+            <div class="video-card__play-btn" aria-hidden="true">
+              <svg class="vu0-icon vu0-icon--sm" viewBox="0 0 24 24">
+                <g fill="currentColor">
+                  <path d="M20.555,11.168l-15-10c-0.307-0.204-0.702-0.224-1.026-0.05C4.203,1.292,4,1.631,4,2v20 c0,0.369,0.203,0.708,0.528,0.882C4.676,22.961,4.838,23,5,23c0.194,0,0.388-0.057,0.555-0.168l15-10C20.833,12.646,21,12.334,21,12 S20.833,11.354,20.555,11.168z"></path>
+                </g>
+              </svg>
+            </div>
+          </a>
+
+             </div>
+      </li>
+
+      <li>
+        <div class="video-card">
+          <a href="#0" class="video-card__modal-control" aria-controls="modal-video-1" data-url="https://www.kaltura.com/p/1858191/sp/185819100/embedIframeJs/uiconf_id/44394581/partner_id/1858191?iframeembed=true&playerId=obj_KalturaPlayer&entry_id=1_vcmxvwne" role="button">
+            <img class="video-card__preview" src="https://fusion-universal-assets-production.s3.amazonaws.com/file-host/5af42070-0533-49eb-9822-934eebf32cb7--1399798036194765884-/8/EMT-Jahida-Nadi.png" alt="Image description">
+
+            <div class="video-card__play-btn" aria-hidden="true">
+              <svg class="vu0-icon vu0-icon--sm" viewBox="0 0 24 24">
+                <g fill="currentColor">
+                  <path d="M20.555,11.168l-15-10c-0.307-0.204-0.702-0.224-1.026-0.05C4.203,1.292,4,1.631,4,2v20 c0,0.369,0.203,0.708,0.528,0.882C4.676,22.961,4.838,23,5,23c0.194,0,0.388-0.057,0.555-0.168l15-10C20.833,12.646,21,12.334,21,12 S20.833,11.354,20.555,11.168z"></path>
+                </g>
+              </svg>
+            </div>
+          </a>
+
+     
+        </div>
+      </li>
+
+      <li>
+        <div class="video-card">
+          <a href="#0" class="video-card__modal-control" aria-controls="modal-video-1" data-url="https://www.kaltura.com/p/1858191/sp/185819100/embedIframeJs/uiconf_id/44394581/partner_id/1858191?iframeembed=true&playerId=obj_KalturaPlayer&entry_id=1_0mig9rwd" role="button">
+            <img class="video-card__preview" src="https://fusion-universal-assets-production.s3.amazonaws.com/file-host/5af42070-0533-49eb-9822-934eebf32cb7--1399798036194765884-/8/EMT-JohnGreer.jpg" alt="Image description">
+
+            <div class="video-card__play-btn" aria-hidden="true">
+              <svg class="vu0-icon vu0-icon--sm" viewBox="0 0 24 24">
+                <g fill="currentColor">
+                  <path d="M20.555,11.168l-15-10c-0.307-0.204-0.702-0.224-1.026-0.05C4.203,1.292,4,1.631,4,2v20 c0,0.369,0.203,0.708,0.528,0.882C4.676,22.961,4.838,23,5,23c0.194,0,0.388-0.057,0.555-0.168l15-10C20.833,12.646,21,12.334,21,12 S20.833,11.354,20.555,11.168z"></path>
+                </g>
+              </svg>
+            </div>
+          </a>
+
+
+        </div>
+      </li>
+       <li>
+        <div class="video-card">
+          <a href="#0" class="video-card__modal-control" aria-controls="modal-video-1" data-url="https://www.kaltura.com/p/1858191/sp/185819100/embedIframeJs/uiconf_id/44394581/partner_id/1858191?iframeembed=true&playerId=obj_KalturaPlayer&entry_id=1_n2rq7m72" role="button">
+            <img class="video-card__preview" src="https://fusion-universal-assets-production.s3.amazonaws.com/file-host/5af42070-0533-49eb-9822-934eebf32cb7--1399798036194765884-/8/EMT-Kat.jpe" alt="Image description">
+
+            <div class="video-card__play-btn" aria-hidden="true">
+              <svg class="vu0-icon vu0-icon--sm" viewBox="0 0 24 24">
+                <g fill="currentColor">
+                  <path d="M20.555,11.168l-15-10c-0.307-0.204-0.702-0.224-1.026-0.05C4.203,1.292,4,1.631,4,2v20 c0,0.369,0.203,0.708,0.528,0.882C4.676,22.961,4.838,23,5,23c0.194,0,0.388-0.057,0.555-0.168l15-10C20.833,12.646,21,12.334,21,12 S20.833,11.354,20.555,11.168z"></path>
+                </g>
+              </svg>
+            </div>
+          </a>
+
+        </div>
+      </li>
+       <li>
+        <div class="video-card">
+          <a href="#0" class="video-card__modal-control" aria-controls="modal-video-1" data-url="https://www.kaltura.com/p/1858191/sp/185819100/embedIframeJs/uiconf_id/44394581/partner_id/1858191?iframeembed=true&playerId=obj_KalturaPlayer&entry_id=1_x5w9djoe" role="button">
+            <img class="video-card__preview" src="https://fusion-universal-assets-production.s3.amazonaws.com/file-host/5af42070-0533-49eb-9822-934eebf32cb7--1399798036194765884-/8/EMT-Leah-Kelso.JPG" alt="Image description">
+
+            <div class="video-card__play-btn" aria-hidden="true">
+              <svg class="vu0-icon vu0-icon--sm" viewBox="0 0 24 24">
+                <g fill="currentColor">
+                  <path d="M20.555,11.168l-15-10c-0.307-0.204-0.702-0.224-1.026-0.05C4.203,1.292,4,1.631,4,2v20 c0,0.369,0.203,0.708,0.528,0.882C4.676,22.961,4.838,23,5,23c0.194,0,0.388-0.057,0.555-0.168l15-10C20.833,12.646,21,12.334,21,12 S20.833,11.354,20.555,11.168z"></path>
+                </g>
+              </svg>
+            </div>
+          </a>
+        </div>
+      </li>
+       <li>
+        <div class="video-card">
+          <a href="#0" class="video-card__modal-control" aria-controls="modal-video-1" data-url="https://www.kaltura.com/p/1858191/sp/185819100/embedIframeJs/uiconf_id/44394581/partner_id/1858191?iframeembed=true&playerId=obj_KalturaPlayer&entry_id=1_sf5qct84" role="button">
+            <img class="video-card__preview" src="https://fusion-universal-assets-production.s3.amazonaws.com/file-host/5af42070-0533-49eb-9822-934eebf32cb7--1399798036194765884-/8/EMT-Mike-McGowan.JPG" alt="Image description">
+
+            <div class="video-card__play-btn" aria-hidden="true">
+              <svg class="vu0-icon vu0-icon--sm" viewBox="0 0 24 24">
+                <g fill="currentColor">
+                  <path d="M20.555,11.168l-15-10c-0.307-0.204-0.702-0.224-1.026-0.05C4.203,1.292,4,1.631,4,2v20 c0,0.369,0.203,0.708,0.528,0.882C4.676,22.961,4.838,23,5,23c0.194,0,0.388-0.057,0.555-0.168l15-10C20.833,12.646,21,12.334,21,12 S20.833,11.354,20.555,11.168z"></path>
+                </g>
+              </svg>
+            </div>
+          </a>
+
+        </div>
+      </li>
+             <li>
+        <div class="video-card">
+          <a href="#0" class="video-card__modal-control" aria-controls="modal-video-1" data-url="https://www.kaltura.com/p/1858191/sp/185819100/embedIframeJs/uiconf_id/44394581/partner_id/1858191?iframeembed=true&playerId=obj_KalturaPlayer&entry_id=1_5p6aqlf5" role="button">
+            <img class="video-card__preview" src="https://fusion-universal-assets-production.s3.amazonaws.com/file-host/5af42070-0533-49eb-9822-934eebf32cb7--1399798036194765884-/8/EMT-Muthu-Manohar.JPG" alt="Image description">
+                    
+
+            <div class="video-card__play-btn" aria-hidden="true">
+              <svg class="vu0-icon vu0-icon--sm" viewBox="0 0 24 24">
+                <g fill="currentColor">
+                  <path d="M20.555,11.168l-15-10c-0.307-0.204-0.702-0.224-1.026-0.05C4.203,1.292,4,1.631,4,2v20 c0,0.369,0.203,0.708,0.528,0.882C4.676,22.961,4.838,23,5,23c0.194,0,0.388-0.057,0.555-0.168l15-10C20.833,12.646,21,12.334,21,12 S20.833,11.354,20.555,11.168z"></path>
+                </g>
+              </svg>
+            </div>
+          </a>
+
+        </div>
+      </li>
+          
+             <li>
+        <div class="video-card">
+          <a href="#0" class="video-card__modal-control" aria-controls="modal-video-1" data-url="https://www.kaltura.com/p/1858191/sp/185819100/embedIframeJs/uiconf_id/44394581/partner_id/1858191?iframeembed=true&playerId=obj_KalturaPlayer&entry_id=1_145ahxl2" role="button">
+            <img class="video-card__preview" src="https://fusion-universal-assets-production.s3.amazonaws.com/file-host/5af42070-0533-49eb-9822-934eebf32cb7--1399798036194765884-/8/EMT-ScottClifton.JPG" alt="Image description">
+
+            <div class="video-card__play-btn" aria-hidden="true">
+              <svg class="vu0-icon vu0-icon--sm" viewBox="0 0 24 24">
+                <g fill="currentColor">
+                  <path d="M20.555,11.168l-15-10c-0.307-0.204-0.702-0.224-1.026-0.05C4.203,1.292,4,1.631,4,2v20 c0,0.369,0.203,0.708,0.528,0.882C4.676,22.961,4.838,23,5,23c0.194,0,0.388-0.057,0.555-0.168l15-10C20.833,12.646,21,12.334,21,12 S20.833,11.354,20.555,11.168z"></path>
+                </g>
+              </svg>
+            </div>
+          </a>
+
+        </div>
+      </li>
+             <li>
+        <div class="video-card">
+          <a href="#0" class="video-card__modal-control" aria-controls="modal-video-1" data-url="https://www.kaltura.com/p/1858191/sp/185819100/embedIframeJs/uiconf_id/44394581/partner_id/1858191?iframeembed=true&playerId=obj_KalturaPlayer&entry_id=1_qz34n98r" role="button">
+            <img class="video-card__preview" src="https://fusion-universal-assets-production.s3.amazonaws.com/file-host/5af42070-0533-49eb-9822-934eebf32cb7--1399798036194765884-/8/EMT-Tom-Akers.JPG" alt="Image description">
+
+            <div class="video-card__play-btn" aria-hidden="true">
+              <svg class="vu0-icon vu0-icon--sm" viewBox="0 0 24 24">
+                <g fill="currentColor">
+                  <path d="M20.555,11.168l-15-10c-0.307-0.204-0.702-0.224-1.026-0.05C4.203,1.292,4,1.631,4,2v20 c0,0.369,0.203,0.708,0.528,0.882C4.676,22.961,4.838,23,5,23c0.194,0,0.388-0.057,0.555-0.168l15-10C20.833,12.646,21,12.334,21,12 S20.833,11.354,20.555,11.168z"></path>
+                </g>
+              </svg>
+            </div>
+          </a>
+
+        </div>
+      </li>
+ 
+    </ul>
+  </div>
+</section>
+
+<div class="modal modal--is-loading vu0-flex vu0-flex-center vu0-bg-black vu0-bg-opacity-90% vu0-padding-x-md js-modal" id="modal-video-1" data-modal-first-focus=".modal__close-btn">
+  <div class="modal__content vu0-width-100% vu0-max-width-md vu0-max-height-100% vu0-overflow-auto vu0-shadow-md" role="alertdialog" aria-labelledby="modal-video-title-1" aria-describedby="">
+    <p class="vu0-sr-only" id="modal-video-title-1">A video is being shown</p>
+
+    <figure class="vu0-media-wrapper-16:9">
+      <iframe src="" class="js-modal-video__media" width="640" height="360" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+    </figure>
+  </div>
+
+  <div class="modal__loader" aria-hidden="true">
+    <svg class="vu0-icon vu0-icon--lg vu0-color-bg vu0-icon--is-spinning" viewBox="0 0 48 48">
+      <path d="M24,48A24,24,0,1,1,48,24,24.027,24.027,0,0,1,24,48ZM24,4A20,20,0,1,0,44,24,20.023,20.023,0,0,0,24,4Z" opacity="0.4"></path>
+      <path d="M48,24H44A20.023,20.023,0,0,0,24,4V0A24.028,24.028,0,0,1,48,24Z"></path>
+    </svg>
+  </div>
+
+  <button class="modal__close-btn modal__close-btn--outer js-modal__close js-tab-focus">
+    <svg class="vu0-icon vu0-icon--sm" viewBox="0 0 24 24">
+      <title>Close modal window</title>
+      <g fill="none" stroke="currentColor" stroke-miterlimit="10" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <line x1="3" y1="3" x2="21" y2="21" />
+        <line x1="21" y1="3" x2="3" y2="21" />
+      </g>
+    </svg>
+  </button>
+</div>
+
+
+<script>
+    // File#: _1_modal-window
+// Usage: codyhouse.co/license
+(function() {
+	var Modal = function(element) {
+		this.element = element;
+		this.triggers = document.querySelectorAll('[aria-controls="'+this.element.getAttribute('id')+'"]');
+		this.firstFocusable = null;
+		this.lastFocusable = null;
+		this.moveFocusEl = null; // focus will be moved to this element when modal is open
+		this.modalFocus = this.element.getAttribute('data-modal-first-focus') ? this.element.querySelector(this.element.getAttribute('data-modal-first-focus')) : null;
+		this.selectedTrigger = null;
+		this.preventScrollEl = this.getPreventScrollEl();
+		this.showClass = "modal--is-visible";
+		this.initModal();
+	};
+
+	Modal.prototype.getPreventScrollEl = function() {
+		var scrollEl = false;
+		var querySelector = this.element.getAttribute('data-modal-prevent-scroll');
+		if(querySelector) scrollEl = document.querySelector(querySelector);
+		return scrollEl;
+	};
+
+	Modal.prototype.initModal = function() {
+		var self = this;
+		//open modal when clicking on trigger buttons
+		if ( this.triggers ) {
+			for(var i = 0; i < this.triggers.length; i++) {
+				this.triggers[i].addEventListener('click', function(event) {
+					event.preventDefault();
+					if(self.element.classList.contains(self.showClass)) {
+						self.closeModal();
+						return;
+					}
+					self.selectedTrigger = event.currentTarget;
+					self.showModal();
+					self.initModalEvents();
+				});
+			}
+		}
+
+		// listen to the openModal event -> open modal without a trigger button
+		this.element.addEventListener('openModal', function(event){
+			if(event.detail) self.selectedTrigger = event.detail;
+			self.showModal();
+			self.initModalEvents();
+		});
+
+		// listen to the closeModal event -> close modal without a trigger button
+		this.element.addEventListener('closeModal', function(event){
+			if(event.detail) self.selectedTrigger = event.detail;
+			self.closeModal();
+		});
+
+		// if modal is open by default -> initialise modal events
+		if(this.element.classList.contains(this.showClass)) this.initModalEvents();
+	};
+
+	Modal.prototype.showModal = function() {
+		var self = this;
+		this.element.classList.add(this.showClass);;
+		this.getFocusableElements();
+		if(this.moveFocusEl) {
+			this.moveFocusEl.focus();
+			// wait for the end of transitions before moving focus
+			this.element.addEventListener("transitionend", function cb(event) {
+				self.moveFocusEl.focus();
+				self.element.removeEventListener("transitionend", cb);
+			});
+		}
+		this.emitModalEvents('modalIsOpen');
+		// change the overflow of the preventScrollEl
+		if(this.preventScrollEl) this.preventScrollEl.style.overflow = 'hidden';
+	};
+
+	Modal.prototype.closeModal = function() {
+		if(!this.element.classList.contains(this.showClass)) return;
+		this.element.classList.remove(this.showClass);
+		this.firstFocusable = null;
+		this.lastFocusable = null;
+		this.moveFocusEl = null;
+		if(this.selectedTrigger) this.selectedTrigger.focus();
+		//remove listeners
+		this.cancelModalEvents();
+		this.emitModalEvents('modalIsClose');
+		// change the overflow of the preventScrollEl
+		if(this.preventScrollEl) this.preventScrollEl.style.overflow = '';
+	};
+
+	Modal.prototype.initModalEvents = function() {
+		//add event listeners
+		this.element.addEventListener('keydown', this);
+		this.element.addEventListener('click', this);
+	};
+
+	Modal.prototype.cancelModalEvents = function() {
+		//remove event listeners
+		this.element.removeEventListener('keydown', this);
+		this.element.removeEventListener('click', this);
+	};
+
+	Modal.prototype.handleEvent = function (event) {
+		switch(event.type) {
+			case 'click': {
+				this.initClick(event);
+			}
+			case 'keydown': {
+				this.initKeyDown(event);
+			}
+		}
+	};
+
+	Modal.prototype.initKeyDown = function(event) {
+		if( event.keyCode && event.keyCode == 9 || event.key && event.key == 'Tab' ) {
+			//trap focus inside modal
+			this.trapFocus(event);
+		} else if( (event.keyCode && event.keyCode == 13 || event.key && event.key == 'Enter') && event.target.closest('.js-modal__close')) {
+			event.preventDefault();
+			this.closeModal(); // close modal when pressing Enter on close button
+		}	
+	};
+
+	Modal.prototype.initClick = function(event) {
+		//close modal when clicking on close button or modal bg layer 
+		if( !event.target.closest('.js-modal__close') && !event.target.classList.contains('js-modal') ) return;
+		event.preventDefault();
+		this.closeModal();
+	};
+
+	Modal.prototype.trapFocus = function(event) {
+		if( this.firstFocusable == document.activeElement && event.shiftKey) {
+			//on Shift+Tab -> focus last focusable element when focus moves out of modal
+			event.preventDefault();
+			this.lastFocusable.focus();
+		}
+		if( this.lastFocusable == document.activeElement && !event.shiftKey) {
+			//on Tab -> focus first focusable element when focus moves out of modal
+			event.preventDefault();
+			this.firstFocusable.focus();
+		}
+	}
+
+	Modal.prototype.getFocusableElements = function() {
+		//get all focusable elements inside the modal
+		var allFocusable = this.element.querySelectorAll(focusableElString);
+		this.getFirstVisible(allFocusable);
+		this.getLastVisible(allFocusable);
+		this.getFirstFocusable();
+	};
+
+	Modal.prototype.getFirstVisible = function(elements) {
+		//get first visible focusable element inside the modal
+		for(var i = 0; i < elements.length; i++) {
+			if( isVisible(elements[i]) ) {
+				this.firstFocusable = elements[i];
+				break;
+			}
+		}
+	};
+
+	Modal.prototype.getLastVisible = function(elements) {
+		//get last visible focusable element inside the modal
+		for(var i = elements.length - 1; i >= 0; i--) {
+			if( isVisible(elements[i]) ) {
+				this.lastFocusable = elements[i];
+				break;
+			}
+		}
+	};
+
+	Modal.prototype.getFirstFocusable = function() {
+		if(!this.modalFocus || !Element.prototype.matches) {
+			this.moveFocusEl = this.firstFocusable;
+			return;
+		}
+		var containerIsFocusable = this.modalFocus.matches(focusableElString);
+		if(containerIsFocusable) {
+			this.moveFocusEl = this.modalFocus;
+		} else {
+			this.moveFocusEl = false;
+			var elements = this.modalFocus.querySelectorAll(focusableElString);
+			for(var i = 0; i < elements.length; i++) {
+				if( isVisible(elements[i]) ) {
+					this.moveFocusEl = elements[i];
+					break;
+				}
+			}
+			if(!this.moveFocusEl) this.moveFocusEl = this.firstFocusable;
+		}
+	};
+
+	Modal.prototype.emitModalEvents = function(eventName) {
+		var event = new CustomEvent(eventName, {detail: this.selectedTrigger});
+		this.element.dispatchEvent(event);
+	};
+
+	function isVisible(element) {
+		return element.offsetWidth || element.offsetHeight || element.getClientRects().length;
+	};
+
+	window.Modal = Modal;
+
+	//initialize the Modal objects
+	var modals = document.getElementsByClassName('js-modal');
+	// generic focusable elements string selector
+	var focusableElString = '[href], input:not([disabled]), select:not([disabled]), textarea:not([disabled]), button:not([disabled]), iframe, object, embed, [tabindex]:not([tabindex="-1"]), [contenteditable], audio[controls], video[controls], summary';
+	if( modals.length > 0 ) {
+		var modalArrays = [];
+		for( var i = 0; i < modals.length; i++) {
+			(function(i){modalArrays.push(new Modal(modals[i]));})(i);
+		}
+
+		window.addEventListener('keydown', function(event){ //close modal window on esc
+			if(event.keyCode && event.keyCode == 27 || event.key && event.key.toLowerCase() == 'escape') {
+				for( var i = 0; i < modalArrays.length; i++) {
+					(function(i){modalArrays[i].closeModal();})(i);
+				};
+			}
+		});
+	}
+}());
+
+
+// File#: _2_modal-video
+// Usage: codyhouse.co/license
+(function() {
+	var ModalVideo = function(element) {
+		this.element = element;
+		this.modalContent = this.element.getElementsByClassName('js-modal-video__content')[0];
+		this.media = this.element.getElementsByClassName('js-modal-video__media')[0];
+		this.contentIsIframe = this.media.tagName.toLowerCase() == 'iframe';
+		this.modalIsOpen = false;
+		this.initModalVideo();
+	};
+
+	ModalVideo.prototype.initModalVideo = function() {
+		var self = this;
+		// reveal modal content when iframe is ready
+		this.addLoadListener();
+		// listen for the modal element to be open -> set new iframe src attribute
+		this.element.addEventListener('modalIsOpen', function(event){
+			self.modalIsOpen = true;
+			self.media.setAttribute('src', event.detail.closest('[aria-controls]').getAttribute('data-url'));
+		});
+		// listen for the modal element to be close -> reset iframe and hide modal content
+		this.element.addEventListener('modalIsClose', function(event){
+			self.modalIsOpen = false;
+			self.element.classList.add('modal--is-loading');
+			self.media.setAttribute('src', '');
+		});
+	};
+
+	ModalVideo.prototype.addLoadListener = function() {
+		var self = this;
+		if(this.contentIsIframe) {
+			this.media.onload = function () {
+				self.revealContent();
+			};
+		} else {
+			this.media.addEventListener('loadedmetadata', function(){
+				self.revealContent();
+			});
+		}
+		
+	};
+
+	ModalVideo.prototype.revealContent = function() {
+		if( !this.modalIsOpen ) return;
+		this.element.classList.remove('modal--is-loading');
+		if(this.element.getAttribute('data-modal-first-focus')) return; // user selected a specific element to focus
+		this.contentIsIframe ? this.media.contentWindow.focus() : this.media.focus();
+	};
+
+	//initialize the ModalVideo objects
+	var modalVideos = document.getElementsByClassName('js-modal-video__media');
+	if( modalVideos.length > 0 ) {
+		for( var i = 0; i < modalVideos.length; i++) {
+			(function(i){new ModalVideo(modalVideos[i].closest('.js-modal'));})(i);
+		}
+	}
+}());
+</script>
+
+</body>
+</html>
