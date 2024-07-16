@@ -1,0 +1,692 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    @import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap");
+
+body {
+  font-family: "Roboto", sans-serif;
+  color: white;
+  background: linear-gradient(180deg, #ae5c49 0%, #593733 100%);
+}
+
+.mock-window {
+  width: 100vw;
+  height: 100vh;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 72px 1fr 100px;
+  background-color: #131517;
+}
+
+@media (min-width: 640px) {
+  .mock-window {
+    width: 414px;
+    height: 896px;
+  }
+}
+
+.device-details {
+  grid-row: 1/2;
+  grid-column: 1/2;
+}
+.page {
+  grid-row: 1/4;
+  grid-column: 1/2;
+}
+.backdrop {
+  grid-row: 1/4;
+  grid-column: 1/2;
+  background: #171010;
+  display: none;
+}
+.bottom-nav {
+  grid-row: 3/4;
+  grid-column: 1/2;
+}
+
+.device-top {
+  height: 72px;
+}
+.nav {
+  height: 120px;
+}
+.titles {
+  height: 72px;
+}
+
+.tabs {
+  height: 48px;
+}
+
+.card {
+  border-radius: 24px;
+}
+
+.card-1 {
+  background: url("https://assets.codepen.io/3685267/card-interactions-gsap-image1.jpg");
+  background-size: 366px 366px;
+  background-repeat: no-repeat;
+  background-position: 0px 0px;
+}
+.card-2 {
+  background: url("https://assets.codepen.io/3685267/card-interactions-gsap-image2.jpg");
+  background-size: 366px 366px;
+  background-repeat: no-repeat;
+  background-position: 0px 0px;
+}
+.card-3 {
+  background: url("https://assets.codepen.io/3685267/card-interactions-gsap-image3.jpg");
+  background-size: 366px 366px;
+  background-repeat: no-repeat;
+  background-position: 0px 0px;
+}
+
+.tab-selected {
+  background-color: #444346;
+}
+
+.text-secondary {
+  color: #9fa1a3;
+}
+
+.absolute-center {
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.test {
+  transform: translate(-100px, -100px);
+}
+.test1 {
+  transform: translate(0px, -100px);
+}
+.test2 {
+  transform: translate(100px, -100px);
+}
+
+.btn-options {
+  box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+  </style>
+</head>
+<body>
+  <div class="w-full h-screen overflow-hidden flex items-center justify-center">
+    <div class="mock-window">
+      <div class="page overflow-hidden">
+        <div class="device-top hidden sm:block"></div>
+        <div class="nav overflow-hidden mt-6 sm:mt-0">
+          <div class="title-sets">
+            <div class="title-set-1">
+              <div class="titles">
+                <div class="uppercase px-6 text-secondary">
+                  Sunday, September 7
+                </div>
+                <div class="px-6 font-bold" style="font-size: 30px">
+                  For You
+                </div>
+              </div>
+              <div class="tabs flex px-6 justify-between">
+                <button class="tab-selected px-5 rounded-full">Nature</button>
+                <button class="px-5 rounded-full text-secondary">City</button>
+                <button class="px-5 rounded-full text-secondary">
+                  People
+                </button>
+                <button class="px-5 rounded-full text-secondary">
+                  Animals
+                </button>
+              </div>
+            </div>
+            <div class="title-set-2">
+              <div class="titles flex items-center justify-between">
+                <div class="">
+                  <div class="uppercase px-6 text-secondary">Collections</div>
+                  <div class="px-6 font-bold" style="font-size: 30px">
+                    Plants
+                  </div>
+                </div>
+                <div class="pr-6 h-full flex items-center">
+                  <div class="rounded-full p-2 flex items-center justify-center" style="
+                          height: 50px;
+                          width: 50px;
+                          background-color: #424446;
+                        ">
+                    <img src="https://assets.codepen.io/3685267/card-interactions-gsap-list.svg" alt="" class="w-full h-full" />
+                  </div>
+                  <div class="
+                          rounded-full
+                          ml-4
+                          p-2
+                          flex
+                          items-center
+                          justify-center
+                        " style="
+                          height: 50px;
+                          width: 50px;
+                          background-color: #1e1e20;
+                        ">
+                    <img src="https://assets.codepen.io/3685267/card-interactions-gsap-grid.svg" alt="" class="w-full h-full" />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+  
+        <div class="p-6 section-1 overflow-hidden" style="height: 414px" id="section-1">
+          <div class="card-set relative" style="border-radius: 24px; height: 366px; width: 366px">
+            <div class="card card-3 absolute inset-0 flex items-end">
+              <div class="p-6">
+                <div class="flex items-center user-details">
+                  <div class="avatar-border rounded-full" style="width: 64px; height: 64px">
+                    <img src="https://assets.codepen.io/3685267/card-interactions-gsap-avatar3.jpg" alt="" class="w-full rounded-full" />
+                  </div>
+                  <div class="ml-3">
+                    <div class="font-bold" style="font-size: 21px">
+                      Emma Wallace
+                    </div>
+                    <div class="">13 Photos</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="card card-2 absolute inset-0 flex items-end">
+              <div class="p-6">
+                <div class="flex items-center user-details">
+                  <div class="avatar-border rounded-full" style="width: 64px; height: 64px">
+                    <img src="https://assets.codepen.io/3685267/card-interactions-gsap-avatar2.jpg" alt="" class="w-full rounded-full" />
+                  </div>
+                  <div class="ml-3">
+                    <div class="font-bold" style="font-size: 21px">
+                      Harry Sans
+                    </div>
+                    <div class="">16 Photos</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="card card-1 absolute inset-0 flex items-end">
+              <div class="p-6">
+                <div class="flex items-center user-details">
+                  <div class="avatar-border rounded-full" style="width: 64px; height: 64px">
+                    <img src="https://assets.codepen.io/3685267/card-interactions-gsap-avatar1.jpg" alt="" class="w-full rounded-full" />
+                  </div>
+                  <div class="ml-3">
+                    <div class="font-bold" style="font-size: 21px">
+                      Emma Wallace
+                    </div>
+                    <div class="">13 Photos</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+  
+          <div class="px-6 gallery">
+            <div class="flex items-center mt-6">
+              <img src="https://assets.codepen.io/3685267/card-interactions-gsap-pin.svg" alt="" style="height: 16px" />
+              <div class="ml-1 font-semibold">New Zeland</div>
+            </div>
+            <div class="py-4 text-secondary" style="font-size: 18px">
+              A New Zeland based product designer who specializes in
+              interaction design
+            </div>
+            <div class="flex mt-2">
+              <div class="w-1/2 pr-3">
+                <div class="py-3 w-full" style="height: 190px">
+                  <img src="https://assets.codepen.io/3685267/card-interactions-gsap-gallery-image-1.jpg" class="w-full h-full object-cover object-center" alt="" style="border-radius: 24px" />
+                </div>
+                <div class="py-3 w-full" style="height: 270px">
+                  <img src="https://assets.codepen.io/3685267/card-interactions-gsap-gallery-image-2.jpg" class="w-full h-full object-cover object-center" alt="" style="border-radius: 24px" />
+                </div>
+              </div>
+              <div class="w-1/2 pl-3">
+                <div class="py-3 w-full" style="height: 130px">
+                  <img src="https://assets.codepen.io/3685267/card-interactions-gsap-gallery-image-3.jpg" class="w-full h-full object-cover object-center" alt="" style="border-radius: 24px" />
+                </div>
+                <div class="py-3 w-full" style="height: 200px">
+                  <img src="https://assets.codepen.io/3685267/card-interactions-gsap-gallery-image-4.jpg" class="w-full h-full object-cover object-center" alt="" style="border-radius: 24px" />
+                </div>
+                <div class="py-3 w-full" style="height: 130px">
+                  <img src="https://assets.codepen.io/3685267/card-interactions-gsap-gallery-image-5.jpg" class="w-full h-full object-cover object-center" alt="" style="border-radius: 24px" />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+  
+        <div class="p-6 section-2" style="height: 414px">
+          <div class="h-full overflow-hidden" style="border-radius: 24px">
+            <img src="https://assets.codepen.io/3685267/card-interactions-gsap-image4.jpg" alt="" class="w-full h-full" />
+          </div>
+        </div>
+      </div>
+      <div class="backdrop" style="transform: translate(0px)"></div>
+  
+      <div class="device-details text-white px-6 pt-3 hidden sm:block" style="transform: translate(0px)">
+        <div class="flex items-center justify-between">
+          <div class="">9:41</div>
+          <img src="https://assets.codepen.io/3685267/card-interactions-gsap-device.svg" alt="" style="height: 26px" />
+        </div>
+      </div>
+      <div class="bottom-nav px-6 pt-3" style="transform: translate(0px)">
+        <div class="relative w-full" style="height: 64px">
+          <div class="
+                  absolute
+                  inset-0
+                  rounded-full
+                  flex
+                  items-center
+                  justify-between
+                  px-3
+                  nav-bottom-back
+                " style="background: #c0c0c0cc">
+            <div class="rounded-full relative btn-home" style="height: 48px; width: 48px; background-color: #f8f8f8">
+              <div class="
+                      absolute
+                      inset-0
+                      flex
+                      items-center
+                      justify-center
+                      icon-home
+                    ">
+                <img src="https://assets.codepen.io/3685267/card-interactions-gsap-home.svg" alt="" />
+              </div>
+              <div class="
+                      absolute
+                      inset-0
+                      flex
+                      items-center
+                      justify-center
+                      icon-arrow-down
+                    ">
+                <img src="https://assets.codepen.io/3685267/card-interactions-gsap-arrow-down.svg" alt="" />
+              </div>
+            </div>
+            <div class="rounded-full flex items-center justify-center" style="height: 48px; width: 48px">
+              <img src="https://assets.codepen.io/3685267/card-interactions-gsap-search.svg" alt="" />
+            </div>
+            <div class="
+                    bg-pink-500
+                    rounded-full
+                    flex
+                    items-center
+                    justify-center
+                  " style="height: 48px; width: 48px"></div>
+            <div class="rounded-full flex items-center justify-center" style="height: 48px; width: 48px">
+              <img src="https://assets.codepen.io/3685267/card-interactions-gsap-bell.svg" alt="" />
+            </div>
+            <div class="
+                    bg-white
+                    p-0.5
+                    rounded-full
+                    flex
+                    items-center
+                    justify-center
+                  " style="height: 48px; width: 48px">
+              <img src="https://assets.codepen.io/3685267/card-interactions-gsap-avatar4.jpg" alt="" class="w-full h-full rounded-full" />
+            </div>
+          </div>
+  
+          <div class="absolute absolute-center bg-white rounded-full btn-options" style="width: 74px; height: 74px">
+            <div class="w-full h-full relative">
+              <div class="absolute inset-0 rounded-full plus-btn-bg" style="background: #6469e3"></div>
+  
+              <div class="
+                      absolute
+                      inset-0
+                      flex
+                      items-center
+                      justify-center
+                      plus-icon
+                    " style="color: #39414d">
+                <svg width="32" height="32" viewBox="0 0 32 32" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                  <g filter="url(#filter0_d)">
+                    <path d="M22.1523 15.125H16.875V9.84766C16.875 9.36641 16.4812 8.97266 16 8.97266C15.5188 8.97266 15.125 9.36641 15.125 9.84766V15.125H9.84766C9.36641 15.125 8.97266 15.5188 8.97266 16C8.97266 16.2406 9.07109 16.4594 9.22969 16.618C9.38828 16.7766 9.60703 16.875 9.84766 16.875H15.125V22.1523C15.125 22.393 15.2234 22.6117 15.382 22.7703C15.5406 22.9289 15.7594 23.0273 16 23.0273C16.4812 23.0273 16.875 22.6336 16.875 22.1523V16.875H22.1523C22.6336 16.875 23.0273 16.4812 23.0273 16C23.0273 15.5188 22.6336 15.125 22.1523 15.125Z" />
+                  </g>
+                  <defs>
+                    <filter id="filter0_d" x="6.97266" y="6.97266" width="22.0547" height="22.0547" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+                      <feFlood flood-opacity="0" result="BackgroundImageFix" />
+                      <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha" />
+                      <feOffset dx="2" dy="2" />
+                      <feGaussianBlur stdDeviation="2" />
+                      <feComposite in2="hardAlpha" operator="out" />
+                      <feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.25 0" />
+                      <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow" />
+                      <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow" result="shape" />
+                    </filter>
+                  </defs>
+                </svg>
+              </div>
+  
+              <div class="
+                      absolute
+                      inset-0
+                      flex
+                      items-center
+                      justify-center
+                      btn-folders
+                    ">
+                <div class="rounded-full" style="width: 60px; height: 60px; background-color: #dddddd">
+                  <img src="https://assets.codepen.io/3685267/card-interactions-gsap-folders.svg" alt="" />
+                </div>
+              </div>
+              <div class="
+                      absolute
+                      inset-0
+                      flex
+                      items-center
+                      justify-center
+                      btn-camera
+                    ">
+                <div class="rounded-full" style="width: 60px; height: 60px; background-color: #dddddd">
+                  <img src="https://assets.codepen.io/3685267/card-interactions-gsap-camera.svg" alt="" />
+                </div>
+              </div>
+              <div class="
+                      absolute
+                      inset-0
+                      flex
+                      items-center
+                      justify-center
+                      btn-play
+                    ">
+                <div class="rounded-full" style="width: 60px; height: 60px; background-color: #dddddd">
+                  <img src="https://assets.codepen.io/3685267/card-interactions-gsap-play.svg" alt="" />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script>
+    const { innerWidth } = window;
+const { set, to } = gsap;
+
+const stackPadding = 24;
+let stackStep = -1;
+let mainStep = 0;
+let showOptions = false;
+
+let cardHeight = 600;
+let cardWidth = 340;
+let deviceWidth = 414;
+let sectionOffset = -500;
+
+if (innerWidth < 640) {
+  deviceWidth = innerWidth;
+  cardWidth = (340 / 414) * deviceWidth;
+  cardHeight = (600 / 414) * deviceWidth;
+  sectionOffset = -428;
+}
+
+const restCardSize = deviceWidth - 2 * stackPadding;
+const stackBackgroundOffset = cardWidth - cardHeight;
+
+const click = (item) => (func) => {
+  document.querySelector(item).addEventListener("click", func);
+};
+
+const btnOptions = ".btn-options";
+const btnHome = ".btn-home";
+
+const page = ".page";
+const backdrop = ".backdrop";
+const nav = ".nav";
+const titleSets = ".title-sets";
+const titleSet1 = ".title-set-1";
+const titleSet2 = ".title-set-2";
+const section2 = ".section-2";
+const section1 = ".section-1";
+const cardSet = ".card-set";
+
+const card1 = ".card-1";
+const card2 = ".card-2";
+const card3 = ".card-3";
+const card = ".card";
+const gallery = ".gallery";
+const userDetails = ".user-details";
+const btnFolders = ".btn-folders";
+const btnCamera = ".btn-camera";
+const btnPlay = ".btn-play";
+const navBottomBack = ".nav-bottom-back";
+const plusBtnBg = ".plus-btn-bg";
+const plusIcon = ".plus-icon";
+
+const iconHome = ".icon-home";
+const iconArrowDown = ".icon-arrow-down";
+
+set(gallery, { scale: 0 });
+set(backdrop, { display: "none", opacity: 0 });
+set(titleSet2, { scale: 0 });
+set(titleSet2, { scale: 0 });
+set(userDetails, { scale: 0.8, transformOrigin: "Bottom Left" });
+set(btnFolders, { scale: 0, x: 0, y: 0 });
+set(btnPlay, { scale: 0, x: 0, y: 0 });
+set(btnCamera, { scale: 0, x: 0, y: 0 });
+set(plusBtnBg, { scale: 0 });
+set(cardSet, { width: restCardSize, height: restCardSize });
+set(card, { backgroundSize: `${restCardSize}px ${restCardSize}px` });
+set(iconArrowDown, { opacity: 0 });
+
+click(btnOptions)(() => {
+  showOptions = !showOptions;
+
+  const getPos = (angle) => ({
+    x: 100 * Math.cos(angle),
+    y: 100 * Math.sin(angle)
+  });
+
+  const alpha = Math.PI * 0.3;
+  const start = Math.PI * -0.5;
+
+  if (showOptions) {
+    to(page, { scale: 0.8 });
+    to(backdrop, { display: "block", opacity: 0.7 });
+    to(navBottomBack, { scale: 0 });
+    to(btnFolders, { scale: 1, ...getPos(start - alpha) });
+    to(btnCamera, { scale: 1, ...getPos(start), delay: 0.15 });
+    to(btnPlay, { scale: 1, ...getPos(start + alpha), delay: 0.3 });
+    to(plusBtnBg, { scale: 1.05 });
+    to(plusIcon, { rotation: 45, color: "#ffffff" });
+  } else {
+    to(page, { scale: 1 });
+    to(backdrop, { display: "none", opacity: 0 });
+    to(navBottomBack, { scale: 1 });
+    to(btnFolders, { scale: 0, x: 0, y: 0, delay: 0.3 });
+    to(btnCamera, { scale: 0, x: 0, y: 0, delay: 0.15 });
+    to(btnPlay, { scale: 0, x: 0, y: 0 });
+    to(plusBtnBg, { scale: 0 });
+    to(plusBtnBg, { scale: 0 });
+    to(plusIcon, { rotation: 0, color: "#39414D" });
+  }
+});
+
+const roi = new Hammer(document.getElementById("section-1"));
+
+roi.on("swipe", ({ direction }) => {
+  if (mainStep === 1) {
+    if (direction === 2) {
+      stackStep = Math.min(stackStep + 1, 2);
+    } else {
+      stackStep = Math.max(stackStep - 1, 0);
+    }
+
+    updateStack();
+  }
+});
+
+const updateStack = () => {
+  if (stackStep === 0) {
+    to(card1, {
+      x: 0,
+      scale: 1,
+      backgroundSize: `${cardHeight}px ${cardHeight}px`,
+      backgroundPosition: `${stackBackgroundOffset * 0.5}px 0px`
+    });
+    to(card2, {
+      x: 30,
+      scale: 0.9,
+      backgroundSize: `${cardHeight * 1.2}px ${cardHeight * 1.2}px`,
+      backgroundPosition: `${stackBackgroundOffset * 1.2 * 0.5}px ${
+        -cardHeight * 0.2 * 0.5
+      }px`
+    });
+    to(card3, {
+      x: 60,
+      scale: 0.8,
+      backgroundSize: `${cardHeight * 1.2}px ${cardHeight * 1.2}px`,
+      backgroundPosition: `${stackBackgroundOffset * 1.2 * 0.5}px ${
+        -cardHeight * 0.2 * 0.5
+      }px`
+    });
+  }
+  if (stackStep === 1) {
+    to(card1, {
+      x: -deviceWidth,
+      scale: 0.8,
+      backgroundSize: `${cardHeight}px ${cardHeight}px`,
+      backgroundPosition: `${stackBackgroundOffset * 0.5 + deviceWidth}px 0px`
+    });
+    to(card2, {
+      x: 0,
+      scale: 1,
+      backgroundSize: `${cardHeight}px ${cardHeight}px`,
+      backgroundPosition: `${stackBackgroundOffset * 0.5}px 0px`
+    });
+    to(card3, {
+      x: 30,
+      scale: 0.9,
+      backgroundSize: `${cardHeight * 1.2}px ${cardHeight * 1.2}px`,
+      backgroundPosition: `${stackBackgroundOffset * 1.2 * 0.5}px ${
+        -cardHeight * 0.2 * 0.5
+      }px`
+    });
+  }
+  if (stackStep === 2) {
+    to(card1, {
+      x: -deviceWidth,
+      scale: 0.8,
+      backgroundSize: `${cardHeight}px ${cardHeight}px`,
+      backgroundPosition: `${stackBackgroundOffset * 0.5 + deviceWidth}px 0px`
+    });
+    to(card2, {
+      x: -deviceWidth,
+      scale: 0.8,
+      backgroundSize: `${cardHeight}px ${cardHeight}px`,
+      backgroundPosition: `${stackBackgroundOffset * 0.5 + deviceWidth}px 0px`
+    });
+    to(card3, {
+      x: 0,
+      scale: 1,
+      backgroundSize: `${cardHeight}px ${cardHeight}px`,
+      backgroundPosition: `${stackBackgroundOffset * 0.5}px 0px`
+    });
+  }
+
+  if (stackStep === -1) {
+    to(card1, {
+      x: 0,
+      backgroundSize: `${restCardSize}px ${restCardSize}px`,
+      backgroundPosition: "0px 0px",
+      scale: 1
+    });
+    to(card2, {
+      x: 0,
+      backgroundSize: `${restCardSize}px ${restCardSize}px`,
+      backgroundPosition: "0px 0px",
+      scale: 0.9
+    });
+    to(card3, {
+      x: 0,
+      backgroundSize: `${restCardSize}px ${restCardSize}px`,
+      backgroundPosition: "0px 0px",
+      scale: 0.8
+    });
+  }
+};
+
+const stackOnSelect = () => {
+  to(card1, {
+    backgroundPosition: `${(deviceWidth - cardHeight) * 0.5}px 0px`
+  });
+  to(card2, {
+    backgroundPosition: `${(deviceWidth - cardHeight) * 0.5}px 0px`
+  });
+  to(card3, {
+    backgroundPosition: `${(deviceWidth - cardHeight) * 0.5}px 0px`
+  });
+};
+
+const updateLayout = (reset = false) => {
+  if (mainStep === 0) {
+    to(nav, { height: 120 });
+    to(titleSet1, { scale: 1, transformOrigin: "Top Left" });
+    to(titleSet2, { scale: 0, transformOrigin: "Bottom Left" });
+    to(titleSets, { y: 0 });
+
+    to(section1, { height: deviceWidth, y: 0 });
+    to(cardSet, { height: restCardSize, width: restCardSize });
+    to(userDetails, { scale: 0.8, transformOrigin: "Bottom Left" });
+
+    stackStep = -1;
+    updateStack();
+  }
+
+  if (mainStep === 1) {
+    to(nav, { height: 72 });
+    to(titleSet1, { scale: 0, transformOrigin: "Top Left" });
+    to(titleSet2, { scale: 1, transformOrigin: "Bottom Left" });
+    to(titleSets, { y: -120 });
+    to(userDetails, { scale: 0.85, transformOrigin: "Bottom Left" });
+
+    to(section1, { height: 1200, y: 0, padding: stackPadding });
+    to(cardSet, { height: cardHeight, width: cardWidth });
+    to(card, { borderRadius: 24 });
+    to(gallery, { scale: 0 });
+    if (reset) {
+      stackStep = 0;
+    }
+    to(iconArrowDown, { opacity: 0, scale: 0 });
+    to(iconHome, { opacity: 1, scale: 1 });
+    updateStack();
+  }
+
+  if (mainStep === 2) {
+    to(section1, { y: sectionOffset, padding: 0, height: 1200 });
+    to(gallery, { scale: 1 });
+    to(cardSet, { width: deviceWidth, height: cardHeight });
+    to(card, { borderRadius: 0 });
+    to(userDetails, { scale: 1, transformOrigin: "Bottom Left" });
+    to(iconArrowDown, { opacity: 1, scale: 1 });
+    to(iconHome, { opacity: 0, scale: 0 });
+    stackOnSelect();
+  }
+};
+
+updateLayout();
+
+roi.on("tap", () => {
+  if ([0, 1].includes(mainStep)) {
+    mainStep += 1;
+    updateLayout(true);
+  }
+});
+
+click(btnHome)(() => {
+  if ([1, 2].includes(mainStep)) {
+    mainStep -= 1;
+    updateLayout(false);
+  }
+});
+
+  </script>
+</body>
+</html>
