@@ -1,0 +1,928 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    :root {
+  --red: rgb(229, 57, 53);
+  --yellow: rgb(251, 192, 45);
+  --green: rgb(67, 160, 71);
+  --purple: rgb(148, 29, 232);
+  --disney-blue: rgb(17, 60, 207);
+  --prime-blue: rgb(0, 168, 225);
+  --paramount-blue: rgb(17, 81, 138);
+  --vudu-blue: rgb(41, 109, 192);
+  --font-color: rgb(20, 20, 20);
+  --lighter-font-color: rgb(80, 80, 80);
+  --highlight-color: rgb(33, 150, 243);
+}
+
+body {
+  background-color: rgb(10, 10, 10);
+  margin: 0px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+h1, h2, h3, input, select, button, span, a {
+  color: var(--font-color);
+  font-family: "Rubik", sans-serif;
+  font-size: 1rem;
+  font-weight: 400;
+  margin: 0px;
+}
+
+.toggle {
+  background-color: rgb(245, 245, 245);
+  border: none;
+  border-radius: 5rem;
+  color: var(--lighter-font-color);
+  font-weight: 500;
+  padding: 0.5rem 1rem;
+  outline: none;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+.highlight {
+  color: var(--highlight-color);
+}
+
+.toggle > .label {
+  color: var(--lighter-font-color);
+  font-weight: 500; 
+}
+
+.toggle:hover,
+.toggle:focus {
+  background-color: rgb(235, 235, 235);
+}
+
+#phone {
+  background-color: white;
+  height: 851px;
+  width: 393px;  
+  margin: 100px auto;
+  position: relative;
+}
+
+#main-wrapper {
+  height: 100%;
+  overflow: auto;
+}
+
+.fancy-scrollbar::-webkit-scrollbar {
+  width: 4px;
+}
+
+.fancy-scrollbar::-webkit-scrollbar-track {
+  background-color: transparent;
+}
+
+.fancy-scrollbar::-webkit-scrollbar-thumb {
+  background: rgb(230, 230, 230);
+}
+
+#main {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  padding: 1.25rem;
+}
+
+#top-bar {
+  border: 0.15rem solid rgb(240, 240, 240);
+  border-left-color: var(--red);
+  border-right-color: var(--red);
+  border-radius: 5rem;
+  padding: 0.5rem 0.75rem;
+  padding-left: 1.25rem;
+  display: flex;
+  gap: 0.75rem;
+  align-items: center;
+}
+
+#top-bar > .logo {
+  color: var(--red);
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
+#top-bar > .search-bar {
+  background-color: transparent;
+  border: none;
+  color: var(--lighter-font-color);
+  outline: none;
+  font-size: 1rem;
+  flex-grow: 1;
+  min-width: 0px;
+}
+
+#top-bar > .search-bar::placeholder {
+  color: rgba(0, 0, 0, 0.5); 
+}
+
+#top-bar > .account-button {
+  background-color: rgb(245, 245, 245);
+  border: none;
+  outline: none;
+  color: var(--lighter-font-color);
+  font-size: 1rem; 
+  height: 2rem;
+  width: 2rem;
+  border-radius: 2rem;
+  text-align: center;
+  flex-shrink: 0;
+  cursor: pointer;
+}
+
+#top-bar > .account-button:hover,
+#top-bar > .account-button:focus {
+  background-color: rgb(235, 235, 235);
+}
+
+#navbar {
+  background-color: white;
+  border-top: 1px solid rgb(240, 240, 240);
+  box-shadow: 0px -0.25rem 1rem rgba(0, 0, 0, 0.05);
+  position: absolute;
+  z-index: 100;
+  bottom: 0px;
+  left: 0px;
+  width: 100%;
+  padding: 0.75rem 2rem;
+  display: flex;
+  justify-content: space-between;
+}
+
+#navbar > .navbar-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  flex-basis: 3rem;
+  gap: 0.25rem;
+  text-decoration: none;
+  outline: none;
+}
+
+#navbar > .navbar-item:hover > i ,
+#navbar > .navbar-item:focus > i {
+  background-color: rgb(245, 245, 245);
+}
+
+#navbar > .navbar-item[data-selected="true"] > i {
+  background-color: rgb(240, 240, 240);
+  color: var(--red);
+}
+
+#navbar > .navbar-item > i,
+#navbar > .navbar-item > .label {
+  color: var(--lighter-font-color);
+}
+
+#navbar > .navbar-item > i { 
+  padding: 0.25rem;
+  border-radius: 5rem;
+  width: 120%;
+  text-align: center;
+}
+
+#navbar > .navbar-item > .label {
+  font-size: 0.75rem;
+  font-weight: 500;
+}
+
+#content {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+#content[data-option="at-home"] > #content-filters > .streaming-service-filter {
+  display: flex;
+}
+
+#content-title-bar {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+#content-title-bar > .title-section > .title {
+  color: var(--lighter-font-color);
+  font-size: 2.5rem;
+  line-height: 2.25rem;
+  font-weight: 500;
+}
+
+#content-title-bar > .title-section > .subtitle {
+  color: rgb(200, 200, 200);
+  text-transform: uppercase;
+  font-weight: 500;
+}
+
+#content-title-bar > .option-selector {
+  border-right: 0.75rem solid rgb(245, 245, 245);
+}
+
+#content-title-bar > .option-selector:hover,
+#content-title-bar > .option-selector:focus {
+  border-color: rgb(235, 235, 235);
+}
+
+#content-title-bar > .option-selector > option {
+  font-weight: 500;
+}
+
+#content-filters {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 1rem;
+}
+
+#content-filters > .content-filter {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.5rem;
+  width: 100%;
+}
+
+#content-filters > .content-filter[data-toggled="true"] > .content-filter-expanded-modal {
+  display: block;
+}
+
+#content-filters > .content-filter > .content-filter-toggle {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  white-space: nowrap;
+}
+
+#content-filters > .content-filter > .content-filter-toggle > i {
+  font-size: 0.9rem; 
+}
+
+#content-filters > .content-filter > .content-filter-options {
+  display: flex;
+  gap: 0.5rem;
+  width: 100%;
+  overflow: auto;
+}
+
+#content-filters > .content-filter > .content-filter-options::-webkit-scrollbar {
+  height: 0px;
+}
+
+#content-filters > .content-filter > .content-filter-options > .content-filter-option {
+  background-color: transparent;
+  border: 1px solid rgb(230, 230, 230);    
+  border-radius: 5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.5rem 0.75rem;
+  outline: none;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+#content-filters > .content-filter > .content-filter-options > .content-filter-option:hover,
+#content-filters > .content-filter > .content-filter-options > .content-filter-option:focus {
+  background-color: rgb(230, 230, 230);
+}
+
+#content-filters > .content-filter > .content-filter-options > .content-filter-option > .label {
+  font-size: 0.9rem;
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+#content-filters > .content-filter > .content-filter-options > .content-filter-option > .label > .highlight {
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+#content-filters > .content-filter > .content-filter-options > .content-filter-option > .remove {
+  font-size: 0.9rem;
+  height: 0.8rem;
+}
+
+#content-filters > .streaming-service-filter {
+  display: none;
+}
+
+#content-filters > .streaming-service-filter > .streaming-service-filter-options > .streaming-service-option.netflix > .label {
+  color: var(--red);
+}
+
+#content-filters > .streaming-service-filter > .streaming-service-filter-options > .streaming-service-option.hulu > .label  {
+  color: var(--green);
+}
+
+#content-filters > .streaming-service-filter > .streaming-service-filter-options > .streaming-service-option.hbo-max > .label  {
+  color: var(--purple);
+}
+
+#content-filters > .streaming-service-filter > .streaming-service-filter-options > .streaming-service-option.disney > .label  {
+  color: var(--disney-blue);
+}
+
+#content-filters > .additional-filters > .additional-filters-toggle > i {
+  font-size: 0.9rem;
+}
+
+#content-filters > .content-filter > .content-filter-expanded-modal {
+  background-color: white;
+  border-top: 1px solid rgb(240, 240, 240);
+  box-shadow: 0px -0.25rem 1rem rgba(0, 0, 0, 0.05);
+  display: none;
+  width: 100%;
+  position: absolute;
+  bottom: 0px;
+  left: 0px;
+  z-index: 101;
+}
+
+#content-filters > .content-filter > .content-filter-expanded-modal > .content-filter-expanded-modal-top-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem;
+}
+
+#content-filters > .content-filter > .content-filter-expanded-modal > .content-filter-expanded-modal-top-bar > .label {
+  font-size: 1.1rem;
+  font-weight: 500;
+  text-transform: uppercase;
+}
+
+#content-filters > .content-filter > .content-filter-expanded-modal > .content-filter-expanded-modal-top-bar > .close {
+  background-color: transparent;
+  border: none;
+  outline: none;
+  border-radius: 2rem;
+  font-size: 1.25rem;
+  padding: 0.25rem;
+  height: 2rem;
+  width: 2rem;  
+  text-align: center;
+  cursor: pointer;
+}
+
+#content-filters > .content-filter > .content-filter-expanded-modal > .content-filter-expanded-modal-top-bar > .close:hover {
+  background-color: rgb(240, 240, 240);
+}
+
+#content-filters > .content-filter > .content-filter-expanded-modal > .content-filter-expanded-options {
+  display: flex;
+  flex-direction: column;
+  border-top: 1px solid rgb(240, 240, 240);
+  max-height: 18rem;
+  overflow: auto;
+}
+
+#content-filters > .content-filter > .content-filter-expanded-modal > .content-filter-expanded-options > .content-filter-expanded-options-section {
+  border-top: 5px solid rgb(240, 240, 240);
+}
+
+#content-filters > .content-filter > .content-filter-expanded-modal > .content-filter-expanded-options > .content-filter-expanded-options-section > .label {  
+  font-weight: 500;
+  padding: 1rem;
+  text-transform: uppercase; 
+}
+
+#content-filters > .content-filter > .content-filter-expanded-modal > .content-filter-expanded-options .content-filter-expanded-option {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  background-color: transparent;
+  border: none;
+  outline: none;  
+  padding: 1rem;
+  cursor: pointer;
+}
+
+#content-filters > .content-filter > .content-filter-expanded-modal > .content-filter-expanded-options .content-filter-expanded-option:hover,
+#content-filters > .content-filter > .content-filter-expanded-modal > .content-filter-expanded-options .content-filter-expanded-option:focus {
+  background-color: rgb(245, 245, 245);
+}
+
+#content-filters > .content-filter > .content-filter-expanded-modal > .content-filter-expanded-options .content-filter-expanded-option[data-selected="true"] > .select {
+  display: none;
+}
+
+#content-filters > .content-filter > .content-filter-expanded-modal > .content-filter-expanded-options .content-filter-expanded-option[data-selected="true"] > .deselect {
+  display: block;
+}
+
+#content-filters > .content-filter > .content-filter-expanded-modal > .content-filter-expanded-options .content-filter-expanded-option.netflix > .label {
+   color: var(--red);
+}
+
+#content-filters > .content-filter > .content-filter-expanded-modal > .content-filter-expanded-options .content-filter-expanded-option.hulu > .label {
+   color: var(--green);
+}
+
+#content-filters > .content-filter > .content-filter-expanded-modal > .content-filter-expanded-options .content-filter-expanded-option.vudu > .label {
+   color: var(--vudu-blue);
+}
+
+#content-filters > .content-filter > .content-filter-expanded-modal > .content-filter-expanded-options .content-filter-expanded-option.hbo-max > .label {
+   color: var(--purple);
+}
+
+#content-filters > .content-filter > .content-filter-expanded-modal > .content-filter-expanded-options .content-filter-expanded-option.disney > .label {
+   color: var(--disney-blue);
+}
+
+#content-filters > .content-filter > .content-filter-expanded-modal > .content-filter-expanded-options .content-filter-expanded-option.prime-video > .label {
+   color: var(--prime-blue);
+}
+
+#content-filters > .content-filter > .content-filter-expanded-modal > .content-filter-expanded-options .content-filter-expanded-option.paramount > .label {
+   color: var(--paramount-blue);
+}
+
+#content-filters > .content-filter > .content-filter-expanded-modal > .content-filter-expanded-options .content-filter-expanded-option > i {
+  font-size: 1.25rem;
+}
+
+#content-filters > .content-filter > .content-filter-expanded-modal > .content-filter-expanded-options .content-filter-expanded-option > .select {
+  color: rgb(200, 200, 200);
+}
+
+#content-filters > .content-filter > .content-filter-expanded-modal > .content-filter-expanded-options .content-filter-expanded-option > .deselect {
+  display: none;
+  color: var(--font-color);
+}
+
+#content-filters > .content-filter > .content-filter-expanded-modal > .content-filter-expanded-options .content-filter-expanded-option > .label {
+  font-size: 0.9rem;
+  font-weight: 500;
+  text-transform: uppercase;
+}
+
+#content-filters > .additional-filters > .content-filter-expanded-modal > .content-filter-expanded-options {
+  max-height: min(615px, 80vh);
+}
+
+#content-results {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: auto;
+  gap: 1rem;
+  margin-bottom: 4rem;
+}
+
+#content-results > .result {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+#content-results > .result > .result-image {
+  width: 100%;
+  aspect-ratio: 2 / 3;
+  background-color: rgb(240, 240, 240);
+  background-position: center;
+  background-size: cover;
+  border-radius: 0.25rem;
+}
+
+#content-results > .result:first-of-type > .result-image {
+  background-image: url("https://images.unsplash.com/photo-1661870467713-1047a3e1f283?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwyMnx8fGVufDB8fHx8&auto=format&fit=crop&w=500&q=60");
+}
+
+#content-results > .result > .result-info {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+
+#content-results > .result > .result-info > .result-info-ratings {
+  display: flex;
+  gap: 1rem;
+}
+
+#content-results > .result > .result-info > .result-info-ratings > .result-info-rating {
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+}
+
+#content-results > .result > .result-info > .result-info-ratings > .critic-rating.fresh > .icon {
+  color: var(--red);
+}
+
+#content-results > .result > .result-info > .result-info-ratings > .critic-rating.rotten > .icon {
+  color: var(--green);
+}
+
+#content-results > .result > .result-info > .result-info-ratings > .result-info-rating.audience-rating > .icon {
+  color: var(--yellow);
+}
+
+#content-results > .result > .result-info > .result-info-ratings > .result-info-rating > .label,
+#content-results > .result > .result-info > .result-info-title {
+  color: var(--lighter-font-color);
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+#content-results > .result > .result-info > .result-info-title {
+  color: rgb(120, 120, 120);
+}
+
+#youtube-link {
+  gap: 0.3rem !important;
+  text-decoration: none;
+}
+
+#youtube-link:hover {
+  background-color: rgb(240, 240, 240);
+}
+
+#youtube-link > i {
+  color: var(--red);
+}
+
+#youtube-link > span {
+  color: var(--lighter-font-color);
+  font-size: 0.8rem;
+  font-weight: 500;
+  text-transform: uppercase;
+}
+
+@media(max-width: 500px) {
+  #phone {
+    height: 100vh;
+    width: 100%;
+    margin: 0px auto;
+  }
+}
+  </style>
+</head>
+<body>
+  <div id="phone">
+    <div id="main-wrapper" class="fancy-scrollbar">
+      <div id="main">
+        <div id="top-bar">
+          <i class="logo fa-solid fa-tomato"></i>
+          <input class="search-bar" type="text" placeholder="Search"></input>
+          <button class="account-button" type="button">
+            <i class="fa-solid fa-user"></i>
+          </button>
+        </div>
+        <div id="content" data-option="at-home">
+          <div id="content-title-bar">
+            <div class="title-section">
+              <h1 class="title">Movies</h1>
+              <h2 class="subtitle">Aug 22</h2>
+            </div>
+            <select class="option-selector toggle" onchange="handleOptionChange(event)">
+              <option value="at-home">At Home</option>
+              <option value="in-theaters">In Theaters</option>
+              <option value="coming-soon">Coming Soon</option>
+            </select>        
+          </div>
+          <div id="content-filters">
+            <div class="streaming-service-filter content-filter" data-toggled="false">
+              <button class="streaming-service-filter-toggle content-filter-toggle toggle" type="button" onclick="handleContentFilterToggle('streaming-service-filter')">
+                <span class="label">Streaming Services</span>
+                <i class="fa-regular fa-angle-down"></i>
+              </button>
+              <div class="streaming-service-filter-options content-filter-options">
+                <a id="youtube-link" class="youtube streaming-service-option content-filter-option" href="https://youtube.com/shorts/5TCkjhG1TVU" target="_blank">
+                  <i class="fa-brands fa-youtube"></i>
+                  <span class="label">Click Me</span>
+                </a>
+                <button class="netflix streaming-service-option content-filter-option" type="button">
+                  <span class="label">Netflix</span>          
+                  <i class="remove fa-regular fa-xmark"></i>
+                </button>
+                <button class="hulu streaming-service-option content-filter-option" type="button">
+                  <span class="label">Hulu</span>          
+                  <i class="remove fa-regular fa-xmark"></i>
+                </button>
+                <button class="hbo-max streaming-service-option content-filter-option" type="button">
+                  <span class="label">HBO Max</span>          
+                  <i class="remove fa-regular fa-xmark"></i>
+                </button>
+                <button class="disney streaming-service-option content-filter-option" type="button">
+                  <span class="label">Disney</span>          
+                  <i class="remove fa-regular fa-xmark"></i>
+                </button>
+              </div>
+              <div class="content-filter-expanded-modal">
+                <div class="content-filter-expanded-modal-top-bar">
+                  <h3 class="label">Streaming Services</h3>
+                  <button class="close" type="button" onclick="handleContentFilterClose('streaming-service-filter')">
+                    <i class="fa-regular fa-xmark"></i>
+                  </button>
+                </div>
+                <div class="content-filter-expanded-options fancy-scrollbar">
+                  <button class="netflix content-filter-expanded-option" data-selected="true" type="button">
+                    <i class="select fa-regular fa-square"></i>
+                    <i class="deselect fa-solid fa-square-check"></i>
+                    <span class="label">Netflix</span>
+                  </button>
+                  <button class="hulu content-filter-expanded-option" data-selected="true" type="button">
+                    <i class="select fa-regular fa-square"></i>
+                    <i class="deselect fa-solid fa-square-check"></i>
+                    <span class="label">Hulu</span>
+                  </button>
+                  <button class="vudu content-filter-expanded-option" data-selected="false" type="button">
+                    <i class="select fa-regular fa-square"></i>
+                    <i class="deselect fa-solid fa-square-check"></i>
+                    <span class="label">Vudu</span>
+                  </button>
+                  <button class="hbo-max content-filter-expanded-option" data-selected="true" type="button">
+                    <i class="select fa-regular fa-square"></i>
+                    <i class="deselect fa-solid fa-square-check"></i>
+                    <span class="label">HBO Max</span>
+                  </button>
+                  <button class="disney content-filter-expanded-option" data-selected="true" type="button">
+                    <i class="select fa-regular fa-square"></i>
+                    <i class="deselect fa-solid fa-square-check"></i>
+                    <span class="label">Disney</span>
+                  </button>
+                  <button class="prime-video content-filter-expanded-option" data-selected="false" type="button">
+                    <i class="select fa-regular fa-square"></i>
+                    <i class="deselect fa-solid fa-square-check"></i>
+                    <span class="label">Prime Video</span>
+                  </button>
+                  <button class="paramount content-filter-expanded-option" data-selected="false" type="button">
+                    <i class="select fa-regular fa-square"></i>
+                    <i class="deselect fa-solid fa-square-check"></i>
+                    <span class="label">Paramount</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+            <div class="additional-filters content-filter" data-toggled="false">
+              <button class="additional-filters-toggle content-filter-toggle toggle" type="button" onclick="handleContentFilterToggle('additional-filters')">
+                <span class="label">Filters</span>
+                <i class="fa-regular fa-sliders-up"></i>
+              </button>
+              <div class="additional-filters-options content-filter-options">
+                <button class="additional-filters-option content-filter-option" type="button">
+                  <span class="label">Action <span class="highlight">+2</span></span>          
+                  <i class="remove fa-regular fa-xmark"></i>
+                </button>
+                <button class="additional-filters-option content-filter-option" type="button">
+                  <span class="label">PG-13</span>          
+                  <i class="remove fa-regular fa-xmark"></i>
+                </button>
+                <button class="additional-filters-option content-filter-option" type="button">
+                  <span class="label">Fresh</span>          
+                  <i class="remove fa-regular fa-xmark"></i>
+                </button>
+              </div>
+              <div class="content-filter-expanded-modal">
+                <div class="content-filter-expanded-modal-top-bar">
+                  <h3 class="label">Filters</h3>
+                  <button class="close" type="button" onclick="handleContentFilterClose('additional-filters')">
+                    <i class="fa-regular fa-xmark"></i>
+                  </button>
+                </div>
+                <div class="content-filter-expanded-options fancy-scrollbar">
+                  <div class="content-filter-expanded-options-section">
+                    <h3 class="label">Genre</h3>
+                    <div class="content-filter-expanded-options-section-items">
+                      <button class="content-filter-expanded-option" data-selected="true" type="button">
+                        <i class="select fa-regular fa-square"></i>
+                        <i class="deselect fa-solid fa-square-check"></i>
+                        <span class="label">Action</span>
+                      </button>
+                      <button class="content-filter-expanded-option" data-selected="true" type="button">
+                        <i class="select fa-regular fa-square"></i>
+                        <i class="deselect fa-solid fa-square-check"></i>
+                        <span class="label">Adventure</span>
+                      </button>
+                      <button class="content-filter-expanded-option" data-selected="false" type="button">
+                        <i class="select fa-regular fa-square"></i>
+                        <i class="deselect fa-solid fa-square-check"></i>
+                        <span class="label">Comedy</span>
+                      </button>         
+                      <button class="content-filter-expanded-option" data-selected="true" type="button">
+                        <i class="select fa-regular fa-square"></i>
+                        <i class="deselect fa-solid fa-square-check"></i>
+                        <span class="label">Documentary</span>
+                      </button>     
+                      <button class="content-filter-expanded-option" data-selected="false" type="button">
+                        <i class="select fa-regular fa-square"></i>
+                        <i class="deselect fa-solid fa-square-check"></i>
+                        <span class="label">Drama</span>
+                      </button>            
+                      <button class="content-filter-expanded-option" data-selected="false" type="button">
+                        <i class="select fa-regular fa-square"></i>
+                        <i class="deselect fa-solid fa-square-check"></i>
+                        <span class="label">Horror</span>
+                      </button>       
+                      <button class="content-filter-expanded-option" data-selected="false" type="button">
+                        <i class="select fa-regular fa-square"></i>
+                        <i class="deselect fa-solid fa-square-check"></i>
+                        <span class="label">Sci Fi</span>
+                      </button>        
+                    </div>
+                  </div>
+                  <div class="content-filter-expanded-options-section">
+                    <h3 class="label">Rating</h3>
+                    <div class="content-filter-expanded-options-section-items">
+                      <button class="content-filter-expanded-option" data-selected="false" type="button">
+                        <i class="select fa-regular fa-square"></i>
+                        <i class="deselect fa-solid fa-square-check"></i>
+                        <span class="label">G</span>
+                      </button>
+                      <button class="content-filter-expanded-option" data-selected="false" type="button">
+                        <i class="select fa-regular fa-square"></i>
+                        <i class="deselect fa-solid fa-square-check"></i>
+                        <span class="label">PG</span>
+                      </button>
+                      <button class="content-filter-expanded-option" data-selected="true" type="button">
+                        <i class="select fa-regular fa-square"></i>
+                        <i class="deselect fa-solid fa-square-check"></i>
+                        <span class="label">PG-13</span>
+                      </button>          
+                      <button class="content-filter-expanded-option" data-selected="false" type="button">
+                        <i class="select fa-regular fa-square"></i>
+                        <i class="deselect fa-solid fa-square-check"></i>
+                        <span class="label">R</span>
+                      </button>        
+                      <button class="content-filter-expanded-option" data-selected="false" type="button">
+                        <i class="select fa-regular fa-square"></i>
+                        <i class="deselect fa-solid fa-square-check"></i>
+                        <span class="label">Not Rated</span>
+                      </button>        
+                      <button class="content-filter-expanded-option" data-selected="false" type="button">
+                        <i class="select fa-regular fa-square"></i>
+                        <i class="deselect fa-solid fa-square-check"></i>
+                        <span class="label">Unrated</span>
+                      </button>          
+                    </div>
+                  </div>
+                  <div class="content-filter-expanded-options-section">
+                    <h3 class="label">Score</h3>
+                    <div class="content-filter-expanded-options-section-items">
+                      <button class="content-filter-expanded-option" data-selected="true" type="button">
+                        <i class="select fa-regular fa-square"></i>
+                        <i class="deselect fa-solid fa-square-check"></i>
+                        <span class="label">Fresh</span>
+                      </button>
+                      <button class="content-filter-expanded-option" data-selected="false" type="button">
+                        <i class="select fa-regular fa-square"></i>
+                        <i class="deselect fa-solid fa-square-check"></i>
+                        <span class="label">Rotten</span>
+                      </button>     
+                    </div>
+                  </div>
+                </div>
+            </div>
+          </div>
+          </div>
+          <div id="content-results">
+            <div class="result">
+              <div class="result-image"></div>
+              <div class="result-info">
+                <div class="result-info-ratings">
+                  <div class="critic-rating result-info-rating fresh">
+                    <i class="fa-solid fa-tomato icon"></i>
+                    <span class="critic-rating-label label">85%</span>
+                  </div>
+                  <div class="audience-rating result-info-rating">
+                    <i class="fa-solid fa-popcorn icon"></i>
+                    <span class="audience-rating-label label">94%</span>
+                  </div>
+                </div>
+                <h3 class="result-info-title">Spinny Stars</h3>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <nav id="navbar">
+        <a href="#" class="navbar-item">
+          <i class="fa-solid fa-tomato"></i>
+          <span class="label">Discover</span>
+        </a>
+        <a href="#" class="navbar-item" data-selected="true">
+          <i class="fa-regular fa-film"></i>
+          <span class="label">Movies</span>
+        </a>
+        <a href="#" class="navbar-item">
+          <i class="fa-solid fa-tv-retro"></i>
+          <span class="label">TV</span>
+        </a>
+        <a href="#" class="navbar-item">
+          <i class="fa-regular fa-podcast"></i>
+          <span class="label">Podcast</span>
+        </a>
+      </nav>
+    </div>
+  </div>
+  <script>
+    const content = document.getElementById("content"),
+      results = document.getElementById("content-results"),
+      result = results.getElementsByClassName("result")[0];
+
+const rand = (min, max) => Math.floor(Math.random() * (max - min + 1)) + min;
+
+const items = [{
+  img: "https://images.unsplash.com/photo-1661901060088-32dbfeb040df?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwxMnx8fGVufDB8fHx8&auto=format&fit=crop&w=500&q=60",
+  title: "Shed on the River"
+}, {
+  img: "https://images.unsplash.com/photo-1661933159306-0f118db543b9?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwxOHx8fGVufDB8fHx8&auto=format&fit=crop&w=500&q=60",
+  title: "Palmy Mc Palm Trees"
+}, {
+  img: "https://images.unsplash.com/photo-1661926577316-067a9b79497b?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwzM3x8fGVufDB8fHx8&auto=format&fit=crop&w=500&q=60",
+  title: "Looky Uppy Time"
+}, {
+  img: "https://images.unsplash.com/photo-1661940348479-0411d52eb04c?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHw0N3x8fGVufDB8fHx8&auto=format&fit=crop&w=500&q=60",
+  title: "Neat View Off Side of Boat Maybe"
+}, {
+  img: "https://images.unsplash.com/photo-1661879392883-30d306d70ad8?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHw1NHx8fGVufDB8fHx8&auto=format&fit=crop&w=500&q=60",
+  title: "Wow Cool Airplane"
+}, {
+  img: "https://images.unsplash.com/photo-1661929002870-ae54a4748870?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHw1OXx8fGVufDB8fHx8&auto=format&fit=crop&w=500&q=60",
+  title: "Fast 'N Angry 127.5"
+}, {
+  img: "https://images.unsplash.com/photo-1661900948585-b2fbb74382e5?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHw2N3x8fGVufDB8fHx8&auto=format&fit=crop&w=500&q=60",
+  title: "Small Big Buildings in the Distance"
+}];
+
+for(let i = 0; i < 7; i++) {
+  const clone = result.cloneNode(true),
+        image = clone.getElementsByClassName("result-image")[0],
+        title = clone.getElementsByClassName("result-info-title")[0],
+        criticRating = clone.getElementsByClassName("critic-rating")[0],
+        criticRatingIcon = criticRating.getElementsByClassName("icon")[0],
+        criticRatingLabel = criticRating.getElementsByClassName("label")[0],
+        audienceRating = clone.getElementsByClassName("audience-rating")[0],
+        audienceRatingLabel = audienceRating.getElementsByClassName("label")[0],
+        item = items[i];
+  
+  const criticRatingValue = rand(10, 80),
+        audienceRatingValue = criticRatingValue + rand(0, 100 - criticRatingValue);
+  
+  image.style.backgroundImage = `url(${item.img})`;
+  
+  title.innerText = item.title;
+  
+  criticRating.className = criticRatingValue > 50 ? "critic-rating result-info-rating fresh" : "critic-rating result-info-rating rotten";
+  
+  criticRatingIcon.className = criticRatingValue > 50 ? "fa-solid fa-tomato icon" : "fa-solid fa-burst icon";
+  
+  criticRatingLabel.innerText = `${criticRatingValue}%`;
+  
+  audienceRatingLabel.innerText = `${audienceRatingValue}%`;
+  
+  results.appendChild(clone);
+}
+
+const closeAllFilters = exclusion => {
+  const filters = [
+    "streaming-service-filter",
+    "additional-filters"
+  ]
+  
+  for(const filter of filters) {
+    if(filter !== exclusion) {
+      handleContentFilterClose(filter);
+    }
+  }
+}
+
+const handleOptionChange = e => {
+  content.dataset.option = e.target.value;
+  
+  closeAllFilters();
+}
+
+const getFilter = className => content.getElementsByClassName(className)[0];
+
+const handleContentFilterToggle = className => {
+  const filter = getFilter(className);
+  
+  closeAllFilters(className);
+  
+  filter.dataset.toggled = filter.dataset.toggled === "true" ? "false" : "true";
+}
+
+const handleContentFilterClose = className => {
+  const filter = getFilter(className);
+  
+  filter.dataset.toggled = "false";
+}
+  </script>
+</body>
+</html>
