@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style lang="scss">
+    //variables
+$purple: #a55798;
+$blue: #85c8df;
+$yellow: #efbc00;
+$bg: #ebeaef;
+$gray: #ebebeb;
+$gray2: #8d9194;
+$text: #444;
+// Gradient
+$blue1: #78c2d9;
+$blue2: #98d0e1;
+// mixin
+@mixin bp($bp, 
+$min-max: min-width) {
+    $em: $bp/16;
+    @media(#{$min-max}: #{$em}em) {
+        @content;
+    }
+}
+// reset
+*{
+    font-family: 'Lato', sans-serif;
+    box-sizing: border-box;
+}
+body{
+    height: 100vh;
+    margin: auto;
+    display: flex;
+    background: aliceblue;
+    color: $text;
+}
+a{
+    text-decoration: none;
+    color: inherit;
+}
+ul{
+    list-style: none;
+}
+h2,
+h6{
+    margin: 0;
+}
+body{
+  background-color: $bg;
+  display: flex;
+  justify-content: space-evenly;
+  align-self: center;
+}
+.podcast{
+  width: 100%;
+  height: 780px;
+  max-width: 420px;
+  background-color: white;
+  border-radius: 20px;
+  padding: 40px 40px 0 60px;
+  background-image: radial-gradient(circle, $purple 66%, transparent 0), radial-gradient(circle, $blue 75%, transparent 0), radial-gradient(circle, $yellow 75%, transparent 0);
+  background-position: -284px -465px, 150px -439px, -304px -419px;
+  background-repeat: no-repeat;
+  background-size: 661px 99%, 360px 100%, 502px 101%;
+  &.-inner{
+    background-image: none;
+    .header *{
+      color: $text;
+    }
+    .body{
+      margin-top: 40px;
+    }
+    .header>h3{
+      color: rgba($text, .69);
+      margin-top: 30px;
+      margin-bottom: 0;
+    }
+    .title{
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-top: 20px;
+    }
+    .title>h3{
+      margin: 0;
+      color: $gray2;
+    }
+    .title>div>h2{
+      font-size: 26px;
+      margin-bottom: 5px;
+    }
+    .title>div>h3{
+      font-size: 20px;
+      margin: 0;
+      color: $gray2;
+    }
+  }
+}
+.header{
+  *{
+    color: white;
+  }
+  >.user{
+    display: flex;
+    align-items: center;
+  }
+  >.user>img{
+    width: 50px;
+    height: 50px;
+    border-radius: 15px;
+  }
+  >.user .icon{
+    margin-left: auto;
+  }
+  .name{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-left: 15px;
+  }
+  .name>strong{
+    font-size: 18px;
+    font-weight: 400;
+  }
+  .name>small{
+    margin-top: 5px;
+    font-weight: 700;
+    color: rgba(white, 0.6);
+  }
+  .title{
+    font-size: 22px;
+    font-weight: 400;
+    margin: 30px 0 20px;
+  }
+}
+.social{
+  display: flex;
+  .column{
+    display: flex;
+    align-self: center;
+  }
+  .column+.column{
+    margin-left: 60px;
+  }
+  .column>.icon{
+    margin-right: 10px;
+  }
+  .column>p{
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+  }
+  .column>p span{
+    font-weight: 700;
+    color: rgba(white,0.6);
+    font-size: 14px;
+  }
+}
+.body{
+  margin-top: 60px;
+}
+.continue{
+  display: flex;
+  align-items: center;
+  >p{
+    margin-left: 20px;
+  }
+  >p>strong{
+    display: block;
+  }
+  >.-more{
+    margin-left: auto;
+  }
+}
+.episodes{
+  &-heading{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 20px 0;
+  }
+}
+.episode{
+  border-bottom: 1px solid $gray;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 0;
+  margin: 20px 0;
+}
+.ep{
+  >h6{
+    text-transform: uppercase;
+    color: $gray2;
+    letter-spacing: 1px;
+  }
+  >p{
+    margin: 5px 0;
+    font-weight: 700;
+  }
+  >p>em{
+    border-radius: 4px;
+    font-style: normal;
+    font-weight: 400;
+    text-transform: uppercase;
+    font-size: 10px;
+    color: white;
+    background-color: $gray2;
+    padding: 1px 4px;
+    margin-left: 5px;
+  }
+}
+
+.listening{
+  display: flex;
+  align-items: center;
+  div+div{
+    font-weight: 700;
+    margin-left: 10px;
+  }
+  div>img{
+    width: 35px;
+    height: 35px;
+    border-radius: 15px;
+    object-fit: cover;
+    border: 2px solid white;
+    +img{
+      margin-left: -15px;
+    }
+  }
+}
+.now-playing{
+  display: flex;
+  left: -20px;
+  position: relative;
+  >.ep{
+    width: 100%;
+  }
+  >.ep>h6{
+    margin-left: 20px;
+    margin-bottom: 5px;
+  }
+}
+.player{
+  display: flex;
+  background-image: linear-gradient(to right, $blue2 0%, $blue1 100%);
+  border-radius: 50px;
+  align-items: center;
+  padding: 20px;
+  width: calc(100% + 30px);
+  *{
+    color: white;
+  }
+  &-title{
+    margin-left: 20px;
+  }
+  &-title>h4{
+    margin-bottom: 5px;
+  }
+  &-title>p{
+    font-size: 14px;
+  }
+  &-title *{
+    margin: 0;
+  }
+  .icon.-sonar.-blue{
+    background-color: white;
+    border-radius: 50%;
+  }
+  .icon.-sonar::before{
+    width: 20px;
+    height: 20px;
+  }
+}
+
+.icon{
+  background: none;
+  border: none;
+  position: relative;
+  background-color: rgba(white, 0.43);
+  z-index: 0;
+  padding: 0;
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  transition: 200ms;
+  &:focus{
+    outline: 0;
+  }
+  &::after,
+  &::before{
+    content: '';
+    position: absolute;
+  }
+  &.-sonar{
+    background-image: radial-gradient(circle, white 2px, transparent 0);
+    display: block;
+    &.-blue{
+      background-color: rgba($blue, .3);
+      background-image: radial-gradient(circle, $blue 2px, transparent 0);
+      &::after,
+      &::before{
+        border-color: transparent $blue;
+      }
+    }
+    &::after,
+    &::before{
+      border-radius: 50%;
+      width: 18px;
+      height: 18px;
+      border-width: 2px 2px;
+      border-style: solid;
+      border-color: transparent white;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      margin: auto;
+      z-index: 2;
+    }
+    &::after{
+      width: 10px;
+      height: 10px;
+      left: 0;
+      opacity: .8;
+    }
+  }
+  
+  &.-follow{
+    &::after,
+    &::before{
+      border-radius: 50%;
+      width: 18px;
+      height: 18px;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      margin: auto;
+      background-color: rgba(white,.3);
+    }
+    &::after{
+      width: 10px;
+      height: 10px;
+      opacity: 1;
+      border-width: 2px;
+      border-style: solid;
+      border-color: transparent transparent white transparent;
+    }
+  }
+  &.-rate{
+    &::before{
+      border-radius: 50%;
+      width: 5px;
+      height: 5px;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      margin: auto;
+      box-shadow: 0 -5px 0 3px rgba(white,.7),
+        5px 0 0 3px rgba(white,.7),
+        3px 5px 0 3px white,
+        -3px 5px 0 3px rgba(white,.7),
+        -5px 0 0 3px rgba(white,.7);
+      background-color: white;
+    }
+  }
+  &.-more{
+    &:hover{
+       background-color: $gray;
+    }
+    &::before{
+      box-shadow: 0 0 0 2px $gray2, 9px 0 0 2px $gray2, 18px 0 0 2px $gray2;
+      border-radius: 50%;
+      width: 1px;
+      height: 1px;
+      background: $gray2;
+      left: -17px;
+      right: 0;
+      margin: auto;
+    }
+  }
+}
+  </style>
+</head>
+<body>
+  <div class="podcast">
+    <header class="header">
+      <div class="user">
+        <img src="https://uinames.com/api/photos/female/15.jpg" alt="">
+        <div class="name">
+          <strong>Myra Jasie</strong>
+          <small>@myrajasie</small>
+        </div>
+        <button class="icon -sonar"></button>
+      </div>
+      <h1 class="title">
+        Endless Thread Presents: Infectious
+      </h1>
+      <div class="social">
+        <div class="column">
+          <span class="icon -follow"></span>
+          <p>
+            <strong>280k</strong>
+            <span>Followers</span>
+          </p>
+        </div>
+        <div class="column">
+          <span class="icon -rate"></span>
+          <p>
+            <strong>4.8</strong>
+            <span>Ratings</span>
+          </p>
+        </div>
+      </div>
+    </header>
+    <div class="body">
+      <div class="continue">
+        <span class="icon -sonar -blue"></span>
+        <p>
+          <strong>Continue Listening</strong>
+          <small>3 Minutes of listen</small>
+        </p>
+        <button class="icon -more"></button>
+      </div>
+      <div class="episodes">
+        <header class="episodes-heading">
+          <h2>Season Two</h2>
+          <button class="icon -more"></button>
+        </header>
+        <article class="episode">
+          <div class="ep">
+            <h6>Episode 1</h6>
+            <p>Introducing Episode 1:</p>
+            <p>The College <em>e</em></p>
+          </div>
+          <span class="icon -sonar -blue"></span>
+        </article>
+        <article class="episode">
+          <div class="ep">
+            <h6>Episode 1</h6>
+            <p>Introducing Episode 1:</p>
+            <p>The College <em>e</em></p>
+          </div>
+          <span class="icon -sonar -blue"></span>
+        </article>
+        <article class="episode">
+          <div class="ep">
+            <h6>Episode 1</h6>
+            <p>Introducing Episode 1:</p>
+            <p>The College <em>e</em></p>
+          </div>
+          <span class="icon -sonar -blue"></span>
+        </article>
+      </div>
+    </div>
+  </div>
+  <div class="podcast -inner">
+    <header class="header">
+      <div class="listening">
+        <div>
+          <img src="https://uinames.com/api/photos/female/15.jpg" alt="">
+          <img src="https://uinames.com/api/photos/female/16.jpg" alt="">
+          <img src="https://uinames.com/api/photos/female/17.jpg" alt="">
+        </div>
+        <div>2.4k Listening</div>
+      </div>
+      <div class="title">
+        <div>
+          <h2>Until you were gone</h2>
+          <h3>C13Originals</h3>
+        </div>
+        <span class="icon -sonar -blue"></span>
+      </div>
+      <h3>
+        What do they got in there? King Kong? Is this my espresso machine?
+      </h3>
+    </header>
+    <div class="body">
+      <div class="episodes">
+        <header class="episodes-heading">
+          <h2>Season Two</h2>
+          <button class="icon -more"></button>
+        </header>
+        <article class="episode">
+          <div class="ep">
+            <h6>Episode 1</h6>
+            <p>Introducing Episode 1:</p>
+            <p>The College <em>e</em></p>
+          </div>
+          <span class="icon -sonar -blue"></span>
+        </article>
+        <article class="episode">
+          <div class="ep">
+            <h6>Episode 1</h6>
+            <p>Introducing Episode 1:</p>
+            <p>The College <em>e</em></p>
+          </div>
+          <span class="icon -sonar -blue"></span>
+        </article>
+        <article class="episode">
+          <div class="ep">
+            <h6>Episode 1</h6>
+            <p>Introducing Episode 1:</p>
+            <p>The College <em>e</em></p>
+          </div>
+          <span class="icon -sonar -blue"></span>
+        </article>
+      </div>
+      
+      <div class="now-playing">
+        <div class="ep">
+          <h6>Episode 4</h6>
+          <div class="player">
+            <span class="icon -sonar -blue"></span>
+            <div class="player-title">
+              <h4>Until you were gone</h4>
+               <p>Now Playing</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <a href="https://www.youtube.com/watch?v=Jjs2TA_WAe8" target="_blank" title="Watch me speed code this" style="position: fixed; bottom: 10px; right: 10px"><img src="http://co0kie.github.io/codepen/youtube.png" alt=""></a>
+</body>
+</html>
