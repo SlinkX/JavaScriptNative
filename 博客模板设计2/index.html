@@ -1,0 +1,737 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    body{
+  color: #fff;
+}
+
+.row{
+  margin: 0px;
+  padding: 0px;
+}
+
+nav{
+  position: fixed;
+  width: 100%;
+  top: 0;
+  padding-top: 2vh;
+  padding-bottom: 1vh;
+  z-index: 100;
+}
+
+nav ul{
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+}
+
+nav li{
+  cursor: pointer;
+  display: inline-block;
+  margin: 5px;
+}
+
+nav li:hover{
+  text-decoration: underline;
+}
+
+nav ul.left li.logo{
+  overflow: visible;
+  background: #3448A8;
+  width: 25px;
+  height: 25px;
+  text-align: center;
+  border-radius: 50%;
+  margin-right: 5vh;
+}
+
+nav ul.left li.logo:hover{
+  text-decoration: none;
+}
+
+nav ul.left li.logo span{
+  font-weight: bold;
+}
+
+nav ul.left{
+  float: left;
+  margin-left: 10vh;
+}
+
+@media(max-width: 600px){
+  margin-left: 0vh !important;
+}
+
+nav ul.right{
+  float: right;
+  margin-right: 10vh;
+}
+
+p.author{
+  font-size: 18px;
+}
+
+h1.featured_title{
+  font-size: 5em;
+  padding: 0px;
+  margin: 0px;
+  font-weight: bold
+}
+
+p.featured_text{
+  margin-top: 5%;
+  color: rgba(255,255,255,0.7);
+}
+
+.header{
+  padding-top: 10vh;
+  padding-bottom: 10vh;
+  /*#3448A8*/
+  background: #1E2D47;
+  min-height: 100vh;
+  width: 100%;
+}
+
+.header .left{
+  margin-top: auto;
+  margin-bottom: auto;
+  z-index: 5;
+  padding-left: 15vh;
+}
+
+.header .right img.featured_cover{
+  width: 105%;
+  max-height: 95vh;
+  object-fit: cover;
+  margin-left: -15vh;
+  z-index: -1;
+  border-radius: 5px;
+}
+
+.header .right .read_more{
+  width: 85%;
+  height: 50px;
+  margin-left: -15vh;
+  margin-top: -50px;
+}
+
+.header .right .read_more button{
+  height: 50px;
+  width: 200px;
+  background: #fff;
+  border: none;
+  cursor: pointer;
+  letter-spacing: 1.5px;
+  border-radius: 0px 5px 0px 5px;
+}
+
+
+
+/* Podcast */
+.podcast{
+  color: #000;
+  position: relative;
+}
+
+.podcast .container{
+  padding: 80px;
+}
+
+.podcast h1.title{
+  letter-spacing: 2px;
+  background: transparent;
+  font-size: 5em;
+  font-weight: 900;
+} 
+
+.podcast h1.title:before{
+  content: 'Podcast';
+  margin-left: -5vh;
+  margin-top: 3vh;
+  font-weight: 900;
+  font-size: 1.3em;
+  color: rgba(0,0,0,0.07);
+  letter-spacing: 3px;
+  position: absolute;
+  z-index: -1;
+}
+
+
+.podcast .podcast_list{
+  margin-top: 5vh;  
+}
+
+.podcast_item{
+  padding: 0px;
+}
+
+
+.podcast .podcast_list .row{
+  margin-top: 5vh;
+}
+
+.podcast .podcast_list .row .podcast_item{
+  position: relative;
+  height: 650px;
+  overflow: hidden;
+}
+
+.podcast .podcast_list .row .podcast_item .podcast_desc{
+  color: rgba(0,0,0,0.6);
+  font-size: 15px;
+}
+
+.podcast .podcast_list .row .podcast_item .podcast_thumb{
+  position: relative;
+}
+
+.podcast .podcast_list .row .podcast_item .podcast_thumb .play{
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  width: 5vw;
+  height: 6vh;
+  background: #000;
+  color: #fff;
+  border-radius: 5px 0px 5px 0px;
+  font-size: 25px;
+  cursor: pointer;
+}
+
+.podcast .podcast_list .row .podcast_item .podcast_thumb .play span{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.podcast .podcast_list .row .podcast_item .podcast_thumb img{
+  width: 100%;
+  max-height: 500px;
+  object-fit: cover;
+  border-radius: 5px;
+}
+
+
+
+.podcast .podcast_list .row .podcast_item .inner_podcast{
+  position: relative;
+  top: 100%;
+  transform: translateY(-100%);
+}
+
+/* Odd rows */
+.podcast .podcast_list .row:nth-child(odd) .podcast_item:nth-child(1){
+  padding-right: 8vw;
+}
+
+.podcast .podcast_list .row:nth-child(odd) .podcast_item:nth-child(2){
+  padding-left: 5vw;
+}
+
+/* Image */
+.podcast .podcast_list .row:nth-child(odd) .podcast_item:nth-child(2) img{
+  height: 300px;
+}
+
+
+/* Even rows */
+.podcast .podcast_list .row:nth-child(even) .podcast_item:nth-child(1){
+  padding-right: 3vw;
+}
+
+.podcast .podcast_list .row:nth-child(even) .podcast_item:nth-child(2){
+  padding-left: 7vw;
+}
+
+/* Image */
+.podcast .podcast_list .row:nth-child(even) .podcast_item:nth-child(1) img{
+  height: 300px;
+}
+
+/* End Podcast */
+
+
+
+
+/* Blog */
+
+.blog{
+  color: #000;
+  position: relative;
+}
+
+
+.blog .left_shaddow{
+  position: absolute;
+  bottom: 0;
+  height: 280px;
+	background-image: radial-gradient(rgba(0,0,0,0.1), transparent 10%);
+	background-size: 50px 50px;
+  left: 0;
+  z-index: 0;
+}
+
+
+.blog .container{
+  padding: 80px 80px 60px 80px;
+}
+
+.blog .container .featured_blog_post{
+  
+}
+
+.blog .container .featured_blog_post .left{
+  margin-top: auto;
+  margin-bottom: auto;
+  z-index: 5;
+}
+
+.blog .container .featured_blog_post .left .intro{
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+
+.blog .container .featured_blog_post .left .intro span:before{
+  position: absolute;
+  top: 0;
+  margin-top: -80px;
+  margin-left: -60px;
+  content: 'Blog';
+  font-weight: 900;
+  font-size: 8em;
+  letter-spacing: 20px;
+  color: rgba(0,0,0,0.05);
+  z-index: -2;
+}
+
+.blog .container .featured_blog_post .left .featured_post_title h1{
+  font-size: 2.8em;
+  font-weight: 900;
+}
+
+.blog .container .featured_blog_post .left .featured_post_desc{
+  color: rgba(0,0,0,0.5);
+  padding: 0px;
+}
+
+
+.blog .container .featured_blog_post .row .right img{
+  width: 135%;
+  margin-left: -10vw;
+  z-index: 0;
+  border: 1px solid rgba(255,255,255);
+  border-radius: 5px;
+}
+
+
+/* Mixtapes */
+.mixtapes{
+  margin-top: 15vh;
+  color: #000;
+  margin-bottom: -2px;
+}
+
+.mixtapes .title{
+  position: relative;
+}
+
+.mixtapes .title h1{
+  font-size: 4.5em;
+  font-weight: 900;
+  z-index: 50;
+}
+
+.mixtapes .title h1:before{
+  position: absolute;
+  left: 0;
+  top: 0;
+  margin-left: -6vw;
+  margin-top: 20px;
+  z-index: -1;
+  color: rgba(0,0,0,0.05);
+  content: 'Mixtapes';
+  font-size: 1.7em;
+  font-weight: 900;
+}
+
+.mixtapes .container{
+  padding: 80px;
+}
+
+.mixtapes_list{
+  overflow: scroll;
+  padding: 0px;
+  margin-top: 15vh;
+}
+
+.mixtapes .container .mixtapes_list .mixtapes_scroll{
+  podision: absolute;
+  overflow: scroll;  
+  height: 400px;
+  width: 2000px;
+}
+
+.mixtapes .container .mixtapes_list .mixtape_item{
+  width: 400px;
+  max-height: 400px;
+  position: relative;
+  display: inline-block;
+  margin-right: 20px;
+}
+
+
+.mixtapes .container .mixtapes_list .mixtape_item .mixtape_thumb img{
+  border-radius: 5px;
+  min-width: 280px;
+  max-width: 100%;
+  max-height: 300px;
+  object-fit: cover;
+}
+
+@media(max-width: 880px){
+  .container{
+    padding: 0px !important;
+  }
+  
+  .podcast h1.title{
+    font-size: 4em;
+  }
+  
+  .blog{
+    margin-top: 15vh;
+  }
+  
+  .blog .container .featured_blog_post .left .intro span:before{
+    font-size: 4em;
+    margin-top: 30px;
+    margin-left: -20px;
+  }
+  
+  .featured_post_title h1{
+    font-size: 2em !important;
+  }
+  
+  .featured_post_desc{
+    width: 160% !important;
+    height: 15vh;
+    overflow: hidden;
+  }
+  
+  .blog .container .featured_blog_post .row .right img{
+    height: 300px;
+    object-fit: cover;
+  }
+  
+  .mixtapes .title h1{
+    font-size: 2em;
+  }
+  
+  .mixtapes .title h1:before{}
+}
+  </style>
+</head>
+<body>
+  <header>
+    <title>Podcast Template</title>
+  </header>
+  <body>
+    <nav id="nav">
+      <ul class='left'>
+        <li class='logo'><span>M</span></li>
+        <li>Interviews</li>
+        <li>Podcast</li>
+        <li>Blog</li>
+        <li>Newsletters</li>
+      </ul>
+      <ul class="right">
+        <li>Sign up</li>
+        <li>Login</li>      
+      </ul>
+    </nav>
+    
+    <div class="container-flex header">
+      <div class="container">
+        <div class="row">
+          <div class="left col-6">
+            <p class="author">Jonathan William</p>
+            <h1 class="featured_title">
+              Designer by day. Gamer at night
+            </h1>
+            
+            <p class="featured_text">
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc rhoncus mollis risus. Sed tincidunt iaculis velit eget hendrerit. Phasellus a elementum turpis, non dictum nulla. In blandit leo orci, at imperdiet ante hendrerit quis. Ut auctor dictum maximus. Vestibulum a augue ut lacus pharetra commodo vitae ac nibh. Donec vel ultricies dolor.
+            </p>
+          </div>
+          
+          <div class="right col-6">
+            <img class="featured_cover" src="https://images.unsplash.com/photo-1525346263948-cb645709e020?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=668&q=80"/>
+            <div class="read_more">
+              <button>Read Interview &#x2192;</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div> 
+    
+    <div class="container-fluid podcast">
+      <div class="container">
+        <h1 class="title">Podcast</h1>
+        
+        <div class="podcast_list col-12">
+          
+          
+          <div class="row">
+            <div class="podcast_item col-lg-6 col-12">
+                
+              <div class="inner_podcast">
+                <div class="podcast_thumb">
+                  <img src="https://images.unsplash.com/photo-1563064097-bf024f348d31?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=668&q=80" />
+                  <div class="play">
+                    <span>&#9658;</span>
+                  </div>
+                  
+                </div>
+                
+                <div class="podcast_title">
+                  <h4>Angelina Smith</h4>
+                </div>
+                
+                <div class="podcast_desc">
+                  <span>
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum semper tortor eget urna dictum, eu tincidunt est sodales. Proin eget luctus magna. Ut convallis, dui ac tincidunt rhoncus, risus sem aliquet velit.
+                  </span>
+                </div>
+              </div>
+              </div>
+              
+            
+            <div class="podcast_item col-lg-6 col-12">
+              <div class="inner_podcast">
+                <div class="podcast_thumb">
+                  <img src="https://images.unsplash.com/photo-1492462543947-040389c4a66c?ixlib=rb-1.2.1&auto=format&fit=crop&w=1500&q=80" />
+                  
+                  <div class="play">
+                    <span>&#9658;</span>
+                  </div>
+                  
+                </div>
+                
+                <div class="podcast_title">
+                  <h4>Liam Thompson</h4>
+                </div>
+                
+                <div class="podcast_desc">
+                  <span>
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum semper tortor eget urna dictum, eu tincidunt est sodales. Proin eget luctus magna. Ut convallis, dui ac tincidunt rhoncus, risus sem aliquet velit.
+                  </span>
+                </div>
+                
+              </div>
+            
+          </div>
+        </div>
+          
+          
+          <div class="row">
+            <div class="podcast_item col-lg-6 col-12">
+                
+              <div class="inner_podcast">
+                <div class="podcast_thumb">
+                  <img src="https://images.unsplash.com/photo-1574784618880-a1036d310e7c?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1500&q=80" />
+                  <div class="play">
+                    <span>&#9658;</span>
+                  </div>
+                  
+                </div>
+                
+                <div class="podcast_title">
+                  <h4>Andrea Willian</h4>
+                </div>
+                
+                <div class="podcast_desc">
+                  <span>
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum semper tortor eget urna dictum, eu tincidunt est sodales. Proin eget luctus magna. Ut convallis, dui ac tincidunt rhoncus, risus sem aliquet velit.
+                  </span>
+                </div>
+              </div>
+              </div>
+              
+            
+            <div class="podcast_item col-lg-6 col-12">
+              <div class="inner_podcast">
+                <div class="podcast_thumb">
+                  <img src="https://images.unsplash.com/photo-1544723795-3fb6469f5b39?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=670&q=80" />
+                  <div class="play">
+                    <span>&#9658;</span>
+                  </div>
+                  
+                </div>
+                <div class="podcast_title">
+                  <h4>Liam Thompson</h4>
+                </div>
+                <div class="podcast_desc">
+                  <span>
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum semper tortor eget urna dictum, eu tincidunt est sodales. Proin eget luctus magna. Ut convallis, dui ac tincidunt rhoncus, risus sem aliquet velit.
+                  </span>
+                </div>
+              </div>
+            
+          </div>
+        </div>
+          
+          
+        </div>
+      </div>
+      <center>
+        <span style="text-decoration: underline; color: rgba(0,0,0,0.5); cursor: pointer">
+          Sell all podcast
+        </span>
+        
+      </center>
+    </div> <!--podcast end-->
+    
+    <div class="container-fluid blog">
+      <div class="left_shaddow col-6"></div>
+      <div class="container">
+        <div class="featured_blog_post col-12">
+          <div class="row">
+            
+            <div class="left col-6">
+              <div class="intro">
+                <span>
+                  From the blog
+                </span>
+              </div>
+              <div class="featured_post_title">
+                <h1>How to understand project goal</h1>
+              </div>
+              <div class="featured_post_desc col-lg-9">
+                <span>
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum semper tortor eget urna dictum, eu tincidunt est sodales. Proin eget luctus magna. Ut convallis, dui...
+                </span>
+              </div>
+            </div>
+            
+            <div class="right col-6">
+              <img src="https://images.unsplash.com/photo-1449247709967-d4461a6a6103?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60"/>
+            </div>
+            
+          </div>
+          
+        </div>
+      </div>
+  
+    </div> 
+    
+    
+    <div class="container-fluid mixtapes">
+      <div class="container">
+        <div class="title">
+          <h1>Mixtapes</h1>
+        </div>
+        
+        <div class="mixtapes_list col-12">
+          
+          
+          
+          <div class="mixtapes_scroll">
+            <div class="mixtape_item col">
+              <div class="mixtape_thumb">
+                <img src="https://images.unsplash.com/photo-1513745405825-efaf9a49315f?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=668&q=80"/>
+              </div>
+  
+              <div class="mixtape_title">
+                <h3>Focus</h3>
+              </div>
+              <div class="mixtape_desc">
+                <span>
+                  12 Tracks
+                </span>
+              </div>
+            </div>
+  
+  
+            <div class="mixtape_item col">
+              <div class="mixtape_thumb">
+                <img src="https://images.unsplash.com/photo-1521412644187-c49fa049e84d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60"/>
+              </div>
+  
+              <div class="mixtape_title">
+                <h3>Creatives</h3>
+              </div>
+              <div class="mixtape_desc">
+                <span>
+                  12 Tracks
+                </span>
+              </div>
+            </div>
+  
+  
+            <div class="mixtape_item col">
+              <div class="mixtape_thumb">
+                <img src="https://images.unsplash.com/photo-1504808746096-776f2adeacd5?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1735&q=80"/>
+              </div>
+  
+              <div class="mixtape_title">
+                <h3>Planning</h3>
+              </div>
+              <div class="mixtape_desc">
+                <span>
+                  8 Tracks
+                </span>
+              </div>
+            </div>
+            
+            
+            <div class="mixtape_item col">
+              <div class="mixtape_thumb">
+                <img src="https://images.unsplash.com/photo-1549060279-7e168fcee0c2?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1500&q=80"/>
+              </div>
+  
+              <div class="mixtape_title">
+                <h3>Energy</h3>
+              </div>
+              <div class="mixtape_desc">
+                <span>
+                  12 Tracks
+                </span>
+              </div>
+            </div>
+            
+            
+            
+         </div>
+          
+          
+          
+        </div>
+      </div>
+    </div>
+  </body>
+  <script>
+    let backgroundFlag=false
+
+const menuBackground=()=>{
+  const element=document.getElementById('nav')
+  //var rect=element.getBoundingClientRect();
+  var scroll = this.scrollY;
+  if(scroll>0 && !backgroundFlag){
+    backgroundFlag=true
+    element.style.background="rgba(0,0,0,0.6)"
+  }
+  
+  if(scroll===0){
+    backgroundFlag=false
+    element.style.background="transparent"
+  }
+}
+
+document.addEventListener('scroll', menuBackground);</script>
+</body>
+</html>
