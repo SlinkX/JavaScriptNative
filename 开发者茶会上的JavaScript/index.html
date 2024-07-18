@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    body {
+  font-family: system, -apple-system, BlinkMacSystemFont,
+      "Helvetica Neue", "Lucida Grande";
+  color: #333;
+}
+a {
+  color: #404040;
+}
+header, section {
+  padding: 20px;
+}
+h1 {
+  text-align: center;
+  font-size: 2rem;
+  @media only screen and (min-width: 768px){
+    font-size: 3rem;
+  }
+}
+.branding {
+  text-align: center;
+  vertical-align: middle;
+  margin: 3rem 0 0 0;
+  a {
+    opacity: .75;
+    &:hover {
+      opacity: 1;
+    }
+  }
+  img {
+    display: inline-block;
+    vertical-align: middle;
+    height: 100%;
+    width: 12%;
+    margin: 0 2%;
+    &:nth-child(2){
+      width: 15%;
+    }
+  }
+}
+.container {
+  width: 100%;
+  @media only screen and (min-width: 768px){
+    width: 65%;
+    margin: 0 auto;
+  }
+  @media only screen and (min-width: 1080px){
+    width: 45%;
+    max-width: 650px;
+    margin: 0 auto;
+  }
+}
+ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  li {
+    position: relative;
+    line-height: 2;
+    text-indent: 1rem;
+    &:before {
+      position: relative;
+      content: "☕";
+      left: -1rem;
+    }
+  }
+}
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>JavaScript January Contest on Developer&nbsp;Tea</h1>
+      <div class="branding">
+        <a href="https://spec.fm/podcasts/developer-tea"><img src="https://media.simplecast.com/podcast/image/363/small_1471485029-artwork.jpg" alt="" /></a>
+        <a href="https://spec.fm"><img src="https://spec.fm/img/dest/logo.svg" alt="" /></a>
+      </div>
+    </header>
+    <section class="rules">
+      <h3>The Rules:</h3>
+      <ul>
+        <li>Contestants enter by creating one or more pens on CodePen.</li>
+        <li>Must rely heavily on JavaScript</li>
+        <li>Tag with "JS January", "Developer Tea", and/or "JavaScript January"</li>
+        <li>Join the Spec Slack community for the announcement, early Feburary. <a href="https://spec.fm/slack">https://spec.fm/slack</a></li>
+        <li>There will be at least six winners. <strong>The pens with the most hearts that follow these rules, win!</strong></li>
+      </ul>
+    </section>
+    <section>
+      <h3>Details:</h3>
+      <p>The winners will receive a year of <a href="https://codepen.io/pro/">CodePen Pro</a>. Contestants may enter by creating more than one pen, as long as each pen has unique content and is tagged correctly. <a href="mailto:developertea@gmail.com">E-mail me with questions and comments.</a></p>
+      <h4>A huge thank-you to CodePen for providing contest awards!</h4>
+    </section>
+    <section>
+      <h3>Helpful resources:</h3>
+      <ul>
+        <li><a href="https://spec.fm">Spec.fm</a></li>
+        <li><a href="http://javascriptweekly.com/">JavaScript Weekly</a></li>
+        <li><a href="https://github.com/getify/You-Dont-Know-JS">You Don't Know JS</a></li>
+        <li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference">MDN JavaScript Reference</a></li>
+        <li><a href="https://www.reddit.com/r/learnjavascript/">r/learnjavascript</a></li>
+        <li><a href="https://medium.com/@_ericelliott">https://medium.com/@_ericelliott</a></li>
+        <li><a href="http://microjs.com">microjs.com</a></li>
+      </ul>
+    </section>
+  </div>
+</body>
+</html>
