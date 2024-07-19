@@ -1,0 +1,304 @@
+<html>
+  <head>
+  <title>Travel Blog Homepage</title>
+  </head>
+  <style>
+    body{
+  background: url(https://res.cloudinary.com/ccrotty2/image/upload/v1468873545/stock-photo-41198398-compressor_gzmv2q.jpg);
+  color:white;
+  font-family:Verdana;
+}
+
+header{
+  background-color:#333;
+  height:250px;
+}
+#logo{
+      margin-top:20px;
+      margin-left:220px;
+      margin-right:0px;
+      width:500px;
+      height:200px;
+      padding:px; 
+}
+
+.mainnav{
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #333;
+}
+
+li {
+    float: left;
+    border-right:1px solid #bbb;
+}
+
+li a {
+    display: block;
+    color: white;
+    font-size:20px;
+    text-align:center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+li a:hover:not(.active) {
+    background-color: #CD5C5C;
+}
+
+.active {
+    background-color: #CD5C5C;
+}
+
+.searchbar[type=text] {
+    float:right;
+    width: 250px;
+    box-sizing: border-box;
+    border: 2px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+    background-color: white;
+    background-image: url('searchicon.png');
+    background-position: 10px 10px;
+    background-repeat: no-repeat;
+    padding: 12px 20px 12px 0px;
+    -webkit-transition: width 0.4s ease-in-out;
+    transition: width 0.4s ease-in-out;
+}
+
+.side1{
+  height: 720px;
+	width: 170px;
+	background-color:#333;
+	float: left;
+	margin-bottom:30px;
+  margin-top:31px;
+  padding:10px;
+  padding-right:40px;
+  border-radius: 5px;
+}
+
+.side2{
+  height: 660px;
+	width: 170px;
+	background-color:#333;
+	float: right;
+	margin-bottom: 30px;
+  margin-top:31px;
+  padding:10px;
+  padding-right:40px;
+  border-radius: 5px; 
+}
+
+.follow{
+  font-size:25px;
+}
+
+div.img {
+    margin: 5px;
+    float: left;
+    width: 100px;
+}
+
+div.img img {
+    width: 100%;
+    height: auto;
+}
+
+h3{
+  font-size:20px;
+  margin-left:10px;
+}
+input[type=text], select {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0px;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+input[type=submit] {
+    width: 100%;
+    background-color:#333;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+input[type=submit]:hover {
+    background-color: deepskyblue;
+}
+
+.mail{
+    border-radius: 5px;
+    background-color: #CD5C5C;
+    padding: 20px;
+}
+
+article{
+  background-color:#333;
+  height:1600px;
+  width:900px;
+  margin-top:30px;
+  margin-right:100px;
+  margin-left:250px;
+  border-radius:5px;
+}
+
+h1{
+  font-size:40px;
+}
+a{
+  text-decoration: none;
+}
+h3{
+  font-size:20px
+}
+.intro{
+  margin-left:10px;
+  width:900px;
+}
+
+.topic{
+  margin-bottom:50px;
+  width:500px;
+  margin-left:200px;
+  margin-right:50px;
+  border: 10px groove #CD5C5C;
+  float:left;
+  text-align:center;
+  background-color:lightgrey;
+  padding:15px;
+}
+
+.post{
+  text-decoration:none;
+}
+
+footer{
+  	height: 50px;
+    background-color: #333;
+    margin-top:20px;
+    border-radius:5px;
+}
+  </style>
+<body>  
+  <header>
+    <div id="logo"><img src="https://res.cloudinary.com/ccrotty2/image/upload/v1468877770/free_logo_jlkffx.jpg"id="logo"/>
+    </div>
+  </header>
+<nav>
+  <ul class="mainnav">
+  <li><a class="active" href="https://codepen.io/ccrotty2/pen/akqwPW?editors=1100">Home</a></li>
+  <li><a href="https://codepen.io/ccrotty2/pen/OXwWXN">About</a></li>
+  <li><a href="https://codepen.io/ccrotty2/pen/qNxJZb">Blog</a></li>
+  <li><a href="https://codepen.io/ccrotty2/pen/XKkxvv">Adventures</a>
+  <li><a href="https://codepen.io/ccrotty2/pen/YWZRKN">Contact</a></li>
+
+  <form>
+    <input class="searchbar"type="text" name="search" placeholder="Search...">
+  </form> 
+   
+</ul>  
+</nav>
+  
+<aside class="side1">
+  <h3 class="follow">Follow My Travels:</h3>
+<div class="img">
+    <a href="#"><img src="https://res.cloudinary.com/ccrotty2/image/upload/v1468398164/FB_tdprmk.png" alt="Facebook" width="300" height="200">
+  </a>
+</div>
+
+<div class="img">
+    <a href="#"><img src="https://res.cloudinary.com/ccrotty2/image/upload/v1468398163/tw_cm6hzc.jpg" alt="Twitter" width="600" height="400">
+  </a>
+</div>
+
+<div class="img">
+    <a href="#"><img src="https://res.cloudinary.com/ccrotty2/image/upload/v1469788238/yoututbe-compressor_dq58ng.png" alt="YouTube" width="600" height="400">
+  </a>
+</div>
+
+<div class="img">
+    <a href="#"><img src="https://res.cloudinary.com/ccrotty2/image/upload/v1469788344/plus-compressor_xds2q3.png" alt="Google+" width="600" height="400">
+  </a>
+</div>
+  
+  <div class="img">
+    <a href="#"><img src="https://res.cloudinary.com/ccrotty2/image/upload/v1469788349/insta_iedzvf.png" alt="Instagram" width="600" height="400">
+  </a>
+</div> 
+  
+  <div class="img">
+    <a href="#"><img src="https://res.cloudinary.com/ccrotty2/image/upload/v1469788341/snap-compressor_dh1b4i.png" alt="Snapchat" width="600" height="700">
+  </a>
+</div> 
+</aside>
+    
+<aside class="side2">
+  
+<h3>Join My Mailing List!</h3>
+
+<div class="mail">
+  <form action="action_page.php">
+    <label for="fname">Name</label>
+    <input type="text" id="fname" name="firstname">
+    <label for="lname">Email Address</label>
+    <input type="text" id="lname" name="lastname">
+    <input type="submit" value="Submit">
+  </form>
+</div>
+
+<div class="podcontainer">
+  <h3>Check Out My Podcast</h3>
+    <div class="img">
+    <a href="#"><img src="https://res.cloudinary.com/ccrotty2/image/upload/v1468946928/podcast-compressor_gabyak.png" alt="Podcast" width="600" height="700">
+  </a>
+</div> 
+  <div class="img">
+    <a href="#"><img src="https://res.cloudinary.com/ccrotty2/image/upload/v1469795530/sc-compressor_w6hjdz.png" alt="Podcast" width="600" height="700">
+  </a>
+</div> 
+  
+  </div>
+  </aside>
+
+<main>
+<article>
+    <section class="intro">
+      <h1>Blog Topics</h1>
+      <div class="topic">
+      <img src="https://res.cloudinary.com/ccrotty2/image/upload/v1469826100/gear_j5dxsh.jpg">
+      <h3><a href="#">Gear</a></h3>
+          <p class="post"><a href="#">Ultimate Travel Gear Guide</a></p>
+          <p class="post"><a href="#">My Favorite GoPro Accessories For Travel</a></p>
+          <p class="post"><a href="#"> Best Travel Photography Gear</a></p>
+      </div>
+      <div class="topic">
+      <img src="https://res.cloudinary.com/ccrotty2/image/upload/v1469826481/tips_bahezb.jpg">
+        <h3><a href="#">Tips</a></h3>
+          <p class="post"><a href="#">My 30 Best Travel Tips After 4 Years Traveling The World</a></p>
+          <p class="post"><a href="#">15 Common Travel Scams</a></p>
+          <p class="post"><a href="#">How To Receive Mail & Packages While Traveling</a></p>
+      </div>
+      <div class="topic">
+      <img src="https://res.cloudinary.com/ccrotty2/image/upload/v1469826483/ins_wueao6.jpg">
+      <h3><a href="#">Inspiration</a></h3>
+        <p class="post"><a href="#">25 Best Travel Movies Ever</a></p>
+        <p class="post"><a href="#">25 Best Travel Movies Ever</a></p>
+        <p class="post"><a href="#">9 Reasons Why Everyone Should Study Abroad</a></p>
+       </div>
+</article>
+</main>
+<footer>
+  <p><strong>&#169 Colin Crotty Travel Blog </strong> &emsp;&emsp; <em> @ColinCrottyTravel On All Platforms </em> </p>
+</footer>
+</body>
+        </ul></html>
