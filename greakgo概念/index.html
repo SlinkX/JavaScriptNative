@@ -1,0 +1,435 @@
+<html lang="en">
+  <head>
+    <link href="//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+  </head>
+
+  <style lang="scss">
+    $color-dark: #1F1F1F;
+$color-light: #727272;
+$color-orange: #F49700;
+
+*,*:before,*:after{
+  box-sizing: border-box;
+}
+html{
+  height: 100%;
+}
+body{
+  min-height: 100%;
+  color: #3B3B3B;
+  font: 14px "Helvetica Neue",Helvetica,Arial,sans-serif;
+  line-height: 1.45;
+}
+a{
+  color: inherit;
+  text-decoration: none;
+}
+
+.text-hide{
+  /* Hide the text. */
+  text-indent: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.column{
+  position: fixed;
+  z-index: 10;
+  top: 0;
+  bottom: 0;
+  width: 240px;
+  height: 100%;
+  max-height: 100%;
+  //overflow: hidden;
+  vertical-align: top;
+  display: block;
+  margin: 0;
+  padding: 0;
+  background: $color-dark;
+  color: $color-light;
+  
+  &.closed{
+    width: 70px;
+  }
+
+  &.left{
+    left: 0;
+  }
+  &.right{
+    right: 0;  
+    background: #F2F2F2;
+    color: $color-dark;
+  }
+}
+
+.scrollable{
+  position: relative;
+  //height: 75%;
+  overflow-y: scroll;
+  
+  .scrollcontent{
+    width: auto;
+    height: 100%;
+  }
+}
+
+.close-buttons{
+  @extend .text-hide;
+  position: absolute;
+  top: 10px;
+  display: block;
+  height: 20px;
+  width: 20px;
+  overflow: hidden;
+  background: #000;
+  border: 1px solid #000;
+  opacity: .25;
+  z-index: 11;
+
+  &:hover{
+    background:#fff;
+  }
+
+  &#left_close{
+    right: -30px;
+  }
+  &#right_close{
+    left: -30px;
+  }
+}
+
+main{
+  position: relative;
+  display: block;
+  z-index: 2;
+  overflow: hidden;
+  margin: 0 240px;
+  padding: 0;
+  height: 100%;
+  
+  &.expandLeft{
+    margin-left: 70px;
+  }
+  &.expandRight{
+    margin-right: 70px;
+  }
+
+  
+  header{
+    background: $color-orange;
+    color: #fff;
+    padding: 50px 0;
+    text-align: center;
+    
+    .hero{
+      font-size: 50px;
+      margin: 0;
+      padding: 0;
+    }
+    .subtitle{
+      margin: 0;
+      padding: 0;
+      font-size: 16px;
+      opacity: .8;
+    }
+  }
+  section{
+    padding: 20px;
+  }
+}
+.logo{
+  @extend .text-hide;
+  
+  margin: 0 auto;
+  text-align: center;
+  display: block;
+  background: white;
+  width: 200px;
+  height: 90px;
+  line-height: 70px;
+  margin-bottom: 10px;
+  background: url('http://gofreaks.eu/assets/img/logo.png') no-repeat center center;
+  background-size: 70%;
+}
+.search{
+  text-align: center;
+  margin-bottom: 20px;
+  
+  input{
+    display: block;
+    padding-left: 20px;
+    line-height: normal;
+    height: 30px;
+    width: 200px;   
+    font-size: 12px;
+    letter-spacing: inherit;
+    outline: none;
+    margin: 0 auto;
+    border: none;
+    color: #ddd;
+    background: #3b3b3b;
+    
+    &::-webkit-input-placeholder{
+      color: #777;
+    }
+
+    &:-moz-placeholder{
+        color: #777;
+    }
+
+    &:-ms-input-placeholder{
+        color: #777;
+    }
+    &:hover,&:active,&:focus{
+      outline: none;
+    }
+  }
+}
+nav{  
+  position: relative;
+  
+  ul{
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    
+    li{
+      font-size: 12px;
+      overflow: hidden;
+      
+      &.title{
+        display: block;
+        min-height: 34px;
+        line-height: 34px;
+        text-transform: uppercase;
+        font-weight: bold;
+        padding: 0 20px;
+      }
+      
+      i{
+        position: absolute;
+        top: 10px;
+        left: 20px;
+        font-size: 16px;
+      }
+      
+      a{
+        position: relative;
+        display: block;
+        min-height: 34px;
+        line-height: 34px;
+        padding: 0 20px 0 50px;
+        text-decoration: none;
+        color: inherit;
+        cursor: pointer;
+
+        &:hover{
+          color: #fff;
+          background: #151515;
+        }
+        
+        &.active{
+          color: #fff;
+          background: #151515;
+          border-left: 4px solid $color-orange;
+          padding-left: 46px; // - border-width
+          
+          i{
+            left: 16px; // - border-width
+          }
+        }
+      }
+    }
+  }
+}
+.column.left.closed{
+  nav ul li{
+     &.title{
+      display: none;
+    }
+  
+    a {
+      height: 60px;
+      @extend .text-hide;
+    
+      i{
+        font-size: 30px;
+      }
+    }
+  }
+}
+.divider{
+  margin: 10px 0;
+  border-top: 1px solid #151515;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.04);
+  -moz-box-shadow: inset 0 1px 0 rgba(255,255,255,0.04);
+  -webkit-box-shadow: inset 0 1px 0 rgba(255,255,255,0.04);
+  height: 8px;
+  
+  &.divider--light{
+    border-top: 1px solid rgba(0, 0, 0, 0.15);
+    box-shadow: inset 0 1px 0 rgba(255,255,255,0.04);
+    -moz-box-shadow: inset 0 1px 0 rgba(255,255,255,0.04);
+    -webkit-box-shadow: inset 0 1px 0 rgba(255,255,255,0.04);
+  }
+}
+footer{
+  position: relative;
+  margin: 0 0 20px 0;
+  
+  .link-group{
+    font-size: 12px;
+    padding: 0 20px;
+    text-align: center;
+    
+    a{
+      display: inline-block;
+      padding: 5px;
+      
+      &:hover{
+        color: #fff;
+      }
+    }
+  }
+}
+aside{
+  position: relative;
+  padding: 20px;
+  border-left: 1px solid #E0E0E0;
+  
+  .title{
+    font-size: 16px;
+    font-weight: bold;
+    color: inherit;
+  }
+  .text{
+    font-size: 14px;
+  }
+}
+
+.btn{
+  display: inline-block;
+  padding: 10px 8px;
+  margin: 5px 5px 0 0;
+  background: $color-orange;
+  color: #fff;
+  font-size: 14px;
+  font-weight: normal;
+  
+  &:hover{
+    background: lighten($color-orange,5%);
+  }
+}
+  </style>
+<body>
+
+    <div class="column left">
+      
+      <a href="" class="logo">Logo</a>
+      
+      <a class="close-buttons" id="left_close" href="#">Open/Close</a>
+      
+      <div class="search">
+        <form action="#">
+          <input autocomplete="off" type="text" name="query" id="query" placeholder="Suche" />
+        </form>  
+      </div><!-- .search -->
+      
+      <div class="divider"></div>
+
+      <div class="scrollable">
+        <div class="scrollcontent">
+          <nav role='navigation'>
+            <ul>
+              <li class="title">Navigation</li>
+              <li><a href="#"> <i class="fa fa-home"></i> Home</a></li>
+              <li><a href="#" class="active"><i class="fa fa-institution"></i> Über uns</a></li>
+              <li><a href="#"><i class="fa fa-gamepad"></i> Spiele</a></li>
+              <li><a href="#"><i class="fa fa-calendar"></i> Kalender</a></li>
+              <li><a href="#"><i class="fa fa-headphones"></i> Podcast</a></li>        
+              <li><a href="#"><i class="fa fa-video-camera"></i> Stream</a></li>
+            </ul>
+            <div class="divider"></div>
+            <ul>
+              <li class="title">username</li>
+              <li><a href="#"><i class="fa fa-user"></i> Profil</a></li>
+              <li><a href="#"><i class="fa fa-inbox"></i> Nachrichten</a></li>
+              <li><a href="#"><i class="fa fa-cog"></i> Einstellungen</a></li>
+            </ul>
+          </nav> 
+          <footer>
+            <div class="divider"></div>
+
+            <div class="link-group">
+              <a href="#">Über uns</a>
+              <a href="#">Blog</a>
+              <a href="#">Hilfe</a>
+              <a href="#">Kontakt</a>        
+              <a href="#">Sponsoren</a>
+              <a href="#">Datenschutz</a>
+              <a href="#">Impressum</a>
+            </div>
+          </footer>
+        </div><!-- .scrollcontent -->
+      </div><!-- .scrollable -->
+    </div><!-- .column.left -->  
+
+    <main>
+      <header>
+        <h1 class="hero">Title</h1>
+        <p class="subtitle">Some subtitle with text</p>
+      </header>
+      <section>
+        <h2>Section</h2>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laboriosam magni cum qui quibusdam sunt eius quasi laborum commodi nisi hic recusandae quis nostrum in at ducimus quaerat possimus quia facere?</p>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rerum ex laboriosam iusto fugiat quas nulla ab est nobis sequi ipsam voluptas libero eveniet minima nemo quidem eum unde repellendus molestias officia qui! Porro pariatur officiis odit nihil perspiciatis fugit ipsa doloremque maiores dolorem quo et assumenda dolore ex corporis saepe amet incidunt fuga voluptates tempore harum nostrum non delectus. Sed maxime non consequatur vitae facere labore laudantium voluptate sequi obcaecati commodi provident nobis ipsum iusto inventore expedita et rem ipsam nihil amet ratione hic voluptatum sint saepe. Non facilis pariatur atque dignissimos dolor ipsam qui nisi amet animi ipsum incidunt.</p>
+      </section>
+    </main>
+
+    <div class="column right">
+      
+      <a class="close-buttons" id="right_close" href="#">Open/Close</a>
+      
+      <aside>
+        <h2 class="title">Du bist nicht angemeldet</h2>
+        <p class="text">Ein Mitglied werden geht schnell und bringt dir viele neue Vorteile!</p>
+        
+        <div class="divider divider--light"></div>
+        
+        <a href="#" class="btn">Anmelden</a>
+        <a href="#" class="btn">Registrieren</a>
+        
+        
+        
+        
+      </aside>
+    </div><!-- .column.right -->
+
+
+    scrollcontent
+    // Update Navigation ScrollContent Height
+function updateNavSize(){
+  $(".scrollcontent").outerHeight( $(".column.right").height() -  $(".scrollable").position().top);
+}
+
+$(document).ready(function () {
+    updateNavSize();
+    $(window).resize(function() {
+        updateNavSize();
+    });
+  
+  $('#left_close').on('click',function(e){
+    e.preventDefault();     
+    $('.column.left').toggleClass('closed');
+    $('main').toggleClass('expandLeft');    
+  });
+  $('#right_close').on('click',function(e){
+    e.preventDefault();     
+    $('.column.right').toggleClass('closed');
+    $('main').toggleClass('expandRight');    
+  });
+  
+  
+});
+</body>
+</html>
