@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+     <script type='text/javascript' source='script.js'></script>
+   </head>
+   <style>
+    body{
+  text-size-adjust: auto;
+  -webkit-text-size-adjust:auto;
+  -ms-text-size-adjust: auto;
+ /*background image*/ 
+  background-image: url("https://www.toptal.com/designers/subtlepatterns/patterns/ep_naturalwhite.png");
+width:100%;
+height:auto;
+}
+
+h2{
+  text-align: center;
+  color: #000000;
+  font-family: 'Zilla Slab', serif;
+}
+section{
+  padding-top:20px;
+  padding-bottom:20px;
+  background-color:#FFFFFF;
+}
+
+#menu{
+  background-color: #08090A;
+  position:fixed;
+  top:0;
+  left:0;
+  height: 70px;
+  width: 100%;
+  padding-top:15px;
+  color:#FFF8F0; 
+  box-shadow:0px 0px 3px 0px;
+}
+
+#about{
+  padding-top:80px;
+  height:auto;
+  width:90%;
+  margin-left:5%;
+  margin-right:5%;
+}
+
+#about_text{
+  background-color:inherit;
+  display:inline-block;
+  padding:2%;
+  margin-right:0;
+  height: auto;
+  color:black;
+  font-size: 1.5em;
+  text-align: left;
+  font-family: 'Lato', sans-serif;
+}
+
+#about-image{
+  width:300px;
+    
+  border-radius:100%;
+  vertical-align: top;
+  padding: 50px;  
+}
+
+.inline{
+display: inline-block;
+width:40%;
+height: auto;
+}
+hr{ 
+  margin:0px;
+  width:90%;
+}
+
+#portfolio{
+  height:auto;
+  width:90%;
+  margin-left:5%;
+  margin-right:5%;
+  vertical-align:middle;
+}
+.box{
+  height: 200px;
+  width:300px;
+  background-color:grey;
+  display: inline-block;
+  margin:10px;
+  vertical-align: middle;
+  
+}
+#contact{
+  height:auto;
+  width:100%;
+  width:90%;
+  margin-left:5%;
+  margin-right:5%;
+}
+form {
+  /* place form where I want form on page */
+  margin:0 auto;
+  padding-left:30px;
+  /* to not see the outline of the form */
+  border: none;
+  
+ 
+ 
+  /* To display the form how and where I want it */
+  display: inline-block;
+}
+label{
+  /* to make sure that all labels have the same size and are properly aligned*/
+  display: inline-block;
+  width:90px;
+  text-align:right;
+}
+input, textarea {
+  /*To make sure all text fields have he same font setting*/
+  font: 1.5em sans-serif;
+  /* to give the same size o all text fields */
+  width:300px;
+  box-sizing: border-box;
+  /*to harmonize the look and feel of text field border */
+ border: 1px solid #999;
+ border-left: none;
+ border-right: none;
+ border-top: none;
+ margin-bottom:1em;
+ /*Styling no background*/
+   background-color: inherit;
+}
+input:focus, textarea:focus{
+  /* to get rid of little highlight on active elements */
+  outline: none;
+  -moz-box-shadow:none;
+}
+textarea{
+  /* To properly align multiline text fields and their labels */
+  vertical-align:top;
+  /* to give them enough room to type some text */
+  height: 5em;
+} 
+
+.contact-text{
+  display: inline-block;
+  vertical-align: top;
+  font-size: 20px;
+  padding-top: 40px;
+  padding-left: 140px;
+  color: #000000;
+  width:500px;
+  text-align: justify;
+
+}
+#social{
+  display: inline;
+  height:auto;
+  
+  background-color: inherit;
+}
+ul {
+  list-style-type: none;
+}
+footer{
+  padding-top: 30px;
+  height:80px;
+  width:100%;
+  color: #FFF8F0;
+  text-align: center;
+  background-image: url("https://learn.jquery.com/jquery-wp-content/themes/jquery/images/bg-footer-noise.jpg");
+}
+
+.btn-primary{
+  background-color:inherit;
+  border: none;
+}
+.btn-primary:hover{
+  background-color:#11262E;
+}
+/* makes img adjust size to div*/
+img {
+    max-width: 100%;
+    max-height: 100%;
+}
+/* hr that underlines titles */
+.underline{
+  border-color:#C0C6C3;
+  border-top:solid;
+  background-color:#C0C0C3;
+  width: 33%;
+  margin-bottom: 20px
+    
+}
+
+.fa{
+  font-size:30px;
+  color:white;
+  margin:10px;
+  display: inline-block;
+}
+.fa:hover{
+  color: #C0C0C3;
+}
+   </style>
+   <div class="container-fluid">
+     <!--Navbar here-->
+     <nav>
+   <div id="menu" align="middle">
+    <a href="#about" class= "btn btn-primary">About</a>      
+   <a href="#portfolio"class="btn btn-primary">Portfolio</a>
+   <a href="#contact" class="btn btn-primary">Contact</a>
+   </div>
+     </nav>
+   <!--end navbar, begin main content-->
+   <main role"main content">
+   <section id="about"align="middle">
+     <!--First Section "About"-->
+     <h2>About</h2><span><hr class="underline"></span><p class="inline" id="about_text">Linguist turned programmer living in Beijing  discovering the world of front-end development with the intention on finding full-time work as a developer and finding ways to combine my interests in language learning and technology.</p>
+     <img class="inline"id="about-image" src="https://68.media.tumblr.com/f0ee0b76e2d334da68e95f1cc0d3f5a8/tumblr_nz5pihdYP01u1kd45o1_1280.jpg" alt="Image of Bashir at Columbia University">
+   </section>
+    <!--End "About section-->
+    <!--Start "Portfolio Grid Section-->
+     <hr>
+   <section id="portfolio" align="middle"><h2>Portfolio</h2><div align="right"><hr class="underline"></div>
+     <!--Grid for Projects-->
+     
+     <div class="box"><img src="http://loremflickr.com/320/240?random=1" /></div>
+     <div class="box"><img src="http://loremflickr.com/320/240?random=2" /></div>
+     <div class="box"><img src="http://loremflickr.com/320/240?random=3" /></div>
+     <div class="box"><img src="http://loremflickr.com/320/240?random=4" /></div>
+   <!--random photos are from http://loremflickr.com/-->
+   </section>
+    <!--End Portfolio section-->
+     <hr>
+    <!--Start Contact section-->
+   <section id="contact"><h2>Contact</h2>
+     <form action="#" method="#"class="inline">
+       <div>
+         <label for="name"></label>
+         <input type="text" id="name" name="user_name" placeholder="Name">
+       </div>
+       <div>
+         <label for="mail"></label>
+         <input type="email" id="mail" name ="user_mail" placeholder="Email Address">
+       </div>
+       <div>
+         <label for="msg"></label>
+         <textarea id="msg" name="user_message" placeholder="Message"></textarea>
+       </div>
+       <div class="button">
+         <button type="submit">Send</button>
+       </div>
+     </form>
+     <p class="contact-text inline">If you would like to get in touch with me to talk about anything related to my expeience in linguistcs, what its like to live and work in Japan and China, or how my progress is going in programming, feel free to send me a message or get in touch with me on social media.</p>
+     <ul id ="social" align="middle" class="inline">
+       <li><a href="https://twitter.com/bashtellastory"><i class="fa fa-twitter-square" ></i></a>
+       </li>
+       <li><a href="https://linkedin.com/in/bashirharrell"><i class="fa fa-linkedin-square"></i></a>
+       </li>
+         <li><a href="https://github.com/bookofbash"><i class="fa fa-github-square"></i></a>
+       </li>
+       <li><a href="http://comapod.com"><i class="fa fa-podcast"></i></a>
+       </li>
+     </ul>
+     </section>
+    <!--End Contact section-->
+     </main>
+   </div>
+   </div>
+     <hr>
+   <footer>
+     Coded by Bashir Harrell
+   </footer>
+   
+   
+</html>
