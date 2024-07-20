@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+	<style>
+		$gray: #f4f4f4;
+$white: #fff;
+$black: #353535;
+$blue-gray: #C3C3C3;
+$container-bg-color: $white;
+$body-bg-color: $gray;
+$genre-picker-bg-color: $blue-gray;
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  background: $body-bg-color;
+  color: $black;
+  font-family: "Noto Sans", Arial, sans-serif;
+  font-size: 100%;
+}
+
+h2 {
+  font-size: 1.8em;
+}
+
+h3 {
+  font-size: 1.2em;
+  margin-bottom: 0.2em;
+  font-style: italic;
+}
+
+h4 {
+  font-size: 1.1em;
+}
+
+select {
+  outline: none;
+}
+
+label {
+  font-size: 1.2em;
+  line-height: 2.2;
+}
+
+li {
+  list-style: none;
+  opacity: 0.8;
+  transition: all 0.3s ease-in-out;
+  &:hover {
+    opacity: 1.0;
+  }
+}
+
+a {
+  color: $black;
+  &:visited,
+  &:hover,
+  &:active {
+    color: $black;
+  }
+}
+
+#wrap {
+  max-width: 1000px;
+  margin: 30px auto;
+  background: $container-bg-color;
+  //padding: 30px;
+  border-radius: 8px;
+  box-shadow: 0 4px 4px rgba(0,0,0,.03);
+}
+
+.container {
+  display: flex;
+}
+
+.container > section {
+	padding: 20px;
+}
+
+
+.genre-picker {
+  width: 20%;
+  margin-right: 50px;
+  background: $genre-picker-bg-color;
+  border-radius: 8px 0 0 8px;
+  box-shadow: 0 4px 4px rgba(0,0,0,.03);
+}
+
+.current-hits {
+  width: 80%;
+  span {
+    text-transform: capitalize;
+  }
+}
+
+.album-list {
+  display: flex;
+  flex-flow: row wrap;
+  li {
+    width: 200px;
+    margin-bottom: 20px;
+  }
+  img {
+    margin-bottom: 10px;
+  }
+}
+	</style>
+</head>
+<body>
+	<div id="wrap">
+	</div>
+</body>
+<script>
+	//https://affiliate.itunes.apple.com/resources/documentation/genre-mapping/
+const genreIds = {
+  // genre IDs for iTunes queries
+  alternative:  20,
+  blues:        2,
+  classical:    5,
+  country:      2,
+  dance:        17,
+  electronic:   7,
+  hipHop:       18,
+  jazz:         11,
+  podcast:      26,
+  pop:          14,
+  randb:        15,
+  rock:         21
+};
+
+const App = React.createClass({
+  getInitialState() {
+    return {
+      genreChoice: 'alternative'
+    };
+  },
+  changeGenre: function(genre) {
+    this.setState({genreChoice: genre});
+  },
+  render: function() {
+    return (
+      <div className="container">
+        <GenrePicker changeGenre={this.changeGenre} />
+        <section className="current-hits">
+          <CurrentHits genre={this.state.genreChoice} />
+        </section>
+      </div>
+    );
+  }
+});
+
+const GenrePicker = React.createClass({
+  onGenreChange: function(e) {
+    e.preventDefault();
+    let genre = e.target.value;
+    this.props.changeGenre(genre);
+  },
+  render: function() {
+     return (
+      <section className="genre-picker">
+        <label>Pick a Genre</label>
+        <select value={this.props.value} onChange={this.onGenreChange}>
+          <option value="alternative">Alternative</option>
+          <option value="blues">Blues</option>
+          <option value="classical">Classical</option>
+          <option value="country">Country</option>
+          <option value="dance">Dance</option>
+          <option value="electronic">Electronic</option>
+          <option value="hipHop">Hip Hop</option>
+          <option value="jazz">Jazz</option>
+          <option value="podcast">Podcast</option>
+          <option value="pop">Pop</option>
+          <option value="randb">R&B</option>
+          <option value="rock">Rock</option>
+        </select>
+      </section>
+    );
+  }  
+});
+
+const CurrentHits = React.createClass({
+  getInitialState: function() {
+    return {
+      albums: {}
+    };
+  },
+  getCurrentHits: function(genre) {
+    const url = 'https://itunes.apple.com/us/rss/topalbums/limit=5/genre=' + genreIds[genre] + '/explicit=true/json';
+    axios.get(url)
+      .then(results => {
+        const albums = Object.assign({}, this.state.albums, results.data.feed.entry);
+        this.setState({albums});
+      })
+      .catch((err) => {
+        console.log("An error occurred"); 
+      });
+    
+  },
+  componentDidMount: function() {
+    this.getCurrentHits(this.props.genre); 
+  },
+  componentWillReceiveProps: function(newProps) {
+    this.getCurrentHits(newProps.genre);
+  },
+  renderAlbum: function(album) {
+    console.log("inside renderAlbum");
+    const genre = this.props.genre;
+    const albums = this.state.albums;
+    return (
+      <CurrentHitsList key={albums[album].id.attributes["im:id"]} album={albums[album]} />
+    );
+  },
+  
+  render: function() {
+    const genre = this.props.genre;
+    const albums = this.state.albums;
+    if (!albums) {
+      return (
+        <p>Loading ...</p>
+      );
+    }
+    
+    return (
+      <div>
+        <h2>Current iTunes Top Five - <span>{genre.replace(/([A-Z])/g, ' $1')}</span></h2>
+        <ul className="album-list">
+          {Object.keys(albums).map(this.renderAlbum)}
+        </ul>
+      </div>
+    );
+  }  
+});
+
+// Stateless functional component
+const CurrentHitsList = (props) => {
+    const album = props.album;
+    return (
+    <li>
+      <a href={album.link.attributes.href} title="View on iTunes">
+        <img src={album["im:image"][2].label} />
+        <h3 className="album-name">{album["im:name"].label}</h3>
+        <h4 className="artist-name">{album["im:artist"].label}</h4>
+       </a>
+     </li>
+   );
+};
+
+ReactDOM.render(<App />, document.querySelector('#wrap'));
+</script>
+</html>
