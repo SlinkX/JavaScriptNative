@@ -1,0 +1,599 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    $black-dark: #121212;
+$black-light: #181818;
+$grey: #7f7f7f;
+$white: #ffffff;
+$player: #282828;
+$green: #1DB954;
+$grey-bright: #A5A5A5;
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Open Sans', sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.container {
+  width: 100%;
+  height: 100vh;
+  display: grid;
+  grid-template-columns: 200px auto;
+  grid-template-rows: 47px 1fr 64px 71px;
+}
+
+// *** HEADER *** //
+header {
+  color: white;
+  background: $black-dark;
+  grid-area: 1 / 1 / 2 / -1;
+  display: grid;
+  grid-template-columns: 200px 2fr 1fr;
+  align-items: center;
+}
+
+.options {
+  p {
+  margin-left: 1em;
+  letter-spacing: 5px;
+  font-weight: 700;
+  font-size: 1.5em;
+  }
+}
+
+.search {
+  display: flex;
+  align-items: center;
+  i { 
+    font-size: 1.5em;
+  }
+  i:nth-of-type(2) {
+    margin-left: 1em;
+  }
+}
+
+.search__input {
+  position: relative;
+  
+  i {
+    font-size: 0.8em;
+    position: absolute;
+    left: 24px;
+    top: 30%;
+    color: $black-light;
+  }
+  input {
+    margin-left: 1em;
+    padding-left: 2em;
+    outline: none;
+    border-radius: 15px;
+    border: none;
+  }
+}
+
+.account {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  margin-right: 5em;
+  
+  > * {
+    margin-left: 1em;
+  }
+  
+  i {
+    font-size: 1.5em;
+  }
+}
+// *** HEADER END ***//
+//*** SIDE  ***///
+.side {
+  maxheight: 100%;
+  grid-area: 2 / 1 / 3 / 2;
+  background: $black-dark;
+  padding: 1em;
+  overflow-y: auto;
+  
+  ul {
+    list-style: none;
+    li {
+      margin-bottom: 0.85em;
+    }
+  }
+  
+  a {
+    color: $grey;
+    text-decoration: none
+  }
+  
+  .active {
+    color: $white;
+  }
+  
+    h4 {
+    text-transform: uppercase;
+    font-weight: 300;
+    color: $grey;
+    letter-spacing: 2px;
+    margin-bottom: 1em;
+    font-size: 0.7em;
+  }
+}
+
+.lib, .playlists {
+  margin-top: 2em;
+}
+
+.playlists {
+  overflow-x: hidden;
+}
+
+.side__create__playlist {
+  grid-area: 3 / 1 / 4 / 2;
+  background: $black-dark;
+  border-top: 1px solid $grey;
+  display: flex;
+  align-items: center;
+  div {
+    display: flex;
+    padding: 1em;
+    color: $grey;
+    i {
+      margin-right: 1em;
+    }
+    
+    h4 {
+      font-weight: 400;
+      font-size: 0.9em;
+    }
+  }
+}
+
+.main {
+  display: grid;
+  grid-row: 2 / 4;
+  grid-template-rows: 200px 1fr;
+  min-width: 700px;
+  
+  @media only screen and (max-width: 1024px) {
+    grid-template-rows: 100px 1fr;
+    overflow-x: hidden;
+  }
+}
+
+.main__content {
+  display: grid;
+  grid-template-rows: 60px 60px 1fr;
+  overflow-y: auto;
+}
+
+.banner {
+  grid-row: 1 / 2;
+  background-size: cover;
+  width: 100%;
+  max-height: 100%;
+  background-image: url("http://ep.id-t.com/dam/asset/pictures/website-content/newsitems/banner-sensation-spotify-playlist-.jpeg?uuid=6j3c6dvv5ncwviv4yuwizw7tfa");
+  background-repeat: none;
+  background-position: center;
+}
+
+
+.filter {
+  grid-row: 1 / 2;
+  background: $black-light;
+  display: flex; 
+  align-items: center;
+  
+  
+  ul {
+    list-style: none;
+    margin-left: 4em;
+    
+    li {
+      display: inline-block;
+      margin-right: 3em;
+    }
+    
+    a {
+      text-decoration: none;
+      text-transform: uppercase;
+      color: $grey;
+      font-weight: 600;
+      position: relative;
+    }
+    
+    .active {
+      color: $white;
+    }
+    
+    .active:after {
+      content: '';
+      position: absolute;
+      width: 40%;
+      left: 30%;
+      bottom: -5px;
+      
+      border-bottom: 2px solid $green;
+    }
+  }
+}
+
+@media only screen and (max-width: 1000px) {
+  .filter {
+    ul {
+      li:last-of-type {
+      display: none;
+    }
+    
+    li {
+      margin-right: 1.5em;
+    }
+    }
+  }
+ }
+
+.browse {
+  background: $black-light;
+  .browse__content {
+    grid-row: 2 / 3;
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    color: $grey;
+    margin-left:4em;
+    margin-right: 4em;
+    padding-bottom: 1em;
+    border-bottom: 1px solid $grey;
+  
+  
+    
+  }
+  
+  
+  h3 {
+    color: $white;
+  }
+}
+
+.icons {
+  margin-left: 1em;
+  font-size: 1.6em;
+  font-weight: 300;
+  i{ margin-left: 1em;}
+  i:last-of-type {
+    color: $grey-bright;
+  }
+}
+
+.content__results {
+  grid-row: 3 / -1;
+  background: $black-light;
+  display: grid;
+  grid-gap: 1em;
+  padding: 1em 4em 1.5em 4em;
+  grid-template-columns: repeat(3, 1fr);
+
+
+  @media only screen and (min-width: 1025px){
+      grid-column-gap: 2em;
+      grid-template-columns: repeat(4, 1fr);
+    
+  }
+  
+  @media only screen and (min-width: 768){
+      grid-column-gap: 2em;
+      grid-template-columns: repeat(2, 1fr);
+    
+  }
+}
+
+.item {
+ 
+}
+
+.item__header {
+  position: relative;
+  cursor: pointer;
+  margin-bottom: 0.8em;
+  
+  img {
+    width: 100%;
+  }
+  
+  .overlay{
+    position:absolute;
+    top: 0;
+    bottom: 3px;
+    left: 0;
+    right: 0;
+    transition: all 0.1s ease-out;
+    opacity: 0;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    
+    > * {
+      color: $white;
+      font-size: 1.5em;
+    }
+    
+    .fa-play {
+      font-size: 3em;
+    }
+  }
+}
+
+.item__header:hover {
+  .overlay {
+    opacity:1;
+    background: (rgba(0,0,0,0.6));
+  }
+}
+.item__title {
+  color: $white;
+  margin-bottom: 0.3em;
+  font-size: 1em;
+}
+
+.item__desc, .followers {
+  color: $grey;
+  font-size: 1em;
+}
+
+.item__desc {
+  letter-spacing: 1px
+}
+
+.followers {
+  margin-top: 0.6em;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-size:0.85em;
+  font-weight: 300;
+}
+
+.player {
+  grid-area: 4 / 1 / -1 / -1;
+  background: $player;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  i {
+    font-size: 1.5em;
+    margin-left: 1em;
+    color: $grey;
+  }
+  
+  i:first-of-type{
+    margin-left: 0;
+  }
+  
+  i:hover{
+    color: $white;
+  }
+}
+
+.bar::after {
+  content: '';
+  width: 30%;
+  left: 35%;
+  position: absolute;
+  bottom: 10px;
+  border-bottom: 2px solid $grey;
+  border-radius: 50px;
+}
+
+  </style>
+</head>
+<body>
+  <div class="container">
+  
+    <header>
+      <div class="options">
+         <p>...</p>
+      </div>
+      <div class="search">
+        <i class="fas fa-angle-left icon"></i>
+        <i class="fas fa-angle-right icon"></i>
+       <div class="search__input"> <input type="text" placeholder="Suchen">
+        <i class="fas fa-search"></i>
+        </div>
+      </div>
+      <div class="account">
+        <i class="far fa-user-circle"></i>
+        <p>rndmName</p>
+        <i class="fas fa-angle-down"></i>
+      </div>
+    </header>
+  
+    <div class="side">
+        <ul class="top">
+           <li><a href="#" class="active">Browse</a></li>
+           <li><a href="#">Radio</a></li>
+        </ul>
+      
+      <div class="lib">
+        <h4>Bibliothek</h4>
+        <ul>
+          <li><a href="#">Dein Mixtape</a></li>
+          <li><a href="#">Zuletzt gehört</a></li>
+          <li><a href="#">Songs</a></li>
+          <li><a href="">Alben</a></li>
+          <li><a href="#">Künstler</a></li>
+          <li><a href="#">Sender</a></li>
+          <li><a href="#">Lokale Dateien</a></li>
+          <li><a href="#">Podcasts</a></li>
+        </ul>
+      </div>
+      <div class="playlists">
+        <h4>Playlists</h4>
+        <ul>
+          <li><a href="#">Main Stage</a></li>
+          <li><a href="#">Dein Mix der Woche</a></li>
+          <li><a href="#">Nimo - Ki-Ki</a></li>
+          <li><a href="#">HYPE MUSIC VI</a></li>
+          <li><a href="#">CHILL EDM</a></li>
+          <li><a href="#">BonezMC - Palmen aus Plastik</a></li>
+          <li><a href="#">Rap in deep</a></li>
+          <li><a href="#">HYPE MUSIC VI</a></li>
+          <li><a href="#">Freezy - Us de vorstadt</a></li>
+             <li><a href="#">CHILL EDM</a></li>
+            <li><a href="#">Rap in deep</a></li>
+          <li><a href="#">Rap in deep</a></li>
+          <li><a href="#">Rap in deep</a></li>
+          <li><a href="#">Rap in deep</a></li>
+          <li><a href="#">Rap in deep</a></li>
+          <li><a href="#">Rap in deep</a></li>
+        </ul>
+      </div>
+        
+      
+   </div>
+    
+    <span class="side__create__playlist">
+      <div>
+    <i class="fas fa-plus-circle"></i>
+      <h4 class="add__playlist">Neue Playlist</h4> 
+    </div>
+    </span>
+  
+    <div class="main">
+      <div class="banner">
+       
+      </div>
+      <div class="main__content">
+      <div class="filter">
+        <ul>
+          <li><a href="#" class="active">Übersicht</a></li>
+          <li><a href="#">Podcast</a></li>
+          <li><a href="#">Charts</a></li>
+          <li><a href="#">Genrs und Stimmungen</a></li>
+          <li><a href="#">Mehr</a></li>
+        </ul>
+      </div>
+  <!--     <div class="content"> -->
+        <div class="browse">
+          <div class="browse__content">
+            
+          <h3>Hear it first</h3>
+          <div class="icons">
+            <i class="fas fa-angle-left icon"></i>
+        <i class="fas fa-angle-right icon"></i>  
+          </div>
+          
+          </div>
+        </div>
+        <div class="content__results">
+          
+          <div class="item">
+            <div class="item__header">
+              <img src="https://pbs.twimg.com/media/C2kONaTWEAAI7dK.jpg" alt="">
+              <div class="overlay">
+                <i class="fas fa-plus-circle"></i>
+                <i class="fas fa-play"></i>
+                <div class="more">...</div>
+              </div>
+            </div>
+            <div class="item__body">
+              <p class="item__title">Pop Brandneu</p>
+              <p class="item__desc">Hier findest die die heissesten Popsongs und Neuerscheinungen.</p>
+              <p class="followers">285.929 Followers</p>
+            </div>
+          </div>
+          <div class="item">
+            <div class="item__header">
+              <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRLUCOy50hiOHYMM3WYNLRTBKltTRz8kwKEf3FeJ2tmKdzOnA1mTg" alt="">
+              <div class="overlay">
+                <i class="fas fa-plus-circle"></i>
+                <i class="fas fa-play"></i>
+                <div class="more">...</div>
+              </div>
+            </div>
+            <div class="item__body">
+              <p class="item__title">Pop Brandneu</p>
+              <p class="item__desc">Hier findest die die heissesten Popsongs und Neuerscheinungen.</p>
+              <p class="followers">285.929 Followers</p>
+            </div>
+          </div>
+          <div class="item">
+            <div class="item__header">
+              <img src="https://pbs.twimg.com/media/CwcT0S9VQAALQ-_.jpg" alt="">
+              <div class="overlay">
+                <i class="fas fa-plus-circle"></i>
+                <i class="fas fa-play"></i>
+                <div class="more">...</div>
+              </div>
+            </div>
+            <div class="item__body">
+              <p class="item__title">Pop Brandneu</p>
+              <p class="item__desc">Hier findest die die heissesten Popsongs und Neuerscheinungen.</p>
+              <p class="followers">285.929 Followers</p>
+            </div>
+          </div>
+          <div class="item">
+            <div class="item__header">
+              <img src="https://dancingastronaut.com/wp-content/uploads/2015/06/spotify-burn-by-tiesto.jpg" alt="">
+              <div class="overlay">
+                <i class="fas fa-plus-circle"></i>
+                <i class="fas fa-play"></i>
+                <div class="more">...</div>
+              </div>
+            </div>
+            <div class="item__body">
+              <p class="item__title">Pop Brandneu</p>
+              <p class="item__desc">Hier findest die die heissesten Popsongs und Neuerscheinungen.</p>
+              <p class="followers">285.929 Followers</p>
+            </div>
+          </div>
+          
+      </div>
+      </div>
+    </div>
+    <div class="player">
+      <div class="player__nav">
+        <div class="btns">
+          <i class="fas fa-random"></i>
+        <i class="fas fa-backward"></i>
+        <i class="fas fa-play-circle"></i>
+        <i class="fas fa-forward"></i>
+        <i class="fas fa-random"></i>
+        </div>
+        <div class="bar">
+          
+        </div>
+      </div>
+    </div>
+    
+  </div>
+  <script>
+    function resizeToMinimum(){
+  var minimum    = [1024, 780];
+  var current    = [window.outerWidth, window.outerHeight];
+  var restricted = [];
+  var i          = 2;
+
+  while(i-- > 0){
+    restricted[i] = minimum[i] > current[i] ? minimum[i] : current[i];
+  }
+
+  window.resizeTo(current[0], current[1]);
+}
+
+window.addEventListener('resize', resizeToMinimum, false);
+  </script>
+</body>
+</html>
