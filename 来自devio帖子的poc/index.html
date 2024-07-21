@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    html,
+body {
+	margin: 0;
+	padding: 0;
+}
+body {
+	font-family: sans-serif;
+	padding-top: 90px;
+}
+#app {
+	display: flex;
+	width: 100%;
+	flex-wrap: wrap;
+	padding: 0 15px;
+}
+
+a {
+	color: black;
+	text-decoration: none;
+}
+
+.settings {
+	background: hsla(0, 0%, 90%, 0.9);
+	width: 100%;
+	height: 50px;
+	top: 0;
+	left: 0;
+	position: fixed;
+	z-index: 10;
+	display: flex;
+	padding: 15px;
+	border-bottom: solid #aaa 1px;
+}
+
+.settings * {
+	font-size: 24pt;
+}
+#audio {
+	align-self: flex-end;
+	margin-left: 10px;
+}
+
+.grid-container {
+	width: 400px;
+	padding: 10px;
+	display: grid;
+	grid-template-columns: 130px 1fr 1fr;
+	grid-template-rows: 1fr 1fr 1fr;
+	grid-template-areas: "artworkUrl100 trackName trackName" "artworkUrl100 artistName artistName" "collectionName trackViewUrl previewUrl";
+}
+
+.trackName {
+	grid-area: trackName;
+	font-size: larger;
+}
+.trackName:before,
+.trackName:after {
+	content: '"';
+}
+
+.artistName {
+	grid-area: artistName;
+}
+
+.artworkUrl100 {
+	grid-area: artworkUrl100;
+	border-radius: 5px;
+}
+
+.collectionName {
+	grid-area: collectionName;
+	font-size: smaller;
+	margin-top: 5px;
+}
+
+.previewUrl a {
+	position: absolute;
+	margin: 0;
+}
+
+.grid-container:hover,
+.playing {
+	background: hsla(120, 40%, 80%, 0.5);
+}
+
+.playing .previewUrl a {
+	animation-duration: 0.5s;
+	animation-name: playing;
+	animation-iteration-count: infinite;
+}
+
+@keyframes playing {
+	0% {
+		font-size: 20pt;
+	}
+
+	50% {
+		font-size: 19pt;
+	}
+	100% {
+		font-size: 20pt;
+	}
+}
+
+  </style>
+</head>
+<body>
+  <form class="settings">
+    <input type="text" placeholder="Simon Garfunkel" id="term">
+      <button type="submit" onclick="search()">Search</button>
+      <audio id="audio"
+            controls
+             autoplay
+            src="">
+                Your browser does not support the
+                <code>audio</code> element.
+        </audio>
+      </form>
+    <div id="app"></div>
+    
+    <script>
+      const termEle = document.getElementById("term");
+const audioEle = document.getElementById("audio");
+const settingsEle = document.querySelector(".settings");
+audioEle.addEventListener("ended", ended);
+audioEle.addEventListener("timeupdate", timeupdate);
+settingsEle.addEventListener("submit", (evt) => {
+	evt.preventDefault();
+	return false;
+});
+
+
+function search() {
+	let term = termEle.value || termEle.placeholder;
+	const fetchURL = `https://no-no-cors.herokuapp.com/?term=${term}`;
+	let html = `Searching for "${term}" on  Music...`;
+
+	const eleApp = document.getElementById("app");
+
+	eleApp.innerHTML = html;
+	fetch(fetchURL)
+		.then(response => {
+			return response.json();
+		})
+		.then(data => {
+			const results = JSON.parse(data.body).results;
+			html = render(results);
+		})
+		.catch(response => {
+			html = response;
+		})
+		.finally(() => {
+			eleApp.innerHTML = html;
+		});
+}
+
+function render(results) {
+	const props = [
+		{ name: "artworkUrl100", header: "Cover", render: image },
+		{ name: "artistName", header: "Artist" },
+		{ name: "trackName", header: "Title" },
+		{ name: "collectionName", header: "Album" },
+		{
+			name: "previewUrl",
+			render: url,
+			text: "30 sec. 🔊",
+			header: "Listen to preview"
+		},
+		{
+			name: "trackViewUrl",
+			header: "Genre",
+			render: listenOnAppleMusic,
+			text: "%%type on Music"
+		}
+	];
+	let html = results
+		.sort(
+			(a, b) =>
+				a.localCompare
+					? a.trackName.localeCompare(b.trackName, "en", { sensitivity: "base" })
+					: a > b ? 1 : 0
+		)
+		.reduce((sum, result) => {
+			const ui = props.reduce((all, prop) => {
+				if (typeof prop["render"] !== "undefined") {
+					return all + prop.render.call(this, result[prop.name], prop);
+				} else {
+					return all + `<div class="${prop.name}">${result[prop.name]}</div>`;
+				}
+			}, "");
+			return sum + `<div class="grid-container">${ui}</div>`;
+		}, ``);
+	return html;
+}
+
+function url(data, prop) {
+	return `<div class="${
+		prop.name
+	}"><a href="#" onclick="preview(event)" data-url="${data}">${
+		prop.text
+	}</a></div>`;
+}
+function listenOnAppleMusic(data, prop) {
+	let text = prop.text;
+	let type = 'Listen'
+	try {
+	if (data.indexOf('movie') > -1) {
+		type = 'View';
+	} else if (data.indexOf('podcast') > -1) {
+		type = 'Podcast';
+	}
+		} catch(e) {}
+	text = text.replace('%%type', type);
+	return `<div class="${
+		prop.name
+	}"><a href="${data}" target="_blank" data-url="${data}">${
+		text
+	}</a></div>`;
+}
+function image(data, prop) {
+	return `<img class="${prop.name}" src="${data}" />`;
+}
+
+let playing;
+function preview(evt) {
+	evt.preventDefault();
+	if (playing) {
+		playing.parentNode.parentNode.classList.remove("playing");
+	}
+	playing = evt.target;
+	playing.parentNode.parentNode.classList.add("playing");
+	const url = playing.dataset.url;
+
+	audioEle.src = url;
+	audioEle.play();
+}
+
+function ended(evt) {
+	playing.parentNode.parentNode.classList.remove("playing");
+}
+
+function timeupdate(evt) {
+	let timeLeft = parseInt(audioEle.duration - audioEle.currentTime, 10);
+	if (timeLeft === 0 || timeLeft.toString() === 'NaN' ) {
+		timeLeft = 30
+	}
+	playing.innerText = `${timeLeft} sec. 🔊`;
+}
+    </script>
+</body>
+</html>
