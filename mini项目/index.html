@@ -1,0 +1,205 @@
+<html>
+
+<head>
+
+  <title>Mini Project 3</title>
+  <!--some meta data. Title, style and a description-->
+
+  <meta name="description" content="A personal site designed for school." />
+
+  <style>
+    body {
+      background-color:#999999;
+    }
+    div.chunk {
+      background-color:black;
+      color:white;
+      float:left;
+      margin:15px;
+      width:380px;
+    }
+  </style>
+
+  <meta charset="UTF-8">
+  <!--set charset to UTF-8, because ANSI is for chumps.-->
+
+</head>
+
+<body>
+
+  <h1 style="font-family:courier; 
+             font-size:200%; color:1a1a1a; 
+             text-align:center;" id="jsDemo">
+    
+      <span style="background-color:white;">
+      Hello, my name is David.
+      </span>
+  </h1>
+
+  <!--a button to use JavaScript to change text and style.-->
+  <div align="center">
+    <button type="button" onclick="changeTitle()">
+      Click for alternate title
+    </button>
+  </div>
+
+  <!--the logic for that JS.-->
+  <script>
+    function changeTitle() { 
+        document.getElementById("jsDemo").innerHTML = "I'd prefer not to be called 'Dave.'";
+        document.getElementById("jsDemo").style.color = "red"; 
+        document.getElementById("jsDemo").style.fontSize = "100%";
+    }
+  </script>
+
+  <div class="chunk">
+    <h2 style="font-family:verdana;">
+    Here are some of my interests:</h2>
+
+    <p style="font-size:80%;">
+      I am a <i>huge</i> fan of <a href="http://www.dailytechnewsshow.com" target="_blank"><em>quality</em></a> tech reporting and podcasts; like the those pictured on this page! I also enjoy:
+      <ul>
+        <li>Books</li>
+        <li>Movies</li>
+        <li>Games</li>
+        <ol>
+          <li>Video</li>
+          <li>Otherwise</li>
+        </ol>
+        <li>Computers</li>
+        <dl>
+          <dt>Working</dt>
+          <dd>
+            <spand style="color:green;">Good</span>
+          </dd>
+          <dt>Broken</dt>
+          <dd><span style="color:red;">Bad</span></dd>
+        </dl>
+      </ul>
+    </p>
+  </div>
+
+  <div class="chunk">
+    <!--This div covers JavaScript changing an attribute-->
+    <img src="http://is1.mzstatic.com/image/thumb/Music/v4/7e/59/22/7e592290-0534-0be4-b48d-217ad76a696e/source/1400x1400sr.jpg" alt="Daily Tech News Show" style="height:auto; width:100%;" id="podcast" />
+
+    <p align="center">
+
+      Some great shows:
+      <br>
+
+      <button type="button" onclick="changePodcast(1)">
+        DTNS
+      </button>
+
+      <button type="button" onclick="changePodcast(2)">
+        &lt;Night&nbsp;Attack&gt;
+        <!--char entities and non breaking space-->
+      </button>
+
+      <button type="button" onclick="changePodcast(3)">
+        TMS
+      </button>
+
+    </p>
+
+    <script>
+      function changePodcast(n) { 
+          
+          if (n == 1){ 
+          document.getElementById('podcast').src = 
+          "http://is1.mzstatic.com/image/thumb/Music/v4/7e/59/22/7e592290-0534-0be4-b48d-217ad76a696e/source/1400x1400sr.jpg";
+          }
+          
+          if (n == 2){ 
+          document.getElementById('podcast').src = 
+          "http://nightattack.tv/site/assets/files/1026/night-attack.1400x1400.jpg";
+          }
+          
+          if (n == 3){
+          document.getElementById('podcast').src = 
+          "https://pbs.twimg.com/profile_images/3480653086/10796145e2022841364968d7054fd632_400x400.jpeg";
+          }   
+      }
+    </script>
+
+  </div>
+
+
+  <div class="chunk">
+    <table border="2" width="100%">
+
+      <tr>
+        <td>Math Symbols:</td>
+        <!--This row has Mathematical symbols-->
+        <td>&part;</td>
+        <td>&notin;</td>
+        <td>&forall;</td>
+      </tr>
+
+      <tr>
+        <td>Gr&Epsilon;&Epsilon;k Symbols:</td>
+        <!--This row has Greek symbols-->
+        <td>&Delta;</td>
+        <td>&#915;</td>
+        <td>&#916;</td>
+      </tr>
+
+    </table>
+
+    <iframe src="http://www.dailytechnewsshow.com" style="width:98%; height:auto;"></iframe>
+  </div>
+
+  <div class="chunk">
+    <img src="https://pbs.twimg.com/media/CA01BMFUwAAIb1w.jpg:large" alt="Wasatch Parking" style="height:auto; width:100%;" />
+
+    <form>
+      What's your favorite part of the valley?
+      <br>
+      <input type="text" name="firstname">
+      <br>
+    </form>
+    <!--The beginning of a section of example specifically for Forms, Form Elements, Input Types and Input Elements-->
+
+    Maybe you recognize this part of the valley? Which do you think it is?
+    <br>
+    <form>
+      <input type="radio" name="city" value="Salt Lake" checked> Salt Lake
+      <br>
+      <input type="radio" name="city" value="Kearns"> Kearns
+      <br>
+      <input type="radio" name="city" value="Taylorsville"> Taylorsville
+    </form>
+    <!--Radio buttons-->
+
+    What model do you think that car on the right is?
+    <select name="cars">
+      <option value="Viper">Viper</option>
+      <option value="Civic">Civic</option>
+      <option value="cube">cube</option>
+      <option value="Versa">Versa</option>
+    </select>
+    <!--Drop down list-->
+
+    <textarea name="search" rows="5" cols="50">
+      Name the shops you can see in the picture here.
+    </textarea>
+    <!--text area-->
+
+    Which of these aren't pictured? (Check all that apply.)
+    <form>
+      <input type="checkbox" name="store1" value="Panda" /> Panda Express
+      <br>
+      <input type="checkbox" name="store2" value="CJs" /> Carl's Jr.
+      <br>
+      <input type="checkbox" name="store3" value="Chick-fil-A" /> Chick-fil-A
+      <br>
+      <input type="checkbox" name="store4" value="Virg's" /> Virg's
+    </form>
+    <!--checkboxes-->
+
+  </div>
+
+</body>
+
+</html>
