@@ -1,0 +1,550 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style lang="scss">
+    @import url('https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Taviraj:400,500,700');
+
+*,
+*::after,
+*::before {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Roboto', sans-serif;
+  font-size: 16px;
+}
+
+h1,h2,h3,h4,h5,h6 {
+  font-family: 'Taviraj', serif;
+  margin: 0;
+}
+
+header {
+  height: 70vh;
+  background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0,0,0, 0.5)), url('http://unsplash.it/1033/1033');
+  background-size: cover;
+  background-repeat: none;
+  display: flex;
+  flex-direction: column;
+  
+  .intro-text {
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    color: #fff;
+    font-size: 3em;
+    letter-spacing: 4px;
+  }
+}
+
+.navbar {
+  height: 120px;
+  width: 90%;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid rgba(255, 255,255, 0.1);
+   transition: all 0.5s ease-in-out;
+  
+    
+  
+  .logo {
+    color: white;
+    font-size: 1.5em
+  }
+}
+
+.fixed-nav {
+  background: white;
+  height: 80px;
+  color: black;
+  z-index: 10;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right:0;
+  width: 100%;
+  padding: 0 5%;
+  border-bottom: 1px solid rgba(0,0,0,0.2);
+  transition: color 0.5s ease-in-out;
+  transition: background-color 0.5s ease-in-out;
+  
+  .logo {
+    color: black
+  }
+  
+  .main-nav a {
+    color: black;
+  }
+}
+
+.main-nav {
+  
+  ul {
+    list-style: none;
+    
+    li:first-of-type {
+      margin-left: 0;
+    }
+    
+    li {
+      
+      display: inline-block;
+      margin-left: 1.6em;
+      
+      a{
+        text-transform: uppercase;
+        text-decoration: none;
+        color: #fff;
+        font-size: 0.8em
+      }
+    }
+  }
+}
+
+section {
+  margin-top: 2em;
+  margin-left: 32px;
+  margin-right: 32px;
+  // display: grid;
+  // grid-template-rows: 80px auto auto;
+  // grid-template-columns: repeat(12, 1fr);
+  // grid-gap: 16px;
+  
+  .shopping-header {
+   width: 80%;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    padding-bottom: 1em;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+    
+    .results {
+      grid-area: 1 / 1 / 2 / 2;
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+    }
+    
+    .filter {
+      grid-area: 1 / 2 / 1 / -1;
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+      
+      select {
+        width: 70%;
+        padding: 15px 20px;
+        color: darken(#aaa69d, 50%);
+        border: 1px solid #aaa69d;
+        
+        &:focus, &:active{
+            outline: none !important;
+        }
+      }
+    }
+  }
+  
+  .shopping-grid {
+    margin-top: 1em;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-gap: 20px 0;
+   
+    
+    .item{
+      width: 80%;
+      margin: 0 auto;
+      
+      .image {
+        position: relative;
+        overflow: hidden;
+        width: 100%;
+        max-height: 100%;
+        
+        img {
+          transition: all 0.5s ease-in-out;
+        }
+        
+        .overlay {
+          position: absolute;
+          top: 0;
+          right: 0;
+          bottom: 0;
+          left: 0;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          opacity: 0;
+          transition: all 0.5s ease-in-out;
+          
+          p {
+            text-transform: uppercase;
+            font-size: 1.2em;
+            letter-spacing: 2px;
+          }
+        }
+        
+        .add-to-cart {
+            position: absolute;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 2;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 45px;
+            background: #000;
+            opacity: 0;
+            color: white;
+            transform : all 0.5s ease-in-out;
+            font-size: 0.85em;
+          text-transform: capitalize;
+          }
+        
+         
+          
+         
+ 
+        
+        &:hover {
+          .overlay {
+            opacity: 1;
+            z-index: 1;
+            background: linear-gradient(rgba(255,255,255,0.8), rgba(255,255,255,0.8));
+          }
+          img {
+            transform: scale(1.2);
+          }
+          
+          .add-to-cart {
+            opacity: 1;
+          }
+        } 
+      }
+      
+      
+      a {
+        text-decoration: none;
+        color: inherit;
+      }
+      img {
+        width: 100%;
+      }   
+      h6 {
+        margin-top: 18px;
+        margin-bottom: 10px;
+        font-size: 14px;
+        font-weight: 400;
+font-family: 'Roboto', sans-serif;      }  
+      p {
+        font-size: 12px;
+      }
+      h6,p {
+        text-align: center;
+      }
+    }
+  }
+  
+  .pagination {
+    height: 40px;
+    margin-top: 40px;
+    margin-bottom: 80px;
+    border: 1px solid rgba(0,0,0,0.2);
+    display: flex;
+    justify-content: space-between;
+    
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+    
+    div {
+      line-height: 40px;
+      
+      
+      li {
+        list-style: none;
+        display: inline-block;
+        padding: 0 15px;
+      }
+      
+      li:nth-child(1) {
+        background-color: #d1d8e0;
+      }
+    }
+    
+    .pageBtnLeft, .pageBtnRight {
+      line-height: 40px;
+      padding: 0 10px;
+      background-color: #d1d8e0;
+    }
+    
+    .pageBtnLeft {
+      border-right: 1px solid rgba(0,0,0,0.2);
+    }
+    .pageBtnRight {
+      border-left: 1px solid rgba(0,0,0,0.2);
+    }
+  }
+} 
+// End of section
+
+//  Start footer
+
+footer {
+  padding: 50px 30px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  background-color: #232323;
+  
+  h4 {
+    text-transform: uppercase;
+    font-weight: 500;
+    letter-spacing: 2px;
+    color: #fff;
+    margin-bottom: 0.5em;
+  }
+  
+  .text-bold {
+   font-weight: 600;
+  }
+  p {
+    color: #949494;
+    line-height: 25px;
+    font-size: 14px;
+  }
+  
+  .signup {
+    margin-top: 2em;
+    input{
+      outline: none;
+      height: 30px;
+      width: 300px;
+      padding: 20px 20px;
+    }
+    
+    a {
+      font-size: 14px;
+      margin-left: 1em;
+      color: #fff;
+      text-decoration: none;
+      border: 1px solid  #949494;
+      padding: 14px 20px;
+      transition: all 0.3s ease-in-out;
+      
+      &:hover {
+        background-color: #4e4e4d;
+        border-color: #4e4e4d
+          
+      }
+    }
+    
+  }
+}
+
+
+  </style>
+</head>
+<body>
+  <header class="header">
+    <div class="navbar">
+      <h3 class="logo">Shop.</h3>
+      <nav class="main-nav">
+        <ul>
+          <li><a href="#">Demos</a></li>
+          <li><a href="#">Pages</a></li>
+          <li><a href="#">Folio</a></li>
+          <li><a href="#">Blog</a></li>
+          <li><a href="#">Shop</a></li>
+          <li><a href="#">Elements</a></li>
+          <li><a href="#">Cart</a></li>
+          <li><a href="#">Search</a></li>
+        </ul>
+      </nav>
+    </div>
+    <h1 class="intro-text">Shop Regular Grid</h1>
+  </header>
+  
+  
+  <section>
+    <div class="shopping-header">
+      <div class="results">Showing 1 -10 of 46 results</div>
+      <div class="filter">
+        <select name="sort" id="sort">
+          <option value="Sort By" selected="selected" disabled>Sort by </option>
+          <option value="price">Price</option>
+          <option value="latest">Latest</option>
+          <option value="newest">Newest</option>
+        </select>
+      </div>
+    </div>
+      
+    
+    
+    <div class="shopping-grid">
+      
+      <div class="item">
+        <a href="/details">
+          <div class="image">
+            <div class="overlay">
+             <p>View</p>
+            </div>
+            <a href="/add-to-cart" class="add-to-cart">add to cart</a>
+            <img src="http://unsplash.it/200/300" alt="" />
+          </div>
+          <h6 class="item-title">Crew Neck U.S Sweater</h6>
+          <p class="item-price">$15.00</p>
+          </a>
+      </div>
+      
+       <div class="item">
+        <a href="/details">
+          <div class="image">
+            <div class="overlay">
+             <p>View</p>
+            </div>
+            <a href="/add-to-cart" class="add-to-cart">add to cart</a>
+            <img src="http://unsplash.it/200/304" alt="" />
+          </div>
+          <h6 class="item-title">Crew Neck U.S Sweater</h6>
+          <p class="item-price">$15.00</p>
+          </a>
+      </div>
+      
+       <div class="item">
+        <a href="/details">
+          <div class="image">
+            <div class="overlay">
+             <p>View</p>
+            </div>
+            <a href="/add-to-cart" class="add-to-cart">add to cart</a>
+            <img src="http://unsplash.it/200/302" alt="" />
+          </div>
+          <h6 class="item-title">Crew Neck U.S Sweater</h6>
+          <p class="item-price">$15.00</p>
+          </a>
+      </div>
+      
+       <div class="item">
+        <a href="/details">
+          <div class="image">
+            <div class="overlay">
+             <p>View</p>
+            </div>
+            <a href="/add-to-cart" class="add-to-cart">add to cart</a>
+            <img src="http://unsplash.it/200/308" alt="" />
+          </div>
+          <h6 class="item-title">Crew Neck U.S Sweater</h6>
+          <p class="item-price">$15.00</p>
+          </a>
+      </div>
+      
+       <div class="item">
+        <a href="/details">
+          <div class="image">
+            <div class="overlay">
+             <p>View</p>
+            </div>
+            <a href="/add-to-cart" class="add-to-cart">add to cart</a>
+            <img src="http://unsplash.it/200/304" alt="" />
+          </div>
+          <h6 class="item-title">Crew Neck U.S Sweater</h6>
+          <p class="item-price">$15.00</p>
+          </a>
+      </div>
+      
+       <div class="item">
+        <a href="/details">
+          <div class="image">
+            <div class="overlay">
+             <p>View</p>
+            </div>
+            <a href="/add-to-cart" class="add-to-cart">add to cart</a>
+            <img src="http://unsplash.it/200/305" alt="" />
+          </div>
+          <h6 class="item-title">Crew Neck U.S Sweater</h6>
+          <p class="item-price">$15.00</p>
+          </a>
+      </div>
+        
+    </div>
+    
+  
+    <div class="pagination">
+      <a href="#" class="pageBtnLeft">&lt;</a>
+    
+      <div class="pages">
+        <li>
+          <a href="#">1</a>
+        </li>
+         <li>
+          <a href="#">2</a>
+        </li>
+         <li>
+          <a href="#">3</a>
+        </li>
+        <li>
+          <a href="#">4</a>
+        </li>
+        </div>
+        
+       <a href="#" class="pageBtnRight">&gt;</a>
+   
+      
+    </div>
+   
+  </section>
+  <footer>
+    <div class="about">
+      <h4>About</h4>
+      <p>
+        <span class="text-bold">Starting a new business?</span> Then Sartre is for you!
+  This multi-purpose template offsers 8 carefully crafted concepts with two variations each, 20+ components and 8+ plugins. It also comes with a range of different headers, footers and pre-designed content blocks that can easily be swaped around to create new interesting layouts. Simple, Elegent and Powerful!
+      </p>
+    </div>
+    
+    <div class="notification">
+      <h4>Get Notified</h4>
+      <p>Want to be notified when we launch a new template or an udpate. Just sign up and we'll send you a notification by email.</p>
+      <div class="signup">
+        <input type="text" placeholder="Email address">
+        <a href="#">Signup</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const nav = document.querySelector(".navbar");
+const header = document.querySelector('.header');
+const headerHeight = header.clientHeight;
+
+
+function fixNavbar() {
+    
+  const scrollY = window.scrollY;
+  console.log(scrollY);
+  if (scrollY > (headerHeight)) {
+    nav.classList.add("fixed-nav");
+  }
+  
+  if (scrollY < (headerHeight)) {
+    nav.classList.remove("fixed-nav");
+  }
+  
+}
+
+window.addEventListener('scroll', fixNavbar);
+  </script>
+</body>
+</html>
