@@ -1,0 +1,898 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    :root {
+  --background: #ffeaf3;
+  --container-background: #ffff;
+  --text-color: #949494;
+  --text-active-color: #3f3f3f;
+  --main-container-background: #fcfcfd;
+  --writing-section-background: #132051;
+  --cards-section-background: #fce2ed;
+  --speaking-section-background: #d6eef6;
+  --title-text-color: #1f2b59;
+  --disabled-daily-background: #e6e6e6;
+  --complated-lesson-background: #1955af;
+  --sidebar-background: #ffff;
+  --tag-text-color: #3e4561;
+  --container-background-color: #fcfcfd;
+  --daily-icons-border-color: #c2c2c2a1;
+  --font: Mulish, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+    Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+}
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  background: var(--background);
+  font-family: var(--font);
+  transform: scale(0.8);
+}
+
+.container {
+  display: flex;
+  //   justify-content: flex-start;
+  position: relative;
+  width: 1165px;
+  height: 700px;
+  background: var(--container-background);
+  border-radius: 35px;
+  overflow: hidden;
+  background-color: var(--container-background-color);
+  animation: container-show 1s ease-out;
+
+  .sidebar {
+    display: flex;
+    position: relative;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    width: 180px;
+    height: 100%;
+    background: var(--sidebar-background);
+    animation-delay: 2s;
+    animation: sidebar-show 1.5s ease-out;
+
+    div + div {
+      margin-top: 10px;
+    }
+
+    .logo {
+      display: flex;
+      position: relative;
+      align-items: center;
+      justify-content: center;
+      background: #132051;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      cursor: pointer;
+      margin: 45px;
+      left: -40px;
+      cursor: pointer;
+
+      .second-view {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 20px;
+        height: 20px;
+        background: var(--background);
+        border-radius: 50%;
+        overflow: hidden;
+        .sun {
+          position: relative;
+          width: 135px;
+          height: 15px;
+          background: var(--complated-lesson-background);
+          border-radius: 50%;
+          top: 8px;
+        }
+      }
+    }
+
+    .menu-section {
+      display: flex;
+      height: 40%;
+
+      ul {
+        display: flex;
+        width: 100%;
+        margin-left: 25px;
+        flex-direction: column;
+        justify-content: space-around;
+        list-style: none;
+
+        li {
+          display: flex;
+          align-items: center;
+          color: var(--text-color);
+          cursor: pointer;
+          transition: color 0.5s ease;
+
+          span:nth-child(2) {
+            padding-left: 10px;
+          }
+        }
+        li:hover {
+          color: var(--text-active-color);
+        }
+        li.active {
+          color: rgb(0, 0, 0);
+        }
+      }
+    }
+    .pro-section {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-between;
+
+      position: absolute;
+      width: 130px;
+      height: 140px;
+      border: 2px solid #e4e5e6;
+      border-radius: 10px;
+      bottom: 30px;
+      cursor: pointer;
+      .texts {
+        text-align: center;
+        padding-bottom: 18px;
+      }
+      span {
+        position: absolute;
+        transform: scale(5) rotate(5deg);
+        color: #d6eef6;
+        left: 35%;
+      }
+    }
+  }
+}
+
+.content-container {
+  margin-left: 25px;
+  padding: 35px;
+  .main-title {
+    h1 {
+      font-weight: 900;
+      color: var(--title-text-color);
+    }
+    p {
+      font-weight: 400;
+      padding-top: 15px;
+      color: rgb(66, 66, 66);
+    }
+  }
+  .course-cards {
+    display: flex;
+    position: relative;
+
+    justify-content: space-between;
+    width: 465px;
+    margin-top: 40px;
+
+    .card {
+      display: flex;
+      position: relative;
+      flex-direction: column;
+      justify-content: space-around;
+      padding: 10px;
+      width: 220px;
+      height: 145px;
+      border-radius: 25px;
+      background-color: #ffff;
+      box-shadow: 4px 4px 9px 4px rgba(8, 32, 119, 0.185);
+      .head-title {
+        display: flex;
+        justify-content: space-between;
+      }
+      .card-navigator {
+        display: flex;
+        position: relative;
+        align-items: center;
+        justify-content: center;
+        color: rgba(255, 255, 255, 0.9);
+        width: 25px;
+        height: 45px;
+        border: 1px solid rgba(255, 255, 255, 0.45);
+        border-radius: 5px;
+        right: 5px;
+        cursor: pointer;
+      }
+    }
+    .card:nth-child(2) {
+      display: flex;
+      flex-direction: column;
+      .card-navigator {
+        span {
+          color: var(--title-text-color);
+        }
+      }
+      p:nth-child(1) {
+        color: var(--title-text-color);
+        font-weight: 200;
+      }
+      p:nth-child(2) {
+        color: var(--title-text-color);
+        font-weight: 700;
+        padding-top: 10px;
+      }
+      .course-status {
+        display: flex;
+        position: relative;
+        align-items: center;
+        color: var(--title-text-color);
+        font-weight: 400;
+        left: -5px;
+      }
+
+      .card-navigator {
+        display: flex;
+        position: relative;
+        align-items: center;
+        justify-content: center;
+        color: var(--text-color);
+        width: 25px;
+        height: 45px;
+        border: 1px solid rgba(92, 89, 89, 0.45);
+        border-radius: 5px;
+        right: 5px;
+      }
+    }
+    .card:nth-child(1) {
+      background: var(--complated-lesson-background);
+      p:nth-child(1) {
+        color: #ffff;
+        font-weight: 200;
+      }
+      p:nth-child(2) {
+        color: #ffff;
+        font-weight: 700;
+        padding-top: 10px;
+      }
+      .course-status {
+        display: flex;
+        align-items: center;
+        position: relative;
+        color: #ffff;
+        font-weight: 400;
+        left: -5px;
+      }
+    }
+  }
+
+  .daily-wrap {
+    position: relative;
+    margin-top: 25px;
+    animation: daily-show 1.6s ease;
+    .logo {
+      display: flex;
+      position: relative;
+      height: 185px;
+      flex-direction: column;
+      justify-content: space-between;
+      color: var(--complated-lesson-background);
+      top: 8px;
+      left: 35px;
+    }
+    .daily-icon {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 45px;
+      height: 45px;
+      border: 2px solid var(--daily-icons-border-color);
+      border-radius: 10px;
+    }
+    .daily-cards {
+      display: flex;
+      position: relative;
+      flex-direction: column;
+      justify-content: space-evenly;
+      height: 325px;
+      margin-left: 75px;
+      bottom: 10px;
+    }
+    .title {
+      font-size: 24px;
+      color: var(--title-text-color);
+      font-weight: 400;
+    }
+  }
+  .reading-card {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    width: 345px;
+    height: 125px;
+    box-shadow: 4px 4px 9px 4px rgba(0, 0, 0, 0.185);
+    border-radius: 10px;
+    padding-left: 15px;
+    .daily-content-title {
+      color: var(--title-text-color);
+    }
+    p {
+      color: var(--title-text-color);
+      font-size: 18px;
+      font-weight: 700;
+      margin-top: 10px;
+    }
+
+    .tag-section {
+      display: flex;
+      .tag:nth-child(1) {
+        width: 90px;
+      }
+      .tag {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 60px;
+        height: 25px;
+        font-size: 14px;
+        border-radius: 5px;
+        color: var(--tag-text-color);
+        background: var(--disabled-daily-background);
+        margin-bottom: 15px;
+      }
+      .tag + .tag {
+        margin-left: 15px;
+      }
+    }
+    .daily-text-container {
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .daily-navigator {
+      display: flex;
+      position: relative;
+      align-items: center;
+      justify-content: center;
+      color: var(--text-color);
+      width: 25px;
+      height: 45px;
+      border: 1px solid rgba(92, 89, 89, 0.45);
+      border-radius: 5px;
+      right: 15px;
+      cursor: pointer;
+    }
+  }
+  .movie-card {
+    display: flex;
+    position: relative;
+    align-items: center;
+    justify-content: space-between;
+    width: 345px;
+    height: 63px;
+    background: var(--disabled-daily-background);
+    color: var(--text-color);
+    font-size: 18px;
+    font-weight: 700;
+    border-radius: 10px;
+    padding-left: 15px;
+    padding-right: 15px;
+    cursor: not-allowed;
+  }
+  .essay-card {
+    display: flex;
+    position: relative;
+    align-items: center;
+    justify-content: space-between;
+    width: 345px;
+    height: 63px;
+    background: var(--disabled-daily-background);
+    color: var(--text-color);
+    border-radius: 10px;
+    font-size: 18px;
+    font-weight: 700;
+    padding-left: 15px;
+    padding-right: 15px;
+    cursor: not-allowed;
+  }
+}
+.routine-wrap {
+  display: flex;
+  margin-top: 25px;
+}
+@media only screen and (min-device-width: 320px) and (max-device-width: 840px) {
+  .container {
+    overflow-x: hidden;
+    overflow-y: scroll;
+    .sidebar {
+      position: relative;
+    }
+
+    .content-container {
+      position: relative;
+      left: -210px;
+      .course-cards {
+        display: flex;
+        margin-left: 25px;
+        flex-direction: column;
+      }
+      .card + .card {
+        margin-top: 15px;
+      }
+      .daily-cards {
+      }
+    }
+  }
+}
+
+.profile-sidebar {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  width: 33%;
+  .user-area {
+    display: flex;
+    position: relative;
+    width: 100%;
+    .bio-section {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      height: max-content;
+      padding-left: 10px;
+      margin-top: 15px;
+      .photo {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 35px;
+        height: 35px;
+        background: var(--cards-section-background);
+        border-radius: 10px;
+        cursor: pointer;
+      }
+      .bio {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        height: 45px;
+        width: 125px;
+        margin-left: 10px;
+        p {
+          font-size: 18px;
+          font-weight: 400;
+        }
+        span {
+          font-size: 14px;
+          font-weight: 200;
+        }
+
+        .bio-navigator {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          width: 25px;
+          height: 25px;
+          background: var(--disabled-daily-background);
+          border-radius: 50%;
+          color: var(--writing-section-background);
+          cursor: pointer;
+        }
+      }
+      .settings-container {
+        position: relative;
+        width: 100%;
+        position: absolute;
+        text-align: right;
+        right: 25px;
+
+        .settings {
+          cursor: pointer;
+          opacity: 0.6;
+        }
+        .notifications {
+          cursor: pointer;
+          opacity: 0.6;
+        }
+      }
+    }
+  }
+
+  .categories-section {
+    display: flex;
+    position: relative;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    padding-top: 45px;
+    .writing {
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      width: 325px;
+      height: 165px;
+      background: var(--writing-section-background);
+      border-radius: 15px;
+      cursor: pointer;
+      .text {
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+        justify-content: flex-end;
+        margin: 25px 25px;
+      }
+      h6 {
+        font-size: 25px;
+        color: #ffff;
+        font-weight: 700;
+      }
+      span {
+        font-size: 14px;
+        color: #ffff;
+        font-weight: 200;
+      }
+    }
+    .categories-wrap {
+      display: flex;
+      position: relative;
+      justify-content: space-between;
+      margin-top: 15px;
+      width: 318px;
+      height: 60%;
+      flex-wrap: wrap;
+      .text {
+        display: flex;
+        position: relative;
+        flex-direction: column;
+        height: 100%;
+        justify-content: flex-end;
+        bottom: 5px;
+        left: 15px;
+      }
+    }
+    .listening {
+      display: flex;
+      position: relative;
+      width: 160px;
+      height: 125px;
+      border: 2px solid #dbdada;
+      border-radius: 10px;
+      cursor: pointer;
+      h6 {
+        font-size: 25px;
+        color: var(--writing-section-background);
+        font-weight: 800;
+      }
+      span {
+        font-size: 14px;
+        color: var(--writing-section-background);
+        font-weight: 400;
+      }
+    }
+    .cards {
+      display: flex;
+      position: absolute;
+      width: 120px;
+      height: 125px;
+      background: var(--background);
+      border-radius: 10px;
+      right: 0;
+      cursor: pointer;
+      h6 {
+        font-size: 25px;
+        color: var(--writing-section-background);
+        font-weight: 800;
+      }
+      span {
+        font-size: 14px;
+        color: var(--writing-section-background);
+        font-weight: 400;
+      }
+    }
+    .speaking {
+      display: flex;
+      position: relative;
+      width: 160px;
+      height: 125px;
+      background: var(--speaking-section-background);
+      border-radius: 10px;
+      cursor: pointer;
+      h6 {
+        font-size: 25px;
+        color: var(--writing-section-background);
+        font-weight: 800;
+      }
+      span {
+        font-size: 14px;
+        color: var(--writing-section-background);
+        font-weight: 400;
+      }
+    }
+    .see-more {
+      width: 140px;
+      height: 125px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      p {
+        border-bottom: 3px solid var(--background);
+        cursor: pointer;
+      }
+    }
+  }
+}
+.progress-icon {
+  position: relative;
+  transform: scale(0.5);
+}
+
+@media only screen and (max-width: 840px) {
+  .container {
+    .sidebar {
+      width: 110px;
+      overflow: hidden;
+    }
+    .main-title {
+      position: relative;
+      left: 125px;
+    }
+    .course-cards {
+      flex-direction: column;
+      align-items: center;
+      margin-left: 65px;
+    }
+  }
+}
+@keyframes container-show {
+  0% {
+    opacity: 0;
+    margin-top: 25px;
+  }
+  100% {
+    opacity: 1;
+    margin-top: 0px;
+  }
+}
+@keyframes sidebar-show {
+  0% {
+    opacity: 0;
+    right: 450px;
+  }
+  25% {
+    opacity: 0.25;
+  }
+  50% {
+    opacity: 0.4;
+  }
+  75% {
+    opacity: 0.75;
+  }
+  100% {
+    opacity: 1;
+    right: 0px;
+  }
+}
+@keyframes daily-show {
+  0% {
+    opacity: 0;
+    top: 450px;
+  }
+
+  100% {
+    opacity: 1;
+    top: 0;
+  }
+}
+
+  </style>
+</head>
+<body>
+  <body>
+    <div class="container">
+      <div class="sidebar">
+        <div class="logo">
+          <div class="second-view">
+            <div class="sun"></div>
+          </div>
+        </div>
+        <div class="menu-section">
+          <ul>
+            <li>
+              <span class="material-icons"> signal_cellular_alt </span>
+              <span> Overview </span>
+            </li>
+            <li class="active">
+              <span class="material-icons"> shop </span><span>Lessons</span>
+            </li>
+  
+            <li>
+              <span class="material-icons"> wysiwyg </span><span>Transactions</span>
+            </li>
+  
+            <li>
+              <span class="material-icons"> chat_bubble_outline </span><span>Conversations</span>
+            </li>
+          </ul>
+        </div>
+        <div class="pro-section">
+          <div class="pro-icon">
+            <span class="material-icons"> bolt </span>
+          </div>
+          <div class="texts">
+            <h3>Pro</h3>
+            <p>Explore more</p>
+          </div>
+        </div>
+      </div>
+  
+      <div class="content-container">
+        <div class="main-title">
+          <h1>Hello,Darcy</h1>
+          <p>Your progress today <b>75</b>/100. Very well!</p>
+        </div>
+        <div class="course-cards">
+          <div class="card">
+            <div class="head-title">
+              <div class="card-title">
+                <p>Prepositions</p>
+                <p>Lesson 1</p>
+              </div>
+              <div class="card-navigator">
+                <span> > </span>
+              </div>
+            </div>
+            <div class="course-status">
+              <div class="icon"></div>
+              <span class="material-icons progress-icon">
+                radio_button_checked
+              </span>
+              <span>Completed</span>
+            </div>
+          </div>
+          <div class="card">
+            <div class="head-title">
+              <div class="card-title">
+                <p>Phrasal Verbs</p>
+                <p>Lesson 2</p>
+              </div>
+              <div class="card-navigator">
+                <span> > </span>
+              </div>
+            </div>
+            <div class="course-status">
+              <div class="icon"></div>
+              <span class="material-icons progress-icon" style="color: #f7ddb8">
+                radio_button_checked
+              </span>
+              <span>In progress</span>
+            </div>
+          </div>
+        </div>
+  
+        <div class="daily-wrap">
+          <div class="title">Daily routine</div>
+          <div class="routine-wrap">
+            <div class="logo">
+              <span class="material-icons daily-icon"> bolt </span>
+              <span class="material-icons daily-icon"> grade </span>
+            </div>
+            <div class="daily-cards">
+              <div class="reading-card">
+                <div class="daily-text-container">
+                  <div class="daily-content-title">
+                    Reading - article
+                    <p>Are we living in a simulation?</p>
+                  </div>
+                  <div class="daily-navigator">
+                    <span> > </span>
+                  </div>
+                </div>
+                <div class="tag-section">
+                  <div class="tag">Intelligence</div>
+                  <div class="tag">Artificial</div>
+                  <div class="tag">Science</div>
+                </div>
+              </div>
+              <div class="movie-card">
+                <p>Watch the movie</p>
+                <div class="disabled-icon">
+                  <span class="material-icons"> lock </span>
+                </div>
+              </div>
+              <div class="essay-card">
+                <p>Write an essay</p>
+                <div class="disabled-icon">
+                  <span class="material-icons"> lock </span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+  
+      <div class="profile-sidebar">
+        <div class="user-area">
+          <div class="bio-section">
+            <div class="photo">
+              <span class="material-icons"> account_circle </span>
+            </div>
+            <div class="bio">
+              <div class="bio-text">
+                <p>Darcy</p>
+                <span>basic plan</span>
+              </div>
+              <span class="bio-navigator">
+                <span class="material-icons"> expand_more </span>
+              </span>
+            </div>
+            <div class="settings-container">
+              <span class="material-icons settings"> settings </span>
+              <span class="material-icons notifications"> notifications </span>
+            </div>
+          </div>
+        </div>
+  
+        <div class="categories-section">
+          <div class="writing">
+            <div class="text">
+              <h6>Write</h6>
+              <span>3 exercises 15 min </span>
+            </div>
+          </div>
+          <div class="categories-wrap">
+            <div class="listening">
+              <div class="text">
+                <h6>Listen</h6>
+                <span>1 podcast 20 min</span>
+              </div>
+            </div>
+            <div class="cards">
+              <div class="text">
+                <h6>Cards</h6>
+                <span>40 words</span>
+              </div>
+            </div>
+            <div class="speaking">
+              <div class="text">
+                <h6>Speak</h6>
+                <span>2 conversations</span>
+              </div>
+            </div>
+            <div class="see-more">
+              <p>See more</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="./src/index.js"></script>
+  </body>
+  
+  </html>
+  <script>
+    const listItem = document.querySelectorAll("li");
+listItem.forEach((e) => {
+  e.addEventListener("click", () => {
+    const active = document.querySelector(".active");
+
+    if (active) {
+      active.classList.remove("active");
+    }
+    e.classList.toggle("active");
+  });
+});
+const body = document.querySelectorAll("body");
+
+  </script>
+</body>
+</html>
