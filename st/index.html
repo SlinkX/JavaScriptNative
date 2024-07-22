@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+  box-sizing: border-box;
+  margin: 0;
+  padding:0
+}
+
+.clearfix {
+  clear: both
+}
+
+.header {
+  width: 100%;
+  height: auto;
+  background-image: url("https://goo.gl/nfbKPY");
+  background-size: cover;
+}
+
+.header .overlay {
+  width: 100%;
+  height: 100%;
+  background: rgba(70, 46, 106, .9);
+  padding: 30px 120px;
+  text-align: center
+}
+
+.header .overlay:after {
+  content: "";
+  height: 10px;
+  width: 10px;
+  background: #EFA937; 
+  position: absolute;
+  border: 2.5px solid  #302d38;
+  border-radius: 50%;
+  margin-left: 5px;
+  cursor: pointer;
+}
+
+.header .overlay .text:after {
+  content: "";
+  height: 10px;
+  width: 10px;
+  background: #302d38; 
+  position: absolute;
+  border: 2px solid  #302d38;
+  border-radius: 50%;
+  margin: 70.50px 0 0 -97px;
+  cursor: pointer;
+}
+
+
+.navbar p, .fa-crosshairs {
+  float: left
+}
+
+.fa-crosshairs {
+  color: #EFA937; 
+  font-size: 26px;
+  margin-right: 12px;
+}
+
+.navbar > p {
+  color: white;
+  padding-top: 5px;
+  font-size: 14px
+}
+
+.navbar a {
+  text-decoration: none;
+  color:  #dedaea;
+}
+
+.navbar .menu {
+  overflow: hidden
+}
+.navbar .menu .fa-bars {
+  display: none;
+  color: #fff;
+  font-size: 23px;
+  float: right;
+  transition: all .3s ease-in-out
+}
+
+.navbar .menu .fa-bars:hover {
+  color: #d9d0ea
+}
+
+.navbar ul {
+  list-style: none;
+  text-align: right
+}
+
+.navbar li {
+  display: inline-block;
+  padding: 4px 15px;
+  margin-top: 2px;
+  font-family: Trebuchet MS;
+  background-color: #4f357c;
+  border-radius: 10px;
+  font-size: 11px;
+  transition: all .3s ease-in-out
+  
+}
+
+.navbar li:hover {
+  background-color: #EFA937;
+  color: #302d38
+}
+
+hr {
+  margin-top: 4px;
+  border: .5px solid #595858;
+}
+.text {
+  padding: 40px 0;
+  font-family: Trebuchet MS
+}
+
+.text > h1 {
+  color: #EFA937;
+  padding: 20px 0;
+  font-weight: normal
+}
+
+.text > h3 {
+  color: white;
+  padding-bottom: 25px;
+}
+
+.text > p {
+  font-size: 12px;
+  color: #dedaea;
+  padding-bottom: 25px;
+}
+
+button {
+  background: #4f357c;
+  border-radius: 28px;
+  font-family: Trebuchet MS;
+  color:  #dedaea;
+  font-size: 12px;
+  padding: 8px 23px;
+  text-decoration: none;
+  border: none;
+  cursor: pointer;
+  transition: all .3s ease-in-out
+}
+
+button:hover {
+  background: #EFA937;
+  color: #302d38
+}
+
+@media(max-width: 855px) {
+  
+  .navbar .menu {
+    position: absolute;
+    right: 50px;
+    height: 200px;
+    width: 100px;
+  }
+  
+  .navbar .menu .fa-bars {
+    display: inline-block;
+  }
+  
+  .navbar .menu ul {
+    padding-top: 25px;
+    display: none;
+    position: absolute;
+    top: 0;
+    right: 0;
+  }
+  
+  .navbar .menu .fa-bars:hover + ul,
+  .navbar .menu:hover ul {
+    display: block;
+  }
+  
+  .navbar .menu ul li {
+    display: block;
+    margin-top: 5px;
+  }
+  
+  .navbar hr {
+    margin-top: 30px
+  }
+}
+
+@media(max-width: 620px) {
+  .header .overlay, .services {
+    padding: 30px 50px;
+  }
+}
+
+
+/********************/
+/********************/
+
+
+.services {
+  width: 100%;
+  padding: 20px  0 40px 0;
+  font-family: Trebuchet MS
+}
+
+.services .fa-home, .fa-lightbulb-o, .fa-podcast, .fa-star {
+  width: 100px;
+  height: 100px;
+  line-height: 100px;
+  font-size: 50px;
+  color: #EFA937;
+  background: rgb(70, 46, 106);
+  border-radius: 50%;
+  transition: all .3s ease-in-out
+}
+
+.services ul li div i:hover {
+  color: rgb(70, 46, 106);
+  background: #EFA937;
+}
+
+
+.services .one h3 {
+  padding: 15px 0;
+  color: #362456
+}
+
+.services .one p {
+  font-size: 12px;
+  padding-bottom: 25px;
+  color: #302d38
+}
+
+.services ul  {
+  list-style: none;
+  text-align: center
+}
+
+.services ul li {
+  display: inline-block
+}
+
+.services ul li div {
+  width: 160px;
+  height: 160px;
+  margin: 40px 20px
+}
+  
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="overlay">
+         <div class="navbar">
+           <i class="fa fa-crosshairs" aria-hidden="true"></i>
+           <p>St. Patrick's Church</p>
+            <div class="menu">
+              <i class="fa fa-bars"></i>
+              <ul>
+                <a href="#"><li>About us</li></a>
+                <a href="#"><li>Programs</li></a>
+                <a href="#"><li>Events</li></a>
+                <a href="#"><li>Streaming</li></a>
+                <a href="#"><li>Facilities</li></a>
+                <a href="#"><li>Contact</li></a>
+             </ul>
+            </div>
+           <br><hr>
+           <div class="text">
+             
+             <h1>Annual families meeting</h1>
+             <h3>11 - 13 April 2014</h3>
+             <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer.</p>
+             <button>Get more information</button>
+           </div>
+         </div>
+          <div class="clearfix"></div>
+        </div>
+      </div>
+      
+      <!------------------------>
+      
+      <div class="services">
+        <ul>
+          
+          <li><div class="one"><i class="fa fa-home" aria-hidden="true"></i>
+        <h3>Who we are?</h3>
+        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. </p></div></li>
+          
+          
+          <li><div class="one"><i class="fa fa-lightbulb-o" aria-hidden="true"></i>
+        <h3>Believes</h3>
+        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. </p></div></li>
+          
+          
+          <li><div class="one"><i class="fa fa-podcast" aria-hidden="true"></i> 
+        <h3>Our creed</h3>
+        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. </p></div></li>
+          
+          
+          <li><div class="one"><i class="fa fa-star" aria-hidden="true"></i>
+        <h3>Love & Peace</h3>
+        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. </p></div></li>
+          
+        </ul>
+      </div>
+</body>
+</html>
