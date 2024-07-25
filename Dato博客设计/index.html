@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    body {
+  font-family: tahoma;
+  padding: 40px 0;
+}
+
+.main-timeline {
+  font-family: tahoma;
+  padding: 0;
+  position: relative;
+}
+
+.main-timeline .timeline {
+  padding: 10px 0;
+  margin-top: -30px;
+  position: relative;
+  z-index: 1;
+}
+
+.main-timeline .timeline-content {
+  display: inline-block;
+}
+
+.main-timeline .timeline-content:hover {
+  text-decoration: none;
+}
+
+.main-timeline .timeline-year {
+  color: #65c7d0;
+  font-size: 50px;
+  font-weight: 600;
+  display: inline-block;
+  transform: translatey(-50%);
+  position: absolute;
+  top: 50%;
+  left: 10%;
+}
+
+.main-timeline .timeline-icon {
+    color: #65c7d0;
+    font-size: 70px;
+    display: inline-block;
+    transform: translateY(-50%);
+    position: absolute;
+    left: 8%;
+    top: 45%;
+}
+
+.main-timeline .content {
+  color: #909090;
+  width: 80%;
+  padding: 20px;
+  display: inline-block;
+  float: right;
+}
+
+.main-timeline .title {
+  color: #65c7d0;
+  font-size: 20px;
+  font-weight: 600;
+  text-transform: uppercase;
+  margin: 0 0 5px 0;
+}
+
+.main-timeline .description {
+  font-size: 16px;
+  margin: 10 0;
+}
+
+.main-timeline .source {
+  font-size: 9px;
+  margin: 0;
+}
+
+.main-timeline .timeline:nth-child(even)::before {
+  left: auto;
+  right: 0;
+  border-radius: 0 110px 110px 0;
+  border: 15px solid red;
+  border-left: none;
+}
+
+.main-timeline .timeline:nth-child(even)::after {
+  left: auto;
+  right: 12px;
+  border-radius: 0 100px 100px 0;
+  border: 15px solid green;
+  border-left: none;
+}
+
+.titulo {
+  color: #0071BD;
+  float: center;
+  font-size: 30px;
+  font-weight: 600;
+  text-transform: uppercase;
+  margin: -50px 0 15px 0;
+}
+
+.copete {
+  color: #909090;
+  width: 100%;
+  padding: 20px;
+  display: inline-block;
+  float: center;
+}
+
+
+.main-timeline .timeline:nth-child(even) .content {
+  float: ;
+}
+
+.main-timeline .timeline:nth-child(even) .timeline-year {
+    left: auto;
+    right: 10%;
+}
+
+.main-timeline .timeline:nth-child(even) .timeline-icon {
+  left: ;
+  right: 32%;
+}
+
+.main-timeline .timeline:nth-child(5n+1)::before {
+  border-color: #46b2bc;
+}
+
+.main-timeline .timeline:nth-child(5n+1)::after {
+  border-color: #65c7d0;
+}
+
+.main-timeline .timeline:nth-child(5n+1) .timeline-icon {
+  color: #65c7d0;
+}
+
+.main-timeline .timeline:nth-child(5n+1) .timeline-year {
+  color: #65c7d0;
+}
+
+.main-timeline .timeline:nth-child(5n+1) .title {
+  color: #65c7d0;
+}
+
+.main-timeline .timeline:nth-child(5n+2)::before {
+  border-color: #ea3c14;
+}
+
+.main-timeline .timeline:nth-child(5n+2)::after {
+  border-color: #EF5720;
+}
+
+.main-timeline .timeline:nth-child(5n+2) .timeline-icon {
+  color: #EA3C14;
+}
+
+.main-timeline .timeline:nth-child(5n+2) .timeline-year {
+  color: #EA3C14;
+}
+
+.main-timeline .timeline:nth-child(5n+2) .title {
+  color: #EA3C14;
+}
+
+.main-timeline .timeline:nth-child(5n+3)::before {
+  border-color: #8CC63E;
+}
+
+.main-timeline .timeline:nth-child(5n+3)::after {
+  border-color: #6CAF29;
+}
+
+.main-timeline .timeline:nth-child(5n+3) .timeline-icon
+{
+  color: #8CC63E;
+}
+
+.main-timeline .timeline:nth-child(5n+3) .timeline-year {
+  color: #8CC63E;
+}
+
+.main-timeline .timeline:nth-child(5n+3) .title {
+  color: #8CC63E;
+}
+
+.main-timeline .timeline:nth-child(5n+4)::before {
+  border-color: #F99324;
+}
+
+.main-timeline .timeline:nth-child(5n+4)::after {
+  border-color: #FBB03B;
+}
+
+.main-timeline .timeline:nth-child(5n+4) .timeline-icon {
+  color: #F99324;
+}
+
+.main-timeline .timeline:nth-child(5n+4) .timeline-year {
+  color: #F99324;
+}
+
+.main-timeline .timeline:nth-child(5n+4) .title {
+  color: #F99324;
+}
+
+.main-timeline .timeline:nth-child(5n+5)::before {
+  border-color: #0071BD;
+}
+
+.main-timeline .timeline:nth-child(5n+5)::after {
+  border-color: #0050A3;
+}
+
+.main-timeline .timeline:nth-child(5n+5) .timeline-icon {
+  color: #0071BD;
+}
+
+.main-timeline .timeline:nth-child(5n+5) .timeline-year {
+  color: #0071BD;
+}
+
+.main-timeline .timeline:nth-child(5n+5) .title {
+  color: #0071BD;
+}
+
+@media screen and (max-width:1200px){
+    .main-timeline .timeline:after{ border-radius: 88px 0 0 88px; }
+    .main-timeline .timeline:nth-child(even):after{ border-radius: 0 88px 88px 0; }
+}
+@media screen and (max-width:767px){
+    .main-timeline .timeline{ margin-top: -19px; }
+    .main-timeline .timeline:before {
+        border-radius: 50px 0 0 50px;
+        border-width: 10px;
+    }
+    .main-timeline .timeline:after {
+        height: calc(100% - 18px);
+        width: calc(50% - 9px);
+        border-radius: 43px 0 0 43px;
+        border-width:10px;
+        top: 9px;
+        left: 9px;
+    }
+    .main-timeline .timeline:nth-child(even):before {
+        border-radius: 0 50px 50px 0;
+        border-width: 10px;
+    }
+    .main-timeline .timeline:nth-child(even):after {
+        height: calc(100% - 18px);
+        width: calc(50% - 9px);
+        border-radius: 0 43px 43px 0;
+        border-width: 10px;
+        top: 9px;
+        right: 9px;
+    }
+    .main-timeline .timeline-icon{ font-size: 60px; }
+    .main-timeline .timeline-year{ font-size: 40px; }
+}
+@media screen and (max-width:479px){
+    .main-timeline .timeline-icon{
+        font-size: 50px;
+        transform:translateY(0);
+        top: 25%;
+        left: 10%;
+    }
+    .main-timeline .timeline-year{
+        font-size: 25px;
+        transform:translateY(0);
+        top: 65%;
+        left: 9%;
+    }
+    .main-timeline .content{
+        width: 68%;
+        padding: 10px;
+    }
+    .main-timeline .title{ font-size: 18px; }
+    .main-timeline .timeline:nth-child(even) .timeline-icon{
+        right: 10%;
+    }
+    .main-timeline .timeline:nth-child(even) .timeline-year{
+        right: 9%;
+    }
+}
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="row">
+      </br>
+      <div class="copete">
+  <h3 class="titulo">¿POR QUÉ APOSTAR A LOS PODCASTS?</h3>
+  <p class="description"></p>
+  </div>
+      <div class="col">
+        <div class="main-timeline">  
+           <div class="timeline">
+            <a href="#" class="timeline-content">
+              <span class="timeline-year"></span>
+              <div class="timeline-icon">
+                <i class="fa fa-thumbs-up" aria-hidden="true"></i>
+              </div>
+              <div class="content">
+                <h3 class="title">SU AUDICENCIA ESCALA DÍA A DÍA EN TODO EL MUNDO</h3>
+                <p class="description">
+  El 36% de los estadounidenses adultos -unos 90 millones- escucha podcasts al menos una vez al mes. The Daily, el podcast de noticias del New York Times, tiene 5 millones de oyentes diarios en todo el mundo. Durante 2019 en Estados Unidos se invirtieron 747 millones de dólares en publicidad en Podcasts.</p>
+                <p class="source">
+                  Fuente: “Digital News Report 2019”, del Reuters Institute de la Universidad de Oxford; y "Perspectives from the Global Entertainment & Media Outlook 2018–2022", de Price Waterhouse Coopers.
+                  </p>
+              </div>
+            </a>
+          </div>
+          <div class="timeline">
+            <a href="#" class="timeline-content">
+              <span class="timeline-year"></span>
+              <div class="timeline-icon">
+                <i class="fa fa-signal" aria-hidden="true"></i>
+              </div>
+              <div class="content">
+                <h3 class="title">Argentina es uno de los países donde más crece</h3>
+                <p class="description">
+                 Los cuatro países donde más creció la escucha de podcasts en 2019 son latinoamericanos: Chile, Argentina, Perú y México. Durante 2019, la audiencia en nuestro país aumentó en un 55%. Este aumento va a la par de la consagración del smartphone como principal vía de acceso a las noticias. En 2019, el 86% de los argentinos urbanos se informó principalmente a través de contenidos online, y el 78% de ese grupo lo hizo a través del celular.
+  </p>
+                <p class="source">
+                  Fuente: “Digital News Report 2019”, del Reuters Institute de la Universidad de Oxford; y "Top Growing Podcasting Countries 2019", de VoxNest. 
+                  </p>
+              </div>
+            </a>
+          </div>
+          <div class="timeline">
+            <a href="#" class="timeline-content">
+              <span class="timeline-year"></span>
+              <div class="timeline-icon">
+                <i class="fa fa-satellite-dish" aria-hidden="true"></i>
+              </div>
+              <div class="content">
+                <h3 class="title">PERMITE LLEGAR A UN PÚBLICO "RADIOFÓNICO" ESQUIVO AL DIAL</h3>
+                <p class="description">
+  El 57% de los consumidores de podcasts en español no sintoniza la radio, ya sea porque nunca la escucha (35%), o bien porque solo hace a través del contenido que las emisoras suben a internet (22%). 
+  De acuerdo a sondeos, el 55% de esta audiencia es universitaria, el 21% terminó la escuela secundaria y el 20% tiene un título de postgrado. El 60% tiene entre 15 y 35 años, y el 28%, entre 35 y 45. El 52% es soltero, el 18% convive con su pareja, y el 27% está casado.
+  </p>
+                <p class="source">
+  Fuente: "Encuesta POD 2019", de Comunidad Podcasteros. 
+                  </p>
+              </div>
+            </a>
+          </div>
+  
+          <div class="timeline">
+            <a href="#" class="timeline-content">
+              <span class="timeline-year"></span>
+              <div class="timeline-icon">
+                <i class="fa fa-headphones" aria-hidden="true"></i>
+              </div>
+              <div class="content">
+                <h3 class="title">REFUERZA LA PRESENCIA DE LA RADIO PÚBLICA EN INTERNET</h3>
+                <p class="description">
+  El 88% consume podcasts vía smartphone. 
+  El 53% escucha podcasts a través la plataforma Spotify, el 20% por Apple Podcasts, el 19% por Youtube y el 13% por Google Podcasts. Es un público que está suscrito a otros servicios on demand como Netflix (71%), Spotify (55%), o Amazon Prime (22%). Haciendo tareas del hogar (53%), trabajando (40%), viajando en auto (32%), o transporte público (52%), son las situaciones de escucha más masivas. 
+  
+  </p>
+                <p class="source">
+                  Fuente: “Digital News Report 2019”, del Reuters Institute de la Universidad de Oxford; y "Top Growing Podcasting Countries 2019", de VoxNest. 
+                  </p>
+              </div>
+            </a>
+          </div>
+  <div class="copete">
+    </br></br>
+  <h3 class="titulo">Somos el actor indicado para liderar la producción de podcasts</h3>
+  <p class="description">
+  La libertad de condicionamientos comerciales y la disponibilidad de recursos periodísticos con los que contamos en todo el país nos dan una ventaja para liderar el proceso de consagración y popularización del formato en el país. 
+  </p>
+  </div>        
+        </div>
+    </div>
+  </div> 
+</body>
+</html>
