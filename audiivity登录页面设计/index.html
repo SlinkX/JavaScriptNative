@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    @mixin perfectBG ($imgSrc, $shadow) {
+  background: linear-gradient(rgba(0, 0, 0, $shadow), rgba(0, 0, 0, $shadow)),
+    url($imgSrc) no-repeat center center;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
+
+body {
+  font-family: 'Lato', sans-serif;
+}
+
+nav {
+  @media(max-width: 992px) {
+    background: #F7F7F7;
+    color: #7B7B7B;
+  }
+  
+  .navbar-toggler {
+    border-color: white !important;
+  }
+  .navbar-brand {
+    font-family: 'Montserrat', sans-serif;
+  }
+  .brand-name {
+    color: white;
+    display: inline-block;
+    font-size: 19px;
+    font-weight: 500;
+    position: relative;
+    top: 2px;
+    }
+  .beta {
+    color: white;
+    display: inline-block;
+    font-weight: 300;
+    font-size: 12px;
+  }
+
+    img {
+      height: 35px;
+    }
+
+  .navbar-nav {
+
+    .brand-name, .beta, .nav-link {
+      
+      @media(max-width: 992px) {
+        color: #7B7B7B;
+      }
+    }
+    .nav-item {
+      font-size: 15px;
+      font-weight: 300;
+      margin-left: 20px;
+    }
+  }
+}
+
+
+.c-jumbo {
+  @include perfectBG("https://s3-us-west-2.amazonaws.com/s.cdpn.io/566003/a13.jpeg", .45);
+  padding: 30vh 20px 35vh 20px;
+
+  .c-jumbo-div {
+    max-width: 1050px;
+    margin: 0 auto;
+  }
+
+  h1 {
+    color: white;
+    font-weight: 400;
+    letter-spacing: .6px;
+    margin-bottom: 20px;
+  }
+  p {
+    color: white;
+    font-weight: 300;
+    line-height: 30px;
+    letter-spacing: .3px;
+    margin-bottom: 20px;
+  }
+
+  button, input {
+    border: none;
+    border-radius: 3px;
+    padding: 6px 15px;
+    margin-right: 4px;
+    font-weight: 300;
+  }
+  
+  input{
+    width: 240px;
+  }
+
+  .green-btn {
+    background: #03B8B3;
+    color: white;
+    font-weight: 300;
+  }
+
+
+  .c-pdiv {
+    max-width: 440px;
+  }
+}
+
+
+.navbar-toggler-icon {
+  background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(3,184,179, 1)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 8h24M4 16h24M4 24h24'/%3E%3C/svg%3E");
+}
+  </style>
+</head>
+<body>
+  <nav class="navbar fixed-top navbar-expand-lg">
+    <a class="navbar-brand" href="#">
+   <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/566003/Audivity%20Logo.gif" alt="">
+   <span class="brand-name">AUDIVITY</span> 
+   <span class="beta">(beta)</span>
+ </a>
+ <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+   <span class="navbar-toggler-icon"></span>
+ </button>
+ <div class="collapse navbar-collapse" id="navbarText">
+   <ul class="navbar-nav mr-auto">
+     <li class="nav-item">
+       <a class="nav-link" href="#">About</span></a>
+     </li>
+     <li class="nav-item">
+       <a class="nav-link" href="#">Learn</a>
+     </li>
+     <li class="nav-item">
+       <a class="nav-link" href="#">Features</a>
+     </li>
+     <li class="nav-item">
+       <a class="nav-link" href="#">Contact</a>
+     </li>
+   </ul>
+   <ul class="navbar-nav ml-auto">
+     <li class="nav-item">
+       <a class="nav-link" href="#">Sign In</a>
+     </li>
+   </ul>
+ </div>
+</nav>
+
+<!-- START JUMBO -->
+<div class="c-jumbo">
+ <div class="c-jumbo-div">
+ 
+ <h1>Start connecting to your audience.</h1>
+ 
+ 
+ <div class="c-pdiv">
+   <p>Upload your written articles and receive curated high quality narrative or podcast. We’ll take care the hard stuff while you chose where to share and how to monetize.
+</p>  
+  
+ </div>
+ 
+ <input type="text" placeholder="Your email address.">
+ <button class="green-btn">Sign In</button>
+   
+ </div>
+</div>
+<!--  END JUMBO  -->
+
+
+<div class='soem'></div>
+
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" crossorigin="anonymous"></script>
+
+
+<script>
+  $(document).ready(function(){
+  $(window).scroll(function() {
+    var scrollLocation = $(window).scrollTop();
+
+    if (scrollLocation <= 30) {
+      // $( "nav" ).animate({
+      //     backgroundColor: "rgba( 0, 0, 0, 0)"
+      //   }, 10 );
+      $('nav').css('background-color','rgba(0, 0, 0, 0)');
+      $(".brand-name").css('color','white');
+      $(".beta").css('color','white');
+      $(".nav-link").css('color','white');
+    } else if (scrollLocation > 30) {
+      // $( "nav" ).animate({
+      //     backgroundColor: "rgb( 247, 247, 247 )"
+      //   }, 40 );
+      $('nav').css('background-color','#F7F7F7');
+      $(".brand-name").css('color','#7B7B7B');
+      $(".beta").css('color','#7B7B7B');
+      $(".nav-link").css('color','#7B7B7B');
+    }
+  });
+})
+</script>
+</body>
+</html>
