@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;0,700;1,400;1,500;1,700&family=Fraunces:ital,wght@0,500;0,600;0,700;1,600&display=swap');
+
+*,
+*:after,
+*:before {
+	box-sizing: border-box;
+}
+
+body {
+	font-family: "DM Sans", sans-serif;
+	font-size: 1rem;
+	line-height: 1.5;
+	background-color: #f8f3eb;
+	color: #484847;
+	padding-bottom: 5rem;
+}
+
+img {
+	width: 100%;
+}
+
+.responsive-wrapper {
+	width: 95%;
+	max-width: 1900px;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.header {
+	padding-right: 1.5rem;
+	padding-left: 1.5rem;
+	padding-top: 3rem;
+	padding-bottom: 4rem;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+
+.header-left {
+
+	svg {
+		max-height: 40px;
+		width: auto;
+	}
+}
+
+.header-middle {
+	display: none;
+	@media (min-width: 1200px) {
+			display: block;
+	}
+}
+
+.header-right {
+	display: flex;
+	align-items: center;
+}
+
+.header-nav {
+	display: none;
+	@media (min-width: 1200px) {
+			display: block;
+	}
+}
+
+.header-linke {
+	color: #000;
+	text-decoration: none;
+	margin-left: .75rem;
+	margin-right: .75rem;
+	display: none;
+	font-weight: 1000;
+	display: inline-block;
+	}
+
+.header-link {
+	color: #000;
+	text-decoration: none;
+	margin-left: .75rem;
+	margin-right: .75rem;
+	display: none;
+	font-weight: 400;
+	display: inline-block;
+  background-color: #FF0000;
+  color: #fff;
+  padding: .5rem 1.25rem;
+  border-radius: 10px;
+	}
+	
+	@media (min-width: 1200px) {
+	}
+}
+
+.header-menu-button {
+	margin-left: .75rem;
+	border: 0;
+	padding: 0;
+	background-color: transparent;
+	font: inherit;
+	position: relative;
+	padding-right: 30px;
+	font-weight: 500;
+  
+	
+	&:after, &:before {
+		content: "";
+		display: block;
+		position: absolute;
+		width: 20px;
+		height: 2px;
+		background-color: currentcolor;
+		right: 0;
+		top: 8px;
+	}
+	
+	&:after {
+		top: 16px;
+		width: 12px;
+		right: 8px;
+	}
+}
+
+.page-title {
+	padding-left: 1.5rem;
+	padding-right: 1.5rem;
+	display: flex;
+	justify-content: center;
+	h1 {
+		font-size: 2.3rem;
+		font-weight: 1000;
+		color: #000;
+		text-align: center;
+		position: relative;
+		
+		
+		&:after {
+			content: "";
+			display: block;
+			position: absolute;
+			width: 100%;
+			bottom: -3px;
+			height: 2px;
+			background-color: currentcolor;
+		}
+	}
+}
+
+.magazine-layout {
+	margin-top: 3rem;
+	display: grid;
+	grid-template-columns: repeat(5, 1fr);
+	grid-row-gap: 2rem;
+}
+
+.magazine-column {
+	padding: 0 1.5rem;
+	grid-column: span 5;
+	
+	@media (min-width: 1200px) {
+		grid-column: span 1;
+		border-right: 1px solid #CCC;
+		&:last-child {
+			border-right: none;
+		}
+	}
+	
+	&:nth-child(2) {
+		@media (min-width: 1200px) {
+			grid-column: span 2;
+		}
+	}
+}
+
+.article {
+	& + .article {
+		padding-top: 2rem;
+		margin-top: 2rem;
+		border-top: 1px solid #ccc;
+	}
+}
+
+.article-img {
+	& + * {
+		margin-top: 1rem;
+	}
+}
+
+.article-link {
+	color: inherit;
+	text-decoration: none;
+}
+
+.article-title {
+	font-family: "Fraunces", serif;
+	font-weight: 900;
+	line-height: 1.25;
+	color: #000;
+
+	&--large {
+		font-size: 2rem;
+		& + * {
+			margin-top: 1.5rem;
+		}
+	}
+
+	&--medium {
+		font-size: 1.5rem;
+		& + * {
+			margin-top: 0.75rem;
+		}
+	}
+
+	&--small {
+		font-size: 1.25rem;
+		& + * {
+			margin-top: 0.75rem;
+		}
+	}
+}
+
+.article-link {
+	color: inherit;
+}
+
+.mark {
+	background-color: #fabea1;
+	&--secondary {
+		background-color: #c2dddf;
+	}
+	
+	&--tertiary {
+		background-color: #F8E177;
+	}
+}
+
+.article-excerpt,
+.article-creditation {
+	font-size: 1.125rem;
+	line-height: 1.4;
+	p + p {
+		margin-top: 1.5rem;
+	}
+}
+
+.article-author {
+	display: flex;
+	flex-wrap: wrap;
+	margin-top: 1.5rem;
+}
+
+.article-author-img {
+	width: 3rem;
+	height: 3rem;
+	border-radius: 12px;
+	background-color: #323232;
+	overflow: hidden;
+	background-blend-mode: multiply;
+	img {
+	}
+
+	& + .article-author-info {
+		margin-left: 0.5rem;
+	}
+}
+
+.article-author-info {
+	line-height: 1.375;
+	dl {
+		margin-top: 0.25em;
+	}
+
+	dt {
+		font-weight: 600;
+	}
+
+	dd {
+		font-size: 0.875em;
+	}
+}
+
+.article-category {
+	font-weight: 500;
+	margin-bottom: 1rem;
+	display: block;
+	svg {
+		max-width: 1.5rem;
+		margin-right: .5rem;
+		vertical-align: middle;
+	}
+	
+}
+
+.article-podcast-player {
+	display: flex;
+	align-items: center;
+	margin-bottom: 1rem;
+	margin-top: 1.25rem;
+}
+
+.podcast-play-button {
+	width: 2.25rem;
+	height: 2.25rem;
+	border-radius: 12px;
+	border: 0;
+	background-color: #000;
+	margin-right: .5rem;
+	svg {
+		max-width: 1rem;
+		max-height: 1rem;
+		fill: #FFF;
+	}
+}
+
+.podcast-progression {
+	flex: 1;
+	height: 8px;
+	border-radius: 99em;
+	background-color: #D9D4CD;
+	background-image: linear-gradient(to right, #FF0000 30%, #D9D4CD 30%, #D9D4CD 100%)
+}
+
+.podcast-time {
+	font-weight: 500;
+	font-size: 1.125rem;
+	margin-left: .5rem;
+}
+
+:focus {
+	outline: 0;
+}
+
+.link {
+  font-collor: #FF0000;
+}
+
+b {
+  font-weight: 500;
+	font-size: 3rem;
+}
+  </style>
+</head>
+
+<body>
+  <header class="header responsive-wrapper">
+    <div class="header-left">
+      <a href="#" class="header-linke">TRABALHO DE NOVAS TECNOLOGIAS DE ENSINO</a>
+    </div>
+    <div class="header-right">
+      <nav class="header-nav">
+        <a href="#" class="header-link header-link--button">Conheça o grupo</a>
+      </nav>
+    </div>
+  </header>
+  <main class="responsive-wrapper">
+    <div class="page-title">
+      <h1 style="color:#FF0000;"><a href="
+  https://super.abril.com.br/ciencia/a-polemica-do-cancelamento-de-palavras-2" class="article-link">A polêmica do cancelamento de palavras</a></h1>
+    </div>
+    <div class="magazine-layout">
+      <div class="magazine-column">
+        <article class="article">
+          <h2 class="article-title article-title--large">
+            <a href="#" class="article-link"><b style="color:#FF0000;">E</b>xpressões racistas não cabem numa sociedade civilizada. Mas inventar significados sombrios para termos sem relação com racismo só atrapalha a luta por um mundo sem preconceitos.</a>
+          </h2>
+          <div class="article-excerpt">
+            <p><i>"Criado-mudo, não. O termo correto é mesa de cabeçeira. Criado-mudo é um termo racista e surgiu para chamar escravos que ficavam parados ao lado da cama."</i> O trecho aparece no <a href="https://www.baguete.com.br/noticias/10/01/2022/amazon-dizer-criado-mudo-e-racista"style="color: #FF0000">site da amazon</a> quando um consumidor pesquisa aquele pequeno móvel quebra-galho. A intenção é ótima. Mas a empresa acabou dando corda para uma informação falsa. Porque não há racismo na expressão "criado-mudo". Vamos aos fatos: o nome desse objeto é uma adaptação do termo americano <a href="https://www.cnnbrasil.com.br/nacional/criado-mudo-e-expressao-racista-entenda-a-polemica-e-o-misterio-por-tras-do-termo/"style="color: #FF0000"><i>dumbwaiter</i></a>, um pequeno elevador que transporta comida entre os andares de um imóvel, inventado no século 19.</p>
+          </div>
+        </article>
+      </div>
+      <div class="magazine-column">
+        <article class="article">
+          <figure class="article-img">
+            <img src="https://www.baguete.com.br/cache/image/noticias/2022/01/1641820905_271659827_10159740518302713_3330738939132681230_n.jpg?w=1110"/>  <!-- imageeeeenn -->
+          </figure>
+          <h2 class="article-title article-title--medium">
+            <a href="https://www.defensoria.ba.def.br/noticias/dicionario-de-expressoes-anti-racistas-e-lancado-pela-defensoria-em-homenagem-ao-dia-nacional-da-consciencia-negra/" class="article-link"><b style="color:#FF0000;">A</b> língua e as sociedades se transformam. Logo, é natural a necessidade de atualizar o vocabulário.</a>
+          </h2>
+          <div class="article-excerpt">
+            <p>Não acha um bom termo novo para substituir um que se tornou anacrônico? Não se aflija. Logo a própria cultura trará respostas. "O povo é o inventalínguas", já cantou Caetano na letra de sua canção "Circulado de Fulô".</p>
+            <p>Dentro de uma etimologia real, há, sim, todo um time de usos da língua que deve ser aposentado. É ofensivo usar o verbo <a href="https://revistagalileu.globo.com/Sociedade/noticia/2020/08/7-palavras-preconceituosas-ou-racistas-que-voce-deveria-parar-de-usar.html"style="color: #FF0000">"judiar"</a>, um sinônimo de "maltratar" que não disfarça o preconceito contra judeus. É absurdo <a href="https://youtu.be/wF5TRPuTHBY?si=4EfJjNM_1seOYDEM.html"style="color: #FF0000">gritar "bicha" para o goleiro que bate um tiro de meta</a>, como se uma eventual homossexualidade do atleta o diminuísse como esportista e ser humano. Também não é aceitável dizer <a href="https://revistagalileu.globo.com/Sociedade/noticia/2020/08/7-palavras-preconceituosas-ou-racistas-que-voce-deveria-parar-de-usar.html" style="color: #FF0000">"denegrir"</a> - está bem entendido hoje que palavras que colocam a cor preta como sinônimo de algo ruim reforçam o racismo estrutural.</p>
+            <p>Justamente porque esses termos e expressões vagam entre o inapropriado e o criminoso, forçar a barra e disseminar informações falsas para cancelar certas palavras, distorcendo sua origem e significado, não ajuda em nada. Só acaba servindo de munição para quem quer continuar proferindo insultos gratuitos. Porque não existe "fake news do bem" - todas causam problemas. Expressões ofensivas não cabem numa sociedade civilizada. Mentiras também não.</p>
+            <p> “Ah, mas não pode mais falar nada, quanto mimimi…”. O fato é que não pode mesmo. Ofender ou insultar alguém é crime. E aquilo que soa ofensivo varia conforme a língua e a sociedade se transformam. Logo, é natural a necessidade de <a href="https://www.defensoria.ba.def.br/noticias/dicionario-de-expressoes-anti-racistas-e-lancado-pela-defensoria-em-homenagem-ao-dia-nacional-da-consciencia-negra/" style="color:#FF0000;"> atualizar o vocabulário. </a></p>
+          </div>
+        </article>
+      </div>
+      <div class="magazine-column">
+        <article class="article">
+          <figure class="article-img">
+            <img src="https://p2.trrsf.com/image/fget/cf/1200/1600/middle/images.terra.com/2023/08/07/16257621-caetano-veloso.jpg"/>   <!-- imageeeeenn -->
+          </figure>
+          <h2 class="article-title article-title--small">
+            <a href="#" class="article-link"><b style="color:#FF0000;">H</b>á, de fato, palavras que deveriam ser varridas para a sarjeta da história, pois ofendem mesmo se ditas por pessoas cuja retidão quando se trata de preconceito está acima de qualquer suspeita. Aconteceu com Caetano Veloso.</a>
+          </h2>
+          <div class="article-creditation">
+            <p>No programa <a href="https://youtu.be/8PSr0llScls?si=-GM894LTyUUBtwU-"style="color: #FF0000">Roda Viva, na TV Cultura, exibido no dia 20 de dezembro de 2021</a>, o cantor e compositor, de 79 anos, defendeu o uso do termo "mulato", que os expoentes dos movimentos negros têm criticado. <i>"Não vejo qual o problema de 'mulato'. Meu pai era mulato, a pessoa que eu mais adorava e respeitava. Tem gente que diz que é tirado de 'mula'. Qual o problema? Não tenho nada contra as mulas."</i>
+          </div>
+        </article>
+      </div>
+      <div class="magazine-column">
+        <article class="article">
+          <h2 class="article-title article-title--small">
+            <b style="color:#FF0000;">A</b> polêmica sobre o cancelamento de palavras voltou aos holofotes no final de 2021, mais especificamente no Dia da Consciência Negra (20 de novembro).
+          </h2>
+          <div class="article-creditation">
+            <p> Foi quando a agência de checagem de notícias <a href="https://lupa.uol.com.br/jornalismo/2021/11/23/origem-historica-expressoes/"style="color: #FF0000"><i>Lupa</i> publicou uma lista de expressões tidas como racistas</a>. A agência reproduziu diversos erros ali. Diante de alertas de seus seguidores, a <i>Lupa</i> apagou a postagem e se <a href="https://x.com/agencialupa/status/1463234749502218252?t=l4uD7SvX7xF_z7YCiBP32g&s=08"style="color: #FF0000">retratou dos equívocos</a>.</p>
+          </div>
+        </article>
+        <article class="article">
+          <small class="article-category">
+            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="28" height="22" viewBox="0 0 28 22">
+    <defs>
+      <clipPath id="clip-headphones">
+        <rect width="28" height="22"/>
+      </clipPath>
+    </defs>
+    <g id="headphones" clip-path="url(#clip-headphones)">
+      <g id="Group_2" data-name="Group 2" transform="translate(-3680 -609)">
+        <path id="Subtraction_1" data-name="Subtraction 1" d="M5,12H5A5.274,5.274,0,0,1,0,6.5,5.274,5.274,0,0,1,5,1V12Z" transform="translate(3680 619)"/>
+        <rect id="Rectangle_18" data-name="Rectangle 18" width="2" height="11" transform="translate(3686 620)"/>
+        <path id="Subtraction_5" data-name="Subtraction 5" d="M1.243,12H.045C.015,11.67,0,11.334,0,11A11,11,0,0,1,18.778,3.222,10.925,10.925,0,0,1,22,11c0,.331-.015.667-.045,1h-1.2a14.108,14.108,0,0,0-2.685-6.241A8.982,8.982,0,0,0,11,2,8.982,8.982,0,0,0,3.929,5.759,14.109,14.109,0,0,0,1.243,12Z" transform="translate(3683 609)"/>
+        <path id="Subtraction_6" data-name="Subtraction 6" d="M5,0H5A5.274,5.274,0,0,0,0,5.5,5.274,5.274,0,0,0,5,11V0Z" transform="translate(3708 631) rotate(180)"/>
+        <rect id="Rectangle_23" data-name="Rectangle 23" width="2" height="11" transform="translate(3700 620)"/>
+        <path id="Path_8" data-name="Path 8" d="M.156-.031,2.125-1.687,2,2H0Z" transform="translate(3683 619)"/>
+        <path id="Path_9" data-name="Path 9" d="M1.969-.031,0-1.687.125,2h2Z" transform="translate(3702.875 619)"/>
+      </g>
+    </g>
+  </svg>
+            <span>Músicas e podcasts</span>
+          </small>
+          <h2 class="article-title article-title--medium">
+            <a href="https://youtu.be/pPmQYbTE21M?si=BwVQlTR9LjfG8QwI" class="article-link">Circuladô de Fulô</a>
+          </h2>
+          <div class="article-podcast-player">
+            <button class="podcast-play-button">
+              <svg xmlns="http://www.w3.org/2000/svg" width="192" height="192" fill="#000000" viewBox="0 0 256 256"><rect width="256" height="256" fill="none"></rect><path d="M232.3125,114.34375,88.34375,26.35937A15.99781,15.99781,0,0,0,64,40.00781V215.99219a16.00521,16.00521,0,0,0,24.34375,13.64843L232.3125,141.65625a16.00727,16.00727,0,0,0,0-27.3125Z"></path></svg>
+            </button>
+            <div class="podcast-progression">
+              
+            </div>
+            <span class="podcast-time">3:30</span>
+          </div>
+          <div class="article-podcast-info">
+            Apple Podcasts, Google Podcasts, Stitcher
+          </div>
+        </article>
+      </div>
+    </div>
+  </main>
+</body>
+</html>
