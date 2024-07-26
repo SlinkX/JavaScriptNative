@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    .hubs-embedded #collection-items .tile.single,
+.hubs-embedded #collection-items .tile.single:not(.list) {
+  width: 272px;
+  min-width: 272px;
+  max-width: 272px;
+  height: 330px;
+  margin: 0 45px 45px 0 !important;
+  box-shadow: none;
+  transition: all 0.2s;
+}
+.hubs-embedded #collection-items .tile.single .img.visible,
+.hubs-embedded #collection-items .tile.single:not(.list) .img.visible {
+  box-shadow: 0px 15px 9px -6px #e8e8e8;
+  height: 50% !important;
+  overflow: hidden;
+  border-radius: 5px;
+}
+.hubs-embedded #collection-items .tile.single .img.visible img,
+.hubs-embedded #collection-items .tile.single:not(.list) .img.visible img {
+  margin-top: 0 !important;
+  margin-left: -10% !important;
+  border-radius: 5px;
+  width: auto !important;
+  height: auto !important;
+  min-width: 100% !important;
+  max-width: 125% !important;
+  min-height: 100% !important;
+}
+@media only screen and (min-width: 861px) {
+  .hubs-embedded #collection-items .tile.single .img.visible img,
+.hubs-embedded #collection-items .tile.single:not(.list) .img.visible img {
+    margin-left: -5% !important;
+    max-width: 110% !important;
+  }
+}
+.hubs-embedded #collection-items .tile.single .description,
+.hubs-embedded #collection-items .tile.single:not(.list) .description {
+  height: 44% !important;
+}
+.hubs-embedded #collection-items .tile.single .description .friendly-timestamp,
+.hubs-embedded #collection-items .tile.single .description h4.long-h3,
+.hubs-embedded #collection-items .tile.single .description h4,
+.hubs-embedded #collection-items .tile.single:not(.list) .description .friendly-timestamp,
+.hubs-embedded #collection-items .tile.single:not(.list) .description h4.long-h3,
+.hubs-embedded #collection-items .tile.single:not(.list) .description h4 {
+  display: none;
+}
+.hubs-embedded #collection-items .tile.single .description h3,
+.hubs-embedded #collection-items .tile.single .description .h3like,
+.hubs-embedded #collection-items .tile.single:not(.list) .description h3,
+.hubs-embedded #collection-items .tile.single:not(.list) .description .h3like {
+  margin: 0 !important;
+  padding: 0 !important;
+  font-size: 20px !important;
+  color: #5b6770 !important;
+}
+@media only screen and (min-width: 861px) {
+  .hubs-embedded #collection-items .tile.single .description h3,
+.hubs-embedded #collection-items .tile.single:not(.list) .description h3 {
+    font-size: 25px !important;
+  }
+}
+.hubs-embedded #collection-items .tile.single .item-link.view,
+.hubs-embedded #collection-items .tile.single:not(.list) .item-link.view {
+  padding: 0;
+  border-color: #fff;
+  background-color: #fff;
+  background-image: none;
+  color: #5b6770;
+  font-size: 18px;
+  font-weight: 700;
+  text-transform: uppercase;
+  border-top: none !important;
+}
+.hubs-embedded #collection-items .tile.single .item-link.view::after,
+.hubs-embedded #collection-items .tile.single:not(.list) .item-link.view::after {
+  width: 23px;
+  background-image: url(https://content.cdntwrk.com/files/aHViPTEwOTEyMiZjbWQ9aXRlbWVkaXRvcmltYWdlJmZpbGVuYW1lPWl0ZW1lZGl0b3JpbWFnZV81ZTQxYzQwY2JmNDZjLnBuZyZ2ZXJzaW9uPTAwMDAmc2lnPTg4ZDc2YmNjY2NlZGFmZDcwYjhlYjVlYjQwNzhkZDBi);
+  background-size: 23px 15px;
+  background-position: 0;
+}
+.hubs-embedded #collection-items .tile.single.vimeo .img::before,
+.hubs-embedded #collection-items .tile.single:not(.list).vimeo .img::before {
+  background: url(https://content.cdntwrk.com/files/aHViPTEwOTEyMiZjbWQ9aXRlbWVkaXRvcmltYWdlJmZpbGVuYW1lPWl0ZW1lZGl0b3JpbWFnZV81ZTQzMTc4MjA4ZTc4LnBuZyZ2ZXJzaW9uPTAwMDAmc2lnPWU3MmE5YTkxOThkYjJhM2JkZTE4OTQzOTQ3MGUyNjQ5);
+  background-repeat: no-repeat;
+  background-size: 46px;
+  background-position: 50% 50%;
+}
+.hubs-embedded #collection-items .tile.single:hover .img.visible,
+.hubs-embedded #collection-items .tile.single:not(.list):hover .img.visible {
+  box-shadow: 0px 15px 9px -6px #b9b9b9;
+}
+.hubs-embedded #collection-items .tile.single:hover .description h3,
+.hubs-embedded #collection-items .tile.single:not(.list):hover .description h3 {
+  color: #5b6770 !important;
+}
+.hubs-embedded #collection-items .tile.single:hover .item-link.view,
+.hubs-embedded #collection-items .tile.single:not(.list):hover a.item-link.view {
+  color: #ff6633;
+  text-decoration: none;
+}
+.hubs-embedded #collection-items .tile.single:hover .item-link.view::after,
+.hubs-embedded #collection-items .tile.single:not(.list):hover .item-link.view::after {
+  background-image: url(https://content.cdntwrk.com/files/aHViPTEwOTEyMiZjbWQ9aXRlbWVkaXRvcmltYWdlJmZpbGVuYW1lPWl0ZW1lZGl0b3JpbWFnZV81ZTQxYzQxMjhjZWZkLnBuZyZ2ZXJzaW9uPTAwMDAmc2lnPWRmMmVhYWE4NTZmODE5YTc2NTY4NmJjNjA2M2I4YmRl);
+  background-position: 0;
+}
+  </style>
+</head>
+<body>
+  <!-- Uberflip Embedded Hub Widget -->
+
+  <div id="UfEmbeddedHub1589468392164"></div>
+
+  <script>
+  window._ufHubConfig = window._ufHubConfig || [];
+  window._ufHubConfig.push({
+    'containers':{'app':'#UfEmbeddedHub1589468392164'},
+    'collection': '5907364',
+    'openLink':function(url){
+      window.top.location.href=url;
+    },
+    'lazyloader':{
+      'itemDisplayLimit':20,
+      'maxTilesPerRow':0,
+      'maxItemsTotal': 0
+    },
+    'tileSize': 'medium',
+    'enablePageTracking':false,
+    'baseUrl': 'https://discover.hms.com/',
+    'filesUrl': 'https://discover.hms.com/',
+    'generatedAtUTC': '2020-05-14 14:59:45',
+  });
+  </script>
+
+  <script>(function(d,t,u) {
+    function load(){
+      var s=d.createElement(t);s.src=u;d.body.appendChild(s);
+    }
+    if (window.addEventListener) {
+      window.addEventListener('load',load,false);
+    }
+    else if (window.attachEvent) {
+      window.attachEvent('onload',load);
+    }
+    else{
+      window.onload=load;
+    }
+  }(document,'script','https://discover.hms.com/hubsFront/embed_collection'));
+  </script>
+  <!-- /End Uberflip Embedded Hub Widget -->
+
+<!-- <script
+  src="https://code.jquery.com/jquery-3.4.1.js"
+  integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
+  crossorigin="anonymous"></script> -->
+
+  <script>
+    const tileLink = {
+  'presentation' : 'Download',
+  'external presentation': 'View',
+  'webinar': 'Webinar',
+  'video': 'Video',
+  'blog': 'Blog Post',
+  'case study': 'Read',
+  'solution overview': 'Read',
+  'media coverage': 'Media Coverage',
+  'press release': 'Press Release',
+  'ebook': 'Read',
+  'white paper': 'White Paper',
+  'audio demos': 'Listen',
+  'video demos': 'View',
+  'infographic': 'View',  
+  'template': 'Download',
+  'article': 'Read',
+  'coming soon': 'Read',
+  'landing page': 'Visit',
+  'register': 'Register',
+  'corporate policy': 'Read policy',
+  'hms pods': 'Podcast', 
+  'podcast':'Podcast'
+};
+
+const changeTitleText = (link, text) => {
+    link.innerHTML = `${text}`;
+};
+
+const changeTitles = () => {
+    const tilesArray = Array.from(document.querySelectorAll('.tile.single'));
+
+    tilesArray.forEach((tile) => {
+        if (tile.dataset.tags) {
+            const tags = tile.dataset.tags.split(',');
+            const link = tile.querySelector('.item-link.view');
+      
+            for (i = 0; i < tags.length; i++) {                    
+                const tag = tags[i].toLowerCase();
+      
+                if (tileLink.hasOwnProperty(tag)) {
+                    changeTitleText(link, tileLink[tag]);
+                }
+            }
+        }
+    });
+};
+
+window.addEventListener('ufitemsLoaded', function(e) {
+  changeTitles();
+});
+
+  </script>
+</body>
+</html>
