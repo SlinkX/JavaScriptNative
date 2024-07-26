@@ -1,0 +1,1258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+	<style>
+		body {
+  background: rgba(255, 223, 219);
+}
+
+#lui-playlist {
+  display: flex;
+  justify-content: space-between;
+  width: 1100px;
+  height: 1000px;
+  background: #fff;
+  border-radius: 25px;
+  border: 1px solid #fff;
+}
+
+#lui-playlist l-panel {
+  display: block;
+  width: 200px;
+  height: 100%;
+  border-right: 1px solid #efefef;
+  position: relative;
+  border-top-left-radius: 25px;
+}
+
+#lui-playlist user-p {
+  display: flex;
+  align-items: center;
+  height: 80px;
+  width: calc(100% - 20px);
+  border-bottom: 1px solid #efefef;
+  padding-left: 20px;
+}
+
+#lui-playlist user-p circle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  border-radius: 100%;
+  background: #DB8C84;
+  color: #fff;
+  font-size: 14px;
+  box-shadow: 2px 1px 8px #A24140;
+}
+
+#lui-playlist user-p user-wl {
+  display: flex;
+  flex-direction: column;
+  width: calc(100% - 50px);
+  margin-left: 20px;
+  height: 100%;
+  justify-content: center;
+  align-items: flex-start;
+  font-family: 'Rubik', sans-serif;
+  text-align: justify;
+  background: none;
+  line-height: 80%;
+}
+
+#lui-playlist user-p user-wl wel {
+  display: block;
+  text-transform: uppercase;
+  font-size: 10px;
+  letter-spacing: 1px;
+}
+
+#lui-playlist user-p user-wl user {
+  display: block;
+  font-family: 'rubik', sans-serif;
+  font-size: 20px;
+  font-weight: 500;
+}
+
+#lui-playlist l-panel u-menu {
+  width: calc(100% - 80px);
+  height: 160px;
+  display: block;
+  background: none;
+  margin-left: 0px;
+  margin-top: 30px;
+  text-align: justify;
+}
+
+#lui-playlist l-panel m-tit {
+  display: block;
+  text-transform: uppercase;
+  font-family: 'Rubik', sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  color: #DB8C84;
+  margin-bottom: 15px;
+}
+
+#lui-playlist l-panel m-block {
+  display: block;
+  width: 100%;
+  height: 30px;
+  font-family: 'Rubik', sans-serif;
+  font-size: 13px;
+  padding-top: 4px;
+  padding-bottom: 0px;
+}
+
+#lui-playlist l-panel m-block i {
+  font-size: 12px;
+  padding-right: 5px;
+}
+
+#lui-playlist c-pl {
+  width: 105%;
+  height: 90px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  border-top: 1px solid rgba(255, 223, 219);
+  border-bottom: 1px solid rgba(255, 223, 219);
+  margin-top: 20px;
+  background: #DE8A82;
+  border-top-right-radius: 10px;
+  border-bottom-right-radius: 10px;
+}
+
+#lui-playlist c-pl cic {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  width: 45px;
+  height: 45px;
+  border-radius: 100%;
+  position: relative;
+  margin-left: 20px;
+  background: none;
+  border: 1px solid rgba(255,255,255,0.3);
+}
+
+#lui-playlist c-pl ci {
+  display: block;
+  width: 41px;
+  height: 41px;
+  border-radius: 100%;
+  border: 4px solid transparent;
+  border-left: 4px solid #fff;
+  transition: all 2s;
+  position: absolute;
+  top: -2px;
+  right: -2px;
+}
+
+#lui-playlist c-pl ci:hover {
+ transform: rotate(710deg);
+ transition: all 2s;
+ cursor: pointer;
+}
+
+#lui-playlist c-pl create {
+  position: relative;
+  color: #fff;
+  text-transform: uppercase;
+  font-family: 'Rubik', sans-serif;
+  font-size: 11px;
+  letter-spacing: 1px;
+  margin-left: 15px;
+}
+
+#lui-playlist c-pl create cl {
+  display: block;
+  width: 0%;
+  height: 1px;
+  background: #fff;
+  position: absolute;
+  bottom: -5px;
+  left: 0px;
+  transition: 1s;
+}
+
+#lui-playlist c-pl cic:hover ~ create cl {
+  width: 100%;
+  transition: 1s;
+}
+
+#lui-playlist banner {
+  position: absolute;
+  width: 900px;
+  height: 200px;
+  background: url(https://images.unsplash.com/photo-1551499779-ee50f1aa4d25?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1051&q=80);
+  background-position: bottom right;
+  background-repeat: no-repeat;
+  background-attachment: scroll;
+  background-size: cover;
+  margin-left: 200px;
+  border-top-right-radius: 25px;
+}
+
+#lui-playlist banner b-title {
+  font-family: cervantis;
+  color: #fff;
+  font-size: 100px;
+  display: block;
+  height: 30px;
+  background: none;
+  line-height: 10%;
+  position: absolute;
+  width: 600px;
+  background: none;
+  text-align: right;
+  top: 105px;
+}
+
+#lui-playlist banner byl {
+  font-family: 'Open Sans', sans-serif;
+  color: #fff;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-size: 8px;
+  display: block;
+  background: rgba(255,255,255,0);
+  height: auto;
+  bottom: 20px;
+  width: 605px;
+  position: absolute;
+  text-align: right;  
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+  padding-bottom: 5px;
+}
+
+#lui-playlist middle {
+  display: block;
+  width: 658px;
+  height: 100%;
+  background: none;
+}
+
+#lui-playlist middle search-b {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  align-content: flex-start;
+  width: calc(100% - 40px);
+  padding-left: 40px;
+  height: 90px;
+  border-bottom: 0px solid #efefef;
+  font-size: 13px;
+  color: #fff;
+  font-family: 'Rubik', sans-serif;
+  position: relative;
+}
+
+#lui-playlist middle searchin {
+ display: block;
+  background: rgba(255,255,255,0.4);
+  padding: 15px;
+  border-radius: 10px;
+}
+
+#lui-playlist middle search-b i {
+  padding-right: 15px;
+}
+
+#lui-playlist middle m-sec {
+  width: 100%;
+  height: calc(100% - 200px);
+  display: block;
+  background: none;
+  position: relative;
+  margin-top: 110px;
+}
+
+#lui-playlist middle sec-1 {
+  display: flex;
+  width: calc(100% - 120px);
+  height: 160px; 
+  border: 1px solid #efefef;
+  margin-top: 150px;
+  border-radius: 10px;
+  padding: 20px;
+}
+
+#lui-playlist middle re-album {
+  width: 160px;
+  height: 160px;
+  border-radius: 10px;
+  background: url(https://images.unsplash.com/photo-1551500226-b50b653e33e8?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80);
+  background-size: cover;
+  background-position: center;
+  display: block;
+}
+
+#lui-playlist middle re-con {
+  display: block;
+  width: 345px;
+  height: 100%;
+  background: none;
+  margin-left: 30px;
+}
+
+#lui-playlist middle re-cent {
+  width: 100%;
+  height: 20px;
+  display: block;
+  font-family: 'Rubik', sans-serif;
+  color: #d6d6d6;
+  text-align: left;
+  font-size: 14px;
+}
+
+#lui-playlist middle re-title {
+  width: 100%;
+  height: 20px;
+  display: block;
+  font-family: 'Rubik', sans-serif;
+  color: #ed9393;
+  text-align: left;
+  font-size: 20px;
+}
+
+#lui-playlist middle re-track {
+  width: 100%;
+  height: 100px;
+  background: none;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-top: 18px;
+  flex-wrap: wrap;
+}
+
+#lui-playlist middle play {
+  width: 12px;
+  height: 12px;
+  display: block;
+  border: 1px solid #efefef;
+  border-radius: 100%;
+  color: #ed9393;
+  font-size: 10px;
+  padding: 6px 5px 5px 8px;
+  transition: 1s;
+}
+
+#lui-playlist middle play i {
+  transition: 1s;
+}
+
+#lui-playlist middle re-track re-song {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 300px;
+  height: 25px;
+  margin-left: 10px;
+  position: relative;
+}
+
+#lui-playlist middle re-song s-name {
+  display: block;
+  width: 100px;
+  height: 20px;
+  text-transform: uppercase;
+  text-align: justify;
+  font-size: 8px;
+  font-family: 'Open Sans', sans-serif;
+  letter-spacing: 1px;
+  padding-top: 5px;
+  background: none;
+}
+
+#lui-playlist middle re-song s-name b {
+  font-family: 'Rubik', sans-serif;
+  font-weight: 600;
+}
+
+#lui-playlist middle re-song s-track {
+  display: block;
+  width: 120px;
+  height: 5px;
+  background: #ebebeb;
+  border-radius: 15px;
+}
+
+#lui-playlist middle re-song s-time { 
+  font-family: 'Open Sans', sans-serif;
+  font-size: 10px;
+}
+
+#lui-playlist middle re-song i.icon-outline { 
+  display: block;
+  font-family: 'Open Sans', sans-serif;
+  font-size: 10px;
+  color: #ed9393;
+  position: relative;
+  z-index: 91;
+  transition: 0.5s;
+}
+
+#lui-playlist middle re-song i.icon-fill { 
+  display: block;
+  font-family: 'Open Sans', sans-serif;
+  font-size: 10px;
+  color: #ed9393;
+  position: absolute;
+  z-index: 90;
+  right: 0px;
+  top: 0px;
+  opacity: 0;
+  transition: 0.5s;
+}
+
+#lui-playlist middle re-song i.icon-outline:hover i.icon-fill {
+  opacity: 1;
+  cursor: pointer;
+  transition: 0,5s;
+}
+
+#lui-playlist middle play:hover i { 
+ color: #f7b5b5;
+  transition: 1s;
+  cursor: pointer;
+}
+
+#lui-playlist middle sec-2 {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  width: calc(100% - 120px);
+  height: 160px; 
+  border: 1px solid #efefef;
+  margin-top: 20px;
+  border-radius: 10px;
+  padding: 20px;
+}
+
+#lui-playlist middle sec-2 sm-con {
+  width: 100px;
+  height: 100px;
+  background: none;
+  display: block;
+  margin-top: 10px;
+}
+
+#lui-playlist middle sec-2 sm-title {
+  text-transform: uppercase; 
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  font-size: 10px;
+  font-family: 'Rubik', sans-serif;
+  background: rgba(237, 147, 147,0.2);
+  padding: 3px 5px;
+  border-radius: 5px;
+}
+
+#lui-playlist middle sec-2 .sm-album {
+  width: 70px;
+  height: 70px;
+  background-size: cover;
+  background-position: center;
+  border-radius: 15px;
+  margin-bottom: 5px;
+  position: relative;
+  overflow: hidden;
+  transition: 2s;
+  cursor: pointer;
+}
+
+#lui-playlist middle sec-2 .sm-album .pic {
+  width: 70px;
+  height: 70px;
+  background-size: cover;
+  background-position: center;
+  position: relative;
+  top: 0px;
+  transition: 1s;
+  cursor: pointer;
+}
+
+#lui-playlist middle sec-2 .sm-cover {
+  width: 70px;
+  height: 70px;
+  background-size: cover;
+  background-position: center;
+  position: absolute;
+  top: 70px;
+  left: 0px;
+  transition: 1s;
+  cursor: pointer;
+}
+
+#lui-playlist middle sec-2 .sm-album:hover .pic {
+  top: -70px;
+  transition: 1s;
+}
+
+#lui-playlist middle sec-2 .sm-album:hover .sm-cover {
+  top: 0px;
+  transition: 1s;
+}
+
+#lui-playlist middle sec-2 sm-recom {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  width: 100%;
+  height: 40px;
+  background: none;
+  margin-top: 25px;
+  font-family: 'Open Sans', sans-serif;
+  border-top: 1px solid #efefef;
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  position: relative;
+}
+
+#lui-playlist middle sec-2 sm-recom i {
+  margin-right: 10px;
+  color: rgba(237, 147, 147,0.9);
+}
+
+#lui-playlist middle sec-2 sm-recom b {
+  margin-right: 5px;
+  margin-left: 5px;
+  color: #222;
+  border-bottom: 3px solid rgba(237, 147, 147,0.2);
+  font-weight: 600;
+  margin-top: 2px;
+}
+
+#lui-playlist middle sec-2 seall {
+  position: absolute;
+  right: 0px;
+  font-family: 'Rubik', sans-serif;
+  font-weight: 500;
+  color: #d9d9d9;
+  margin-top: 3px;
+}
+
+#lui-playlist middle sec-3 {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  width: calc(100% - 120px);
+  height: 170px; 
+  border: 1px solid #efefef;
+  margin-top: 20px;
+  border-radius: 10px;
+  padding: 20px;
+}
+
+#lui-playlist middle sec-3 faves {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 33%;
+  height: 100%;
+  background: none;
+  position: relative;
+}
+
+#lui-playlist middle sec-3 fave {
+  width: 100%;
+  height: 50px;
+  display: flex;
+  justify-content: space-between;
+  background: none;
+  align-items: center;
+}
+
+#lui-playlist middle sec-3 fave fimg {
+  width: 40px;
+  height: 40px;
+  display: block;
+  border-radius: 10px;
+  margin-right: -5px;
+}
+
+#lui-playlist middle sec-3 fave .f-img {
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  background-size: cover;
+  background-position: cover;
+}
+
+#lui-playlist middle sec-3 fave f-title {
+  font-family: 'Rubik', sans-serif;
+  text-transform: uppercase;
+  display: block;
+  font-weight: 600;
+  text-align: justify;
+  font-size: 9px;
+  width: 70px;
+  background: none;
+  transition: 1s;
+}
+
+#lui-playlist middle sec-3 fave f-artist {
+  display: block;
+  font-weight: 400;
+  margin-top: 2px;
+  color: #222;
+}
+
+#lui-playlist middle sec-3 fave f-time {
+  font-family: 'Rubik', sans-serif;
+  font-size: 10px;
+  margin-left: 4px;
+}
+
+#lui-playlist middle sec-3 fave i {
+  font-size: 8px;
+  color: rgba(237, 147, 147,0.7);
+  padding-right: 15px;
+}
+
+#lui-playlist middle f-title:hover {
+  color:rgba(237, 147, 147,0.7);
+  cursor: pointer;
+  transition: 1s;
+  
+}
+
+#lui-playlist middle b-menu {
+  width: calc(100% - 90px);
+  height: 50px;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  background: none;
+  margin-top: 25px;
+  text-align: right;
+  font-family: 'Rubik', sans-serif;
+  word-spacing: 8px;
+  color: #dbdbdb;
+  font-size: 14px;
+}
+
+#lui-playlist middle b-menu b {
+  color: #d4d4d4;
+  margin-right: 10px;
+  border-bottom: 3px solid rgba(237, 147, 147,0.3);
+  margin-top: 4px;
+}
+
+#lui-playlist middle b-menu i {
+  margin-right: 20px;
+  font-size: 10px;
+  color: rgba(237, 147, 147,0.3);
+}
+
+#lui-playlist r-panel {
+  width: 240px;
+  height: 100%;
+  display: block;
+  background: none;
+  border-left: 1px solid #efefef; 
+  position: relative;
+}
+
+#lui-playlist r-top {
+  width: 100%;
+  height: 200px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: rgba(255,255,255,0.3);
+  border-top-right-radius: 20px;
+  position: relative;
+}
+
+#lui-playlist r-circ {
+  display: block;
+  width: 100px;
+  height: 100px;
+  background: #fff;
+  border-radius: 100%;
+  padding: 10px;
+}
+
+#lui-playlist r-circ r-img {
+  width: 100px;
+  height: 100px;
+  display: block;
+  background: url(https://i.pinimg.com/564x/0b/fe/fe/0bfefe401953dbe9e790ec6ab9fab34d.jpg);
+  background-position: center;
+  background-size: cover;
+  border-radius: 100%;
+}
+
+#lui-playlist r-noti {
+  width: 20px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 100%;
+  background: #fff;
+  padding: 5px;
+  position: absolute;
+  bottom: 30px;
+  right: 40px;
+  color: #DE8A82;
+  font-size: 13px;
+  transform: rotate(5deg);
+}
+
+#lui-playlist r-noc {
+  width: calc(100% - 40px);
+  height: 175px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background: none;
+  padding: 20px;
+  border-bottom: 1px solid #efefef;
+}
+
+#lui-playlist r-noc one {
+  width: calc(100% - 12px);
+  height: 45px;
+  border: 1px solid #efefef;
+  display: flex;
+  border-radius: 15px;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 12px;
+  font-family: 'Rubik', sans-serif;
+  padding: 0px 8px 0px 5px;
+  text-align: justify;
+}
+
+#lui-playlist r-noc one n-user {
+ line-height: 80%; 
+}
+
+
+
+#lui-playlist r-noc one tim {
+  font-size: 10px;
+}
+
+#lui-playlist r-noc one i {
+  background: rgba(237, 147, 147,0.2);
+  padding: 8px;
+  border-radius: 100%;
+  font-size: 11px;
+  color: rgba(237, 147, 147,0.9);
+}
+
+#lui-playlist r-panel friends {
+  width: calc(100% - 40px);
+  height: 155px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  flex-wrap: wrap; 
+  background: none;
+  padding: 20px;
+  border-bottom: 1px solid #efefef;
+}
+
+#lui-playlist r-panel friends frien {
+  display: block;
+  width: 100%;
+  height: auto;
+  font-family: 'Rubik', sans-serif; 
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-size: 10px;
+  color: rgba(237, 147, 147,1);
+}
+
+#lui-playlist r-panel friends frien-c {
+  width: 45px;
+  height: 45px;
+  padding: 5px;
+  background: rgba(237, 147, 147,0.2);
+  border-radius: 100%;
+}
+
+#lui-playlist r-panel friends frien-c .f-img {
+  width: 43px;
+  height: 43px;
+  border-radius: 100%;
+  background-size: cover;
+  background-position: center;
+  border: 1px solid #fff;
+}
+
+#lui-playlist n-play {
+  width: calc(100% - 40px);
+  height: 345px;
+  display: block; 
+  background: none;
+  padding: 20px;
+  position: relative;
+}
+
+#lui-playlist n-player {
+  display: block;
+  width: calc(100% - 2px);
+  height: calc(100% - 2px);
+  border-radius: 25px;
+  border: 1px solid #fff;
+  background:rgba(237, 147, 147,0.2);
+  position: relative;
+}
+
+#lui-playlist n-player square {
+  width: 150px;
+  height: 150px;
+  background: rgb(254,194,188);
+  background: linear-gradient(35deg, rgba(254,194,188,1) 27%, rgba(255,244,243,1) 100%);
+  position: absolute;
+  border-top-left-radius: 25px;
+  top: 0px;
+  left: 0px;
+}
+
+#lui-playlist n-player n-top {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  padding: 15px 20px;
+  text-transform: uppercase;
+  font-size: 8px;
+  font-family: 'Rubik', sans-serif;
+  letter-spacing: 1px;
+}
+
+#lui-playlist n-player n-top b {
+  margin-top: 5px;
+  font-weight: 400;
+}
+
+#lui-playlist n-player n-top i {
+  background: rgba(255,255,255,0.5);
+  padding: 5px;
+  border-radius: 5px;
+  font-size: 9px;
+}
+
+#lui-playlist n-player .n-cover {
+  width: 150px;
+  height: 150px;
+  border-radius: 20px;
+  position: relative;
+  background-size: cover;
+  background-position: center;
+}
+
+#lui-playlist n-player n-title {
+  width: calc(100% - 60px);
+  height: auto;
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+  padding: 0px 30px 0px 30px; 
+  font-family: 'Rubik', sans-serif;
+  font-size: 14px;
+  color: #222;
+  font-weight: 600;
+}
+
+#lui-playlist n-player n-title i {
+  font-size: 10px;
+  margin-top: 3px;
+  font-weight: 400;
+  color: rgba(237, 147, 147,1);
+}
+
+#lui-playlist n-player n-artist {
+  font-family: 'Rubik', sans-serif;
+  text-align: justify;
+  text-transform: uppercase;
+  font-size: 10px;
+  width: 100%;
+  display: block;
+  padding: 5px 30px;
+  letter-spacing: 1px;
+}
+
+#lui-playlist n-player d-line {
+  width: calc(100% - 50px);
+  height: 2px;
+  background: rgba(0,0,0,0.2);
+  border-radius: 2px;
+  display: block;
+  position: relative;
+  margin-top: 10px;
+}
+
+#lui-playlist n-player d-prog {
+  position: absolute;
+  width: 34%;
+  height: 100%;
+  background: rgba(237, 147, 147,1);
+  top: -1px;
+  left: 0px;
+  border-radius: 2px;
+  border: 1px solid rgba(237, 147, 147,1);
+}
+
+#lui-playlist n-player d-cic {
+  position: absolute;
+  width: 6px;
+  height: 6px;
+  border-radius: 100%;
+  background: #fff;
+  border: 1px solid rgba(237, 147, 147,1);
+  top: -3px;
+  left: 34%;
+}
+
+#lui-playlist n-player d-time {
+  display: flex;
+  justify-content: space-between;
+  width: calc(100% - 50px);
+  height: auto;
+  background: none;
+  border-radius: 2px;
+  position: relative;
+  margin-top: 5px;
+  font-family: 'Rubik', sans-serif;
+  font-size: 10px;
+}
+
+#lui-playlist n-player d-controls {
+  display: flex;
+  justify-content: space-between;
+  width: calc(100% - 50px);
+  height: auto;
+  margin-top: 15px;
+  font-size: 11px;
+  
+}
+
+#lui-playlist n-player d-controls i.p-icon {
+  border-radius: 100%;
+  background: rgba(237, 147, 147,1);
+  padding: 10px;
+  position: relative;
+  top: -10px;
+  color: #222;
+}
+	</style>
+</head>
+<body>
+	<script src="//pull.cappuccicons.com/cpf.js"></script>
+<script src="https://kit.fontawesome.com/8c7c8a5180.js" crossorigin="anonymous"></script>
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+<center>
+  <div id="lui-playlist">
+    <l-panel>
+      <user-p><circle><i class="cp cp-z-aries"></i></circle><user-wl><wel>welcome back,</wel><user>agnes</user></user-wl></user-p>
+ <u-menu>
+       <m-tit>menu</m-tit> 
+     <m-block><i class="cp cp-home"></i> Home</m-block>
+     <m-block><i class="cp cp-search"></i> Search</m-block>
+     <m-block><i class="cp cp-cursor-o"></i> Discover</m-block>
+     <m-block><i class="cp cp-heart"></i> Favourites</m-block>
+</u-menu>
+     
+      <c-pl> <cic><ci></ci><i class="cp cp-music-note"></i></cic>
+        <create>new playlist<cl></cl></create>
+      </c-pl>
+      
+      <u-menu>
+       <m-tit>library</m-tit> 
+     <m-block><i class="cp cp-tinder"></i> Playlists</m-block>
+     <m-block><i class="cp cp-clock-o"></i> Recent</m-block>
+     <m-block><i class="cp cp-folder"></i> Local</m-block>
+
+</u-menu>
+      
+      <u-menu>
+       <m-tit>general</m-tit> 
+     <m-block><i class="cp cp-user"></i> Profile</m-block>
+     <m-block><i class="cp cp-smartphone"></i> Account</m-block>
+     <m-block><i class="cp cp-eyelash"></i> Private session</m-block>
+        <m-block><i class="cp cp-cog"></i> Settings</m-block>
+        <m-block><i class="cp cp-switch"></i> Log out</m-block>
+
+</u-menu></l-panel>
+  <banner>
+    
+    <b-title>woman</b-title>
+    <byl>by mumford & sons</byl>
+  </banner>
+    
+    <middle>
+      <search-b><searchin><i class="cp cp-menu"></i> search for your favourite artists or songs ...</searchin></search-b>
+      
+      <m-sec>
+      <sec-1>
+        <re-album></re-album>
+        <re-con>
+          <re-cent>Last played</re-cent>
+          <re-title>at the coffee house</re-title>
+          <re-track>
+            <play><i class="fas fa-play"></i></play>
+            <re-song>
+              <s-name>forever <br><b>labyrinth</b></s-name>
+              <s-track></s-track><s-time>3:22</s-time>
+                <i class="cp cp-heart-o icon-outline"><i class="cp cp-heart icon-fill"></i></i>
+            </re-song>
+            
+            <play><i class="fas fa-play"></i></play>
+            <re-song>
+              <s-name>your power <br><b>billie eilish</b></s-name>
+              <s-track></s-track><s-time>4:05</s-time><i class="cp cp-heart-o icon-outline"><i class="cp cp-heart icon-fill"></i></i>
+            </re-song>
+            
+            <play><i class="fas fa-play"></i></play>
+            <re-song>
+              <s-name>the wisp sings <br><b>winter aid</b></s-name>
+              <s-track></s-track><s-time>5:13</s-time><i class="cp cp-heart-o icon-outline"><i class="cp cp-heart icon-fill"></i></i>
+            </re-song></re-track></re-con>
+        
+      </sec-1>
+        
+        <sec-2>
+          <sm-con>
+          <div class="sm-album">
+            <div class="pic" style="background-image: url(https://images.unsplash.com/photo-1567653418876-5bb0e566e1c2?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=700&q=80);"></div>
+            <div class="sm-cover" style="background-image: url(https://64.media.tumblr.com/9533b4091ee6355722b4e75af2193eaa/55fc78ba85177ea2-50/s500x750/783efa4a7a507bd98cf6b460d1d6baa7d1444973.jpg)"></div>
+          </div>
+            <sm-title>o. rodrigo</sm-title>
+            </sm-con>
+          
+          <sm-con>
+          <div class="sm-album"> <div class="pic" style="background-image: url(https://images.unsplash.com/photo-1522814208878-08129b4b76f3?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=675&q=80);"></div>
+            <div class="sm-cover" style="background-image: url(https://lastfm.freetls.fastly.net/i/u/avatar170s/e6fe7bc35a436677dd7bf47ef7ee5722)"></div>
+          </div>
+            <sm-title>dayglow</sm-title>
+            </sm-con>
+          
+          <sm-con>
+          <div class="sm-album">
+            <div class="pic" style="background-image: url(https://images.unsplash.com/photo-1587593647392-40665ae54547?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=675&q=80);"></div>
+              <div class="sm-cover" style="background-image: url(https://i.pinimg.com/736x/27/06/09/2706096fea71dbe30cf198810ea04aa4.jpg)"></div>
+            </div>
+            <sm-title>rihanna</sm-title>
+            </sm-con>
+          
+          <sm-con>
+          <div class="sm-album"> <div class="pic" style="background-image: url(https://images.unsplash.com/photo-1498082038709-46e6415b86b6?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80);"></div>
+            <div class="sm-cover" style="background-image: url(https://assets.teenvogue.com/photos/5d0aa240c0242c067973d5f9/16:9/w_2992,h_1683,c_limit/Conan%20Gray_Promo.jpg)"></div>
+          </div>
+            <sm-title>c. gray</sm-title>
+            </sm-con>
+          
+          <sm-con>
+          <div class="sm-album"> <div class="pic" style="background-image: url(https://images.unsplash.com/photo-1605069570254-96087576536c?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=676&q=80);"></div>
+            <div class="sm-cover" style="background-image: url(https://64.media.tumblr.com/8e6937aac2f4d4886793d820fe161716/16a4fc2f9c30e917-ab/s400x600/c76254671a8cbabe8a1071a7e01e31219ec61bb0.png)"></div>
+          </div>
+            <sm-title>h. styles</sm-title>
+            </sm-con>
+          
+          <sm-recom><i class="cp cp-stars"></i> most <b>streamed artists</b> this week
+          <seall>see all ...</seall>
+          </sm-recom>
+          
+          </sec-2>
+        
+        <sec-3>
+         <faves>
+           <fave>
+             <fimg>
+               <div class="f-img" style="background-image: url(https://i.pinimg.com/originals/c0/f3/f1/c0f3f1e734f7cf34ee9557288cbc521e.jpg);"></div>
+             </fimg>
+             <f-title>close to you
+             <f-artist>dayglow</f-artist></f-title>
+             <f-time>3:15</f-time> 
+             <i class="fas fa-play"></i>
+           </fave>
+           <fave>
+             <fimg>
+               <div class="f-img" style="background-image: url(https://data.whicdn.com/images/258655293/original.jpg);"></div>
+             </fimg>
+             <f-title>oops!
+             <f-artist>yung gravy</f-artist></f-title>
+             <f-time>2:19</f-time> 
+             <i class="fas fa-play"></i>
+             
+           </fave>
+           <fave>
+             <fimg>
+               <div class="f-img" style="background-image: url(https://images.unsplash.com/photo-1524662024870-89fca9b3ab6c?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80);"></div>
+             </fimg>
+             <f-title>overdrive
+             <f-artist>conan gray</f-artist></f-title>
+             <f-time>3:03</f-time> 
+             <i class="fas fa-play"></i>
+             
+           </fave>
+           
+         </faves>
+          
+          <faves>
+            
+            <fave>
+             <fimg>
+               <div class="f-img" style="background-image: url(https://images.unsplash.com/photo-1533910534207-90f31029a78e?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80);"></div>
+             </fimg>
+             <f-title>s.t.a.y.
+             <f-artist>hans zimmer</f-artist></f-title>
+             <f-time>6:23</f-time> 
+             <i class="fas fa-play"></i>
+           </fave>
+           <fave>
+             <fimg>
+               <div class="f-img" style="background-image: url(https://images.unsplash.com/photo-1508961497318-04ddf9469a0b?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80);"></div>
+             </fimg>
+             <f-title>wait a minute!
+             <f-artist>willow</f-artist></f-title>
+             <f-time>3:17</f-time> 
+             <i class="fas fa-play"></i>
+             
+           </fave>
+           <fave>
+             <fimg>
+               <div class="f-img" style="background-image: url(https://images.unsplash.com/photo-1601979689063-cb474664e70b?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80);"></div>
+             </fimg>
+             <f-title>deja vu
+             <f-artist>olivia rodrigo</f-artist></f-title>
+             <f-time>3:03</f-time> 
+             <i class="fas fa-play"></i>
+             
+           </fave>
+            
+          </faves>
+          <faves>
+            
+            <fave>
+             <fimg>
+               <div class="f-img" style="background-image: url(https://images.unsplash.com/photo-1531736275454-adc48d079ce9?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80);"></div>
+             </fimg>
+             <f-title>wait
+             <f-artist>m83</f-artist></f-title>
+             <f-time>5:43</f-time> 
+             <i class="fas fa-play"></i>
+           </fave>
+           <fave>
+             <fimg>
+               <div class="f-img" style="background-image: url(https://images.unsplash.com/photo-1498843053639-170ff2122f35?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80);"></div>
+             </fimg>
+             <f-title>falling
+             <f-artist>harry styles</f-artist></f-title>
+             <f-time>4:00</f-time> 
+             <i class="fas fa-play"></i>
+             
+           </fave>
+           <fave>
+             <fimg>
+               <div class="f-img" style="background-image: url(https://images.unsplash.com/photo-1525280008627-921852d87169?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=634&q=80);"></div>
+             </fimg>
+             <f-title>civilian
+             <f-artist>wye oak</f-artist></f-title>
+             <f-time>3:41</f-time> 
+             <i class="fas fa-play"></i>
+             
+           </fave>
+            
+          </faves>
+          </sec-3>
+        
+        <b-menu>
+          <i class="fas fa-chevron-right"></i> <b>Music</b> Audiobooks Podcast Live Radio
+          </b-menu>
+      
+        </m-sec>
+    </middle>
+    
+    
+    <r-panel>
+      <r-top><r-circ>
+        <r-img></r-img>
+      </r-circ>
+        <r-noti><i class="cp cp-bell-o"></i></r-noti>
+        </r-top>
+      
+      <r-noc>
+        <one><i class="cp cp-pin"></i>
+          <n-user>Hailey just joined!</n-user>
+          <tim>10 mins</tim>
+        </one>
+        
+        <one><i class="cp cp-pin"></i>
+          <n-user>New playlist created</n-user>
+          <tim>1 hr</tim>
+        </one>
+        <one><i class="cp cp-pin"></i>
+          <n-user>Local file uploaded</n-user>
+          <tim>9 hrs</tim>
+        </one>
+      </r-noc>
+      
+      <friends>
+        <frien>your friends</frien>
+        <frien-c><div class="f-img" style="background-image: url(https://s11.favim.com/orig/7/728/7284/72843/aesthetic-kpop-icon-tumblr-Favim.com-7284379.jpg);"></div></frien-c>
+        <frien-c><div class="f-img" style="background-image: url(https://i.pinimg.com/originals/ca/52/b8/ca52b87c4dac8ee628290363b494fa5e.png);"></div></frien-c>
+        <frien-c><div class="f-img" style="background-image: url(https://66.media.tumblr.com/3263cdcb2d46eb8816ec67a903543a40/tumblr_pk9108WsDl1v1ofe3o7_250.png);"></div></frien-c>
+        <frien-c><div class="f-img" style="background-image: url(https://64.media.tumblr.com/1b5b3d960079ff50e6b75edeaaba3758/52379f686745b496-ea/s400x600/c87fed264be7da6bc6cbcc3807fd6277789dfd5a.gifv);"></div></frien-c>
+        <frien-c><div class="f-img" style="background-image: url(https://64.media.tumblr.com/114d97f5d3b4eac9ddb02e5eb88bfdff/tumblr_pshbb2fpsc1wjly4to1_250.png);"></div></frien-c>
+        <frien-c><div class="f-img" style="background-image: url(https://dogtrainingobedienceschool.com/pic/3076817_full-chanel-oberlin-quotes-tumblr-icons-chanel-oberlin-tumblr.png);"></div></frien-c>
+      </friends>
+      
+      <n-play>
+        <n-player><square></square>
+          <n-top><i class="fas fa-chevron-down"></i> <b>playing now</b> <i class="cp cp-flickr"></i></n-top>
+          <div class="n-cover" style="background-image: url(https://i.pinimg.com/originals/a8/f5/62/a8f5627cc457f3eff57cbb49b26214cd.jpg)"></div>
+          <n-title>Somebody Else <i class="cp cp-heart"></i></n-title>
+          <n-artist>the 1975</n-artist>
+          <d-line><d-prog></d-prog><d-cic></d-cic></d-line>
+          <d-time>1:54 <span style="text-align: right;">5:48</span></d-time>
+          <d-controls>
+            <i class="fas fa-random"></i>
+            <i class="fas fa-backward"></i>
+            <i class="fas fa-pause p-icon"></i>
+            <i class="fas fa-forward"></i>
+            <i class="fas fa-retweet"></i>
+          </d-controls>
+        </n-player>
+        
+      </n-play>
+        
+
+    </r-panel>
+    
+    </div>
+  </center>
+
+
+
+
+<style>
+  @font-face {
+    font-family: 'trixie';
+src: url('https://files.jcink.net/uploads2/luiskin/Fonts/Trixie_demo.otf') format('truetype');
+}
+  
+  @font-face {
+    font-family: 'cervantis';
+src: url('https://files.jcink.net/uploads2/luiskin/Fonts/Cervanttis.ttf') format('truetype');
+}
+  </style>
+</body>
+</html>
