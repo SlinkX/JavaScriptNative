@@ -1,0 +1,755 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style lang=scss>
+    /* http://meyerweb.com/eric/tools/css/reset/ 
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+
+html,
+body,
+div,
+span,
+applet,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+abbr,
+acronym,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+s,
+samp,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+var,
+b,
+u,
+i,
+center,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+article,
+aside,
+canvas,
+details,
+embed,
+figure,
+figcaption,
+footer,
+header,
+hgroup,
+menu,
+nav,
+output,
+ruby,
+section,
+summary,
+time,
+mark,
+audio,
+video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section {
+  display: block;
+}
+body {
+  line-height: 1;
+}
+ol,
+ul {
+  list-style: none;
+}
+blockquote,
+q {
+  quotes: none;
+}
+blockquote:before,
+blockquote:after,
+q:before,
+q:after {
+  content: "";
+  content: none;
+}
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+/**********
+  || SCSS VARIABLES
+**********/
+
+/** DEFAULT **/
+
+$bgBase: #f1f1e5;
+$bgMain: #f6f6ee;
+$bgAlt: #e7e9e7;
+$borderMain: #c6cdc6;
+$textMain: #382b26;
+$textAlt: #222323;
+$textLight: #404140;
+$accent: #c15c80;
+$accent2: #804776;
+$fontMain: "Barlow", sans-serif;
+$fontAccent: Bitter, serif;
+
+/** ALT 
+
+$bgBase: #2C3333;
+$bgMain: #2C3333;
+$bgAlt: #2C3333;
+$borderMain: #141818;
+$textMain: #E7E7E7;
+$textAlt: #c0c0c0 ;
+$accent: #A5C9CA;
+$accent2: #B1D0E0;
+
+**/
+
+/**********
+  || BASE CHANGES
+**********/
+
+html {
+  font-size: 62.5%;
+}
+
+body {
+  background: $bgBase;
+  font-size: 1.6rem;
+  font-family: $fontMain;
+  font-weight: normal;
+  letter-spacing: 0.25px;
+  color: $textMain;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+a {
+  color: $accent;
+  text-decoration: none;
+}
+
+/**********
+  || PINKY CODE
+**********/
+
+.container {
+  width: 100%;
+  max-width: 1400px;
+  display: flex;
+  background: $bgMain;
+  border-radius: 3px;
+  margin: 4rem 1.2rem;
+  overflow: hidden;
+  box-shadow: 0 0 12px $borderMain;
+}
+
+.sidebar {
+  background: $bgBase;
+  padding:2.8rem;
+  flex: 0 1 25%;
+  text-transform: uppercase;
+  font-size: 1.4rem;
+  position: relative;
+  a:hover {
+    color: $textMain;
+  }
+  ul {
+    padding: 2rem;
+    font-size: 1.4rem;
+    font-weight: 500;
+    a:before {
+      content: "";
+      position: absolute;
+      left: -10.8rem;
+      top: 0.7rem;
+      width: 0rem;
+      height: 2px;
+      background: $borderMain;
+      transition: ease 0.5s;
+    }
+    b {
+      display: none;
+    }
+  }
+  li {
+    margin-bottom: 0.8rem;
+    position: relative;
+  }
+}
+.sidebarReturn {
+  position: absolute;
+  left: 1.6rem;
+  top: 1.6rem;
+  input {
+    border: 0;
+    background: transparent;
+    box-shadow: none;
+    font-family: $fontMain;
+    font-size: 1.2rem;
+    text-transform: uppercase;
+    font-weight: 600;
+    color: $textMain;
+    position: relative;
+    z-index: 88;
+  }
+  .feather {
+    width: 1.4rem;
+    height: auto;
+    color: $accent;
+    position: relative;
+    top: 2px;
+  }
+}
+
+.selected {
+  color: $accent2;
+}
+.selected:before {
+  content: "";
+  position: absolute;
+  left: -10.8rem;
+  top: 0.7rem;
+  width: 10rem !important;
+  height: 2px;
+  background: $borderMain;
+}
+
+.info {
+  width: 100%;
+  max-width: 24rem;
+  text-transform: lowercase;
+  font-weight: 500;
+  font-size: 1.2rem;
+  line-height: 1.4em;
+  color: $textMain;
+  letter-spacing: 0.15px;
+  margin: 1.6rem 0;
+}
+
+/**********
+  || CHARACTER TAB
+**********/
+
+.content {
+  flex: 1 1 auto;
+}
+
+.grid {
+  display: flex;
+}
+
+.grid .item {
+  display: block;
+  margin: 0;
+  border: 1px solid $borderMain;
+  padding: 2rem;
+  border-left: 0;
+  width: 100%;
+  border-top: 0;
+}
+
+.wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 4rem;
+  position: relative;
+  .modal-second {
+    position: absolute;
+    right: 3.4rem;
+    top: 0rem;
+    .feather {
+      height: 1.8rem;
+      color: $accent2;
+    }
+  }
+  h2 {
+    font-family: $fontAccent;
+    text-transform: capitalize;
+    font-size: 3.3rem;
+    font-weight: 300;
+    margin-bottom: 2rem;
+    line-height: 4.2rem;
+    flex: 1 1 20%;
+    a {
+      color: $textMain;
+    }
+    b {
+      font-size: 4.3rem;
+      color: $accent;
+      display: block;
+      font-weight: 600;
+    }
+  }
+  h3 {
+    flex: 1 1 auto;
+    display: flex;
+    gap: .8rem;
+    flex-direction: column;
+    text-align: left;
+    align-items: flex-start;
+    justify-content: flex-start;
+    justify-items: flex-start;
+    @media screen and (max-width: 800px) {
+      flex-direction: row;
+      flex: 0 0 100%;
+      flex-wrap: wrap;
+      gap: 0;
+      margin-bottom: 1rem;
+      span {
+        margin-right: .8rem;
+        font-size: 1rem;
+      }
+    }
+  }
+  p {
+    font-size: 1.6rem;
+    text-transform: lowercase;
+    grid-column: 1 / all;
+    position: relative;
+    padding-top: 2.8rem;
+    flex: 0 0 100%;
+  }
+  p:before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 4px;
+    width: 25%;
+    background: $borderMain;
+  }
+  span {
+    display: block;
+    font-size: 1.2rem;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    margin-bottom: 0.8rem;
+    text-align: left;
+  }
+}
+
+// MODAL
+
+.modal {
+  align-items: center;
+  animation: reverseGrow 0.5s;
+  background-color: $bgMain;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  display: flex;
+  align-items: flex-start;
+  width: 90%;
+  max-width: 800px;
+  opacity: 0;
+  padding: 20px;
+  position: fixed;
+  transition: opacity 0.5s, visibility 0.5s;
+  visibility: hidden;
+  will-change: opacity, visibility;
+  max-height: 600px;
+  height: 90%;
+  border-radius: 3px;
+}
+
+.modal-active {
+  animation: grow 0.5s;
+  opacity: 1;
+  visibility: visible;
+}
+
+@keyframes grow {
+  from {
+    transform: scale(0);
+  }
+  to {
+    transform: scale(1);
+  }
+}
+
+@keyframes reverseGrow {
+  from {
+    transform: scale(1);
+  }
+  to {
+    transform: scale(0);
+  }
+}
+
+  </style>
+</head>
+<body>
+  <head>
+    <script src="https://unpkg.com/feather-icons"></script>
+  
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bitter:wght@300;400;500;600&family=Open+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Bitter:wght@300;400;500;600&family=Barlow:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="assets/css/feather.css" rel="stylesheet" type="text/css">
+  
+  </head>
+  
+  <div class="container">
+    <div class="sidebar filters">
+      
+      <div class="sidebarReturn">     <i class="feather" data-feather="arrow-left"></i>
+  
+        <input type="button" value="Return" onclick="history.back()">
+      </div>
+      
+      <div class="info">
+        primary muses are the characters i have the most interest in writing and the most motivation for.
+  <br><br>
+  secondary muses are muses i enjoy writing but may not be as quick to reply with.
+        <br><br>
+        characters marked as fandomless are open to crossovers & original settings.
+      </div>
+  
+      <ul class="filter option-set exclusive" data-filter-group="status">
+        <li><b>Status</b></li>
+        <li><a href="#" data-filter-value="" class="selected">all</a></li>
+        <li><a href="#" data-filter-value=".primary">primary</a></li>
+        <li><a href="#" data-filter-value=".secondary">secondary</a></li>
+        <li><a href="#" data-filter-value=".testing">testing</a></li>
+      </ul>
+  
+      <ul class="filter option-set" data-filter-group="fandom">
+        <li><b>Fandom</b></li>
+        <li><a href="#" data-filter-value="" class="selected">all</a></li>
+        <li><a href="#" data-filter-value=".oc">fandomless</a></li>
+        <li><a href="#" data-filter-value=".kny">kimetsu no yaiba</a></li>
+        <li><a href="#" data-filter-value=".jjk">jujutsu kaisen</a></li>
+        <li><a href="#" data-filter-value=".dislyte">dislyte</a></li>
+      </ul>
+      <ul class="filter option-set combine" data-filter-group="content">
+        <li><b>type</b></li>
+        <li><a href="#" data-filter-value="" class="selected">All</a></li>
+        <li><a href="#" data-filter-value=".modern">modern</a></li>
+        <li><a href="#" data-filter-value=".spn">supernatural</a></li>
+        <li><a href="#" data-filter-value=".mgsc">magic school</a></li>
+      </ul>
+    </div>
+  
+    <div class="content">
+      <div class="grid">
+  
+        <article class="item primary oc modern supernatural">
+          <div class="wrapper">       
+            <div class="modal-second">    <a class="modal-trigger" href="" data-modal="#modal1"> <i class="feather" data-feather="external-link"></i> </a> </div>
+  
+     <h2>          <a class="modal-trigger" href="" data-modal="#modal1"> <b>Nikolas</b> Bazarov  </a> </h2>
+            <h3> <span class="tag1"> PRIMARY </span> <span class="tag2"> FANDOMLESS </span> <span class="tag3"> MODERN  </span> <span> SUPERNATURAL </span> </h3>
+            <p> aN IMMORTAL SHAPESHIFTER WHO MADE A DEAL WITH THE DEVIL. </p>
+          </div>
+        </article>
+        
+              <article class="item primary dislyte modern supernatural">
+          <div class="wrapper">       
+            <div class="modal-second">    <a class="modal-trigger" href="" data-modal="#modal1"> <i class="feather" data-feather="external-link"></i> </a> </div>
+  
+     <h2>          <a class="modal-trigger" href="" data-modal="#modal1"> <b>Hazel</b> Yeo  </a> </h2>
+            <h3> <span class="tag1"> PRIMARY </span> <span class="tag2"> DISLYTE </span> <span> FANDOMLESS </span> <span class="tag3"> MODERN  </span> <span> SUPERNATURAL </span> </h3>
+            <p> former news writer now running her own blog & podcast.   </p>
+          </div>
+        </article>
+  
+      </div>
+  
+    </div>
+  </div>
+  </div>
+  
+  <!-- THESE ARE THE MODAL WINDOWS -->
+  
+  <div class="modal" id="modal1">
+    <div class="close">
+      <i data-feather="delete"></i>
+    </div>
+    Text
+  </div>
+  <div class="modal" id="modal2">
+    Text2
+  </div>
+  
+  <script>
+    feather.replace()
+  </script>
+  <script>
+    $(document).ready(function() {
+  var $container = $(".grid"); // the container with all the elements to filter inside
+  var filters = {}; //should be outside the scope of the filtering function
+
+  /* --- read the documentation on isotope.metafizzy.co for more options --- */
+  var $grid = $container.isotope({
+    itemSelector: ".item", // the elements to filter
+    percentPosition: true, // true if you use percentage widths
+  });
+
+  // save some classes for later usage
+  /* ---
+  activeClass: adds this class to filters that are selected (active)
+  comboClass: the class that indicates that the filter group is a chain filter, i.e. if you select two filters, only items with BOTH filters will be shown
+  exclClass: the class that indicates that the filter group is an exclusion filter, i.e. you can only select one filter from that group at a time
+  resetClass: the class for the overall reset button
+  --- */
+  var activeClass = "selected",
+    comboClass = "combine",
+    exclClass = "exclusive",
+    resetClass = "reset";
+
+  var $defaults = $("a." + activeClass + '[data-filter-value=""]');
+  $(".option-set a").click(function(e) {
+    // insert your link selector where it says '.option-set a'
+    var $this = $(this); // cache the clicked link
+    var comboFilter,
+      filterAttr = "data-filter-value";
+    if (resetClass && !$this.hasClass(resetClass)) {
+      // defining variables
+      var filterValue = $this.attr(filterAttr); // cache the filter
+      var $optionSet = $this.parents(".option-set"); // cache the parent element
+      var group = $optionSet.attr("data-filter-group"); // cache the parent filter group
+      var filterGroup = filters[group]; // make new variable for the property being filtered
+      if (!filterGroup) {
+        // if the property doesn't exist
+        filterGroup = filters[group] = []; // make a new empty array
+      }
+      var $selectAll = $optionSet.find("a[" + filterAttr + '=""]'); // cache the 'select all' button in the current group
+      $("." + resetClass).removeClass(activeClass);
+      comboFiltering(
+        $this,
+        filters,
+        filterAttr,
+        filterValue,
+        $optionSet,
+        group,
+        $selectAll,
+        activeClass,
+        comboClass,
+        exclClass
+      );
+      comboFilter = getComboFilter(filters); // join all the filters
+      if (!comboFilter.length) $("a." + resetClass).addClass(activeClass);
+      $this.toggleClass(activeClass);
+    } else {
+      filters = {};
+      comboFilter = "";
+      $(".option-set a").removeClass(activeClass);
+      $(this).addClass(activeClass);
+      $defaults.addClass(activeClass);
+    }
+    $grid.isotope({
+      filter: comboFilter
+    });
+    e.preventDefault();
+  });
+});
+function comboFiltering(
+  $this,
+  filters,
+  filterAttr,
+  filterValue,
+  $optionSet,
+  group,
+  $selectAll,
+  activeClass,
+  comboClass,
+  exclClass
+) {
+  // for non-exclusive groups of filters
+  if (!$optionSet.hasClass(exclClass)) {
+    // replace 'exclusive' with the class of your exclusive filter groups
+    // if link is a filter that isn't selected
+    if (!$this.hasClass(activeClass) && filterValue.length) {
+      filters[group].push(filterValue); // add filter to array
+      $selectAll.removeClass(activeClass); // remove the selected class from the 'select all' button
+    } else if (filterValue.length) {
+      // if link is a selected filter
+      // remove filter from array
+      // check if the filter group we're concerned with is a combination filter (.one.two instead of .one,.two)
+      if ($optionSet.hasClass(comboClass)) {
+        filters[group][0] = filters[group][0].replace(filterValue, ""); // delete the filter from the combined string
+        if (!filters[group][0].length)
+          // check if there is anything left in the string after deletion
+          filters[group].splice(0, 1); // if no, remove the empty string
+      } else {
+        // if filter group is not a combo filter
+        var curIndex = filters[group].indexOf(filterValue); // get index of filter string in array
+        if (curIndex > -1) filters[group].splice(curIndex, 1); // remove the filter
+      }
+      if (!$optionSet.find("a." + activeClass).not($this).length)
+        // if there are no remaining filters
+        $selectAll.addClass(activeClass); // add the active class to the 'select all' button
+    } else {
+      // if link is the show all button for that group
+      $optionSet.find("a." + activeClass).removeClass(activeClass); // remove the active class from all other buttons
+      filters[group] = []; // clear the array of all filters
+    }
+    // join everything to a single string for the combined filtering groups
+    if ($optionSet.hasClass(comboClass) && filters[group].length)
+      filters[group] = [filters[group].join("")];
+  } else {
+    // for exclusive groups
+    // if link is a filter that isn't selected
+    if (!$this.hasClass(activeClass) && filterValue.length) {
+      // run a loop for all active filters
+      $optionSet.find("a." + activeClass).each(function(k, filterLink) {
+        // remove all active filters in the same group from the array
+        var removeFilter = $(filterLink).attr(filterAttr);
+        var removeIndex = filters[group].indexOf(removeFilter);
+        filters[group].splice(removeIndex, 1);
+      });
+      filters[group].push(filterValue); // add selected filter to array
+      $optionSet.find("a." + activeClass).removeClass(activeClass); // remove the active class from all other links in the group
+    } else if (filterValue.length) {
+      // if link is a selected filter
+      // remove filter from array
+      var curIndex = filters[group].indexOf(filterValue);
+      if (curIndex > -1) filters[group].splice(curIndex, 1);
+      if (!$optionSet.find("a." + activeClass).not($this).length)
+        // if there are no remaining filters
+        $selectAll.addClass(activeClass); // add active class to 'select all' button
+    } else {
+      // if link is the show all button for that group
+      $optionSet.find("a." + activeClass).removeClass(activeClass); // remove active class from all other buttons
+      filters[group] = []; // reset all filters for this group
+    }
+  }
+}
+/* --- concat filters --- */
+function getComboFilter(filters) {
+  // pass the entire array of filters to the function
+  var i = 0; // set counter variable as zero
+  var comboFilters = []; // make a new array to save the string of filters
+
+  for (var prop in filters) {
+    // loop through all the properties in the filter array passed to the function
+    var filterGroup = filters[prop]; // define variable
+    // skip to next filter group if it doesn't have any values
+    if (!filterGroup.length) {
+      continue; // exit loop and move on with next iteration
+    }
+    if (i === 0) {
+      // copy to new array
+      comboFilters = filterGroup.slice(0);
+    } else {
+      var filterSelectors = [];
+      // copy to fresh array
+      var groupCombo = comboFilters.slice(0);
+      // merge filter Groups
+      for (var k = 0, len3 = filterGroup.length; k < len3; k++) {
+        for (var j = 0, len2 = groupCombo.length; j < len2; j++) {
+          filterSelectors.push(groupCombo[j] + filterGroup[k]);
+        }
+      }
+      // apply filter selectors to combo filters for next group
+      comboFilters = filterSelectors;
+    }
+    i++; // increment
+  }
+
+  var comboFilter = comboFilters.join(", ");
+  return comboFilter;
+}
+
+
+// MODAL
+"use strict";
+
+$(function () {
+  "use strict";
+
+  const mHeight = $(".modal").height();
+  const mWidth = $(".modal").width();
+  const wHeight = $(window).height();
+  const wWidth = $(window).width();
+  $(".modal-trigger").on("click", function (e) {
+    e.preventDefault();
+    e.stopPropagation();
+    $(".modal-active").removeClass("modal-active");
+    const selectModal = $(this).data("modal");
+    $(selectModal).addClass("modal-active");
+    $(".wrapper").addClass("blur");
+    $(selectModal).css({
+      left: (wWidth - mWidth) / 2 + "px",
+      top: (wHeight - mHeight) / 2 + "px"
+    });
+  });
+  $(".modal").click(function (e) {
+    e.stopPropagation();
+  });
+  $(".modal .close").click(function () {
+    $(".modal-active").removeClass("modal-active");
+    $(".wrapper").removeClass("blur");
+  });
+  $(document).click(function () {
+    $(".modal-active").removeClass("modal-active");
+    $(".wrapper").removeClass("blur");
+  });
+});
+
+// https://stackoverflow.com/questions/8130946/jquery-dynamic-height-with-window-resize
+  </script>
+</body>
+</html>
