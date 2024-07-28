@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <title>Las paltas verdes</title>
+    <meta charset="utf-8">
+    <meta name="description" content="Lista de podcasts sobre temas variados">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+
+
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@400;600;700;900&display=swap');
+
+/*para mobile*/
+@media screen and (min-width: 300px){ 
+
+  
+.grid-container{
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: repeat(6, auto);
+  grid-row-gap: 10px;
+}
+  
+.header{
+  grid-row: 1/2;
+  grid-column: 1/2;
+  float: left;
+/*   border: 3px solid black; */
+}
+
+  h1{
+  font-family: Source Sans Pro;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 40px;
+  color: #218242;
+  display:inline;
+  padding-left: 5px;
+  }
+  
+.perfil{
+  grid-column: 2/2;
+  grid-row: 1/2;
+  float: right;
+/*   border: 3px solid black; */
+}
+
+.buscador{
+  grid-column: 1/2;
+  grid-row: 2/3;
+/*   border: 3px solid black; */
+}
+  input{
+  grid-column: 1/2;
+  grid-row: 2/3;
+  font-family: Source Sans Pro;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 16px;
+/*   width: 700px;
+  height: 32px;
+  left: 535px;
+  top: 38px; */
+  background: rgba(196, 196, 196, 0.5);
+  border-radius: 20px;
+  border-style: none;
+  padding-left: 5px;
+  
+}
+  .iconolupa{
+  grid-column: 1/2;
+  grid-row: 2/3;
+  background-color: #c4c4c4;
+  background-image: url('https://i.ibb.co/84wfgzk/Vector.png');
+  background-repeat: no-repeat;
+  background-position: 4px center;
+  border-radius: 20px;
+  border-style: none;
+  padding-left: 40px;
+    
+  }
+  
+.menu{
+  grid-row: 3/4;
+  font-family: Source Sans Pro;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 350%;
+  padding-left: 10px;
+/*   border: 3px solid black; */
+}  
+  .menu :hover {
+  background-color: #9EE6B6;
+  color: black;
+  border-radius: 0px 20px 20px 0px;
+  font-weight: 600;
+  }
+
+ .linea-separacion {
+  border: 1px solid #c4c4c4;
+  }
+  
+img{
+    margin: 0px 10px 0px 10px;
+  }
+
+.banner{
+  grid-row: 4/5;
+/*   border: 3px solid black; */
+}
+  #mybanner{
+  max-width: 100%;
+  height: auto;
+  margin-left: auto;
+  margin-right: auto;
+  }
+
+.populares{
+  grid-row: 5/6;
+/*   border: 3px solid black; */
+}
+
+  h2{
+  font-family: Source Sans Pro;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 10px;
+  color: #218242;
+  }
+  
+.columna{
+  float: left;
+  min-width:15%;
+  max-width: 25%;
+  padding: 5px;
+}
+
+ h3{
+  font-family: Source Sans Pro;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 15px;
+  line-height: 10px;
+  align-items: center;
+  text-align: center;
+  color: #218242;
+  }
+  
+.recientes{
+  grid-row: 6/7;
+/*   border: 3px solid black; */
+}
+  
+ .footer{
+  grid-row: 7/8;
+/*   border: 3px solid black; */
+}
+  h5{
+  font-family: Source Sans Pro;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 10px;
+  line-height: 5px;
+  color: #1238C1;
+  text-decoration: underline;
+  }
+  
+}
+
+/*para desktop*/
+@media screen and (min-width: 600px){ 
+
+.grid-container{
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 0.15fr;
+  grid-template-rows: repeat(4, auto);
+  grid-column-gap: 10px;
+  grid-row-gap: 10px;
+}
+
+.header{
+  grid-column: 1/2;
+  grid-row: 1/2;
+  float: left;
+/*   border: 3px solid black; */
+}
+  
+ h1{
+  font-family: Source Sans Pro;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 40px;
+  color: #218242;
+  display:inline;
+  padding-left: 5px;
+  }
+
+.menu{
+  grid-column: 1/2;
+  grid-row: 2/3;
+  font-family: Source Sans Pro;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 350%;
+  padding-left: 10px;
+/*   border: 3px solid black; */
+}
+  
+  .menu hover{
+  background-color: #9EE6B6;
+  color: black;
+  border-radius: 0px 20px 20px 0px;
+  font-weight: 600;
+  }
+
+ .linea-separacion {
+  border: 1px solid #c4c4c4;
+  }
+  
+img{
+    margin: 0px 10px 0px 10px;
+  }
+
+.footer{
+  grid-column: 1/2;
+  grid-row: 5/5;
+/*   border: 3px solid black; */
+}
+  
+  h5{
+  font-family: Source Sans Pro;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 10px;
+  line-height: 5px;
+  color: #1238C1;
+  text-decoration: underline;
+  }
+
+.buscador{
+  grid-column: 2/4;
+  grid-row: 1/2;
+  max-width: 2fr;
+/*   border: 3px solid black; */
+}
+  
+  input{
+  grid-column: 2/4;
+  grid-row: 1/2;
+  font-family: Source Sans Pro;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 16px;
+  background: #c4c4c4;
+  border-radius: 20px;
+  border-style: none;
+  padding-left: 5px;
+  max-width: 2fr;
+  
+}
+  .iconolupa{
+  grid-column: 2/4;
+  background-color: #c4c4c4;
+  background-image: url('https://i.ibb.co/84wfgzk/Vector.png');
+  background-repeat: no-repeat;
+  background-position: 4px center;
+  border-radius: 20px;
+  border-style: none;
+  padding-left: 40px;
+    
+  }
+
+.banner{
+  grid-column: 2/4;
+  grid-row: 2/3;
+/*   border: 3px solid black; */
+}
+  #mybanner{
+  max-width: 100%;
+  height: auto;
+  margin-left: auto;
+  margin-right: auto;
+  }
+
+.populares{
+  grid-column: 2/4;
+  grid-row: 3/4;
+/*   border: 3px solid black; */
+}
+
+.recientes{
+  grid-column: 2/4;
+  grid-row: 4/5;
+/*   border: 3px solid black; */
+}
+  
+ h2{
+  font-family: Source Sans Pro;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 10px;
+  color: #218242;
+  padding-left: 15px;
+  }
+  
+.columna{
+  float: left;
+  min-width:15%;
+  max-width: 25%;
+  padding: 5px;
+}
+
+ h3{
+  font-family: Source Sans Pro;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 15px;
+  line-height: 10px;
+  color: #218242;
+  padding-left: 10px;
+  }
+
+.perfil{
+  grid-column: 4/5;
+  grid-row: 1/2;
+/*   border: 3px solid black; */
+}
+  }
+    </style>
+  </head>
+
+  <body>
+  
+    <d class="grid-container">
+  
+      <header>
+        <img src="https://bn02pap001files.storage.live.com/y4mOw3Zui5UTj44qO36GZCBBtVe9S0pERaO85HaUpIpNvbdQ57CrGrzqdtDdy2zwrrn2xwK3QWPDFINU97-r0lqq6OImgQZb8_uiPZyQlMhC52Flkb1VA8mYpLtSMB9W2vdzDkDXLKv6Vb_1QYIKbXVcXxV2F8OCxPCSHuvU3OwZx645fDMkonCyDtsyqB4Mk8X?width=34&height=20&cropmode=none" width="20" height="20" /><h1>Las Paltas Verdes</h1>
+      </header>
+
+      <div class="menu">
+              <hr class="linea-separacion"> 
+        <div class="botonmenu"><img src="https://bn02pap001files.storage.live.com/y4mqnNO3o77NUlVh4418Tmjrj4QLU8E3FZgUzVpFrQbz3kXtR2vjRX0YFHLerkpro2HcEO-nguRHvC4l7SE9gTWqXoBwsB9DyLE8pk4SbPYtjs9KZGPYgqJk8QDv9QXlakzUf60EbDS3cR-PQOyBm_AcVfxAwoYWzBa_tJkfZj87kXTbRUEmN1ezD3PJPRTgYbg?width=34&height=30&cropmode=none" width="24" height="20" />Home</div>
+        <div class="botonmenu"><img src="https://bn02pap001files.storage.live.com/y4mffwopZ23HQDB8itHxlN0DhmAEVL__V7UqQTRj5C-ur4VXq5M_xGOjSLDQz-Nv8RTvdFvtamDX0ab0UvFzYk680vqAse38A5hzHeRV5gFhGxaG_ErI-_quEJ4wXQRBA4zf_xSYniEb221srAgVf6DNDZzKCRaoZbtfIjHAKoXN1_5_u5xhfV6fH_m5tgJuHcZ?width=35&height=30&cropmode=none" width="24" height="20" />Mis podcasts</div>
+        <div class="botonmenu"><img src="https://bn02pap001files.storage.live.com/y4mtOgTMupIF0MnPMfnR0d0Te5HDirFE5zv5cwpVsAFnczDoS0FgsQ-Ca0kfMLDhs1Lu6Gs9ZgU5Sa5a5F2O9ZiIRlXNpCx5GvTUtMeShIgUITSPx21LvkL4POaRv6OC_2dyF0JsQzUnwBnM96GNmp3MmO1P9lg0TGNLoilp_XujwGydFEBb6zHEPXvVZO2h-kR?width=30&height=30&cropmode=none" width="20" height="20" />Configuración</div>
+              <hr class="linea-separacion"> 
+      </div>  
+
+      <div class="footer">
+        <h5><a href="https://support.wix.com/es/article/crear-una-pol%C3%ADtica-de-t%C3%A9rminos-y-condiciones">Política de datos personales</a></h5>
+        <h5><a href="https://support.wix.com/es/article/crear-una-pol%C3%ADtica-de-t%C3%A9rminos-y-condiciones">Términos y condiciones</a></h5>
+      </div>  
+
+      <div class="buscador">
+        <div class="iconolupa"> <input type="text" placeholder="¿Qué buscas?"></div>
+      </div>
+
+      <div class="banner">
+        <img id="mybanner" 
+             src="https://bn02pap001files.storage.live.com/y4mNMtUkfpRsPAamMmK6QyPyVraD_bQKPHBHs-bZwFhdfvlNYKgfYmVBrSleFbdhQK0X3ls0gJ9PMnTQ8iLJVKcBXme2KROrZQV6feQ8H9rsNtzRQrdwn7ye_eOTwonP34BP2Re4TubJdv77UJQFKO4qhlyYC26-ozvAP7q37vH2zSl1p-vlpIaf3EOE6Y8IpX_?width=600&height=300&cropmode=none" alt="banner" width="600" height="300"               
+             srcset="https://bn02pap001files.storage.live.com/y4m9stjfVL2XPL8eEmqRqTGQp6nrvp26YXAC_EXXPkgxwDVjJ4Drb41juT6-m__nOqWvC_lHJF1qB658CgVF7P7ec6jEwLS44FgeeDn2fUrjFNPUPdfVjjpKgQG2QYS9EZANdvwWtMqc2gbMB3XENwpKhUGIAZaPXKtMi-60fahQMDuRQOYYQhWp5S_kBTOorw_?width=800&height=400&cropmode=none 2x, https://bn02pap001files.storage.live.com/y4mm52rujQfvy7EJwLdaa3C33RtSOIFP5HLrBQENUbfpNf4h1odmBclwTV1tdK1_Sg78S6HC7NoUS9QgcSghkarJv9hKzC5AXbDKROwx-FnQ0j4XcjT6nk_K8v2YEPxYyIQId7u9HhQec60j-dRrh5TgPdltL2JDV57V9YTVmaZPQRYTyiWt0uDenHcx8uQV4qb?width=1000&height=500&cropmode=none 3x, https://bn02pap001files.storage.live.com/y4m77TuvPsnTtmCgTEme7Aqs1UfjbpOfB8y6wa-H1-gGQHo6R3x8FiDZ1SJ8Uso89RLLGOyhDK22Ll7gKDNdq9GchUiWyDznaqLi97XC7I043EqUT5rbxQEofigMb3Udz3z6g2vZslYmdse3Gd3BxCYMm7YQ0vLd7Znrzst6ymEAA12sHrm_G4sWfi7-65ILl8V?width=1200&height=600&cropmode=none 4x"/>
+      </div>
+      
+
+      <div class="populares">
+        <div class="titulo"><h2>Populares</h2></div>
+          <div class="cards">
+            <div class="columna">
+              <div class="Lavegana"> <img src="https://bn02pap001files.storage.live.com/y4mAqT0lkVoGdXWLpdUutC-r0mNsy0qfoMB2UudZ15AOlUDEZlPTVFA184zC2HMV1DcYykwUGWzSIetPy6rGN0kjgNh-xvx7_MrtzY7CAf0bWQO9Vhv_IZC6B24ZRpmLT5tprtSDdQ9WRazfVQHfobNOSnCue04br7CyVEHrUDXdVJ3pXoLIlVeji8eKOn-ovRd?width=120&height=120&cropmode=none" width="80" height="80" />
+              <div class="container">
+               <h3>MariaVegana</h3>
+              </div>
+            </div>
+          </div> 
+            <div class="columna">    
+              <div class="Designthinking"><img src="https://bn02pap001files.storage.live.com/y4mCo8zsdh6xk1VOD5fI6PTyXGnvmuSw39tLRx2T05_DWT90p1aOLi1vnz6_h8fmVEFY5tNr1RtlrZfGXm5MSo4yVFcSz6pA1DFtw0_C3HpA4GyQhMt61cR0LFlgGMttAftJV6IZ4fSFcK6TxJohVv4NQg4uoiptp-TuRem56w1tF-p71E-1bBUC0w94a8H9ATd?width=120&height=120&cropmode=none" width="80" height="80" />
+                <div class="container">
+                <h3>Design Thinking</h3>
+               </div>
+              </div>
+            </div>   
+            <div class="columna">
+              <div class="Pescasostenible"><img src="https://bn02pap001files.storage.live.com/y4m1JMLcLG2Xyxb8egWnAa0oyPViQ2RcvR6drigOxmsXBAJC-SN8Vt87yyFN36SMWaOlIbXwmVGg4r1-rBPa8dJa7TqOwAOYzyjry6CFedM5t_AmzO7TwDspjYSV4mX-v5TijCTQOUnsOlrokZWyP3ww-8qs0fqjbiaXaAISGSSvtsCSMJsBhSoCXFSSq-kPTnL?width=120&height=120&cropmode=none" width="80" height="80" />
+                <div class="container">
+                  <h3>Pesca Sostenible</h3>
+                </div>
+              </div>
+            </div>    
+            <div class="columna">
+              <div class="Nutriciónverde"><img src="https://bn02pap001files.storage.live.com/y4mIBE-9NLIfaykciZyyA9QAO9pWEv4zyzUyk45KPOI6kVFI23wiYhuHsuwlNV6a3siXMx508E_v-q1zoAP4Iyg61EYoVt22tLq7X8CRbD1vp4QAIBk8IcHZpY-G-xvuSbRcnGnu2POAWrO1NYWCZaTY5KnW4k9hV1L5MULQM_3-GNYGa5kRTJuF1diVtBrKxVh?width=120&height=120&cropmode=none" width="80" height="80" />
+                <div class="container">
+                  <h3>Nutrición Verde</h3>
+                </div>
+              </div>
+            </div>    
+            <div class="columna">
+              <div class="Customertrends"><img src="https://bn02pap001files.storage.live.com/y4mKW2bG_T_QBEBNe12fFmDSb44l9Wl7CaKmn4HkyA1gKiZB_xD_x4uKX4fL5saGtsMydoGzPKM9XiOnGQ0JooLlYbUOSJPRpOsoyb6Cp7nbZV9V3VqZ6y5lylq58rP73uWOY88KoV6qQDgLjpl62PKxD-z5jxMCWpZ_HcEESMWdwf7ruD32eJ_gndR7_6i6cjM?width=120&height=120&cropmode=none" width="80" height="80" />
+                <div class="container">
+                  <h3>Customer Trends</h3>
+                </div>
+              </div>
+            </div>
+            <div class="boton siguiente"><img src="https://bn02pap001files.storage.live.com/y4mOHzUilwmym61jtrkebX88hEVayvwonSN5KM-w0digVeBnqVP_W8M83M6Fl7qkGhLD7dLxCuxAhFoUaimFiXj6ofbjEMZ2lWGsfvcRRcYZS3XLFcOOFahX23DkGkXYH2Jp76QqeFpP3W_FuKVOXxupk5IuC4ernIwyAQ4ZRlIyOaEPybd127D4NbPFMjM0p-1?width=52&height=52&cropmode=none" width="40" height="40" /></div>
+          </div>
+       </div>
+
+      <div class="recientes">
+        <div class="titulo"><h2>Recientes</h2></div>
+          <div class="cards">
+            <div class="columna">
+              <div class="Foodiesenelmundo"> <img src="https://bn02pap001files.storage.live.com/y4m6ya6nSWULr37dUgk7E5qtTrr8juAnr2dyItDcU-Vr1IQ2waH6kaNU88SxXl87u3BVLwk_IMao1i7ph-uCVvg1tIyFxtENG4xdvShZ5HWBp7TKjHRecgeuckiHNw4susHR1EtOc6mNj-QjHJaTGAmEL5iT-x_dXfv6BGpfepiAi8iE5WEu0YykgVDmP5rGq9G?width=120&height=120&cropmode=none" width="80" height="80" />
+              <div class="container">
+               <h3>Foodies en el mundo</h3>
+              </div>
+            </div>
+          </div> 
+            <div class="columna">    
+              <div class="NYaldesnudo"><img src="https://bn02pap001files.storage.live.com/y4m2Ut5hQC0YjMqCqOZo8SxjCjEUZg8xY59bI35x4wqaGVPUiV43wxarFAmSPhEumlV3u4e0hyHs3l-TSUrVkTQkGFJvg4ew2Oo23pc2AKg8AdWZCuGfLMe8WW_ruqLIMKLg0ySccuIBDzbdVUA39TLy3vausBeFIZKdRgAxy8o84fwWnDzyHdnOsIpnMQ0G37b?width=120&height=120&cropmode=none" width="80" height="80" />
+                <div class="container">
+                <h3>NY al desnudo</h3>
+               </div>
+              </div>
+            </div>   
+            <div class="columna">
+              <div class="Techlovers"><img src="https://bn02pap001files.storage.live.com/y4mh0YnEXtdbnzF6Cz7bsUGqBSwbn8g_OfcNX8We6WmfzCNA1yy0wUBREfSA1Z3Q4crVAAl0R5jDGSd5zjZFR4y4hy8WO7MKgIiJV1fl_bDUkji2380esfy4501zzyDlqZbWCRZsjethJY0k7PQ2BMQITUIywk2aIkhQD26NrsqCWhBCx4uIe1YyillnSTMFPnC?width=120&height=120&cropmode=none" width="80" height="80" />
+                <div class="container">
+                  <h3>Tech Lovers</h3>
+                </div>
+              </div>
+            </div>    
+            <div class="columna">
+              <div class="Smartliving"><img src="https://bn02pap001files.storage.live.com/y4my7VX_9ILY48nnfeN4N_qlFP0QQdrk2w4o9WREKh0Kjn2KR0yrwBpyoF8ubFAnzzWZ2QJQvBWMzfxWUMtwX7-frYTR8-oiliERFIuzbWpAAu-3_K20z8nlFlul4fto1EC766dtaqNjFLU-a2fbKXdj_oXYRUz0WmBqb7_yjhVv35HGAB0F8N9p4oAtwLRwIYv?width=120&height=120&cropmode=none" width="80" height="80" />
+                <div class="container">
+                  <h3>Smart Living</h3>
+                </div>
+              </div>
+            </div>    
+            <div class="columna">
+              <div class="Livingabroad"><img src="https://bn02pap001files.storage.live.com/y4m3Nxw01bYn3-O-ZtPpyAkDSdnodXMYYD164XCs7NwqZ9NvTO4_5qNPOfVEnhVXuX5yg7MeNwAlsyPdDyW0bvt0hHovxxTjr9I7l-lh8CpFSBK5TmrRcNjgtIxC-eRGyjTnT9CrnEEEUWLKlGRxi2AVOMifYyDxlFy6ziUqKLqbk86v0a6rDhYBeyJkqTcgfSu?width=120&height=120&cropmode=none" width="80" height="80" />
+                <div class="container">
+                  <h3>Living abroad - Paris</h3>
+                </div>
+              </div>
+            </div>    
+            <div class="boton siguiente"><img src="https://bn02pap001files.storage.live.com/y4mOHzUilwmym61jtrkebX88hEVayvwonSN5KM-w0digVeBnqVP_W8M83M6Fl7qkGhLD7dLxCuxAhFoUaimFiXj6ofbjEMZ2lWGsfvcRRcYZS3XLFcOOFahX23DkGkXYH2Jp76QqeFpP3W_FuKVOXxupk5IuC4ernIwyAQ4ZRlIyOaEPybd127D4NbPFMjM0p-1?width=52&height=52&cropmode=none" width="40" height="40" /></div>
+          </div>
+      </div>
+
+      <div class="perfil"><img src="https://bn02pap001files.storage.live.com/y4mXmvqvufT0R5orhM6nelqzT8UmS-MOhPbV1XzxindnwrQsqXeOPh9OoAXZS9H155Dj4H_eBsj02mQ54xTaQ_pcSKj1g-hJ_SwdZJZuhL9XsdqiBn6ji2sRK9NQEb9m9LKlnI9ihgtBUzzoKXBOaVLrzXbdKt86ZWf-DSTPPRFGp70S2XJzvM9uyI3hm4pz9Eh?width=40&height=40&cropmode=none" width="30" height="30" />
+      </div>
+
+    </div>
+    
+  </body>   
+</html>
