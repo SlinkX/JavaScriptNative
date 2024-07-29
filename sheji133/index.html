@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style lang="scss">
+    *{cursor: default;position: relative;}
+body{
+  font-family: Roboto;
+  background: #343338;
+  color: #ACACAC;
+}
+.header{
+  background: #000;
+  color: #FFF;
+  .top{
+    overflow: hidden;
+    height: 65px;
+    .logo{height: 60px;display: inline-block;vertical-align: middle;margin: 0px 20px;}
+    .menu{
+      display: inline-block;
+      line-height: 60px;
+      a{
+        font-weight: bold;
+        margin-right: 10px;
+        display: inline-block;
+        border-bottom: 5px solid #000;
+        &:nth-of-type(1):hover{border-bottom: 5px solid #76daff;}
+        &:nth-of-type(2):hover{border-bottom: 5px solid #47CF73;}
+        &:nth-of-type(3):hover{border-bottom: 5px solid #AE63E4;}
+      }
+      .small{
+        display: inline-block;
+        a{
+          font-weight: normal;
+          color: #ACACAC;
+          &:hover{border-bottom: 5px solid #ACACAC;}
+        }
+      }
+    }
+    .right{
+      float: right;
+      line-height: 60px;
+      a{margin-right: 10px;color: #ACACAC;display: inline-block;line-height: 60px;&:hover{color: #FFF;}}
+      i{display: inline-block;top: 5px;font-size: 25px;}
+      img{height: 40px;vertical-align: middle;margin-right: 20px;}
+    }
+  }
+  .bg{
+    height: 260px;
+    background: #000 url(//assets.codepen.io/assets/profile/profile-bg.svg);
+    background-size: cover;
+    .center{
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%,-50%);
+      text-align: center;
+      h1{font-size: 45px;font-weight: bold;}
+      p{line-height: 40px;color: #ACACAC;}
+    }
+  }
+  .bottom{
+    background: #000;
+    color: #ACACAC;
+    height: 65px;
+    font-size: 14px;
+    .left,.right{position: absolute;height: 65px;line-height: 65px;top:0px;}
+    .left{left: 10px;}
+    .right{
+      right: 10px;
+      a:last-of-type{
+        color: #FFF;
+        padding: 5px;
+        border: 1px solid;
+        border-radius: 3px;
+        &:hover{color: #000;background: #FFF;}
+      }
+    }
+    a{
+      padding: 0px 5px;
+      &:hover{color: #FFF;}
+      b{color: #FFF;}
+    }
+    .avatar{
+      display: block;
+      position: absolute;
+      bottom: 0px;
+      left: 50%;
+      transform: translate(-50%,0px);
+      border: 5px solid #1E1E1E;
+      background: #333;
+      img{width: 124px;}
+    }
+  }
+}
+
+.place{
+  text-align: center;
+  padding: 10px 0px;
+  margin-bottom: 20px;
+}
+
+.layout {
+  padding: 20px;
+  max-width: 1200px;
+  margin: 0px auto;
+  .menu{
+    a:hover,a.active{color: #FFF;}
+    .top{
+      line-height: 30px;
+      a{padding: 0px 10px;}
+    }
+    .main{
+      border-top: 6px solid #545456;
+      background: #252527;
+      line-height: 50px;
+      a{
+        padding: 0px 10px;
+        font-size: 14px;
+      }
+    }
+  }
+  .pens{text-align: center;font-size: 0px;margin-bottom: 40px;}
+  .pen{
+    width: 30.3%;
+    background: #2F2F31;
+    border: 5px solid #2F2F31;
+    box-shadow: 2px 2px 2px #222;
+    display: inline-block;
+    margin-top: 20px;
+    &+.pen{margin-left: 2%;}
+    .over{
+      opacity: 0;
+      transition: 0.2s;
+      position: absolute;
+      top: 0px;
+      left: 0px;
+      width: 100%;
+      height: 100%;
+      background: rgba(40,40,40,0.9);
+      height: 20vw;
+      max-height: 620px;
+      border-bottom: 3px solid #0EBAFA;
+      z-index: 10;
+      .bot{position: absolute;bottom: 0px;width: 100%;text-align: center;padding: 20px 0px;}
+      a{
+        font-size: 12px;
+        background: #000;
+        color: #fff;
+        border-radius: 5px;
+        padding: 3px 7px;
+        margin: 0px 5px;
+      }
+    }
+    iframe{
+      width: 100%;
+      height: 15vw;
+      background: #fff;
+      max-height: 620px;
+      pointer-events:none;
+      overflow: hidden;
+    }
+    .bottom{
+      padding: 5px 10px;
+      color: #999;
+      text-align: left;
+      .title{padding: 10px 0px;font-size: 18px;font-weight: bold;display: inline-block;}
+      .right{font-size: 14px;text-align: right;padding: 10px 0px;}
+      i{margin-right: 10px;margin-left: 4px;}
+      a:hover{color: #FFF;}
+    }
+    &.big{
+      width: 100%;
+      margin: 0px;
+      border: none;
+      margin-top: 20px;
+      iframe{height: 40vw;}
+      .over{height: 40vw;}
+    }
+    &:hover .over{opacity: 1;}
+  }
+}
+
+.wrap{max-width: 1200px;margin: 0px auto;padding: 0px 20px;}
+.text{
+  background: #28282B;
+  padding: 40px 0px;
+  .block{width: 400px;display: inline-block;margin-right: 20px;}
+  h3{
+    color: #fff;
+    margin-bottom: 10px;
+    font-weight: bold;
+    font-size: 20px;
+    span{color: #000;background: #EFC500;border-radius: 5px;display: inline-block;font-size: 15px;padding: 3px 5px;}
+  }
+  a{color: #71CEEB;margin-top: 10px;display: block;&:hover{color: #FFF;}}
+}
+
+.footer{
+  background: #111111;
+  padding: 40px 0px;
+  .line{padding: 10px 0px;}
+  a{margin-right: 10px;}
+  a:hover{color: #FFF;}
+  a:first-of-type{color: #fff;margin-right: 15px;}
+}
+
+  </style>
+</head>
+<body>
+  <div class="header">
+    <div class="top">
+      <img class="logo" src="//goo.gl/h2dtp3"/>
+      <div class="menu">
+        <a>Pens</a>
+        <a>Posts</a>
+        <a>Collections</a>
+        <div class="small">
+          <a>Jobs</a>
+          <a>Blog</a>
+          <a>Store</a>
+          <a>Patterns</a>
+          <a>Podcast</a>
+        </div>
+      </div>
+      <div class="right">
+        <img src="//goo.gl/nN7A2d" />
+        <a><i class="fa fa-search"></i></a>
+        <a><i class="fa fa-bell"></i></a>
+      </div>
+    </div>
+    <div class="bg">
+      <div class="center">
+        <h1>Imagine Alex</h1>
+        <p>@ImagineAlex</p>
+      </div>
+    </div>
+    <div class="bottom">
+      <div class="left">
+        <a><b>21</b> Followers</a>
+        <a><b>2</b> Following</a>
+      </div>
+      <div class="avatar"><img src="//goo.gl/nN7A2d"/></div>
+      <div class="right">
+        <a>vk.com</a>
+        <a>facebook.com</a>
+        <a>Hire Me</a>
+      </div>
+    </div>
+  </div>
+  
+  <div class="place"><p>Riga</p></div>
+  
+  <div class="layout">
+    <div class="menu">
+      <div class="top">
+        <a class="active">Pens</a>
+        <a>Posts</a>
+        <a>Collections</a>
+      </div>
+      <div class="main">
+        <a class="active">Showcase</a>
+        <a>Popular</a>
+        <a>Public</a>
+        <a>Private</a>
+        <a>Templates</a>
+        <a>Forked</a>
+        <a>Loved</a>
+        <a>Tags</a>
+      </div>
+    </div>
+  
+    <div class="pen big">
+      <div class="over">
+        <div class="bot"><a>+ Add to Collection</a><a>× Delete</a></div>
+      </div>
+      <iframe src="//s.codepen.io/ImagineAlex/fullcpgrid/NxEKQN" scrolling="no"></iframe>
+      <div class="bottom">
+        <a class="title">Imagine Alex</a>
+        <div class="right">
+          <a>15<i class="fa fa-eye"></i></a>
+          <a>0<i class="fa fa-comment"></i></a>
+          <a><i class="fa fa-heart"></i></a>
+        </div>
+      </div>
+    </div>
+    <div class="pens">
+      <div class="pen">
+        <div class="over">
+          <div class="bot"><a>+ Add to Collection</a><a>× Delete</a></div>
+        </div>
+        <iframe src="//s.codepen.io/ImagineAlex/fullcpgrid/EKYjVv" scrolling="no"></iframe>
+        <div class="bottom">
+          <a class="title">CodePen.io</a>
+          <div class="right">
+            <a>125<i class="fa fa-eye"></i></a>
+            <a>0<i class="fa fa-comment"></i></a>
+            <a>20<i class="fa fa-heart"></i></a>
+          </div>
+        </div>
+      </div>
+      <div class="pen">
+        <div class="over">
+          <div class="bot"><a>+ Add to Collection</a><a>× Delete</a></div>
+        </div>
+        <iframe src="//s.codepen.io/ImagineAlex/fullcpgrid/VeoGeW" scrolling="no"></iframe>
+        <div class="bottom">
+          <a class="title">Another UI Mob</a>
+          <div class="right">
+            <a>300<i class="fa fa-eye"></i></a>
+            <a>2<i class="fa fa-comment"></i></a>
+            <a><i class="fa fa-heart"></i></a>
+          </div>
+        </div>
+      </div>
+      <div class="pen">
+        <div class="over">
+          <div class="bot"><a>+ Add to Collection</a><a>× Delete</a></div>
+        </div>
+        <iframe src="//s.codepen.io/ImagineAlex/fullcpgrid/bEOLLZ" scrolling="no"></iframe>
+        <div class="bottom">
+          <a class="title">Sky island</a>
+          <div class="right">
+            <a>1024<i class="fa fa-eye"></i></a>
+            <a>2<i class="fa fa-comment"></i></a>
+            <a>86<i class="fa fa-heart"></i></a>
+          </div>
+        </div>
+      </div>
+      <br>
+      <div class="pen">
+        <div class="over">
+          <div class="bot"><a>+ Add to Collection</a><a>× Delete</a></div>
+        </div>
+        <iframe src="//s.codepen.io/ImagineAlex/fullcpgrid/GpbKoX" scrolling="no"></iframe>
+        <div class="bottom">
+          <a class="title">VK design by Alex</a>
+          <div class="right">
+            <a>40<i class="fa fa-eye"></i></a>
+            <a>0<i class="fa fa-comment"></i></a>
+            <a>10<i class="fa fa-heart"></i></a>
+          </div>
+        </div>
+      </div>
+      <div class="pen">
+        <div class="over">
+          <div class="bot"><a>+ Add to Collection</a><a>× Delete</a></div>
+        </div>
+        <iframe src="//s.codepen.io/ImagineAlex/fullcpgrid/mVqBvo" scrolling="no"></iframe>
+        <div class="bottom">
+          <a class="title">Pyramid</a>
+          <div class="right">
+            <a>8<i class="fa fa-eye"></i></a>
+            <a>0<i class="fa fa-comment"></i></a>
+            <a><i class="fa fa-heart"></i></a>
+          </div>
+        </div>
+      </div>
+      <div class="pen">
+        <div class="over">
+          <div class="bot"><a>+ Add to Collection</a><a>× Delete</a></div>
+        </div>
+        <iframe src="//s.codepen.io/ImagineAlex/fullcpgrid/EPQjbK" scrolling="no"></iframe>
+        <div class="bottom">
+          <a class="title">ASCII text</a>
+          <div class="right">
+            <a>98<i class="fa fa-eye"></i></a>
+            <a>0<i class="fa fa-comment"></i></a>
+            <a>43<i class="fa fa-heart"></i></a>
+          </div>
+        </div>
+      </div>
+    </div>
+  
+  </div>
+  
+  <div class="text">
+    <div class="wrap">
+      <div class="block">
+        <h3>Go <span>PRO</span></h3>
+        <p>Unlock the full power of CodePen by upgrading to PRO. You'll be able to save Private Pens, upload Assets, work with others in real-time with Collab Mode, and more!</p>
+        <a>Upgrade Now</a>
+      </div>
+      <div class="block">
+        <h3>CodePen Radio</h3>
+        <p>An inside look from the three founders of CodePen on what it's like running a web business. Everything from server infrastructure, to day-to-day operations, to new feature development.</p>
+        <a>Go Listen</a>
+      </div>
+    </div>
+  </div>
+  <div class="footer">
+    <div class="wrap">
+      <div class="line">
+        <a>CodePen</a>
+        <a>Blog</a>
+        <a>Store</a>
+        <a>Podcast</a>
+        <a>Stats</a>
+        <a>About</a>
+        <a>Support</a>
+  </div>
+      <div class="line">
+        <a>Community</a>
+        <a>Jobs</a>
+        <a>Meetups</a>
+        <a>Twitter</a>
+        <a>Flickr</a>
+        <a>Code</a>
+        <a>of Conduct</a>
+  </div>
+      <div class="line">
+        <a>Imagine Alex</a>
+        <a>Public Pens RSS</a>
+        <a>Popular Pens RSS</a>
+        <a>Posts RSS</a>
+  </div>
+    </div>
+  </div>
+</body>
+</html>
