@@ -1,0 +1,950 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style lang="scss">
+
+
+// Podcast Wrapper
+.podcast {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  justify-self: center;
+  align-self: center;
+  flex-direction: column;
+  width: 100%;
+  padding: 0 16px;
+
+  @media screen and (min-width: 992px) {
+    padding: 0 24px;
+  }
+
+  &__load-more-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    margin: 34px 0 100px;
+
+    &__text {
+      font-family: SamsungOne-700C;
+      font-size: 12px;
+      line-height: 2;
+      color: light-blue;
+      text-transform: uppercase;
+      text-decoration: underline;
+      letter-spacing: 0.75px;
+    }
+
+    // Hide load more
+    &__hidden {
+      display: none;
+    }
+
+    // Hide load more
+  }
+
+  &__warning {
+    display: none;
+    justify-content: center;
+    align-items: flex-end;
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 1050;
+    overflow: hidden;
+    padding: 0;
+    position: fixed;
+    background-color: rgba(31, 33, 41, 0.5);
+
+    @media screen and (min-width: 992px) {
+      align-items: center;
+    }
+
+    &__popup {
+      display: flex;
+      width: 100%;
+      justify-content: center;
+      align-items: center;
+      height: 420px;
+      overflow: hidden;
+      position: relative;
+      background-color: white;
+      flex-direction: column;
+      border-radius: 32px 32px 0 0;
+
+      @media screen and (min-width: 992px) {
+        border-radius: 8px;
+        width: 432px;
+        height: 440px;
+      }
+
+      &__title {
+        color: black;
+        margin-bottom: 18px;
+
+        @media screen and (min-width: 992px) {
+          margin-bottom: 24px;
+        }
+      }
+
+      &__text {
+        max-width: 235px;
+        color: black;
+        margin-bottom: 56px;
+        text-align: center;
+
+        @media screen and (min-width: 992px) {
+          margin-bottom: 48px;
+          max-width: 220px;
+        }
+      }
+
+      &__button {
+        background: black;
+        border: 0;
+        border-radius: 48px;
+        color: white;
+        font-family: SamsungOne-700C;
+        font-size: 14px;
+        letter-spacing: 2px;
+        line-height: 1;
+        min-width: 80%;
+        padding: 17px 34px;
+        text-transform: uppercase;
+        margin-bottom: 39px;
+
+        @media screen and (min-width: 992px) {
+          font-size: 12px;
+          padding: 18px 28px;
+          min-width: 200px;
+          margin-bottom: 33px;
+        }
+      }
+
+      &__close {
+        font-family: SamsungOne-700C;
+        font-size: 14px;
+        line-height: 1.71;
+        letter-spacing: 0.8px;
+        color: light-blue;
+        text-decoration: underline;
+        text-transform: uppercase;
+      }
+    }
+  }
+
+  // Episode Container
+  &__episode {
+    display: flex;
+    flex-direction: column;
+    width: 744px;
+    max-width: 100%;
+    background-color: black;
+    border-radius: 8px;
+    padding: 32px 32px 40px;
+    margin: 0 0 16px;
+    min-height: 322px;
+    cursor: pointer;
+
+    @media screen and (min-width: 992px) {
+      flex-direction: row;
+      padding: 32px 32px 0;
+      min-height: 176px;
+    }
+
+    // Hide episode
+    &__hidden {
+      display: none;
+    }
+
+    // Hide episode
+
+    // Thumbnail Container
+    &__thumbnail-container {
+      display: flex;
+
+      // Title
+      &__title {
+        color: white;
+        font-family: SamsungSharp;
+        font-size: 24px;
+        line-height: 1.33;
+        margin-top: 3px;
+        display: flex;
+        justify-items: center;
+        align-items: center;
+
+        @media screen and (min-width: 992px) {
+          display: none;
+        }
+      }
+
+      // Title
+
+      // Img Container
+      &__img-container {
+        display: flex;
+        margin-right: 24px;
+        width: 96px;
+        height: 96px;
+
+        @media screen and (min-width: 992px) {
+          width: 112px;
+          height: 112px;
+          margin-right: 32px;
+        }
+
+        // Hover Styles
+        &.podcast__episode__thumbnail-container__img-container__hover {
+          position: relative;
+
+          .podcast__episode__thumbnail-container__img-container__img {
+            opacity: 0.6;
+          }
+
+          .podcast__episode__thumbnail-container__img-container__play {
+            display: flex;
+          }
+        }
+
+        // Hover Styles
+
+        // Image
+        &__img {
+          display: flex;
+          width: 96px;
+          height: 96px;
+          border-radius: 100px;
+
+          @media screen and (min-width: 992px) {
+            width: 112px;
+            height: 112px;
+          }
+        }
+
+        // Image
+
+        // Play Icon
+        &__play {
+          position: absolute;
+          width: 56px;
+          height: 57px;
+          z-index: 100;
+          background: transparent url("https://lhaynes96.github.io/test/podcast-play-icon.svg")
+            no-repeat;
+          left: 26px;
+          top: 25px;
+          display: none;
+          background-size: 56px 57px;
+        }
+
+        // Play Icon
+
+        // Paused Icon
+        &__paused {
+          background: transparent url("https://lhaynes96.github.io/test/img/podcast-pause-icon.svg")
+            no-repeat;
+        }
+
+        // Paused Icon
+      }
+
+      // Img Container
+    }
+
+    // Thumbnail Container
+
+    // Audio Player
+    &__audio-player {
+      display: none;
+      width: 100%;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      margin-bottom: 30px;
+
+      @media screen and (min-width: 992px) {
+        margin-bottom: 8px;
+      }
+
+      &__time-container {
+        display: flex;
+        flex-direction: row;
+        width: 100%;
+        margin-top: 12px;
+
+        &__current-time,
+        &__time-left {
+          font-family: SamsungOne-700C;
+          font-size: 14px;
+          line-height: 1.29;
+          letter-spacing: normal;
+          color: gray;
+          display: flex;
+        }
+
+        &__current-time {
+          justify-self: flex-start;
+          width: 100%;
+        }
+
+        &__time-left {
+          justify-self: flex-end;
+        }
+      }
+
+      &__timeline {
+        display: flex;
+        width: 100%;
+        height: 6px;
+        border-radius: 15px;
+        background: white;
+        position: relative;
+
+        &__playhead {
+          width: 16px;
+          height: 16px;
+          border-radius: 50%;
+          margin-top: -5px;
+          background: green;
+        }
+
+        &__progress {
+          width: 0;
+          display: flex;
+          height: 6px;
+          border-radius: 15px 0 0 15px;
+          background: linear-gradient(90deg, blue, green);
+          position: absolute;
+        }
+      }
+    }
+
+    // Audio Player
+
+    // Content Container
+    &__content-container {
+      display: flex;
+      flex-direction: column;
+
+      // Title
+      &__title {
+        color: white;
+        font-family: SamsungSharp;
+        font-size: 24px;
+        line-height: 1.33;
+        margin-top: 3px;
+        display: none;
+        justify-items: center;
+        align-items: center;
+
+        @media screen and (min-width: 992px) {
+          display: flex;
+        }
+      }
+
+      // Title
+
+      // Description
+      &__description {
+        color: white;
+        font-size: 16px;
+        line-height: 1.5;
+        margin-bottom: 0;
+        max-width: 456px;
+
+        @media screen and (min-width: 992px) {
+          font-size: 14px;
+          line-height: 1.43;
+        }
+      }
+
+      // Description
+
+      // Points Container
+      &__points-container {
+        margin: 21px 0 16px;
+
+        @media screen and (min-width: 992px) {
+          margin: 8px 0;
+        }
+
+        // Points Play Icon
+        &__icon {
+          width: 24px;
+          height: 24px;
+          display: inline-block;
+          margin-right: 8px;
+
+          @media screen and (min-width: 992px) {
+            display: none;
+          }
+        }
+
+        // Points Play Icon
+
+        // Available/Earned Points
+        &__available,
+        &__earned {
+          text-transform: uppercase;
+          font-family: SamsungOne-700C;
+          font-size: 14px;
+          line-height: 1.29;
+
+          @media screen and (min-width: 992px) {
+            font-size: 12px;
+            line-height: 1.5;
+          }
+        }
+
+        // Available/Earned Points
+
+        // Available Points
+        &__available {
+          color: blue;
+        }
+
+        // Available Points
+
+        // Earned Points
+        &__earned {
+          color: white;
+        }
+
+        // Earned Points
+
+        // Divider
+        &__divider {
+          color: 992px;
+          font-family: SamsungOne-700C;
+          padding: 0 4px;
+          font-size: 12px;
+          line-height: 1.5;
+        }
+
+        // Divider
+
+        // Duration
+        &__duration {
+          color: gray;
+          font-family: SamsungOne-700C;
+          font-size: 14px;
+          line-height: 1.29;
+
+          @media screen and (min-width: 992px) {
+            font-size: 12px;
+            line-height: 1.5;
+          }
+        }
+
+        // Duration
+      }
+
+      // Points Container
+    }
+
+    // Content Container
+
+    // Open State
+    &__open {
+      margin-top: 128px;
+      padding: 32px 24px 56px;
+      border-radius: 25px 25px 8px 8px;
+
+      @media screen and (min-width: 992px) {
+        flex-direction: column;
+        margin-top: 123px;
+        padding: 32px 131px 54px;
+      }
+
+      .podcast__episode__audio-player {
+        display: flex;
+      }
+
+      // Open State Thumbnail Container
+      .podcast__episode__thumbnail-container {
+        justify-content: center;
+        align-items: center;
+        position: relative;
+        margin-bottom: 40px;
+
+        // Open State Img Container
+        &__img-container {
+          width: 209px;
+          height: 209px;
+          margin: -125px 0 0;
+          position: relative;
+
+          @media screen and (min-width: v) {
+            width: 182px;
+            height: 182px;
+          }
+
+          // Open State Thumbnail Image
+          &__img {
+            width: 209px;
+            height: 209px;
+
+            @media screen and (min-width: 992px) {
+              width: 182px;
+              height: 182px;
+            }
+          }
+
+          // Open State Thumbnail Image
+
+          // Open State Play Icon
+          &__play {
+            display: flex;
+            width: 105px;
+            height: 105px;
+            background-size: 105px;
+            top: 52px;
+            left: 52px;
+
+            @media screen and (min-width: 992px) {
+              width: 91px;
+              height: 91px;
+              background-size: 91px;
+              top: 46px;
+              left: 46px;
+            }
+          }
+
+          // Open State Play Icon
+        }
+
+        // Open State Img Container
+
+        // Open State Title
+        &__title {
+          display: none;
+        }
+
+        // Open State Title
+      }
+
+      // Open State Thumbnail Container
+
+      // Open State Content Container
+      .podcast__episode__content-container {
+        text-align: center;
+        padding: 0 8px;
+
+        @media screen and (min-width: 992px) {
+          align-items: center;
+        }
+
+        // Open State Title
+        &__title {
+          display: flex;
+          color: white;
+        }
+
+        // Open State Title
+
+        // Open State Points Container
+        &__points-container {
+          margin: 16px 0;
+
+          // Open State Points Play Icon
+          &__icon {
+            display: none;
+          }
+
+          // Open State Points Play Icon
+        }
+
+        // Open State Points Container
+      }
+
+      // Open State Content Container
+    }
+
+    // Open State
+  }
+
+  // Episode Container
+}
+
+// Podcast Wrapper
+
+  </style>
+</head>
+<body>
+  <!-- Beginning of podcasts -->
+  <div class="podcast">
+    <div class="podcast__warning">
+        <div class="podcast__warning__popup">
+            <h2 class="podcast__warning__popup__title">Warning</h2>
+            <p class="podcast__warning__popup__text">This will stop the current podcast playing and you may lose your available points.</p>
+            <a class="btn podcast__warning__popup__button">continue listening</a>
+            <a class="podcast__warning__popup__close">stop player</a>
+        </div>
+    </div>
+    <div class="podcast__episode" data-id="1" data-pc-playing="false">
+        <div class="podcast__episode__thumbnail-container">
+            <div class="podcast__episode__thumbnail-container__img-container">
+                <div class="podcast__episode__thumbnail-container__img-container__button podcast__episode__thumbnail-container__img-container__play"></div>
+                <img class="podcast__episode__thumbnail-container__img-container__img"
+                    src="https://lhaynes96.github.io/test/progcert-knox.png" alt="">
+            </div>
+            <h3 class="podcast__episode__thumbnail-container__title">Rugged (max. 40 characters w/spaces)
+            </h3>
+        </div>
+        <audio data-audio="1" class="podcast__episode__audio" preload="true">
+            <source src="https://lhaynes96.github.io/test/interlude.mp3">
+        </audio>
+        <div class="podcast__episode__audio-player">
+            <div class="podcast__episode__audio-player__timeline">
+                <span class="podcast__episode__audio-player__timeline__playhead"></span>
+                <span class="podcast__episode__audio-player__timeline__progress"></span>
+            </div>
+            <div class="podcast__episode__audio-player__time-container">
+                <span class="podcast__episode__audio-player__time-container__current-time">0:00</span>
+                <span class="podcast__episode__audio-player__time-container__time-left">0:00</span>
+            </div>
+        </div>
+        <div class="podcast__episode__content-container">
+            <h3 class="podcast__episode__content-container__title">Rugged (max. 40 characters w/spaces)</h3>
+            <div class="podcast__episode__content-container__points-container">
+                <img class="podcast__episode__content-container__points-container__icon"
+                    src="https://lhaynes96.github.io/test/podcast-play-icon.svg" />
+                <span class="podcast__episode__content-container__points-container__earned">5 PTS
+                    AVAILABLE</span>
+                <span class="podcast__episode__content-container__points-container__divider">|</span>
+                <span data-duration-id="1" class="podcast__episode__content-container__points-container__duration">0
+                    min</span>
+            </div>
+            <p class="podcast__episode__content-container__description">Max. 168 characters w/ spaces.
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam sapien enim, maximus sit a,
+                consequat viverra enim.</p>
+        </div>
+    </div>
+
+    <div class="podcast__episode" data-id="2" data-pc-playing="false">
+        <div class="podcast__episode__thumbnail-container">
+            <div class="podcast__episode__thumbnail-container__img-container">
+                <div class="podcast__episode__thumbnail-container__img-container__button podcast__episode__thumbnail-container__img-container__play"></div>
+                <img class="podcast__episode__thumbnail-container__img-container__img"
+                    src="https://lhaynes96.github.io/test/progcert-knox.png" alt="">
+            </div>
+            <h3 class="podcast__episode__thumbnail-container__title">Rugged (max. 40 characters w/spaces)
+            </h3>
+        </div>
+        <audio data-audio="2" class="podcast__episode__audio" preload="true">
+            <source src="https://lhaynes96.github.io/test/interlude.mp3">
+        </audio>
+        <div class="podcast__episode__audio-player">
+            <div class="podcast__episode__audio-player__timeline">
+                <span class="podcast__episode__audio-player__timeline__playhead"></span>
+                <span class="podcast__episode__audio-player__timeline__progress"></span>
+            </div>
+            <div class="podcast__episode__audio-player__time-container">
+                <span class="podcast__episode__audio-player__time-container__current-time">0:00</span>
+                <span class="podcast__episode__audio-player__time-container__time-left">0:00</span>
+            </div>
+        </div>
+        <div class="podcast__episode__content-container">
+            <h3 class="podcast__episode__content-container__title">Rugged (max. 40 characters w/spaces)</h3>
+            <div class="podcast__episode__content-container__points-container">
+                <img class="podcast__episode__content-container__points-container__icon"
+                    src="https://lhaynes96.github.io/test/podcast-play-icon.svg" />
+                <span class="podcast__episode__content-container__points-container__earned">5 PTS
+                    AVAILABLE</span>
+                <span class="podcast__episode__content-container__points-container__divider">|</span>
+                <span data-duration-id="2" class="podcast__episode__content-container__points-container__duration">0
+                    min</span>
+            </div>
+            <p class="podcast__episode__content-container__description">Max. 168 characters w/ spaces.
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam sapien enim, maximus sit a,
+                consequat viverra enim.</p>
+        </div>
+    </div>
+    
+    <div class="podcast__episode" data-id="3" data-pc-playing="false">
+        <div class="podcast__episode__thumbnail-container">
+            <div class="podcast__episode__thumbnail-container__img-container">
+                <div class="podcast__episode__thumbnail-container__img-container__button podcast__episode__thumbnail-container__img-container__play"></div>
+                <img class="podcast__episode__thumbnail-container__img-container__img"
+                    src="https://lhaynes96.github.io/test/progcert-knox.png" alt="">
+            </div>
+            <h3 class="podcast__episode__thumbnail-container__title">Rugged (max. 40 characters w/spaces)
+            </h3>
+        </div>
+        <audio data-audio="3" class="podcast__episode__audio" preload="true">
+            <source src="https://lhaynes96.github.io/test/interlude.mp3">
+        </audio>
+        <div class="podcast__episode__audio-player">
+            <div class="podcast__episode__audio-player__timeline">
+                <span class="podcast__episode__audio-player__timeline__playhead"></span>
+                <span class="podcast__episode__audio-player__timeline__progress"></span>
+            </div>
+            <div class="podcast__episode__audio-player__time-container">
+                <span class="podcast__episode__audio-player__time-container__current-time">0:00</span>
+                <span class="podcast__episode__audio-player__time-container__time-left">0:00</span>
+            </div>
+        </div>
+        <div class="podcast__episode__content-container">
+            <h3 class="podcast__episode__content-container__title">Rugged (max. 40 characters w/spaces)</h3>
+            <div class="podcast__episode__content-container__points-container">
+                <img class="podcast__episode__content-container__points-container__icon"
+                    src="https://lhaynes96.github.io/test/podcast-play-icon.svg" />
+                <span class="podcast__episode__content-container__points-container__earned">5 PTS
+                    AVAILABLE</span>
+                <span class="podcast__episode__content-container__points-container__divider">|</span>
+                <span data-duration-id="3" class="podcast__episode__content-container__points-container__duration">0
+                    min</span>
+            </div>
+            <p class="podcast__episode__content-container__description">Max. 168 characters w/ spaces.
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam sapien enim, maximus sit a,
+                consequat viverra enim.</p>
+        </div>
+    </div>
+</div>
+
+<script>
+  // Define constants
+// var PODCAST = '.podcast';
+var EPISODE = '.podcast__episode';
+
+// Open state constants
+// var OPEN_STATE = 'podcast__episode__open';
+// var OPEN_STATE_CLASS = '.podcast__episode__open';
+var THUMBNAIL_IMG_CONTAINER = '.podcast__episode__thumbnail-container__img-container';
+// var THUMBNAIL_IMG = '.podcast__episode__thumbnail-container__img-container__img';
+var HOVER_CONTAINER = 'podcast__episode__thumbnail-container__img-container__hover';
+// var PLAY_BUTTON = '.podcast__episode__thumbnail-container__img-container__play';
+// var PAUSE_BUTTON = 'podcast__episode__thumbnail-container__img-container__play__paused';
+
+// var PC_EPISODE = document.('podcast__episode');
+var PC_AUDIO_ALL = document.querySelectorAll('.podcast__episode__audio');
+var PC_EPISODE_ALL = document.querySelectorAll('.podcast__episode');
+var PC_DURATION_ALL = document.querySelectorAll('.podcast__episode__content-container__points-container__duration');
+var PC_EPISODE = document.querySelector('.podcast__episode');
+var PC_AUDIO = document.querySelector('.podcast__episode__audio'); // id for audio element
+var PC_BUTTON = document.querySelector('.podcast__episode__thumbnail-container__img-container__button'); // play button
+var PC_PLAYHEAD = document.querySelector('.podcast__episode__audio-player__timeline__playhead'); // playhead
+var PC_PLAYHEAD_PROGRESS = document.querySelector('.podcast__episode__audio-player__timeline__progress'); // background
+var PC_TIMELINE = document.querySelector('.podcast__episode__audio-player__timeline'); // timeline
+var PC_DURATION = document.querySelector('.podcast__episode__content-container__points-container__duration');
+var PC_TOTAL_TIME = document.querySelector('.podcast__episode__audio-player__time-container__total-time');
+
+// Define variables
+var clickCount = 0;
+var pcDuration = PC_AUDIO.duration; // Duration of audio clip, calculated here for embedding purposes
+var pcTimelineWidth = PC_TIMELINE.offsetWidth - PC_PLAYHEAD.offsetWidth; // timeline width adjusted for playhead
+
+// on page load initialise all episodes
+// loop through all
+// attach listeners to each player
+// switch between closed and open podcasts
+// event listener metadata loaded
+// attach listener to audio files
+// add total time to inner html
+
+
+// ABOVE COMPLETED, need to add the below in
+// ensure currentime is set
+// link up warning pop up when you click another podcast
+// disable podcasts when metadata not loaded
+
+window.addEventListener('load', init);
+
+function init() {
+    PC_EPISODE_ALL.forEach(function () {
+        for (var i = 0; i < PC_EPISODE_ALL.length; i++) {
+            PC_EPISODE_ALL.item(i).onclick = elmClicked;
+        }
+    });
+
+    PC_AUDIO_ALL.forEach(function (arrayElemNew) {
+        var s = parseInt(arrayElemNew.duration % 60);
+        var m = parseInt((arrayElemNew.duration / 60) % 60);
+
+        arrayElemNew.setAttribute('data-time', arrayElemNew.duration);
+        pcDuration = arrayElemNew.duration;
+
+        for (var i = 0; i < PC_DURATION_ALL.length; i++) {
+            PC_DURATION_ALL.item(i).innerHTML = m + ":" + s + " min";
+        }
+
+        // console.log("audio " + arrayElemNew.dataset.audio + " " + arrayElemNew.duration);
+    })
+}
+
+function elmClicked() {
+    this.setAttribute('data-pc-playing', 'true');
+    this.classList.add("podcast__episode__open");
+}
+
+// when not focused on player stop audio
+window.addEventListener('blur', stopAudio);
+
+// play button event listener
+PC_BUTTON.addEventListener("click", play);
+
+// timeupdate event listener
+PC_AUDIO.addEventListener("timeupdate", timeUpdate, false);
+
+// Countdown
+PC_AUDIO.addEventListener("timeupdate", function () {
+    var timeleft = document.querySelector('.podcast__episode__audio-player__time-container__time-left');
+    var duration = parseInt(PC_AUDIO.duration);
+    var currentTime = parseInt(PC_AUDIO.currentTime);
+    var timeLeft = duration - currentTime;
+    var s;
+    var m;
+
+    s = timeLeft % 60;
+    m = Math.floor(timeLeft / 60) % 60;
+
+    s = s < 10 ? "0" + s : s;
+    m = m < 10 ? "0" + m : m;
+
+    timeleft.innerHTML = m + ":" + s;
+
+}, false);
+
+// Countup
+PC_AUDIO.addEventListener("timeupdate", function () {
+    var timeline = document.querySelector('.podcast__episode__audio-player__time-container__current-time');
+    var s = parseInt(PC_AUDIO.currentTime % 60);
+    var m = parseInt((PC_AUDIO.currentTime / 60) % 60);
+
+    if (s < 10) {
+        timeline.innerHTML = m + ':0' + s;
+    } else {
+        timeline.innerHTML = m + ':' + s;
+    }
+
+}, false);
+
+
+// makes timeline clickable
+PC_TIMELINE.addEventListener("click", function (event) {
+    moveplayhead(event);
+    PC_AUDIO.currentTime = pcDuration * clickPercent(event);
+}, false);
+
+// returns click as decimal (.77) of the total timelineWidth
+function clickPercent(event) {
+    return (event.clientX - getPosition(PC_TIMELINE)) / pcTimelineWidth;
+}
+
+// makes playhead draggable
+PC_PLAYHEAD.addEventListener('mousedown', mouseDown, false);
+window.addEventListener('mouseup', mouseUp, false);
+
+// Boolean value so that audio position is updated only when the playhead is released
+var onplayhead = false;
+
+// mouseDown EventListener
+function mouseDown() {
+    onplayhead = true;
+    window.addEventListener('mousemove', moveplayhead, true);
+    PC_AUDIO.removeEventListener('timeupdate', timeUpdate, false);
+}
+
+// mouseUp EventListener
+// getting input from all mouse clicks
+function mouseUp(event) {
+    if (onplayhead == true) {
+        moveplayhead(event);
+        window.removeEventListener('mousemove', moveplayhead, true);
+        // change current time
+        PC_AUDIO.currentTime = pcDuration * clickPercent(event);
+        PC_AUDIO.addEventListener('timeupdate', timeUpdate, false);
+    }
+    onplayhead = false;
+}
+// mousemove EventListener
+// Moves playhead as user drags
+function moveplayhead(event) {
+    var newMargLeft = event.clientX - getPosition(PC_TIMELINE);
+
+    if (newMargLeft >= 0 && newMargLeft <= pcTimelineWidth) {
+        PC_PLAYHEAD.style.marginLeft = newMargLeft + "px";
+        PC_PLAYHEAD_PROGRESS.style.width = newMargLeft + "px";
+    }
+    if (newMargLeft < 0) {
+        PC_PLAYHEAD.style.marginLeft = "0px";
+        PC_PLAYHEAD_PROGRESS.style.width = "0px";
+    }
+    if (newMargLeft > pcTimelineWidth) {
+        PC_PLAYHEAD.style.marginLeft = pcTimelineWidth + "px";
+        PC_PLAYHEAD_PROGRESS.style.width = pcTimelineWidth + "px";
+    }
+}
+
+// timeUpdate
+// Synchronizes playhead position with current point in audio
+function timeUpdate() {
+    var playPercent = pcTimelineWidth * (PC_AUDIO.currentTime / pcDuration);
+
+    PC_PLAYHEAD.style.marginLeft = playPercent + "px";
+    PC_PLAYHEAD_PROGRESS.style.width = playPercent + "px";
+
+    if (PC_AUDIO.currentTime == pcDuration) {
+        PC_BUTTON.classList.remove("podcast__episode__thumbnail-container__img-container__paused");
+    }
+}
+
+//Play and Pause
+function play() {
+    // start PC_AUDIO
+    if (PC_AUDIO.paused) {
+        PC_AUDIO.play();
+
+        // remove play, add pause
+        PC_BUTTON.classList.add("podcast__episode__thumbnail-container__img-container__paused");
+    } else { // pause PC_AUDIO
+        PC_AUDIO.pause();
+
+        // remove pause, add play
+        PC_BUTTON.classList.remove("podcast__episode__thumbnail-container__img-container__paused");
+    }
+}
+
+// getPosition
+// Returns elements left position relative to top-left of viewport
+function getPosition(el) {
+    return el.getBoundingClientRect().left;
+}
+
+// Stops audio on unfocus
+function stopAudio() {
+    PC_AUDIO.pause();
+    PC_AUDIO.currentTime = -1;
+    PC_AUDIO.volume = 0;
+}
+
+
+// $(document).ready(function(){
+//     $(EPISODE).on("click", function(){
+//         var dataId = $(this).attr("data-id");
+//         console.log("The data-id of clicked item is: " + dataId);
+//     });
+// });
+
+// if above 769px action function
+if ($(window).width() > 769) {
+// On episode hover add hover class to thumbnail container
+    $(EPISODE).hover(
+        function () {
+            $(this).find(THUMBNAIL_IMG_CONTAINER).addClass(HOVER_CONTAINER);
+        },
+        function () {
+            $(this).find(THUMBNAIL_IMG_CONTAINER).removeClass(HOVER_CONTAINER);
+        }
+    );
+}</script>
+<!-- Beginning of podcasts -->
+</body>
+</html>
