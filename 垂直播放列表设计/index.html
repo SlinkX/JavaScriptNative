@@ -1,0 +1,983 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+	<style>
+		html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td,article,aside,canvas,details,embed,figure,figcaption,footer,header,hgroup,menu,nav,output,ruby,section,summary,time,mark,audio,video{border:0;font-size:100%;font:inherit;vertical-align:baseline;margin:0;padding:0}
+article,aside,details,figcaption,figure,footer,header,hgroup,menu,nav,section{display:block}
+body{line-height:1}
+ol,ul{list-style:none}
+blockquote,q{quotes:none}
+blockquote:before,blockquote:after,q:before,q:after{content:none}
+table{border-collapse:collapse;border-spacing:0}@font-face{font-family:'Montserrat';src:url(//jennamarblesblog.com/wp-content/themes/theme/css/fonts/montserrat-regular-webfont.eot);src:url(//jennamarblesblog.com/wp-content/themes/theme/css/fonts/montserrat-regular-webfont.eot?#iefix) format("embedded-opentype"),url(//jennamarblesblog.com/wp-content/themes/theme/css/fonts/montserrat-regular-webfont.woff) format("woff"),url(//jennamarblesblog.com/wp-content/themes/theme/css/fonts/montserrat-regular-webfont.ttf) format("truetype"),url(//jennamarblesblog.com/wp-content/themes/theme/css/fonts/montserrat-regular-webfont.svg#montserratregular) format("svg");font-weight:400;font-style:normal}
+@font-face{font-family:'Montserrat';src:url(//jennamarblesblog.com/wp-content/themes/theme/css/fonts/montserrat-regular-webfont.svg#montserratregular) format("svg");font-weight:400;font-style:normal}
+@font-face{font-family:'Montserrat';src:url(//jennamarblesblog.com/wp-content/themes/theme/css/fonts/montserrat-bold-webfont.eot);src:url(//jennamarblesblog.com/wp-content/themes/theme/css/fonts/montserrat-bold-webfont.eot?#iefix) format("embedded-opentype"),url(//jennamarblesblog.com/wp-content/themes/theme/css/fonts/montserrat-bold-webfont.woff) format("woff"),url(//jennamarblesblog.com/wp-content/themes/theme/css/fonts/montserrat-bold-webfont.ttf) format("truetype"),url(//jennamarblesblog.com/wp-content/themes/theme/css/fonts/montserrat-bold-webfont.svg#montserratbold) format("svg");font-weight:700;font-style:normal}
+@font-face{font-family:'Montserrat';src:url(//jennamarblesblog.com/wp-content/themes/theme/css/fonts/montserrat-bold-webfont.svg#montserratbold) format("svg");font-weight:700;font-style:normal}
+@font-face {
+font-family:'BebasNeueRegular';
+src:url(//jennamarblesblog.com/wp-content/themes/theme/css/fonts/BebasNeue-webfont.eot);
+src:url(//jennamarblesblog.com/wp-content/themes/theme/css/fonts/BebasNeue-webfont.eot?#iefix) format("embedded-opentype"),url(//resources/fonts/BebasNeue-webfont.woff) format("woff"),url(//jennamarblesblog.com/wp-content/themes/theme/css/fonts/BebasNeue-webfont.ttf) format("truetype"),url(//jennamarblesblog.com/wp-content/themes/theme/css/fonts/BebasNeue-webfont.svg#BebasNeueRegular) format("svg");
+font-weight:400;
+font-style:normal
+} *{margin:0;padding:0;outline:0}
+body,html{height:100%}
+body {
+font-family:'Montserrat',Arial,Helvetica,sans-serif;
+font-size:14px;
+line-height:16px;
+color:#2b2b2b;
+/*background:#000 url(https://d1789dt79qquhv.cloudfront.net/bg.jpg) no-repeat center 0;*/
+min-width:100%
+} a{color:#8562d3;text-decoration:none;cursor:pointer}
+a:hover{text-decoration:underline}
+a img{border:0}
+strong{font-weight:700}
+img.pos-left,img.pos-right{position:absolute;display:block;top:255px;z-index:0}
+img.pos-left{right:100%;margin-right:-20px}
+img.pos-right{left:100%;margin-left:-20px}
+.size-full{max-width:100%}
+span.cloud{display:block;font-size:0;line-height:0;text-indent:-4000px;position:absolute;background-repeat:no-repeat;background-position:0 0;z-index:0}
+span.cloud-left{width:127px;height:87px;background-image:url(//jennamarblesblog.com/wp-content/themes/theme/images/cloud1.png);top:157px;left:-45px}
+span.cloud-right{width:106px;height:66px;background-image:url(//jennamarblesblog.com/wp-content/themes/theme/images/cloud2.png);top:154px;left:165px}
+input,textarea,select{font-family:'Montserrat',Arial,Helvetica,sans-serif;font-size:14px;line-height:18px;color:#2b2b2b}
+textarea{overflow:auto}
+h2{font-family:'BebasNeueRegular',sans-serif;font-size:31px;line-height:35px;color:#fff;text-transform:uppercase;font-weight:400}
+h3{font-family:'BebasNeueRegular',sans-serif;font-size:19px;line-height:23px;color:#737373;text-transform:uppercase;font-weight:400}
+#head-spacer{width:100%;height:100px}
+.clear{clear:both;display:block;overflow:hidden;visibility:hidden;width:0;height:0}
+.clr{clear:both}
+.clearfix{*zoom:1}
+.clearfix:after{content:'';width:100%;display:block;height:0;font-size:0;line-height:0;text-indent:-4000px;clear:both}
+.infinite-scroll #navigation,.infinite-scroll.neverending #footer{display:none}
+.infinity-end.neverending #footer{display:block}
+.notext{font-size:0;line-height:0;text-indent:-4000px}
+.left,.alignleft{float:left;display:inline}
+.right,.alignright{float:right;display:inline}
+.wrapper{min-height:100%;height:auto!important;margin:0 auto -38px}
+.push{height:38px}
+.shell{width:1052px;margin:0 auto;position:relative}
+.top{font-size:12px;line-height:19px;color:#fff;text-transform:lowercase;text-align:right;background:#3b3b3b;padding:10px 0;border-bottom:1px solid #cfd139}
+.top ul{list-style:none outside}
+.top ul li{display:inline;padding:0 5px}
+.top ul li a{color:#fff}
+.header{padding:24px 0 19px;position:relative;z-index:10}
+#logo{width:591px;height:259px;position:absolute;top:-40px;left:-295px;z-index:5}
+#logo a{height:259px;display:block;background:url(//jennamarblesblog.com/wp-content/themes/theme/images/logo.png) no-repeat}
+.top-banner{width:779px;margin:0 0 20px auto;text-align:center}
+.top-banner a{height:113px;display:block}
+.top-banner a img{display:block}
+.nav-holder{width:779px;margin-left:auto;position:relative;z-index:10}
+.daln{float:left;margin-left:3px;margin-right:3px;padding-top:2px}
+#navigation{float:left;display:inline}
+#navigation ul{list-style:none outside}
+#navigation ul li{float:left;display:inline;padding-left:30px}
+#navigation ul li a{font-family:'BebasNeueRegular',sans-serif;font-size:21px;line-height:28px;color:#fff;text-transform:uppercase;display:block;text-shadow:0 0 10px rgba(0,0,0,0.8)}
+.socials{float:right;display:inline;padding-right:9px}
+.socials a{width:26px;height:26px;float:left;display:inline;background-repeat:no-repeat;background-position:0 0;font-size:0;line-height:0;text-indent:-4000px;margin-right:13px;position:relative;transition:top .1s ease;-moz-transition:top .1s ease;-webkit-transition:top .1s ease;-o-transition:top .1s ease}
+.socials a:hover{top:1px}
+.socials a.twitter-ico{background-image:url(//jennamarblesblog.com/wp-content/themes/theme/images/ico-tiwtter.png)}
+.socials a.facebook-ico{background-image:url(//jennamarblesblog.com/wp-content/themes/theme/images/ico-facebook.png)}
+.socials a.tumblr-ico{background-image:url(//jennamarblesblog.com/wp-content/themes/theme/images/ico-tumblr.png)}
+.socials a.youtube-ico{background-image:url(//jennamarblesblog.com/wp-content/themes/theme/images/ico-youtube.png)}
+.socials a.instagram-ico{background-image:url(//jennamarblesblog.com/wp-content/themes/theme/images/ico-instagram.png)}
+.inner-nav{background:#252526 url(//jennamarblesblog.com/wp-content/themes/theme/images/rainbow.png) no-repeat center top;padding:14px 17px 10px 35px;position:relative;z-index:5}
+.inner-nav ul{float:right;display:inline;list-style:none outside}
+.inner-nav ul li{float:left;display:inline;padding-right:6px}
+.inner-nav ul li a{font-family:'BebasNeueRegular',sans-serif;font-size:14px;line-height:18px;color:#999;text-transform:uppercase;text-shadow:0 0 1px rgba(0,0,0,1)}
+.inner-nav ul li.active a{color:#fff}
+.entry img{max-width:100%!important;padding-bottom:5px}
+.posts-list p img{max-width:100%!important;width:100%;padding-bottom:5px}
+.post-entry3 p img{max-width:100%!important;width:100%}
+.latest-tweet{padding-left:47px;background:url(//jennamarblesblog.com/wp-content/themes/theme/images/twitter-birds.png) no-repeat 0 center;float:left;display:inline}
+.latest-tweet p{font-size:13px;line-height:18px;color:#fff;text-shadow:0 0 1px rgba(0,0,0,0.1)}
+.videos{padding:6px 20px 20px;position:relative;z-index:5;background:url(//jennamarblesblog.com/wp-content/themes/theme/images/bbg.png)}
+.aboutus{padding:6px 20px 20px;position:relative;z-index:5;background-color:#fff}
+.boogie{text-align:center;background-color:#fff}
+.boogie img{margin-right:1px}
+.video-holder{width:675px;float:left;display:inline}
+.video-holder2{width:645px;float:left;display:inline;background-color:#fff;padding:8px}
+.video-holder h2{padding:0 10px;background:#f33072;margin-bottom:6px}
+.video-holder a{color:#000}
+.video-holder iframe{width:100%;display:block}
+.event-thumb{width:469px;max-width:100%;float:left;display:inline}
+.event-detail{height:45px;width:520px;max-width:100%;float:right;display:inline;background-image:url(//jennamarblesblog.com/wp-content/themes/theme/images/eventbar.jpg)}
+.event-detail2{min-height:45px;width:520px;max-width:100%;float:right;display:inline;background-color:#ccc}
+.event-detail2 p{padding:8px}
+.event-detail2 span{font-family:'BebasNeueRegular',sans-serif;font-size:28px}
+.event-detail h2{padding:8px;font-size:32px;float:left}
+.event-detail span{background-color:#ca8b8b;font-family:'BebasNeueRegular',sans-serif;font-size:17px;line-height:18px;color:#fff;text-transform:uppercase;float:left;padding:6px;margin-top:8px;margin-bottom:4px}
+.youtube{background-color:#000;max-width:100%;overflow:hidden;position:relative;cursor:hand;cursor:pointer}
+.youtube .thumb{bottom:0;display:block;left:0;margin:auto;max-width:100%;position:absolute;right:0;top:0;width:100%;height:auto}
+.youtube .play{filter:alpha(opacity=80);opacity:.8;height:77px;left:50%;margin-left:-38px;margin-top:-38px;position:absolute;top:50%;width:77px;background:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAE0AAABNCAYAAADjCemwAAAAAXNSR0IArs4c6QAAAAlwSFlzAAALEwAACxMBAJqcGAAABgtJREFUeNrtXE1IJEcUFuYgHhZZAzOQwKLsaeY4MuCisLNkMUYM+TtmQwgYQSEg8RCIBAMBSYIQPCgEEiEYISZIgrhzCRLYg+BBMiiDGCHGH4xGETH4O85M+huql7Knuqe7urq7ercePAZnuqtefXZVvfe911VToyRUUqdpVNMmTROaJjVt0bRN0/uapslnG/k+Sa5rIvfVPQ8gRTSNaRrX9B4Bxa3eI+3FSPvPjLxAnpAbA+7s7HxrcnLyk8XFxe82NjZ+Ozw8XDk9Pd29urr6r1Ao5EulUhGf+Bvf43dch+txH+5ngJgg/YVWXtI0RQ9qbGzso1wu99PJyclfJQGCdtAe2jWAlyL9h0ZeJGtQeQC9vb2Pstns1NnZ2X7JQ0H76Af9UeC1EHukldtksS4bPDw83Le5uTlfCkDQL/qnwEsS+6SSu/SThbWnJIHADsOTd1cGsG5p2qwbhUXayaCOj4//XFtbm52fn/96fHx8oK+v793W1tbXGhoaHkYikQf4xN/4Hr/jOlyP+5z0A7so4JqJ3YFITPenBgcHP8DuZmcA29vbT2ZnZ4fb29vfcONu4H60g/bs9Av7YCfl/8X8BuyObnwmk/kK7kGVRfqfhYWFb9wCZQUg2kc/VbArwl7q3jt+Adakd4rdysrC8/PzfzGlvADKTNEf+rWyC3ZT9zT5Btj6+nqmmmHRaPShn4Dpin6r/UNhvx/APZ2SVrsjFumRkZEPgwDLqLDDatPAOLycqjE7T5j22+Pa2toHMgCmK+yBXTafOGGbwy19l7R65LVt/VuZwDIq7LOxxt0X5Y40U7skU/xe7N1sEmZjoHbVZiGePvwbM7ciLIDZAK5I+XHckcNtvSMzx1X2Kel0qmKc1HVcsWrSKjTC4hpGwKgN7XGVkCvJQ++Ug28zt0K2XZJnVzVzR6gg3xGt1GLlj8nih4nw46r4by1OGNcyH2YjBLGte3t7i/39/e/JBpyZG0XxcbYY4DJFzSIQEdPxhka4v1AoXK+urv7a0dHxpiygYTysWBXjp6jzqkkQ07XMjXtBt5PP58+wgzU2Nr4isxtCrW2WyZqE2SML2sWNYWa8/szMzOcgHIMGjkUrUUtRwiovqTdQkQQBXyUaNF2Ojo5yBk7fd8X4WP9U6pqIaVCOdBhrYG4JRBvkanFra+v37u7ud4IADeNjGUWlB5nBPDLVaeQRWRS1W6Ps8vnX19f5lZWV6VQq1eU3cCzqHHiQ3+Ms0MqlAqxELrh4v0DT5fLy8hgLdH19/ct+gYZxshLSVAnEDanTSwW8mJo8oFFG/z0xMfFxkFOUKoG4UXSDKpw0aiRYIZMIg9zmMA8ODv6gWAjPlBVaARfye7SC+2cF58gzygAacY6LYFq7urre9go0jNciiG+q8M9YsaYovkxk5txL55jl6FKxaKKCBmLxZshsywYa7UfNzc19IZJxwXgteLZkBauBOjDjDSgJkBU0et0dHR3tF2EnxmtsH7iwWA+UaKZRQGe8AbUUsoOmy87OzhO3zjHGa2wXuJDf22jQytkmUoF4Q1CEEhbQRDjHGC9jA8pT2aqnog+sInkiKpj2CzTssNgB0+n06zx2YrysEI+65tl60hD4Dw0N9bix08mTFuo1DSFXJpP5UsQu6mRNC+XuSZjgX0QG9052z9D5aYYivXQQflpoIoKLi4tDsBFesb1OIgLpY09MxVwu97PXPJuT2FNqlgMMx8DAwPt+0ENOWA4p+TRMRT8TL075NKmYW3j1y8vLP8bj8Vf9pLudMrfS5Aj29/eXgsrE8+QIAs1GgeaZnp7+LKgUHm82KpC8J6ZiNpv9we+pKCrv6XuGHUUxPT09j2QoTeDNsPtWy6EZuDc1NfWp7CWldms5PK0a0qbixdLS0veyFL6IqhryrD5td3d3IaiSAz/q01QlJEclpKq55ay5VdXdHNXdEPUeAaeoN1Y4Rb0bxSHqLTxOUe97cop6s5hT1DvsboFTpyVwTlV1LofzzUGdAMPpjqizhtxEDjXqVCuuWFWdn8Yp6qQ+F6LOhHQh6vRRF6LOuRUg6kTl50n+B4KhcERZo7nRAAAAAElFTkSuQmCC) no-repeat}
+.video-thumbs{width:335px;float:right;display:inline}
+.video-thumbs2{width:335px;float:right;display:inline;background-color:#fff;padding:8px}
+.video-thumbs h3{background:#fff url(//jennamarblesblog.com/wp-content/themes/theme/images/rainbow2.png) no-repeat 0 0;padding:7px 18px 5px;margin-bottom:6px}
+.video-thumb{padding:20px 10px 21px 143px;min-height:42px;background:#171717 url(//jennamarblesblog.com/wp-content/themes/theme/images/gr01.png) repeat-x 0 0;position:relative;border-bottom:1px solid #000}
+.video-thumb a{font-family:'BebasNeueRegular',sans-serif;font-size:17px;line-height:20px;color:#f2eb8f;text-transform:uppercase;display:block}
+.video-thumb a img{width:121px;height:72px;display:block;position:absolute;top:7px;left:11px}
+.video-thumb a small{font-family:'Montserrat',sans-serif;font-size:10px;line-height:13px;color:#9c9c9c;text-transform:none;display:block}
+.video-thumb a span{font-family:'Montserrat',sans-serif;font-size:9px;line-height:12px;color:#fff;text-transform:none;display:block}
+.video-thumb:hover{background:#2b2b2b}
+.video-thumb:hover a{text-decoration:none}
+.video-options{font-size:11px;line-height:12px}
+.video-options h2{font-size:20px;line-height:22px}
+.subscribe{width:113px;float:left;display:inline;background:#22a0c4;padding:10px}
+.subscribe p{color:#000;white-space:nowrap}
+.subscribe a{color:#f6f3bf}
+.request{width:122px;padding:10px 10px 10px 70px;background:#944ebd;position:relative;float:right;display:inline}
+.request img{width:48px;height:50px;display:block;border:1px solid #000;position:absolute;top:10px;left:10px}
+.request p{color:#ccc;white-space:nowrap}
+.request a{color:#f6f3bf}
+.main{background:#dcdcdc url(//jennamarblesblog.com/wp-content/themes/theme/images/rainbow.png) no-repeat center top;padding:3px 20px 0;position:relative;z-index:5}
+.content{width:676px;float:left;display:inline}
+.highlight{background-color:#B25FD5;font-family:'BebasNeueRegular';color:#FFF;line-height:22px;font-size:22px;padding:4px}
+.content-banner{padding-bottom:5px}
+.post-entry{padding:10px 10px 10px 322px;background:#ececec;min-height:185px;position:relative;margin-top:15px}
+.post-entry:first-child{margin-top:0}
+.post-entry img{width:298px;height:169px;display:block;position:absolute;top:10px;left:10px;max-width:100%}
+.post-entry h2{font-size:29px;line-height:30px}
+.post-entry p.post-meta{color:#656565;padding-bottom:12px}
+.post-entry a.read-more{color:#2b2b2b;font-weight:700}
+.post-entry img.ntry{max-width:298px;display:block;position:absolute;top:20px;left:20px;max-width:100%}
+.post-entry a.read-more2{color:#2b2b2b;font-weight:700;float:right}
+.post-entry4{padding:20px 20px 20px 332px;background:#ececec;min-height:185px;position:relative;margin-top:15px}
+.post-entry4:first-child{margin-top:0}
+.post-entry4 h2{font-size:29px;line-height:30px}
+.post-entry4 p.post-meta{color:#656565;padding-bottom:12px}
+.post-entry4 a.read-more{color:#2b2b2b;font-weight:700}
+.post-entry4 img.ntry{max-width:298px;display:block;position:absolute;top:20px;left:20px;max-width:100%}
+.post-entry4 a.read-more2{color:#2b2b2b;font-weight:700;float:right}
+.post-entry2{padding:20px 20px 20px 332px;background:#ececec;min-height:185px;position:relative;margin-top:15px}
+.post-entry2:first-child{margin-top:0}
+.post-entry2 img.ntry{max-width:298px;display:block;position:absolute;top:20px;left:20px;max-width:100%}
+.post-entry2 h2{font-size:29px;line-height:30px}
+.post-entry2 p.post-meta{color:#656565;padding-bottom:12px;font-size:23px}
+.post-entry2 p{font-size:18px;line-height:20px}
+.post-entry2 a.read-more{color:#2b2b2b;font-weight:700;position:absolute;top:230px;right:20px}
+.post-entry3{font-size:12px;padding:20px 20px 25px;background:#ececec;min-height:55px;position:relative;margin-top:15px}
+.post-entry3 img{max-width:100%}
+.post-entry3:first-child{margin-top:0}
+.post-entry3 img.ntry{max-width:298px;display:block;position:absolute;top:10px;left:10px;max-width:100%}
+.post-entry3 h2{font-size:29px;line-height:30px}
+.post-entry3 h2 a{color:#666}
+.post-entry3 p.post-meta{color:#656565;padding-bottom:12px}
+.post-entry3 p.twitr{font-size:18px;line-height:20px}
+.post-entry3 a.read-more{color:#ccc;font-weight:700;float:right}
+.post-entry3 iframe{max-width:100%;width:100%}
+.post-entry3 embed{max-width:100%;width:100%}
+.post-entry3 p{color:#2B2B2B;font-size:12px;line-height:16px;padding-bottom:10px}
+.comedian img{width:298px;display:block;max-width:100%}
+.posts-pagination{font-size:16px;line-height:20px;color:#656565;padding:6px 0}
+.posts-pagination a{color:#656565}
+.securei{background:#fff url(//jennamarblesblog.com/wp-content/themes/theme/images/lock.png) no-repeat left center;padding-left:38px}
+.social_links{float:left;margin-left:0;padding-left:0}
+.social_links ul{padding-left:0}
+.social_comments{float:left;padding:7px 0 0 10px}
+.social_links ul,.social_comments ul{margin:0}
+.social_links li,.social_comments li{float:left;list-style-type:none;padding-right:5px}
+.social_links li a:hover{opacity:.8}
+.social_comments li{padding-right:8px}
+.pagination{clear:both;padding:20px 0;position:relative;font-size:15px;line-height:16px}
+.pagination span,.pagination a{display:block;float:left;margin:2px 2px 2px 0;padding:6px 9px 5px;text-decoration:none;width:auto;color:#2D2D2D;background:#fff;border:1px;font-family:'BebasNeueRegular'}
+.pagination a:hover{color:#fff;background:#D0A9E4}
+.pagination .current{padding:6px 9px 5px;background:#D0A9E4;color:#fff}
+.pagination span{color:#fff;background:#AC58DD}
+.sidebar{width:310px;float:right;display:inline;padding-top:11px}
+.widget{margin-bottom:12px}
+.widget img{max-width:100%;margin:0 auto;display:block}
+.widget h2{font-size:25px;line-height:28px;color:#1f1f1f;padding-bottom:3px}
+.widget p.caption{font-size:12px;line-height:14px;color:#6e6e6e;padding:10px 0}
+.banners{background:#4a4a4a;padding:17px 0 17px 20px}
+.banners .banner{width:325px;height:201px;float:left;display:inline;padding-right:18px}
+.banners .banner a{display:block;height:201px}
+.banners .banner a img{display:block;width:325px;height:201px;margin:0 auto}
+.footer{height:36px;background:#444;border-top:2px solid #e7e27e}
+.footer ul{list-style:none outside}
+.footer ul li{display:inline;padding:8px 0 8px 13px;float:left;font-size:14px;line-height:20px;color:#fff;font-weight:700;display:block;text-transform:lowercase}
+.footer ul li a{font-size:14px;line-height:20px;color:#fff;font-weight:700;display:block;text-transform:lowercase}
+.footsei{background-color:#DCDCDC;color:#000;padding:5px 20px;font-size:11px}
+.post-content{background:#fff;padding:11px 15px;width:646px;margin-top:12px}
+#page_title h2{color:#000}
+.post-title{padding:0 0 8px 92px;position:relative;min-height:76px}
+.post-title img{width:75px;height:75px;display:block;position:absolute;top:9px;left:0;max-width:100%}
+.post-title h2{font-size:30px;line-height:32px;color:#8562d3;padding-bottom:12px}
+.post p{font-size:12px;line-height:16px;color:#2b2b2b;padding-bottom:10px}
+.post p.post-meta{font-size:14px;color:#656565}
+.post ul,.post ol{list-style-position:inside}
+.post iframe{width:100%}
+.post-entry3 .Embed{max-width:100%}
+.post h2,.entry h2{color:#000;padding-top:6px;padding-bottom:6px}
+.post-share{padding:40px 0 16px}
+.post-categories{background:#f5f5f5;border:1px solid #ddd;padding:15px 20px;font-size:12px;line-height:15px;color:#656565;margin-bottom:14px}
+.post-categories span{color:#1f9dc1}
+.post-categories a{color:#656565}
+.similar-posts{padding-bottom:10px}
+.similar-posts h3{font-size:18px;color:#8562d3;text-transform:uppercase;padding-bottom:10px}
+.similar-posts img{max-width:100%}
+.post-comments img{max-width:100%}
+.fb-comments,.fb-comments iframe[style]{width:100%!important}
+.fb-comments,.fb-comments span[style],.fb-comments iframe[style]{width:100%!important}
+.fb_iframe_widget,.fb_iframe_widget span,.fb_iframe_widget span iframe[style]{width:100%!important}
+.facebooklike{overflow:hidden;border:0}
+.btnpink{color:fff;padding-left:2px}
+.btnpink:hover{background:#f87bca;background:#f075c3;background:-webkit-gradient(linear,left top,left bottom,from(#ff85d3),to(#e34dac));background:-moz-linear-gradient(top,#ff85d3,#e34dac);border-color:#c02589;color:#000}
+.copyright{color:#FFF;float:right;font-size:13px;text-shadow:3px 3px 7px #161616,1px 1px 4px #161616;padding:8px 6px}
+.copyright span{background:url(//jennamarblesblog.com/wp-content/themes/theme/images/tm-logo.png) no-repeat scroll 0 0 transparent;color:#FFF;display:inline-block;font-size:16px;padding:0 0 0 20px;text-shadow:3px 3px 7px #161616,1px 1px 4px #161616;text-transform:uppercase}
+.copyright span strong{font-weight:700}
+.bottomholder{padding:20px;min-height:90px;background-color:#DCDCDC}
+.bottomad{float:left}
+.botsoc{position:relative;top:30px}
+.wpcf7-form p{font-size:16px;margin:5px;padding:4px;font-family:'BebasNeueRegular'}
+.shop-item-holder{width:180px;height:295px;margin-right:35px;position:relative;overflow:hidden;background-color:#fff;margin-top:10px;margin-bottom:10px;float:left}
+.shop-item{width:176px;height:248px;border-width:2px;border-style:solid;border-color:#d2d2d2}
+.shop-item a{color:#666}
+.shop-price{position:absolute;right:0;color:#fff;background-color:#B871DF;height:14px;width:39px;text-align:center;padding-bottom:10px;padding-top:10px}
+.shop-price2{color:#fff;background-color:#B871DF;height:14px;width:100%;text-align:center;padding-bottom:10px;padding-top:10px}
+.video-module{width:270px;height:260px;margin-right:15px;position:relative;overflow:hidden;background-color:#fff;border-width:1px;border-style:solid;border-color:#d2d2d2;padding:12px;margin-top:10px;margin-bottom:10px;float:left}
+.video-module a:hover{color:#fff}
+.video-modue-s{background:none repeat scroll 0 0 #F33072;margin-bottom:2px;padding:0 10px}
+.video-modue-s h3{color:#fff}
+.video-module .thumbi{width:165px;height:125px}
+.video-container{position:relative;padding-bottom:56.25%;padding-top:30px;height:0;margin-bottom:10px;margin-right:5px}
+.video-container iframe,.video-container object,.video-container embed{position:absolute;top:0;left:0;width:100%;height:100%}
+#aptftbytap_domain-2-by-link{display:none}
+.AlpinePhotoTiles-by-link{display:none}
+.AlpinePhotoTiles_breakline{display:none}
+select,input[type="email"],input[type="text"],input[type="password"]{-moz-border-bottom-colors:none;-moz-border-left-colors:none;-moz-border-right-colors:none;-moz-border-top-colors:none;-moz-box-sizing:border-box;background:none repeat scroll 0 0 #F4F4F4;border-color:#AAA #AAA #CCC;border-image:none;border-radius:2px 2px 2px 2px;border-style:solid;border-width:1px;box-shadow:0 1px 0 #FFFFFF,0 1px 1px rgba(0,0,0,0.2) inset;margin:0;margin-top:3px;outline:medium none;padding:6px 8px;vertical-align:middle;max-width:100%}
+select{height:auto;max-width:100%}
+area,textarea{-moz-border-bottom-colors:none;-moz-border-left-colors:none;-moz-border-right-colors:none;-moz-border-top-colors:none;-moz-box-sizing:border-box;background:none repeat scroll 0 0 #F4F4F4;border-color:#AAA #AAA #CCC;border-image:none;border-radius:2px 2px 2px 2px;border-style:solid;border-width:1px;box-shadow:0 1px 0 #FFFFFF,0 1px 1px rgba(0,0,0,0.2) inset;height:auto;margin:0;outline:medium none;overflow:auto;padding:8px 10px;max-width:100%}
+#admin-bar .centie{text-align:center;position:relative;top:15px}
+#admin-bar{z-index:99;min-height:50px;padding:0 0 20px;width:100%;background:#fff;position:relative;top:0;left:0;font-family:Arial,sans-serif;color:#fff;line-height:28px;-webkit-box-shadow:0 2px rgba(0,0,0,0.6);-moz-box-shadow:0 2px rgba(0,0,0,0.6);box-shadow:0 2px rgba(0,0,0,0.6)}
+#admin-bar a{color:#818181;text-decoration:none;font-size:20px}
+#admin-bar a:hover{color:#d9d9d9}
+.tp_recent_tweets{float:left;clear:left}
+.tp_recent_tweets li{background-image:url(//jennamarblesblog.com/wp-content/themes/theme/images/tweet.png);background-repeat:no-repeat;background-position:0 4px;padding-left:30px;padding-bottom:20px;float:left;clear:left;line-height:20px}
+.tp_recent_tweets li a{font-weight:700}
+.tp_recent_tweets .twitter_time{color:#999;font-size:12px;font-style:italic;font-weight:400}
+.tumblr_post img{width:100%}
+.tumblr_post{border-color:#315C99 #AAA #AAA;border-image:none;border-style:solid;border-width:1px;background-color:#fff;padding:10px 10px 5px;font-family:'lucida grande',tahoma,verdana,arial,sans-serif;font-size:12px}
+.twitter_holder{border-color:#315C99 #AAA #AAA;border-image:none;border-style:solid;border-width:1px;background-color:#fff;padding:10px 10px 5px;font-family:'lucida grande',tahoma,verdana,arial,sans-serif;font-size:12px;margin-bottom:10px}
+.tweet_img{float:left;margin-right:10px}
+.tweet_odd{margin-bottom:8px;min-height:55px;font-family:'lucida grande',tahoma,verdana,arial,sans-serif;font-size:12px}
+.tweet_odd2{margin-bottom:8px;min-height:55px;font-family:'lucida grande',tahoma,verdana,arial,sans-serif;font-size:12px}
+.avii{float:left;min-height:55px;max-height:85px;font-family:'lucida grande',tahoma,verdana,arial,sans-serif;font-size:12px}
+.tweet_img2{float:left;margin-right:10px;height:45px;width:45px;clear:both}
+.tweet_even{margin-bottom:8px;min-height:55px;font-family:'lucida grande',tahoma,verdana,arial,sans-serif;font-size:12px}
+.tweet_even2{margin-bottom:8px;min-height:55px;font-family:'lucida grande',tahoma,verdana,arial,sans-serif;font-size:12px}
+.relatedthumb{text-align:center;float:left;margin-right:6px;width:120px;font-family:'lucida grande',tahoma,verdana,arial,sans-serif;font-size:12px}
+.fluidMedia{position:relative;padding-top:30px;height:170px;overflow:hidden;max-height:170px;margin:3px}
+.fluidMedia iframe{position:absolute;top:0;left:0;width:100%;height:170px;max-height:170px}
+.shopif_main{width:100%;background-color:#fff;min-height:440px;padding-bottom:10px;margin-bottom:10px}
+.shopif_holder{float:left;width:210px;height:390px;margin:20px;text-align:center;position:relative}
+.shopif_holder_large{float:left;width:400px;height:400px;position:relative}
+.shopif_item{width:210px;height:210px;border-color:#DEDCDB;border:1px solid #DEDCDB;padding:5px}
+.shopif_item img{width:210px;height:210px}
+.shopif_item_large{float:left;width:400px;height:400px;border-color:#DEDCDB;border:1px solid #DEDCDB;padding:5px}
+.shopif_item_large img{width:400px;height:400px}
+.shopif_desc{float:left;color:#939393;width:400px}
+.adoptriben{float:right;position:absolute;right:-12px;top:0;z-index:1}
+.adoptriben2{float:right;position:absolute;right:0;top:0;z-index:1}
+.clickhr{margin-left:auto;margin-right:auto;margin-top:10px}
+.shopif_desc h4{font-size:20px;line-height:22px;color:#4a4a4a;padding-bottom:2px;margin-bottom:2px}
+.shopif_desc h2{font-size:30px;color:#000;padding-bottom:10px;line-height:32px}
+#imageWrap{height:475px;margin-bottom:10px;padding:5px;background-color:#fff;position:relative;border:1px solid #C6C6C6}
+#imageWrap img{max-width:100%}
+.toythumb_holder{width:500px}
+.toythumb{width:91px;height:91px;margin-bottom:7px;margin-right:12px;padding:5px;float:left;background-color:#fff;border:1px solid #C6C6C6}
+.toy_desc{width:350px;height:655px;margin-bottom:10px;margin-right:10px;background-color:#fff;float:left}
+.sproduct_holder{width:450px;float:left;margin-right:25px;margin-bottom:25px}
+.twit_has{float:left;width:420px;padding:7px;margin-left:10px;margin-right:18px;padding-bottom:13px}
+.insta_has{float:left;width:530px;padding:7px}
+.has_holder{width:100%;background-color:#fff;min-height:400px;padding-bottom:0;margin-bottom:0;text-align:center}
+.has_holder2{width:100%;background-color:#fff;min-height:440px;padding-bottom:10px;margin-bottom:10px}
+.shop_a_head{width:100%;height:393px;background:#39CCDC url(//jennamarblesblog.com/wp-content/themes/theme/images/shop_banner_2.jpg) no-repeat;background-size:contain}
+.shop_a_video{float:right;position:relative;top:90px;left:-30px}
+.shop_a_video iframe{width:450px;height:280px;max-width:100%}
+.justpara{width:365px;float:left}
+.jennaf{float:left;padding-left:20px;padding-right:20px;padding-bottom:10px;max-width:100%}
+.show_hide{display:none}
+#box{width:100%;z-index:99;padding:0;margin:0;background-color:#15C3DC;border-bottom:1px solid #fff;height:auto;display:none}
+#box img{max-width:100%;display:none}
+#closedis{width:100%;text-align:right;padding-top:3px}
+#closedis:hover{cursor:hand}
+#post-entries{position:relative}
+.post-entry3{margin-bottom:35px;position:relative}
+.infinite-scroll-loader{color:#666;font-size:24px;text-align:center;position:absolute;bottom:-30px;margin-bottom:0;width:100%}
+#infscr-loading img{display:none!important}
+.infinite-scroll-nav{display:none}
+.clr:before,.clr:after{content:" ";display:table}
+.clr:after{clear:both}
+.clr{*zoom:1}
+.button_load_more{text-decoration:none;text-align:center;border:none;-webkit-border-radius:4px;-moz-border-radius:4px;border-radius:4px;font:18px Arial,Helvetica,sans-serif;font-weight:700;color:#000;background:#ececec;-webkit-box-shadow:0 0 2px #bababa,inset 0 0 1px #fff;-moz-box-shadow:0 0 2px #bababa,inset 0 0 1px #fff;box-shadow:0 0 2px #bababa,inset 0 0 1px #fff;padding:7px 32px;display:block}
+.older-posts{display:none}
+.button_load_more:hover,.button_load_more:active{border:none;-webkit-border-radius:4px;-moz-border-radius:4px;border-radius:4px;font:18px Arial,Helvetica,sans-serif;font-weight:700;color:#000;background:#ececec;-webkit-box-shadow:0 0 2px #bababa,inset 0 0 1px #fff;-moz-box-shadow:0 0 2px #bababa,inset 0 0 1px #fff;box-shadow:0 0 2px #bababa,inset 0 0 1px #fff;padding:7px 32px;display:block}
+button.btnn{background:#3b88d8;background:-moz-linear-gradient(0% 100% 90deg,#377ad0,#52a8e8);background:-webkit-gradient(linear,0% 0%,0% 100%,from(#52a8e8),to(#377ad0));border-top:1px solid #4081af;border-right:1px solid #2e69a3;border-bottom:1px solid #20559a;border-left:1px solid #2e69a3;-moz-border-radius:16px;-webkit-border-radius:16px;border-radius:16px;-moz-box-shadow:inset 0 1px 0 0 #72b9eb,0 1px 2px 0 #b3b3b3;-webkit-box-shadow:inset 0 1px 0 0 #72b9eb,0 1px 2px 0 #b3b3b3;color:#fff;font-family:"lucida grande",sans-serif;font-size:11px;font-weight:700;line-height:1;padding:3px 0 5px;text-align:center;text-shadow:0 -1px 1px #3275bc;width:112px;-webkit-background-clip:padding-box}
+button.btnn:hover{background:#2a81d7;background:-moz-linear-gradient(0% 100% 90deg,#206bcb,#3e9ee5);background:-webkit-gradient(linear,0% 0%,0% 100%,from(#3e9ee5),to(#206bcb));border-top:1px solid #2a73a6;border-right:1px solid #165899;border-bottom:1px solid #07428f;border-left:1px solid #165899;-moz-box-shadow:inset 0 1px 0 0 #62b1e9;-webkit-box-shadow:inset 0 1px 0 0 #62b1e9;cursor:pointer;text-shadow:0 -1px 1px #1d62ab;-webkit-background-clip:padding-box}
+button.btnn:active{background:#3282d3;border:1px solid #154c8c;border-bottom:1px solid #0e408e;-moz-box-shadow:inset 0 0 6px 3px #1657b5,0 1px 0 0 #fff;-webkit-box-shadow:inset 0 0 6px 3px #1657b5,0 1px 0 0 #fff;text-shadow:0 -1px 1px #2361a4;-webkit-background-clip:padding-box}
+button.btnn[disabled],button.btnn[disabled]:hover,button.btnn[disabled]:active{background:#999;background:-webkit-gradient(linear,0% 0%,0% 100%,from(#dadada),to(#f3f3f3));border-top:1px solid #c5c5c5;border-right:1px solid #cecece;border-bottom:1px solid #d9d9d9;border-left:1px solid #cecece;color:#8f8f8f;box-shadow:none;-moz-box-shadow:none;-webkit-box-shadow:none;cursor:not-allowed;text-shadow:0 -1px 1px #ebebeb}
+button.btnn::-moz-focus-inner{border:0;padding:0}
+.rwd-table{margin:1em 0;min-width:300px;font-size:10px}
+.rwd-table tr{border-top:1px solid #EDF0F2;border-bottom:1px solid #EDF0F2}
+.rwd-table th{display:none}
+.rwd-table td{display:block;white-space:nowrap;text-overflow:ellipsis}
+.rwd-table td:first-child{padding-top:.3em}
+.rwd-table td:last-child{padding-bottom:.3em}
+.rwd-table td:before{content:attr(data-th) ":";font-weight:700;width:6.5em;display:inline-block}
+@media (min-width: 480px) {
+.rwd-table td:before{display:none}
+}
+.rwd-table th,.rwd-table td{text-align:left}
+@media (min-width: 480px) {
+.rwd-table th,.rwd-table td{display:table-cell;padding:.25em .4em}
+.rwd-table th:first-child,.rwd-table td:first-child{padding-left:0}
+.rwd-table th:last-child,.rwd-table td:last-child{padding-right:0}
+}
+.rwd-table a{color:#298cda}
+.rwd-table{background:#F7F7F7;color:#898989;border-radius:.4em;border-color:#EDF0F2;overflow:hidden;width:100%;font:12px/18px "Lucida Grande","Lucida Sans Unicode",Arial,Verdana,sans-serif}
+.rwd-table img{height:auto;width:auto;vertical-align:middle;padding-left:5px;padding-top:3px}
+.rwd-table tr{border-color:#EDF0F2}
+.rwd-table th,.rwd-table td{margin:.4em 1em}
+@media (min-width: 480px) {
+.rwd-table th,.rwd-table td{padding:.7em!important}
+}
+.rwd-table th,.rwd-table td:before{color:#898989;font-weight:700;overflow:hidden;padding-left:12px;white-space:nowrap}
+@media print {
+*,
+*:before,
+*:after{background:transparent !important;color:#000 !important;-webkit-box-shadow:none !important;box-shadow:none !important;text-shadow:none !important;}
+pre,
+blockquote{border:1px solid #999;page-break-inside:avoid;}
+thead{display:table-header-group;}
+tr,
+img{page-break-inside:avoid;}
+img{max-width:100% !important;}
+.navbar{display:none;}
+.btn > .caret,
+.dropup > .btn > .caret{border-top-color:#000 !important;}
+.label{border:1px solid #000;}
+.table{border-collapse:collapse !important;}
+.table td,
+.table th{background-color:#fff !important;}
+.table-bordered th,
+.table-bordered td{border:1px solid #ddd !important;}
+} *{-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box;}
+*:before,
+*:after{-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box;}
+img{vertical-align:middle;}
+.img-responsive{display:block;max-width:100%;height:auto;}
+.img-rounded{border-radius:6px;}
+.img-thumbnail{padding:4px;line-height:1.42857143;background-color:#ffffff;border:1px solid #dddddd;border-radius:4px;-webkit-transition:all 0.2s ease-in-out;-o-transition:all 0.2s ease-in-out;transition:all 0.2s ease-in-out;display:inline-block;max-width:100%;height:auto;}
+.img-circle{border-radius:50%;}
+hr{margin-top:20px;margin-bottom:20px;border:0;border-top:1px solid #eeeeee;}
+.sr-only{position:absolute;width:1px;height:1px;margin:-1px;padding:0;overflow:hidden;clip:rect(0, 0, 0, 0);border:0;}
+.sr-only-focusable:active,
+.sr-only-focusable:focus{position:static;width:auto;height:auto;margin:0;overflow:visible;clip:auto;}
+[role="button"]{cursor:pointer;}
+.container{margin-right:auto;margin-left:auto;padding-left:15px;padding-right:15px;}
+@media (min-width: 768px) {
+.container{width:750px;}
+}
+@media (min-width: 992px) {
+.container{width:970px;}
+}
+@media (min-width: 1200px) {
+.container{width:1170px;}
+}
+.container-fluid{margin-right:auto;margin-left:auto;padding-left:15px;padding-right:15px;}
+.row{margin-left:-15px;margin-right:-15px;}
+.col-xs-1, .col-sm-1, .col-md-1, .col-lg-1, .col-xs-2, .col-sm-2, .col-md-2, .col-lg-2, .col-xs-3, .col-sm-3, .col-md-3, .col-lg-3, .col-xs-4, .col-sm-4, .col-md-4, .col-lg-4, .col-xs-5, .col-sm-5, .col-md-5, .col-lg-5, .col-xs-6, .col-sm-6, .col-md-6, .col-lg-6, .col-xs-7, .col-sm-7, .col-md-7, .col-lg-7, .col-xs-8, .col-sm-8, .col-md-8, .col-lg-8, .col-xs-9, .col-sm-9, .col-md-9, .col-lg-9, .col-xs-10, .col-sm-10, .col-md-10, .col-lg-10, .col-xs-11, .col-sm-11, .col-md-11, .col-lg-11, .col-xs-12, .col-sm-12, .col-md-12, .col-lg-12{position:relative;min-height:1px;padding-left:15px;padding-right:15px;}
+.col-xs-1, .col-xs-2, .col-xs-3, .col-xs-4, .col-xs-5, .col-xs-6, .col-xs-7, .col-xs-8, .col-xs-9, .col-xs-10, .col-xs-11, .col-xs-12{float:left;}
+.col-xs-12{width:100%;}
+.col-xs-11{width:91.66666667%;}
+.col-xs-10{width:83.33333333%;}
+.col-xs-9{width:75%;}
+.col-xs-8{width:66.66666667%;}
+.col-xs-7{width:58.33333333%;}
+.col-xs-6{width:50%;}
+.col-xs-5{width:41.66666667%;}
+.col-xs-4{width:33.33333333%;}
+.col-xs-3{width:25%;}
+.col-xs-2{width:16.66666667%;}
+.col-xs-1{width:8.33333333%;}
+.col-xs-pull-12{right:100%;}
+.col-xs-pull-11{right:91.66666667%;}
+.col-xs-pull-10{right:83.33333333%;}
+.col-xs-pull-9{right:75%;}
+.col-xs-pull-8{right:66.66666667%;}
+.col-xs-pull-7{right:58.33333333%;}
+.col-xs-pull-6{right:50%;}
+.col-xs-pull-5{right:41.66666667%;}
+.col-xs-pull-4{right:33.33333333%;}
+.col-xs-pull-3{right:25%;}
+.col-xs-pull-2{right:16.66666667%;}
+.col-xs-pull-1{right:8.33333333%;}
+.col-xs-pull-0{right:auto;}
+.col-xs-push-12{left:100%;}
+.col-xs-push-11{left:91.66666667%;}
+.col-xs-push-10{left:83.33333333%;}
+.col-xs-push-9{left:75%;}
+.col-xs-push-8{left:66.66666667%;}
+.col-xs-push-7{left:58.33333333%;}
+.col-xs-push-6{left:50%;}
+.col-xs-push-5{left:41.66666667%;}
+.col-xs-push-4{left:33.33333333%;}
+.col-xs-push-3{left:25%;}
+.col-xs-push-2{left:16.66666667%;}
+.col-xs-push-1{left:8.33333333%;}
+.col-xs-push-0{left:auto;}
+.col-xs-offset-12{margin-left:100%;}
+.col-xs-offset-11{margin-left:91.66666667%;}
+.col-xs-offset-10{margin-left:83.33333333%;}
+.col-xs-offset-9{margin-left:75%;}
+.col-xs-offset-8{margin-left:66.66666667%;}
+.col-xs-offset-7{margin-left:58.33333333%;}
+.col-xs-offset-6{margin-left:50%;}
+.col-xs-offset-5{margin-left:41.66666667%;}
+.col-xs-offset-4{margin-left:33.33333333%;}
+.col-xs-offset-3{margin-left:25%;}
+.col-xs-offset-2{margin-left:16.66666667%;}
+.col-xs-offset-1{margin-left:8.33333333%;}
+.col-xs-offset-0{margin-left:0%;}
+@media (min-width: 768px) {
+.col-sm-1, .col-sm-2, .col-sm-3, .col-sm-4, .col-sm-5, .col-sm-6, .col-sm-7, .col-sm-8, .col-sm-9, .col-sm-10, .col-sm-11, .col-sm-12{float:left;}
+.col-sm-12{width:100%;}
+.col-sm-11{width:91.66666667%;}
+.col-sm-10{width:83.33333333%;}
+.col-sm-9{width:75%;}
+.col-sm-8{width:66.66666667%;}
+.col-sm-7{width:58.33333333%;}
+.col-sm-6{width:50%;}
+.col-sm-5{width:41.66666667%;}
+.col-sm-4{width:33.33333333%;}
+.col-sm-3{width:25%;}
+.col-sm-2{width:16.66666667%;}
+.col-sm-1{width:8.33333333%;}
+.col-sm-pull-12{right:100%;}
+.col-sm-pull-11{right:91.66666667%;}
+.col-sm-pull-10{right:83.33333333%;}
+.col-sm-pull-9{right:75%;}
+.col-sm-pull-8{right:66.66666667%;}
+.col-sm-pull-7{right:58.33333333%;}
+.col-sm-pull-6{right:50%;}
+.col-sm-pull-5{right:41.66666667%;}
+.col-sm-pull-4{right:33.33333333%;}
+.col-sm-pull-3{right:25%;}
+.col-sm-pull-2{right:16.66666667%;}
+.col-sm-pull-1{right:8.33333333%;}
+.col-sm-pull-0{right:auto;}
+.col-sm-push-12{left:100%;}
+.col-sm-push-11{left:91.66666667%;}
+.col-sm-push-10{left:83.33333333%;}
+.col-sm-push-9{left:75%;}
+.col-sm-push-8{left:66.66666667%;}
+.col-sm-push-7{left:58.33333333%;}
+.col-sm-push-6{left:50%;}
+.col-sm-push-5{left:41.66666667%;}
+.col-sm-push-4{left:33.33333333%;}
+.col-sm-push-3{left:25%;}
+.col-sm-push-2{left:16.66666667%;}
+.col-sm-push-1{left:8.33333333%;}
+.col-sm-push-0{left:auto;}
+.col-sm-offset-12{margin-left:100%;}
+.col-sm-offset-11{margin-left:91.66666667%;}
+.col-sm-offset-10{margin-left:83.33333333%;}
+.col-sm-offset-9{margin-left:75%;}
+.col-sm-offset-8{margin-left:66.66666667%;}
+.col-sm-offset-7{margin-left:58.33333333%;}
+.col-sm-offset-6{margin-left:50%;}
+.col-sm-offset-5{margin-left:41.66666667%;}
+.col-sm-offset-4{margin-left:33.33333333%;}
+.col-sm-offset-3{margin-left:25%;}
+.col-sm-offset-2{margin-left:16.66666667%;}
+.col-sm-offset-1{margin-left:8.33333333%;}
+.col-sm-offset-0{margin-left:0%;}
+}
+@media (min-width: 992px) {
+.col-md-1, .col-md-2, .col-md-3, .col-md-4, .col-md-5, .col-md-6, .col-md-7, .col-md-8, .col-md-9, .col-md-10, .col-md-11, .col-md-12{float:left;}
+.col-md-12{width:100%;}
+.col-md-11{width:91.66666667%;}
+.col-md-10{width:83.33333333%;}
+.col-md-9{width:75%;}
+.col-md-8{width:66.66666667%;}
+.col-md-7{width:58.33333333%;}
+.col-md-6{width:50%;}
+.col-md-5{width:41.66666667%;}
+.col-md-4{width:33.33333333%;}
+.col-md-3{width:25%;}
+.col-md-2{width:16.66666667%;}
+.col-md-1{width:8.33333333%;}
+.col-md-pull-12{right:100%;}
+.col-md-pull-11{right:91.66666667%;}
+.col-md-pull-10{right:83.33333333%;}
+.col-md-pull-9{right:75%;}
+.col-md-pull-8{right:66.66666667%;}
+.col-md-pull-7{right:58.33333333%;}
+.col-md-pull-6{right:50%;}
+.col-md-pull-5{right:41.66666667%;}
+.col-md-pull-4{right:33.33333333%;}
+.col-md-pull-3{right:25%;}
+.col-md-pull-2{right:16.66666667%;}
+.col-md-pull-1{right:8.33333333%;}
+.col-md-pull-0{right:auto;}
+.col-md-push-12{left:100%;}
+.col-md-push-11{left:91.66666667%;}
+.col-md-push-10{left:83.33333333%;}
+.col-md-push-9{left:75%;}
+.col-md-push-8{left:66.66666667%;}
+.col-md-push-7{left:58.33333333%;}
+.col-md-push-6{left:50%;}
+.col-md-push-5{left:41.66666667%;}
+.col-md-push-4{left:33.33333333%;}
+.col-md-push-3{left:25%;}
+.col-md-push-2{left:16.66666667%;}
+.col-md-push-1{left:8.33333333%;}
+.col-md-push-0{left:auto;}
+.col-md-offset-12{margin-left:100%;}
+.col-md-offset-11{margin-left:91.66666667%;}
+.col-md-offset-10{margin-left:83.33333333%;}
+.col-md-offset-9{margin-left:75%;}
+.col-md-offset-8{margin-left:66.66666667%;}
+.col-md-offset-7{margin-left:58.33333333%;}
+.col-md-offset-6{margin-left:50%;}
+.col-md-offset-5{margin-left:41.66666667%;}
+.col-md-offset-4{margin-left:33.33333333%;}
+.col-md-offset-3{margin-left:25%;}
+.col-md-offset-2{margin-left:16.66666667%;}
+.col-md-offset-1{margin-left:8.33333333%;}
+.col-md-offset-0{margin-left:0%;}
+}
+@media (min-width: 1200px) {
+.col-lg-1, .col-lg-2, .col-lg-3, .col-lg-4, .col-lg-5, .col-lg-6, .col-lg-7, .col-lg-8, .col-lg-9, .col-lg-10, .col-lg-11, .col-lg-12{float:left;}
+.col-lg-12{width:100%;}
+.col-lg-11{width:91.66666667%;}
+.col-lg-10{width:83.33333333%;}
+.col-lg-9{width:75%;}
+.col-lg-8{width:66.66666667%;}
+.col-lg-7{width:58.33333333%;}
+.col-lg-6{width:50%;}
+.col-lg-5{width:41.66666667%;}
+.col-lg-4{width:33.33333333%;}
+.col-lg-3{width:25%;}
+.col-lg-2{width:16.66666667%;}
+.col-lg-1{width:8.33333333%;}
+.col-lg-pull-12{right:100%;}
+.col-lg-pull-11{right:91.66666667%;}
+.col-lg-pull-10{right:83.33333333%;}
+.col-lg-pull-9{right:75%;}
+.col-lg-pull-8{right:66.66666667%;}
+.col-lg-pull-7{right:58.33333333%;}
+.col-lg-pull-6{right:50%;}
+.col-lg-pull-5{right:41.66666667%;}
+.col-lg-pull-4{right:33.33333333%;}
+.col-lg-pull-3{right:25%;}
+.col-lg-pull-2{right:16.66666667%;}
+.col-lg-pull-1{right:8.33333333%;}
+.col-lg-pull-0{right:auto;}
+.col-lg-push-12{left:100%;}
+.col-lg-push-11{left:91.66666667%;}
+.col-lg-push-10{left:83.33333333%;}
+.col-lg-push-9{left:75%;}
+.col-lg-push-8{left:66.66666667%;}
+.col-lg-push-7{left:58.33333333%;}
+.col-lg-push-6{left:50%;}
+.col-lg-push-5{left:41.66666667%;}
+.col-lg-push-4{left:33.33333333%;}
+.col-lg-push-3{left:25%;}
+.col-lg-push-2{left:16.66666667%;}
+.col-lg-push-1{left:8.33333333%;}
+.col-lg-push-0{left:auto;}
+.col-lg-offset-12{margin-left:100%;}
+.col-lg-offset-11{margin-left:91.66666667%;}
+.col-lg-offset-10{margin-left:83.33333333%;}
+.col-lg-offset-9{margin-left:75%;}
+.col-lg-offset-8{margin-left:66.66666667%;}
+.col-lg-offset-7{margin-left:58.33333333%;}
+.col-lg-offset-6{margin-left:50%;}
+.col-lg-offset-5{margin-left:41.66666667%;}
+.col-lg-offset-4{margin-left:33.33333333%;}
+.col-lg-offset-3{margin-left:25%;}
+.col-lg-offset-2{margin-left:16.66666667%;}
+.col-lg-offset-1{margin-left:8.33333333%;}
+.col-lg-offset-0{margin-left:0%;}
+}
+.clearfix:before,
+.clearfix:after,
+.container:before,
+.container:after,
+.container-fluid:before,
+.container-fluid:after,
+.row:before,
+.row:after{content:" ";display:table;}
+.clearfix:after,
+.container:after,
+.container-fluid:after,
+.row:after{clear:both;}
+.center-block{display:block;margin-left:auto;margin-right:auto;}
+.pull-right{float:right !important;}
+.pull-left{float:left !important;}
+.hide{display:none !important;}
+.show{display:block !important;}
+.invisible{visibility:hidden;}
+.text-hide{font:0/0 a;color:transparent;text-shadow:none;background-color:transparent;border:0;}
+.hidden{display:none !important;}
+.affix{position:fixed;}
+@-ms-viewport{width:device-width;}
+.visible-xs,
+.visible-sm,
+.visible-md,
+.visible-lg{display:none !important;}
+.visible-xs-block,
+.visible-xs-inline,
+.visible-xs-inline-block,
+.visible-sm-block,
+.visible-sm-inline,
+.visible-sm-inline-block,
+.visible-md-block,
+.visible-md-inline,
+.visible-md-inline-block,
+.visible-lg-block,
+.visible-lg-inline,
+.visible-lg-inline-block{display:none !important;}
+@media (max-width: 767px) {
+.visible-xs{display:block !important;}
+table.visible-xs{display:table !important;}
+tr.visible-xs{display:table-row !important;}
+th.visible-xs,
+td.visible-xs{display:table-cell !important;}
+}
+@media (max-width: 767px) {
+.visible-xs-block{display:block !important;}
+}
+@media (max-width: 767px) {
+.visible-xs-inline{display:inline !important;}
+}
+@media (max-width: 767px) {
+.visible-xs-inline-block{display:inline-block !important;}
+}
+@media (min-width: 768px) and (max-width: 991px) {
+.visible-sm{display:block !important;}
+table.visible-sm{display:table !important;}
+tr.visible-sm{display:table-row !important;}
+th.visible-sm,
+td.visible-sm{display:table-cell !important;}
+}
+@media (min-width: 768px) and (max-width: 991px) {
+.visible-sm-block{display:block !important;}
+}
+@media (min-width: 768px) and (max-width: 991px) {
+.visible-sm-inline{display:inline !important;}
+}
+@media (min-width: 768px) and (max-width: 991px) {
+.visible-sm-inline-block{display:inline-block !important;}
+}
+@media (min-width: 992px) and (max-width: 1199px) {
+.visible-md{display:block !important;}
+table.visible-md{display:table !important;}
+tr.visible-md{display:table-row !important;}
+th.visible-md,
+td.visible-md{display:table-cell !important;}
+}
+@media (min-width: 992px) and (max-width: 1199px) {
+.visible-md-block{display:block !important;}
+}
+@media (min-width: 992px) and (max-width: 1199px) {
+.visible-md-inline{display:inline !important;}
+}
+@media (min-width: 992px) and (max-width: 1199px) {
+.visible-md-inline-block{display:inline-block !important;}
+}
+@media (min-width: 1200px) {
+.visible-lg{display:block !important;}
+table.visible-lg{display:table !important;}
+tr.visible-lg{display:table-row !important;}
+th.visible-lg,
+td.visible-lg{display:table-cell !important;}
+}
+@media (min-width: 1200px) {
+.visible-lg-block{display:block !important;}
+}
+@media (min-width: 1200px) {
+.visible-lg-inline{display:inline !important;}
+}
+@media (min-width: 1200px) {
+.visible-lg-inline-block{display:inline-block !important;}
+}
+@media (max-width: 767px) {
+.hidden-xs{display:none !important;}
+}
+@media (min-width: 768px) and (max-width: 991px) {
+.hidden-sm{display:none !important;}
+}
+@media (min-width: 992px) and (max-width: 1199px) {
+.hidden-md{display:none !important;}
+}
+@media (min-width: 1200px) {
+.hidden-lg{display:none !important;}
+}
+.visible-print{display:none !important;}
+@media print {
+.visible-print{display:block !important;}
+table.visible-print{display:table !important;}
+tr.visible-print{display:table-row !important;}
+th.visible-print,
+td.visible-print{display:table-cell !important;}
+}
+.visible-print-block{display:none !important;}
+@media print {
+.visible-print-block{display:block !important;}
+}
+.visible-print-inline{display:none !important;}
+@media print {
+.visible-print-inline{display:inline !important;}
+}
+.visible-print-inline-block{display:none !important;}
+@media print {
+.visible-print-inline-block{display:inline-block !important;}
+}
+@media print {
+.hidden-print {
+display: none !important;
+}
+}@media only screen and ( max-width: 1024px ) {
+.shell{width:1024px;}
+img.pos-left,
+img.pos-right,
+span.cloud{display:none;}
+.videos{padding:6px 5px 20px;}
+.shopif_main{height:860px;}
+
+.main{padding:3px 10px 0;}
+.banners{padding-left:10px;}
+.banners .banner{padding-right:10px;}
+}
+@media only screen and ( max-width: 768px ) {
+#head-spacer{width:100%;height:50px;}
+.shell{width:auto;}
+.shopif_main{height:860px;}
+.sproduct_holder{width:100%;}
+#mainImage{width:100%;}
+#imageWrap{width:100%;height:100%;height:auto;padding:0;padding:0px;}
+.toythumb_holder{width:100%;height:100%;height:auto;padding:0;padding:0px;}
+.twit_has{height:auto;width:100%;}
+.insta_has{height:auto;width:100%;}
+.has_holder{height:auto;width:100%;}
+.has_holder2{height:1200px;width:100%;}
+.toy_desc{width:100%;height:auto;}
+.header{padding:10px 0;}
+#logo{width:216px;height:auto;position:static;margin:0 auto 15px;}
+#logo a{height:104px;background:url(//jennamarblesblog.com/wp-content/themes/theme/images/logo-small.png) no-repeat;}
+.top-banner{display:none;}
+.nav-holder{width:auto;}
+.inner-nav{padding:14px 17px 10px;}
+#navigation,
+.socials,
+.latest-tweet,
+.inner-nav ul{float:none;display:block;text-align:center;}
+#navigation{margin-bottom:10px;}
+#navigation ul li,
+.socials a,
+.inner-nav ul li{float:none;display:inline-block;padding:0 10px;}
+.socials a{padding:0;margin:0 10px;}
+.main{padding-top:20px;}
+.latest-tweet{padding:0 0 10px 0;background:transparent;}
+.event-thumb,
+.event-detail,
+.event-detail2{float:none;display:block;margin:0 auto 10px;}
+.video-holder,    
+.video-holder2,    
+.video-thumbs{float:none;display:block;margin:0 auto 10px;}
+.video-thumbs2{float:none;display:block;margin:0 auto 10px;margin-bottom:0;}
+.video-thumbs{margin-bottom:0;}
+.video-player iframe,
+.post iframe{height:auto;}
+.content,
+.sidebar{float:none;display:block;margin:0 auto;}
+.banners .banner{float:none;display:block;margin:0 auto 10px;padding:0;}
+.post-socials a,
+.post-share a{float:none !important;display:block;margin:0 0 10px 0;}
+}
+@media only screen and ( max-width: 568px ) {
+#head-spacer { width:100%; height:10px; }
+.content,
+.video-holder,
+.video-holder2, 
+.sidebar { width: auto; }
+.video-holder2  img{width: 100%; }
+.sproduct_holder { width: 100%; }
+#mainImage { width: 100%; }
+#imageWrap { width: 100%; height: 100%; height: auto;  padding: 0; padding: 0px;}
+.toythumb_holder{ width: 300px; height: 100%; height: auto; padding: 0; padding: 0px;}
+.toythumb { width: 45px; height: 45px; }		
+.toythumb img{ width: 45px; height: 45px; }	 		
+.shopif_main { height: 1650px; width: 100%; overflow-x:hidden;} 
+.has_holder { height: auto; width: 100%; overflow-x:hidden;}   
+.has_holder2 { height: 1595px; width: 100%; overflow-x:hidden;}  
+.toy_desc{ width: 100%;  height: auto; }
+.twit_has { height: auto; width: 100%;}
+.insta_has { height: auto; width: 100%;} 
+.tweet_odd2 { width: 240px; }
+.tweet_odd { width: 240px; }
+.shop_a_head { width:100%; height:580px; background: #39CCDC url(//jennamarblesblog.com/wp-content/themes/theme/images/shop_banner_1_2.jpg) no-repeat; background-size: contain; } 
+.shop_a_video { float:none; text-align: center; left:0px; top: 280px;}
+.shop_a_video iframe{ width:100%;}
+.justpara {padding: 10px; float:none; width: 90%;} 
+.jennaf {width: 100%;  max-width:100%; padding-left: 0px; padding-right: 0px; }  
+.jennaf img{width: 100%; max-width:100%;}  
+.video-thumbs { width: auto; }
+.video-thumbs2 { width: auto; }
+.video-module { width: 85%; float: none; height: auto; } 
+.subscribe,
+.request { width: auto; float: none; display: block; }
+.content-banner { display: none; }
+.post-entry { padding: 10px; }
+.post-entry img { position: static; margin: 0 auto 10px; height: auto; }
+.banners { padding: 10px; }
+.banners .banner { width: auto; }
+.banners .banner img { max-width: 100%; }
+.bottomad { display:none; }
+.copyright span { font-size: 10px; }
+.shell ul li a{ font-size: 9px; }
+.widget { text-align: center; }
+#closedis {  width: 100%; text-align:center; padding-top: 3px;} 
+}
+
+.youtube {
+    background-color: #000;
+    max-width: 100%;
+    overflow: hidden;
+    position: relative;
+    cursor: hand;
+    cursor: pointer
+}
+.youtube .thumb {
+    bottom: 0;
+    display: block;
+    left: 0;
+    margin: auto;
+    max-width: 100%;
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 100%;
+    height: auto;
+    display: none;
+}
+.youtube .play {
+    filter: alpha(opacity=80);
+    opacity: .8;
+    height: 77px;
+    left: 50%;
+    margin-left: -38px;
+    margin-top: -38px;
+    position: absolute;
+    top: 50%;
+    width: 77px;
+}
+
+.shell {
+    width: 600px;
+    margin: 0 auto;
+    position: relative;
+}
+	</style>
+</head>
+<body>
+	<div class="shell">
+		<div id="post-entries" class="posts-list">
+		   <br>
+		   <div class="post-entry3 clr">
+			  <h2><a href="http://jennamarblesblog.com/videos/podcast-112-what-happens-after-you-die/"><img src="http://jennamarblesblog.com/wp-content/themes/theme/images/yt_post_big.png" style="height: 38px; vertical-align:middle;" alt=""> Podcast #112 - What Happens After You Die?</a></h2>
+			  <div style="margin-bottom: 3px;"> Added on October 10th</div>
+			  <div class="youtube" id="zQsjD8blmbY" style="background:url(http://i0.wp.com/img.youtube.com/vi/zQsjD8blmbY/hqdefault.jpg?ulb=true&amp;resize=450,290) no-repeat center center;-webkit-background-size:cover;-moz-background-size:cover;-o-background-size:cover;background-size:cover;width:100%;height:355px">
+				 <img src="http://i.ytimg.com/vi/zQsjD8blmbY/0.jpg" class="thumb">
+				 <div class="play"></div>
+				 <img src="http://i.ytimg.com/vi/zQsjD8blmbY/0.jpg" class="thumb">
+				 <div class="play"></div>
+				 <img src="http://i.ytimg.com/vi/zQsjD8blmbY/0.jpg" class="thumb">
+				 <div class="play"></div>
+			  </div>
+			  <br> <br>
+			  <div class="social_links">
+				 <ul>
+					<li><a href="https://www.facebook.com/sharer.php?u=http://jennamarblesblog.com/videos/podcast-112-what-happens-after-you-die/"><img src="http://jennamarblesblog.com/wp-content/themes/theme/images/fb2.png" alt="facebook"></a></li>
+					<li><a href="https://twitter.com/intent/tweet?url=http://jennamarblesblog.com/videos/podcast-112-what-happens-after-you-die/"><img src="http://jennamarblesblog.com/wp-content/themes/theme/images/twt.png" alt="twitter"></a></li>
+					<li><a href="https://plus.google.com/share?url=http://jennamarblesblog.com/videos/podcast-112-what-happens-after-you-die/"><img src="http://jennamarblesblog.com/wp-content/themes/theme/images/googleplus.png" alt="googleplus"></a></li>
+					<li><span style="position:relative; top: 9px; color: #8562d3;"> </span></li>
+				 </ul>
+				 <span class="clear"></span>
+			  </div>
+			  <a href="http://jennamarblesblog.com/videos/podcast-112-what-happens-after-you-die/" class="read-more">Post Link</a> <br>
+		   </div>
+		   <div class="post-entry3 clr">
+			  <h2><a href="http://jennamarblesblog.com/videos/my-boyfriend-does-my-nails/"><img src="http://jennamarblesblog.com/wp-content/themes/theme/images/yt_post_big.png" style="height: 38px; vertical-align:middle;" alt=""> My Boyfriend Does My Nails</a></h2>
+			  <div style="margin-bottom: 3px;"> Added on October 6th</div>
+			  <div class="youtube" id="2StIQCbKo6Q" style="background:url(http://i0.wp.com/img.youtube.com/vi/2StIQCbKo6Q/hqdefault.jpg?ulb=true&amp;resize=450,290) no-repeat center center;-webkit-background-size:cover;-moz-background-size:cover;-o-background-size:cover;background-size:cover;width:100%;height:355px">
+				 <img src="http://i.ytimg.com/vi/2StIQCbKo6Q/0.jpg" class="thumb">
+				 <div class="play"></div>
+				 <img src="http://i.ytimg.com/vi/2StIQCbKo6Q/0.jpg" class="thumb">
+				 <div class="play"></div>
+				 <img src="http://i.ytimg.com/vi/2StIQCbKo6Q/0.jpg" class="thumb">
+				 <div class="play"></div>
+			  </div>
+			  <br> <br>
+			  <div class="social_links">
+				 <ul>
+					<li><a href="https://www.facebook.com/sharer.php?u=http://jennamarblesblog.com/videos/my-boyfriend-does-my-nails/"><img src="http://jennamarblesblog.com/wp-content/themes/theme/images/fb2.png" alt="facebook"></a></li>
+					<li><a href="https://twitter.com/intent/tweet?url=http://jennamarblesblog.com/videos/my-boyfriend-does-my-nails/"><img src="http://jennamarblesblog.com/wp-content/themes/theme/images/twt.png" alt="twitter"></a></li>
+					<li><a href="https://plus.google.com/share?url=http://jennamarblesblog.com/videos/my-boyfriend-does-my-nails/"><img src="http://jennamarblesblog.com/wp-content/themes/theme/images/googleplus.png" alt="googleplus"></a></li>
+					<li><span style="position:relative; top: 9px; color: #8562d3;"> </span></li>
+				 </ul>
+				 <span class="clear"></span>
+			  </div>
+			  <a href="http://jennamarblesblog.com/videos/my-boyfriend-does-my-nails/" class="read-more">Post Link</a> <br>
+		   </div>
+		   <div class="post-entry3 clr">
+			  <h2><a href="http://jennamarblesblog.com/videos/podcast-111-reading-funny-fan-fiction/"><img src="http://jennamarblesblog.com/wp-content/themes/theme/images/yt_post_big.png" style="height: 38px; vertical-align:middle;" alt=""> Podcast #111 - Reading Funny Fan-Fiction</a></h2>
+			  <div style="margin-bottom: 3px;"> Added on October 3rd</div>
+			  <div class="youtube" id="cA7ZtYt0bxg" style="background:url(http://i0.wp.com/img.youtube.com/vi/cA7ZtYt0bxg/hqdefault.jpg?ulb=true&amp;resize=450,290) no-repeat center center;-webkit-background-size:cover;-moz-background-size:cover;-o-background-size:cover;background-size:cover;width:100%;height:355px">
+				 <img src="http://i.ytimg.com/vi/cA7ZtYt0bxg/0.jpg" class="thumb">
+				 <div class="play"></div>
+				 <img src="http://i.ytimg.com/vi/cA7ZtYt0bxg/0.jpg" class="thumb">
+				 <div class="play"></div>
+				 <img src="http://i.ytimg.com/vi/cA7ZtYt0bxg/0.jpg" class="thumb">
+				 <div class="play"></div>
+			  </div>
+			  <br> <br>
+			  <div class="social_links">
+				 <ul>
+					<li><a href="https://www.facebook.com/sharer.php?u=http://jennamarblesblog.com/videos/podcast-111-reading-funny-fan-fiction/"><img src="http://jennamarblesblog.com/wp-content/themes/theme/images/fb2.png" alt="facebook"></a></li>
+					<li><a href="https://twitter.com/intent/tweet?url=http://jennamarblesblog.com/videos/podcast-111-reading-funny-fan-fiction/"><img src="http://jennamarblesblog.com/wp-content/themes/theme/images/twt.png" alt="twitter"></a></li>
+					<li><a href="https://plus.google.com/share?url=http://jennamarblesblog.com/videos/podcast-111-reading-funny-fan-fiction/"><img src="http://jennamarblesblog.com/wp-content/themes/theme/images/googleplus.png" alt="googleplus"></a></li>
+					<li><span style="position:relative; top: 9px; color: #8562d3;"> </span></li>
+				 </ul>
+				 <span class="clear"></span>
+			  </div>
+			  <a href="http://jennamarblesblog.com/videos/podcast-111-reading-funny-fan-fiction/" class="read-more">Post Link</a> <br>
+		   </div>
+		   <div class="post-entry3 clr">
+			  <h2><a href="http://jennamarblesblog.com/videos/i-suck-at-pranks-2/"><img src="http://jennamarblesblog.com/wp-content/themes/theme/images/yt_post_big.png" style="height: 38px; vertical-align:middle;" alt="" pagespeed_url_hash="3744295730" onload="pagespeed.CriticalImages.checkImageForCriticality(this);"> I Suck At Pranks 2</a></h2>
+			  <div style="margin-bottom: 3px;"> Added on September 1st</div>
+			  <div class="youtube" id="Bf2Pd__zq8c" style="background:url(http://i0.wp.com/img.youtube.com/vi/Bf2Pd__zq8c/hqdefault.jpg?ulb=true&amp;resize=450,290) no-repeat center center;-webkit-background-size:cover;-moz-background-size:cover;-o-background-size:cover;background-size:cover;width:100%;height:355px">
+				 <img src="http://i.ytimg.com/vi/Bf2Pd__zq8c/0.jpg" class="thumb">
+				 <div class="play"></div>
+			  </div>
+			  <br> <br>
+			  <div class="social_links">
+				 <ul>
+					<li><a href="https://www.facebook.com/sharer.php?u=http://jennamarblesblog.com/videos/i-suck-at-pranks-2/"><img src="http://jennamarblesblog.com/wp-content/themes/theme/images/fb2.png" alt="facebook" pagespeed_url_hash="2148054807" onload="pagespeed.CriticalImages.checkImageForCriticality(this);"></a></li>
+					<li><a href="https://twitter.com/intent/tweet?url=http://jennamarblesblog.com/videos/i-suck-at-pranks-2/"><img src="http://jennamarblesblog.com/wp-content/themes/theme/images/twt.png" alt="twitter" pagespeed_url_hash="2318429766" onload="pagespeed.CriticalImages.checkImageForCriticality(this);"></a></li>
+					<li><a href="https://plus.google.com/share?url=http://jennamarblesblog.com/videos/i-suck-at-pranks-2/"><img src="http://jennamarblesblog.com/wp-content/themes/theme/images/googleplus.png" alt="googleplus" pagespeed_url_hash="667569828" onload="pagespeed.CriticalImages.checkImageForCriticality(this);"></a></li>
+					<li><span style="position:relative; top: 9px; color: #8562d3;"> </span></li>
+				 </ul>
+				 <span class="clear"></span>
+			  </div>
+			  <a href="http://jennamarblesblog.com/videos/i-suck-at-pranks-2/" class="read-more">Post Link</a> <br>
+		   </div>
+		   <a href="#" onclick="return false" class="button_load_more">more</a>
+		</div>
+		</div>
+		
+</body>
+</html>
