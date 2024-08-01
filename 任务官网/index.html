@@ -1,0 +1,552 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+	<style>
+		/**
+ * Custom Font
+ */
+@import url('https://fonts.googleapis.com/css2?family=Merriweather:ital@0;1&family=Roboto:wght@400;500&display=swap');
+
+/**
+ * Layout Structure & Variables
+ */
+
+/* this overwrites the default padding and margin from all elements */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* these variables are applied globally */
+:root {
+  --primary-font: 'Merriweather', serif;
+  --secondary-font: 'Roboto', sans-serif;
+
+  --primary-font-color: rgb(0 0 0 / 0.8);
+}
+
+/* for smooth scrolling experience */
+html {
+  scroll-behavior: smooth;
+}
+
+.container {
+  display: flex;
+	width: 960px;
+	max-width: 100%;
+	padding: 10px;
+	margin: 0 auto;
+  flex-flow: row wrap;
+}
+
+.half-col {
+  /* 50% for desktop view */
+  width: 50%;
+  max-width: 450px;
+  padding: 15px;
+}
+
+.img-responsive {
+  width: 100%;
+  height: auto;
+}
+
+.h-100 {
+  height: 100%;
+  padding: 50px 0;
+}
+
+.p-15 {
+  padding: 15px;
+}
+
+.text-center {
+  text-align: center;
+  width: 100%;
+}
+
+.text-left {
+  text-align: left;
+  width: 100%;
+}
+
+.primary-header {
+  font-family: var(--primary-font);
+  font-size: 40px;
+  color: var(--primary-font-color);
+  padding: 0 0 0.5em;
+}
+
+.secondary-header {
+  font-family: var(--primary-font);
+  font-weight: 500;
+  color: white;
+  font-size: 55px;
+  padding: 0 0 0.5em;
+}
+
+hr {
+  border: 1px solid #e6e5e5;
+  width: 100%;
+}
+
+/**
+ * Navigation Bar
+ */
+
+ /* this makes it vertically centered &
+distribute horizontal space between them */
+.main-header .container {
+	align-items: center;
+	justify-content: space-between;
+}
+
+.brand-logo a {
+  display: block;
+}
+
+.brand-logo img {
+  max-width: 80px;
+	width: 100%;
+	height: auto;
+}
+
+.main-nav ul {
+	margin: 1em 0 .5em;
+	text-align: center;
+}
+.main-nav li {
+	display: inline;
+}
+.main-nav a {
+	display: inline-block;
+	padding: .5em 1.5em;
+  text-decoration: none;
+  font-family: var(--secondary-font);
+  font-weight: 400;
+  color: var(--primary-font-color);
+}
+
+.main-nav a:hover {
+  background: rgba(121,98,140,.075);
+  border-radius: 25px;
+}
+
+/**
+ * Landing Section
+ */
+ 
+.landing-section {
+	background: linear-gradient(-45deg, #ef7c2a, #484fa9, #23a6d5);
+  /* 400% will zoom-in so that the animation will work */
+	background-size: 400% 400%;
+	animation: gradient 15s ease infinite;
+}
+
+@keyframes gradient {
+	0% {
+		background-position: 0% 50%;
+	}
+	50% {
+		background-position: 100% 50%;
+	}
+	100% {
+		background-position: 0% 50%;
+	}
+}
+
+.landing-section .container {
+  justify-content: center;
+  align-items: center;
+  flex-flow: row wrap-reverse;
+}
+
+.landing-section p {
+  font-family: var(--secondary-font);
+  color: white;
+  padding: 0 0 0.8em;
+  font-size: 17px;
+}
+
+.landing-section a {
+  text-decoration: none;
+  font-family: var(--secondary-font);
+  color: #2f2f2f;
+  background: rgb(255 255 255 / 90%);
+  padding: 12px 15px;
+  border-radius: 8px;
+  margin: 15px 0 0;
+  display: inline-block;
+}
+
+.landing-section a:hover {
+  background: #ffffff;
+}
+
+/**
+ * Work Section
+ */
+
+.work-section .container {
+  justify-content: center;
+  align-items: center;
+}
+
+.work-section p {
+  font-family: var(--secondary-font);
+  color: var(--primary-font-color);
+  padding: 0 0 0.8em;
+  font-size: 17px;
+}
+
+.text-content {
+  max-width: 564px;
+  width: 60%;
+}
+
+/**
+ * Genre Section
+ */
+
+.genre-section {
+  padding: 0 0 30px;
+}
+
+.genre-section .container {
+  justify-content: center;
+  align-items: center;
+  flex-flow: row wrap;
+ }
+
+.boxes {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 200px;
+  height: 200px;
+  background-size: cover;
+  border-radius: 25px;
+  margin: 15px;
+}
+
+.box1 {
+  background-image: linear-gradient(rgb(0 0 0 / 0.5), rgb(0 0 0 / 0.2)), url(https://beta.readng.co/static/static/media/history@2x.5c205759.jpg);
+}
+
+.box2 {
+  background-image: linear-gradient(rgb(0 0 0 / 0.5), rgb(0 0 0 / 0.2)), url(https://beta.readng.co/static/static/media/culture@2x.45f107fa.jpg);
+}
+
+.box3 {
+  background-image: linear-gradient(rgb(0 0 0 / 0.5), rgb(0 0 0 / 0.2)), url(https://beta.readng.co/static/static/media/business@2x.fa2affd4.jpg);
+}
+
+.box4 {
+  background-image: linear-gradient(rgb(0 0 0 / 0.5), rgb(0 0 0 / 0.2)), url(https://beta.readng.co/static/static/media/scifi@2x.2eb6211b.jpg);
+}
+
+.boxes h6 {
+  color: #ffffff;
+  font-family: var(--primary-font);
+  font-size: 20px;
+  font-weight: 400;
+}
+
+/**
+ * Favourite Section
+ */
+
+.favourite-section {
+  background: #ecf6ff;
+}
+
+.favourite-section .container {
+  align-items: center;
+  justify-content: center
+}
+
+.books {
+  display: flex;
+  flex-flow: row wrap;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  padding: 10px 0;
+}
+
+.books img {
+  max-width: 146px;
+}
+
+.book-title {
+  font-family: var(--primary-font);
+  color: var(--primary-font-color);
+}
+
+.book-author {
+  font-family: var(--primary-font);
+  font-style: italic;
+  font-size: 14px;
+  color: #8e8379;
+  padding: 0 0 10px;
+}
+
+.book-description {
+  font-family: var(--secondary-font);
+  color: var(--primary-font-color);
+  padding: 0 0 0.8em;
+  font-size: 16px;
+}
+
+/**
+ * Footer Section
+ */
+
+.footer-section {
+  background: #484ba2;
+}
+
+.footer-section .container {
+  align-items: center;
+  justify-content: center;
+  flex-flow: column nowrap;
+}
+
+.footer-section input[type=text] {
+  width: 50%;
+  min-width: 250px;
+  max-width: 450px;
+  border: 2px solid #ccc;
+  border-radius: 4px;
+  font-family: var(--secondary-font);
+  font-size: 16px;
+  background-color: white;
+  background-repeat: no-repeat;
+  padding: 12px 20px 12px;
+}
+
+.footer-section input[type=submit] {
+  width: 50%;
+  min-width: 250px;
+  max-width: 450px;
+  background-color: #4CAF50;
+  font-family: var(--secondary-font);
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.footer-section input[type=submit]:hover {
+  background-color: #45a049;
+}
+
+footer {
+  background: #ffffff;
+  text-align: center;
+}
+
+footer p {
+  padding: 10px;
+  color: var(--primary-font-color);
+  font-family: var(--secondary-font);
+  font-size:14px;
+}
+
+/**
+ * Responsive Styles
+ */
+
+/* space-around becomes space-between to distribute space */
+@media (max-width: 786px) {
+	.main-header .container {
+		justify-content: space-around;
+	}
+
+  .half-col {
+    /* 100% for smaller screens */
+    width: 100%;
+  }
+
+  .secondary-header {
+    font-size: 35px;
+  }
+
+  .text-content {
+    width: 90%;
+  }
+
+  .primary-header {
+    font-size: 30px;
+  }
+}
+
+@media (max-width: 425px) {
+  .p-15 {
+    padding: 15px 0;
+  }
+}
+	</style>
+</head>
+<body>
+	<!-- Link to my Introductory Video -->
+<!-- https://youtu.be/CLQinyQYE3w -->
+<header class="main-header">
+	<div class="container">
+	  <div class="brand-logo">
+		<a href="#">
+		  <img src="https://i.ibb.co/tKVfkgp/logo-size.jpg" alt="Brand Logo">
+		</a>
+	  </div>
+	  <nav class="main-nav">
+		<ul class="main-nav-list">
+		  <li>
+			<a href="#about-us">About us</a>
+		  </li>
+		  <li>
+			<a href="#recommendation">Recommendation</a>
+		  </li>
+		  <li>
+			<a href="#sign-up">Sign up</a>
+		  </li>
+		</ul>
+	  </nav>
+	</div>
+  </header>
+  
+  <section class="landing-section h-100">
+	<div class="container">
+	  <div class="half-col">
+		<h1 class="secondary-header">Welcome to the Book Club!</h1>
+		<p>We're a group of people who meet to discuss a book or books that we've read and express our opinions, likes, dislikes, etc.</p>
+		<p>The mission of our Book Club is to build a team of readers of all levels.</p>
+		<a href="#about-us">Learn More</a>
+	  </div>
+	  <div class="half-col">
+		<img class="img-responsive" src="https://i.ibb.co/LS9btvw/undraw-book-lover-mkck-1.png" alt="Illustration of a girl reading a book">
+	  </div>
+	</div>
+  </section>
+  
+  <section id="about-us" class="work-section h-100">
+	<div class="container">
+	  <h1 class="text-center primary-header">How does it work?</h1>
+	  <div class="text-content">
+		<p class="text-left">Every month, we will recommend two books for our team of readers: one for the “Rookies” (younger folks) and the other for “Veterans” (more seasoned readers).</p>
+		<p class="text-left">Timelines and reminders will be posted to make sure we are on track to finish the books. We will also try to interview one author each month and share that podcast with you on the website. During the football season, we may have “surprise” hosts help with the book selections.</p>
+	  </div>
+	</div>
+  </section>
+  
+  <section class="genre-section h-100">
+	<div class="container">
+	  <div class="boxes box1">
+		<h6>History</h6>
+	  </div>
+  
+	  <div class="boxes box2">
+		<h6>Culture</h6>
+	  </div>
+  
+	  <div class="boxes box3">
+		<h6>Art/Architecture</h6>
+	  </div>
+  
+	  <div class="boxes box4">
+		<h6>Science Fiction</h6>
+	  </div>
+  
+	</div>
+  </section>
+  
+  <section id="recommendation" class="favourite-section h-100">
+	<div class="container">
+	  <h1 class="text-center primary-header">Our favourite picks!</h1>
+  
+	  <div class="books">
+  
+		<div class="p-15">
+		  <img class="img-responsive" src="https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1549292344l/42975172.jpg" alt="The Testaments by Margaret Atwood">
+		</div>
+  
+		<div class="text-content p-15">
+		  <h2 class="book-title">The Testaments</h2>
+		  <p class="book-author">by Margaret Atwood</p>
+		  <p class="book-description">Author and activist Margaret Atwood wins this year’s Best Fiction award for her long-anticipated sequel to the dystopian classic The Handmaid’s Tale. The book picks up the story 15 years after handmaid Offred’s ambiguous fate in the theocratic nation of Gilead and continues the saga’s dark contemporary resonance. In fact, Atwood’s stated inspiration for her new novel is direct: “The world we’ve been living in.”</p>
+		</div>
+  
+	  </div>
+	  <hr>
+  
+	  <div class="books">
+  
+		<div class="p-15">
+		  <img class="img-responsive" src="https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1543687940l/42046112.jpg" alt="Recursion by Blake Crouch">
+		</div>
+  
+		<div class="text-content p-15">
+		  <h2 class="book-title">Recursion</h2>
+		  <p class="book-author">by Blake Crouch</p>
+		  <p class="book-description">Screenwriter and novelist Blake Crouch gets his first Goodreads Choice Award with this inventive and ambitious story on technology, time travel, and the essential nature of memory. The book’s decidedly weird science is actually grounded in recent laboratory research, which lends an eerie temporal echo to the proceedings. Also, Crouch suggests an oddly compelling explanation for that phenomenon we call déjà vu.</p>
+		</div>
+  
+	  </div>
+	  <hr>
+  
+	  <div class="books">
+  
+		<div class="p-15">
+		  <img class="img-responsive" src="https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1519263139l/37570548._SY475_.jpg" alt="The Five by Hallie Rubenhold">
+		</div>
+  
+		<div class="text-content p-15">
+		  <h2 class="book-title">The Five: The Untold Lives of the Women Killed by Jack the Ripper</h2>
+		  <p class="book-author">by Hallie Rubenhold</p>
+		  <p class="book-description">In what may be the most overdue book of the past 100 years, historian Hallie Rubenhold steals back the narrative of Jack the Ripper and tells the stories that really matter. The Five reviews the lives of those murdered, rather than the story of the killer, and reveals the inaccuracies and prejudices that have been repeated over the years. Rubenhold’s book is a triumph of historical investigation.</p>
+		</div>
+  
+	  </div>
+	  <hr>
+  
+	  <div class="books">
+  
+		<div class="p-15">
+		  <img class="img-responsive" src="https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1554396038l/43785830.jpg" alt="Will My Cat Eat My Eyeballs? by Caitlin Doughty">
+		</div>
+  
+		<div class="text-content p-15">
+		  <h2 class="book-title">Will My Cat Eat My Eyeballs? Big Questions from Tiny Mortals About Death</h2>
+		  <p class="book-author">by Caitlin Doughty</p>
+		  <p class="book-description">Official winner of this year’s Goodreads Choice Award for Science & Technology, Will My Cat Eat My Eyeballs? is also the unofficial winner of this year’s Most Alarming Book Title award. Author and mortician Caitlin Doughty answers all those questions that we’re generally afraid to ask about death, decay, decomposition, and other depressing developments. With illustrations!</p>
+		</div>
+  
+	  </div>
+  
+	</div>
+  </section>
+  
+  <section id="sign-up" class="footer-section h-100">
+	<div class="container">
+	  <h1 class="secondary-header text-center text-content">Sign up for the monthly podcast!</h1>
+	  <input type="text" name="email" placeholder="Your email">
+	  <input type="submit" value="Submit">
+	</div>
+  </section>
+  
+  <footer>
+	<div class="wrapper">
+	  <p>Book Club &copy; <script>
+		  var dt = new Date();
+		  document.write(dt.getFullYear())
+		</script>
+	  </p>
+	</div>
+  </footer>
+</body>
+</html>
