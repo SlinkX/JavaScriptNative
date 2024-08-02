@@ -1,0 +1,426 @@
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;700&display=swap');
+
+/* Responsive desktop: */
+@media only screen and (min-width: 768px) {
+  width: 100%;
+}
+
+/*General*/
+body{ 
+  background-image: #ffffff;
+  font-family: Note sans, Arial, San-Serif;
+  text-align:left;
+  width:1040px;
+  height: 1250px;
+}
+
+h1{
+  font-style: bold;
+}
+
+p {
+  font-style: regular;
+  font-size: 15px;
+}
+
+img{
+  width:300px;
+  aspect-ratio:3/2;
+  margin-left:20px;
+  margin-top:20px; 
+  border-radius:20px;
+}
+
+/* Podcast selecionado */
+.rectangulo-podcast-selecionado{
+  background-color: #FFFFFF;
+  aspect-ratio: 3/1;
+  width:700px;
+  border-radius:20px;
+  margin-left:65px;
+  box-shadow: 15px 15px 50px #C5BAFF;
+}
+
+/* Podcast selecionado grid contenedor */
+.rectangulo-podcast-selecionado-grid-container {
+  display:grid;
+  grid-template-columns:auto auto;
+}
+
+/* Podcast seleccionado texto */
+.grid-item-text {
+  padding-top:5px;
+  padding-left:0px;
+}
+
+/* Podcast seleccionado título */
+.h1-podcastselecionado {
+  font-size: 36px;
+  margin-left:65px;
+  margin-top:45px;
+}
+
+/* Podcast seleccionado texto título */
+.h1-deformesemanal{
+  font-size: 30px;
+}
+
+/* Podcast seleccionado botón */
+.boton-escuchar {
+  width: 100px;
+  height: 35px;
+  border: 2px;
+  border-style: solid;
+  border-color: #816AFE;
+  border-radius: 50px;
+  margin-top:10px;
+  text-align:center;
+  background-color: white;
+  }
+
+/* Autora grid contenedor */
+.autores-grid-container {
+  display: grid;
+  grid-template-columns:auto auto;
+  margin-left:65px;
+  margin-top: 30px;  
+}
+
+/* Autora título */
+.h1-Autora {
+  font-size: 36px;
+}
+
+/* Autora grid contenedor */
+.rectangulo-autora-grid-container {
+  display:inline-grid;
+}
+
+/* Autora rectangulo */
+.rectangulo-autora {
+  background-color: #816AFE;
+  width: 55rem;
+  aspect-ratio: 2/1;
+  border-radius: 20px;
+}
+
+/* Autora texto */
+.grid-item-text-autora {
+  margin-left:40%;
+  color: white;
+}
+
+/* Autora texto subtitulo */
+.p-subtitle-nutricionista {
+  font-weight: bold;
+}
+
+/* Autora texto párrafo */
+.p-descripcion-biografia {
+  padding-top: 10px;
+  max-width: 90%;
+  line-height:1.5;
+}
+
+/* Autora botón saber más */
+.boton-saber-mas {
+  width: 6rem;
+  height: 2rem;
+  border: 2px;
+  border-radius: 50px;
+  margin-top:10px;
+  text-align:center;
+  color: #816AFE;
+  font-weight: bold;
+  background-color: white;  
+}
+
+/* Autora botón más podcast de esta autora */
+.boton-mas-podcast {
+  width: 12rem;
+  height: 2rem;
+  border: 2px white solid;
+  border-radius: 50px;
+  margin-top:10px;
+  margin-left:10px;
+  text-align:center;
+  color: white;
+  font-weight: bold;
+  background-color: #816AFE;
+}
+
+/* Podcast selecionado */
+.rectangulo-otros-autores-grid-container {
+}
+
+/* Otros autores título */
+.h1-otros-autores {
+  font-size: 36px;
+  grid-template-colummns: auto auto auto auto;
+  margin-left: 30px;
+}
+
+/* Otros autores rectangulo */
+.rectangulo-otros-autores {
+  border: 4px solid #816AFE;
+  border-radius:20px;
+  width:867px;
+  height:435px;
+  margin-left: 30px;
+}
+
+/* Otros autores texto */
+.grid-item-text-otros-autores {
+  margin-left:40%;
+}
+
+/* Otros autores botón saber más */
+.boton-saber-mas-otros {
+  width: 6rem;
+  height: 2rem;
+  border: 2px;
+  border-radius: 50px;
+  margin-top:10px;
+  text-align:center;
+  font-weight: bold;
+  background-color: #816AFE; 
+  color: white;
+}
+
+/* Otros autores botón más podcast de esta autora */
+.boton-mas-podcast-otros {
+  width: 12rem;
+  height: 2rem;
+  border-radius: 50px;
+  margin-top:10px;
+  margin-left:10px;
+  text-align:center;
+  background-color: white;
+  font-weight: bold;
+  color: #816AFE;
+  border: 2px #816AFE solid;
+}
+
+/* Podcasts recomendados título */
+.h1-podcast-recomendados {
+  font-size:36px;
+  margin-left:65px;
+  margin-top:60px;
+}
+
+/* Podcasts recomendados grid contenedor */
+.podcasts-recomendados-grid-container{
+  display:inline-grid;
+  grid-template-columns: 725px 725px auto;
+}
+
+/* Podcasts recomendados grid items */
+/* Podcasts recomendados grid items nutrientes y macros */
+.grid-item-podcast-recomendados-1 {
+  /*background-color: black;*/
+}
+
+/* Podcasts recomendados grid items  qué como */
+.grid-item-podcast-recomendados-2 {
+  /*background-color: blue;*/
+}
+
+/* Podcasts recomendados grid items  qué como texto */
+.grid-item-text-2{
+  margin-left: 20px;
+  /*background-color:red;*/
+}
+
+/* Podcasts recomendados grid items  qué como título */
+.h1-que-como {
+  margin-bottom:15px;
+}
+
+/* Podcasts recomendados grid items  qué como párrafos*/
+.podium-podcast-que-como{
+  margin-top:0px;
+  margin-bottom:0px;
+}
+
+.p-rectanguloepisodios-que-como{
+  margin-top:15px;
+  margin-bottom:0px;
+}
+
+/* Podcasts recomendados grid items  qué como botón */
+.boton-escuchar-que-como {
+  width: 100px;
+  height: 35px;
+  border: 2px;
+  border-style: solid;
+  border-color: #816AFE;
+  border-radius: 50px;
+  text-align:center;
+  background-color: white;
+  margin-top:20px;
+}
+
+/* Podcasts recomendados grid items nutrición diaria */
+.grid-item-podcast-recomendados-3 {
+  margin-left: 0px;
+  padding-left: 0px;
+ /* background-color: green;*/
+}
+  </style>
+</head>
+
+<body>
+  <!--podcast seleccionado-->
+  <h1 class="h1-podcastselecionado"> Podcast seleccionado </h1>
+  
+  <div class="rectangulo-podcast-selecionado"> 
+    <div class="rectangulo-podcast-selecionado-grid-container">
+      
+<div class="grid-item-img">
+    <img src="https://image.freepik.com/foto-gratis/ingredientes-seleccion-alimentos-saludables_35641-2930.jpg" alt="food-image"/>
+    </div>
+    
+    <div class="grid-item-text"> 
+  <h1 class="h1-deformesemanal"> Deforme semanal </h1>
+    <p> Podium podcast </p>
+    <p class="p-rectanguloepisodios"> 345 episodios </p>
+          
+    <button class="boton-escuchar">Escuchar</button>
+  </div>
+  </div>
+  </div>
+ <!--cierre de podcast seleccionado-->
+    
+ <!--seción de autores-->
+   
+ <div class="autores-grid-container"> 
+   
+ <!--autora-->
+<div class="col-3"> 
+<div class="grid-item-autora">
+  
+  <h1 class="h1-Autora"> Autora </h1>
+  
+  <div class="rectangulo-autora"> 
+    <div class="rectangulo-autora-grid-container">
+      
+<div class="grid-item-img-autora">
+<img src="ftp://a131%2540a131.masterux.net@ftp.masterux.net/Web%20podcast/imgs/cheerful-middle-aged-woman-with-curly-hair.png" alt="foto autora" />
+    </div>
+    
+    <div class="grid-item-text-autora"> 
+  <h1 class="h1-maria-garcia"> María García </h1>
+    <p class"p-subtitle-nutricionista"> Nutricionista y asesora deportiva </p>
+    <p class="p-descripcion-biografia"> Muy lejos, más allá de las montañas de palabras, alejados de los países de las vocales y las consonantes, viven los textos simulados. Viven aislados en casas de letras, en la costa de la semántica, un gran océano de lenguas. Un riachuelo llamado Pons fluye por su pueblo y los abastece con las normas necesarias.</p>
+      
+ <button class="boton-saber-mas">Saber más</button>
+ <button class="boton-mas-podcast"> + podcast de esta autora</button>
+  </div>     
+  </div>  
+  </div>
+  </div>
+  </div>
+   
+  <!--cierre de autora-->
+  <!--otros autores-->
+  <div class="col-4"> 
+  <div class="grid-item-otros-autores">
+  <h1 class="h1-otros-autores"> Otros autores </h1>
+  
+  <div class="rectangulo-otros-autores"> 
+    <div class="rectangulo-otros-autores-grid-container">
+      
+<div class="grid-item-img-otros-autores">
+<img src="/Users/irissantosnebreda/Desktop/Ordenar/cheerful-middle-aged-woman-with-curly-hair.png" alt="foto autora" />
+    </div>
+    
+    <div class="grid-item-text-otros-autores"> 
+  <h1 class="h1-maria-garcia"> María García </h1>
+    <p class"p-subtitle-nutricionista"> Nutricionista y asesora deportiva </p>
+    <p class="p-descripcion-biografia"> Muy lejos, más allá de las montañas de palabras, alejados de los países de las vocales y las consonantes, viven los textos simulados. Viven aislados en casas de letras, en la costa de la semántica, un gran océano de lenguas. Un riachuelo llamado Pons fluye por su pueblo y los abastece con las normas necesarias.</p>
+      
+<button class="boton-saber-mas-otros">Saber más</button>
+ <button class="boton-mas-podcast-otros"> + podcast de esta autora</button>
+  </div>      
+  </div> 
+  </div> 
+  </div> 
+  </div>
+  </div>
+  <!--cierre de otros autores-->    
+  <!--cierre sección de autores-->  
+  
+  <!--podcast recomendados-->
+   <h1 class="h1-podcast-recomendados"> Podcasts recomendados </h1>
+   <div class="podcasts-recomendados-grid-container">
+  <!--podcast recomendados nutrientes y macros-->
+     <div class="grid-item-podcast-recomendados-1">
+  <div class="rectangulo-podcast-selecionado"> 
+    <div class="rectangulo-podcast-selecionado-grid-container">
+      
+<div class="grid-item-img">
+    <img src="https://image.freepik.com/foto-gratis/ingredientes-pizza-casera_35641-2533.jpg" alt="food-image" />
+    </div>
+    
+    <div class="grid-item-text"> 
+  <h1 class="h1-deformesemanal"> Nutrientes y macros </h1>
+    <p> Podium podcast </p>
+    <p class="p-rectanguloepisodios"> 345 episodios </p>
+          
+    <button class="boton-escuchar">Escuchar</button>
+  </div>
+  </div>
+  </div>
+  </div>
+  
+  <!--podcast recomendados  ¿qué como?-->
+   <div class="grid-item-podcast-recomendados-2">
+  <div class="rectangulo-podcast-selecionado"> 
+    <div class="rectangulo-podcast-selecionado-grid-container">
+      
+<div class="grid-item-img">
+    <img src="https://image.freepik.com/foto-gratis/surtido-deliciosos-postres-tradicionales_23-2149143316.jpg" alt="food-image" />
+    </div>
+    
+    <div class="grid-item-text-2"> 
+  <h1 class="h1-que-como"> ¿Qué como durante <br> la semana? </h1>
+    <p class="podium-podcast-que-como"> Podium podcast </p>
+    <p class="p-rectanguloepisodios-que-como"> 345 episodios </p>
+          
+    <button class="boton-escuchar-que-como">Escuchar</button>
+  </div>
+  </div>
+  </div>
+  </div>
+  
+  <!--podcast recomendados nutrición diaria-->
+     <div class="grid-item-podcast-recomendados-3">
+     
+  <div class="rectangulo-podcast-selecionado"> 
+    <div class="rectangulo-podcast-selecionado-grid-container">
+      
+<div class="grid-item-img">
+    <img src="https://image.freepik.com/foto-gratis/diferentes-vegetales-bolsa-textil-color-beige_1220-4284.jpg" alt="food-image" />
+    </div>
+    
+    <div class="grid-item-text"> 
+  <h1 class="h1-deformesemanal"> Nutrición diaria </h1>
+    <p> Podium podcast </p>
+    <p class="p-rectanguloepisodios"> 345 episodios </p>
+          
+    <button class="boton-escuchar">Escuchar</button>
+  </div>
+  </div>
+  </div>
+  </div>
+  </div>
+  
+ <!--cierre de podcast recomendados-->
+    
+</body>
+</html>
