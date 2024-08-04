@@ -1,0 +1,841 @@
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="utf-8">
+  <meta name="podcast autores" content="Biografía de los autores de los podcast">
+  <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<style>
+  /*General*/
+
+nav{
+  display:flex;
+  flex-direction:row;
+  background-color:#816AFE;
+  width:100%;
+  margin: 0;
+  padding: 0;
+}
+
+
+nav a {
+  color: white;
+  padding: 30px;
+  text-decoration: none;
+  font-weight: normal;
+}
+
+
+nav a:hover {
+  float: center;
+  display: block;
+  color: #8efcba;
+  font-weight: 700;
+  text-align: center;
+  text-decoration: none;
+}
+
+
+.nav-a-verde{
+  color: #8EFCBA;
+}
+
+
+.nav-a-verde:hover {
+  color: white;
+  font-weight: normal;
+}
+
+
+body{ 
+  background-image: #ffffff;
+  font-family: Note sans, Arial, San-Serif;
+  text-align:left;
+  min-width:460px;
+}
+
+
+h2{
+    font-size: 26px;
+  }
+
+
+h3{
+    margin-left: 1rem;
+    font-size: 20px;
+    margin-top: 3%;
+    margin-bottom: 5%;
+    max-width: 80%;
+}
+
+p {
+  font-style: normal;
+  font-size: 12px;
+}
+
+.p-rectangulo{
+    margin-left: 1rem;
+}
+
+
+.img-podcast{
+  width:10rem;
+  aspect-ratio:3/2;
+  margin: 10%;
+  border-radius:1rem;
+}
+
+.img-autora{
+  width:10rem;
+  padding-left: 5%;
+  padding-top: 5%;
+}
+
+.img-otros-autores{
+  width:10rem;
+  padding-left: 5%;
+  padding-top: 5%;
+}
+
+.rectangulo-general{
+  margin-top: 0;
+  margin-left: 0;
+  background-color: #FFFFFF;
+  width:85%;
+  height: 20%;
+  border-radius:20px;
+  box-shadow: 5px 5px 20px #C5BAFF;
+}
+
+
+/* Texto título rectangulo*/
+.grid-item-text {
+  margin-top:7%;
+}
+
+
+/* Botón escuchar */
+.boton-escuchar {
+  width: 55px;
+  height: 20px;
+  border: 1px;
+  border-style: solid;
+  border-color: #816AFE;
+  border-radius: 50px;
+  margin-left: 1rem;
+  text-align:center;
+  background-color: white;
+  font-size: 8px;
+  color: #816AFE;
+  font-weight: bold;
+  transition:all 1s;
+  }
+
+  .boton-escuchar:hover {
+  font-weight: bold;
+  cursor: pointer;
+  background-color: #6447ff;
+  color: white;
+  width: 100px;
+  }
+
+
+
+/* Autora grid contenedor */
+.autores-grid-container {
+}
+
+
+/* Autora rectangulo */
+.rectangulo-autora {
+  background-color: #816AFE;
+  width: 95%;
+  border-radius: 1rem;
+  margin-left:0;
+}
+
+/* Autora texto */
+.grid-item-text-autora {
+  margin-left:10%;
+  color: white;
+}
+
+
+/* Autora texto subtitulo */
+.p-subtitle-nutricionista {
+  font-weight:bold; 
+  font-size: 16px;
+}
+
+/* Autora texto párrafo */
+.p-descripcion-biografia {
+  max-width: 85%;
+  line-height:1.5;
+}
+
+/* Autora botón saber más */
+.boton-saber-mas {
+  width: 90px;
+  height: 2rem;
+  border: 2px;
+  border-radius: 50px;
+  text-align:center;
+  color: #816AFE;
+  font-weight: bold;
+  background-color: white; 
+  transition:all 1s; 
+}
+
+.boton-saber-mas:hover {
+  width: 120px;
+  border: solid 2px white;
+  border-radius: 50px;
+  color: white;
+  background-color:#816AFE;
+}
+
+
+
+/* Autora botón más podcast de esta autora */
+.boton-mas-podcast {
+  width: 150px;
+  height: 2rem;
+  border: 2px white solid;
+  border-radius: 50px;
+  margin-top:3%;
+  margin-left:3%;
+  margin-bottom:8%;
+  text-align:center;
+  color: white;
+  font-weight: bold;
+  background-color: #816AFE;
+  transition: all 1s;
+}
+
+.boton-mas-podcast:hover {
+  width: 180px;
+  color: #816AFE;
+  background-color: white;
+}
+
+
+
+/* Otros autores rectangulo */
+.rectangulo-otros-autores {
+  border: 4px solid #816AFE;
+  width: 93%;
+  border-radius: 1rem;
+  margin-left: 5%;
+}
+
+/* Otros autores texto */
+.grid-item-text-otros-autores {
+  margin-left:10%;
+}
+
+/* Otros autores botón saber más */
+.boton-saber-mas-otros {
+  width: 90px;
+  height: 2rem;
+  border: 2px;
+  border-radius: 50px;
+  margin-top:10px;
+  text-align:center;
+  font-weight: bold;
+  background-color: #816AFE; 
+  color: white;
+  transition:  all 1s;
+}
+
+
+.boton-saber-mas-otros:hover {
+  width: 120px;
+  border: solid 2px #816AFE;
+  background-color: white; 
+  color: #816AFE;
+}
+
+
+/* Otros autores botón más podcast de esta autora */
+.boton-mas-podcast-otros {
+  width: 180px;
+  height: 2rem;
+  border-radius: 50px;
+  margin-top:3%;
+  margin-left:3%;
+  margin-bottom:8%;
+  text-align:center;
+  background-color: white;
+  border: 2px #816AFE solid;
+  color: #816AFE;
+  font-weight: bold;
+  transition: all 1s;
+}
+
+
+.boton-mas-podcast-otros:hover {
+  width: 200px;
+  background-color: #816AFE;
+  color: white
+}
+
+
+/* Podcasts recomendados grid items */
+ .rectangulo-recomendados{
+  margin-bottom: 5%;
+  width: 113%;
+}
+
+/* A partir de 460px de ancho, usar este código */
+@media screen and (max-width: 460px) {
+  nav{
+    flex-direction: column;
+  }
+}
+
+/* A partir de 460px de ancho, usar este código */
+@media screen and (min-width: 460px) {
+
+
+h2{
+    font-size: 30px;
+    margin-top: 5%;
+}
+
+h3{
+    margin-left: 0;
+    margin-bottom: 2%;
+    margin-top: 0%;
+    font-size: 20px;
+}
+
+
+
+/* Rectangulo grid contenedor */
+.rectangulo-grid-container {
+  display:grid;
+  grid-template-columns:auto auto;
+}
+
+
+.img-podcast{
+  width:10rem;
+  aspect-ratio:3/2;
+  margin: 5% 5% 0% 5%;
+  border-radius:1rem;
+}
+
+
+.rectangulo-general{
+  width:90%;
+  height:18%;
+  }
+
+.p-rectangulo{
+    margin:0;
+    padding-top: 2%;
+}
+
+/* Botón escuchar */
+.boton-escuchar {
+  width: 85px;
+  height: 35px;
+  border: 2px;
+  margin-right: 1rem;
+  font-size: 12px;
+  float: right;
+  border-style: solid;
+  border-color: #816AFE;
+  border-radius: 50px;
+  color: #816AFE;
+  }
+
+
+/* Autora rectangulo */
+.rectangulo-autora {
+  width: 95%;
+}
+
+
+
+.img-autora{
+  display: block;
+  margin-left: 9%;
+  margin-right: auto;
+  width:15rem;
+
+}
+
+
+/* Autora texto */
+.grid-item-text-autora {
+  margin-left:20%;
+}
+
+
+
+.rectangulo-otros-autores {
+  border: 4px solid #816AFE;
+  width: 94%;
+}
+
+
+.img-otros-autores{
+  display: block;
+  margin-left: 9%;
+  margin-right: auto;
+  width:15rem;}
+
+
+
+/* Autora texto */
+.grid-item-text-otros-autores {
+  margin-left:20%;
+}
+
+
+.boton-mas-podcast-otros {
+  width: 180px;
+}
+
+
+
+.rectangulo-recomendados{
+  width:  100%;
+  padding-bottom: 3%;
+  margin: 0;
+}
+
+}
+
+/* A partir de 800px de ancho, usar este código */
+@media screen and (min-width: 800px) {
+
+
+h3{
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+
+/* Rectangulo grid contenedor */
+.rectangulo-grid-container {
+  display:grid;
+  grid-template-columns:auto auto;
+}
+
+
+.img-podcast{
+  display: block;
+  margin-top: 3%;
+  margin-bottom: auto;
+}
+
+
+.rectangulo-general{
+  width:80%;
+  }
+
+/* Autora grid contenedor */
+.autores-grid-container {
+  display:grid;
+  grid-template-columns:auto auto auto auto;
+  margin-top: 5%;
+}
+
+
+.grid-item-text-autora{
+  margin-left: 15%;
+}
+
+
+.grid-item-text-otros-autores{
+  margin-left: 15%;
+}
+
+
+.boton-mas-podcast-otros {
+  width: 180px;
+}
+
+}
+
+
+/* A partir de 600px de ancho, usar este código */
+@media screen and (min-width: 1300px) {
+
+body{ 
+  margin-top: 0%;
+  margin-left: 5%;
+}  
+
+h2{
+    font-size: 36px;
+    margin-top: 5%;
+}
+
+h3{
+    margin-left: 0;
+    margin-bottom: 2%;
+    margin-top: 0%;
+    font-size: 26px;
+}
+
+
+p {
+  font-size: 14px;
+}
+
+
+/* Rectangulo grid contenedor */
+.rectangulo-grid-container {
+  display:grid;
+  grid-template-columns:auto auto;
+}
+
+
+.img-podcast{
+  width:10rem;
+  aspect-ratio:3/2;
+  margin: 8% 8% 0% 8%;
+  border-radius:1rem;
+}
+
+
+.rectangulo-general{
+  width:40%;
+  height:20%;
+  }
+
+.p-rectangulo{
+    margin:0;
+    padding-top: 2%;
+}
+
+/* Botón escuchar */
+.boton-escuchar {
+  width: 85px;
+  height: 35px;
+  border: 2px;
+  margin-right: 1rem;
+  font-size: 12px;
+  float: right;
+  border-style: solid;
+  border-color: #816AFE;
+  border-radius: 50px;
+  color: #816AFE;
+  }
+
+/* Autora grid contenedor */
+.autores-grid-container {
+  display:grid;
+  grid-template-columns:auto auto auto auto;
+}
+
+
+/* Autora rectangulo */
+.rectangulo-autora {
+  width: 100%;
+}
+
+
+.rectangulo-autora-grid-container{
+  display:grid;
+  grid-template-columns:100px auto;
+}
+
+
+.img-autora{
+  width:20rem;
+}
+
+
+/* Autora texto */
+.grid-item-text-autora {
+  margin-top:10%;
+  margin-left:40%;
+}
+
+
+/* Autora texto subtitulo */
+.p-subtitle-nutricionista {
+  font-size: 16px;
+}
+
+/* Autora texto párrafo */
+.p-descripcion-biografia {
+  line-height:1.5;
+}
+
+/* Autora botón saber más */
+.boton-saber-mas {
+  width: 90px;
+  height: 2rem;
+  border: 2px; 
+}
+
+.boton-saber-mas:hover {
+  cursor: pointer;
+  color: white;
+  border: 2px solid white;
+  background-color: #816AFE;
+}
+
+
+/* Autora botón más podcast de esta autora */
+.boton-mas-podcast {
+  width: 150px;
+  height: 2rem;
+  border: 2px solid white;
+  }
+
+
+.boton-mas-podcast:hover {
+    cursor: pointer;
+    background-color: white;
+    color: #816AFE;
+  }
+
+
+
+/* Otros autores rectangulo */
+
+ .h2-otros-autores {
+  display: grid;
+  grid-template-colummns: auto auto;
+  margin-left: 5%;
+} 
+
+.rectangulo-otros-autores-grid-container{
+  display:grid;
+  grid-template-columns:100px auto;
+}
+
+
+.rectangulo-otros-autores {
+  border: 5px solid #816AFE;
+  width: 100%;
+  height: 79%;
+  margin-left: 5%;
+}
+
+.img-otros-autores{
+  width:19.5rem;
+}
+
+
+.grid-item-text-otros-autores {
+  margin-top:10%;
+  margin-left:40%;
+}
+
+
+/* Otros autores botón saber más */
+.boton-saber-mas-otros {
+  width: 90px;
+  height: 2rem;
+  border: 2px;
+ }
+
+
+.boton-saber-mas-otros:hover {
+   border: 2px solid #816AFE;
+   background-color: white;
+   color: #816AFE;
+ }
+
+
+/* Otros autores botón más podcast de esta autora */
+.boton-mas-podcast-otros {
+  width: 180px;
+  height: 2rem;
+  margin-top:3%;
+  margin-left:3%;
+  margin-bottom:8%;
+  border: 2px solid #816AFE;
+}
+
+
+.boton-mas-podcast-otros:hover {
+  border: 2px;
+  background-color:#816AFE;
+  color: white;
+}
+
+
+/* Podcasts recomendados */
+.podcasts-recomendados-grid-container{
+  display:grid;
+  grid-template-columns: 600px 600px 600px;
+}
+
+ .rectangulo-recomendados{
+  width:  200%;
+  height: 450%;
+}
+
+
+}
+
+
+</style>
+
+<body>
+  
+  <!--navegación-->
+  <nav>
+    <a href="#">Home</a>
+    <a href="#">Explore</a>
+    <a class="nav-a-verde" href="#"><strong>Pricing</strong></a>
+    <a href="#">Sing up</a>
+    <a href="#">Log in</a>
+  </nav>  
+  
+  <!--podcast seleccionado-->
+  <h2> Podcast seleccionado </h2>
+  
+  <div class="rectangulo-general"> 
+    <div class="rectangulo-grid-container">
+      
+<div class="grid-item-img">
+    <img class="img-podcast" src="https://image.freepik.com/foto-gratis/ingredientes-seleccion-alimentos-saludables_35641-2930.jpg" alt="food-image">
+    </div>
+    
+    <div class="grid-item-text"> 
+  <h3> Deforme semanal </h3>
+    <p class="p-rectangulo"> Podium podcast </p>
+    <p class="p-rectangulo"> 345 episodios </p>
+          
+    <button class="boton-escuchar">Escuchar</button>
+  </div>
+  </div>
+  </div>
+ <!--cierre de podcast seleccionado-->
+    
+ <!--seción de autores-->
+   
+ <div class="autores-grid-container"> 
+   
+ <!--autora--> 
+<div class="grid-item-autora">
+  
+  <h2> Autora </h2>
+  
+  <div class="rectangulo-autora"> 
+    <div class="rectangulo-autora-grid-container">
+      
+<div class="grid-item-img-autora">
+<img class="img-autora" src="/Users/irissantosnebreda/Desktop/Páginas web/Podcast - SHIFTA/img/Autora/Autora.png" alt="foto autora" /img>
+    </div>
+    
+    <div class="grid-item-text-autora"> 
+  <h1 class="h1-maria-garcia"> María García </h1>
+    <p class="p-subtitle-nutricionista"> Nutricionista y asesora deportiva </p>
+    <p class="p-descripcion-biografia"> Muy lejos, más allá de las montañas de palabras, alejados de los países de las vocales y las consonantes, viven los textos simulados. Viven aislados en casas de letras, en la costa de la semántica, un gran océano de lenguas. Un riachuelo llamado Pons fluye por su pueblo y los abastece con las normas necesarias.</p>
+      
+ <button class="boton-saber-mas">Saber más</button>
+ <button class="boton-mas-podcast"> + podcast de María</button>
+  </div>     
+  </div>  
+  </div>
+  </div>
+
+  <!--cierre de autora-->
+  <!--otros autores-->
+  <div class="grid-item-otros-autores">
+  <h2 class="h2-otros-autores"> Otros autores </h2>
+  
+  <div class="rectangulo-otros-autores"> 
+    <div class="rectangulo-otros-autores-grid-container">
+      
+<div class="grid-item-img-otros-autores">
+<img class="img-otros-autores" src="/Users/irissantosnebreda/Desktop/Páginas web/Podcast - SHIFTA/img/Otros autores/Otros-autores.png" alt="foto otros autores" /img>
+    </div>
+    
+    <div class="grid-item-text-otros-autores"> 
+  <h1 class="h1-maria-garcia"> Roberto Gil </h1>
+    <p class="p-subtitle-nutricionista"> Osteopata y entrenador personal </p>
+    <p class="p-descripcion-biografia"> Muy lejos, más allá de las montañas de palabras, alejados de los países de las vocales y las consonantes, viven los textos simulados. Viven aislados en casas de letras, en la costa de la semántica, un gran océano de lenguas. Un riachuelo llamado Pons fluye por su pueblo y los abastece con las normas necesarias.</p>
+      
+<button class="boton-saber-mas-otros">Saber más</button>
+ <button class="boton-mas-podcast-otros"> + podcast de Roberto </button>
+  </div>      
+  </div> 
+  </div> 
+  </div> 
+  </div>  
+  <!--cierre sección de autores-->  
+  
+  <!--podcast recomendados-->
+
+    <h2> Podcast recomendados </h2>
+  <div class="podcasts-recomendados-grid-container">
+  <!--Nutrición diaria-->
+  
+  <div class="rectangulo-recomendados">
+  <div class="rectangulo-general"> 
+    <div class="rectangulo-grid-container">
+  
+    <div class="grid-item-img">
+        <img class="img-podcast" src="https://image.freepik.com/foto-gratis/ingredientes-seleccion-alimentos-saludables_35641-2930.jpg" alt="food-image">
+      </div>
+    
+      <div class="grid-item-text"> 
+        <h3> Nutrición diaria 1 </h3>
+        <p class="p-rectangulo"> Podium podcast </p>
+        <p class="p-rectangulo"> 345 episodios </p>
+          
+        <button class="boton-escuchar">Escuchar</button>
+     </div>
+    </div>
+  </div>
+</div>
+
+  
+  <!--Comer sano nutrición diaria-->
+
+  <div class="rectangulo-recomendados">
+   <div class="rectangulo-general"> 
+    <div class="rectangulo-grid-container">
+  
+    <div class="grid-item-img">
+        <img class="img-podcast" src="https://image.freepik.com/foto-gratis/ingredientes-seleccion-alimentos-saludables_35641-2930.jpg" alt="food-image">
+      </div>
+    
+      <div class="grid-item-text"> 
+        <h3> Nutrición diaria 2 </h3>
+        <p class="p-rectangulo"> Podium podcast </p>
+        <p class="p-rectangulo"> 345 episodios </p>
+          
+        <button class="boton-escuchar">Escuchar</button>
+     </div>
+    </div>
+  </div>
+</div>
+
+
+  <!--Proteina vegetal-->
+    <div class="rectangulo-recomendados">
+ <div class="rectangulo-general">   
+    <div class="rectangulo-grid-container">
+  
+    <div class="grid-item-img">
+        <img class="img-podcast" src="https://image.freepik.com/foto-gratis/ingredientes-seleccion-alimentos-saludables_35641-2930.jpg" alt="food-image">
+      </div>
+    
+      <div class="grid-item-text"> 
+        <h3> Nutrición diaria 3 </h3>
+        <p class="p-rectangulo"> Podium podcast </p>
+        <p class="p-rectangulo"> 345 episodios </p>
+          
+        <button class="boton-escuchar">Escuchar</button>
+     </div>
+    </div>
+  </div>
+  </div>
+</div>
+  
+ <!--cierre de podcast recomendados-->
+    
+</body>
+</html>
