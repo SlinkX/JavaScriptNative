@@ -1,0 +1,634 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="css/main.css">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,500,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/all.min.css">
+    <link rel="stylesheet" href="css/animate.css">
+    <title>John Romero Tribute</title>
+
+    <style>
+      * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Roboto', sans-serif;
+    text-decoration: none;
+    list-style: none;
+}
+
+body {
+    background: #000;
+}
+
+.nav-bar{
+    color: #fff;
+    width: 100%;
+    font-size: 1.3rem;
+    display: flex;
+    justify-content: flex-end;
+    position: fixed;
+    z-index: 1000;
+    font-size: 2rem;
+}
+
+#nav {
+    padding: 20px;
+}
+
+.nav-bar,
+.nav-bar a,
+#nav {
+    color: #fff;
+    transition: ease-in-out 300ms;
+}
+
+.nav-bar a {
+    color: white;
+}
+
+.nav-bar:hover,
+.nav-bar a:hover,
+#nav:hover {
+    color: #db431e;
+    cursor: pointer;
+}
+
+.nav-links {
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    width: 100vw;
+    height: 100vh;
+    background: #000;
+}
+
+.nav-links li {
+    padding: 30px 20px;
+
+}
+
+
+#title {
+    background: url("https://images-eds-ssl.xboxlive.com/image?url=8Oaj9Ryq1G1_p3lLnXlsaZgGzAie6Mnu24_PawYuDYIoH77pJ.X5Z.MqQPibUVTcTUdci1xdQdiP8rboXk4cfbzSf1RZ5Bc07Wiw5T4NAUoY0lDsOkBt5jH_jzn3hMTUIRbMY_AfAmBnDrDxa79Kuc5gME3ICGh3mJmd7hK6lekx48obe8ZTgJHF3P5tVNxEAnMnEaK99iBw2uNlmB4IybBpdMWw1ytacLBRCYsFuS0-&h=1080&w=1920&format=jpg");
+    width: 100%;
+    height: 80vh;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    position: relative;
+}
+
+.hero-text {
+    color: #fff;
+    width: 100%;
+    height: 300px;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(0, 0, 0, 0.75);
+    padding: 20px;
+}
+
+.hero-text h1 {
+    font-size: 2.5rem;
+    text-align: left;
+}
+
+.hero-text blockquote {
+    width: 100%;
+    position: relative;
+    left: 5px;
+    font-size: 1.3rem;
+    width: 100%;
+    font-style: italic;
+    border-left: 8px solid #db431e;
+    padding: 10px 15px;
+}
+
+/* Social */
+#social {
+    height: 15vh;
+    background: #000;
+    font-size: 3rem;
+    position: relative;
+}
+
+#social ul {
+    display: flex;
+    justify-content: center;
+    
+}
+
+#social a {
+    padding: 15px;
+    color: rgb(199, 199, 199);
+    transition: ease-in-out 300ms;
+}
+
+#social a:hover {
+    color: #db431e;
+}
+
+.social-buttons {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+/* About */
+
+#about {
+    background: url("https://i.imgur.com/NbCMbSs.jpg?1");
+    background-position: bottom;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.card {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    color: #fff;
+}
+
+.card-info {
+    width: 100%;  
+    background: rgba(0, 0, 0, 0.55);
+    padding: 15px; 
+}
+
+.card-img {
+    width: 100%;
+    height: auto;
+}
+
+.card-title {
+    font-size: 2.5rem;
+    padding: 20px;
+    text-align: center;
+}
+
+.card-text {
+    font-size: 1.1rem;
+    text-align: center;
+}
+
+.game-showcase {
+    padding: 15px;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+}
+
+.game-showcase--item {
+    margin: 0 auto;
+}
+
+.game-showcase--img {
+    width: 300px;
+    height: 150px;
+}
+
+.game-showcase--text {
+    text-align: center;
+    color: white;
+    font-style: italic;
+    font-size: 1.2rem;
+    padding: 5px 0;
+}
+
+#accomplishments {
+    width: 100%;
+    padding: 10px 0;
+    background: url("https://steamcdn-a.akamaihd.net/steamcommunity/public/images/items/379720/2dd41ec0e56f8ad814d29b51a4c46817936e0cad.jpg");
+    background-repeat: no-repeat;
+    min-height: 100vh;
+    max-height: 100%;
+}
+
+#accomplishments h2 {
+    text-align: right;
+    font-size: 3rem;
+    padding-right: 15%;
+}
+
+/* Timeline */
+#timeline {
+    height: 50vh;
+    color: white;
+    background: url("https://wallpaperplay.com/walls/full/0/c/8/192199.jpg");
+ background-size: cover;
+  background-position: center;
+}
+
+#timeline h1 {
+    text-align: center;
+    font-size: 2rem;
+}
+
+.timeline-browser {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    font-size: 1.5rem;
+}
+
+.timeline-browser span a{
+    padding: 0 20px;
+    font-size: 2rem;
+    color: #f5c53f;
+}
+ 
+.timeline-text {
+    text-align: center;
+    font-size: 1.2rem;
+    padding: 2px;
+}
+
+
+footer {
+    height: 50px;
+    background: #000;
+    color: white;
+    text-align: center;
+    line-height: 50px;
+}
+
+/* Media Queriues */
+@media (min-width: 300px){
+
+    #social a{
+        font-size: 3.5rem;
+    }
+
+    #social li {
+        padding: 10px 0;
+    }
+
+
+    #timeline h1 {
+        font-size: 3rem;
+    }
+
+    #left-arrow,
+    #right-arrow {
+        font-size: 2rem;
+    }
+
+    #dates {
+        font-size: 2rem;
+    }
+
+    .timeline-text {
+        font-size: 1.5rem;
+        background: rgba(0, 0, 0, 0.85);
+
+    }
+}
+
+@media (min-width: 500px) {
+    #social a{
+        font-size: 4.5rem;
+    }
+
+    #social li {
+        padding: 10px;
+    }
+}
+
+
+@media (min-width: 960px) {
+    #social a {
+        font-size: 4rem;
+    }
+    
+    #social li {
+        padding: 10px 70px;
+    }
+
+    .card {
+        flex-direction: row;
+        background: rgba(0, 0, 0, 0.85);
+    }
+
+    .card-img {
+        width: 50%;
+    }
+
+
+    .game-showcase {
+        flex-direction: row;
+    }
+
+    .timeline-text {
+        font-size: 1.5rem;
+        background: rgba(0, 0, 0, 0.85);
+        height: auto;
+        padding: 20px;
+    }
+}
+
+@media (min-width: 1150px) {  
+    .hero-text {
+        color: #fff;
+        width: 60%;
+        position: absolute;
+        left: 5%;
+    }
+    
+    .hero-text h1 {
+        font-size: 4rem;
+        text-align: left;
+    }
+    
+    .hero-text blockquote {
+        font-size: 1.5rem;
+    }
+
+    #social a{
+        font-size: 5rem;
+    }
+
+    #social li {
+        padding: 10px 60px;
+    }
+
+    .card {
+        flex-direction: row;
+        background: rgba(0, 0, 0, 0.85);
+    }
+
+    .card-img {
+        width: 50%;
+    }
+
+
+    .game-showcase {
+        flex-direction: row;
+    }
+
+    .timeline-text {
+        font-size: 2rem;
+        background: rgba(0, 0, 0, 0.85);
+        height: auto;
+        padding: 20px;
+    }
+
+}
+
+@media (min-width: 1500px) and (max-width: 1920px) {
+    
+    #social a {
+        font-size: 5rem;
+    }
+
+    #social li {
+        padding: 15px 35px;
+    }
+
+    #about {
+        height: auto;
+    }
+
+    #quote {
+        font-size: 1.8rem;
+    }
+
+
+    .card-title {
+        font-size: 3rem;
+    }
+
+    .card-text {
+        font-size: 1.4rem;
+    }
+
+}
+    </style>
+</head>
+<body>
+    <main id="main">
+        <section id="landing">
+            <nav class="nav-bar">
+                <i id="nav" class="fas fa-bars" ></i>
+                <ul class="nav-links">
+                    <a href="#about" id="about-btn"><li>About</li></a>
+                    <a href="#timeline" id="timeline-btn"><li>Timeline</li></a>
+                </ul>
+            </nav>
+            <header id="title">
+                <div class="hero-text">
+                    <h1>John Romero</h1>
+                    <blockquote id="quote">
+                        &ldquo;You might not think that programmers are artists, but programming is an extremely
+                        creative profession. It's logic-based creativity.&rdquo;
+                    </blockquote>
+                </div>
+            </header>
+        </section>
+
+         <section id="social">
+            <ul class="social-buttons">
+                <a href="https://www.facebook.com/theromero">
+                    <li><i class="fab fa-facebook-square"></i></li>
+                </a>
+                <a href="https://twitter.com/romero?ref_src=twsrc%5Egoogle%7Ctwcamp%5Eserp%7Ctwgr%5Eauthor">
+                    <li><i class="fab fa-twitter-square"></i></li>
+                </a>
+                <a href="https://www.youtube.com/channel/UCtN2A8bFL_NoxClFyklbMRQ/feed">
+                    <li><i class="fab fa-youtube"></i></li>
+                </a>
+                <a href="https://www.instagram.com/theromero/?hl=en">
+                    <li><i class="fab fa-instagram"></i></li>
+                </a>
+            </ul>
+        </section>
+
+        <section id="about">
+            <div class="card">
+                <img class="card-img"
+                    src="http://ecgconf.com/wp-content/uploads/2016/10/John_Romero_-_Jason_Scott_interview_6951215353.jpg"
+                    alt="">
+                <div class="card-info">
+                    <h2 class="card-title">John Romero</h2>
+                    <p class="card-text">Alfonso John Romero (born October 28, 1967) is best known for being the
+                        co-founder of ID Software. He has worked on titles including Wolfenstein 3D, Dangerous Dave,
+                        Hexen, Doom and Quake. His game designs, development tools, and new programming techniques
+                        created with id Software's lead programmer John D. Carmack popularized the FPS genre. Romero is
+                        known for coining the term "deathmatch".</p>
+                </div>
+            </div>
+            <div class="game-showcase">
+                <div class="game-showcase--item">
+                    <img class="game-showcase--img"
+                        src="https://images.gog.com/fe959d529be9ba2c18ab1161fbb7ea3411937ef93d61d87065d039bef9a193e4_product_card_v2_mobile_slider_639.jpg"
+                        alt="">
+                    <p class="game-showcase--text">Wolfenstein 3D - May 5, 1992</p>
+                </div>
+                <div class="game-showcase--item">
+                    <img class="game-showcase--img"
+                        src="https://steamcdn-a.akamaihd.net/steam/apps/2280/ss_0316d2cb78eed32d21a90f197da0e0ea4b06e776.1920x1080.jpg?t=1564072715"
+                        alt="">
+                    <p class="game-showcase--text">Doom - December 10, 1993</p>
+                </div>
+                <div class="game-showcase--item">
+                        <img class="game-showcase--img"
+                            src="https://o.aolcdn.com/images/dims?quality=85&image_uri=https%3A%2F%2Fs.aolcdn.com%2Fhss%2Fstorage%2Fmidas%2F361034398fb3fd9400b32dbc02ef821c%2F203990356%2Fquake-1996-ed.jpg&client=amp-blogside-v2&signature=5a7528cae41a3f48a80439a9f8ef70998ef149ea"
+                            alt="">
+                        <p class="game-showcase--text">Quake - June 22, 1996</p>
+                    </div>
+            </div>
+        </section>
+        
+        <section id="timeline">
+            <h1>My Journey</h1>
+            <div class="timeline-browser">
+                <span><a href="#timeline" id="left-arrow"><i class="fas fa-caret-left"></i></a></span>
+                <h3 id="dates">1980</h3>
+                <span><a href="#timeline" id="right-arrow"><i class="fas fa-caret-right"></i></a></span>
+            </div>
+            <div class="timeline-text">
+                <p>Starts programming games on an Apple II, Creates his first game Crazy Climber clone.</p>
+            </div>
+        </section>
+        <footer>
+            <p>&copy;CydoEntis 2019</p>
+        </footer>
+    </main>
+    <script src="js/main.js"></script>
+</body>
+<script>
+  const quote = document.querySelector("#quote");
+const nav = document.querySelector("#nav");
+const navLinks = document.querySelector(".nav-links");
+const aboutBtn = document.querySelector("#about-btn");
+const timelineBtn = document.querySelector("#timeline-btn");
+
+const dates = document.querySelector("#dates");
+const timelineText = document.querySelector(".timeline-text");
+const leftArrow = document.querySelector("#left-arrow");
+const rightArrow = document.querySelector("#right-arrow");
+
+// Toggle Navigation
+nav.addEventListener("click", () => {
+    if (navLinks.style.display === "none") {
+        navLinks.style.display = "flex";
+    } else {
+        navLinks.style.display = "none";
+    }
+})
+
+aboutBtn.addEventListener("click", () => {
+    navLinks.style.display = "none";
+});
+
+timelineBtn.addEventListener("click", () => {
+    navLinks.style.display = "none";
+});
+
+
+
+let quoteArray = ["I think the reason that I like so many different games is because I like the way my brain works when I'm playing games. It's more fun.", "I'm a hardcore gamer and would never let you down by designing a crappy title.", "It is very important to lead the field and innovate in game design.", "You might not think that programmers are artists, but programming is an extremely creative profession. It's logic-based creativity."]
+
+let i = 0;
+let generateQuote = () => {
+    quote.innerText = quoteArray[i];
+    i++;
+    if (i > quoteArray.length - 1) {
+        i = 0;
+    }
+}
+setInterval(generateQuote, 7000);
+
+const timelineArray = [
+    date1 = {
+        date: 1980,
+        descript: "Starts programming games on an Apple II, Creates his first game Crazy Climber clone."
+    },
+    date2 = {
+        date: 1984,
+        descript: "First published game - Scout Search in inCider Magazine."
+    },
+    date3 = {
+        date: 1987,
+        descript: "First job with Origin Systems"
+    },
+    date4 = {
+        date: 1989,
+        descript: "Moved to Shreveport, Louisiana and joined Softdisk."
+    },
+    date5 = {
+        date: 1990,
+        descript: "Creates game division called Gamer's Edge(originally titled PCRcade, Hired John D Carmack, Adrian Carmack, and TomHall."
+    },
+    date6 = {
+        date: 1991,
+        descript: "Starts id Software."   
+    },
+    date7 = {
+        date: 1997,
+        descript: "Announced Daikatana(An ambitious FPS) only to have it slip release date repeatdly and incur negative press."
+    },
+    date8 = {
+        date: 2001,
+        descript: "Romero and Hall founded Monkeystone Games"
+    },
+    date9 = {
+        date: 2003,
+        descript: "Joins Midway Games as project lead on Gauntlet:Seven Sorrows."
+    },
+    date10 = {
+        date: 2005,
+        descript: "Working on a yet-to-be announced MMOG at newly opened development studio - Splitgate Ironworks."
+    },
+    date11 = {
+        date: 2006,
+        descript: "Announced a new FPS project for the Cyber Athlete Professional League titled Severity for console and PC"
+    },
+    date12 = {
+        date: 2010,
+        descript: "Collaborates with Retro Gamer - taking on guest editor role."
+    },
+    date13 = {
+        date: 2014,
+        descript: "In a Super Joystiq PodCast announced new shooter in the works."
+    },
+    date14 = {
+        date: 2016,
+        descript: "Announced partnership with Adrian Carmack to create a new FPS entitled Blackroom -- Seeking $700,000 via Kickstarter to see the project completed by 2018(Kickstarter was closed 4 days after launch)."
+    }
+
+]
+
+let dateCount = 0;
+
+rightArrow.addEventListener("click", () => {
+    dateCount++;
+    if (dateCount > timelineArray.length - 1) {
+        console.log(dateCount);       
+        dateCount = 0;
+    }
+    dates.innerText = timelineArray[dateCount].date;
+    timelineText.innerText = timelineArray[dateCount].descript;   
+    console.log(dateCount);
+});
+
+leftArrow.addEventListener("click", () => {
+    dateCount--;
+    if (dateCount < 0) {
+        console.log(dateCount);
+        dateCount = timelineArray.length - 1;
+    }
+    dates.innerText = timelineArray[dateCount].date;
+    timelineText.innerText = timelineArray[dateCount].descript;   
+
+});
+</script>
+
+</html>
